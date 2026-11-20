@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.qa-core/
+*.tgz
+.env*
+sea-prep.blob
+build-bin/
+.DS_Store

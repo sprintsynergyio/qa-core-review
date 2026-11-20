@@ -1,0 +1,92 @@
+{
+  "name": "qa-core-review",
+  "version": "0.0.0",
+  "description": "Review AI-written tests before merge, in any language. Flags tests that stay green while checking nothing.",
+  "keywords": [
+    "testing",
+    "test-automation",
+    "qa",
+    "code-review",
+    "static-analysis",
+    "test-quality",
+    "ai-agents",
+    "claude-code",
+    "cursor",
+    "codex",
+    "playwright",
+    "cypress",
+    "jest",
+    "pytest",
+    "junit",
+    "selenium",
+    "tree-sitter",
+    "sarif",
+    "cli"
+  ],
+  "homepage": "https://github.com/sprintsynergyio/qa-core-review#readme",
+  "bugs": {
+    "url": "https://github.com/sprintsynergyio/qa-core-review/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sprintsynergyio/qa-core-review.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "SprintSynergy",
+    "url": "https://sprintsynergy.com"
+  },
+  "contributors": [
+    {
+      "name": "Muhammad Usman",
+      "url": "https://linkedin.com/in/sdet-muhammadusman"
+    }
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "bin": {
+    "qa-core-review": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "ui",
+    "schemas",
+    "skill",
+    "templates",
+    "grammars",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "lint": "npm run typecheck && node scripts/check-text.mjs",
+    "test": "npm run build && node --test \"tests/**/*.test.mjs\"",
+    "coverage": "npm run build && c8 --check-coverage --lines 90 --functions 90 --branches 85 node --test \"tests/**/*.test.mjs\"",
+    "eval": "npm run build && node evals/run.mjs",
+    "pack:smoke": "node scripts/pack-smoke.mjs"
+  },
+  "c8": {
+    "include": [
+      "dist/**"
+    ],
+    "reporter": [
+      "text",
+      "text-summary"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "c8": "12.0.0",
+    "typescript": "5.9.3"
+  }
+}
