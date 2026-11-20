@@ -1,0 +1,4 @@
+# Check out text as LF on every platform, so fixture line numbers match on Windows.
+* text=auto eol=lf
+# Vendored tree-sitter grammars are binary. Never convert or diff them as text.
+*.wasm binary
