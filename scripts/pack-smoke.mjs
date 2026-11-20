@@ -14,7 +14,7 @@ import { readTarball } from './lib/tar.mjs';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
-const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
+const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/schemas/config.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
   'package/grammars/javascript.wasm', 'package/grammars/typescript.wasm', 'package/grammars/tsx.wasm', 'package/grammars/python.wasm', 'package/grammars/java.wasm',
   'package/README.md', 'package/CHANGELOG.md', 'package/LICENSE'];
 const FORBIDDEN_PREFIXES = ['package/src/', 'package/tests/', 'package/scripts/', 'package/evals/', 'package/fixtures/', 'package/.github/', 'package/node_modules/'];
@@ -61,6 +61,9 @@ try {
   const api = await import(pathToFileURL(path.join(installed, installedPkg.main)).href);
   expect(api.VERSION === pkg.version, `the package entry exports VERSION ${api.VERSION}, expected ${pkg.version}`);
   expect(typeof api.selectRules === 'function' && typeof api.createRegistry === 'function' && api.CAPABILITIES.length > 0, 'the package entry does not export the model and adapter API');
+
+  // The installed package must find its config schema and its YAML dependency on its own.
+  expect(api.resolveConfig(api.parseYaml('failOn: warn\n')).config.failOn === 'warn', 'the installed package cannot load a YAML config');
 
   // The installed package must find its grammars and its parser dependency on its own.
   const parser = api.createTreeSitterService();

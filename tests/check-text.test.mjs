@@ -47,6 +47,15 @@ test('a tab, trailing whitespace, CRLF and an em dash each fail with file and li
   assert.match(ran.stderr, /check-text failed: 4 problem\(s\) in 4 files/);
 });
 
+test('a byte order mark character fails anywhere in a file', () => {
+  const bom = String.fromCharCode(0xfeff);
+  const ran = check({ 'src/a.ts': `${bom}export const a = 1;\n`, 'src/b.ts': `const pattern = /^${bom}/;\n`, 'fixtures/js/bom.test.js': `${bom}test('a', () => {});\n` });
+  assert.equal(ran.status, 1);
+  assert.match(ran.stderr, /^src\/a\.ts: byte order mark character/m);
+  assert.match(ran.stderr, /^src\/b\.ts: byte order mark character/m);
+  assert.doesNotMatch(ran.stderr, /fixtures/);
+});
+
 test('forbidden words match whole words in any case, and the list file itself is exempt', () => {
   const ran = check({
     'scripts/forbidden-words.txt': 'Acme\nbig client\n\n',
