@@ -57,7 +57,10 @@ export type ParseStatus = (typeof PARSE_STATUSES)[number];
 
 export type Tier = 1 | 2 | 3;
 
-/** A source range. Lines and columns are 1-based, on the LF-normalized text. */
+/**
+ * A source range. Lines and columns are 1-based, on the LF-normalized text. The end is exclusive:
+ * `endColumn` is the column just after the last character. Columns count UTF-16 code units.
+ */
 export interface Span {
   startLine: number;
   startColumn: number;

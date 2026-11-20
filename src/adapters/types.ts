@@ -4,9 +4,11 @@
 // test files, how to parse them, and how to turn a parsed file into the normalized model.
 import type { ResolvedConfig } from '../config/types.js';
 import type { Capability, FrameworkId, LanguageId, NFile, ParseStatus, Span, Tier } from '../model/types.js';
+import type { SyntaxTree, TreeSitterService } from '../parse/treesitter.js';
 import type { Rule } from '../rules/types.js';
 
 export type { Capability, Tier } from '../model/types.js';
+export type { SyntaxTree, TreeSitterService } from '../parse/treesitter.js';
 
 /**
  * How a framework shows up in a project. `file` is a manifest or config file name, or a glob
@@ -56,17 +58,6 @@ export interface SourceFile {
   text: string;
   language: LanguageId;
   project: DetectedProject | null;
-}
-
-/** A parsed syntax tree. Milestone 2 types this as the web-tree-sitter tree. */
-export interface SyntaxTree {
-  readonly rootNode: unknown;
-}
-
-/** The shared parser service. Milestone 2 implements it in src/parse/treesitter.ts. */
-export interface TreeSitterService {
-  /** Parses `text` with the named grammar. Null when the grammar cannot be loaded. */
-  parse(grammar: string, text: string): Promise<SyntaxTree | null>;
 }
 
 /** A function or method that contains an assertion, found by an adapter in any project file. */
