@@ -1,0 +1,10 @@
+# The payments service declares JUnit 4 in its pom.xml, but its tests run on TestNG through a
+# shared parent build that is not in this repo. The entry below says so, adds an odd test
+# folder, and leaves the old tests out.
+projects:
+  - path: services/payments
+    language: java
+    runner: testng
+    libraries: [restassured]
+    include: ["services/payments/checks/**/*.java"]
+    exclude: ["services/payments/src/test/java/pay/legacy/**"]

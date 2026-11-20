@@ -167,6 +167,9 @@ export const toyAdapter = {
   commentSyntax: { line: ['#'] },
   capabilities: [...CAPABILITIES],
 
+  languageOf() {
+    return 'generic';
+  },
   detectProject(probe) {
     if (!probe.hasFile('toy.manifest')) return null;
     return { dir: probe.dir, adapterId: 'toy', languages: ['generic'], frameworks: [], evidence: ['toy.manifest'] };

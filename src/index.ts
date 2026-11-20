@@ -13,11 +13,22 @@ export type {
 export { testId } from './model/hash.js';
 
 // The adapter interface and registry (SPEC.md Section 7.3).
-export { AdapterRegistry, adapterProblems, builtinAdapters, createRegistry } from './adapters/index.js';
+export { AdapterRegistry, adapterProblems, builtinAdapters, builtinProfiles, createRegistry } from './adapters/index.js';
+export { GENERIC_LANGUAGES, languageHintFor } from './adapters/generic/languages.js';
 export type {
-  AdapterContext, DetectedProject, FrameworkDescriptor, FrameworkGuess, HelperDef, HelperIndex, LanguageAdapter,
+  AdapterContext, AdapterProfile, DetectedProject, FrameworkDescriptor, FrameworkGuess, HelperDef, HelperIndex, LanguageAdapter,
   ParsedFile, ProjectMarker, ProjectProbe, SourceFile, SyntaxTree, TreeSitterService,
 } from './adapters/types.js';
+
+// Project detection and file discovery (SPEC.md Section 7.4).
+export { detectFromMarkers } from './detect/markers.js';
+export type { MarkerRules } from './detect/markers.js';
+export { createProbe } from './detect/probe.js';
+export { ROOT_DIR, applyOverrides, detectProjects, nearestOverride, nearestProject } from './detect/projects.js';
+export { buildDetectReport, formatDetectPretty } from './detect/report.js';
+export type { DetectReport } from './detect/report.js';
+export { discover, listFiles } from './discover/files.js';
+export type { DiscoverOptions, DiscoveredFile, Discovery, FileList } from './discover/files.js';
 
 // Parsing (SPEC.md Section 7.2).
 export { ERROR_RATIO_LIMIT, createTreeSitterService, errorRatio } from './parse/treesitter.js';

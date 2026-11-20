@@ -1,0 +1,14 @@
+[project]
+name = "python-basic"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "selenium>=4.20",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

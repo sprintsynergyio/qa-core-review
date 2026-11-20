@@ -14,7 +14,7 @@ import { readTarball } from './lib/tar.mjs';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
-const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/schemas/config.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
+const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/schemas/config.schema.json', 'package/schemas/detect.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
   'package/grammars/javascript.wasm', 'package/grammars/typescript.wasm', 'package/grammars/tsx.wasm', 'package/grammars/python.wasm', 'package/grammars/java.wasm',
   'package/README.md', 'package/CHANGELOG.md', 'package/LICENSE'];
 const FORBIDDEN_PREFIXES = ['package/src/', 'package/tests/', 'package/scripts/', 'package/evals/', 'package/fixtures/', 'package/.github/', 'package/node_modules/'];
@@ -57,6 +57,15 @@ try {
   expect(bad.status === 2, `an unknown flag exited ${bad.status}, expected 2`);
   expect(bad.stdout === '', 'an unknown flag wrote to stdout');
   expect(bad.stderr.includes('Run qa-core-review --help'), `an unknown flag did not point to --help:\n${bad.stderr}`);
+
+  // `detect` on a small project made on the spot: the installed CLI must find it.
+  fs.mkdirSync(path.join(installDir, 'tests'));
+  fs.writeFileSync(path.join(installDir, 'tests', 'cart.test.js'), "test('adds', () => { expect(1 + 1).toBe(2); });\n");
+  fs.writeFileSync(path.join(installDir, 'jest.config.js'), 'module.exports = {};\n');
+  const detected = cli(bin, ['detect', '--root', installDir, '--format', 'json']);
+  expect(detected.status === 0, `detect exited ${detected.status}:\n${detected.stderr}`);
+  const found = JSON.parse(detected.stdout);
+  expect(found.projects[0]?.adapter === 'js' && found.projects[0].frameworks.includes('jest') && found.testFiles === 1, `detect found the wrong things:\n${detected.stdout}`);
 
   const api = await import(pathToFileURL(path.join(installed, installedPkg.main)).href);
   expect(api.VERSION === pkg.version, `the package entry exports VERSION ${api.VERSION}, expected ${pkg.version}`);
