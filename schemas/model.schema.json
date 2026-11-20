@@ -1,0 +1,374 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sprintsynergyio/qa-core-review/main/schemas/model.schema.json",
+  "title": "qa-core-review normalized test model (NFile)",
+  "description": "One test file after a language adapter has normalized it. Mirrors src/model/types.ts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "path", "language", "languageHint", "adapter", "tier", "runner", "libraries", "role", "parseStatus",
+    "capabilities", "suites", "tests", "fileHooks", "fileMocks", "fileResources", "imports", "subject",
+    "suppressions"
+  ],
+  "properties": {
+    "path": {
+      "type": "string",
+      "description": "Root-relative, with '/' separators on every OS.",
+      "pattern": "^[^\\\\]+$"
+    },
+    "language": { "$ref": "#/$defs/LanguageId" },
+    "languageHint": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+    "adapter": { "type": "string" },
+    "tier": { "enum": [1, 2, 3] },
+    "runner": { "$ref": "#/$defs/FrameworkId" },
+    "libraries": { "type": "array", "items": { "$ref": "#/$defs/FrameworkId" } },
+    "role": { "enum": ["test", "support"] },
+    "parseStatus": { "$ref": "#/$defs/ParseStatus" },
+    "capabilities": { "type": "array", "items": { "$ref": "#/$defs/Capability" }, "uniqueItems": true },
+    "suites": { "type": "array", "items": { "$ref": "#/$defs/NSuite" } },
+    "tests": { "type": "array", "items": { "$ref": "#/$defs/NTest" } },
+    "fileHooks": { "type": "array", "items": { "$ref": "#/$defs/NHook" } },
+    "fileMocks": { "type": "array", "items": { "$ref": "#/$defs/NMock" } },
+    "fileResources": { "type": "array", "items": { "$ref": "#/$defs/NResource" } },
+    "imports": { "type": "array", "items": { "$ref": "#/$defs/NImport" } },
+    "subject": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["module", "via"],
+          "properties": {
+            "module": { "type": "string" },
+            "via": { "enum": ["filename", "subjectMap", "class-under-test"] }
+          }
+        },
+        { "type": "null" }
+      ]
+    },
+    "suppressions": { "type": "array", "items": { "$ref": "#/$defs/NSuppression" } }
+  },
+  "$defs": {
+    "LanguageId": {
+      "enum": [
+        "javascript", "typescript", "python", "java", "csharp", "go", "ruby", "kotlin", "php", "robot", "gherkin",
+        "jmeter", "postman", "generic"
+      ]
+    },
+    "FrameworkId": {
+      "enum": [
+        "playwright", "cypress", "jest", "vitest", "mocha", "webdriverio", "node-test", "pytest", "unittest",
+        "playwright-python", "selenium", "junit4", "junit5", "testng", "restassured", "playwright-java", "nunit",
+        "xunit", "mstest", "playwright-dotnet", "go-testing", "testify", "rspec", "capybara", "kotest", "phpunit",
+        "robot", "cucumber", "k6", "jmeter", "postman", "unknown"
+      ]
+    },
+    "Capability": {
+      "enum": [
+        "tests", "suites", "hooks", "modifiers", "parameterized", "assertions", "assertion-operands", "waits",
+        "selectors", "try-blocks", "mocks", "subject", "network", "data", "resources", "body-hash", "helpers",
+        "reachability"
+      ]
+    },
+    "Modifier": { "enum": ["only", "skip", "todo", "fixme", "fail", "xfail", "concurrent", "serial"] },
+    "AssertionKind": {
+      "enum": [
+        "equality", "truthiness", "nullness", "comparison", "contains", "type", "throws", "status", "snapshot",
+        "visual", "mock-call", "ui-state", "count", "fail-call", "other"
+      ]
+    },
+    "SelectorStrategy": {
+      "enum": ["css", "xpath", "role", "test-id", "label", "text", "id", "name", "class", "link-text", "other"]
+    },
+    "ParseStatus": { "enum": ["ok", "partial", "failed", "llm-only"] },
+    "Span": {
+      "description": "1-based lines and columns on the LF-normalized text.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startLine", "startColumn", "endLine", "endColumn"],
+      "properties": {
+        "startLine": { "type": "integer", "minimum": 1 },
+        "startColumn": { "type": "integer", "minimum": 1 },
+        "endLine": { "type": "integer", "minimum": 1 },
+        "endColumn": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "NExpr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "normalized", "kind", "isLocator", "isCount", "isMock"],
+      "properties": {
+        "text": { "type": "string", "maxLength": 200 },
+        "normalized": { "type": "string" },
+        "kind": { "enum": ["literal", "identifier", "member", "call", "collection", "other"] },
+        "literal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "value"],
+          "properties": {
+            "type": { "enum": ["bool", "number", "string", "null", "empty-collection"] },
+            "value": { "type": "string" }
+          }
+        },
+        "isLocator": { "type": "boolean" },
+        "isCount": { "type": "boolean" },
+        "isMock": { "type": "boolean" }
+      }
+    },
+    "NAssertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "span", "text", "kind", "library", "actual", "expected", "matcher", "negated", "soft", "complete", "awaited",
+        "guarded", "reachable", "viaHelper"
+      ],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "kind": { "$ref": "#/$defs/AssertionKind" },
+        "library": { "type": "string" },
+        "actual": { "anyOf": [{ "$ref": "#/$defs/NExpr" }, { "type": "null" }] },
+        "expected": { "anyOf": [{ "$ref": "#/$defs/NExpr" }, { "type": "null" }] },
+        "matcher": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+        "negated": { "type": "boolean" },
+        "soft": { "type": "boolean" },
+        "complete": { "type": "boolean" },
+        "awaited": { "enum": ["yes", "no", "not-needed"] },
+        "guarded": { "type": "boolean" },
+        "reachable": { "type": "boolean" },
+        "viaHelper": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+        "statusCodes": { "type": "array", "items": { "type": "integer", "minimum": 100, "maximum": 599 } }
+      }
+    },
+    "NWait": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "text", "kind", "ms"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "kind": { "enum": ["fixed-sleep", "condition", "fake-timer", "implicit-wait-config", "pacing"] },
+        "ms": { "anyOf": [{ "type": "number", "minimum": 0 }, { "type": "null" }] }
+      }
+    },
+    "NSelector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "text", "api", "strategy", "value"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "api": { "type": "string" },
+        "strategy": { "$ref": "#/$defs/SelectorStrategy" },
+        "value": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+        "positional": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "index", "baseStrategy"],
+          "properties": {
+            "kind": { "enum": ["nth", "first", "last"] },
+            "index": { "anyOf": [{ "type": "integer" }, { "type": "null" }] },
+            "baseStrategy": { "$ref": "#/$defs/SelectorStrategy" }
+          }
+        }
+      }
+    },
+    "NTryBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "span", "kind", "assertionsInside", "catches", "catchesAssertionFailures", "handlerRethrows", "handlerFails",
+        "handlerAsserts"
+      ],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "kind": { "enum": ["try-catch", "promise-catch", "rescue", "recover", "expected-exception-block"] },
+        "assertionsInside": { "type": "integer", "minimum": 0 },
+        "catches": { "type": "array", "items": { "type": "string" } },
+        "catchesAssertionFailures": { "type": "boolean" },
+        "handlerRethrows": { "type": "boolean" },
+        "handlerFails": { "type": "boolean" },
+        "handlerAsserts": { "type": "boolean" }
+      }
+    },
+    "NMock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "span", "text", "kind", "target", "targetsSubject", "passthrough", "stubbedReturn", "fulfillsAllNetwork"
+      ],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "kind": { "enum": ["module", "function", "object", "class", "network", "global"] },
+        "target": { "type": "string" },
+        "targetsSubject": { "anyOf": [{ "type": "boolean" }, { "type": "null" }] },
+        "passthrough": { "type": "boolean" },
+        "stubbedReturn": { "type": "boolean" },
+        "fulfillsAllNetwork": { "type": "boolean" }
+      }
+    },
+    "NResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "text", "kind", "acquiredIn", "released", "autoManaged"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "kind": {
+          "enum": [
+            "browser", "context", "page", "driver", "api-context", "fake-timers", "spy", "env", "global", "patch",
+            "file", "connection", "server"
+          ]
+        },
+        "acquiredIn": { "enum": ["test", "hook", "file"] },
+        "released": { "type": "boolean" },
+        "autoManaged": { "type": "boolean" }
+      }
+    },
+    "NDataOp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "text", "op", "via"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "op": { "enum": ["create", "update", "delete", "read"] },
+        "via": { "enum": ["http", "db", "fs", "other"] }
+      }
+    },
+    "NStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "text", "kind"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "text": { "type": "string", "maxLength": 200 },
+        "kind": { "enum": ["navigate", "action", "request", "call", "other"] }
+      }
+    },
+    "NHook": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "kind", "scope", "releases", "assertions"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "kind": { "enum": ["beforeAll", "beforeEach", "afterEach", "afterAll", "fixture-teardown"] },
+        "scope": { "enum": ["file", "suite", "global"] },
+        "releases": { "type": "array", "items": { "type": "string" } },
+        "assertions": { "type": "array", "items": { "$ref": "#/$defs/NAssertion" } }
+      }
+    },
+    "NTest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "title", "fullTitle", "suitePath", "kind", "span", "bodySpan", "modifiers", "skip", "parameterized",
+        "assertions", "assertionGuards", "expectsException", "waits", "selectors", "tryBlocks", "mocks", "resources",
+        "data", "steps", "statementCount", "bodyHash"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[0-9a-f]{12}$" },
+        "title": { "type": "string" },
+        "fullTitle": { "type": "string" },
+        "suitePath": { "type": "array", "items": { "type": "string" } },
+        "kind": { "enum": ["test", "scenario", "request", "load-scenario", "keyword-test"] },
+        "span": { "$ref": "#/$defs/Span" },
+        "bodySpan": { "$ref": "#/$defs/Span" },
+        "modifiers": { "type": "array", "items": { "$ref": "#/$defs/Modifier" } },
+        "skip": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["unconditional", "conditional", "reason"],
+              "properties": {
+                "unconditional": { "type": "boolean" },
+                "conditional": { "type": "boolean" },
+                "reason": { "anyOf": [{ "type": "string" }, { "type": "null" }] }
+              }
+            },
+            { "type": "null" }
+          ]
+        },
+        "parameterized": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["source", "cases"],
+              "properties": {
+                "source": {
+                  "enum": ["each", "parametrize", "ParameterizedTest", "DataProvider", "loop", "examples", "table"]
+                },
+                "cases": { "anyOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }] }
+              }
+            },
+            { "type": "null" }
+          ]
+        },
+        "assertions": { "type": "array", "items": { "$ref": "#/$defs/NAssertion" } },
+        "assertionGuards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["expectedCount", "hasAssertions"],
+          "properties": { "expectedCount": { "type": "boolean" }, "hasAssertions": { "type": "boolean" } }
+        },
+        "expectsException": { "type": "boolean" },
+        "waits": { "type": "array", "items": { "$ref": "#/$defs/NWait" } },
+        "selectors": { "type": "array", "items": { "$ref": "#/$defs/NSelector" } },
+        "tryBlocks": { "type": "array", "items": { "$ref": "#/$defs/NTryBlock" } },
+        "mocks": { "type": "array", "items": { "$ref": "#/$defs/NMock" } },
+        "resources": { "type": "array", "items": { "$ref": "#/$defs/NResource" } },
+        "data": { "type": "array", "items": { "$ref": "#/$defs/NDataOp" } },
+        "steps": { "type": "array", "items": { "$ref": "#/$defs/NStep" } },
+        "statementCount": { "type": "integer", "minimum": 0 },
+        "bodyHash": { "anyOf": [{ "type": "string", "pattern": "^[0-9a-f]{40}$" }, { "type": "null" }] },
+        "linkedSteps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["file", "span"],
+            "properties": { "file": { "type": "string" }, "span": { "$ref": "#/$defs/Span" } }
+          }
+        }
+      }
+    },
+    "NSuite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "span", "modifiers", "hooks", "testIds", "suites"],
+      "properties": {
+        "title": { "type": "string" },
+        "span": { "$ref": "#/$defs/Span" },
+        "modifiers": { "type": "array", "items": { "$ref": "#/$defs/Modifier" } },
+        "hooks": { "type": "array", "items": { "$ref": "#/$defs/NHook" } },
+        "testIds": { "type": "array", "items": { "type": "string" } },
+        "suites": { "type": "array", "items": { "$ref": "#/$defs/NSuite" } }
+      }
+    },
+    "NImport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "source", "names", "typeOnly", "framework"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "source": { "type": "string" },
+        "names": { "type": "array", "items": { "type": "string" } },
+        "typeOnly": { "type": "boolean" },
+        "framework": { "type": "boolean" }
+      }
+    },
+    "NSuppression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["span", "scope", "rules", "reason"],
+      "properties": {
+        "span": { "$ref": "#/$defs/Span" },
+        "scope": { "enum": ["next-line", "file"] },
+        "rules": { "type": "array", "items": { "type": "string" } },
+        "reason": { "anyOf": [{ "type": "string" }, { "type": "null" }] }
+      }
+    }
+  }
+}

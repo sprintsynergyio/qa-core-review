@@ -14,7 +14,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
-const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/README.md', 'package/CHANGELOG.md', 'package/LICENSE'];
+const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/README.md', 'package/CHANGELOG.md', 'package/LICENSE'];
 const FORBIDDEN_PREFIXES = ['package/src/', 'package/tests/', 'package/scripts/', 'package/evals/', 'package/fixtures/', 'package/.github/', 'package/node_modules/'];
 const FORBIDDEN_NAMES = ['package/SPEC.md', 'package/SPEC.v1.md', 'package/CLAUDE.md'];
 
@@ -103,6 +103,7 @@ try {
 
   const api = await import(pathToFileURL(path.join(installed, installedPkg.main)).href);
   expect(api.VERSION === pkg.version, `the package entry exports VERSION ${api.VERSION}, expected ${pkg.version}`);
+  expect(typeof api.selectRules === 'function' && typeof api.createRegistry === 'function' && api.CAPABILITIES.length > 0, 'the package entry does not export the model and adapter API');
 
   console.log(`pack smoke ok ${pkg.version} (${names.length} files, ${info.size} bytes packed, ${info.unpackedSize} bytes unpacked)`);
 } catch (error) {
