@@ -1,0 +1,394 @@
+{
+  "path": "tests/fixtures/toy/cart.toy",
+  "language": "generic",
+  "languageHint": "toy",
+  "adapter": "toy",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "modifiers",
+    "assertions",
+    "assertion-operands",
+    "waits"
+  ],
+  "suites": [
+    {
+      "title": "Cart",
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 19
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "7130968534f6",
+        "6a262fea1e36",
+        "ce0e94c2fb9d"
+      ],
+      "suites": []
+    },
+    {
+      "title": "Checkout",
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 21
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "c4e35afe9a06",
+        "a9600e574185"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "7130968534f6",
+      "title": "adds an item",
+      "fullTitle": "Cart > adds an item",
+      "suitePath": [
+        "Cart"
+      ],
+      "kind": "test",
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 13
+      },
+      "bodySpan": {
+        "startLine": 4,
+        "startColumn": 3,
+        "endLine": 6,
+        "endColumn": 13
+      },
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 3,
+            "endLine": 5,
+            "endColumn": 21
+          },
+          "text": "assert total == 42",
+          "kind": "equality",
+          "library": "toy",
+          "actual": {
+            "text": "total",
+            "normalized": "total",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "literal": {
+              "type": "number",
+              "value": "42"
+            },
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 3,
+            "endLine": 6,
+            "endColumn": 13
+          },
+          "text": "sleep 3000",
+          "kind": "fixed-sleep",
+          "ms": 3000
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 4,
+            "startColumn": 3,
+            "endLine": 4,
+            "endColumn": 19
+          },
+          "text": "do open the cart",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "6a262fea1e36",
+      "title": "removes an item",
+      "fullTitle": "Cart > removes an item",
+      "suitePath": [
+        "Cart"
+      ],
+      "kind": "test",
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 18
+      },
+      "bodySpan": {
+        "startLine": 8,
+        "startColumn": 3,
+        "endLine": 8,
+        "endColumn": 18
+      },
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 3,
+            "endLine": 8,
+            "endColumn": 18
+          },
+          "text": "do click remove",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "ce0e94c2fb9d",
+      "title": "is empty",
+      "fullTitle": "Cart > is empty",
+      "suitePath": [
+        "Cart"
+      ],
+      "kind": "test",
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 19
+      },
+      "bodySpan": {
+        "startLine": 9,
+        "startColumn": 19,
+        "endLine": 9,
+        "endColumn": 19
+      },
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": null
+    },
+    {
+      "id": "c4e35afe9a06",
+      "title": "pays with a saved card",
+      "fullTitle": "Checkout > pays with a saved card",
+      "suitePath": [
+        "Checkout"
+      ],
+      "kind": "test",
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 14
+      },
+      "bodySpan": {
+        "startLine": 13,
+        "startColumn": 3,
+        "endLine": 14,
+        "endColumn": 14
+      },
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 3,
+            "endLine": 14,
+            "endColumn": 14
+          },
+          "text": "assert true",
+          "kind": "truthiness",
+          "library": "toy",
+          "actual": {
+            "text": "true",
+            "normalized": "true",
+            "kind": "literal",
+            "literal": {
+              "type": "bool",
+              "value": "true"
+            },
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 3,
+            "endLine": 13,
+            "endColumn": 15
+          },
+          "text": "do click pay",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "a9600e574185",
+      "title": "pays with a saved card",
+      "fullTitle": "Checkout > pays with a saved card",
+      "suitePath": [
+        "Checkout"
+      ],
+      "kind": "test",
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 21
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 16,
+        "endColumn": 21
+      },
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 3,
+            "endLine": 16,
+            "endColumn": 21
+          },
+          "text": "do click pay again",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 1,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

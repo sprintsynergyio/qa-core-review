@@ -1,0 +1,16 @@
+# A sample file in the toy format (see tests/helpers/toy-adapter.mjs).
+suite Cart
+test adds an item
+  do open the cart
+  assert total == 42
+  sleep 3000
+test.skip removes an item
+  do click remove
+test.only is empty
+
+suite Checkout
+test pays with a saved card
+  do click pay
+  assert true
+test pays with a saved card
+  do click pay again
