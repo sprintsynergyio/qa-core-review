@@ -1,11 +1,12 @@
 // Text hygiene check, run by `npm run lint`.
 //
-// Fails on: tab characters, trailing spaces, CRLF line endings, em dashes, and any word listed
+// Fails on: tab characters, trailing spaces, CRLF line endings, byte order marks, em dashes, and any word listed
 // in scripts/forbidden-words.txt (one word or phrase per line, matched as a whole word, any case).
 //
 // Usage: node scripts/check-text.mjs [root]
 // Default root is the repo. Sample input files under fixtures/ and evals/corpus/ may need tabs,
-// trailing spaces or CRLF on purpose, so only the em dash and forbidden word checks apply there.
+// trailing spaces, CRLF or a byte order mark on purpose, so only the em dash and forbidden word
+// checks apply there.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,6 +19,7 @@ const SKIP_DIRS = new Set(['.git', 'node_modules', 'dist', 'coverage', '.qa-core
 const RAW_INPUT_DIRS = ['fixtures/', 'evals/corpus/'];
 const WORD_LIST = 'scripts/forbidden-words.txt';
 const EM_DASH = String.fromCharCode(0x2014);
+const BOM = String.fromCharCode(0xfeff);
 const MAX_BYTES = 2 * 1024 * 1024;
 
 /** Root-relative paths with '/' separators, sorted, so output is the same on every OS. */
@@ -62,6 +64,8 @@ for (const rel of listFiles(root)) {
   const text = bytes.toString('utf8');
   const rawInput = RAW_INPUT_DIRS.some((dir) => rel.startsWith(dir));
   if (!rawInput && text.includes('\r\n')) problems.push(`${rel}: CRLF line endings (use LF)`);
+
+  if (!rawInput && text.includes(BOM)) problems.push(`${rel}: byte order mark character (remove it)`);
 
   const lines = text.split(/\r?\n/);
   for (let index = 0; index < lines.length; index += 1) {

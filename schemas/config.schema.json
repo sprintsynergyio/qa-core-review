@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sprintsynergyio/qa-core-review/main/schemas/config.schema.json",
+  "title": "qa-core-review config",
+  "description": "Config for qa-core-review, as JSON or YAML. Every key is optional. API keys never go here: they come only from environment variables.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "include": {
+      "description": "null (use the default globs of every detected adapter) or a list of globs that replaces them all",
+      "anyOf": [{ "type": "null" }, { "type": "array", "items": { "type": "string", "minLength": 1 } }]
+    },
+    "exclude": {
+      "description": "Globs for files that are never reviewed. A list here replaces the default list.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "languages": {
+      "description": "\"auto\" or a list of languages to review",
+      "anyOf": [{ "const": "auto" }, { "type": "array", "items": { "$ref": "#/$defs/LanguageId" }, "minItems": 1 }]
+    },
+    "framework": {
+      "description": "\"auto\" or one runner to force for every reviewed file",
+      "anyOf": [{ "const": "auto" }, { "$ref": "#/$defs/FrameworkId" }]
+    },
+    "projects": {
+      "description": "Overrides detection for the files under a folder.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Project" }
+    },
+    "generic": {
+      "description": "Files for the generic adapter (Tier 3), with optional line patterns.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/GenericEntry" }
+    },
+    "failOn": {
+      "description": "Exit 1 when a finding is at or above this level.",
+      "enum": ["error", "warn", "info", "never"]
+    },
+    "testIdAttribute": { "description": "The attribute that marks test ids.", "type": "string", "minLength": 1 },
+    "assertionHelpers": {
+      "description": "Extra function names that count as assertions.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "suppressions": { "type": "array", "items": { "$ref": "#/$defs/Suppression" } },
+    "rules": {
+      "description": "Keyed by rule id. An unknown rule id is a warning, not an error.",
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/RuleSetting" }
+    },
+    "adapters": {
+      "description": "Adapter options, keyed by adapter id.",
+      "type": "object",
+      "additionalProperties": { "type": "object" }
+    },
+    "llm": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": { "enum": ["off", "anthropic", "openai", "claude-code"] },
+        "model": {
+          "description": "null or a model id",
+          "anyOf": [{ "type": "null" }, { "type": "string", "minLength": 1 }]
+        },
+        "includeSubject": { "type": "boolean" },
+        "includeLlmOnlyFiles": { "type": "boolean" },
+        "allowErrors": { "type": "boolean" },
+        "maxFilesPerRun": { "type": "integer", "minimum": 1 },
+        "maxCharsPerFile": { "type": "integer", "minimum": 1 },
+        "redact": { "type": "boolean" },
+        "timeoutMs": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "claude": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": { "stopGate": { "enum": ["off", "report", "ui"] } }
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": { "port": { "type": "integer", "minimum": 0, "maximum": 65535 }, "open": { "type": "boolean" } }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dir": { "type": "string", "minLength": 1 },
+        "formats": {
+          "type": "array",
+          "items": { "enum": ["pretty", "json", "sarif", "markdown", "junit"] },
+          "minItems": 1
+        }
+      }
+    }
+  },
+  "$defs": {
+    "LanguageId": {
+      "enum": [
+        "javascript", "typescript", "python", "java", "csharp", "go", "ruby", "kotlin", "php", "robot", "gherkin",
+        "jmeter", "postman", "generic"
+      ]
+    },
+    "FrameworkId": {
+      "enum": [
+        "playwright", "cypress", "jest", "vitest", "mocha", "webdriverio", "node-test", "pytest", "unittest",
+        "playwright-python", "selenium", "junit4", "junit5", "testng", "restassured", "playwright-java", "nunit",
+        "xunit", "mstest", "playwright-dotnet", "go-testing", "testify", "rspec", "capybara", "kotest", "phpunit",
+        "robot", "cucumber", "k6", "jmeter", "postman"
+      ]
+    },
+    "Severity": { "enum": ["error", "warn", "info"] },
+    "Project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": { "description": "Folder, relative to the root.", "type": "string", "minLength": 1 },
+        "language": { "$ref": "#/$defs/LanguageId" },
+        "runner": { "$ref": "#/$defs/FrameworkId" },
+        "libraries": { "type": "array", "items": { "$ref": "#/$defs/FrameworkId" } },
+        "include": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "exclude": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "GenericEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["glob", "language"],
+      "properties": {
+        "glob": { "type": "string", "minLength": 1 },
+        "language": {
+          "description": "A free language hint, for example 'scala'.",
+          "type": "string",
+          "minLength": 1
+        },
+        "framework": { "type": "string", "minLength": 1 },
+        "patterns": {
+          "description": "Regular expressions, checked when the config loads.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "testPattern": { "type": "string", "minLength": 1 },
+            "assertionPattern": { "type": "string", "minLength": 1 },
+            "sleepPattern": { "type": "string", "minLength": 1 },
+            "skipPattern": { "type": "string", "minLength": 1 },
+            "focusPattern": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "Suppression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "rules", "reason"],
+      "properties": {
+        "file": { "description": "Glob of the files this applies to.", "type": "string", "minLength": 1 },
+        "rules": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+        "test": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "RuleSetting": {
+      "description": "\"off\", a severity (\"error\", \"warn\", \"info\"), or an object with rule options",
+      "anyOf": [
+        { "const": "off" },
+        { "$ref": "#/$defs/Severity" },
+        {
+          "type": "object",
+          "properties": {
+            "severity": { "$ref": "#/$defs/Severity" },
+            "languages": { "type": "array", "items": { "$ref": "#/$defs/LanguageId" }, "minItems": 1 }
+          }
+        }
+      ]
+    }
+  }
+}

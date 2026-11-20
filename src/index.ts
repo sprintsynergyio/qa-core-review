@@ -35,4 +35,16 @@ export type {
 export { missingCapabilities, selectRules, skipReason } from './engine/capabilities.js';
 export type { RuleSelection } from './engine/capabilities.js';
 
-export type { ResolvedConfig, RuleSetting } from './config/types.js';
+// Config (SPEC.md Section 12).
+export { CONFIG_FILE_NAMES, ConfigError, findConfigFile, loadConfig, resolveConfig } from './config/load.js';
+export type { LoadConfigOptions, LoadedConfig } from './config/load.js';
+export { DEFAULT_EXCLUDE, defaultConfigFile } from './config/defaults.js';
+export { SUPPORTED_KEYWORDS, validateSchema } from './config/validate.js';
+export type { SchemaProblem } from './config/validate.js';
+export { parseYaml } from './config/yaml.js';
+export type {
+  ConfigSuppression, FailOn, GenericEntry, GenericPatterns, LlmMode, OutputFormat, ProjectOverride, ResolvedConfig, RuleSetting,
+} from './config/types.js';
+
+// Glob matching (SPEC.md Section 7.6).
+export { createGlobMatcher, globToRegExp, matchGlob, toPosixPath } from './util/glob.js';
