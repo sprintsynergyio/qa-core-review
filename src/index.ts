@@ -19,6 +19,14 @@ export type {
   ParsedFile, ProjectMarker, ProjectProbe, SourceFile, SyntaxTree, TreeSitterService,
 } from './adapters/types.js';
 
+// Parsing (SPEC.md Section 7.2).
+export { ERROR_RATIO_LIMIT, createTreeSitterService, errorRatio } from './parse/treesitter.js';
+export type { GrammarInfo, GrammarManifest, ParseResult, SyntaxNode, SyntaxQuery, TreeSitterOptions } from './parse/treesitter.js';
+export { JAVA_LEXICAL, JS_LEXICAL, PYTHON_LEXICAL, lexicalSyntaxFor, scanLines, segments } from './parse/lexical.js';
+export type { LexicalSyntax, ScannedLine, Segment, StringDelimiter } from './parse/lexical.js';
+export { LineIndex, spanOfNode, toLf } from './parse/positions.js';
+export { ASSET_DIRS, assetPath, readAsset, readAssetText, readParserRuntime } from './assets.js';
+
 // Rules, findings and the report (SPEC.md Sections 7.3 and 8.2).
 export type {
   Confidence, Decision, FileResult, Finding, FindingDraft, Location, Report, Rule, RuleContext, Severity,
