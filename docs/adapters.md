@@ -2,6 +2,47 @@
 
 A language adapter turns a test file into the normalized test model. Rules read only that model, so a rule written once works for every language. This page describes how adapters are built. The sections on writing a new adapter are added as the adapters land.
 
+## Project detection and file discovery
+
+Run `qa-core-review detect` to see what a review would cover. It prints the projects found, their frameworks with the evidence for each, and the number of test files per adapter. `--format json` prints the same as data (`schemas/detect.schema.json`).
+
+### The file list
+
+Inside a git repo the file list comes from git: tracked and untracked files, without ignored files and without files deleted from disk. Outside a git repo it is a directory walk that skips the default excludes (`node_modules`, `dist`, `build`, `target` and so on) and `.git`. The config `exclude` globs are then applied in both cases.
+
+### Projects
+
+Every adapter is asked about every folder that holds files. An adapter answers from the manifest files in that folder. Detection only reads files. It never runs npm, pip, Maven, Gradle or any other tool.
+
+| Adapter | A folder is a project when it has | Frameworks come from |
+| --- | --- | --- |
+| `js` | `package.json`, or a runner config file | `dependencies` and `devDependencies` in `package.json`; `playwright.config.*`, `cypress.config.*`, `jest.config.*`, `vitest.config.*`, `.mocharc*`, `wdio.conf.*` |
+| `python` | `pyproject.toml`, `requirements*.txt`, `setup.cfg`, `setup.py`, `Pipfile`, `poetry.lock`, `tox.ini` or `pytest.ini` | dependency names in those files (not `poetry.lock`); `pytest.ini`; `conftest.py`. With no runner found, `unittest` is assumed. |
+| `java` | `pom.xml`, `build.gradle` or `build.gradle.kts` | Maven and Gradle coordinates in those files, read as text |
+
+A dependency name must match as a whole name: `@types/mocha` is not Mocha, and the JUnit 5 BOM is not JUnit 4.
+
+Some files only hint at a project: a lone `tsconfig.json` or `jsconfig.json`, a lone `conftest.py`, a lone `settings.gradle`. Such a folder becomes a project only when the same adapter has no project above it. This keeps a `tests/conftest.py` from hiding the frameworks declared in the `pyproject.toml` one level up.
+
+### Which project a file belongs to
+
+A file belongs to the nearest project above it for its own adapter. A Java service with Playwright tests in an `e2e/` folder that has its own `package.json` gives two projects: the Java files go to the `pom.xml` project and the TypeScript files go to the `e2e` project. A file with no project above it is still reviewed; its frameworks then come from the file itself.
+
+### Which files are test files
+
+Each adapter has default include globs (for example `**/*.{spec,test,cy}.*` and `**/tests/**` for `js`, `**/test_*.py` for `python`, `**/src/test/java/**/*.java` for `java`). A config `include` list replaces the defaults of every adapter. Type declarations and runner config files are never test files.
+
+A file in a language with no static adapter yet goes to the `generic` adapter when it has a known source extension (`.scala`, `.rs`, `.swift`, `.go`, `.rb`, `.cs` and others, see `src/adapters/generic/languages.ts`) and a common test name (`*Test.*`, `*Spec.*`, `*_test.*`, `test_*.*`, or a `test`, `tests`, `spec` or `specs` folder), or when a config `generic` entry matches it. These files are listed, and reviewed only in LLM mode.
+
+### Config overrides
+
+A `projects` entry in the config gives a project at its `path`, so it is the nearest project for the files below it and wins over detection:
+
+- `runner` replaces the detected runners. `libraries` are added.
+- `language` picks the adapter and limits the folder to that language: files of other languages under the path are not reviewed.
+- `include` adds test file globs for the folder. `exclude` removes files. Both are relative to the root, like every other glob in the config.
+- Without `language`, the entry applies to the adapter that knows its `runner` or `libraries`.
+
 ## Parsing
 
 ### One parser for every language

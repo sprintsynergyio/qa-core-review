@@ -1,6 +1,10 @@
 // The adapter registry: which language adapters exist, and which of them claim a file.
 import { CAPABILITIES, LANGUAGE_IDS } from '../model/types.js';
-import type { LanguageAdapter } from './types.js';
+import { genericProfile } from './generic/languages.js';
+import { javaProfile } from './java/detect.js';
+import { jsProfile } from './js/detect.js';
+import { pythonProfile } from './python/detect.js';
+import type { AdapterProfile, LanguageAdapter } from './types.js';
 
 const ID_PATTERN = /^[a-z][a-z0-9-]*$/;
 
@@ -57,6 +61,12 @@ export class AdapterRegistry {
     return this.list().filter((adapter) => adapter.extensions.some((extension) => lower.endsWith(extension)));
   }
 }
+
+/**
+ * The detection half of every adapter that ships with the tool: enough to find projects and
+ * test files. Generic comes last, so it only gets the files no other adapter claims.
+ */
+export const builtinProfiles: AdapterProfile[] = [jsProfile, pythonProfile, javaProfile, genericProfile];
 
 /** The adapters that ship with the tool. JS/TS, Python, Java and generic join from Milestone 4. */
 export const builtinAdapters: LanguageAdapter[] = [];

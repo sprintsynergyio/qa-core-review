@@ -46,8 +46,14 @@ export interface DetectedProject {
   languages: LanguageId[];
   /** Runners and libraries found in manifests. */
   frameworks: FrameworkId[];
-  /** For example 'pom.xml: org.junit.jupiter:junit-jupiter'. */
+  /** For example 'pom.xml: org.junit.jupiter'. */
   evidence: string[];
+  /**
+   * Set by a detector when only a secondary file was found (a lone `tsconfig.json` or
+   * `conftest.py`). Detection drops a weak project when the same adapter has a project above
+   * it, so the folder does not hide the frameworks of the real manifest. Never in the output.
+   */
+  weak?: boolean;
 }
 
 export interface SourceFile {
@@ -96,25 +102,34 @@ export interface FrameworkGuess {
   confidence: 'high' | 'medium' | 'low';
 }
 
-export interface LanguageAdapter {
+/**
+ * The part of an adapter that finds projects and test files. It needs no parser, so detection
+ * and discovery work for a language before (and without) the rest of its adapter.
+ */
+export interface AdapterProfile {
   /** 'js', 'python', 'java', 'generic', and so on. */
   id: string;
   tier: Tier;
   languages: LanguageId[];
   /** Lower case, with the dot: ['.py']. */
   extensions: string[];
-  /** Grammar ids from grammars/manifest.json. */
-  grammars: string[];
   frameworks: FrameworkDescriptor[];
   /** Globs for test files. */
   defaultInclude: string[];
   defaultExclude: string[];
+  /** The language of a file this adapter claims, from its name. */
+  languageOf(filePath: string): LanguageId;
+  detectProject(probe: ProjectProbe): DetectedProject | null;
+}
+
+export interface LanguageAdapter extends AdapterProfile {
+  /** Grammar ids from grammars/manifest.json. */
+  grammars: string[];
   /** For suppression comments and fixture markers. */
   commentSyntax: { line: string[]; block?: [string, string][] };
   /** What `normalize` fills in reliably. Leave a capability out when in doubt. */
   capabilities: Capability[];
 
-  detectProject(probe: ProjectProbe): DetectedProject | null;
   classifyFile(file: SourceFile): 'test' | 'support' | 'ignore';
   detectFrameworks(file: SourceFile, tree: SyntaxTree | null): FrameworkGuess;
   parse(file: SourceFile, ctx: AdapterContext): Promise<ParsedFile>;

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sprintsynergyio/qa-core-review/main/schemas/detect.schema.json",
+  "title": "qa-core-review detect output",
+  "description": "What `qa-core-review detect --format json` prints: the projects found and the test files a review would cover.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tool", "root", "fileSource", "config", "projects", "adapters", "testFiles"],
+  "properties": {
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": { "name": { "const": "qa-core-review" }, "version": { "type": "string" } }
+    },
+    "root": { "type": "string", "description": "Absolute path with '/' separators, for display only." },
+    "fileSource": { "enum": ["git", "walk"], "description": "Where the file list came from: git, or a directory walk." },
+    "config": { "type": ["string", "null"], "description": "The config file used, or null for the defaults." },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dir", "adapter", "languages", "frameworks", "evidence", "testFiles"],
+        "properties": {
+          "dir": { "type": "string", "description": "Root-relative folder with '/' separators. '.' is the root.", "pattern": "^[^\\\\]+$" },
+          "adapter": { "type": "string" },
+          "languages": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "frameworks": { "type": "array", "items": { "type": "string" } },
+          "evidence": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "testFiles": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "adapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "tier", "testFiles", "languages"],
+        "properties": {
+          "id": { "type": "string" },
+          "tier": { "enum": [1, 2, 3] },
+          "testFiles": { "type": "integer", "minimum": 1 },
+          "languages": {
+            "type": "object",
+            "description": "Test files per language (per language hint for the generic adapter).",
+            "additionalProperties": { "type": "integer", "minimum": 1 }
+          }
+        }
+      }
+    },
+    "testFiles": { "type": "integer", "minimum": 0 }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "web",
+  "private": true,
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}
