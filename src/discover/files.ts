@@ -7,7 +7,7 @@ import { languageHintFor } from '../adapters/generic/languages.js';
 import type { AdapterProfile, DetectedProject, SourceFile } from '../adapters/types.js';
 import { DEFAULT_EXCLUDE } from '../config/defaults.js';
 import type { ResolvedConfig } from '../config/types.js';
-import { applyOverrides, detectProjects, nearestOverride, nearestProject } from '../detect/projects.js';
+import { applyOverrides, detectProjects, isUnder, nearestOverride, nearestProject } from '../detect/projects.js';
 import type { LanguageId } from '../model/types.js';
 import { toLf } from '../parse/positions.js';
 import { gitListFiles } from '../util/git.js';
@@ -85,10 +85,20 @@ export function readSourceFile(root: string, found: DiscoveredFile): SourceFile 
   }
 }
 
+/** What to review when paths are given on the command line. All are root-relative, with '/' separators. */
+export interface PathSelection {
+  /** Named files. They are reviewed even when their name matches no include glob, as long as an adapter knows them. */
+  files: string[];
+  folders: string[];
+  globs: string[];
+}
+
 export interface DiscoverOptions {
   profiles?: readonly AdapterProfile[];
   /** Pass false to skip git and walk the directory. */
   git?: boolean;
+  /** Limit the review to these paths. Without it, every test file under the root is picked. */
+  paths?: PathSelection;
 }
 
 /** Detects the projects under the root and picks the files to review. Reads files, runs nothing. */
@@ -106,13 +116,17 @@ export function discover(root: string, config: ResolvedConfig, options: Discover
   const included = new Map(profiles.map((profile) => [profile.id, configInclude ?? createGlobMatcher(profile.defaultInclude)]));
   const adapterExcluded = new Map(profiles.map((profile) => [profile.id, createGlobMatcher(profile.defaultExclude)]));
   const wanted = (language: LanguageId): boolean => config.languages === 'auto' || config.languages.includes(language);
+  const { paths } = options;
+  const inGlobs = createGlobMatcher(paths?.globs ?? []);
 
   const files: DiscoveredFile[] = [];
   for (const file of all) {
     const lower = file.toLowerCase();
     const override = nearestOverride(config.projects, file);
     if (override?.exclude && createGlobMatcher(override.exclude)(file)) continue;
-    const extra = override?.include ? createGlobMatcher(override.include)(file) : false;
+    const named = paths?.files.includes(file) ?? false;
+    if (paths && !named && !inGlobs(file) && !paths.folders.some((folder) => isUnder(file, folder))) continue;
+    const extra = named || (override?.include ? createGlobMatcher(override.include)(file) : false);
 
     const claimed = staticProfiles.filter((profile) => profile.extensions.some((extension) => lower.endsWith(extension)));
     if (claimed.length > 0) {

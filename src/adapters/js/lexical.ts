@@ -7,7 +7,7 @@ import { testId } from '../../model/hash.js';
 import type { Capability, Modifier, NFile, Span } from '../../model/types.js';
 import { JS_LEXICAL, scanLines, type ScannedLine } from '../../parse/lexical.js';
 import type { AdapterContext, FrameworkGuess, SourceFile } from '../types.js';
-import { ALIASES, LEXICAL_ASSERTION, LEXICAL_FIXED_WAIT, MODIFIER_MEMBERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES } from './vocab.js';
+import { ALIASES, LEXICAL_ASSERTION, LEXICAL_FIXED_WAIT, MODIFIER_MEMBERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES, TEST_FILE_NAME } from './vocab.js';
 
 /** What the lexical scanner fills in. Rules that need anything else are skipped for the file. */
 export const JS_LEXICAL_CAPABILITIES: Capability[] = ['tests', 'modifiers', 'assertions', 'waits'];
@@ -21,7 +21,7 @@ export function normalizeJsLexical(file: SourceFile, frameworks: FrameworkGuess,
   const model: NFile = {
     path: file.path, language: file.language, languageHint: null, adapter: 'js', tier: 1,
     runner: ctx.config.framework === 'auto' ? frameworks.runner : ctx.config.framework, libraries: frameworks.libraries,
-    role: 'support', parseStatus: 'failed', capabilities: [], suites: [], tests: [], fileHooks: [], fileMocks: [], fileResources: [], imports: [], subject: null,
+    role: TEST_FILE_NAME.test(file.path) ? 'test' : 'support', parseStatus: 'failed', capabilities: [], suites: [], tests: [], fileHooks: [], fileMocks: [], fileResources: [], imports: [], subject: null,
     suppressions: lines.flatMap((line) => line.comments.flatMap((comment) => parseSuppression(comment.text, { ...lineSpan(line), startColumn: comment.column }) ?? [])),
   };
   const declarations = lines.flatMap((line, index) => {

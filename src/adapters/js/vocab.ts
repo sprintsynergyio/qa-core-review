@@ -4,6 +4,9 @@
 // appears in at least one fixture under fixtures/adapters/js/.
 import type { AssertionKind, FrameworkId, Modifier, NDataOp, NHook, NResource, NStep, NWait, SelectorStrategy } from '../../model/types.js';
 
+/** A file with one of these names is a test file by its name, whatever is in it: `cart.test.ts`, `login.cy.js`. */
+export const TEST_FILE_NAME = /\.(spec|test|cy|e2e)\.[cm]?[jt]sx?$/i;
+
 /** Functions that declare a test: `test('title', fn)`. */
 export const TEST_CALLEES = ['test', 'it', 'specify'] as const;
 

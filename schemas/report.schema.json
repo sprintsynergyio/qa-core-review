@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sprintsynergyio/qa-core-review/main/schemas/report.schema.json",
+  "title": "qa-core-review report",
+  "description": "What a review writes to report.json. Mirrors the Report type in src/rules/types.ts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "tool", "createdAt", "root", "mode", "projects", "rulesRun", "files", "findings", "summary"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": { "name": { "const": "qa-core-review" }, "version": { "type": "string", "minLength": 1 } }
+    },
+    "createdAt": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$", "description": "ISO 8601, UTC." },
+    "root": { "type": "string", "description": "Absolute path of the project root, for display only." },
+    "mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["diffBase", "llm"],
+      "properties": { "diffBase": { "type": ["string", "null"] }, "llm": { "enum": ["off", "anthropic", "openai", "claude-code"] } }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dir", "adapter", "frameworks"],
+        "properties": {
+          "dir": { "type": "string" },
+          "adapter": { "type": "string" },
+          "frameworks": { "type": "array", "items": { "$ref": "#/$defs/FrameworkId" } }
+        }
+      }
+    },
+    "rulesRun": { "type": "array", "items": { "$ref": "#/$defs/RuleId" } },
+    "files": { "type": "array", "items": { "$ref": "#/$defs/FileResult" } },
+    "findings": { "type": "array", "description": "Sorted by file, then start line, then rule id.", "items": { "$ref": "#/$defs/Finding" } },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["files", "tests", "pass", "review", "fail", "errors", "warnings", "infos", "suppressed", "byLanguage", "llmOnlyFiles"],
+      "properties": {
+        "files": { "type": "integer", "minimum": 0 },
+        "tests": { "type": "integer", "minimum": 0 },
+        "pass": { "type": "integer", "minimum": 0 },
+        "review": { "type": "integer", "minimum": 0 },
+        "fail": { "type": "integer", "minimum": 0 },
+        "errors": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "infos": { "type": "integer", "minimum": 0 },
+        "suppressed": { "type": "integer", "minimum": 0 },
+        "byLanguage": {
+          "type": "object",
+          "description": "Keyed by language id, or by the language hint for files with no static adapter.",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["files", "tests", "errors", "warnings"],
+            "properties": {
+              "files": { "type": "integer", "minimum": 0 },
+              "tests": { "type": "integer", "minimum": 0 },
+              "errors": { "type": "integer", "minimum": 0 },
+              "warnings": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "llmOnlyFiles": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "LanguageId": {
+      "enum": ["javascript", "typescript", "python", "java", "csharp", "go", "ruby", "kotlin", "php", "robot", "gherkin", "jmeter", "postman", "generic"]
+    },
+    "FrameworkId": {
+      "enum": [
+        "playwright",
+        "cypress",
+        "jest",
+        "vitest",
+        "mocha",
+        "webdriverio",
+        "node-test",
+        "pytest",
+        "unittest",
+        "playwright-python",
+        "selenium",
+        "junit4",
+        "junit5",
+        "testng",
+        "restassured",
+        "playwright-java",
+        "nunit",
+        "xunit",
+        "mstest",
+        "playwright-dotnet",
+        "go-testing",
+        "testify",
+        "rspec",
+        "capybara",
+        "kotest",
+        "phpunit",
+        "robot",
+        "cucumber",
+        "k6",
+        "jmeter",
+        "postman",
+        "unknown"
+      ]
+    },
+    "Modifier": { "enum": ["only", "skip", "todo", "fixme", "fail", "xfail", "concurrent", "serial"] },
+    "ParseStatus": { "enum": ["ok", "partial", "failed", "llm-only"] },
+    "Severity": { "enum": ["error", "warn", "info"] },
+    "RuleId": { "type": "string", "pattern": "^QCR-[A-Z][0-9]{3}$" },
+    "Location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "startLine", "startColumn", "endLine", "endColumn"],
+      "properties": {
+        "file": { "type": "string", "minLength": 1 },
+        "startLine": { "type": "integer", "minimum": 1 },
+        "startColumn": { "type": "integer", "minimum": 1 },
+        "endLine": { "type": "integer", "minimum": 1 },
+        "endColumn": { "type": "integer", "minimum": 1 }
+      },
+      "description": "A place in a file. Lines and columns are 1-based and the end is exclusive. The path is relative to the root, with '/' separators."
+    },
+    "Finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "ruleId", "ruleName", "severity", "source", "message", "evidence", "fix", "location", "testId", "confidence", "suppressed", "docsUrl"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$",
+          "description": "A fingerprint with no line number in it, so it stays the same when code above the test changes."
+        },
+        "ruleId": { "$ref": "#/$defs/RuleId" },
+        "ruleName": { "type": "string", "minLength": 1 },
+        "severity": { "$ref": "#/$defs/Severity" },
+        "source": { "enum": ["static", "llm"] },
+        "message": { "type": "string", "minLength": 1 },
+        "evidence": { "type": "string", "maxLength": 200 },
+        "fix": { "type": "string" },
+        "goodExample": { "type": "string" },
+        "location": { "$ref": "#/$defs/Location" },
+        "testId": { "type": ["string", "null"], "description": "The id of the test, or null for a finding about the whole file." },
+        "confidence": { "enum": ["high", "medium", "low"] },
+        "suppressed": { "type": "boolean" },
+        "docsUrl": { "type": "string", "pattern": "^https://" }
+      }
+    },
+    "TestResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "fullTitle", "location", "bodyLocation", "modifiers", "assertionCount", "verdict", "findingIds"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[0-9a-f]{12}$" },
+        "title": { "type": "string" },
+        "fullTitle": { "type": "string" },
+        "location": { "$ref": "#/$defs/Location" },
+        "bodyLocation": { "$ref": "#/$defs/Location" },
+        "modifiers": { "type": "array", "items": { "$ref": "#/$defs/Modifier" } },
+        "assertionCount": { "type": "integer", "minimum": 0 },
+        "verdict": { "enum": ["pass", "review", "fail"], "description": "'fail' with any error, 'review' with any warning, else 'pass'." },
+        "findingIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "FileResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file", "language", "languageHint", "adapter", "tier", "runner", "libraries", "parseStatus", "rulesSkipped", "tests"],
+      "properties": {
+        "file": { "type": "string", "minLength": 1 },
+        "language": { "$ref": "#/$defs/LanguageId" },
+        "languageHint": { "type": ["string", "null"] },
+        "adapter": { "type": "string", "minLength": 1 },
+        "tier": { "enum": [1, 2, 3] },
+        "runner": { "$ref": "#/$defs/FrameworkId" },
+        "libraries": { "type": "array", "items": { "$ref": "#/$defs/FrameworkId" } },
+        "parseStatus": { "$ref": "#/$defs/ParseStatus" },
+        "rulesSkipped": {
+          "type": "array",
+          "description": "Rules that did not run on this file, and why.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ruleId", "reason"],
+            "properties": { "ruleId": { "$ref": "#/$defs/RuleId" }, "reason": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "tests": { "type": "array", "items": { "$ref": "#/$defs/TestResult" } }
+      }
+    }
+  }
+}

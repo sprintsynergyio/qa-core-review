@@ -313,10 +313,12 @@ test('robustness: a syntax error keeps the tests around it, and the file is mark
 
 test('robustness: an empty file, a file with no tests, and a file that is not code', async () => {
   const empty = await js('');
-  assert.deepEqual([empty.role, empty.parseStatus, empty.tests.length, empty.runner], ['support', 'ok', 0, 'unknown']);
-  assert.equal((await js("export function login(page) { return page.goto('/'); }\n")).role, 'support');
+  // A file named like a test file keeps the role 'test' with no test in it, so the review can say that none was found.
+  assert.deepEqual([empty.role, empty.parseStatus, empty.tests.length, empty.runner], ['test', 'ok', 0, 'unknown']);
+  assert.equal((await js('', 'tests/helpers/util.ts')).role, 'support');
+  assert.equal((await js("export function login(page) { return page.goto('/'); }\n", 'tests/helpers/login.ts')).role, 'support');
   const garbage = await js('<<<<<<< HEAD\n}}}} ))) ((( === @@@ ### \n>>>>>>> branch\n ]]] {{{ ;;; ??? \n');
-  assert.deepEqual([garbage.parseStatus, garbage.capabilities, garbage.tests, garbage.role], ['failed', [], [], 'support']);
+  assert.deepEqual([garbage.parseStatus, garbage.capabilities, garbage.tests, garbage.role], ['failed', [], [], 'test']);
   assert.deepEqual(schemaErrors('model.schema.json', garbage), []);
 });
 

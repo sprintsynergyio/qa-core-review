@@ -14,7 +14,7 @@ import { readTarball } from './lib/tar.mjs';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
-const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/schemas/config.schema.json', 'package/schemas/detect.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
+const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/schemas/config.schema.json', 'package/schemas/detect.schema.json', 'package/schemas/report.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
   'package/grammars/javascript.wasm', 'package/grammars/typescript.wasm', 'package/grammars/tsx.wasm', 'package/grammars/python.wasm', 'package/grammars/java.wasm',
   'package/README.md', 'package/CHANGELOG.md', 'package/LICENSE'];
 const FORBIDDEN_PREFIXES = ['package/src/', 'package/tests/', 'package/scripts/', 'package/evals/', 'package/fixtures/', 'package/.github/', 'package/node_modules/'];
@@ -66,6 +66,13 @@ try {
   expect(detected.status === 0, `detect exited ${detected.status}:\n${detected.stderr}`);
   const found = JSON.parse(detected.stdout);
   expect(found.projects[0]?.adapter === 'js' && found.projects[0].frameworks.includes('jest') && found.testFiles === 1, `detect found the wrong things:\n${detected.stdout}`);
+
+  // A review of the same project with the installed CLI: it must parse the test and write the report.
+  const reviewed = cli(bin, ['review', '--root', installDir, '--stdout', 'json']);
+  expect(reviewed.status === 0, `review exited ${reviewed.status}:\n${reviewed.stderr}`);
+  const report = JSON.parse(reviewed.stdout);
+  expect(report.schemaVersion === 2 && report.summary.tests === 1 && report.files[0]?.parseStatus === 'ok', `review gave the wrong report:\n${reviewed.stdout}`);
+  expect(fs.existsSync(path.join(installDir, '.qa-core', 'review', 'report.json')), 'review did not write .qa-core/review/report.json');
 
   const api = await import(pathToFileURL(path.join(installed, installedPkg.main)).href);
   expect(api.VERSION === pkg.version, `the package entry exports VERSION ${api.VERSION}, expected ${pkg.version}`);

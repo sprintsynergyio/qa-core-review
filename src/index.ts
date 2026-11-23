@@ -33,7 +33,7 @@ export { ROOT_DIR, applyOverrides, detectProjects, nearestOverride, nearestProje
 export { buildDetectReport, formatDetectPretty } from './detect/report.js';
 export type { DetectReport } from './detect/report.js';
 export { MAX_SOURCE_BYTES, discover, listFiles, readSourceFile } from './discover/files.js';
-export type { DiscoverOptions, DiscoveredFile, Discovery, FileList } from './discover/files.js';
+export type { DiscoverOptions, DiscoveredFile, Discovery, FileList, PathSelection } from './discover/files.js';
 
 // Parsing (SPEC.md Section 7.2).
 export { ERROR_RATIO_LIMIT, createTreeSitterService, errorRatio } from './parse/treesitter.js';
@@ -50,6 +50,12 @@ export type {
 } from './rules/types.js';
 export { missingCapabilities, selectRules, skipReason } from './engine/capabilities.js';
 export type { RuleSelection } from './engine/capabilities.js';
+export { runReview } from './engine/run.js';
+export type { ReviewOptions, ReviewResult } from './engine/run.js';
+export { fingerprint } from './engine/fingerprint.js';
+export { failsAt, verdictOf } from './engine/verdict.js';
+export { builtinRules, docsUrlFor } from './rules/index.js';
+export { formatClosing, formatSummary } from './report/pretty.js';
 
 // Config (SPEC.md Section 12).
 export { CONFIG_FILE_NAMES, ConfigError, findConfigFile, loadConfig, resolveConfig } from './config/load.js';
