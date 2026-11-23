@@ -9,7 +9,7 @@ import type { PathSelection } from '../discover/files.js';
 import { runReview } from '../engine/run.js';
 import { failsAt } from '../engine/verdict.js';
 import { FRAMEWORK_IDS, LANGUAGE_IDS } from '../model/types.js';
-import { formatClosing } from '../report/pretty.js';
+import { formatPretty, useColor } from '../report/pretty.js';
 import { builtinRules } from '../rules/index.js';
 import { choiceFlag, listFlag, parse, UsageError } from './args.js';
 
@@ -29,6 +29,9 @@ Flags:
   --stdout <format>     Print json to stdout instead of the text view.
   --output <dir>        Folder for the report files. Default: .qa-core/review
   --dump-model          Also write model.json, the normalized model of every file.
+  --max-findings <n>    Stop printing findings after n. The report file keeps all of them. Default: 200.
+  --quiet               Print only the summary line.
+  --no-color            No colors. Colors are also off with NO_COLOR set and when the output is not a terminal.
   --root <dir>          Project root. Report paths are relative to it. Default: the current folder.
   --config <file>       Config file. Default: found from the root upward.
   --help, -h            Print this help.
@@ -36,7 +39,7 @@ Flags:
 Exit codes: 0 no finding at or above --fail-on, 1 findings, 2 usage or config error, 3 internal error.
 `;
 
-const FLAGS = ['help', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model'] as const;
+const FLAGS = ['help', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model', 'max-findings', 'no-color', 'quiet'] as const;
 const LATER_FORMATS = ['sarif', 'markdown', 'junit'] as const;
 const posix = (value: string): string => value.split(path.sep).join('/');
 
@@ -74,6 +77,8 @@ export async function review(argv: string[]): Promise<number> {
   const failOn = choiceFlag<FailOn>('fail-on', values['fail-on'], ['error', 'warn', 'info', 'never']);
   const formats = listFlag('format', values.format, ['pretty', 'json', ...LATER_FORMATS], 'format');
   const stdout = choiceFlag('stdout', values.stdout, ['json', ...LATER_FORMATS]);
+  const maxFindings = typeof values['max-findings'] === 'string' ? Number(values['max-findings']) : 200;
+  if (!Number.isInteger(maxFindings) || maxFindings < 0) throw new UsageError(`--max-findings must be a whole number, 0 or more, not "${String(values['max-findings'])}"`);
   const later = [...(formats ?? []), ...(stdout ? [stdout] : [])].find((format) => (LATER_FORMATS as readonly string[]).includes(format));
   if (later) throw new UsageError(`the ${later} format is not available yet in this development build`);
 
@@ -107,6 +112,14 @@ export async function review(argv: string[]): Promise<number> {
   const written = [write('report.json', report)];
   if (values['dump-model']) written.push(write('model.json', models));
 
-  process.stdout.write(stdout === 'json' ? `${JSON.stringify(report, null, 2)}\n` : formatClosing(report, written));
+  if (stdout === 'json') process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+  else {
+    process.stdout.write(formatPretty(report, {
+      color: useColor({ noColorFlag: values['no-color'] === true, env: process.env, isTTY: process.stdout.isTTY === true }), quiet: values.quiet === true, maxFindings,
+      reportPaths: written,
+      // The classic Windows console cannot show the middle dot. Windows Terminal can.
+      unicode: process.platform !== 'win32' || process.env.WT_SESSION !== undefined,
+    }));
+  }
   return failsAt(report.findings, config.failOn) ? 1 : 0;
 }

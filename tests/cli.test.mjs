@@ -65,10 +65,10 @@ test('an unknown flag exits 2 with a one-line error and a pointer to --help', ()
 });
 
 test('a command that is not built yet exits 2 and names the command', () => {
-  const ran = run('explain', 'QCR-A001');
+  const ran = run('hook', 'claude-stop');
   assert.equal(ran.status, 2);
   assert.equal(ran.stdout, '');
-  assert.match(ran.stderr, /^qa-core-review: the "explain" command is not available yet/);
+  assert.match(ran.stderr, /^qa-core-review: the "hook" command is not available yet/);
   assert.match(ran.stderr, /Run qa-core-review --help\n$/);
 });
 

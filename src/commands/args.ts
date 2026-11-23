@@ -19,6 +19,10 @@ export const OPTIONS = {
   language: { type: 'string' },
   framework: { type: 'string' },
   'dump-model': { type: 'boolean' },
+  'max-findings': { type: 'string' },
+  'no-color': { type: 'boolean' },
+  quiet: { type: 'boolean' },
+  force: { type: 'boolean' },
 } as const;
 
 export type OptionName = keyof typeof OPTIONS;
@@ -29,7 +33,7 @@ export function parse(argv: string[], names: readonly OptionName[]): { values: P
     return parseArgs({ args: argv, options: Object.fromEntries(names.map((name) => [name, OPTIONS[name]])), allowPositionals: true, strict: true });
   } catch (error) {
     // parseArgs explains itself in one or more sentences. Keep only the first one.
-    throw new UsageError((error as Error).message.split('. ')[0]!.replace(/\.$/, ''));
+    throw new UsageError((error as Error).message.split(/\.\s/)[0]!.replace(/\.$/, ''));
   }
 }
 

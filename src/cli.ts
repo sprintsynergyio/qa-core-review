@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 // Command line entry point (SPEC.md Section 11). So far: `review` (the default command),
-// `detect`, --version and --help. The other commands arrive in later milestones.
+// `detect`, `rules`, `explain`, `adapters`, `init`, --version and --help. The other commands
+// arrive in later milestones.
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { OPTIONS, parse, UsageError } from './commands/args.js';
+import { adapters, explain, rules } from './commands/info.js';
+import { init } from './commands/init.js';
 import { review } from './commands/review.js';
 import { ConfigError, loadConfig } from './config/load.js';
 import { buildDetectReport, formatDetectPretty } from './detect/report.js';
@@ -21,14 +24,19 @@ Usage:
   qa-core-review review [paths...] [flags]   Review test files. This is the default command:
   qa-core-review [paths...] [flags]          the word "review" can be left out.
   qa-core-review detect [flags]              Show the detected projects, frameworks and test file counts.
+  qa-core-review rules [--language <id>]     List the rules.
+  qa-core-review explain <ruleId>            Describe one rule.
+  qa-core-review adapters                    List the language adapters and what they read.
+  qa-core-review init [--config [json|yaml]] Write a config file with the default values.
   qa-core-review --version | -v              Print the version.
   qa-core-review --help | -h                 Print this help. Also: qa-core-review <command> --help
 
-Status: in development. The rules, the full text output and the other commands are not available yet.
+Status: in development. Most rules and the ui, hook and comment commands are not available yet.
 `;
 
 /** Commands from SPEC.md Section 11.1 that later milestones add. */
-const LATER_COMMANDS = ['ui', 'init', 'rules', 'explain', 'adapters', 'hook', 'comment'];
+const LATER_COMMANDS = ['ui', 'hook', 'comment'];
+const COMMANDS: Readonly<Record<string, (argv: string[]) => number | Promise<number>>> = { review, rules, explain, adapters, init };
 
 const DETECT_USAGE = `Usage: qa-core-review detect [flags]
 
@@ -74,7 +82,8 @@ async function main(argv: string[]): Promise<number> {
   const command = word?.kind === 'positional' ? word.value : undefined;
   if (command === 'detect') return detect(argv);
   if (command !== undefined && LATER_COMMANDS.includes(command)) throw new UsageError(`the "${command}" command is not available yet in this development build`);
-  if (command === 'review') return review(argv.filter((_, index) => index !== word!.index));
+  const run = command === undefined ? undefined : COMMANDS[command];
+  if (run && Object.hasOwn(COMMANDS, command!)) return run(argv.filter((_, index) => index !== word!.index));
 
   // No command word: --version, --help, or a review of the given paths.
   if (first.values.version || (first.values.help && command === undefined)) {
