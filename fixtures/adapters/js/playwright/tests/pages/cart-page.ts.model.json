@@ -1,0 +1,49 @@
+{
+  "path": "tests/pages/cart-page.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "playwright",
+  "libraries": [],
+  "role": "support",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 68
+      },
+      "source": "@playwright/test",
+      "names": [
+        "expect",
+        "Locator",
+        "Page"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

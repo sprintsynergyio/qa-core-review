@@ -3,12 +3,12 @@
 // whether a model fills a capability.
 import fs from 'node:fs';
 import path from 'node:path';
-import { createTreeSitterService, discover, readSourceFile, resolveConfig } from '../../dist/index.js';
+import { createHelperIndex, createTreeSitterService, discover, readSourceFile, resolveConfig } from '../../dist/index.js';
 import { repoRoot } from './schema.mjs';
 
 /** The context an adapter gets. One parser service is shared, like in a real run. */
 export function adapterContext(config = {}) {
-  return { config: resolveConfig(config).config, helperIndex: { has: () => false, get: () => [] }, parser: sharedParser };
+  return { config: resolveConfig(config).config, helperIndex: createHelperIndex([]), parser: sharedParser };
 }
 const sharedParser = createTreeSitterService();
 
@@ -20,23 +20,29 @@ export function frameworkFolders(adapterId) {
   return fs.readdirSync(base, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort();
 }
 
-/** Normalizes every file of one adapter under a project root. Returns [{ file, source, model }]. */
+/**
+ * Normalizes every file of one adapter under a project root. Returns [{ file, source, model }].
+ * Like a review, it first collects the assertion helpers of every file into the helper index.
+ */
 export async function normalizeProject(adapter, root, config = {}) {
   const ctx = adapterContext(config);
   const found = discover(root, ctx.config, { git: false });
-  const results = [];
+  const parsedFiles = [];
   for (const file of found.files.filter((candidate) => candidate.adapterId === adapter.id)) {
     const source = readSourceFile(root, file);
-    const parsed = await adapter.parse(source, ctx);
-    results.push({ file: file.path, source, model: adapter.normalize(parsed, ctx) });
-    parsed.tree?.delete();
+    parsedFiles.push({ file: file.path, source, parsed: await adapter.parse(source, ctx) });
   }
-  return results;
+  ctx.helperIndex = createHelperIndex(parsedFiles.flatMap(({ parsed }) => adapter.collectHelpers?.(parsed) ?? []), ctx.config.assertionHelpers);
+  return parsedFiles.map(({ file, source, parsed }) => {
+    const model = adapter.normalize(parsed, ctx);
+    parsed.tree?.delete();
+    return { file, source, model };
+  });
 }
 
 /** Normalizes one piece of source text, as if it were the file `relPath` in a project. */
-export async function normalizeText(adapter, relPath, text, { project = null, config = {}, parser } = {}) {
-  const ctx = { ...adapterContext(config), ...(parser ? { parser } : {}) };
+export async function normalizeText(adapter, relPath, text, { project = null, config = {}, parser, helperIndex } = {}) {
+  const ctx = { ...adapterContext(config), ...(parser ? { parser } : {}), ...(helperIndex ? { helperIndex } : {}) };
   const source = { path: relPath, absPath: `/virtual/${relPath}`, text, language: adapter.languageOf(relPath), project };
   const parsed = await adapter.parse(source, ctx);
   const model = adapter.normalize(parsed, ctx);

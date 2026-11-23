@@ -1,0 +1,3466 @@
+{
+  "path": "src/matchers.test.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "jest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "value matchers",
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 66,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "7135469e9533",
+        "c144d9295b70",
+        "912ee3526be5",
+        "45ff2728b7d0",
+        "f249674e7b82"
+      ],
+      "suites": []
+    },
+    {
+      "title": "mocks",
+      "span": {
+        "startLine": 68,
+        "startColumn": 1,
+        "endLine": 86,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "4a0205826809"
+      ],
+      "suites": []
+    },
+    {
+      "title": "assertions that cannot fail or may not run",
+      "span": {
+        "startLine": 88,
+        "startColumn": 1,
+        "endLine": 148,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "32340acdf5d2",
+        "5b18d3d41e70",
+        "d0f062100872",
+        "896be78211fd",
+        "86001e7ade84",
+        "18a9fc90eb67",
+        "ccfb189c2686"
+      ],
+      "suites": []
+    },
+    {
+      "title": "try blocks",
+      "span": {
+        "startLine": 150,
+        "startColumn": 1,
+        "endLine": 190,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "c93b6d1475b0",
+        "d60756a844a2",
+        "760bd6a31302",
+        "055c55360266"
+      ],
+      "suites": []
+    },
+    {
+      "title": "helpers",
+      "span": {
+        "startLine": 192,
+        "startColumn": 1,
+        "endLine": 203,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "7f4eb37d641a",
+        "a123237e50c6"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "7135469e9533",
+      "title": "equality",
+      "fullTitle": "value matchers > equality",
+      "suitePath": [
+        "value matchers"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 23,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 24,
+        "endLine": 23,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 38
+          },
+          "text": "expect(cart.items.length).toBe(1)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items.length",
+            "normalized": "cart.items.length",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 44
+          },
+          "text": "expect(cart.items[0]).toEqual(backpack)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items[0]",
+            "normalized": "cart.items[0]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "backpack",
+            "normalized": "backpack",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 49
+          },
+          "text": "expect(cart.items).toStrictEqual([backpack])",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[backpack]",
+            "normalized": "[backpack]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toStrictEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 47
+          },
+          "text": "expect(cart.total()).toBeCloseTo(29.99, 2)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBeCloseTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 37
+          },
+          "text": "expect(cart.total()).not.toBe(0)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBe",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "03024dd2f52ff83b4ce5faea71ac66e301b68a68"
+    },
+    {
+      "id": "c144d9295b70",
+      "title": "truthiness and nullness",
+      "fullTitle": "value matchers > truthiness and nullness",
+      "suitePath": [
+        "value matchers"
+      ],
+      "span": {
+        "startLine": 25,
+        "startColumn": 3,
+        "endLine": 33,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 39,
+        "endLine": 33,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 46
+          },
+          "text": "expect(cart.has('Backpack')).toBeTruthy()",
+          "kind": "truthiness",
+          "library": "expect",
+          "actual": {
+            "text": "cart.has('Backpack')",
+            "normalized": "cart.has('Backpack')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeTruthy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 47
+          },
+          "text": "expect(cart.has('Bike Light')).toBeFalsy()",
+          "kind": "truthiness",
+          "library": "expect",
+          "actual": {
+            "text": "cart.has('Bike Light')",
+            "normalized": "cart.has('Bike Light')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeFalsy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 52
+          },
+          "text": "expect(cart.find('Bike Light')).toBeUndefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "cart.find('Bike Light')",
+            "normalized": "cart.find('Bike Light')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeUndefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 48
+          },
+          "text": "expect(cart.find('Backpack')).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "cart.find('Backpack')",
+            "normalized": "cart.find('Backpack')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 35
+          },
+          "text": "expect(cart.coupon).toBeNull()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "cart.coupon",
+            "normalized": "cart.coupon",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeNull",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 43
+          },
+          "text": "expect(cart.total() / 0).not.toBeNaN()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total() / 0",
+            "normalized": "cart.total()/0",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeNaN",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "2f4b3a4ee7d79b3e5b97cdf04e8a2a27ab6347be"
+    },
+    {
+      "id": "912ee3526be5",
+      "title": "comparison, contains and type",
+      "fullTitle": "value matchers > comparison, contains and type",
+      "suitePath": [
+        "value matchers"
+      ],
+      "span": {
+        "startLine": 35,
+        "startColumn": 3,
+        "endLine": 49,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 45,
+        "endLine": 49,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 44
+          },
+          "text": "expect(cart.total()).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 55
+          },
+          "text": "expect(cart.total()).toBeGreaterThanOrEqual(29.99)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBeGreaterThanOrEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 43
+          },
+          "text": "expect(cart.total()).toBeLessThan(100)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "100",
+            "normalized": "100",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "100"
+            }
+          },
+          "matcher": "toBeLessThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 52
+          },
+          "text": "expect(cart.total()).toBeLessThanOrEqual(29.99)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBeLessThanOrEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 47
+          },
+          "text": "expect(cart.names()).toContain('Backpack')",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Backpack'",
+            "normalized": "'Backpack'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Backpack"
+            }
+          },
+          "matcher": "toContain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 48
+          },
+          "text": "expect(cart.items).toContainEqual(backpack)",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "backpack",
+            "normalized": "backpack",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toContainEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 45
+          },
+          "text": "expect(cart.summary()).toMatch(/1 item/)",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "cart.summary()",
+            "normalized": "cart.summary()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/1 item/",
+            "normalized": "/1 item/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toMatch",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 5,
+            "endLine": 44,
+            "endColumn": 62
+          },
+          "text": "expect(cart.items[0]).toMatchObject({ name: 'Backpack' })",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items[0]",
+            "normalized": "cart.items[0]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "{ name: 'Backpack' }",
+            "normalized": "{name:'Backpack'}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toMatchObject",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 57
+          },
+          "text": "expect(cart.items[0]).toHaveProperty('price', 29.99)",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items[0]",
+            "normalized": "cart.items[0]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'price'",
+            "normalized": "'price'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "price"
+            }
+          },
+          "matcher": "toHaveProperty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 38
+          },
+          "text": "expect(cart).toBeInstanceOf(Cart)",
+          "kind": "type",
+          "library": "expect",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Cart",
+            "normalized": "Cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toBeInstanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 5,
+            "endLine": 47,
+            "endColumn": 39
+          },
+          "text": "expect(cart.items).toHaveLength(1)",
+          "kind": "count",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveLength",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 47
+          },
+          "text": "expect(new Set(cart.names()).size).toBe(1)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "new Set(cart.names()).size",
+            "normalized": "new Set(cart.names()).size",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 13,
+      "bodyHash": "9a02f12e10f6a2767ed6de7dd748c2f4a62cadec"
+    },
+    {
+      "id": "45ff2728b7d0",
+      "title": "errors",
+      "fullTitle": "value matchers > errors",
+      "suitePath": [
+        "value matchers"
+      ],
+      "span": {
+        "startLine": 51,
+        "startColumn": 3,
+        "endLine": 59,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 51,
+        "startColumn": 28,
+        "endLine": 59,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 5,
+            "endLine": 53,
+            "endColumn": 73
+          },
+          "text": "expect(() => cart.add({ name: 'Free', price: -1 })).toThrow('price')",
+          "kind": "throws",
+          "library": "expect",
+          "actual": {
+            "text": "() => cart.add({ name: 'Free', price: -1 })",
+            "normalized": "()=>cart.add({name:'Free',price:-1})",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'price'",
+            "normalized": "'price'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "price"
+            }
+          },
+          "matcher": "toThrow",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 66
+          },
+          "text": "expect(() => cart.remove('Missing')).toThrowError(RangeError)",
+          "kind": "throws",
+          "library": "expect",
+          "actual": {
+            "text": "() => cart.remove('Missing')",
+            "normalized": "()=>cart.remove('Missing')",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "RangeError",
+            "normalized": "RangeError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toThrowError",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 11,
+            "endLine": 55,
+            "endColumn": 67
+          },
+          "text": "expect(loadCart('missing')).rejects.toThrow('not found')",
+          "kind": "throws",
+          "library": "expect",
+          "actual": {
+            "text": "loadCart('missing')",
+            "normalized": "loadCart('missing')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'not found'",
+            "normalized": "'not found'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "not found"
+            }
+          },
+          "matcher": "toThrow",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 11,
+            "endLine": 56,
+            "endColumn": 67
+          },
+          "text": "expect(loadCart('c-1')).resolves.toHaveProperty('items')",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "loadCart('c-1')",
+            "normalized": "loadCart('c-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'items'",
+            "normalized": "'items'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "items"
+            }
+          },
+          "matcher": "toHaveProperty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 65
+          },
+          "text": "expect(() => cart.checkout()).toThrowErrorMatchingSnapshot()",
+          "kind": "snapshot",
+          "library": "expect",
+          "actual": {
+            "text": "() => cart.checkout()",
+            "normalized": "()=>cart.checkout()",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toThrowErrorMatchingSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 5,
+            "endLine": 58,
+            "endColumn": 92
+          },
+          "text": "expect(() => cart.checkout()).toThrowErrorMatchingInlineSnapshot(`\"The cart is empty\"`)",
+          "kind": "snapshot",
+          "library": "expect",
+          "actual": {
+            "text": "() => cart.checkout()",
+            "normalized": "()=>cart.checkout()",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "`\"The cart is empty\"`",
+            "normalized": "`\"The cart is empty\"`",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "\"The cart is empty\""
+            }
+          },
+          "matcher": "toThrowErrorMatchingInlineSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "5f0df192008c6a37b8f11aff51fde203510ee7aa"
+    },
+    {
+      "id": "f249674e7b82",
+      "title": "snapshots",
+      "fullTitle": "value matchers > snapshots",
+      "suitePath": [
+        "value matchers"
+      ],
+      "span": {
+        "startLine": 61,
+        "startColumn": 3,
+        "endLine": 65,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 61,
+        "startColumn": 25,
+        "endLine": 65,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 45
+          },
+          "text": "expect(cart.summary()).toMatchSnapshot()",
+          "kind": "snapshot",
+          "library": "expect",
+          "actual": {
+            "text": "cart.summary()",
+            "normalized": "cart.summary()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toMatchSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 5,
+            "endLine": 64,
+            "endColumn": 51
+          },
+          "text": "expect(cart.summary()).toMatchInlineSnapshot()",
+          "kind": "snapshot",
+          "library": "expect",
+          "actual": {
+            "text": "cart.summary()",
+            "normalized": "cart.summary()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toMatchInlineSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "ad0fc47a5a0bdde53f3164927c11367ce73aa973"
+    },
+    {
+      "id": "4a0205826809",
+      "title": "checks how a mock was called",
+      "fullTitle": "mocks > checks how a mock was called",
+      "suitePath": [
+        "mocks"
+      ],
+      "span": {
+        "startLine": 69,
+        "startColumn": 3,
+        "endLine": 85,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 44,
+        "endLine": 85,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 5,
+            "endLine": 74,
+            "endColumn": 40
+          },
+          "text": "expect(onChange).toHaveBeenCalled()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "toHaveBeenCalled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 5,
+            "endLine": 75,
+            "endColumn": 46
+          },
+          "text": "expect(onChange).toHaveBeenCalledTimes(1)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveBeenCalledTimes",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 5,
+            "endLine": 76,
+            "endColumn": 52
+          },
+          "text": "expect(onChange).toHaveBeenCalledWith(backpack)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "backpack",
+            "normalized": "backpack",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toHaveBeenCalledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 5,
+            "endLine": 77,
+            "endColumn": 56
+          },
+          "text": "expect(onChange).toHaveBeenLastCalledWith(backpack)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "backpack",
+            "normalized": "backpack",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toHaveBeenLastCalledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 5,
+            "endLine": 78,
+            "endColumn": 58
+          },
+          "text": "expect(onChange).toHaveBeenNthCalledWith(1, backpack)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveBeenNthCalledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 5,
+            "endLine": 79,
+            "endColumn": 38
+          },
+          "text": "expect(onChange).toHaveReturned()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "toHaveReturned",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 5,
+            "endLine": 80,
+            "endColumn": 51
+          },
+          "text": "expect(onChange).toHaveReturnedWith(undefined)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "onChange",
+            "normalized": "onChange",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "undefined",
+            "normalized": "undefined",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "null",
+              "value": "undefined"
+            }
+          },
+          "matcher": "toHaveReturnedWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 5,
+            "endLine": 81,
+            "endColumn": 30
+          },
+          "text": "expect(save).toBeCalled()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "save",
+            "normalized": "save",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "toBeCalled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 5,
+            "endLine": 82,
+            "endColumn": 38
+          },
+          "text": "expect(save).toBeCalledWith(cart)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "save",
+            "normalized": "save",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toBeCalledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 5,
+            "endLine": 83,
+            "endColumn": 36
+          },
+          "text": "expect(save).toBeCalledTimes(1)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "save",
+            "normalized": "save",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toBeCalledTimes",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 5,
+            "endLine": 84,
+            "endColumn": 65
+          },
+          "text": "expect(onChange.mock.calls.length).toBeGreaterThanOrEqual(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "onChange.mock.calls.length",
+            "normalized": "onChange.mock.calls.length",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": true
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThanOrEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 15,
+      "bodyHash": "55e08454bafd230515a6fbe3635a54ff0122a644"
+    },
+    {
+      "id": "32340acdf5d2",
+      "title": "trivial",
+      "fullTitle": "assertions that cannot fail or may not run > trivial",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 89,
+        "startColumn": 3,
+        "endLine": 97,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 89,
+        "startColumn": 23,
+        "endLine": 97,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 91,
+            "startColumn": 5,
+            "endLine": 91,
+            "endColumn": 28
+          },
+          "text": "expect(true).toBe(true)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "true",
+            "normalized": "true",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "true"
+            }
+          },
+          "expected": {
+            "text": "true",
+            "normalized": "true",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "true"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 5,
+            "endLine": 92,
+            "endColumn": 47
+          },
+          "text": "expect(cart.total()).toEqual(cart.total())",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 5,
+            "endLine": 93,
+            "endColumn": 27
+          },
+          "text": "expect(1).toBeTruthy()",
+          "kind": "truthiness",
+          "library": "expect",
+          "actual": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "expected": null,
+          "matcher": "toBeTruthy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 5,
+            "endLine": 94,
+            "endColumn": 24
+          },
+          "text": "expect('').toBe('')",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "''",
+            "normalized": "''",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": ""
+            }
+          },
+          "expected": {
+            "text": "''",
+            "normalized": "''",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": ""
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 5,
+            "endLine": 95,
+            "endColumn": 27
+          },
+          "text": "expect([]).toEqual([])",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "toEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 5,
+            "endLine": 96,
+            "endColumn": 31
+          },
+          "text": "expect(-1).toBeLessThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "-1",
+            "normalized": "-1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "-1"
+            }
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeLessThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "262fde6b8f5d0bfa1abf47e47b2c7afd5475b831"
+    },
+    {
+      "id": "5b18d3d41e70",
+      "title": "a promise matcher that is not awaited",
+      "fullTitle": "assertions that cannot fail or may not run > a promise matcher that is not awaited",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 99,
+        "startColumn": 3,
+        "endLine": 102,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 99,
+        "startColumn": 53,
+        "endLine": 102,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 5,
+            "endLine": 100,
+            "endColumn": 51
+          },
+          "text": "expect(loadCart('c-1')).resolves.toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "loadCart('c-1')",
+            "normalized": "loadCart('c-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "no",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 5,
+            "endLine": 101,
+            "endColumn": 50
+          },
+          "text": "expect(loadCart('missing')).rejects.toThrow()",
+          "kind": "throws",
+          "library": "expect",
+          "actual": {
+            "text": "loadCart('missing')",
+            "normalized": "loadCart('missing')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toThrow",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "no",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "8ed4f556741029d616dc42221fc4028c11468fef"
+    },
+    {
+      "id": "d0f062100872",
+      "title": "expect in a callback",
+      "fullTitle": "assertions that cannot fail or may not run > expect in a callback",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 104,
+        "startColumn": 3,
+        "endLine": 110,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 104,
+        "startColumn": 42,
+        "endLine": 110,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 107,
+            "startColumn": 7,
+            "endLine": 107,
+            "endColumn": 46
+          },
+          "text": "expect(cart.total()).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 109,
+            "startColumn": 25,
+            "endLine": 109,
+            "endColumn": 63
+          },
+          "text": "expect(cart.items).not.toHaveLength(0)",
+          "kind": "count",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toHaveLength",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "a67c1569c5a3083e6c15be996e125f4c1d4a5f76"
+    },
+    {
+      "id": "896be78211fd",
+      "title": "expect in a callback, with a guard",
+      "fullTitle": "assertions that cannot fail or may not run > expect in a callback, with a guard",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 112,
+        "startColumn": 3,
+        "endLine": 116,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 112,
+        "startColumn": 56,
+        "endLine": 116,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 115,
+            "startColumn": 29,
+            "endLine": 115,
+            "endColumn": 68
+          },
+          "text": "expect(cart.total()).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": true,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "27ee2e98d3fbdbcb36df9a33f6feead703b6ad53"
+    },
+    {
+      "id": "86001e7ade84",
+      "title": "expect in a catch, with a guard",
+      "fullTitle": "assertions that cannot fail or may not run > expect in a catch, with a guard",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 118,
+        "startColumn": 3,
+        "endLine": 125,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 118,
+        "startColumn": 53,
+        "endLine": 125,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 7,
+            "endLine": 123,
+            "endColumn": 48
+          },
+          "text": "expect(error).toHaveProperty('code', 404)",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "error",
+            "normalized": "error",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'code'",
+            "normalized": "'code'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "code"
+            }
+          },
+          "matcher": "toHaveProperty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": true
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 120,
+            "startColumn": 5,
+            "endLine": 124,
+            "endColumn": 6
+          },
+          "kind": "try-catch",
+          "assertionsInside": 0,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": true
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "35df87d49a0f9977cd7a8d969b3f4e9c940269e6"
+    },
+    {
+      "id": "18a9fc90eb67",
+      "title": "a switch and a ternary",
+      "fullTitle": "assertions that cannot fail or may not run > a switch and a ternary",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 127,
+        "startColumn": 3,
+        "endLine": 142,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 127,
+        "startColumn": 38,
+        "endLine": 142,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 131,
+            "startColumn": 9,
+            "endLine": 131,
+            "endColumn": 41
+          },
+          "text": "expect(cart.total()).toBe(29.99)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 134,
+            "startColumn": 9,
+            "endLine": 134,
+            "endColumn": 37
+          },
+          "text": "expect(cart.total()).toBe(0)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 136,
+            "startColumn": 19,
+            "endLine": 136,
+            "endColumn": 59
+          },
+          "text": "expect(cart.total()).toBeLessThan(29.99)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBeLessThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 136,
+            "startColumn": 62,
+            "endLine": 136,
+            "endColumn": 94
+          },
+          "text": "expect(cart.total()).toBe(29.99)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 137,
+            "startColumn": 20,
+            "endLine": 137,
+            "endColumn": 51
+          },
+          "text": "expect(cart.discount()).toBe(0)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.discount()",
+            "normalized": "cart.discount()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 140,
+            "startColumn": 7,
+            "endLine": 140,
+            "endColumn": 53
+          },
+          "text": "expect(cart.total()).toBeGreaterThanOrEqual(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThanOrEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "48650e853e894cb15c32f8736de1c5ab71ede701"
+    },
+    {
+      "id": "ccfb189c2686",
+      "title": "after a fail call",
+      "fullTitle": "assertions that cannot fail or may not run > after a fail call",
+      "suitePath": [
+        "assertions that cannot fail or may not run"
+      ],
+      "span": {
+        "startLine": 144,
+        "startColumn": 3,
+        "endLine": 147,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 144,
+        "startColumn": 33,
+        "endLine": 147,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 145,
+            "startColumn": 5,
+            "endLine": 145,
+            "endColumn": 28
+          },
+          "text": "fail('not written yet')",
+          "kind": "fail-call",
+          "library": "fail",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 146,
+            "startColumn": 5,
+            "endLine": 146,
+            "endColumn": 41
+          },
+          "text": "expect(new Cart([]).total()).toBe(0)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "new Cart([]).total()",
+            "normalized": "new Cart([]).total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": false,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "38ce6dc87953513916d684025b42bd047e6df96a"
+    },
+    {
+      "id": "c93b6d1475b0",
+      "title": "swallows the failure",
+      "fullTitle": "try blocks > swallows the failure",
+      "suitePath": [
+        "try blocks"
+      ],
+      "span": {
+        "startLine": 151,
+        "startColumn": 3,
+        "endLine": 157,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 151,
+        "startColumn": 36,
+        "endLine": 157,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 153,
+            "startColumn": 7,
+            "endLine": 153,
+            "endColumn": 52
+          },
+          "text": "expect(new Cart([backpack]).total()).toBe(30)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "new Cart([backpack]).total()",
+            "normalized": "new Cart([backpack]).total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "30",
+            "normalized": "30",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "30"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 152,
+            "startColumn": 5,
+            "endLine": 156,
+            "endColumn": 6
+          },
+          "kind": "try-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "3a768f2501ea56aa1146a37d9aee2c5025ad8900"
+    },
+    {
+      "id": "d60756a844a2",
+      "title": "fails in the handler",
+      "fullTitle": "try blocks > fails in the handler",
+      "suitePath": [
+        "try blocks"
+      ],
+      "span": {
+        "startLine": 159,
+        "startColumn": 3,
+        "endLine": 167,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 159,
+        "startColumn": 42,
+        "endLine": 167,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 162,
+            "startColumn": 7,
+            "endLine": 162,
+            "endColumn": 42
+          },
+          "text": "fail('loadCart should have thrown')",
+          "kind": "fail-call",
+          "library": "fail",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 164,
+            "startColumn": 38,
+            "endLine": 164,
+            "endColumn": 58
+          },
+          "text": "fail('not an Error')",
+          "kind": "fail-call",
+          "library": "fail",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 165,
+            "startColumn": 7,
+            "endLine": 165,
+            "endColumn": 49
+          },
+          "text": "expect(error.message).toMatch(/not found/)",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "error.message",
+            "normalized": "error.message",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/not found/",
+            "normalized": "/not found/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toMatch",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 160,
+            "startColumn": 5,
+            "endLine": 166,
+            "endColumn": 6
+          },
+          "kind": "try-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": true,
+          "handlerAsserts": true
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d41d437c2f837fb631205eb2621c9a4304791eff"
+    },
+    {
+      "id": "760bd6a31302",
+      "title": "passes the error to done",
+      "fullTitle": "try blocks > passes the error to done",
+      "suitePath": [
+        "try blocks"
+      ],
+      "span": {
+        "startLine": 169,
+        "startColumn": 3,
+        "endLine": 178,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 169,
+        "startColumn": 44,
+        "endLine": 178,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 172,
+            "startColumn": 9,
+            "endLine": 172,
+            "endColumn": 41
+          },
+          "text": "expect(cart.total()).toBe(29.99)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 171,
+            "startColumn": 7,
+            "endLine": 176,
+            "endColumn": 8
+          },
+          "kind": "try-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": true,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "5b2cb6536bbf3901d96296c727edc48dd0e7b0aa"
+    },
+    {
+      "id": "055c55360266",
+      "title": "rejects in the handler",
+      "fullTitle": "try blocks > rejects in the handler",
+      "suitePath": [
+        "try blocks"
+      ],
+      "span": {
+        "startLine": 180,
+        "startColumn": 3,
+        "endLine": 189,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 180,
+        "startColumn": 38,
+        "endLine": 189,
+        "endColumn": 5
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 183,
+            "startColumn": 9,
+            "endLine": 183,
+            "endColumn": 43
+          },
+          "text": "expect(cart.items).toHaveLength(1)",
+          "kind": "count",
+          "library": "expect",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveLength",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 182,
+            "startColumn": 7,
+            "endLine": 187,
+            "endColumn": 8
+          },
+          "kind": "try-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": true,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6143cbaf7a64285b56c662cce75d04ad441edd96"
+    },
+    {
+      "id": "7f4eb37d641a",
+      "title": "uses helpers from this file",
+      "fullTitle": "helpers > uses helpers from this file",
+      "suitePath": [
+        "helpers"
+      ],
+      "span": {
+        "startLine": 193,
+        "startColumn": 3,
+        "endLine": 198,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 193,
+        "startColumn": 43,
+        "endLine": 198,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 195,
+            "startColumn": 5,
+            "endLine": 195,
+            "endColumn": 29
+          },
+          "text": "expectTotal(cart, 29.99)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "expectTotal"
+        },
+        {
+          "span": {
+            "startLine": 197,
+            "startColumn": 5,
+            "endLine": 197,
+            "endColumn": 22
+          },
+          "text": "expectEmpty(cart)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "expectEmpty"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "4227e8afd3cea955f08da5a62c8f664818443502"
+    },
+    {
+      "id": "a123237e50c6",
+      "title": "uses a helper the tool cannot see, until its name is in assertionHelpers",
+      "fullTitle": "helpers > uses a helper the tool cannot see, until its name is in assertionHelpers",
+      "suitePath": [
+        "helpers"
+      ],
+      "span": {
+        "startLine": 200,
+        "startColumn": 3,
+        "endLine": 202,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 200,
+        "startColumn": 88,
+        "endLine": 202,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "96fbb653cfd03ab76d78208645b9b4d5a21e3cda"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 60
+      },
+      "source": "@jest/globals",
+      "names": [
+        "describe",
+        "expect",
+        "it",
+        "jest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 41
+      },
+      "source": "./cart",
+      "names": [
+        "Cart",
+        "loadCart"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 29
+      },
+      "source": "./api",
+      "names": [
+        "api"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

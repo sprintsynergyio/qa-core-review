@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -57,7 +62,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 3,
+            "endLine": 6,
+            "endColumn": 38
+          },
+          "text": "assert.equal(new Cart().count(), 0)",
+          "kind": "equality",
+          "library": "node-assert",
+          "actual": {
+            "text": "new Cart().count()",
+            "normalized": "new Cart().count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -100,7 +145,36 @@
         "reason": "needs a sandbox account"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 3,
+            "endLine": 11,
+            "endColumn": 30
+          },
+          "text": "assert.ok(await cart.pay())",
+          "kind": "truthiness",
+          "library": "node-assert",
+          "actual": {
+            "text": "await cart.pay()",
+            "normalized": "await cart.pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "ok",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -178,7 +252,40 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 3,
+            "endLine": 17,
+            "endColumn": 18
+          },
+          "text": "assert.ok(true)",
+          "kind": "truthiness",
+          "library": "node-assert",
+          "actual": {
+            "text": "true",
+            "normalized": "true",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "true"
+            }
+          },
+          "expected": null,
+          "matcher": "ok",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -217,7 +324,43 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 56
+          },
+          "text": "assert.deepEqual(cart.items, [['backpack', 29.99]])",
+          "kind": "equality",
+          "library": "node-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[['backpack', 29.99]]",
+            "normalized": "[['backpack',29.99]]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "deepEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -340,7 +483,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 3,
+            "endLine": 33,
+            "endColumn": 31
+          },
+          "text": "assert.strictEqual(1 + 1, 2)",
+          "kind": "equality",
+          "library": "node-assert",
+          "actual": {
+            "text": "1 + 1",
+            "normalized": "1+1",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "strictEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

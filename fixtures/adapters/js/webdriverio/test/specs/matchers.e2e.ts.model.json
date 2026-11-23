@@ -1,0 +1,979 @@
+{
+  "path": "test/specs/matchers.e2e.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "webdriverio",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "Inventory",
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 52,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 3,
+            "endLine": 8,
+            "endColumn": 5
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [
+            {
+              "span": {
+                "startLine": 7,
+                "startColumn": 11,
+                "endLine": 7,
+                "endColumn": 80
+              },
+              "text": "expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')",
+              "kind": "ui-state",
+              "library": "expect-webdriverio",
+              "actual": {
+                "text": "browser",
+                "normalized": "browser",
+                "kind": "identifier",
+                "isLocator": false,
+                "isCount": false,
+                "isMock": false
+              },
+              "expected": {
+                "text": "'https://www.saucedemo.com/inventory.html'",
+                "normalized": "'https://www.saucedemo.com/inventory.html'",
+                "kind": "literal",
+                "isLocator": false,
+                "isCount": false,
+                "isMock": false,
+                "literal": {
+                  "type": "string",
+                  "value": "https://www.saucedemo.com/inventory.html"
+                }
+              },
+              "matcher": "toHaveUrl",
+              "negated": false,
+              "soft": false,
+              "complete": true,
+              "awaited": "yes",
+              "guarded": false,
+              "reachable": true,
+              "viaHelper": null
+            }
+          ]
+        }
+      ],
+      "testIds": [
+        "d21b90cf421b",
+        "903276040470",
+        "2331af765f58",
+        "d72c4ca334e8",
+        "82ca4f5bcbb6"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "d21b90cf421b",
+      "title": "checks elements",
+      "fullTitle": "Inventory > checks elements",
+      "suitePath": [
+        "Inventory"
+      ],
+      "span": {
+        "startLine": 10,
+        "startColumn": 3,
+        "endLine": 25,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 37,
+        "endLine": 25,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 11,
+            "endLine": 13,
+            "endColumn": 40
+          },
+          "text": "expect(badge).toBeDisplayed()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDisplayed",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 11,
+            "endLine": 14,
+            "endColumn": 34
+          },
+          "text": "expect(badge).toExist()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toExist",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 11,
+            "endLine": 15,
+            "endColumn": 39
+          },
+          "text": "expect(badge).toBeExisting()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeExisting",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 11,
+            "endLine": 16,
+            "endColumn": 50
+          },
+          "text": "expect(badge).toBeDisplayedInViewport()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDisplayedInViewport",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 11,
+            "endLine": 17,
+            "endColumn": 40
+          },
+          "text": "expect(badge).toHaveText('1')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'1'",
+            "normalized": "'1'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 11,
+            "endLine": 18,
+            "endColumn": 66
+          },
+          "text": "expect(badge).toHaveElementClass('shopping_cart_badge')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'shopping_cart_badge'",
+            "normalized": "'shopping_cart_badge'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "shopping_cart_badge"
+            }
+          },
+          "matcher": "toHaveElementClass",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 11,
+            "endLine": 19,
+            "endColumn": 81
+          },
+          "text": "expect(badge).toHaveHTML('<span class=\"shopping_cart_badge\">1</span>')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'<span class=\"shopping_cart_badge\">1</span>'",
+            "normalized": "'<span class=\"shopping_cart_badge\">1</span>'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "<span class=\"shopping_cart_badge\">1</span>"
+            }
+          },
+          "matcher": "toHaveHTML",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 11,
+            "endLine": 20,
+            "endColumn": 59
+          },
+          "text": "expect($('.shopping_cart_link')).toBeClickable()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('.shopping_cart_link')",
+            "normalized": "$('.shopping_cart_link')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeClickable",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 68
+          },
+          "text": "expect($('.shopping_cart_link')).toHaveHref('/cart.html')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('.shopping_cart_link')",
+            "normalized": "$('.shopping_cart_link')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'/cart.html'",
+            "normalized": "'/cart.html'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "/cart.html"
+            }
+          },
+          "matcher": "toHaveHref",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 11,
+            "endLine": 22,
+            "endColumn": 50
+          },
+          "text": "expect(sort.$('option')).toBeSelected()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "sort.$('option')",
+            "normalized": "sort.$('option')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeSelected",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 11,
+            "endLine": 23,
+            "endColumn": 67
+          },
+          "text": "expect($$('.inventory_item')).toBeElementsArrayOfSize(6)",
+          "kind": "count",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$$('.inventory_item')",
+            "normalized": "$$('.inventory_item')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "toBeElementsArrayOfSize",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 51
+          },
+          "text": "expect(browser).toHaveTitle('Swag Labs')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "browser",
+            "normalized": "browser",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Swag Labs'",
+            "normalized": "'Swag Labs'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "toHaveTitle",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 14,
+      "bodyHash": "d35d761963aeebc83faa072feccf5c8fd088669b"
+    },
+    {
+      "id": "903276040470",
+      "title": "forgets to await",
+      "fullTitle": "Inventory > forgets to await",
+      "suitePath": [
+        "Inventory"
+      ],
+      "span": {
+        "startLine": 27,
+        "startColumn": 3,
+        "endLine": 30,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 38,
+        "endLine": 30,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 54
+          },
+          "text": "expect($('.shopping_cart_badge')).toBeDisplayed()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('.shopping_cart_badge')",
+            "normalized": "$('.shopping_cart_badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDisplayed",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "no",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 45
+          },
+          "text": "expect(browser).toHaveTitle('Swag Labs')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "browser",
+            "normalized": "browser",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Swag Labs'",
+            "normalized": "'Swag Labs'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "toHaveTitle",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "no",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "3b95c8118925105f30b759e0a62906a0358dda63"
+    },
+    {
+      "id": "2331af765f58",
+      "title": "an element query is always truthy",
+      "fullTitle": "Inventory > an element query is always truthy",
+      "suitePath": [
+        "Inventory"
+      ],
+      "span": {
+        "startLine": 32,
+        "startColumn": 3,
+        "endLine": 36,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 55,
+        "endLine": 36,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 31
+          },
+          "text": "expect(badge).toBeTruthy()",
+          "kind": "truthiness",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeTruthy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 40
+          },
+          "text": "expect($('.missing')).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('.missing')",
+            "normalized": "$('.missing')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "a51268783093060836a96420217547c6d308caf3"
+    },
+    {
+      "id": "d72c4ca334e8",
+      "title": "checks plain values without await",
+      "fullTitle": "Inventory > checks plain values without await",
+      "suitePath": [
+        "Inventory"
+      ],
+      "span": {
+        "startLine": 38,
+        "startColumn": 3,
+        "endLine": 43,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 38,
+        "startColumn": 55,
+        "endLine": 43,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 33
+          },
+          "text": "expect(items.length).toBe(6)",
+          "kind": "equality",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "items.length",
+            "normalized": "items.length",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 36
+          },
+          "text": "expect(title).toContain('Swag')",
+          "kind": "contains",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "title",
+            "normalized": "title",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Swag'",
+            "normalized": "'Swag'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag"
+            }
+          },
+          "matcher": "toContain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "431e0c9476c9b23875788a580b2605c6e0f97588"
+    },
+    {
+      "id": "82ca4f5bcbb6",
+      "title": "checks inside waitUntil",
+      "fullTitle": "Inventory > checks inside waitUntil",
+      "suitePath": [
+        "Inventory"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 3,
+        "endLine": 51,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 45,
+        "endLine": 51,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 7,
+            "endLine": 48,
+            "endColumn": 29
+          },
+          "text": "expect(text).toBe('1')",
+          "kind": "equality",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "text",
+            "normalized": "text",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'1'",
+            "normalized": "'1'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "be404d04b646272432a7006967b6773d0d9dcb20"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 48
+      },
+      "source": "@wdio/globals",
+      "names": [
+        "$",
+        "$$",
+        "browser"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 45
+      },
+      "source": "expect-webdriverio",
+      "names": [
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

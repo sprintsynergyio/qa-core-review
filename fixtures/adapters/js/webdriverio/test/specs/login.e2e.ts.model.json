@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -71,7 +76,43 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 11,
+            "endLine": 13,
+            "endColumn": 74
+          },
+          "text": "expect(browser).toHaveUrl(expect.stringContaining('inventory'))",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "browser",
+            "normalized": "browser",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "expect.stringContaining('inventory')",
+            "normalized": "expect.stringContaining('inventory')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toHaveUrl",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -110,7 +151,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 59
+          },
+          "text": "expect($('[data-test=\"error\"]')).toBeDisplayed()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('[data-test=\"error\"]')",
+            "normalized": "$('[data-test=\"error\"]')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDisplayed",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

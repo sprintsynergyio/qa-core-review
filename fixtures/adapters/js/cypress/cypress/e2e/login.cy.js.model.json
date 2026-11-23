@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -127,7 +132,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 16,
+            "endLine": 21,
+            "endColumn": 52
+          },
+          "text": "cy.url().should('include', '/inventory.html')",
+          "kind": "contains",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.url()",
+            "normalized": "cy.url()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'/inventory.html'",
+            "normalized": "'/inventory.html'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "/inventory.html"
+            }
+          },
+          "matcher": "include",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -167,7 +212,75 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 33,
+            "endLine": 25,
+            "endColumn": 57
+          },
+          "text": "cy.get('.inventory_item').should('have.length', 6)",
+          "kind": "count",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item')",
+            "normalized": "cy.get('.inventory_item')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "have.length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 58,
+            "endLine": 25,
+            "endColumn": 75
+          },
+          "text": "cy.get('.inventory_item').should('have.length', 6).and('be.visible')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item')",
+            "normalized": "cy.get('.inventory_item')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.visible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -207,7 +320,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 38,
+            "endLine": 29,
+            "endColumn": 57
+          },
+          "text": "cy.get('.shopping_cart_badge').should('not.exist')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.shopping_cart_badge')",
+            "normalized": "cy.get('.shopping_cart_badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not.exist",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -249,7 +391,47 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 7,
+            "endLine": 39,
+            "endColumn": 59
+          },
+          "text": "cy.contains('Sorry, this user has been locked out.')",
+          "kind": "ui-state",
+          "library": "cypress",
+          "actual": {
+            "text": "cy.contains('Sorry, this user has been locked out.')",
+            "normalized": "cy.contains('Sorry, this user has been locked out.')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Sorry, this user has been locked out.'",
+            "normalized": "'Sorry, this user has been locked out.'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Sorry, this user has been locked out."
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

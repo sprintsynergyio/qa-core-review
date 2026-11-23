@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -120,7 +125,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 56
+          },
+          "text": "expect(formatPrice(29.99, 'EUR')).toBe('29,99 EUR')",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "formatPrice(29.99, 'EUR')",
+            "normalized": "formatPrice(29.99,'EUR')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'29,99 EUR'",
+            "normalized": "'29,99 EUR'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "29,99 EUR"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -161,7 +206,47 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 55
+          },
+          "text": "expect(formatPrice(0.005, 'EUR')).toBe('0,01 EUR')",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "formatPrice(0.005, 'EUR')",
+            "normalized": "formatPrice(0.005,'EUR')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'0,01 EUR'",
+            "normalized": "'0,01 EUR'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "0,01 EUR"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -204,7 +289,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 41
+          },
+          "text": "expect(rates.EUR).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "rates.EUR",
+            "normalized": "rates.EUR",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -247,7 +372,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 39
+          },
+          "text": "expect(spy).not.toHaveBeenCalled()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "spy",
+            "normalized": "spy",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "toHaveBeenCalled",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -289,7 +443,43 @@
         "source": "each",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 55
+          },
+          "text": "expect(formatPrice(1, currency)).toContain(symbol)",
+          "kind": "contains",
+          "library": "expect",
+          "actual": {
+            "text": "formatPrice(1, currency)",
+            "normalized": "formatPrice(1,currency)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "symbol",
+            "normalized": "symbol",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toContain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -328,7 +518,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 5,
+            "endLine": 44,
+            "endColumn": 59
+          },
+          "text": "expect(Object.keys(await loadRates())).toHaveLength(2)",
+          "kind": "count",
+          "library": "expect",
+          "actual": {
+            "text": "Object.keys(await loadRates())",
+            "normalized": "Object.keys(await loadRates())",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "toHaveLength",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -370,7 +600,36 @@
         "source": "loop",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 7,
+            "endLine": 53,
+            "endColumn": 58
+          },
+          "text": "expect((await loadRates())[currency]).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "(await loadRates())[currency]",
+            "normalized": "(await loadRates())[currency]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

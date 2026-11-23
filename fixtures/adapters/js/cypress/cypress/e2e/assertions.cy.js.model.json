@@ -1,0 +1,1901 @@
+{
+  "path": "cypress/e2e/assertions.cy.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "cypress",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "Cart",
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 108,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 3,
+            "endLine": 15,
+            "endColumn": 5
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [
+            {
+              "span": {
+                "startLine": 14,
+                "startColumn": 35,
+                "endLine": 14,
+                "endColumn": 66
+              },
+              "text": "cy.get('[data-test=\"title\"]').should('have.text', 'Products')",
+              "kind": "ui-state",
+              "library": "cypress-should",
+              "actual": {
+                "text": "cy.get('[data-test=\"title\"]')",
+                "normalized": "cy.get('[data-test=\"title\"]')",
+                "kind": "call",
+                "isLocator": true,
+                "isCount": false,
+                "isMock": false
+              },
+              "expected": {
+                "text": "'Products'",
+                "normalized": "'Products'",
+                "kind": "literal",
+                "isLocator": false,
+                "isCount": false,
+                "isMock": false,
+                "literal": {
+                  "type": "string",
+                  "value": "Products"
+                }
+              },
+              "matcher": "have.text",
+              "negated": false,
+              "soft": false,
+              "complete": true,
+              "awaited": "not-needed",
+              "guarded": false,
+              "reachable": true,
+              "viaHelper": null
+            }
+          ]
+        }
+      ],
+      "testIds": [
+        "f40ec2380677",
+        "050096b0ef1a",
+        "794f665c946a",
+        "4ede21752539",
+        "e54f9d064eb7",
+        "cd09585e3a00",
+        "e2276ab9a134",
+        "b5d11a606f6d",
+        "480def00a167",
+        "f2b678a0938d",
+        "409dffc0db22"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "f40ec2380677",
+      "title": "checks elements with should",
+      "fullTitle": "Cart > checks elements with should",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 17,
+        "startColumn": 3,
+        "endLine": 40,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 43,
+        "endLine": 40,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 36,
+            "endLine": 19,
+            "endColumn": 56
+          },
+          "text": "cy.get('.shopping_cart_badge').should('be.visible')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.shopping_cart_badge')",
+            "normalized": "cy.get('.shopping_cart_badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.visible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 57,
+            "endLine": 19,
+            "endColumn": 78
+          },
+          "text": "cy.get('.shopping_cart_badge').should('be.visible').and('have.text', '1')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.shopping_cart_badge')",
+            "normalized": "cy.get('.shopping_cart_badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'1'",
+            "normalized": "'1'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "have.text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 36,
+            "endLine": 20,
+            "endColumn": 51
+          },
+          "text": "cy.get('.shopping_cart_badge').should('exist')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.shopping_cart_badge')",
+            "normalized": "cy.get('.shopping_cart_badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "exist",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 38,
+            "endLine": 21,
+            "endColumn": 61
+          },
+          "text": "cy.get('#react-burger-menu-btn').should('not.be.hidden')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('#react-burger-menu-btn')",
+            "normalized": "cy.get('#react-burger-menu-btn')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not.be.hidden",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 31,
+            "endLine": 22,
+            "endColumn": 55
+          },
+          "text": "cy.get('.inventory_item').should('have.length', 6)",
+          "kind": "count",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item')",
+            "normalized": "cy.get('.inventory_item')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "have.length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 39,
+            "endLine": 23,
+            "endColumn": 68
+          },
+          "text": "cy.get('.inventory_item').first().should('contain', 'Backpack')",
+          "kind": "contains",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item').first()",
+            "normalized": "cy.get('.inventory_item').first()",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Backpack'",
+            "normalized": "'Backpack'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Backpack"
+            }
+          },
+          "matcher": "contain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 38,
+            "endLine": 24,
+            "endColumn": 71
+          },
+          "text": "cy.get('.inventory_item').last().should('include.text', 'T-Shirt')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item').last()",
+            "normalized": "cy.get('.inventory_item').last()",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'T-Shirt'",
+            "normalized": "'T-Shirt'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "T-Shirt"
+            }
+          },
+          "matcher": "include.text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 52,
+            "endLine": 25,
+            "endColumn": 89
+          },
+          "text": "cy.get('.inventory_item').eq(1).find('button').should('have.class', 'btn_inventory')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item').eq(1).find('button')",
+            "normalized": "cy.get('.inventory_item').eq(1).find('button')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'btn_inventory'",
+            "normalized": "'btn_inventory'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "btn_inventory"
+            }
+          },
+          "matcher": "have.class",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 39,
+            "endLine": 26,
+            "endColumn": 65
+          },
+          "text": "cy.get('.product_sort_container').should('have.value', 'az')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'az'",
+            "normalized": "'az'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "az"
+            }
+          },
+          "matcher": "have.value",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 39,
+            "endLine": 27,
+            "endColumn": 97
+          },
+          "text": "cy.get('.product_sort_container').should('have.attr', 'data-test', 'product-sort-container')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'data-test'",
+            "normalized": "'data-test'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "data-test"
+            }
+          },
+          "matcher": "have.attr",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 39,
+            "endLine": 28,
+            "endColumn": 77
+          },
+          "text": "cy.get('.product_sort_container').should('have.css', 'display', 'block')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'display'",
+            "normalized": "'display'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "display"
+            }
+          },
+          "matcher": "have.css",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 39,
+            "endLine": 29,
+            "endColumn": 77
+          },
+          "text": "cy.get('.product_sort_container').should('have.prop', 'disabled', false)",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'disabled'",
+            "normalized": "'disabled'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "disabled"
+            }
+          },
+          "matcher": "have.prop",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 39,
+            "endLine": 30,
+            "endColumn": 64
+          },
+          "text": "cy.get('.product_sort_container').should('have.id', 'sort')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'sort'",
+            "normalized": "'sort'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "sort"
+            }
+          },
+          "matcher": "have.id",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 39,
+            "endLine": 31,
+            "endColumn": 59
+          },
+          "text": "cy.get('.product_sort_container').should('be.enabled')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.enabled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 60,
+            "endLine": 31,
+            "endColumn": 82
+          },
+          "text": "cy.get('.product_sort_container').should('be.enabled').and('not.be.disabled')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container')",
+            "normalized": "cy.get('.product_sort_container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not.be.disabled",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 54,
+            "endLine": 32,
+            "endColumn": 75
+          },
+          "text": "cy.get('.product_sort_container option').first().should('be.selected')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.product_sort_container option').first()",
+            "normalized": "cy.get('.product_sort_container option').first()",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.selected",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 25,
+            "endLine": 33,
+            "endColumn": 45
+          },
+          "text": "cy.get('#remember').should('be.checked')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('#remember')",
+            "normalized": "cy.get('#remember')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.checked",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 23,
+            "endLine": 34,
+            "endColumn": 43
+          },
+          "text": "cy.get('#search').should('be.focused')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('#search')",
+            "normalized": "cy.get('#search')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.focused",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 44,
+            "endLine": 34,
+            "endColumn": 59
+          },
+          "text": "cy.get('#search').should('be.focused').and('be.empty')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('#search')",
+            "normalized": "cy.get('#search')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "be.empty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 28,
+            "endLine": 35,
+            "endColumn": 73
+          },
+          "text": "cy.get('.footer_copy').should('have.html', '&copy; 2026 Sauce Labs')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.footer_copy')",
+            "normalized": "cy.get('.footer_copy')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'&copy; 2026 Sauce Labs'",
+            "normalized": "'&copy; 2026 Sauce Labs'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "&copy; 2026 Sauce Labs"
+            }
+          },
+          "matcher": "have.html",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 31,
+            "endLine": 36,
+            "endColumn": 67
+          },
+          "text": "cy.get('.inventory_list').should('have.length.greaterThan', 0)",
+          "kind": "comparison",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_list')",
+            "normalized": "cy.get('.inventory_list')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "have.length.greaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 60,
+            "endLine": 37,
+            "endColumn": 92
+          },
+          "text": "cy.get('.inventory_item_price').first().invoke('text').should('match', /^\\$\\d+\\.\\d\\d$/)",
+          "kind": "contains",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.inventory_item_price').first().invoke('text')",
+            "normalized": "cy.get('.inventory_item_price').first().invoke('text')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/^\\$\\d+\\.\\d\\d$/",
+            "normalized": "/^\\$\\d+\\.\\d\\d$/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "match",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 14,
+            "endLine": 38,
+            "endColumn": 50
+          },
+          "text": "cy.url().should('include', '/inventory.html')",
+          "kind": "contains",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.url()",
+            "normalized": "cy.url()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'/inventory.html'",
+            "normalized": "'/inventory.html'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "/inventory.html"
+            }
+          },
+          "matcher": "include",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 16,
+            "endLine": 39,
+            "endColumn": 41
+          },
+          "text": "cy.title().should('eq', 'Swag Labs')",
+          "kind": "equality",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.title()",
+            "normalized": "cy.title()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Swag Labs'",
+            "normalized": "'Swag Labs'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "eq",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 22,
+      "bodyHash": "72ba42756e3fffcb1022bb3a47f6ce25cc52e457"
+    },
+    {
+      "id": "050096b0ef1a",
+      "title": "checks requests and stubs",
+      "fullTitle": "Cart > checks requests and stubs",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 42,
+        "startColumn": 3,
+        "endLine": 53,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 42,
+        "startColumn": 41,
+        "endLine": 53,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 65,
+            "endLine": 45,
+            "endColumn": 82
+          },
+          "text": "cy.request('https://api.example.test/orders').its('status').should('eq', 200)",
+          "kind": "status",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.request('https://api.example.test/orders').its('status')",
+            "normalized": "cy.request('https://api.example.test/orders').its('status')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "eq",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 7,
+            "endLine": 47,
+            "endColumn": 41
+          },
+          "text": "expect(response.status).to.eq(404)",
+          "kind": "status",
+          "library": "chai",
+          "actual": {
+            "text": "response.status",
+            "normalized": "response.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "404",
+            "normalized": "404",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "404"
+            }
+          },
+          "matcher": "eq",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            404
+          ]
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 7,
+            "endLine": 48,
+            "endColumn": 54
+          },
+          "text": "expect(response.body).to.have.property('error')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "response.body",
+            "normalized": "response.body",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'error'",
+            "normalized": "'error'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "error"
+            }
+          },
+          "matcher": "property",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 7,
+            "endLine": 49,
+            "endColumn": 37
+          },
+          "text": "assert.isObject(response.body)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "response.body",
+            "normalized": "response.body",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isObject",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 21,
+            "endLine": 51,
+            "endColumn": 51
+          },
+          "text": "cy.wrap(onOpen).should('have.been.calledOnce')",
+          "kind": "mock-call",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.wrap(onOpen)",
+            "normalized": "cy.wrap(onOpen)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "have.been.calledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 22,
+            "endLine": 52,
+            "endColumn": 52
+          },
+          "text": "cy.wrap(onClose).should('not.have.been.called')",
+          "kind": "mock-call",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.wrap(onClose)",
+            "normalized": "cy.wrap(onClose)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not.have.been.called",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "a956642e62b53577e1635d053ac578b09f1b4e61"
+    },
+    {
+      "id": "794f665c946a",
+      "title": "a callback given to should always runs",
+      "fullTitle": "Cart > a callback given to should always runs",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 55,
+        "startColumn": 3,
+        "endLine": 63,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 55,
+        "startColumn": 54,
+        "endLine": 63,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 7,
+            "endLine": 57,
+            "endColumn": 39
+          },
+          "text": "expect($items).to.have.length(6)",
+          "kind": "count",
+          "library": "chai",
+          "actual": {
+            "text": "$items",
+            "normalized": "$items",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 7,
+            "endLine": 58,
+            "endColumn": 52
+          },
+          "text": "expect($items.first()).to.contain('Backpack')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "$items.first()",
+            "normalized": "$items.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Backpack'",
+            "normalized": "'Backpack'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Backpack"
+            }
+          },
+          "matcher": "contain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 28,
+            "endLine": 61,
+            "endColumn": 52
+          },
+          "text": "cy.get('.cart_item').should('have.length', 1)",
+          "kind": "count",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.cart_item')",
+            "normalized": "cy.get('.cart_item')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "have.length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "983e2f47ef103c863ff4ae1032bffa71e946fe79"
+    },
+    {
+      "id": "4ede21752539",
+      "title": "each may run zero times",
+      "fullTitle": "Cart > each may run zero times",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 65,
+        "startColumn": 3,
+        "endLine": 69,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 65,
+        "startColumn": 39,
+        "endLine": 69,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 7,
+            "endLine": 67,
+            "endColumn": 44
+          },
+          "text": "expect($price.text()).to.match(/^\\$/)",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "$price.text()",
+            "normalized": "$price.text()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/^\\$/",
+            "normalized": "/^\\$/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "match",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "546f37d0f33d25561c65674732a4196409a25e18"
+    },
+    {
+      "id": "e54f9d064eb7",
+      "title": "ends with contains",
+      "fullTitle": "Cart > ends with contains",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 71,
+        "startColumn": 3,
+        "endLine": 75,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 71,
+        "startColumn": 34,
+        "endLine": 75,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 5,
+            "endLine": 74,
+            "endColumn": 39
+          },
+          "text": "cy.contains('Sauce Labs Backpack')",
+          "kind": "ui-state",
+          "library": "cypress",
+          "actual": {
+            "text": "cy.contains('Sauce Labs Backpack')",
+            "normalized": "cy.contains('Sauce Labs Backpack')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Sauce Labs Backpack'",
+            "normalized": "'Sauce Labs Backpack'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Sauce Labs Backpack"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "1a2669df523526939ea1362721ea1e67b77bad0a"
+    },
+    {
+      "id": "cd09585e3a00",
+      "title": "ends with contains on a chain",
+      "fullTitle": "Cart > ends with contains on a chain",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 77,
+        "startColumn": 3,
+        "endLine": 80,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 77,
+        "startColumn": 45,
+        "endLine": 80,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 5,
+            "endLine": 79,
+            "endColumn": 81
+          },
+          "text": "cy.get('.cart_list').contains('.inventory_item_name', 'Sauce Labs Backpack')",
+          "kind": "ui-state",
+          "library": "cypress",
+          "actual": {
+            "text": "cy.get('.cart_list').contains('.inventory_item_name', 'Sauce Labs Backpack')",
+            "normalized": "cy.get('.cart_list').contains('.inventory_item_name','Sauce Labs Backpack')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Sauce Labs Backpack'",
+            "normalized": "'Sauce Labs Backpack'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Sauce Labs Backpack"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "d314c9b031f73019eda17ae0f2ac30f17307fd2b"
+    },
+    {
+      "id": "e2276ab9a134",
+      "title": "contains in the middle is a step, and get alone checks nothing",
+      "fullTitle": "Cart > contains in the middle is a step, and get alone checks nothing",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 82,
+        "startColumn": 3,
+        "endLine": 85,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 82,
+        "startColumn": 78,
+        "endLine": 85,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "ccfcf50e25566a553d3b78db2cb11b5dcdb26190"
+    },
+    {
+      "id": "b5d11a606f6d",
+      "title": "uses a custom command that asserts",
+      "fullTitle": "Cart > uses a custom command that asserts",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 87,
+        "startColumn": 3,
+        "endLine": 91,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 87,
+        "startColumn": 50,
+        "endLine": 91,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 5,
+            "endLine": 90,
+            "endColumn": 26
+          },
+          "text": "cy.expectCartCount(1)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "expectCartCount"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "99583a70c0dde06319640cac26ff3747aa52902b"
+    },
+    {
+      "id": "480def00a167",
+      "title": "uses a custom command that does not assert",
+      "fullTitle": "Cart > uses a custom command that does not assert",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 93,
+        "startColumn": 3,
+        "endLine": 95,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 93,
+        "startColumn": 58,
+        "endLine": 95,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "7aa0651968b730cea87ea53ec1c6dd301c1df00d"
+    },
+    {
+      "id": "f2b678a0938d",
+      "title": "compares a picture",
+      "fullTitle": "Cart > compares a picture",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 97,
+        "startColumn": 3,
+        "endLine": 99,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 97,
+        "startColumn": 34,
+        "endLine": 99,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 5,
+            "endLine": 98,
+            "endColumn": 62
+          },
+          "text": "cy.get('.inventory_list').matchImageSnapshot('inventory')",
+          "kind": "visual",
+          "library": "cypress",
+          "actual": null,
+          "expected": null,
+          "matcher": "matchImageSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "e9ec27d472ad855b53d3d067e5a215c27df58ff9"
+    },
+    {
+      "id": "409dffc0db22",
+      "title": "the assertion is a condition",
+      "fullTitle": "Cart > the assertion is a condition",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 101,
+        "startColumn": 3,
+        "endLine": 107,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 101,
+        "startColumn": 44,
+        "endLine": 107,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 104,
+            "startColumn": 44,
+            "endLine": 104,
+            "endColumn": 75
+          },
+          "text": "cy.get('.error-message-container').should('contain', 'locked out')",
+          "kind": "contains",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.error-message-container')",
+            "normalized": "cy.get('.error-message-container')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'locked out'",
+            "normalized": "'locked out'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "locked out"
+            }
+          },
+          "matcher": "contain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0fdce3a68bda8bea1a2f4f87c860d7594e9339e6"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -138,7 +143,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 11,
+            "endLine": 25,
+            "endColumn": 74
+          },
+          "text": "expect(page.getByTestId('shopping-cart-badge')).toHaveText('1')",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('shopping-cart-badge')",
+            "normalized": "page.getByTestId('shopping-cart-badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'1'",
+            "normalized": "'1'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -179,7 +224,47 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 41
+          },
+          "text": "expect(page.url()).toContain('cart')",
+          "kind": "contains",
+          "library": "playwright",
+          "actual": {
+            "text": "page.url()",
+            "normalized": "page.url()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'cart'",
+            "normalized": "'cart'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "cart"
+            }
+          },
+          "matcher": "toContain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -312,7 +397,36 @@
         "reason": "File picker is not supported on Windows CI"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 11,
+            "endLine": 44,
+            "endColumn": 59
+          },
+          "text": "expect(page.getByText('Uploaded')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText('Uploaded')",
+            "normalized": "page.getByText('Uploaded')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -397,7 +511,43 @@
         "source": "loop",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 13,
+            "endLine": 55,
+            "endColumn": 48
+          },
+          "text": "expect(page).toHaveURL(/inventory/)",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page",
+            "normalized": "page",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/inventory/",
+            "normalized": "/inventory/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toHaveURL",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -439,7 +589,47 @@
         "source": "loop",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 13,
+            "endLine": 61,
+            "endColumn": 67
+          },
+          "text": "expect(page.locator('.inventory_item')).toHaveCount(6)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator('.inventory_item')",
+            "normalized": "page.locator('.inventory_item')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "toHaveCount",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -521,7 +711,36 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 13,
+            "endLine": 78,
+            "endColumn": 59
+          },
+          "text": "expect(page.getByTestId('error')).toBeHidden()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('error')",
+            "normalized": "page.getByTestId('error')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeHidden",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -561,7 +780,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 13,
+            "endLine": 86,
+            "endColumn": 46
+          },
+          "text": "expect(first).toHaveText('$7.99')",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "first",
+            "normalized": "first",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'$7.99'",
+            "normalized": "'$7.99'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "$7.99"
+            }
+          },
+          "matcher": "toHaveText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

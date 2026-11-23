@@ -1,22 +1,27 @@
 // JS/TS: from a syntax tree to the normalized model (SPEC.md Sections 8.1 and 9.1).
 //
 // This file finds the structure of a test file: suites, tests, hooks, modifiers, skips,
-// parameterized tests, imports and suppression comments. What happens inside a test body
-// (assertions, waits, selectors, mocks) is added by the next milestones.
+// parameterized tests, imports and suppression comments. Assertions and try blocks are read
+// from each body by assertions.ts. Waits, selectors and mocks are added by the next milestone.
 import { clipText, emptyTest, parseSuppression } from '../../model/build.js';
 import { bodyHash, testId } from '../../model/hash.js';
 import type { Capability, Modifier, NFile, NHook, NImport, NSuite, NSuppression, NTest } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import type { AdapterContext, FrameworkGuess, ParsedFile } from '../types.js';
+import { readBody } from './assertions.js';
+import { learnNames } from './expr.js';
+import { collectJsHelpers, fileContext } from './helpers.js';
 import { argumentsOf, hasAncestor, isFunction, memberChain, stringValue, tokensOf } from './syntax.js';
 import {
   ALIASES, CONDITIONAL_MEMBERS, EACH_MEMBERS, FRAMEWORK_MODULES, HOOK_CALLEES, IN_BODY_SKIPS, ITERATION_MEMBERS, MODIFIER_MEMBERS,
   OPTION_MODIFIERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES, TEST_LIBRARY_MODULES,
 } from './vocab.js';
 
-/** What the structure pass fills in. The next milestones add the rest. */
-export const JS_CAPABILITIES: Capability[] = ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'body-hash'];
+/** What the adapter fills in so far. The next milestone adds waits, selectors, mocks and the rest. */
+export const JS_CAPABILITIES: Capability[] = [
+  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability',
+];
 
 const LOOPS = new Set(['for_statement', 'for_in_statement', 'while_statement', 'do_statement']);
 const BRANCHES = new Set(['if_statement', 'ternary_expression', 'switch_statement', 'binary_expression']);
@@ -123,7 +128,7 @@ function skipInBody(body: SyntaxNode): NTest['skip'] {
   return null;
 }
 
-function buildTest(call: SyntaxNode, declaration: Declaration, scope: Scope, file: string, seen: Map<string, number>): NTest | null {
+function buildTest(call: SyntaxNode, declaration: Declaration, scope: Scope, file: string, seen: Map<string, number>, bodies: Map<NTest | NHook, SyntaxNode>): NTest | null {
   const args = argumentsOf(call);
   const fn = [...args].reverse().find(isFunction) ?? null;
   const titleNode = args[0] && !isFunction(args[0]) ? args[0] : null;
@@ -159,6 +164,7 @@ function buildTest(call: SyntaxNode, declaration: Declaration, scope: Scope, fil
   else if (scope.generated) test.parameterized = { ...scope.generated };
 
   if (body) {
+    bodies.set(test, body);
     test.statementCount = body.type === 'statement_block' ? body.namedChildren.filter((node) => node.type !== 'comment').length : 1;
     test.bodyHash = bodyHash(tokensOf(body));
   }
@@ -179,7 +185,7 @@ function generatedBy(node: SyntaxNode): Scope['generated'] {
   return { source: 'loop', cases: list?.type === 'array' ? list.namedChildCount : null };
 }
 
-function readImports(root: SyntaxNode): { imports: NImport[]; aliases: Map<string, string> } {
+export function readImports(root: SyntaxNode): { imports: NImport[]; aliases: Map<string, string> } {
   const imports: NImport[] = [];
   const aliases = new Map<string, string>();
   const add = (node: SyntaxNode, source: string | null, names: string[], typeOnly = false): void => {
@@ -262,6 +268,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
   model.imports = imports;
   model.suppressions = readSuppressions(root);
   const seen = new Map<string, number>();
+  const bodies = new Map<NTest | NHook, SyntaxNode>();
 
   const visit = (node: SyntaxNode, scope: Scope): void => {
     let inner = scope;
@@ -273,10 +280,12 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
       if (declaration?.kind === 'hook') {
         const hook: NHook = { span: spanOfNode(node), kind: declaration.hook!, scope: scope.suite ? 'suite' : 'file', releases: [], assertions: [] };
         (scope.suite ? scope.suite.hooks : model.fileHooks).push(hook);
+        const body = fn?.childForFieldName('body');
+        if (body) bodies.set(hook, body);
         return;
       }
       if (declaration?.kind === 'test') {
-        const test = buildTest(node, declaration, scope, file.path, seen);
+        const test = buildTest(node, declaration, scope, file.path, seen, bodies);
         if (test) {
           model.tests.push(test);
           scope.suite?.testIds.push(test.id);
@@ -297,6 +306,23 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
     for (const child of node.namedChildren) visit(child, inner);
   };
   visit(root, { suite: null, path: [], generated: null });
+
+  // What each body checks. Names declared inside a test are known only to that test.
+  const shared = fileContext(root, frameworks, imports, new Set([...bodies].filter(([target]) => 'id' in target).map(([, body]) => body.id)));
+  const local = new Set(collectJsHelpers(root, file.path, shared).map((helper) => helper.name));
+  const isHelper = (name: string): boolean => local.has(name) || ctx.helperIndex.has(name) || ctx.config.assertionHelpers.includes(name);
+  for (const [target, body] of bodies) {
+    const isTest = 'id' in target;
+    const env = isTest ? { ...shared.env, locators: new Set(shared.env.locators), counts: new Set(shared.env.counts), mocks: new Set(shared.env.mocks) } : shared.env;
+    if (isTest) learnNames(body, env);
+    const facts = readBody(body, { ...shared, env, isHelper });
+    target.assertions = facts.assertions;
+    if (isTest) {
+      target.assertionGuards = facts.guards;
+      target.expectsException = facts.expectsException;
+      target.tryBlocks = facts.tryBlocks;
+    }
+  }
 
   model.role = model.tests.length > 0 || model.suites.length > 0 ? 'test' : 'support';
   return model;

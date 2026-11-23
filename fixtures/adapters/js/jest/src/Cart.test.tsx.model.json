@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -58,7 +63,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 5,
+            "endLine": 7,
+            "endColumn": 53
+          },
+          "text": "expect(screen.getByText('1 item')).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "screen.getByText('1 item')",
+            "normalized": "screen.getByText('1 item')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -97,7 +131,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 40
+          },
+          "text": "expect(container).toMatchSnapshot()",
+          "kind": "snapshot",
+          "library": "expect",
+          "actual": {
+            "text": "container",
+            "normalized": "container",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toMatchSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

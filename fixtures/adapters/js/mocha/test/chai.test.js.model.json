@@ -1,0 +1,4006 @@
+{
+  "path": "test/chai.test.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "mocha",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "chai expect",
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 72,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "e31f1d1d661d",
+        "fea0926d6c68",
+        "11f61598ac81",
+        "e16233fb18fb"
+      ],
+      "suites": []
+    },
+    {
+      "title": "chai should and assert",
+      "span": {
+        "startLine": 74,
+        "startColumn": 1,
+        "endLine": 116,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "e8b4af5c278a",
+        "fcdb4088d7f6"
+      ],
+      "suites": []
+    },
+    {
+      "title": "sinon",
+      "span": {
+        "startLine": 118,
+        "startColumn": 1,
+        "endLine": 141,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "e173931008d3",
+        "f7aa7a1720a2"
+      ],
+      "suites": []
+    },
+    {
+      "title": "callbacks and promises",
+      "span": {
+        "startLine": 143,
+        "startColumn": 1,
+        "endLine": 180,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "d7c7d7a2b223",
+        "364a80729b7f",
+        "3b92eebe7578",
+        "0cb9d3f9eefe"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "e31f1d1d661d",
+      "title": "reads like a sentence",
+      "fullTitle": "chai expect > reads like a sentence",
+      "suitePath": [
+        "chai expect"
+      ],
+      "span": {
+        "startLine": 9,
+        "startColumn": 3,
+        "endLine": 42,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 9,
+        "startColumn": 43,
+        "endLine": 42,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 39
+          },
+          "text": "expect(order.id).to.be.a('string')",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'string'",
+            "normalized": "'string'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "string"
+            }
+          },
+          "matcher": "a",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 68
+          },
+          "text": "expect(order.items).to.be.an('array').that.includes('backpack')",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'array'",
+            "normalized": "'array'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "array"
+            }
+          },
+          "matcher": "an",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 44
+          },
+          "text": "expect(order.items).to.have.lengthOf(2)",
+          "kind": "count",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "lengthOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 48
+          },
+          "text": "expect(order.items).to.have.length.above(1)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "above",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 40
+          },
+          "text": "expect(order.total).to.equal(39.98)",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "39.98",
+            "normalized": "39.98",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "39.98"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 65
+          },
+          "text": "expect(order.total).to.be.at.least(39).and.to.be.at.most(40)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "39",
+            "normalized": "39",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "39"
+            }
+          },
+          "matcher": "least",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 57
+          },
+          "text": "expect(order.total).to.be.above(0).but.not.below(39)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "above",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 45
+          },
+          "text": "expect(order.total).to.be.within(39, 40)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "39",
+            "normalized": "39",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "39"
+            }
+          },
+          "matcher": "within",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 47
+          },
+          "text": "expect(order.total).to.be.closeTo(40, 0.1)",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "40",
+            "normalized": "40",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "40"
+            }
+          },
+          "matcher": "closeTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 65
+          },
+          "text": "expect(order).to.have.property('status').which.equals('NEW')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'status'",
+            "normalized": "'status'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "status"
+            }
+          },
+          "matcher": "property",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 82
+          },
+          "text": "expect(order).to.have.all.keys('id', 'items', 'total', 'status', 'createdAt')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'id'",
+            "normalized": "'id'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "id"
+            }
+          },
+          "matcher": "keys",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 52
+          },
+          "text": "expect(order).to.have.any.keys('id', 'missing')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'id'",
+            "normalized": "'id'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "id"
+            }
+          },
+          "matcher": "keys",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 79
+          },
+          "text": "expect(order).to.have.nested.property('customer.name').that.is.a('string')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'customer.name'",
+            "normalized": "'customer.name'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "customer.name"
+            }
+          },
+          "matcher": "property",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 45
+          },
+          "text": "expect(order).to.have.own.property('id')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'id'",
+            "normalized": "'id'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "id"
+            }
+          },
+          "matcher": "property",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 55
+          },
+          "text": "expect(order).to.deep.equal(orders.find(order.id))",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "orders.find(order.id)",
+            "normalized": "orders.find(order.id)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 48
+          },
+          "text": "expect(order).to.eql(orders.find(order.id))",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "orders.find(order.id)",
+            "normalized": "orders.find(order.id)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "eql",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 76
+          },
+          "text": "expect(order.items).to.have.ordered.members(['backpack', 'bike light'])",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "['backpack', 'bike light']",
+            "normalized": "['backpack','bike light']",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "members",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 73
+          },
+          "text": "expect(order.items).to.have.same.members(['bike light', 'backpack'])",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "['bike light', 'backpack']",
+            "normalized": "['bike light','backpack']",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "members",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 54
+          },
+          "text": "expect(order.status).to.be.oneOf(['NEW', 'PAID'])",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "['NEW', 'PAID']",
+            "normalized": "['NEW','PAID']",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "oneOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 46
+          },
+          "text": "expect(order.status).to.have.string('NE')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NE'",
+            "normalized": "'NE'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NE"
+            }
+          },
+          "matcher": "string",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 46
+          },
+          "text": "expect(order.status).to.match(/^[A-Z]+$/)",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/^[A-Z]+$/",
+            "normalized": "/^[A-Z]+$/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "match",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 61
+          },
+          "text": "expect(order.status).to.contain('N').and.to.include('W')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'N'",
+            "normalized": "'N'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "N"
+            }
+          },
+          "matcher": "contain",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 38
+          },
+          "text": "expect(order.status).to.eq('NEW')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NEW'",
+            "normalized": "'NEW'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NEW"
+            }
+          },
+          "matcher": "eq",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 58
+          },
+          "text": "expect(order.status).matches(/NEW/).and.contains('E')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/NEW/",
+            "normalized": "/NEW/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "matches",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 39
+          },
+          "text": "expect(order.status).equals('NEW')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NEW'",
+            "normalized": "'NEW'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NEW"
+            }
+          },
+          "matcher": "equals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 51
+          },
+          "text": "expect(order.createdAt).to.be.instanceof(Date)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.createdAt",
+            "normalized": "order.createdAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Date",
+            "normalized": "Date",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "instanceof",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 54
+          },
+          "text": "expect(order.createdAt).to.be.an.instanceOf(Date)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.createdAt",
+            "normalized": "order.createdAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Date",
+            "normalized": "Date",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "instanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 78
+          },
+          "text": "expect(order.total).to.be.gt(0).and.gte(39.98).and.lt(100).and.lte(39.98)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "gt",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 63
+          },
+          "text": "expect(order.total).to.be.greaterThan(0).and.lessThan(100)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "greaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 34
+          },
+          "text": "expect(order).to.be.itself.ok",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "ok",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 78
+          },
+          "text": "expect(order.items).to.have.been.with.of.is.has.does.still.also.not.empty",
+          "kind": "other",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "empty",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 32,
+      "bodyHash": "42bb1d9a41044d662e163be62c6ac1586de54d65"
+    },
+    {
+      "id": "fea0926d6c68",
+      "title": "checks with a property instead of a call",
+      "fullTitle": "chai expect > checks with a property instead of a call",
+      "suitePath": [
+        "chai expect"
+      ],
+      "span": {
+        "startLine": 44,
+        "startColumn": 3,
+        "endLine": 54,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 44,
+        "startColumn": 62,
+        "endLine": 54,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 35
+          },
+          "text": "expect(order.paid).to.be.false",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.paid",
+            "normalized": "order.paid",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "false",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 5,
+            "endLine": 47,
+            "endColumn": 34
+          },
+          "text": "expect(order.open).to.be.true",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.open",
+            "normalized": "order.open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "true",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 36
+          },
+          "text": "expect(order.coupon).to.be.null",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.coupon",
+            "normalized": "order.coupon",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "null",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 44
+          },
+          "text": "expect(order.shippedAt).to.be.undefined",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.shippedAt",
+            "normalized": "order.shippedAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "undefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 5,
+            "endLine": 50,
+            "endColumn": 36
+          },
+          "text": "expect(order.items).to.be.empty",
+          "kind": "other",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "empty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 5,
+            "endLine": 51,
+            "endColumn": 30
+          },
+          "text": "expect(order.id).to.exist",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "exist",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 5,
+            "endLine": 52,
+            "endColumn": 27
+          },
+          "text": "expect(order).to.be.ok",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "ok",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 5,
+            "endLine": 53,
+            "endColumn": 38
+          },
+          "text": "expect(order.total).to.not.be.NaN",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "NaN",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "3c0a86f185a993851db68a7a1b8017568b0ea3e9"
+    },
+    {
+      "id": "11f61598ac81",
+      "title": "errors and promises",
+      "fullTitle": "chai expect > errors and promises",
+      "suitePath": [
+        "chai expect"
+      ],
+      "span": {
+        "startLine": 56,
+        "startColumn": 3,
+        "endLine": 64,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 56,
+        "startColumn": 47,
+        "endLine": 64,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 54
+          },
+          "text": "expect(() => orders.create({})).to.throw('items')",
+          "kind": "throws",
+          "library": "chai",
+          "actual": {
+            "text": "() => orders.create({})",
+            "normalized": "()=>orders.create({})",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'items'",
+            "normalized": "'items'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "items"
+            }
+          },
+          "matcher": "throw",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 11,
+            "endLine": 58,
+            "endColumn": 56
+          },
+          "text": "expect(orders.load('missing')).to.be.rejected",
+          "kind": "throws",
+          "library": "chai",
+          "actual": {
+            "text": "orders.load('missing')",
+            "normalized": "orders.load('missing')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "rejected",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 11,
+            "endLine": 59,
+            "endColumn": 73
+          },
+          "text": "expect(orders.load('missing')).to.be.rejectedWith('not found')",
+          "kind": "throws",
+          "library": "chai",
+          "actual": {
+            "text": "orders.load('missing')",
+            "normalized": "orders.load('missing')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'not found'",
+            "normalized": "'not found'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "not found"
+            }
+          },
+          "matcher": "rejectedWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 11,
+            "endLine": 60,
+            "endColumn": 53
+          },
+          "text": "expect(orders.load('o-1')).to.be.fulfilled",
+          "kind": "other",
+          "library": "chai",
+          "actual": {
+            "text": "orders.load('o-1')",
+            "normalized": "orders.load('o-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "fulfilled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 11,
+            "endLine": 61,
+            "endColumn": 78
+          },
+          "text": "expect(orders.load('o-1')).to.eventually.have.property('id', 'o-1')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "orders.load('o-1')",
+            "normalized": "orders.load('o-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'id'",
+            "normalized": "'id'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "id"
+            }
+          },
+          "matcher": "property",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 5,
+            "endLine": 62,
+            "endColumn": 69
+          },
+          "text": "expect(orders.load('o-1')).to.eventually.have.property('status')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "orders.load('o-1')",
+            "normalized": "orders.load('o-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'status'",
+            "normalized": "'status'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "status"
+            }
+          },
+          "matcher": "property",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "no",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 12,
+            "endLine": 63,
+            "endColumn": 58
+          },
+          "text": "expect(orders.load('o-1')).to.eventually.be.ok",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "orders.load('o-1')",
+            "normalized": "orders.load('o-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "ok",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "84e0830cf3c10d12d7d715a7f7f549d4b869935c"
+    },
+    {
+      "id": "e16233fb18fb",
+      "title": "is never finished",
+      "fullTitle": "chai expect > is never finished",
+      "suitePath": [
+        "chai expect"
+      ],
+      "span": {
+        "startLine": 66,
+        "startColumn": 3,
+        "endLine": 71,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 66,
+        "startColumn": 39,
+        "endLine": 71,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 5,
+            "endLine": 68,
+            "endColumn": 30
+          },
+          "text": "expect(order.total).to.be",
+          "kind": "other",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 5,
+            "endLine": 69,
+            "endColumn": 33
+          },
+          "text": "expect(order.total).to.equal",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 5,
+            "endLine": 70,
+            "endColumn": 24
+          },
+          "text": "expect(order.total)",
+          "kind": "other",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "0d18d9c6df51bc9a880735898c956084bcfa29dc"
+    },
+    {
+      "id": "e8b4af5c278a",
+      "title": "should style",
+      "fullTitle": "chai should and assert > should style",
+      "suitePath": [
+        "chai should and assert"
+      ],
+      "span": {
+        "startLine": 75,
+        "startColumn": 3,
+        "endLine": 82,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 75,
+        "startColumn": 34,
+        "endLine": 82,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 5,
+            "endLine": 77,
+            "endColumn": 37
+          },
+          "text": "order.status.should.equal('NEW')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NEW'",
+            "normalized": "'NEW'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NEW"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 5,
+            "endLine": 78,
+            "endColumn": 40
+          },
+          "text": "order.items.should.have.lengthOf(1)",
+          "kind": "count",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "lengthOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 5,
+            "endLine": 79,
+            "endColumn": 30
+          },
+          "text": "order.open.should.be.true",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.open",
+            "normalized": "order.open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "true",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 5,
+            "endLine": 80,
+            "endColumn": 39
+          },
+          "text": "order.total.should.not.be.below(0)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "below",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 5,
+            "endLine": 81,
+            "endColumn": 51
+          },
+          "text": "orders.find(order.id).should.deep.equal(order)",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "orders.find(order.id)",
+            "normalized": "orders.find(order.id)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "11ce4c89b6803c3815d3cad3d9283d2377658998"
+    },
+    {
+      "id": "fcdb4088d7f6",
+      "title": "assert style",
+      "fullTitle": "chai should and assert > assert style",
+      "suitePath": [
+        "chai should and assert"
+      ],
+      "span": {
+        "startLine": 84,
+        "startColumn": 3,
+        "endLine": 115,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 84,
+        "startColumn": 34,
+        "endLine": 115,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 5,
+            "endLine": 86,
+            "endColumn": 30
+          },
+          "text": "assert.isTrue(order.open)",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.open",
+            "normalized": "order.open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 5,
+            "endLine": 87,
+            "endColumn": 31
+          },
+          "text": "assert.isFalse(order.paid)",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.paid",
+            "normalized": "order.paid",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isFalse",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 5,
+            "endLine": 88,
+            "endColumn": 26
+          },
+          "text": "assert.isOk(order.id)",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isOk",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 5,
+            "endLine": 89,
+            "endColumn": 33
+          },
+          "text": "assert.isNotOk(order.coupon)",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order.coupon",
+            "normalized": "order.coupon",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotOk",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 5,
+            "endLine": 90,
+            "endColumn": 32
+          },
+          "text": "assert.isNull(order.coupon)",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.coupon",
+            "normalized": "order.coupon",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNull",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 91,
+            "startColumn": 5,
+            "endLine": 91,
+            "endColumn": 31
+          },
+          "text": "assert.isNotNull(order.id)",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 5,
+            "endLine": 92,
+            "endColumn": 40
+          },
+          "text": "assert.isUndefined(order.shippedAt)",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.shippedAt",
+            "normalized": "order.shippedAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isUndefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 5,
+            "endLine": 93,
+            "endColumn": 38
+          },
+          "text": "assert.isDefined(order.createdAt)",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.createdAt",
+            "normalized": "order.createdAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 5,
+            "endLine": 94,
+            "endColumn": 28
+          },
+          "text": "assert.exists(order.id)",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "exists",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 5,
+            "endLine": 95,
+            "endColumn": 35
+          },
+          "text": "assert.notExists(order.coupon)",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.coupon",
+            "normalized": "order.coupon",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "notExists",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 5,
+            "endLine": 96,
+            "endColumn": 38
+          },
+          "text": "assert.equal(order.status, 'NEW')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NEW'",
+            "normalized": "'NEW'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NEW"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 97,
+            "startColumn": 5,
+            "endLine": 97,
+            "endColumn": 44
+          },
+          "text": "assert.include(order.items, 'backpack')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'backpack'",
+            "normalized": "'backpack'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "backpack"
+            }
+          },
+          "matcher": "include",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 5,
+            "endLine": 98,
+            "endColumn": 49
+          },
+          "text": "assert.notInclude(order.items, 'bike light')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'bike light'",
+            "normalized": "'bike light'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "bike light"
+            }
+          },
+          "matcher": "notInclude",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 5,
+            "endLine": 99,
+            "endColumn": 36
+          },
+          "text": "assert.lengthOf(order.items, 1)",
+          "kind": "count",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "lengthOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 5,
+            "endLine": 100,
+            "endColumn": 35
+          },
+          "text": "assert.isAbove(order.total, 0)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "isAbove",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 5,
+            "endLine": 101,
+            "endColumn": 37
+          },
+          "text": "assert.isAtLeast(order.total, 0)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "isAtLeast",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 5,
+            "endLine": 102,
+            "endColumn": 37
+          },
+          "text": "assert.isBelow(order.total, 100)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "100",
+            "normalized": "100",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "100"
+            }
+          },
+          "matcher": "isBelow",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 5,
+            "endLine": 103,
+            "endColumn": 38
+          },
+          "text": "assert.isAtMost(order.total, 100)",
+          "kind": "comparison",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "100",
+            "normalized": "100",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "100"
+            }
+          },
+          "matcher": "isAtMost",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 104,
+            "startColumn": 5,
+            "endLine": 104,
+            "endColumn": 38
+          },
+          "text": "assert.typeOf(order.id, 'string')",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'string'",
+            "normalized": "'string'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "string"
+            }
+          },
+          "matcher": "typeOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 105,
+            "startColumn": 5,
+            "endLine": 105,
+            "endColumn": 45
+          },
+          "text": "assert.instanceOf(order.createdAt, Date)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.createdAt",
+            "normalized": "order.createdAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Date",
+            "normalized": "Date",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "instanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 5,
+            "endLine": 106,
+            "endColumn": 30
+          },
+          "text": "assert.isString(order.id)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isString",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 107,
+            "startColumn": 5,
+            "endLine": 107,
+            "endColumn": 33
+          },
+          "text": "assert.isNumber(order.total)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNumber",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 108,
+            "startColumn": 5,
+            "endLine": 108,
+            "endColumn": 32
+          },
+          "text": "assert.isArray(order.items)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.items",
+            "normalized": "order.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isArray",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 109,
+            "startColumn": 5,
+            "endLine": 109,
+            "endColumn": 27
+          },
+          "text": "assert.isObject(order)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isObject",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 110,
+            "startColumn": 5,
+            "endLine": 110,
+            "endColumn": 37
+          },
+          "text": "assert.isFunction(orders.create)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "orders.create",
+            "normalized": "orders.create",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isFunction",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 111,
+            "startColumn": 5,
+            "endLine": 111,
+            "endColumn": 33
+          },
+          "text": "assert.isBoolean(order.open)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.open",
+            "normalized": "order.open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isBoolean",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 112,
+            "startColumn": 5,
+            "endLine": 112,
+            "endColumn": 41
+          },
+          "text": "assert.closeTo(order.total, 30, 0.1)",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.total",
+            "normalized": "order.total",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "30",
+            "normalized": "30",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "30"
+            }
+          },
+          "matcher": "closeTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 113,
+            "startColumn": 5,
+            "endLine": 113,
+            "endColumn": 28
+          },
+          "text": "chai.assert.isOk(order)",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "order",
+            "normalized": "order",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isOk",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 114,
+            "startColumn": 5,
+            "endLine": 114,
+            "endColumn": 35
+          },
+          "text": "chai.expect(order.id).to.exist",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "exist",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 30,
+      "bodyHash": "1cf65d0b32cc66ea901a4ecc152c0e72c522c061"
+    },
+    {
+      "id": "e173931008d3",
+      "title": "checks calls with sinon-chai",
+      "fullTitle": "sinon > checks calls with sinon-chai",
+      "suitePath": [
+        "sinon"
+      ],
+      "span": {
+        "startLine": 119,
+        "startColumn": 3,
+        "endLine": 133,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 119,
+        "startColumn": 50,
+        "endLine": 133,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 124,
+            "startColumn": 5,
+            "endLine": 124,
+            "endColumn": 39
+          },
+          "text": "expect(notify).to.have.been.called",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "called",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 125,
+            "startColumn": 5,
+            "endLine": 125,
+            "endColumn": 43
+          },
+          "text": "expect(notify).to.have.been.calledOnce",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "calledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 126,
+            "startColumn": 5,
+            "endLine": 126,
+            "endColumn": 48
+          },
+          "text": "expect(notify).to.not.have.been.calledTwice",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "calledTwice",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 127,
+            "startColumn": 5,
+            "endLine": 127,
+            "endColumn": 60
+          },
+          "text": "expect(notify).to.have.been.calledWith('order created')",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "'order created'",
+            "normalized": "'order created'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "order created"
+            }
+          },
+          "matcher": "calledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 128,
+            "startColumn": 5,
+            "endLine": 128,
+            "endColumn": 64
+          },
+          "text": "expect(notify).to.have.been.calledOnceWith('order created')",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "'order created'",
+            "normalized": "'order created'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "order created"
+            }
+          },
+          "matcher": "calledOnceWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 129,
+            "startColumn": 5,
+            "endLine": 129,
+            "endColumn": 68
+          },
+          "text": "expect(save).to.have.been.calledWithExactly(sinon.match.object)",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "save",
+            "normalized": "save",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "sinon.match.object",
+            "normalized": "sinon.match.object",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "calledWithExactly",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 130,
+            "startColumn": 5,
+            "endLine": 130,
+            "endColumn": 38
+          },
+          "text": "expect(save).to.have.callCount(1)",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "save",
+            "normalized": "save",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "callCount",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 131,
+            "startColumn": 5,
+            "endLine": 131,
+            "endColumn": 39
+          },
+          "text": "expect(log).to.have.been.notCalled",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "log",
+            "normalized": "log",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "notCalled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 132,
+            "startColumn": 5,
+            "endLine": 132,
+            "endColumn": 39
+          },
+          "text": "notify.should.have.been.calledOnce",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "calledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 13,
+      "bodyHash": "ee30cad58401789bafe757e3fd48f3cc1cc382e8"
+    },
+    {
+      "id": "f7aa7a1720a2",
+      "title": "checks calls with sinon.assert",
+      "fullTitle": "sinon > checks calls with sinon.assert",
+      "suitePath": [
+        "sinon"
+      ],
+      "span": {
+        "startLine": 135,
+        "startColumn": 3,
+        "endLine": 140,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 135,
+        "startColumn": 52,
+        "endLine": 140,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 138,
+            "startColumn": 5,
+            "endLine": 138,
+            "endColumn": 36
+          },
+          "text": "sinon.assert.calledOnce(notify)",
+          "kind": "mock-call",
+          "library": "sinon",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "calledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 139,
+            "startColumn": 5,
+            "endLine": 139,
+            "endColumn": 53
+          },
+          "text": "sinon.assert.calledWith(notify, 'order created')",
+          "kind": "mock-call",
+          "library": "sinon",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "'order created'",
+            "normalized": "'order created'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "order created"
+            }
+          },
+          "matcher": "calledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "105462bb875db60ebcdf3e30351a7e8cc4de6040"
+    },
+    {
+      "id": "d7c7d7a2b223",
+      "title": "passes a failure to done",
+      "fullTitle": "callbacks and promises > passes a failure to done",
+      "suitePath": [
+        "callbacks and promises"
+      ],
+      "span": {
+        "startLine": 144,
+        "startColumn": 3,
+        "endLine": 154,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 144,
+        "startColumn": 50,
+        "endLine": 154,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 147,
+            "startColumn": 9,
+            "endLine": 147,
+            "endColumn": 45
+          },
+          "text": "expect(order.status).to.equal('NEW')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NEW'",
+            "normalized": "'NEW'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NEW"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 146,
+            "startColumn": 7,
+            "endLine": 151,
+            "endColumn": 8
+          },
+          "kind": "try-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": true,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "9030c7794b09ab3fb15dd965acda4e2d261aa04b"
+    },
+    {
+      "id": "364a80729b7f",
+      "title": "checks inside then, and hides a failure in catch",
+      "fullTitle": "callbacks and promises > checks inside then, and hides a failure in catch",
+      "suitePath": [
+        "callbacks and promises"
+      ],
+      "span": {
+        "startLine": 156,
+        "startColumn": 3,
+        "endLine": 163,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 156,
+        "startColumn": 70,
+        "endLine": 163,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 160,
+            "startColumn": 9,
+            "endLine": 160,
+            "endColumn": 45
+          },
+          "text": "expect(order.status).to.equal('NEW')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'NEW'",
+            "normalized": "'NEW'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "NEW"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 157,
+            "startColumn": 12,
+            "endLine": 162,
+            "endColumn": 23
+          },
+          "kind": "promise-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "86b1f74db7b2cadcc0f9a6fd363a5523e7b871e9"
+    },
+    {
+      "id": "3b92eebe7578",
+      "title": "waits for an event inside a promise",
+      "fullTitle": "callbacks and promises > waits for an event inside a promise",
+      "suitePath": [
+        "callbacks and promises"
+      ],
+      "span": {
+        "startLine": 165,
+        "startColumn": 3,
+        "endLine": 173,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 165,
+        "startColumn": 57,
+        "endLine": 173,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 168,
+            "startColumn": 9,
+            "endLine": 168,
+            "endColumn": 34
+          },
+          "text": "expect(order.id).to.exist",
+          "kind": "nullness",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "exist",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "51e3431501db86e6c0fc59f08b81f6fbf265ccb0"
+    },
+    {
+      "id": "0cb9d3f9eefe",
+      "title": "checks only when the promise fails",
+      "fullTitle": "callbacks and promises > checks only when the promise fails",
+      "suitePath": [
+        "callbacks and promises"
+      ],
+      "span": {
+        "startLine": 175,
+        "startColumn": 3,
+        "endLine": 179,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 175,
+        "startColumn": 56,
+        "endLine": 179,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 177,
+            "startColumn": 7,
+            "endLine": 177,
+            "endColumn": 52
+          },
+          "text": "expect(error.message).to.include('not found')",
+          "kind": "contains",
+          "library": "chai",
+          "actual": {
+            "text": "error.message",
+            "normalized": "error.message",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'not found'",
+            "normalized": "'not found'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "not found"
+            }
+          },
+          "matcher": "include",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 176,
+            "startColumn": 12,
+            "endLine": 178,
+            "endColumn": 7
+          },
+          "kind": "promise-catch",
+          "assertionsInside": 0,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": true
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "477a3382027c79e6c0bf5503fb732d324d0178f4"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 30
+      },
+      "source": "chai",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 44
+      },
+      "source": "chai",
+      "names": [
+        "assert",
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 32
+      },
+      "source": "sinon",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 41
+      },
+      "source": "../src/orders",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}
