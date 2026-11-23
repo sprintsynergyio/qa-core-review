@@ -16,7 +16,7 @@ import { collectJsHelpers, fileContext, findSubject } from './helpers.js';
 import { argumentsOf, hasAncestor, isFunction, memberChain, stringValue, tokensOf } from './syntax.js';
 import {
   ALIASES, CONDITIONAL_MEMBERS, EACH_MEMBERS, FRAMEWORK_MODULES, HOOK_CALLEES, IN_BODY_SKIPS, ITERATION_MEMBERS, MODIFIER_MEMBERS,
-  OPTION_MODIFIERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES, TEST_ID_ATTRIBUTES, TEST_LIBRARY_MODULES,
+  OPTION_MODIFIERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES, TEST_FILE_NAME, TEST_ID_ATTRIBUTES, TEST_LIBRARY_MODULES,
 } from './vocab.js';
 
 /** What the adapter fills in from a syntax tree: every capability of the model. */
@@ -354,6 +354,6 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
   model.fileMocks.sort(byPosition);
   model.fileResources.sort(byPosition);
 
-  model.role = model.tests.length > 0 || model.suites.length > 0 ? 'test' : 'support';
+  model.role = model.tests.length > 0 || model.suites.length > 0 || TEST_FILE_NAME.test(file.path) ? 'test' : 'support';
   return model;
 }

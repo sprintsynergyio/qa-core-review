@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-// Command line entry point (SPEC.md Section 11). So far: --version, --help and `detect`.
-// The review commands arrive in later milestones.
+// Command line entry point (SPEC.md Section 11). So far: `review` (the default command),
+// `detect`, --version and --help. The other commands arrive in later milestones.
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
+import { OPTIONS, parse, UsageError } from './commands/args.js';
+import { review } from './commands/review.js';
 import { ConfigError, loadConfig } from './config/load.js';
 import { buildDetectReport, formatDetectPretty } from './detect/report.js';
 import { discover } from './discover/files.js';
@@ -16,12 +18,17 @@ const USAGE = `qa-core-review ${VERSION}
 Review AI-written tests before merge, in any language.
 
 Usage:
-  qa-core-review detect [flags]    Show the detected projects, frameworks and test file counts.
-  qa-core-review --version | -v    Print the version.
-  qa-core-review --help | -h       Print this help. Also: qa-core-review <command> --help
+  qa-core-review review [paths...] [flags]   Review test files. This is the default command:
+  qa-core-review [paths...] [flags]          the word "review" can be left out.
+  qa-core-review detect [flags]              Show the detected projects, frameworks and test file counts.
+  qa-core-review --version | -v              Print the version.
+  qa-core-review --help | -h                 Print this help. Also: qa-core-review <command> --help
 
-Status: in development. The review commands are not available yet.
+Status: in development. The rules, the full text output and the other commands are not available yet.
 `;
+
+/** Commands from SPEC.md Section 11.1 that later milestones add. */
+const LATER_COMMANDS = ['ui', 'init', 'rules', 'explain', 'adapters', 'hook', 'comment'];
 
 const DETECT_USAGE = `Usage: qa-core-review detect [flags]
 
@@ -39,26 +46,6 @@ Flags:
 const EXIT_OK = 0;
 const EXIT_USAGE = 2;
 const EXIT_INTERNAL = 3;
-
-/** A mistake in how the tool was called. Printed on one line with a pointer to --help. Exit 2. */
-class UsageError extends Error {}
-
-const OPTIONS = {
-  version: { type: 'boolean', short: 'v' },
-  help: { type: 'boolean', short: 'h' },
-  format: { type: 'string' },
-  root: { type: 'string' },
-  config: { type: 'string' },
-} as const;
-
-function parse(argv: string[], names: ReadonlyArray<keyof typeof OPTIONS>) {
-  try {
-    return parseArgs({ args: argv, options: Object.fromEntries(names.map((name) => [name, OPTIONS[name]])), allowPositionals: true, strict: true });
-  } catch (error) {
-    // parseArgs explains itself in one or more sentences. Keep only the first one.
-    throw new UsageError((error as Error).message.split('. ')[0]!.replace(/\.$/, ''));
-  }
-}
 
 function detect(argv: string[]): number {
   const { values, positionals } = parse(argv, ['help', 'format', 'root', 'config']);
@@ -80,19 +67,26 @@ function detect(argv: string[]): number {
   return EXIT_OK;
 }
 
-function main(argv: string[]): number {
+async function main(argv: string[]): Promise<number> {
   // A first, lenient pass only to find the command word among the flags.
-  const command = parseArgs({ args: argv, options: OPTIONS, allowPositionals: true, strict: false }).positionals[0];
+  const first = parseArgs({ args: argv, options: OPTIONS, allowPositionals: true, strict: false, tokens: true });
+  const word = first.tokens.find((token) => token.kind === 'positional');
+  const command = word?.kind === 'positional' ? word.value : undefined;
   if (command === 'detect') return detect(argv);
-  if (command !== undefined) throw new UsageError(`the "${command}" command is not available yet in this development build`);
+  if (command !== undefined && LATER_COMMANDS.includes(command)) throw new UsageError(`the "${command}" command is not available yet in this development build`);
+  if (command === 'review') return review(argv.filter((_, index) => index !== word!.index));
 
-  const { values } = parse(argv, ['version', 'help']);
-  process.stdout.write(values.version ? `${VERSION}\n` : USAGE);
-  return EXIT_OK;
+  // No command word: --version, --help, or a review of the given paths.
+  if (first.values.version || (first.values.help && command === undefined)) {
+    const { values } = parse(argv, ['version', 'help']);
+    process.stdout.write(values.version ? `${VERSION}\n` : USAGE);
+    return EXIT_OK;
+  }
+  return review(argv);
 }
 
 try {
-  process.exitCode = main(process.argv.slice(2));
+  process.exitCode = await main(process.argv.slice(2));
 } catch (error) {
   if (error instanceof UsageError) {
     process.stderr.write(`qa-core-review: ${error.message}\n${HELP_HINT}\n`);

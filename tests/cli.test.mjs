@@ -42,13 +42,10 @@ test('--help prints usage', () => {
   assert.equal(ran.stderr, '');
 });
 
-test('-h and no arguments print the same usage as --help', () => {
-  const help = run('--help').stdout;
-  for (const args of [['-h'], []]) {
-    const ran = run(...args);
-    assert.equal(ran.status, 0);
-    assert.equal(ran.stdout, help);
-  }
+test('-h prints the same usage as --help', () => {
+  const ran = run('-h');
+  assert.equal(ran.status, 0);
+  assert.equal(ran.stdout, run('--help').stdout);
 });
 
 test('--version wins when --help is also given', () => {
@@ -68,10 +65,10 @@ test('an unknown flag exits 2 with a one-line error and a pointer to --help', ()
 });
 
 test('a command that is not built yet exits 2 and names the command', () => {
-  const ran = run('review');
+  const ran = run('explain', 'QCR-A001');
   assert.equal(ran.status, 2);
   assert.equal(ran.stdout, '');
-  assert.match(ran.stderr, /^qa-core-review: the "review" command is not available yet/);
+  assert.match(ran.stderr, /^qa-core-review: the "explain" command is not available yet/);
   assert.match(ran.stderr, /Run qa-core-review --help\n$/);
 });
 
