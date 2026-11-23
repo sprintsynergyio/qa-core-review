@@ -1,0 +1,155 @@
+{
+  "path": "tests/api.spec.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "playwright",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "45701b92d9e7",
+      "title": "lists the orders",
+      "fullTitle": "lists the orders",
+      "suitePath": [],
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 3
+      },
+      "bodySpan": {
+        "startLine": 11,
+        "startColumn": 56,
+        "endLine": 15,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "c6e4d5d6eec1108e7c95cc7f109379b1ad1136cf"
+    },
+    {
+      "id": "318550f122ec",
+      "title": "creates an order",
+      "fullTitle": "creates an order",
+      "suitePath": [],
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 3
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 68,
+        "endLine": 20,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "48a9fdac9555d63beebc0cf3c91c728fb4edc1ff"
+    },
+    {
+      "id": "69c32576a828",
+      "title": "lists the orders",
+      "fullTitle": "lists the orders",
+      "suitePath": [],
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 3
+      },
+      "bodySpan": {
+        "startLine": 22,
+        "startColumn": 49,
+        "endLine": 25,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "f4c1a92b71b948d2835aa7cb86dd608c8d6c23c8"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 57
+      },
+      "source": "@playwright/test",
+      "names": [
+        "test",
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

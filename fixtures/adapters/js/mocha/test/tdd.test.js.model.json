@@ -1,0 +1,183 @@
+{
+  "path": "test/tdd.test.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "mocha",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "total",
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "43fc52fc7629"
+      ],
+      "suites": [
+        {
+          "title": "with no prices",
+          "span": {
+            "startLine": 10,
+            "startColumn": 3,
+            "endLine": 14,
+            "endColumn": 5
+          },
+          "modifiers": [],
+          "hooks": [],
+          "testIds": [
+            "42a3b11c43c0"
+          ],
+          "suites": []
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "43fc52fc7629",
+      "title": "adds the prices",
+      "fullTitle": "total > adds the prices",
+      "suitePath": [
+        "total"
+      ],
+      "span": {
+        "startLine": 6,
+        "startColumn": 3,
+        "endLine": 8,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 33,
+        "endLine": 8,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "90a098c58cbcb4f17e6193ac4485ff982f27bb3d"
+    },
+    {
+      "id": "42a3b11c43c0",
+      "title": "is zero",
+      "fullTitle": "total > with no prices > is zero",
+      "suitePath": [
+        "total",
+        "with no prices"
+      ],
+      "span": {
+        "startLine": 11,
+        "startColumn": 5,
+        "endLine": 13,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 11,
+        "startColumn": 25,
+        "endLine": 13,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "405e62989f388fa1841bbd9a03bbe077404cd912"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 38
+      },
+      "source": "mocha",
+      "names": [
+        "describe",
+        "it"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 34
+      },
+      "source": "node:assert",
+      "names": [
+        "default"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 41
+      },
+      "source": "../src/total.js",
+      "names": [
+        "total"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

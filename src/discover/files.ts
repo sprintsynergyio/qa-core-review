@@ -4,11 +4,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { builtinProfiles } from '../adapters/index.js';
 import { languageHintFor } from '../adapters/generic/languages.js';
-import type { AdapterProfile, DetectedProject } from '../adapters/types.js';
+import type { AdapterProfile, DetectedProject, SourceFile } from '../adapters/types.js';
 import { DEFAULT_EXCLUDE } from '../config/defaults.js';
 import type { ResolvedConfig } from '../config/types.js';
 import { applyOverrides, detectProjects, nearestOverride, nearestProject } from '../detect/projects.js';
 import type { LanguageId } from '../model/types.js';
+import { toLf } from '../parse/positions.js';
 import { gitListFiles } from '../util/git.js';
 import { createGlobMatcher, matchGlob } from '../util/glob.js';
 
@@ -65,6 +66,23 @@ export interface Discovery {
   projects: DetectedProject[];
   /** Sorted by path. */
   files: DiscoveredFile[];
+}
+
+/** Larger files are not reviewed: they are generated or data, not tests someone reads. */
+export const MAX_SOURCE_BYTES = 1_000_000;
+
+/**
+ * Reads a discovered file for its adapter: LF-normalized text, without a byte order mark.
+ * Returns null when the file is larger than MAX_SOURCE_BYTES or cannot be read.
+ */
+export function readSourceFile(root: string, found: DiscoveredFile): SourceFile | null {
+  const absPath = path.join(root, found.path);
+  try {
+    if (fs.statSync(absPath).size > MAX_SOURCE_BYTES) return null;
+    return { path: found.path, absPath, text: toLf(fs.readFileSync(absPath, 'utf8')), language: found.language, project: found.project };
+  } catch {
+    return null;
+  }
 }
 
 export interface DiscoverOptions {

@@ -9,3 +9,12 @@ import { createHash } from 'node:crypto';
 export function testId(file: string, fullTitle: string, occurrenceIndex: number): string {
   return createHash('sha1').update(`${file}\0${fullTitle}\0${occurrenceIndex}`).digest('hex').slice(0, 12);
 }
+
+/**
+ * The hash of a test body: sha1 of its tokens joined by one space. The adapter passes the
+ * tokens with comments left out, so two bodies that differ only in comments, line breaks or
+ * indentation get the same hash.
+ */
+export function bodyHash(tokens: readonly string[]): string {
+  return createHash('sha1').update(tokens.join(' ')).digest('hex');
+}

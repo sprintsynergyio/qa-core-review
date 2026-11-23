@@ -1,0 +1,657 @@
+{
+  "path": "tests/checkout.spec.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "playwright",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "Checkout",
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 89,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 3,
+            "endLine": 21,
+            "endColumn": 5
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        }
+      ],
+      "testIds": [
+        "0a8b26bdf6fc",
+        "a7ad3c3b340f",
+        "f35e0093e58b",
+        "723177021b04",
+        "6f0d485d4a03",
+        "ee07ea709e1c",
+        "107f4b4a2f7d",
+        "dea077f32dfc"
+      ],
+      "suites": [
+        {
+          "title": "Payment",
+          "span": {
+            "startLine": 65,
+            "startColumn": 3,
+            "endLine": 80,
+            "endColumn": 5
+          },
+          "modifiers": [
+            "serial"
+          ],
+          "hooks": [
+            {
+              "span": {
+                "startLine": 66,
+                "startColumn": 5,
+                "endLine": 66,
+                "endColumn": 35
+              },
+              "kind": "beforeAll",
+              "scope": "suite",
+              "releases": [],
+              "assertions": []
+            },
+            {
+              "span": {
+                "startLine": 67,
+                "startColumn": 5,
+                "endLine": 67,
+                "endColumn": 34
+              },
+              "kind": "afterAll",
+              "scope": "suite",
+              "releases": [],
+              "assertions": []
+            }
+          ],
+          "testIds": [
+            "bfdbc42dcf46",
+            "7557f47c94a0"
+          ],
+          "suites": []
+        },
+        {
+          "title": "Sorting",
+          "span": {
+            "startLine": 82,
+            "startColumn": 3,
+            "endLine": 88,
+            "endColumn": 5
+          },
+          "modifiers": [
+            "concurrent"
+          ],
+          "hooks": [],
+          "testIds": [
+            "ca1a7623ee9f"
+          ],
+          "suites": []
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "0a8b26bdf6fc",
+      "title": "adds a backpack to the cart",
+      "fullTitle": "Checkout > adds a backpack to the cart",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 23,
+        "startColumn": 3,
+        "endLine": 26,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 59,
+        "endLine": 26,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "25bbb9477fe2276d6774863dee555b9e4e8ba6b2"
+    },
+    {
+      "id": "a7ad3c3b340f",
+      "title": "opens the cart page",
+      "fullTitle": "Checkout > opens the cart page",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 28,
+        "startColumn": 3,
+        "endLine": 33,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 56,
+        "endLine": 33,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "bb04c8049ad866bc741be7b6685a391bdd810e5f"
+    },
+    {
+      "id": "f35e0093e58b",
+      "title": "removes an item",
+      "fullTitle": "Checkout > removes an item",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 35,
+        "startColumn": 3,
+        "endLine": 37,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 52,
+        "endLine": 37,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0c0c7d026a56bf8df4b6251f8177b136629d533c"
+    },
+    {
+      "id": "723177021b04",
+      "title": "applies a coupon",
+      "fullTitle": "Checkout > applies a coupon",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 3,
+        "endLine": 39,
+        "endColumn": 49
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 46,
+        "endLine": 39,
+        "endColumn": 48
+      },
+      "kind": "test",
+      "modifiers": [
+        "fixme"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": "4448e1dbcb7f6e8f55f2f5b257a1169d8c4db209"
+    },
+    {
+      "id": "6f0d485d4a03",
+      "title": "uploads a receipt",
+      "fullTitle": "Checkout > uploads a receipt",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 3,
+        "endLine": 45,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 41,
+        "startColumn": 49,
+        "endLine": 45,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "File picker is not supported on Windows CI"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "13e546dc4a0914001b16625bb11682550a43daf6"
+    },
+    {
+      "id": "ee07ea709e1c",
+      "title": "prints the order",
+      "fullTitle": "Checkout > prints the order",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 47,
+        "startColumn": 3,
+        "endLine": 50,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 47,
+        "startColumn": 48,
+        "endLine": 50,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "90e9a0923b870869430c49fc10a9c3b3014eb872"
+    },
+    {
+      "id": "107f4b4a2f7d",
+      "title": "logs in as ${user}",
+      "fullTitle": "Checkout > logs in as ${user}",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 53,
+        "startColumn": 5,
+        "endLine": 56,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 53,
+        "startColumn": 52,
+        "endLine": 56,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "e00372ce3e4466d2219a7a0f5c1819d08b5ae135"
+    },
+    {
+      "id": "dea077f32dfc",
+      "title": "sees the product list as ${user}",
+      "fullTitle": "Checkout > sees the product list as ${user}",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 60,
+        "startColumn": 5,
+        "endLine": 62,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 60,
+        "startColumn": 66,
+        "endLine": 62,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ff28cc7a60f509a4197feaa40578431f6a99ba7c"
+    },
+    {
+      "id": "bfdbc42dcf46",
+      "title": "fills the address",
+      "fullTitle": "Checkout > Payment > fills the address",
+      "suitePath": [
+        "Checkout",
+        "Payment"
+      ],
+      "span": {
+        "startLine": 69,
+        "startColumn": 5,
+        "endLine": 74,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 51,
+        "endLine": 74,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "77585e26eca908796045d98cb96755dcc0ff3045"
+    },
+    {
+      "id": "7557f47c94a0",
+      "title": "rejects an empty address",
+      "fullTitle": "Checkout > Payment > rejects an empty address",
+      "suitePath": [
+        "Checkout",
+        "Payment"
+      ],
+      "span": {
+        "startLine": 76,
+        "startColumn": 5,
+        "endLine": 79,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 76,
+        "startColumn": 63,
+        "endLine": 79,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "fail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "d6da5beb588693a666e43a8db97aa49e2a7dd632"
+    },
+    {
+      "id": "ca1a7623ee9f",
+      "title": "sorts by price",
+      "fullTitle": "Checkout > Sorting > sorts by price",
+      "suitePath": [
+        "Checkout",
+        "Sorting"
+      ],
+      "span": {
+        "startLine": 83,
+        "startColumn": 5,
+        "endLine": 87,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 83,
+        "startColumn": 48,
+        "endLine": 87,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "5d7119c91d763fbf1798aed93b4cd1463d232724"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 3
+      },
+      "kind": "beforeEach",
+      "scope": "file",
+      "releases": [],
+      "assertions": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 49
+      },
+      "source": "@playwright/test",
+      "names": [
+        "test",
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 46
+      },
+      "source": "@playwright/test",
+      "names": [
+        "Page"
+      ],
+      "typeOnly": true,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 74
+      },
+      "scope": "file",
+      "rules": [
+        "QCR-S001"
+      ],
+      "reason": "the shop uses generated class names"
+    },
+    {
+      "span": {
+        "startLine": 30,
+        "startColumn": 5,
+        "endLine": 30,
+        "endColumn": 88
+      },
+      "scope": "next-line",
+      "rules": [
+        "QCR-W001"
+      ],
+      "reason": "the cart animation has no end event"
+    }
+  ]
+}

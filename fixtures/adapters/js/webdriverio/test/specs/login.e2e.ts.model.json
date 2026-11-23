@@ -1,0 +1,166 @@
+{
+  "path": "test/specs/login.e2e.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "webdriverio",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "Login page",
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 3,
+            "endLine": 7,
+            "endColumn": 5
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        }
+      ],
+      "testIds": [
+        "02e335340966",
+        "c6287d62e03f"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "02e335340966",
+      "title": "logs in the standard user",
+      "fullTitle": "Login page > logs in the standard user",
+      "suitePath": [
+        "Login page"
+      ],
+      "span": {
+        "startLine": 9,
+        "startColumn": 3,
+        "endLine": 14,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 9,
+        "startColumn": 47,
+        "endLine": 14,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "a8b053e5e76bee36664400e0ba7ae4b53ba6ff6d"
+    },
+    {
+      "id": "c6287d62e03f",
+      "title": "shows an error for a locked account",
+      "fullTitle": "Login page > shows an error for a locked account",
+      "suitePath": [
+        "Login page"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 22,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 57,
+        "endLine": 22,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "5666f2c6b8d0d65658bc437e831ed3ac7862e588"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 44
+      },
+      "source": "@wdio/globals",
+      "names": [
+        "$",
+        "browser"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 45
+      },
+      "source": "expect-webdriverio",
+      "names": [
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

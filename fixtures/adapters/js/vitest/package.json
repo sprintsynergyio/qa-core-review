@@ -1,0 +1,5 @@
+{
+  "name": "fixture-vitest",
+  "private": true,
+  "devDependencies": { "vitest": "^2.1.0" }
+}

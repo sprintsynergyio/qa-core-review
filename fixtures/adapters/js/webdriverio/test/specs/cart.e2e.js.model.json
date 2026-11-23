@@ -1,0 +1,83 @@
+{
+  "path": "test/specs/cart.e2e.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "webdriverio",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "Cart",
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "f77ae1989bbb"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "f77ae1989bbb",
+      "title": "adds a backpack",
+      "fullTitle": "Cart > adds a backpack",
+      "suitePath": [
+        "Cart"
+      ],
+      "span": {
+        "startLine": 2,
+        "startColumn": 3,
+        "endLine": 6,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 2,
+        "startColumn": 37,
+        "endLine": 6,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "e571313640bc97b8020a2f34302a4a0dafbd0439"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}
