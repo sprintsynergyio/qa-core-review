@@ -1,0 +1,409 @@
+{
+  "path": "test/orders.test.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "mocha",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "orders",
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 44,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 3,
+            "endLine": 9,
+            "endColumn": 5
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 3,
+            "endLine": 13,
+            "endColumn": 5
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        }
+      ],
+      "testIds": [
+        "b07e0194173c"
+      ],
+      "suites": [
+        {
+          "title": "create",
+          "span": {
+            "startLine": 15,
+            "startColumn": 3,
+            "endLine": 31,
+            "endColumn": 5
+          },
+          "modifiers": [],
+          "hooks": [],
+          "testIds": [
+            "4bfb312e2fec",
+            "1950783f600a",
+            "94727e70fc2f",
+            "2dbe0aee2ca2"
+          ],
+          "suites": []
+        },
+        {
+          "title": "cancel",
+          "span": {
+            "startLine": 33,
+            "startColumn": 3,
+            "endLine": 39,
+            "endColumn": 5
+          },
+          "modifiers": [
+            "skip"
+          ],
+          "hooks": [],
+          "testIds": [
+            "0d2b8361eb39"
+          ],
+          "suites": []
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "4bfb312e2fec",
+      "title": "gives the order an id",
+      "fullTitle": "orders > create > gives the order an id",
+      "suitePath": [
+        "orders",
+        "create"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 19,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 45,
+        "endLine": 19,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "c1c8c187ca51d280eba7205b2fbd25eb0ccbd386"
+    },
+    {
+      "id": "1950783f600a",
+      "title": "needs a database",
+      "fullTitle": "orders > create > needs a database",
+      "suitePath": [
+        "orders",
+        "create"
+      ],
+      "span": {
+        "startLine": 21,
+        "startColumn": 5,
+        "endLine": 24,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 40,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "fb4df8ab9c8854b17f3bc685c763f5a4124ec00b"
+    },
+    {
+      "id": "94727e70fc2f",
+      "title": "rejects an empty order",
+      "fullTitle": "orders > create > rejects an empty order",
+      "suitePath": [
+        "orders",
+        "create"
+      ],
+      "span": {
+        "startLine": 26,
+        "startColumn": 5,
+        "endLine": 26,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 33,
+        "endLine": 26,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [
+        "todo"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": null
+    },
+    {
+      "id": "2dbe0aee2ca2",
+      "title": "an order has a creation time",
+      "fullTitle": "orders > create > an order has a creation time",
+      "suitePath": [
+        "orders",
+        "create"
+      ],
+      "span": {
+        "startLine": 28,
+        "startColumn": 5,
+        "endLine": 30,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 57,
+        "endLine": 30,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "93a33ccaba073603c603ea61e3dfaefde657df6d"
+    },
+    {
+      "id": "0d2b8361eb39",
+      "title": "marks the order as cancelled",
+      "fullTitle": "orders > cancel > marks the order as cancelled",
+      "suitePath": [
+        "orders",
+        "cancel"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 38,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 34,
+        "startColumn": 52,
+        "endLine": 38,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "9873bc70ea1863327c59a83199fa284d19b5eb10"
+    },
+    {
+      "id": "b07e0194173c",
+      "title": "lists every order",
+      "fullTitle": "orders > lists every order",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 3,
+        "endLine": 43,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 41,
+        "startColumn": 44,
+        "endLine": 43,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0c62397a7827de85a9330afcc1ccd5ad36586e79"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 36
+      },
+      "source": "chai",
+      "names": [
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 34
+      },
+      "source": "assert",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 32
+      },
+      "source": "sinon",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 41
+      },
+      "source": "../src/orders",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

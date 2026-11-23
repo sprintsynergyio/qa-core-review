@@ -1,0 +1,432 @@
+{
+  "path": "src/price.test.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "vitest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "formatPrice",
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 40,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 3,
+            "endLine": 9,
+            "endColumn": 5
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 3,
+            "endLine": 13,
+            "endColumn": 5
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        }
+      ],
+      "testIds": [
+        "f35b5ee17945",
+        "c5feeb2572b3",
+        "4989b2e5a288",
+        "2de35bdf1811",
+        "5d0abeeb532a"
+      ],
+      "suites": []
+    },
+    {
+      "title": "loadRates",
+      "span": {
+        "startLine": 42,
+        "startColumn": 1,
+        "endLine": 46,
+        "endColumn": 3
+      },
+      "modifiers": [
+        "concurrent"
+      ],
+      "hooks": [],
+      "testIds": [
+        "fc1afe8c1f2a"
+      ],
+      "suites": []
+    },
+    {
+      "title": "rate cache",
+      "span": {
+        "startLine": 48,
+        "startColumn": 1,
+        "endLine": 56,
+        "endColumn": 3
+      },
+      "modifiers": [
+        "serial"
+      ],
+      "hooks": [],
+      "testIds": [
+        "70a5df75af37"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "f35b5ee17945",
+      "title": "formats euros",
+      "fullTitle": "formatPrice > formats euros",
+      "suitePath": [
+        "formatPrice"
+      ],
+      "span": {
+        "startLine": 15,
+        "startColumn": 3,
+        "endLine": 17,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 15,
+        "startColumn": 29,
+        "endLine": 17,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "fc309d09e0c01151c828918c5c9452abdec799f4"
+    },
+    {
+      "id": "c5feeb2572b3",
+      "title": "rounds half up",
+      "fullTitle": "formatPrice > rounds half up",
+      "suitePath": [
+        "formatPrice"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 3,
+        "endLine": 21,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 19,
+        "startColumn": 36,
+        "endLine": 21,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [
+        "fail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ed8d407b866d5bf66767ad5a3d2665ff3a60c8e4"
+    },
+    {
+      "id": "4989b2e5a288",
+      "title": "reads the live rates",
+      "fullTitle": "formatPrice > reads the live rates",
+      "suitePath": [
+        "formatPrice"
+      ],
+      "span": {
+        "startLine": 23,
+        "startColumn": 3,
+        "endLine": 26,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 57,
+        "endLine": 26,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "8d971136528c25c58d27940a9a142bef6fd533e6"
+    },
+    {
+      "id": "2de35bdf1811",
+      "title": "uses the cached rates",
+      "fullTitle": "formatPrice > uses the cached rates",
+      "suitePath": [
+        "formatPrice"
+      ],
+      "span": {
+        "startLine": 28,
+        "startColumn": 3,
+        "endLine": 32,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 57,
+        "endLine": 32,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "276e3b49f654c0869b1e2638b48a4649e379b29d"
+    },
+    {
+      "id": "5d0abeeb532a",
+      "title": "uses the %s symbol",
+      "fullTitle": "formatPrice > uses the %s symbol",
+      "suitePath": [
+        "formatPrice"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 3,
+        "endLine": 39,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 37,
+        "startColumn": 52,
+        "endLine": 39,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "each",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "fe4cb8f95f0331c35da33135f2de6b15edf0874f"
+    },
+    {
+      "id": "fc1afe8c1f2a",
+      "title": "returns every currency",
+      "fullTitle": "loadRates > returns every currency",
+      "suitePath": [
+        "loadRates"
+      ],
+      "span": {
+        "startLine": 43,
+        "startColumn": 3,
+        "endLine": 45,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 43,
+        "startColumn": 44,
+        "endLine": 45,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "693738ac333db9c095d7cc6bdb964ed6567e0ce5"
+    },
+    {
+      "id": "70a5df75af37",
+      "title": "caches ${currency}",
+      "fullTitle": "rate cache > caches ${currency}",
+      "suitePath": [
+        "rate cache"
+      ],
+      "span": {
+        "startLine": 50,
+        "startColumn": 5,
+        "endLine": 54,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 42,
+        "endLine": 54,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "67577f8716e57c60ee2ec6ab683f087a296da304"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 80
+      },
+      "source": "vitest",
+      "names": [
+        "afterEach",
+        "beforeEach",
+        "describe",
+        "expect",
+        "it",
+        "test",
+        "vi"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 50
+      },
+      "source": "./price",
+      "names": [
+        "formatPrice",
+        "loadRates"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

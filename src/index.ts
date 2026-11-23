@@ -10,11 +10,14 @@ export type {
   NAssertion, NDataOp, NExpr, NFile, NHook, NImport, NMock, NResource, NSelector, NStep, NSuite, NSuppression,
   NTest, NTryBlock, NWait,
 } from './model/types.js';
-export { testId } from './model/hash.js';
+export { bodyHash, testId } from './model/hash.js';
+export { clipText, emptyTest, parseSuppression } from './model/build.js';
 
 // The adapter interface and registry (SPEC.md Section 7.3).
 export { AdapterRegistry, adapterProblems, builtinAdapters, builtinProfiles, createRegistry } from './adapters/index.js';
 export { GENERIC_LANGUAGES, languageHintFor } from './adapters/generic/languages.js';
+export { jsAdapter, jsGrammarFor } from './adapters/js/adapter.js';
+export { VOCAB_SURFACE as JS_VOCAB_SURFACE } from './adapters/js/vocab.js';
 export type {
   AdapterContext, AdapterProfile, DetectedProject, FrameworkDescriptor, FrameworkGuess, HelperDef, HelperIndex, LanguageAdapter,
   ParsedFile, ProjectMarker, ProjectProbe, SourceFile, SyntaxTree, TreeSitterService,
@@ -27,7 +30,7 @@ export { createProbe } from './detect/probe.js';
 export { ROOT_DIR, applyOverrides, detectProjects, nearestOverride, nearestProject } from './detect/projects.js';
 export { buildDetectReport, formatDetectPretty } from './detect/report.js';
 export type { DetectReport } from './detect/report.js';
-export { discover, listFiles } from './discover/files.js';
+export { MAX_SOURCE_BYTES, discover, listFiles, readSourceFile } from './discover/files.js';
 export type { DiscoverOptions, DiscoveredFile, Discovery, FileList } from './discover/files.js';
 
 // Parsing (SPEC.md Section 7.2).

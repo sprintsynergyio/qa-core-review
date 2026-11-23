@@ -1,0 +1,153 @@
+{
+  "path": "src/Cart.test.tsx",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "jest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "CartView",
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "4a7ad69ebe79",
+        "cf9521295777"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "4a7ad69ebe79",
+      "title": "shows the number of items",
+      "fullTitle": "CartView > shows the number of items",
+      "suitePath": [
+        "CartView"
+      ],
+      "span": {
+        "startLine": 5,
+        "startColumn": 3,
+        "endLine": 8,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 5,
+        "startColumn": 41,
+        "endLine": 8,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "8ed181f0c58d6a7a7b0ed0ab89b48013c8bf5796"
+    },
+    {
+      "id": "cf9521295777",
+      "title": "shows an empty message",
+      "fullTitle": "CartView > shows an empty message",
+      "suitePath": [
+        "CartView"
+      ],
+      "span": {
+        "startLine": 10,
+        "startColumn": 3,
+        "endLine": 13,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 38,
+        "endLine": 13,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "b16c6d1868f4e34fa1754576a41c75898c820c15"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 57
+      },
+      "source": "@testing-library/react",
+      "names": [
+        "render",
+        "screen"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 39
+      },
+      "source": "./CartView",
+      "names": [
+        "CartView"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

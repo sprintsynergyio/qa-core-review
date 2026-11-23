@@ -1,0 +1,321 @@
+{
+  "path": "cypress/e2e/login.cy.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "cypress",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "Login",
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 46,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 4,
+            "startColumn": 3,
+            "endLine": 6,
+            "endColumn": 5
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        },
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 3,
+            "endLine": 10,
+            "endColumn": 5
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 3,
+            "endLine": 14,
+            "endColumn": 5
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        }
+      ],
+      "testIds": [],
+      "suites": [
+        {
+          "title": "with valid details",
+          "span": {
+            "startLine": 16,
+            "startColumn": 3,
+            "endLine": 31,
+            "endColumn": 5
+          },
+          "modifiers": [],
+          "hooks": [],
+          "testIds": [
+            "4bcc61d13233",
+            "0912d5a14c93",
+            "a91fc468cf50"
+          ],
+          "suites": []
+        },
+        {
+          "title": "with a locked account",
+          "span": {
+            "startLine": 33,
+            "startColumn": 3,
+            "endLine": 45,
+            "endColumn": 5
+          },
+          "modifiers": [],
+          "hooks": [],
+          "testIds": [
+            "bd95aaa368a0",
+            "0752e75ee70b"
+          ],
+          "suites": []
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "4bcc61d13233",
+      "title": "logs in the standard user",
+      "fullTitle": "Login > with valid details > logs in the standard user",
+      "suitePath": [
+        "Login",
+        "with valid details"
+      ],
+      "span": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 43,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "1ddcb977f9400fdf459be1f20e3e59f9b3e4ddf7"
+    },
+    {
+      "id": "0912d5a14c93",
+      "title": "shows the product list",
+      "fullTitle": "Login > with valid details > shows the product list",
+      "suitePath": [
+        "Login",
+        "with valid details"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 26,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 24,
+        "startColumn": 56,
+        "endLine": 26,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "84167e8beeeaed11c0264f47857581e78530c446"
+    },
+    {
+      "id": "a91fc468cf50",
+      "title": "the cart starts empty",
+      "fullTitle": "Login > with valid details > the cart starts empty",
+      "suitePath": [
+        "Login",
+        "with valid details"
+      ],
+      "span": {
+        "startLine": 28,
+        "startColumn": 5,
+        "endLine": 30,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 44,
+        "endLine": 30,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "e3fc328182138e9a2977d0747084e9ee07937d9d"
+    },
+    {
+      "id": "bd95aaa368a0",
+      "title": "shows an error",
+      "fullTitle": "Login > with a locked account > shows an error",
+      "suitePath": [
+        "Login",
+        "with a locked account"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 40,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 34,
+        "startColumn": 37,
+        "endLine": 40,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "8bf65da002b38b28648ae12698ce4ef02fb10e26"
+    },
+    {
+      "id": "0752e75ee70b",
+      "title": "keeps the user on the login page",
+      "fullTitle": "Login > with a locked account > keeps the user on the login page",
+      "suitePath": [
+        "Login",
+        "with a locked account"
+      ],
+      "span": {
+        "startLine": 42,
+        "startColumn": 5,
+        "endLine": 44,
+        "endColumn": 7
+      },
+      "bodySpan": {
+        "startLine": 42,
+        "startColumn": 55,
+        "endLine": 44,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "92b845d085ac2ba8149e217a48a7ee64e2285d83"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

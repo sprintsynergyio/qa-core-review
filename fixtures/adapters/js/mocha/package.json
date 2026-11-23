@@ -1,0 +1,5 @@
+{
+  "name": "fixture-mocha",
+  "private": true,
+  "devDependencies": { "mocha": "^10.8.0", "chai": "^5.1.0", "sinon": "^19.0.0" }
+}
