@@ -1,0 +1,768 @@
+{
+  "path": "test/specs/checkout.e2e.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "webdriverio",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "Checkout",
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 38,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "d04e12223e5d",
+        "914df5a316fe",
+        "a8040af9bf40"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "d04e12223e5d",
+      "title": "waits and fills the form",
+      "fullTitle": "Checkout > waits and fills the form",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 5,
+        "startColumn": 3,
+        "endLine": 18,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 5,
+        "startColumn": 46,
+        "endLine": 18,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 11,
+            "endLine": 17,
+            "endColumn": 72
+          },
+          "text": "expect($('.summary_total_label')).toHaveText('Total: $32.39')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('.summary_total_label')",
+            "normalized": "$('.summary_total_label')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Total: $32.39'",
+            "normalized": "'Total: $32.39'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Total: $32.39"
+            }
+          },
+          "matcher": "toHaveText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 11,
+            "endLine": 7,
+            "endColumn": 30
+          },
+          "text": "browser.pause(2000)",
+          "kind": "fixed-sleep",
+          "ms": 2000
+        },
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 11,
+            "endLine": 8,
+            "endColumn": 46
+          },
+          "text": "$('#first-name').waitForDisplayed()",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 11,
+            "endLine": 12,
+            "endColumn": 44
+          },
+          "text": "$('#continue').waitForClickable()",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 11,
+            "endLine": 13,
+            "endColumn": 42
+          },
+          "text": "$('#continue').waitForEnabled()",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 11,
+            "endLine": 15,
+            "endColumn": 44
+          },
+          "text": "$('.summary_info').waitForExist()",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 11,
+            "endLine": 16,
+            "endColumn": 87
+          },
+          "text": "browser.waitUntil(async () => (await browser.getUrl()).includes('step-two'))",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 11,
+            "endLine": 8,
+            "endColumn": 27
+          },
+          "text": "$('#first-name')",
+          "api": "$",
+          "strategy": "id",
+          "value": "#first-name"
+        },
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 11,
+            "endLine": 9,
+            "endColumn": 27
+          },
+          "text": "$('#first-name')",
+          "api": "$",
+          "strategy": "id",
+          "value": "#first-name"
+        },
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 11,
+            "endLine": 10,
+            "endColumn": 26
+          },
+          "text": "$('#last-name')",
+          "api": "$",
+          "strategy": "id",
+          "value": "#last-name"
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 11,
+            "endLine": 11,
+            "endColumn": 40
+          },
+          "text": "$('[data-test=\"postalCode\"]')",
+          "api": "$",
+          "strategy": "test-id",
+          "value": "[data-test=\"postalCode\"]"
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 11,
+            "endLine": 12,
+            "endColumn": 25
+          },
+          "text": "$('#continue')",
+          "api": "$",
+          "strategy": "id",
+          "value": "#continue"
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 11,
+            "endLine": 13,
+            "endColumn": 25
+          },
+          "text": "$('#continue')",
+          "api": "$",
+          "strategy": "id",
+          "value": "#continue"
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 11,
+            "endLine": 14,
+            "endColumn": 25
+          },
+          "text": "$('#continue')",
+          "api": "$",
+          "strategy": "id",
+          "value": "#continue"
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 11,
+            "endLine": 15,
+            "endColumn": 29
+          },
+          "text": "$('.summary_info')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".summary_info"
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 18,
+            "endLine": 17,
+            "endColumn": 43
+          },
+          "text": "$('.summary_total_label')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".summary_total_label"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 11,
+            "endLine": 6,
+            "endColumn": 74
+          },
+          "text": "browser.url('https://www.saucedemo.com/checkout-step-one.html')",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 11,
+            "endLine": 9,
+            "endColumn": 43
+          },
+          "text": "$('#first-name').setValue('Sam')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 11,
+            "endLine": 10,
+            "endColumn": 42
+          },
+          "text": "$('#last-name').addValue('Lee')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 11,
+            "endLine": 11,
+            "endColumn": 58
+          },
+          "text": "$('[data-test=\"postalCode\"]').setValue('10115')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 11,
+            "endLine": 14,
+            "endColumn": 33
+          },
+          "text": "$('#continue').click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 12,
+      "bodyHash": "96c79c0fcf5fe9d416dab97343d4e97ed37c0f88"
+    },
+    {
+      "id": "914df5a316fe",
+      "title": "uses the WebdriverIO selector forms",
+      "fullTitle": "Checkout > uses the WebdriverIO selector forms",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 3,
+        "endLine": 30,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 57,
+        "endLine": 30,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 11,
+            "endLine": 29,
+            "endColumn": 75
+          },
+          "text": "expect(browser).toHaveUrl('https://www.saucedemo.com/cart.html')",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "browser",
+            "normalized": "browser",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'https://www.saucedemo.com/cart.html'",
+            "normalized": "'https://www.saucedemo.com/cart.html'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "https://www.saucedemo.com/cart.html"
+            }
+          },
+          "matcher": "toHaveUrl",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 24
+          },
+          "text": "$('=Twitter')",
+          "api": "$",
+          "strategy": "link-text",
+          "value": "=Twitter"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 11,
+            "endLine": 22,
+            "endColumn": 28
+          },
+          "text": "$('*=Sauce Labs')",
+          "api": "$",
+          "strategy": "link-text",
+          "value": "*=Sauce Labs"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 11,
+            "endLine": 23,
+            "endColumn": 30
+          },
+          "text": "$('aria/Open Menu')",
+          "api": "$",
+          "strategy": "label",
+          "value": "aria/Open Menu"
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 21
+          },
+          "text": "$('~cart')",
+          "api": "$",
+          "strategy": "label",
+          "value": "~cart"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 11,
+            "endLine": 25,
+            "endColumn": 48
+          },
+          "text": "$('//div[@class=\"cart_list\"]/div[3]')",
+          "api": "$",
+          "strategy": "xpath",
+          "value": "//div[@class=\"cart_list\"]/div[3]"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 11,
+            "endLine": 26,
+            "endColumn": 27
+          },
+          "text": "$$('.cart_item')",
+          "api": "$$",
+          "strategy": "class",
+          "value": ".cart_item"
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 24,
+            "endLine": 27,
+            "endColumn": 56
+          },
+          "text": "browser.$('.shopping_cart_link')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 32
+          },
+          "text": "$('=Twitter').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 11,
+            "endLine": 22,
+            "endColumn": 36
+          },
+          "text": "$('*=Sauce Labs').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 11,
+            "endLine": 23,
+            "endColumn": 38
+          },
+          "text": "$('aria/Open Menu').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 27
+          },
+          "text": "$('~cart').tap()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 11,
+            "endLine": 25,
+            "endColumn": 56
+          },
+          "text": "$('//div[@class=\"cart_list\"]/div[3]').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 11,
+            "endLine": 28,
+            "endColumn": 23
+          },
+          "text": "link.click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 9,
+      "bodyHash": "951c7655b229a5ec0d80654a848f53aa0c56557b"
+    },
+    {
+      "id": "a8040af9bf40",
+      "title": "types like a user",
+      "fullTitle": "Checkout > types like a user",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 32,
+        "startColumn": 3,
+        "endLine": 37,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 39,
+        "endLine": 37,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 11,
+            "endLine": 36,
+            "endColumn": 56
+          },
+          "text": "expect($('.complete-header')).toBeDisplayed()",
+          "kind": "ui-state",
+          "library": "expect-webdriverio",
+          "actual": {
+            "text": "$('.complete-header')",
+            "normalized": "$('.complete-header')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDisplayed",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 22,
+            "endLine": 33,
+            "endColumn": 55
+          },
+          "text": "document.querySelector('#finish')",
+          "api": "querySelector",
+          "strategy": "id",
+          "value": "#finish"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 26,
+            "endLine": 34,
+            "endColumn": 63
+          },
+          "text": "document.querySelector('#first-name')",
+          "api": "querySelector",
+          "strategy": "id",
+          "value": "#first-name"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 21,
+            "endLine": 35,
+            "endColumn": 54
+          },
+          "text": "document.querySelector('#finish')",
+          "api": "querySelector",
+          "strategy": "id",
+          "value": "#finish"
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 18,
+            "endLine": 36,
+            "endColumn": 39
+          },
+          "text": "$('.complete-header')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".complete-header"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 11,
+            "endLine": 33,
+            "endColumn": 56
+          },
+          "text": "user.click(document.querySelector('#finish'))",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 11,
+            "endLine": 34,
+            "endColumn": 71
+          },
+          "text": "userEvent.type(document.querySelector('#first-name'), 'Sam')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 55
+          },
+          "text": "fireEvent.click(document.querySelector('#finish'))",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "43bc4ec311cabe41a1ee26590dfc8148a2530433"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 48
+      },
+      "source": "@wdio/globals",
+      "names": [
+        "$",
+        "$$",
+        "browser"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 45
+      },
+      "source": "expect-webdriverio",
+      "names": [
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

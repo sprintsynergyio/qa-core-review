@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -190,12 +197,67 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 60
+          },
+          "text": "page.getByRole('button', { name: 'Add to cart' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "role"
+          }
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 18,
+            "endLine": 25,
+            "endColumn": 57
+          },
+          "text": "page.getByTestId('shopping-cart-badge')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "shopping-cart-badge"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 48,
+            "endLine": 23,
+            "endColumn": 52
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 76
+          },
+          "text": "page.getByRole('button', { name: 'Add to cart' }).first().click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "25bbb9477fe2276d6774863dee555b9e4e8ba6b2"
     },
@@ -270,13 +332,63 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
-      "selectors": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 11,
+            "endLine": 31,
+            "endColumn": 36
+          },
+          "text": "page.waitForTimeout(2000)",
+          "kind": "fixed-sleep",
+          "ms": 2000
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 11,
+            "endLine": 29,
+            "endColumn": 46
+          },
+          "text": "page.locator('.shopping_cart_link')",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 45,
+            "endLine": 28,
+            "endColumn": 49
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 11,
+            "endLine": 29,
+            "endColumn": 54
+          },
+          "text": "page.locator('.shopping_cart_link').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "bb04c8049ad866bc741be7b6685a391bdd810e5f"
     },
@@ -316,12 +428,50 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 11,
+            "endLine": 36,
+            "endColumn": 54
+          },
+          "text": "page.locator('#remove-sauce-labs-backpack')",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#remove-sauce-labs-backpack"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 41,
+            "endLine": 35,
+            "endColumn": 45
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 11,
+            "endLine": 36,
+            "endColumn": 62
+          },
+          "text": "page.locator('#remove-sauce-labs-backpack').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "0c0c7d026a56bf8df4b6251f8177b136629d533c"
     },
@@ -433,12 +583,50 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 18,
+            "endLine": 44,
+            "endColumn": 44
+          },
+          "text": "page.getByText('Uploaded')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Uploaded"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 38,
+            "endLine": 41,
+            "endColumn": 42
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 11,
+            "endLine": 43,
+            "endColumn": 64
+          },
+          "text": "page.setInputFiles('input[type=file]', 'receipt.pdf')",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "13e546dc4a0914001b16625bb11682550a43daf6"
     },
@@ -476,12 +664,50 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 11,
+            "endLine": 49,
+            "endColumn": 54
+          },
+          "text": "page.getByRole('button', { name: 'Print' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 37,
+            "endLine": 47,
+            "endColumn": 41
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 11,
+            "endLine": 49,
+            "endColumn": 62
+          },
+          "text": "page.getByRole('button', { name: 'Print' }).click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "90e9a0923b870869430c49fc10a9c3b3014eb872"
     },
@@ -557,7 +783,21 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 41,
+            "endLine": 53,
+            "endColumn": 45
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 2,
@@ -636,10 +876,37 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 20,
+            "endLine": 61,
+            "endColumn": 51
+          },
+          "text": "page.locator('.inventory_item')",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 55,
+            "endLine": 60,
+            "endColumn": 59
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 1,
@@ -676,12 +943,60 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 13,
+            "endLine": 73,
+            "endColumn": 44
+          },
+          "text": "page.fill('#first-name', 'Sam')",
+          "api": "fill",
+          "strategy": "id",
+          "value": "#first-name"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 40,
+            "endLine": 69,
+            "endColumn": 44
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 15,
+            "endLine": 71,
+            "endColumn": 76
+          },
+          "text": "page.goto('https://www.saucedemo.com/checkout-step-one.html')",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 13,
+            "endLine": 73,
+            "endColumn": 44
+          },
+          "text": "page.fill('#first-name', 'Sam')",
+          "kind": "action"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "77585e26eca908796045d98cb96755dcc0ff3045"
     },
@@ -747,12 +1062,62 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 13,
+            "endLine": 77,
+            "endColumn": 59
+          },
+          "text": "page.getByRole('button', { name: 'Continue' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 20,
+            "endLine": 78,
+            "endColumn": 45
+          },
+          "text": "page.getByTestId('error')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "error"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 52,
+            "endLine": 76,
+            "endColumn": 56
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 13,
+            "endLine": 77,
+            "endColumn": 67
+          },
+          "text": "page.getByRole('button', { name: 'Continue' }).click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "d6da5beb588693a666e43a8db97aa49e2a7dd632"
     },
@@ -827,12 +1192,67 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 13,
+            "endLine": 84,
+            "endColumn": 65
+          },
+          "text": "page.selectOption('.product_sort_container', 'lohi')",
+          "api": "selectOption",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 21,
+            "endLine": 85,
+            "endColumn": 58
+          },
+          "text": "page.locator('.inventory_item_price')",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item_price",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 37,
+            "endLine": 83,
+            "endColumn": 41
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 13,
+            "endLine": 84,
+            "endColumn": 65
+          },
+          "text": "page.selectOption('.product_sort_container', 'lohi')",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "5d7119c91d763fbf1798aed93b4cd1463d232724"
     }
@@ -852,7 +1272,34 @@
     }
   ],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 26,
+        "endLine": 14,
+        "endColumn": 30
+      },
+      "text": "page",
+      "kind": "page",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": true
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 27,
+        "endLine": 19,
+        "endColumn": 31
+      },
+      "text": "page",
+      "kind": "page",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": true
+    }
+  ],
   "imports": [
     {
       "span": {

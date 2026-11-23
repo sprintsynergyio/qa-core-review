@@ -1,0 +1,352 @@
+{
+  "path": "src/broken.test.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "jest",
+  "libraries": [
+    "cypress"
+  ],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions",
+    "waits"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "6a32edca50e4",
+      "title": "adds the tax",
+      "fullTitle": "Checkout > adds the tax",
+      "suitePath": [
+        "Checkout"
+      ],
+      "span": {
+        "startLine": 5,
+        "startColumn": 3,
+        "endLine": 8,
+        "endColumn": 8
+      },
+      "bodySpan": {
+        "startLine": 5,
+        "startColumn": 3,
+        "endLine": 8,
+        "endColumn": 8
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 5,
+            "endLine": 7,
+            "endColumn": 29
+          },
+          "text": "expect(total).toBe(119);",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "0e538ce8b62d",
+      "title": "adds the tax",
+      "fullTitle": "Checkout with tax > adds the tax",
+      "suitePath": [
+        "Checkout with tax"
+      ],
+      "span": {
+        "startLine": 10,
+        "startColumn": 3,
+        "endLine": 14,
+        "endColumn": 20
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 3,
+        "endLine": 14,
+        "endColumn": 20
+      },
+      "kind": "test",
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 28
+          },
+          "text": "expect(total).toBe(119;",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 22
+          },
+          "text": "await sleep(500);",
+          "kind": "fixed-sleep",
+          "ms": 500
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 31
+          },
+          "text": "await page.waitForTimeout(",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": null
+    },
+    {
+      "id": "98829bc9175d",
+      "title": "has no check",
+      "fullTitle": "Checkout with tax > has no check",
+      "suitePath": [
+        "Checkout with tax"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 17,
+        "endColumn": 13
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 17,
+        "endColumn": 13
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "483285c3bbaa",
+      "title": "rounds the total",
+      "fullTitle": "Checkout with tax > rounds the total",
+      "suitePath": [
+        "Checkout with tax"
+      ],
+      "span": {
+        "startLine": 18,
+        "startColumn": 3,
+        "endLine": 20,
+        "endColumn": 66
+      },
+      "bodySpan": {
+        "startLine": 18,
+        "startColumn": 3,
+        "endLine": 20,
+        "endColumn": 66
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 66
+          },
+          "text": "cy.wait(250); // expect(2) in a comment is not a check either",
+          "kind": "fixed-sleep",
+          "ms": 250
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "06c38bff43df",
+      "title": "is switched off",
+      "fullTitle": "Checkout with tax > is switched off",
+      "suitePath": [
+        "Checkout with tax"
+      ],
+      "span": {
+        "startLine": 21,
+        "startColumn": 3,
+        "endLine": 23,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 3,
+        "endLine": 23,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 36
+          },
+          "text": "assert.equal(round(1.005), 1.01",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": [
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 3,
+        "endLine": 15,
+        "endColumn": 67
+      },
+      "scope": "next-line",
+      "rules": [
+        "QCR-A001"
+      ],
+      "reason": "written tomorrow"
+    }
+  ]
+}

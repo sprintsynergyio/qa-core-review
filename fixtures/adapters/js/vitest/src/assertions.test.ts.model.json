@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -363,8 +370,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 18,
+            "endLine": 18,
+            "endColumn": 43
+          },
+          "text": "vi.spyOn(console, 'warn')",
+          "kind": "function",
+          "target": "console.warn",
+          "targetsSubject": null,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 18,
+            "endLine": 18,
+            "endColumn": 43
+          },
+          "text": "vi.spyOn(console, 'warn')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 5,
@@ -573,8 +610,33 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
-      "selectors": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 11,
+            "endLine": 31,
+            "endColumn": 7
+          },
+          "text": "vi.waitFor(() => { expect(rates.GBP).toBeGreaterThan(0); })",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 26,
+            "endLine": 28,
+            "endColumn": 47
+          },
+          "text": "page.getByText('EUR')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "EUR"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -866,7 +928,19 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 11,
+            "endLine": 56,
+            "endColumn": 7
+          },
+          "text": "new Promise<void>((resolve) => { expect(rates.EUR).toBe(1); setTimeout(() => { expect(rates.USD).toBeGreaterThan(0); resolve(); }, 10); })",
+          "kind": "fixed-sleep",
+          "ms": 10
+        }
+      ],
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],

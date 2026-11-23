@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -3465,8 +3472,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 121,
+            "startColumn": 18,
+            "endLine": 121,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'save')",
+          "kind": "function",
+          "target": "orders.save",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 121,
+            "startColumn": 18,
+            "endLine": 121,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'save')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 13,

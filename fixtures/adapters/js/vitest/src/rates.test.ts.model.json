@@ -1,0 +1,731 @@
+{
+  "path": "src/rates.test.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "vitest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "rates",
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 48,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "b82d428b5f12",
+        "8e8c4cdb9326",
+        "d4156f98c724",
+        "7c8a0b90ff1a",
+        "2d659babd713"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "b82d428b5f12",
+      "title": "the subject is mocked, so this checks nothing real",
+      "fullTitle": "rates > the subject is mocked, so this checks nothing real",
+      "suitePath": [
+        "rates"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 19,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 72,
+        "endLine": 19,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 46
+          },
+          "text": "expect(await loadRates()).toBeUndefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "await loadRates()",
+            "normalized": "await loadRates()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeUndefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 32
+          },
+          "text": "expect(rates).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "rates",
+            "normalized": "rates",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "0efeae8317561b72c4a70a6f24f164e1c99e5034"
+    },
+    {
+      "id": "8e8c4cdb9326",
+      "title": "stubs globals and env values, and the hook restores them",
+      "fullTitle": "rates > stubs globals and env values, and the hook restores them",
+      "suitePath": [
+        "rates"
+      ],
+      "span": {
+        "startLine": 21,
+        "startColumn": 3,
+        "endLine": 29,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 78,
+        "endLine": 29,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 42
+          },
+          "text": "expect(cache.read).toHaveBeenCalled()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "cache.read",
+            "normalized": "cache.read",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toHaveBeenCalled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 35
+          },
+          "text": "vi.advanceTimersByTime(60_000)",
+          "kind": "fake-timer",
+          "ms": 60000
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 11,
+            "endLine": 26,
+            "endColumn": 41
+          },
+          "text": "vi.advanceTimersByTimeAsync(1)",
+          "kind": "fake-timer",
+          "ms": 1
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 22
+          },
+          "text": "vi.runAllTimers()",
+          "kind": "fake-timer",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 84
+          },
+          "text": "vi.stubGlobal('fetch', vi.fn(async () => ({ json: async () => ({ EUR: 1 }) })))",
+          "kind": "global",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 62
+          },
+          "text": "vi.stubEnv('RATES_URL', 'https://api.example.test/rates')",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 23
+          },
+          "text": "vi.useFakeTimers()",
+          "kind": "fake-timers",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "b542549c72901337cb663717bdac326272cbb6a5"
+    },
+    {
+      "id": "d4156f98c724",
+      "title": "spies and never restores",
+      "fullTitle": "rates > spies and never restores",
+      "suitePath": [
+        "rates"
+      ],
+      "span": {
+        "startLine": 31,
+        "startColumn": 3,
+        "endLine": 35,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 31,
+        "startColumn": 40,
+        "endLine": 35,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 49
+          },
+          "text": "expect(write).toHaveBeenCalledWith('EUR', 1)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "write",
+            "normalized": "write",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'EUR'",
+            "normalized": "'EUR'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "EUR"
+            }
+          },
+          "matcher": "toHaveBeenCalledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 19,
+            "endLine": 32,
+            "endColumn": 43
+          },
+          "text": "vi.spyOn(cache, 'write')",
+          "kind": "function",
+          "target": "cache.write",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 19,
+            "endLine": 32,
+            "endColumn": 43
+          },
+          "text": "vi.spyOn(cache, 'write')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "260bbbe5839819de96c8896c8e102d04b147b27f"
+    },
+    {
+      "id": "7c8a0b90ff1a",
+      "title": "mocks a module for one test",
+      "fullTitle": "rates > mocks a module for one test",
+      "suitePath": [
+        "rates"
+      ],
+      "span": {
+        "startLine": 37,
+        "startColumn": 3,
+        "endLine": 41,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 37,
+        "startColumn": 49,
+        "endLine": 41,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 38
+          },
+          "text": "expect(fresh.rates).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "fresh.rates",
+            "normalized": "fresh.rates",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 67
+          },
+          "text": "vi.doMock('./http', () => ({ get: async () => ({ EUR: 2 }) }))",
+          "kind": "module",
+          "target": "./http",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "84121061a53ab2c3401c83e64a09d6aff1522ab2"
+    },
+    {
+      "id": "2d659babd713",
+      "title": "sends the rates and reads them back",
+      "fullTitle": "rates > sends the rates and reads them back",
+      "suitePath": [
+        "rates"
+      ],
+      "span": {
+        "startLine": 43,
+        "startColumn": 3,
+        "endLine": 47,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 43,
+        "startColumn": 57,
+        "endLine": 47,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 38
+          },
+          "text": "expect(response.status).toBe(200)",
+          "kind": "status",
+          "library": "expect",
+          "actual": {
+            "text": "response.status",
+            "normalized": "response.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 11,
+            "endLine": 44,
+            "endColumn": 82
+          },
+          "text": "fetch('https://api.example.test/rates', { method: 'POST', body: '{}' })",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 28,
+            "endLine": 45,
+            "endColumn": 67
+          },
+          "text": "fetch('https://api.example.test/rates')",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 11,
+            "endLine": 44,
+            "endColumn": 82
+          },
+          "text": "fetch('https://api.example.test/rates', { method: 'POST', body: '{}' })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 28,
+            "endLine": 45,
+            "endColumn": 67
+          },
+          "text": "fetch('https://api.example.test/rates')",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "6818be278869cfc4c66d3f20eb0397f059be1408"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 3
+      },
+      "kind": "afterEach",
+      "scope": "file",
+      "releases": [
+        "timers",
+        "globals",
+        "envs"
+      ],
+      "assertions": []
+    }
+  ],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 105
+      },
+      "text": "vi.mock('./cache', async (importOriginal) => ({ ...(await importOriginal()), read: vi.fn(() => null) }))",
+      "kind": "module",
+      "target": "./cache",
+      "targetsSubject": false,
+      "passthrough": true,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 86
+      },
+      "text": "vi.mock('./http', async () => ({ ...(await vi.importActual('./http')), retries: 0 }))",
+      "kind": "module",
+      "target": "./http",
+      "targetsSubject": false,
+      "passthrough": true,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 19
+      },
+      "text": "vi.mock('./rates')",
+      "kind": "module",
+      "target": "./rates",
+      "targetsSubject": true,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    }
+  ],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 62
+      },
+      "source": "vitest",
+      "names": [
+        "afterEach",
+        "describe",
+        "expect",
+        "it",
+        "vi"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 44
+      },
+      "source": "./rates",
+      "names": [
+        "loadRates",
+        "rates"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 34
+      },
+      "source": "./cache",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": {
+    "module": "./rates",
+    "via": "filename"
+  },
+  "suppressions": []
+}

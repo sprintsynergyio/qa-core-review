@@ -1,8 +1,10 @@
 // JS/TS: the functions and methods of a file that contain an assertion, one level deep
 // (SPEC.md Section 8.1, helper index), and what a file's `expect` and `assert` stand for.
-import type { NImport } from '../../model/types.js';
+import type { ResolvedConfig } from '../../config/types.js';
+import type { NFile, NImport } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
+import { matchGlob } from '../../util/glob.js';
 import type { FrameworkGuess, HelperDef } from '../types.js';
 import { readBody, type BodyContext } from './assertions.js';
 import { learnNames } from './expr.js';
@@ -47,4 +49,20 @@ export function collectJsHelpers(root: SyntaxNode, file: string, ctx: BodyContex
     helpers.push({ name: text, owner: owner?.childForFieldName('name')?.text ?? null, file, span: spanOfNode(node) });
   }
   return helpers;
+}
+
+/**
+ * The module a test file is about (SPEC.md Section 9.1): the `subjectMap` of the config (a glob
+ * of test files to a module), or the import whose last part is the test file's own name
+ * (`cart.test.ts` and `./cart`, `../src/cart` or `@/cart`).
+ */
+export function findSubject(filePath: string, imports: readonly NImport[], config: ResolvedConfig): NFile['subject'] {
+  const map = config.rules['QCR-M001']?.options['subjectMap'];
+  for (const [glob, module] of Object.entries(map !== null && typeof map === 'object' ? map : {})) {
+    if (typeof module === 'string' && matchGlob(glob, filePath)) return { module, via: 'subjectMap' };
+  }
+  const lastPart = (path: string): string => path.split('/').at(-1)!.replace(/\.[cm]?[jt]sx?$/, '').toLowerCase();
+  const own = lastPart(filePath).replace(/\.(test|spec|cy|e2e)$/, '');
+  const match = imports.find((entry) => !entry.typeOnly && !entry.framework && lastPart(entry.source) === own);
+  return match ? { module: match.source, via: 'filename' } : null;
 }

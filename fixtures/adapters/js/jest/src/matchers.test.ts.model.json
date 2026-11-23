@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -1812,8 +1819,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 18,
+            "endLine": 71,
+            "endColumn": 41
+          },
+          "text": "jest.spyOn(api, 'save')",
+          "kind": "function",
+          "target": "api.save",
+          "targetsSubject": null,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 18,
+            "endLine": 71,
+            "endColumn": 41
+          },
+          "text": "jest.spyOn(api, 'save')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 15,

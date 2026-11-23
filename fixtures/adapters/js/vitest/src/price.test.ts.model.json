@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -53,7 +60,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "mocks"
+          ],
           "assertions": []
         }
       ],
@@ -410,8 +419,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 17,
+            "endLine": 29,
+            "endColumn": 46
+          },
+          "text": "vi.spyOn(globalThis, 'fetch')",
+          "kind": "function",
+          "target": "globalThis.fetch",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 17,
+            "endLine": 29,
+            "endColumn": 46
+          },
+          "text": "vi.spyOn(globalThis, 'fetch')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 3,
@@ -635,7 +674,19 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 7,
+            "endLine": 52,
+            "endColumn": 35
+          },
+          "text": "vi.advanceTimersByTime(1000)",
+          "kind": "fake-timer",
+          "ms": 1000
+        }
+      ],
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
@@ -648,7 +699,21 @@
   ],
   "fileHooks": [],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 5,
+        "endLine": 8,
+        "endColumn": 23
+      },
+      "text": "vi.useFakeTimers()",
+      "kind": "fake-timers",
+      "acquiredIn": "hook",
+      "released": false,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {
@@ -686,6 +751,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "./price",
+    "via": "filename"
+  },
   "suppressions": []
 }

@@ -1,0 +1,734 @@
+{
+  "path": "test/stubs.test.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "mocha",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "orders with sinon",
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 46,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 3,
+            "endLine": 10,
+            "endColumn": 5
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "mocks"
+          ],
+          "assertions": []
+        }
+      ],
+      "testIds": [
+        "68d0546b50ea",
+        "21c86d7c773f",
+        "5a0c465130cf",
+        "83ffeebd7e7c"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "68d0546b50ea",
+      "title": "stubs a dependency",
+      "fullTitle": "orders with sinon > stubs a dependency",
+      "suitePath": [
+        "orders with sinon"
+      ],
+      "span": {
+        "startLine": 12,
+        "startColumn": 3,
+        "endLine": 18,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 46,
+        "endLine": 18,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 41
+          },
+          "text": "expect(send).to.have.been.calledOnce",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "calledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 36
+          },
+          "text": "expect(log).to.have.been.called",
+          "kind": "mock-call",
+          "library": "chai",
+          "actual": {
+            "text": "log",
+            "normalized": "log",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "called",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 18,
+            "endLine": 13,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(mailer, 'send')",
+          "kind": "function",
+          "target": "mailer.send",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 17,
+            "endLine": 14,
+            "endColumn": 42
+          },
+          "text": "sinon.spy(console, 'log')",
+          "kind": "function",
+          "target": "console.log",
+          "targetsSubject": null,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 18,
+            "endLine": 13,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(mailer, 'send')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 17,
+            "endLine": 14,
+            "endColumn": 42
+          },
+          "text": "sinon.spy(console, 'log')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "e74cbaa624e695a50a43fc99edaae80095d3d66b"
+    },
+    {
+      "id": "21c86d7c773f",
+      "title": "stubs in every way",
+      "fullTitle": "orders with sinon > stubs in every way",
+      "suitePath": [
+        "orders with sinon"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 3,
+        "endLine": 28,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 40,
+        "endLine": 28,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 60
+          },
+          "text": "expect(orders.find('o-1')).to.deep.equal({ id: 'o-1' })",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "orders.find('o-1')",
+            "normalized": "orders.find('o-1')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "{ id: 'o-1' }",
+            "normalized": "{id:'o-1'}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 53
+          },
+          "text": "expect([load, save, remove]).to.have.lengthOf(3)",
+          "kind": "count",
+          "library": "chai",
+          "actual": {
+            "text": "[load, save, remove]",
+            "normalized": "[load,save,remove]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "lengthOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 18,
+            "endLine": 21,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'find')",
+          "kind": "function",
+          "target": "orders.find",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 18,
+            "endLine": 23,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'load')",
+          "kind": "function",
+          "target": "orders.load",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 18,
+            "endLine": 24,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'save')",
+          "kind": "function",
+          "target": "orders.save",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 20,
+            "endLine": 25,
+            "endColumn": 48
+          },
+          "text": "sinon.stub(orders, 'remove')",
+          "kind": "function",
+          "target": "orders.remove",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 18,
+            "endLine": 21,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'find')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 18,
+            "endLine": 23,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'load')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 18,
+            "endLine": 24,
+            "endColumn": 44
+          },
+          "text": "sinon.stub(orders, 'save')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 20,
+            "endLine": 25,
+            "endColumn": 48
+          },
+          "text": "sinon.stub(orders, 'remove')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "8b6c4445c8cf3d278608ac919d28052be2ed9074"
+    },
+    {
+      "id": "5a0c465130cf",
+      "title": "moves a fake clock",
+      "fullTitle": "orders with sinon > moves a fake clock",
+      "suitePath": [
+        "orders with sinon"
+      ],
+      "span": {
+        "startLine": 30,
+        "startColumn": 3,
+        "endLine": 36,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 40,
+        "endLine": 36,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 47
+          },
+          "text": "expect(orders.isExpired(order)).to.be.true",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "orders.isExpired(order)",
+            "normalized": "orders.isExpired(order)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "true",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 22
+          },
+          "text": "clock.tick(60000)",
+          "kind": "fake-timer",
+          "ms": 60000
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 19,
+            "endLine": 31,
+            "endColumn": 40
+          },
+          "text": "sinon.useFakeTimers()",
+          "kind": "fake-timers",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "fcfa3ebbc9133b46b32787e1d12f48efa27e8c06"
+    },
+    {
+      "id": "83ffeebd7e7c",
+      "title": "sleeps for real",
+      "fullTitle": "orders with sinon > sleeps for real",
+      "suitePath": [
+        "orders with sinon"
+      ],
+      "span": {
+        "startLine": 38,
+        "startColumn": 3,
+        "endLine": 45,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 38,
+        "startColumn": 43,
+        "endLine": 45,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 5,
+            "endLine": 44,
+            "endColumn": 48
+          },
+          "text": "expect(orders.isExpired(order)).to.be.false",
+          "kind": "truthiness",
+          "library": "chai",
+          "actual": {
+            "text": "orders.isExpired(order)",
+            "normalized": "orders.isExpired(order)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "false",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 11,
+            "endLine": 40,
+            "endColumn": 27
+          },
+          "text": "setTimeout(1500)",
+          "kind": "fixed-sleep",
+          "ms": 1500
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 11,
+            "endLine": 41,
+            "endColumn": 21
+          },
+          "text": "delay(100)",
+          "kind": "fixed-sleep",
+          "ms": 100
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 11,
+            "endLine": 42,
+            "endColumn": 20
+          },
+          "text": "wait(100)",
+          "kind": "fixed-sleep",
+          "ms": 100
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 11,
+            "endLine": 43,
+            "endColumn": 21
+          },
+          "text": "pause(100)",
+          "kind": "fixed-sleep",
+          "ms": 100
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "4dd7464bce0e9293f5f1e30c5c6f345d6e4a7d82"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 36
+      },
+      "source": "chai",
+      "names": [
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 32
+      },
+      "source": "sinon",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 56
+      },
+      "source": "node:timers/promises",
+      "names": [
+        "setTimeout"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 41
+      },
+      "source": "../src/orders",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 41
+      },
+      "source": "../src/mailer",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

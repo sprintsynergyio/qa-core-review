@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -136,9 +143,46 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
-      "data": [],
-      "steps": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 35,
+            "endLine": 11,
+            "endColumn": 42
+          },
+          "text": "request",
+          "kind": "api-context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 26,
+            "endLine": 12,
+            "endColumn": 99
+          },
+          "text": "request.get('/orders', { headers: { authorization: `Bearer ${token}` } })",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 26,
+            "endLine": 12,
+            "endColumn": 99
+          },
+          "text": "request.get('/orders', { headers: { authorization: `Bearer ${token}` } })",
+          "kind": "request"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "c6e4d5d6eec1108e7c95cc7f109379b1ad1136cf"
     },
@@ -202,9 +246,46 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
-      "data": [],
-      "steps": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 54,
+            "endLine": 17,
+            "endColumn": 61
+          },
+          "text": "request",
+          "kind": "api-context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 26,
+            "endLine": 18,
+            "endColumn": 81
+          },
+          "text": "request.post('/orders', { data: { item: 'backpack' } })",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 26,
+            "endLine": 18,
+            "endColumn": 81
+          },
+          "text": "request.post('/orders', { data: { item: 'backpack' } })",
+          "kind": "request"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "48a9fdac9555d63beebc0cf3c91c728fb4edc1ff"
     },
@@ -282,9 +363,46 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
-      "data": [],
-      "steps": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 35,
+            "endLine": 22,
+            "endColumn": 42
+          },
+          "text": "request",
+          "kind": "api-context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 26,
+            "endLine": 23,
+            "endColumn": 55
+          },
+          "text": "request.get('/orders?page=2')",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 26,
+            "endLine": 23,
+            "endColumn": 55
+          },
+          "text": "request.get('/orders?page=2')",
+          "kind": "request"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "f4c1a92b71b948d2835aa7cb86dd608c8d6c23c8"
     }

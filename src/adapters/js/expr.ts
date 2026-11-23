@@ -30,6 +30,11 @@ export function unwrap(node: SyntaxNode): SyntaxNode {
   return current;
 }
 
+/** The value of a number literal (`500`, `60_000`), or null for anything else. */
+export function numberValue(node: SyntaxNode | null | undefined): number | null {
+  return node?.type === 'number' ? Number(node.text.replace(/_/g, '')) : null;
+}
+
 /** The source of a node on one line, with comments and spare whitespace removed. */
 export function normalizedText(node: SyntaxNode): string {
   let text = '';
