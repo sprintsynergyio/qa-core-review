@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -119,7 +124,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 7,
+            "endLine": 18,
+            "endColumn": 41
+          },
+          "text": "expect(order.id).to.be.a('string')",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "order.id",
+            "normalized": "order.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'string'",
+            "normalized": "'string'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "string"
+            }
+          },
+          "matcher": "a",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -163,7 +208,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 7,
+            "endLine": 23,
+            "endColumn": 44
+          },
+          "text": "assert.strictEqual(orders.count(), 1)",
+          "kind": "equality",
+          "library": "node-assert",
+          "actual": {
+            "text": "orders.count()",
+            "normalized": "orders.count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "strictEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -245,7 +330,43 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 7,
+            "endLine": 29,
+            "endColumn": 80
+          },
+          "text": "expect(orders.create({ item: 'light' }).createdAt).to.be.instanceOf(Date)",
+          "kind": "type",
+          "library": "chai",
+          "actual": {
+            "text": "orders.create({ item: 'light' }).createdAt",
+            "normalized": "orders.create({item:'light'}).createdAt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Date",
+            "normalized": "Date",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "instanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -285,7 +406,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 7,
+            "endLine": 37,
+            "endColumn": 45
+          },
+          "text": "order.status.should.equal('cancelled')",
+          "kind": "equality",
+          "library": "chai",
+          "actual": {
+            "text": "order.status",
+            "normalized": "order.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'cancelled'",
+            "normalized": "'cancelled'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "cancelled"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -326,7 +487,47 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 42
+          },
+          "text": "assert.equal(orders.list().length, 2)",
+          "kind": "equality",
+          "library": "node-assert",
+          "actual": {
+            "text": "orders.list().length",
+            "normalized": "orders.list().length",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

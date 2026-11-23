@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [],
   "tests": [
@@ -39,7 +44,89 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 3,
+            "endLine": 13,
+            "endColumn": 38
+          },
+          "text": "expect(response.status()).toBe(200)",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "response.status()",
+            "normalized": "response.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 3,
+            "endLine": 14,
+            "endColumn": 48
+          },
+          "text": "expect(await response.json()).toHaveLength(3)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "await response.json()",
+            "normalized": "await response.json()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "toHaveLength",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -76,7 +163,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 3,
+            "endLine": 19,
+            "endColumn": 37
+          },
+          "text": "expect(response.ok()).toBeTruthy()",
+          "kind": "truthiness",
+          "library": "playwright",
+          "actual": {
+            "text": "response.ok()",
+            "normalized": "response.ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeTruthy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -113,7 +229,50 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 3,
+            "endLine": 24,
+            "endColumn": 38
+          },
+          "text": "expect(response.status()).toBe(200)",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "response.status()",
+            "normalized": "response.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

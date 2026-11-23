@@ -1,0 +1,991 @@
+{
+  "path": "src/assertions.test.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "vitest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "vitest assertions",
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 65,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "79ecbd08275f",
+        "39d683b1f952",
+        "7f5535fd2513",
+        "57e16e63ea9c",
+        "9a61996fa750",
+        "98eff04f174d",
+        "c41ce46faef5",
+        "db81eccdcf4c"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "79ecbd08275f",
+      "title": "types and custom matchers",
+      "fullTitle": "vitest assertions > types and custom matchers",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 6,
+        "startColumn": 3,
+        "endLine": 10,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 41,
+        "endLine": 10,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 5,
+            "endLine": 7,
+            "endColumn": 55
+          },
+          "text": "expect(formatPrice(5, 'EUR')).toBeTypeOf('string')",
+          "kind": "type",
+          "library": "expect",
+          "actual": {
+            "text": "formatPrice(5, 'EUR')",
+            "normalized": "formatPrice(5,'EUR')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'string'",
+            "normalized": "'string'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "string"
+            }
+          },
+          "matcher": "toBeTypeOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 5,
+            "endLine": 8,
+            "endColumn": 84
+          },
+          "text": "expect(formatPrice(5, 'EUR')).toSatisfy((text: string) => text.endsWith('EUR'))",
+          "kind": "other",
+          "library": "expect",
+          "actual": {
+            "text": "formatPrice(5, 'EUR')",
+            "normalized": "formatPrice(5,'EUR')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "(text: string) => text.endsWith('EUR')",
+            "normalized": "(text:string)=>text.endsWith('EUR')",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toSatisfy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 5,
+            "endLine": 9,
+            "endColumn": 72
+          },
+          "text": "expect(formatPrice(5, 'EUR')).toEqual(expect.stringContaining('5'))",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "formatPrice(5, 'EUR')",
+            "normalized": "formatPrice(5,'EUR')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "expect.stringContaining('5')",
+            "normalized": "expect.stringContaining('5')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "c184c8030374f789027b027d9572eb2020e511af"
+    },
+    {
+      "id": "39d683b1f952",
+      "title": "file snapshots",
+      "fullTitle": "vitest assertions > file snapshots",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 12,
+        "startColumn": 3,
+        "endLine": 14,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 36,
+        "endLine": 14,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 11,
+            "endLine": 13,
+            "endColumn": 85
+          },
+          "text": "expect(JSON.stringify(rates, null, 2)).toMatchFileSnapshot('./rates.json')",
+          "kind": "snapshot",
+          "library": "expect",
+          "actual": {
+            "text": "JSON.stringify(rates, null, 2)",
+            "normalized": "JSON.stringify(rates,null,2)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'./rates.json'",
+            "normalized": "'./rates.json'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "./rates.json"
+            }
+          },
+          "matcher": "toMatchFileSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "119466b5e0bbff974bebb617a1b5e261b1b36bf8"
+    },
+    {
+      "id": "7f5535fd2513",
+      "title": "spies",
+      "fullTitle": "vitest assertions > spies",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 3,
+        "endLine": 22,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 27,
+        "endLine": 22,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 46
+          },
+          "text": "expect(fetchRates).toHaveBeenCalledOnce()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "fetchRates",
+            "normalized": "fetchRates",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "toHaveBeenCalledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 40
+          },
+          "text": "expect(warn).not.toHaveBeenCalled()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "warn",
+            "normalized": "warn",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "toHaveBeenCalled",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "bc79207cac49a6e4a3866e0561c09760deb7e4a5"
+    },
+    {
+      "id": "57e16e63ea9c",
+      "title": "soft and poll",
+      "fullTitle": "vitest assertions > soft and poll",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 3,
+        "endLine": 32,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 24,
+        "startColumn": 35,
+        "endLine": 32,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 35
+          },
+          "text": "expect.soft(rates.EUR).toBe(1)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "rates.EUR",
+            "normalized": "rates.EUR",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 46
+          },
+          "text": "expect.soft(rates.USD).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "rates.USD",
+            "normalized": "rates.USD",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 11,
+            "endLine": 27,
+            "endColumn": 53
+          },
+          "text": "expect.poll(() => rates.GBP).toBeDefined()",
+          "kind": "nullness",
+          "library": "expect",
+          "actual": {
+            "text": "() => rates.GBP",
+            "normalized": "()=>rates.GBP",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeDefined",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 11,
+            "endLine": 28,
+            "endColumn": 68
+          },
+          "text": "expect.element(page.getByText('EUR')).toBeInTheDocument()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "page.getByText('EUR')",
+            "normalized": "page.getByText('EUR')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeInTheDocument",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 7,
+            "endLine": 30,
+            "endColumn": 43
+          },
+          "text": "expect(rates.GBP).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "rates.GBP",
+            "normalized": "rates.GBP",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "e0b014982730c122b3fb65a245c92491819afbb5"
+    },
+    {
+      "id": "9a61996fa750",
+      "title": "unreachable code",
+      "fullTitle": "vitest assertions > unreachable code",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 3,
+        "endLine": 43,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 34,
+        "startColumn": 38,
+        "endLine": 43,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 7,
+            "endLine": 39,
+            "endColumn": 57
+          },
+          "text": "expect.unreachable('loadRates should have thrown')",
+          "kind": "fail-call",
+          "library": "expect",
+          "actual": null,
+          "expected": null,
+          "matcher": "expect.unreachable",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 7,
+            "endLine": 41,
+            "endColumn": 42
+          },
+          "text": "expect(error).toBeInstanceOf(Error)",
+          "kind": "type",
+          "library": "expect",
+          "actual": {
+            "text": "error",
+            "normalized": "error",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Error",
+            "normalized": "Error",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toBeInstanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 6
+          },
+          "kind": "try-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": true
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "e8b5e20f0f67c7184819c5e7314114adcbbe97ac"
+    },
+    {
+      "id": "98eff04f174d",
+      "title": "fails by hand",
+      "fullTitle": "vitest assertions > fails by hand",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 3,
+        "endLine": 47,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 29,
+        "endLine": 47,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 26,
+            "endLine": 46,
+            "endColumn": 65
+          },
+          "text": "expect.fail('EUR is the base currency')",
+          "kind": "fail-call",
+          "library": "expect",
+          "actual": null,
+          "expected": null,
+          "matcher": "expect.fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0c64dac8bc8737853ad662879424d9021fb6193c"
+    },
+    {
+      "id": "c41ce46faef5",
+      "title": "an executor always runs, a timer callback may not",
+      "fullTitle": "vitest assertions > an executor always runs, a timer callback may not",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 49,
+        "startColumn": 3,
+        "endLine": 57,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 49,
+        "startColumn": 71,
+        "endLine": 57,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 7,
+            "endLine": 51,
+            "endColumn": 32
+          },
+          "text": "expect(rates.EUR).toBe(1)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "rates.EUR",
+            "normalized": "rates.EUR",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 9,
+            "endLine": 53,
+            "endColumn": 45
+          },
+          "text": "expect(rates.USD).toBeGreaterThan(0)",
+          "kind": "comparison",
+          "library": "expect",
+          "actual": {
+            "text": "rates.USD",
+            "normalized": "rates.USD",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBeGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "bd9fa60fdc5dc3f12fe037fa5c995c9531191a14"
+    },
+    {
+      "id": "db81eccdcf4c",
+      "title": "only stubs, no assertion",
+      "fullTitle": "vitest assertions > only stubs, no assertion",
+      "suitePath": [
+        "vitest assertions"
+      ],
+      "span": {
+        "startLine": 59,
+        "startColumn": 3,
+        "endLine": 64,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 59,
+        "startColumn": 40,
+        "endLine": 64,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 42
+          },
+          "kind": "promise-catch",
+          "assertionsInside": 0,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "77c2b575f3671bd52a0bbb21a72d29232fa6559d"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 51
+      },
+      "source": "vitest",
+      "names": [
+        "describe",
+        "expect",
+        "it",
+        "vi"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 48
+      },
+      "source": "@vitest/browser/context",
+      "names": [
+        "page"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 57
+      },
+      "source": "./price",
+      "names": [
+        "formatPrice",
+        "loadRates",
+        "rates"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -11,6 +11,7 @@ export type {
   NTest, NTryBlock, NWait,
 } from './model/types.js';
 export { bodyHash, testId } from './model/hash.js';
+export { createHelperIndex } from './model/helpers-index.js';
 export { clipText, emptyTest, parseSuppression } from './model/build.js';
 
 // The adapter interface and registry (SPEC.md Section 7.3).

@@ -1,0 +1,619 @@
+{
+  "path": "src/CartDom.test.tsx",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "jest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "CartView in the page",
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 38,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "171c4f901819",
+        "fd45196feb15",
+        "ffe91a190b42"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "171c4f901819",
+      "title": "shows the items",
+      "fullTitle": "CartView in the page > shows the items",
+      "suitePath": [
+        "CartView in the page"
+      ],
+      "span": {
+        "startLine": 6,
+        "startColumn": 3,
+        "endLine": 16,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 31,
+        "endLine": 16,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 5,
+            "endLine": 9,
+            "endColumn": 61
+          },
+          "text": "expect(screen.getByText('Backpack')).toBeInTheDocument()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "screen.getByText('Backpack')",
+            "normalized": "screen.getByText('Backpack')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeInTheDocument",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 5,
+            "endLine": 10,
+            "endColumn": 46
+          },
+          "text": "expect(total).toHaveTextContent('$29.99')",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "total",
+            "normalized": "total",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'$29.99'",
+            "normalized": "'$29.99'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "$29.99"
+            }
+          },
+          "matcher": "toHaveTextContent",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 32
+          },
+          "text": "expect(total).toBeVisible()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "total",
+            "normalized": "total",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 54
+          },
+          "text": "expect(total).toHaveStyle({ fontWeight: 'bold' })",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "total",
+            "normalized": "total",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "{ fontWeight: 'bold' }",
+            "normalized": "{fontWeight:'bold'}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toHaveStyle",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 75
+          },
+          "text": "expect(screen.getByRole('button', { name: 'Checkout' })).toBeEnabled()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "screen.getByRole('button', { name: 'Checkout' })",
+            "normalized": "screen.getByRole('button',{name:'Checkout'})",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeEnabled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 52
+          },
+          "text": "expect(screen.getByText('1 item')).toBeTruthy()",
+          "kind": "truthiness",
+          "library": "expect",
+          "actual": {
+            "text": "screen.getByText('1 item')",
+            "normalized": "screen.getByText('1 item')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeTruthy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 8,
+      "bodyHash": "e8cf494b193455598ef9886aab611cc00be68731"
+    },
+    {
+      "id": "fd45196feb15",
+      "title": "checks the coupon form",
+      "fullTitle": "CartView in the page > checks the coupon form",
+      "suitePath": [
+        "CartView in the page"
+      ],
+      "span": {
+        "startLine": 18,
+        "startColumn": 3,
+        "endLine": 32,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 18,
+        "startColumn": 44,
+        "endLine": 32,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 32
+          },
+          "text": "expect(input).toHaveFocus()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "input",
+            "normalized": "input",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toHaveFocus",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 33
+          },
+          "text": "expect(input).toBeRequired()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "input",
+            "normalized": "input",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeRequired",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 32
+          },
+          "text": "expect(input).toBeInvalid()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "input",
+            "normalized": "input",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeInvalid",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 7,
+            "endLine": 26,
+            "endColumn": 43
+          },
+          "text": "expect(input).toHaveDisplayValue('')",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "input",
+            "normalized": "input",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "''",
+            "normalized": "''",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": ""
+            }
+          },
+          "matcher": "toHaveDisplayValue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 25,
+            "endLine": 28,
+            "endColumn": 50
+          },
+          "text": "expect(input).toBeValid()",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "input",
+            "normalized": "input",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeValid",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 7,
+            "endLine": 30,
+            "endColumn": 76
+          },
+          "text": "expect(screen.getByRole('alert')).toHaveTextContent('Coupon applied')",
+          "kind": "ui-state",
+          "library": "expect",
+          "actual": {
+            "text": "screen.getByRole('alert')",
+            "normalized": "screen.getByRole('alert')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Coupon applied'",
+            "normalized": "'Coupon applied'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Coupon applied"
+            }
+          },
+          "matcher": "toHaveTextContent",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 8,
+      "bodyHash": "1f872780512e94c6f7105731256b1345094ec255"
+    },
+    {
+      "id": "ffe91a190b42",
+      "title": "matches the stored picture",
+      "fullTitle": "CartView in the page > matches the stored picture",
+      "suitePath": [
+        "CartView in the page"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 3,
+        "endLine": 37,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 34,
+        "startColumn": 42,
+        "endLine": 37,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 45
+          },
+          "text": "expect(container).toMatchImageSnapshot()",
+          "kind": "visual",
+          "library": "expect",
+          "actual": {
+            "text": "container",
+            "normalized": "container",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toMatchImageSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "cb73bbc8515b8aef4d17eca1f6dcb319fd023a2a"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 36
+      },
+      "source": "@testing-library/jest-dom",
+      "names": [],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 71
+      },
+      "source": "@testing-library/react",
+      "names": [
+        "act",
+        "render",
+        "screen",
+        "waitFor"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 39
+      },
+      "source": "./CartView",
+      "names": [
+        "CartView"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}
