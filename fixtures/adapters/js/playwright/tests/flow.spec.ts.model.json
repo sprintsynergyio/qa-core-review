@@ -1,0 +1,2585 @@
+{
+  "path": "tests/flow.spec.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "playwright",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "waits",
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "1715d89d76d2",
+        "6e81ab9d91df"
+      ],
+      "suites": []
+    },
+    {
+      "title": "selectors",
+      "span": {
+        "startLine": 30,
+        "startColumn": 1,
+        "endLine": 70,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "37d1784a3899",
+        "3176a6332351"
+      ],
+      "suites": []
+    },
+    {
+      "title": "network and data",
+      "span": {
+        "startLine": 72,
+        "startColumn": 1,
+        "endLine": 113,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "10099ae46393",
+        "b2f47873597b",
+        "3ef53768b8b8",
+        "9749e2d6f15b",
+        "77ae74c4c2fe"
+      ],
+      "suites": []
+    },
+    {
+      "title": "resources",
+      "span": {
+        "startLine": 115,
+        "startColumn": 1,
+        "endLine": 139,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "17b6e650b568",
+        "8b311de55b89",
+        "2b50dcae373d"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "1715d89d76d2",
+      "title": "hard waits",
+      "fullTitle": "waits > hard waits",
+      "suitePath": [
+        "waits"
+      ],
+      "span": {
+        "startLine": 6,
+        "startColumn": 3,
+        "endLine": 13,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 42,
+        "endLine": 13,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 11,
+            "endLine": 12,
+            "endColumn": 74
+          },
+          "text": "expect(page.getByTestId('shopping-cart-badge')).toHaveText('1')",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('shopping-cart-badge')",
+            "normalized": "page.getByTestId('shopping-cart-badge')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'1'",
+            "normalized": "'1'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 11,
+            "endLine": 9,
+            "endColumn": 36
+          },
+          "text": "page.waitForTimeout(3000)",
+          "kind": "fixed-sleep",
+          "ms": 3000
+        },
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 11,
+            "endLine": 10,
+            "endColumn": 61
+          },
+          "text": "new Promise((resolve) => setTimeout(resolve, 500))",
+          "kind": "fixed-sleep",
+          "ms": 500
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 11,
+            "endLine": 11,
+            "endColumn": 21
+          },
+          "text": "sleep(250)",
+          "kind": "fixed-sleep",
+          "ms": 250
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 11,
+            "endLine": 8,
+            "endColumn": 60
+          },
+          "text": "page.getByRole('button', { name: 'Add to cart' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "role"
+          }
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 18,
+            "endLine": 12,
+            "endColumn": 57
+          },
+          "text": "page.getByTestId('shopping-cart-badge')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "shopping-cart-badge"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 31,
+            "endLine": 6,
+            "endColumn": 35
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 11,
+            "endLine": 7,
+            "endColumn": 64
+          },
+          "text": "page.goto('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 11,
+            "endLine": 8,
+            "endColumn": 76
+          },
+          "text": "page.getByRole('button', { name: 'Add to cart' }).first().click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 6,
+      "bodyHash": "74adda8fb436fda4d27af31c90b4034b6b52d0cc"
+    },
+    {
+      "id": "6e81ab9d91df",
+      "title": "waits for a condition",
+      "fullTitle": "waits > waits for a condition",
+      "suitePath": [
+        "waits"
+      ],
+      "span": {
+        "startLine": 15,
+        "startColumn": 3,
+        "endLine": 27,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 15,
+        "startColumn": 53,
+        "endLine": 27,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 11,
+            "endLine": 26,
+            "endColumn": 76
+          },
+          "text": "expect(page.getByText('Thank you for your order!')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText('Thank you for your order!')",
+            "normalized": "page.getByText('Thank you for your order!')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 20,
+            "endLine": 16,
+            "endColumn": 53
+          },
+          "text": "page.waitForResponse('**/orders')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 11,
+            "endLine": 19,
+            "endColumn": 46
+          },
+          "text": "page.waitForRequest('**/analytics')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 11,
+            "endLine": 20,
+            "endColumn": 47
+          },
+          "text": "page.waitForURL(/checkout-complete/)",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 51
+          },
+          "text": "page.waitForSelector('.complete-header')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 11,
+            "endLine": 22,
+            "endColumn": 47
+          },
+          "text": "page.waitForLoadState('networkidle')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 11,
+            "endLine": 23,
+            "endColumn": 69
+          },
+          "text": "page.waitForFunction(() => document.title === 'Swag Labs')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 39
+          },
+          "text": "page.waitForEvent('console')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 11,
+            "endLine": 25,
+            "endColumn": 48
+          },
+          "text": "page.getByText('Thank you').waitFor()",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 11,
+            "endLine": 17,
+            "endColumn": 55
+          },
+          "text": "page.getByRole('button', { name: 'Finish' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 51
+          },
+          "text": "page.waitForSelector('.complete-header')",
+          "api": "waitForSelector",
+          "strategy": "class",
+          "value": ".complete-header"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 11,
+            "endLine": 25,
+            "endColumn": 38
+          },
+          "text": "page.getByText('Thank you')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Thank you"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 18,
+            "endLine": 26,
+            "endColumn": 61
+          },
+          "text": "page.getByText('Thank you for your order!')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Thank you for your order!"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 42,
+            "endLine": 15,
+            "endColumn": 46
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 11,
+            "endLine": 17,
+            "endColumn": 63
+          },
+          "text": "page.getByRole('button', { name: 'Finish' }).click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 11,
+      "bodyHash": "dff093d8352014423996922160ccecebd4063e8e"
+    },
+    {
+      "id": "37d1784a3899",
+      "title": "brittle ones",
+      "fullTitle": "selectors > brittle ones",
+      "suitePath": [
+        "selectors"
+      ],
+      "span": {
+        "startLine": 31,
+        "startColumn": 3,
+        "endLine": 49,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 31,
+        "startColumn": 51,
+        "endLine": 49,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 64
+          },
+          "text": "expect([title, items, names, first, count]).toHaveLength(5)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "[title, items, names, first, count]",
+            "normalized": "[title,items,names,first,count]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "5",
+            "normalized": "5",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "5"
+            }
+          },
+          "matcher": "toHaveLength",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 11,
+            "endLine": 32,
+            "endColumn": 84
+          },
+          "text": "page.locator('#root > div > div:nth-child(2) > div.css-1q2w3e4 > button')",
+          "api": "locator",
+          "strategy": "css",
+          "value": "#root > div > div:nth-child(2) > div.css-1q2w3e4 > button"
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 11,
+            "endLine": 33,
+            "endColumn": 52
+          },
+          "text": "page.locator('//div[3]/div[2]/button[2]')",
+          "api": "locator",
+          "strategy": "xpath",
+          "value": "//div[3]/div[2]/button[2]"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 11,
+            "endLine": 34,
+            "endColumn": 57
+          },
+          "text": "page.locator('xpath=/html/body/div[1]/button')",
+          "api": "locator",
+          "strategy": "xpath",
+          "value": "xpath=/html/body/div[1]/button"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 11,
+            "endLine": 35,
+            "endColumn": 42
+          },
+          "text": "page.locator('.inventory_item')",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "nth",
+            "index": 3,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 11,
+            "endLine": 36,
+            "endColumn": 42
+          },
+          "text": "page.locator('.inventory_item')",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "last",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 11,
+            "endLine": 37,
+            "endColumn": 47
+          },
+          "text": "page.click('.btn_primary.btn_small')",
+          "api": "click",
+          "strategy": "css",
+          "value": ".btn_primary.btn_small"
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 11,
+            "endLine": 38,
+            "endColumn": 42
+          },
+          "text": "page.fill('#first-name', 'Sam')",
+          "api": "fill",
+          "strategy": "id",
+          "value": "#first-name"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 11,
+            "endLine": 39,
+            "endColumn": 48
+          },
+          "text": "page.type('[name=\"lastName\"]', 'Lee')",
+          "api": "type",
+          "strategy": "name",
+          "value": "[name=\"lastName\"]"
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 11,
+            "endLine": 40,
+            "endColumn": 31
+          },
+          "text": "page.check('#terms')",
+          "api": "check",
+          "strategy": "id",
+          "value": "#terms"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 11,
+            "endLine": 41,
+            "endColumn": 61
+          },
+          "text": "page.selectOption('.product_sort_container', 'za')",
+          "api": "selectOption",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 11,
+            "endLine": 42,
+            "endColumn": 38
+          },
+          "text": "frame.click('text=Pay now')",
+          "api": "click",
+          "strategy": "text",
+          "value": "text=Pay now"
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 25,
+            "endLine": 43,
+            "endColumn": 41
+          },
+          "text": "page.$('.title')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".title"
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 25,
+            "endLine": 44,
+            "endColumn": 51
+          },
+          "text": "page.$$('.inventory_item')",
+          "api": "$$",
+          "strategy": "class",
+          "value": ".inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 25,
+            "endLine": 45,
+            "endColumn": 110
+          },
+          "text": "page.$$eval('.inventory_item_name', (nodes) => nodes.map((node) => node.textContent))",
+          "api": "$$eval",
+          "strategy": "class",
+          "value": ".inventory_item_name"
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 25,
+            "endLine": 46,
+            "endColumn": 87
+          },
+          "text": "page.$eval('.inventory_item_name', (node) => node.textContent)",
+          "api": "$eval",
+          "strategy": "class",
+          "value": ".inventory_item_name"
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 45,
+            "endLine": 47,
+            "endColumn": 89
+          },
+          "text": "document.querySelectorAll('.inventory_item')",
+          "api": "querySelectorAll",
+          "strategy": "class",
+          "value": ".inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 100,
+            "endLine": 47,
+            "endColumn": 132
+          },
+          "text": "document.querySelector('.title')",
+          "api": "querySelector",
+          "strategy": "class",
+          "value": ".title"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 33,
+            "endLine": 31,
+            "endColumn": 37
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 11,
+            "endLine": 32,
+            "endColumn": 92
+          },
+          "text": "page.locator('#root > div > div:nth-child(2) > div.css-1q2w3e4 > button').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 11,
+            "endLine": 33,
+            "endColumn": 63
+          },
+          "text": "page.locator('//div[3]/div[2]/button[2]').dblclick()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 11,
+            "endLine": 34,
+            "endColumn": 65
+          },
+          "text": "page.locator('xpath=/html/body/div[1]/button').hover()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 11,
+            "endLine": 35,
+            "endColumn": 57
+          },
+          "text": "page.locator('.inventory_item').nth(3).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 11,
+            "endLine": 36,
+            "endColumn": 64
+          },
+          "text": "page.locator('.inventory_item').last().press('Enter')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 11,
+            "endLine": 37,
+            "endColumn": 47
+          },
+          "text": "page.click('.btn_primary.btn_small')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 11,
+            "endLine": 38,
+            "endColumn": 42
+          },
+          "text": "page.fill('#first-name', 'Sam')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 11,
+            "endLine": 39,
+            "endColumn": 48
+          },
+          "text": "page.type('[name=\"lastName\"]', 'Lee')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 11,
+            "endLine": 40,
+            "endColumn": 31
+          },
+          "text": "page.check('#terms')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 11,
+            "endLine": 41,
+            "endColumn": 61
+          },
+          "text": "page.selectOption('.product_sort_container', 'za')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 11,
+            "endLine": 42,
+            "endColumn": 38
+          },
+          "text": "frame.click('text=Pay now')",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 17,
+      "bodyHash": "98990f3a6dd7aead975894f43857cb916ec7a258"
+    },
+    {
+      "id": "3176a6332351",
+      "title": "stable ones",
+      "fullTitle": "selectors > stable ones",
+      "suitePath": [
+        "selectors"
+      ],
+      "span": {
+        "startLine": 51,
+        "startColumn": 3,
+        "endLine": 69,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 51,
+        "startColumn": 43,
+        "endLine": 69,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 11,
+            "endLine": 68,
+            "endColumn": 46
+          },
+          "text": "expect(page).toHaveURL(/inventory/)",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page",
+            "normalized": "page",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "/inventory/",
+            "normalized": "/inventory/",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toHaveURL",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 11,
+            "endLine": 52,
+            "endColumn": 60
+          },
+          "text": "page.getByRole('button', { name: 'Add to cart' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "role"
+          }
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 11,
+            "endLine": 53,
+            "endColumn": 39
+          },
+          "text": "page.getByTestId('checkout')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "checkout"
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 11,
+            "endLine": 54,
+            "endColumn": 40
+          },
+          "text": "page.getByLabel('First Name')",
+          "api": "getByLabel",
+          "strategy": "label",
+          "value": "First Name"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 11,
+            "endLine": 55,
+            "endColumn": 45
+          },
+          "text": "page.getByPlaceholder('Last Name')",
+          "api": "getByPlaceholder",
+          "strategy": "other",
+          "value": "Last Name"
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 11,
+            "endLine": 56,
+            "endColumn": 37
+          },
+          "text": "page.getByText('Continue')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Continue"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 11,
+            "endLine": 57,
+            "endColumn": 51
+          },
+          "text": "page.getByAltText('Sauce Labs Backpack')",
+          "api": "getByAltText",
+          "strategy": "other",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 11,
+            "endLine": 58,
+            "endColumn": 35
+          },
+          "text": "page.getByTitle('Close')",
+          "api": "getByTitle",
+          "strategy": "other",
+          "value": "Close"
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 11,
+            "endLine": 59,
+            "endColumn": 47
+          },
+          "text": "page.locator('[data-test=\"finish\"]')",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "[data-test=\"finish\"]"
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 11,
+            "endLine": 60,
+            "endColumn": 43
+          },
+          "text": "page.locator('[data-qa=\"back\"]')",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "[data-qa=\"back\"]"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 11,
+            "endLine": 61,
+            "endColumn": 39
+          },
+          "text": "page.locator('data-cy=menu')",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "data-cy=menu"
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 11,
+            "endLine": 62,
+            "endColumn": 51
+          },
+          "text": "page.locator('role=button[name=\"Open\"]')",
+          "api": "locator",
+          "strategy": "role",
+          "value": "role=button[name=\"Open\"]"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 11,
+            "endLine": 63,
+            "endColumn": 51
+          },
+          "text": "page.locator('id=react-burger-menu-btn')",
+          "api": "locator",
+          "strategy": "id",
+          "value": "id=react-burger-menu-btn"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 59,
+            "endLine": 63,
+            "endColumn": 80
+          },
+          "text": "page.locator('#drop')",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#drop"
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 11,
+            "endLine": 64,
+            "endColumn": 49
+          },
+          "text": "page.locator('[data-testid=\"upload\"]')",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "[data-testid=\"upload\"]"
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 11,
+            "endLine": 65,
+            "endColumn": 40
+          },
+          "text": "page.frameLocator('#payment')",
+          "api": "frameLocator",
+          "strategy": "id",
+          "value": "#payment"
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 11,
+            "endLine": 65,
+            "endColumn": 62
+          },
+          "text": "page.frameLocator('#payment').locator(`#card-${1}`)",
+          "api": "locator",
+          "strategy": "other",
+          "value": null
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 32,
+            "endLine": 51,
+            "endColumn": 36
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 11,
+            "endLine": 52,
+            "endColumn": 76
+          },
+          "text": "page.getByRole('button', { name: 'Add to cart' }).first().click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 11,
+            "endLine": 53,
+            "endColumn": 47
+          },
+          "text": "page.getByTestId('checkout').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 11,
+            "endLine": 54,
+            "endColumn": 52
+          },
+          "text": "page.getByLabel('First Name').fill('Sam')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 11,
+            "endLine": 55,
+            "endColumn": 57
+          },
+          "text": "page.getByPlaceholder('Last Name').fill('Lee')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 11,
+            "endLine": 56,
+            "endColumn": 45
+          },
+          "text": "page.getByText('Continue').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 11,
+            "endLine": 57,
+            "endColumn": 59
+          },
+          "text": "page.getByAltText('Sauce Labs Backpack').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 11,
+            "endLine": 58,
+            "endColumn": 43
+          },
+          "text": "page.getByTitle('Close').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 11,
+            "endLine": 59,
+            "endColumn": 55
+          },
+          "text": "page.locator('[data-test=\"finish\"]').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 11,
+            "endLine": 60,
+            "endColumn": 53
+          },
+          "text": "page.locator('[data-qa=\"back\"]').uncheck()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 11,
+            "endLine": 61,
+            "endColumn": 45
+          },
+          "text": "page.locator('data-cy=menu').tap()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 11,
+            "endLine": 62,
+            "endColumn": 59
+          },
+          "text": "page.locator('role=button[name=\"Open\"]').clear()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 11,
+            "endLine": 63,
+            "endColumn": 81
+          },
+          "text": "page.locator('id=react-burger-menu-btn').dragTo(page.locator('#drop'))",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 11,
+            "endLine": 64,
+            "endColumn": 78
+          },
+          "text": "page.locator('[data-testid=\"upload\"]').setInputFiles('receipt.pdf')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 11,
+            "endLine": 65,
+            "endColumn": 75
+          },
+          "text": "page.frameLocator('#payment').locator(`#card-${1}`).fill('4242')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 11,
+            "endLine": 66,
+            "endColumn": 24
+          },
+          "text": "page.reload()",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 11,
+            "endLine": 67,
+            "endColumn": 24
+          },
+          "text": "page.goBack()",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 17,
+      "bodyHash": "4c9ad62af4ca4d8c7d500ea4f6a803b412951faf"
+    },
+    {
+      "id": "10099ae46393",
+      "title": "fakes every request, then checks the page",
+      "fullTitle": "network and data > fakes every request, then checks the page",
+      "suitePath": [
+        "network and data"
+      ],
+      "span": {
+        "startLine": 73,
+        "startColumn": 3,
+        "endLine": 77,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 73,
+        "startColumn": 73,
+        "endLine": 77,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 11,
+            "endLine": 76,
+            "endColumn": 59
+          },
+          "text": "expect(page.getByText('Products')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText('Products')",
+            "normalized": "page.getByText('Products')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 18,
+            "endLine": 76,
+            "endColumn": 44
+          },
+          "text": "page.getByText('Products')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Products"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 11,
+            "endLine": 74,
+            "endColumn": 84
+          },
+          "text": "page.route('**/*', (route) => route.fulfill({ status: 200, body: '{}' }))",
+          "kind": "network",
+          "target": "**/*",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 62,
+            "endLine": 73,
+            "endColumn": 66
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 11,
+            "endLine": 75,
+            "endColumn": 64
+          },
+          "text": "page.goto('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "d4a7f9e24c9512af738fdb77592496fa43125ea3"
+    },
+    {
+      "id": "b2f47873597b",
+      "title": "fakes every request with a pattern",
+      "fullTitle": "network and data > fakes every request with a pattern",
+      "suitePath": [
+        "network and data"
+      ],
+      "span": {
+        "startLine": 79,
+        "startColumn": 3,
+        "endLine": 83,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 79,
+        "startColumn": 66,
+        "endLine": 83,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 11,
+            "endLine": 82,
+            "endColumn": 71
+          },
+          "text": "expect(page.getByText('Something went wrong')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText('Something went wrong')",
+            "normalized": "page.getByText('Something went wrong')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 18,
+            "endLine": 82,
+            "endColumn": 56
+          },
+          "text": "page.getByText('Something went wrong')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Something went wrong"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 11,
+            "endLine": 80,
+            "endColumn": 70
+          },
+          "text": "page.route(/.*/, (route) => route.fulfill({ status: 500 }))",
+          "kind": "network",
+          "target": "/.*/",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 55,
+            "endLine": 79,
+            "endColumn": 59
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 11,
+            "endLine": 81,
+            "endColumn": 64
+          },
+          "text": "page.goto('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "d799335536fc828de48f2ee06a3166026bc43dc8"
+    },
+    {
+      "id": "3ef53768b8b8",
+      "title": "fakes one endpoint and lets the rest through",
+      "fullTitle": "network and data > fakes one endpoint and lets the rest through",
+      "suitePath": [
+        "network and data"
+      ],
+      "span": {
+        "startLine": 85,
+        "startColumn": 3,
+        "endLine": 95,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 85,
+        "startColumn": 85,
+        "endLine": 95,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 11,
+            "endLine": 94,
+            "endColumn": 64
+          },
+          "text": "expect(page.getByText('No orders yet')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText('No orders yet')",
+            "normalized": "page.getByText('No orders yet')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 18,
+            "endLine": 94,
+            "endColumn": 49
+          },
+          "text": "page.getByText('No orders yet')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "No orders yet"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 11,
+            "endLine": 86,
+            "endColumn": 78
+          },
+          "text": "page.route('**/api/orders', (route) => route.fulfill({ json: [] }))",
+          "kind": "network",
+          "target": "**/api/orders",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 11,
+            "endLine": 87,
+            "endColumn": 66
+          },
+          "text": "context.route(/analytics/, (route) => route.continue())",
+          "kind": "network",
+          "target": "/analytics/",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 11,
+            "endLine": 88,
+            "endColumn": 69
+          },
+          "text": "context.route('**/images/**', (route) => route.fallback())",
+          "kind": "network",
+          "target": "**/images/**",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 11,
+            "endLine": 92,
+            "endColumn": 7
+          },
+          "text": "page.route('**/api/user', async (route) => { const response = await route.fetch(); await route.fulfill({ response, json: { name: 'Sam' } }); })",
+          "kind": "network",
+          "target": "**/api/user",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 65,
+            "endLine": 85,
+            "endColumn": 69
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 71,
+            "endLine": 85,
+            "endColumn": 78
+          },
+          "text": "context",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 11,
+            "endLine": 93,
+            "endColumn": 64
+          },
+          "text": "page.goto('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 6,
+      "bodyHash": "b4af65fbf4725a4161583064f72ef1d84ce65a52"
+    },
+    {
+      "id": "9749e2d6f15b",
+      "title": "creates an order and leaves it behind",
+      "fullTitle": "network and data > creates an order and leaves it behind",
+      "suitePath": [
+        "network and data"
+      ],
+      "span": {
+        "startLine": 97,
+        "startColumn": 3,
+        "endLine": 103,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 97,
+        "startColumn": 72,
+        "endLine": 103,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 5,
+            "endLine": 99,
+            "endColumn": 39
+          },
+          "text": "expect(created.status()).toBe(201)",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "created.status()",
+            "normalized": "created.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 5,
+            "endLine": 101,
+            "endColumn": 38
+          },
+          "text": "expect(listed.status()).toBe(200)",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "listed.status()",
+            "normalized": "listed.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 97,
+            "startColumn": 58,
+            "endLine": 97,
+            "endColumn": 65
+          },
+          "text": "request",
+          "kind": "api-context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 27,
+            "endLine": 98,
+            "endColumn": 106
+          },
+          "text": "request.post('https://api.example.test/orders', { data: { item: 'backpack' } })",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 26,
+            "endLine": 100,
+            "endColumn": 72
+          },
+          "text": "request.get('https://api.example.test/orders')",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 11,
+            "endLine": 102,
+            "endColumn": 58
+          },
+          "text": "request.head('https://api.example.test/orders')",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 27,
+            "endLine": 98,
+            "endColumn": 106
+          },
+          "text": "request.post('https://api.example.test/orders', { data: { item: 'backpack' } })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 26,
+            "endLine": 100,
+            "endColumn": 72
+          },
+          "text": "request.get('https://api.example.test/orders')",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 11,
+            "endLine": 102,
+            "endColumn": 58
+          },
+          "text": "request.head('https://api.example.test/orders')",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 5,
+      "bodyHash": "bd9b658670feba862bea513b01c94f32745f65ef"
+    },
+    {
+      "id": "77ae74c4c2fe",
+      "title": "creates an order and deletes it",
+      "fullTitle": "network and data > creates an order and deletes it",
+      "suitePath": [
+        "network and data"
+      ],
+      "span": {
+        "startLine": 105,
+        "startColumn": 3,
+        "endLine": 112,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 105,
+        "startColumn": 66,
+        "endLine": 112,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 111,
+            "startColumn": 5,
+            "endLine": 111,
+            "endColumn": 39
+          },
+          "text": "expect(removed.status()).toBe(204)",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "removed.status()",
+            "normalized": "removed.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "204",
+            "normalized": "204",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "204"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            204
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 105,
+            "startColumn": 52,
+            "endLine": 105,
+            "endColumn": 59
+          },
+          "text": "request",
+          "kind": "api-context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 27,
+            "endLine": 106,
+            "endColumn": 106
+          },
+          "text": "request.post('https://api.example.test/orders', { data: { item: 'backpack' } })",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 108,
+            "startColumn": 11,
+            "endLine": 108,
+            "endColumn": 97
+          },
+          "text": "request.put(`https://api.example.test/orders/${id}`, { data: { item: 'bike light' } })",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 109,
+            "startColumn": 11,
+            "endLine": 109,
+            "endColumn": 93
+          },
+          "text": "request.patch(`https://api.example.test/orders/${id}`, { data: { note: 'gift' } })",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 110,
+            "startColumn": 27,
+            "endLine": 110,
+            "endColumn": 82
+          },
+          "text": "request.delete(`https://api.example.test/orders/${id}`)",
+          "op": "delete",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 27,
+            "endLine": 106,
+            "endColumn": 106
+          },
+          "text": "request.post('https://api.example.test/orders', { data: { item: 'backpack' } })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 108,
+            "startColumn": 11,
+            "endLine": 108,
+            "endColumn": 97
+          },
+          "text": "request.put(`https://api.example.test/orders/${id}`, { data: { item: 'bike light' } })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 109,
+            "startColumn": 11,
+            "endLine": 109,
+            "endColumn": 93
+          },
+          "text": "request.patch(`https://api.example.test/orders/${id}`, { data: { note: 'gift' } })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 110,
+            "startColumn": 27,
+            "endLine": 110,
+            "endColumn": 82
+          },
+          "text": "request.delete(`https://api.example.test/orders/${id}`)",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 6,
+      "bodyHash": "a074a1b33da5934f21833ec0743b14049dd02f3c"
+    },
+    {
+      "id": "17b6e650b568",
+      "title": "opens a second context and never closes it",
+      "fullTitle": "resources > opens a second context and never closes it",
+      "suitePath": [
+        "resources"
+      ],
+      "span": {
+        "startLine": 116,
+        "startColumn": 3,
+        "endLine": 121,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 116,
+        "startColumn": 77,
+        "endLine": 121,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 120,
+            "startColumn": 11,
+            "endLine": 120,
+            "endColumn": 53
+          },
+          "text": "expect(adminPage).toHaveTitle('Swag Labs')",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "adminPage",
+            "normalized": "adminPage",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Swag Labs'",
+            "normalized": "'Swag Labs'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "toHaveTitle",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 116,
+            "startColumn": 63,
+            "endLine": 116,
+            "endColumn": 70
+          },
+          "text": "browser",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 117,
+            "startColumn": 25,
+            "endLine": 117,
+            "endColumn": 45
+          },
+          "text": "browser.newContext()",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 118,
+            "startColumn": 29,
+            "endLine": 118,
+            "endColumn": 44
+          },
+          "text": "admin.newPage()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "c9a2b7d7e8656aaa16ca2c4c31c64a269e51ce99"
+    },
+    {
+      "id": "8b311de55b89",
+      "title": "opens a second context and closes it",
+      "fullTitle": "resources > opens a second context and closes it",
+      "suitePath": [
+        "resources"
+      ],
+      "span": {
+        "startLine": 123,
+        "startColumn": 3,
+        "endLine": 130,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 123,
+        "startColumn": 80,
+        "endLine": 130,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 127,
+            "startColumn": 11,
+            "endLine": 127,
+            "endColumn": 53
+          },
+          "text": "expect(adminPage).toHaveTitle('Swag Labs')",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "adminPage",
+            "normalized": "adminPage",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Swag Labs'",
+            "normalized": "'Swag Labs'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "toHaveTitle",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 57,
+            "endLine": 123,
+            "endColumn": 64
+          },
+          "text": "browser",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 66,
+            "endLine": 123,
+            "endColumn": 73
+          },
+          "text": "context",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 124,
+            "startColumn": 25,
+            "endLine": 124,
+            "endColumn": 45
+          },
+          "text": "browser.newContext()",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 125,
+            "startColumn": 29,
+            "endLine": 125,
+            "endColumn": 44
+          },
+          "text": "admin.newPage()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 126,
+            "startColumn": 25,
+            "endLine": 126,
+            "endColumn": 42
+          },
+          "text": "context.newPage()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "1cb43443808561c0733924aed4057b0f298b07db"
+    },
+    {
+      "id": "2b50dcae373d",
+      "title": "launches its own browser and API client",
+      "fullTitle": "resources > launches its own browser and API client",
+      "suitePath": [
+        "resources"
+      ],
+      "span": {
+        "startLine": 132,
+        "startColumn": 3,
+        "endLine": 138,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 132,
+        "startColumn": 63,
+        "endLine": 138,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 136,
+            "startColumn": 5,
+            "endLine": 136,
+            "endColumn": 40
+          },
+          "text": "expect(response.status()).toBe(200)",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "response.status()",
+            "normalized": "response.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 133,
+            "startColumn": 23,
+            "endLine": 133,
+            "endColumn": 40
+          },
+          "text": "chromium.launch()",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 134,
+            "startColumn": 23,
+            "endLine": 134,
+            "endColumn": 82
+          },
+          "text": "request.newContext({ baseURL: 'https://api.example.test' })",
+          "kind": "api-context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "b116ea852806a6cfbdefed388621fb3f466aed77"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 68
+      },
+      "source": "@playwright/test",
+      "names": [
+        "test",
+        "expect",
+        "chromium",
+        "request"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

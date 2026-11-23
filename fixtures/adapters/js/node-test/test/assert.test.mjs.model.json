@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -1050,8 +1057,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 28,
+            "endLine": 47,
+            "endColumn": 76
+          },
+          "text": "fetch('https://api.example.test/orders/missing')",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 28,
+            "endLine": 47,
+            "endColumn": 76
+          },
+          "text": "fetch('https://api.example.test/orders/missing')",
+          "kind": "request"
+        }
+      ],
       "statementCount": 5,
       "bodyHash": "d9ebabcac79cb9d542c40107bb3643238e96e85d"
     },
@@ -1164,8 +1194,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 16,
+            "endLine": 57,
+            "endColumn": 51
+          },
+          "text": "mock.method(Cart.prototype, 'save')",
+          "kind": "function",
+          "target": "Cart.prototype.save",
+          "targetsSubject": null,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 16,
+            "endLine": 57,
+            "endColumn": 51
+          },
+          "text": "mock.method(Cart.prototype, 'save')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 6,

@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -966,12 +973,301 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 60
+          },
+          "text": "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 35
+          },
+          "text": "cy.get('.shopping_cart_badge')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 35
+          },
+          "text": "cy.get('.shopping_cart_badge')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 37
+          },
+          "text": "cy.get('#react-burger-menu-btn')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#react-burger-menu-btn"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "last",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "nth",
+            "index": 1,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 51
+          },
+          "text": "cy.get('.inventory_item').eq(1).find('button')",
+          "api": "cy.find",
+          "strategy": "css",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 45
+          },
+          "text": "cy.get('.product_sort_container option')",
+          "api": "cy.get",
+          "strategy": "css",
+          "value": ".product_sort_container option",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "css"
+          }
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 24
+          },
+          "text": "cy.get('#remember')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#remember"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 22
+          },
+          "text": "cy.get('#search')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#search"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 27
+          },
+          "text": "cy.get('.footer_copy')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".footer_copy"
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_list')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_list"
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 36
+          },
+          "text": "cy.get('.inventory_item_price')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item_price",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 68
+          },
+          "text": "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 22,
       "bodyHash": "72ba42756e3fffcb1022bb3a47f6ce25cc52e457"
     },
@@ -1217,8 +1513,52 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 50
+          },
+          "text": "cy.request('https://api.example.test/orders')",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 92
+          },
+          "text": "cy.request({ url: 'https://api.example.test/orders/missing', failOnStatusCode: false })",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 50
+          },
+          "text": "cy.request('https://api.example.test/orders')",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 92
+          },
+          "text": "cy.request({ url: 'https://api.example.test/orders/missing', failOnStatusCode: false })",
+          "kind": "request"
+        }
+      ],
       "statementCount": 6,
       "bodyHash": "a956642e62b53577e1635d053ac578b09f1b4e61"
     },
@@ -1370,7 +1710,44 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 5,
+            "endLine": 56,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 25
+          },
+          "text": "cy.get('.cart_list')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".cart_list"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 7,
+            "endLine": 61,
+            "endColumn": 27
+          },
+          "text": "cy.get('.cart_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".cart_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -1445,7 +1822,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 5,
+            "endLine": 66,
+            "endColumn": 36
+          },
+          "text": "cy.get('.inventory_item_price')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item_price"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -1524,12 +1914,58 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 5,
+            "endLine": 72,
+            "endColumn": 60
+          },
+          "text": "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 5,
+            "endLine": 73,
+            "endColumn": 34
+          },
+          "text": "cy.get('.shopping_cart_link')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 5,
+            "endLine": 72,
+            "endColumn": 68
+          },
+          "text": "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 5,
+            "endLine": 73,
+            "endColumn": 42
+          },
+          "text": "cy.get('.shopping_cart_link').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "1a2669df523526939ea1362721ea1e67b77bad0a"
     },
@@ -1603,12 +2039,48 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 5,
+            "endLine": 78,
+            "endColumn": 34
+          },
+          "text": "cy.get('.shopping_cart_link')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        },
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 5,
+            "endLine": 79,
+            "endColumn": 25
+          },
+          "text": "cy.get('.cart_list')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".cart_list"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 5,
+            "endLine": 78,
+            "endColumn": 42
+          },
+          "text": "cy.get('.shopping_cart_link').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "d314c9b031f73019eda17ae0f2ac30f17307fd2b"
     },
@@ -1642,12 +2114,36 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 5,
+            "endLine": 84,
+            "endColumn": 35
+          },
+          "text": "cy.get('.shopping_cart_badge')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 5,
+            "endLine": 83,
+            "endColumn": 39
+          },
+          "text": "cy.contains('Add to cart').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "ccfcf50e25566a553d3b78db2cb11b5dcdb26190"
     },
@@ -1703,12 +2199,36 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 5,
+            "endLine": 89,
+            "endColumn": 60
+          },
+          "text": "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 5,
+            "endLine": 89,
+            "endColumn": 68
+          },
+          "text": "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "99583a70c0dde06319640cac26ff3747aa52902b"
     },
@@ -1803,7 +2323,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 5,
+            "endLine": 98,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_list')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_list"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -1882,7 +2415,32 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 5,
+            "endLine": 102,
+            "endColumn": 19
+          },
+          "text": "cy.get('body')",
+          "api": "cy.get",
+          "strategy": "css",
+          "value": "body"
+        },
+        {
+          "span": {
+            "startLine": 104,
+            "startColumn": 9,
+            "endLine": 104,
+            "endColumn": 43
+          },
+          "text": "cy.get('.error-message-container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".error-message-container"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],

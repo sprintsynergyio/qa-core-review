@@ -2,7 +2,7 @@
 // hooks, the modifiers, and how a file shows which framework it uses. The normalizer reads
 // these tables and holds no framework names of its own. A test checks that every entry here
 // appears in at least one fixture under fixtures/adapters/js/.
-import type { AssertionKind, FrameworkId, Modifier, NHook } from '../../model/types.js';
+import type { AssertionKind, FrameworkId, Modifier, NDataOp, NHook, NResource, NStep, NWait, SelectorStrategy } from '../../model/types.js';
 
 /** Functions that declare a test: `test('title', fn)`. */
 export const TEST_CALLEES = ['test', 'it', 'specify'] as const;
@@ -268,6 +268,126 @@ export const PROMISE_MEMBERS = ['then', 'catch', 'finally'] as const;
 /** A call in a catch handler that passes the error on and fails the test: Mocha `done(error)`. */
 export const HANDLER_FAIL_CALLS = ['done', 'reject'] as const;
 
+// Waits (SPEC.md Section 9.1). Method tables are keyed by the name of the method called.
+
+/** A method that sleeps for a fixed time when its first argument is not a function, a string alias or missing. */
+export const FIXED_WAIT_METHODS = ['waitForTimeout', 'pause', 'wait'] as const;
+/** Bare functions that sleep when awaited: `await sleep(500)`. `setTimeout` is the promise form from node:timers/promises. */
+export const FIXED_WAIT_FUNCTIONS = ['sleep', 'delay', 'wait', 'pause', 'setTimeout'] as const;
+/** `new Promise((resolve) => setTimeout(resolve, 500))`. */
+export const TIMER_FUNCTION = 'setTimeout';
+/** Methods that wait for a condition, and methods that move a fake clock. Neither is a hard wait. */
+export const WAIT_METHODS: Readonly<Record<string, NWait['kind']>> = {
+  waitForResponse: 'condition', waitForRequest: 'condition', waitForURL: 'condition', waitForSelector: 'condition', waitForLoadState: 'condition',
+  waitForFunction: 'condition', waitForEvent: 'condition', waitUntil: 'condition', waitFor: 'condition', waitForDisplayed: 'condition',
+  waitForExist: 'condition', waitForClickable: 'condition', waitForEnabled: 'condition',
+  advanceTimersByTime: 'fake-timer', advanceTimersByTimeAsync: 'fake-timer', runAllTimers: 'fake-timer', runAllTimersAsync: 'fake-timer',
+  runOnlyPendingTimers: 'fake-timer', clock: 'fake-timer', tick: 'fake-timer',
+};
+
+// Selectors.
+
+/** Calls whose first string argument is a selector, with the strategy when the call fixes it (null: read it from the string). */
+export const SELECTOR_CALLS: Readonly<Record<string, SelectorStrategy | null>> = {
+  locator: null, frameLocator: null, $: null, $$: null, $eval: null, $$eval: null, waitForSelector: null, querySelector: null, querySelectorAll: null,
+  get: null, find: null,
+  getByRole: 'role', getByTestId: 'test-id', getByLabel: 'label', getByText: 'text', getByPlaceholder: 'other', getByAltText: 'other', getByTitle: 'other',
+};
+/** `get` and `find` are selectors only on a Cypress chain. */
+export const CYPRESS_ONLY_SELECTOR_CALLS = ['get', 'find'] as const;
+/** Page methods that take a selector first: `page.click('#buy')`, `page.fill('#name', 'Sam')`. The number is the fewest arguments. */
+export const SELECTOR_ACTIONS: Readonly<Record<string, number>> = { click: 1, dblclick: 1, hover: 1, check: 1, fill: 2, type: 2, press: 2, selectOption: 2 };
+/** Objects that have those methods. On a locator the first argument is a value, not a selector. */
+export const PAGE_OBJECTS = ['page', 'frame'] as const;
+/** Calls that pick one element by position. */
+export const POSITIONAL_CALLS: Readonly<Record<string, 'nth' | 'first' | 'last'>> = { nth: 'nth', eq: 'nth', first: 'first', last: 'last' };
+/** Test id attributes that are always known, next to the `testIdAttribute` of the config. */
+export const TEST_ID_ATTRIBUTES = ['data-testid', 'data-test', 'data-qa', 'data-cy'] as const;
+
+// Steps and data operations.
+
+/** Objects that drive a page. A `click` or `fill` on anything else (an array, a map) is not a step. Locators count too. */
+export const UI_ROOTS = ['page', 'frame', 'cy', 'browser', 'userEvent', 'user', 'fireEvent'] as const;
+/** `browser.url('/cart')` goes to a page. `page.url()` only reads the address. */
+export const NEEDS_ARGUMENT = ['url'] as const;
+export const STEP_METHODS: Readonly<Record<string, NStep['kind']>> = {
+  goto: 'navigate', visit: 'navigate', url: 'navigate', reload: 'navigate', goBack: 'navigate',
+  click: 'action', dblclick: 'action', fill: 'action', type: 'action', press: 'action', check: 'action', uncheck: 'action', selectOption: 'action',
+  hover: 'action', tap: 'action', clear: 'action', setValue: 'action', addValue: 'action', dragTo: 'action', setInputFiles: 'action', selectFile: 'action',
+};
+/** HTTP clients: `request.post(url)` (Playwright), `axios.get(url)`. `fetch(url, { method })` and `cy.request(...)` are read apart. */
+export const HTTP_CLIENTS = ['request', 'axios'] as const;
+export const HTTP_FUNCTION = 'fetch';
+export const CYPRESS_REQUEST = 'request';
+export const HTTP_METHODS: Readonly<Record<string, NDataOp['op']>> = { get: 'read', head: 'read', post: 'create', put: 'update', patch: 'update', delete: 'delete' };
+
+// Mocks.
+
+/** Calls that replace a whole module. */
+export const MODULE_MOCKS = ['vi.mock', 'vi.doMock', 'jest.mock', 'jest.doMock', 'jest.unstable_mockModule'] as const;
+/** A module factory that calls one of these keeps the real module. */
+export const ACTUAL_MODULE_CALLS = ['importActual', 'requireActual', 'importOriginal'] as const;
+/** Calls that replace one function on an object: `vi.spyOn(cart, 'total')`. `passthrough`: the real function still runs unless a reply is stubbed. */
+export const FUNCTION_MOCKS: Readonly<Record<string, { passthrough: boolean; autoManaged?: boolean }>> = {
+  'vi.spyOn': { passthrough: true }, 'jest.spyOn': { passthrough: true }, 'sinon.spy': { passthrough: true }, 'sinon.stub': { passthrough: false },
+  'mock.method': { passthrough: true }, 'cy.spy': { passthrough: true, autoManaged: true }, 'cy.stub': { passthrough: false, autoManaged: true },
+};
+/** Chained calls that give a mock a fixed reply. */
+export const STUB_METHODS = [
+  'mockReturnValue', 'mockReturnValueOnce', 'mockResolvedValue', 'mockResolvedValueOnce', 'mockRejectedValue', 'mockRejectedValueOnce',
+  'mockImplementation', 'mockImplementationOnce', 'returns', 'resolves', 'rejects', 'callsFake', 'throws',
+] as const;
+/** Network fakes: `page.route(pattern, handler)` and `cy.intercept(pattern, reply)`. */
+export const ROUTE_METHOD = 'route';
+export const CYPRESS_INTERCEPT = 'intercept';
+/** In a route handler: a canned reply, or the real request going on. */
+export const ROUTE_FULFILL = ['fulfill'] as const;
+export const ROUTE_CONTINUE = ['continue', 'fallback', 'fetch'] as const;
+/** Patterns that match every request. */
+export const MATCH_ALL_PATTERNS = ['*', '**', '**/*', '/.*/'] as const;
+
+// Resources and how they are released (SPEC.md Section 10.14). A release is a token: a resource is
+// released when one of its tokens is released in the same test or in an after hook.
+
+/** `named`: the first argument names the one thing that changes, so `vi.stubEnv('API_URL', x)` is also released by a write to `process.env.API_URL`. */
+export interface ResourceRule { kind: NResource['kind']; releasedBy: string[]; autoManaged?: boolean; named?: boolean }
+/** Calls that take hold of something, by their dotted name or by `.method` on any object. */
+export const RESOURCE_CALLS: Readonly<Record<string, ResourceRule>> = {
+  'vi.useFakeTimers': { kind: 'fake-timers', releasedBy: ['timers'] },
+  'jest.useFakeTimers': { kind: 'fake-timers', releasedBy: ['timers'] },
+  'sinon.useFakeTimers': { kind: 'fake-timers', releasedBy: ['timers', 'mocks'] },
+  'cy.clock': { kind: 'fake-timers', releasedBy: [], autoManaged: true },
+  'vi.stubGlobal': { kind: 'global', releasedBy: ['globals'], named: true },
+  'vi.stubEnv': { kind: 'env', releasedBy: ['envs'], named: true },
+  '.launch': { kind: 'browser', releasedBy: [] },
+  '.newContext': { kind: 'context', releasedBy: [] },
+  '.newPage': { kind: 'page', releasedBy: [] },
+};
+/** `request.newContext()` is an API client, not a browser context. */
+export const API_CONTEXT_OWNER = 'request';
+/** Calls that release every resource of a kind: the token they release. */
+export const RELEASE_CALLS: Readonly<Record<string, string>> = {
+  'vi.useRealTimers': 'timers', 'jest.useRealTimers': 'timers', 'vi.restoreAllMocks': 'mocks', 'jest.restoreAllMocks': 'mocks', 'sinon.restore': 'mocks',
+  'vi.unstubAllGlobals': 'globals', 'vi.unstubAllEnvs': 'envs',
+};
+/** Methods that release the one thing they are called on: `context.close()`, `spy.mockRestore()`. */
+export const RELEASE_METHODS = ['close', 'dispose', 'mockRestore', 'restore'] as const;
+/**
+ * Assigning to a member of one of these changes state that outlives the test. The release token is
+ * the kind, a colon, the prefix and the member: `process.env.API_URL` gives 'env:API_URL', `Date.now` gives 'global:Date.now'.
+ */
+export const GLOBAL_OBJECTS: Readonly<Record<string, { kind: NResource['kind']; prefix: string }>> = {
+  'process.env': { kind: 'env', prefix: '' }, globalThis: { kind: 'global', prefix: '' }, global: { kind: 'global', prefix: '' },
+  window: { kind: 'global', prefix: '' }, Date: { kind: 'global', prefix: 'Date.' },
+};
+/** Playwright fixtures: the runner makes and closes them. */
+export const AUTO_FIXTURES: Readonly<Record<string, NResource['kind']>> = { page: 'page', context: 'context', browser: 'browser', request: 'api-context' };
+
+// The lexical fallback (SPEC.md Section 7.2): line patterns for a file that cannot be parsed.
+
+export const LEXICAL_ASSERTION = /(?<![\w$.])(expect|assert)\s*[.(]|\.(should|and)\s*\(\s*['"`]/;
+export const LEXICAL_FIXED_WAIT = /\.(waitForTimeout|pause)\s*\(\s*(\d+)?|(?<![\w$.])cy\.wait\s*\(\s*(\d+)|\bawait\s+(?:sleep|delay|wait|pause)\s*\(\s*(\d+)?/;
+
 /** Every vocabulary entry as it is written in a test file, for the coverage test. */
 export const VOCAB_SURFACE: readonly string[] = [
   ...TEST_CALLEES,
@@ -303,4 +423,18 @@ export const VOCAB_SURFACE: readonly string[] = [
   ...ALWAYS_RUN_CALLBACKS.map((name) => `${name}(`),
   ...PROMISE_MEMBERS.map((member) => `.${member}`),
   ...HANDLER_FAIL_CALLS.map((name) => `${name}(`),
+  ...[...FIXED_WAIT_METHODS, ...Object.keys(WAIT_METHODS), ...Object.keys(SELECTOR_CALLS), ...Object.keys(POSITIONAL_CALLS), ...Object.keys(STEP_METHODS)].map((name) => `.${name}(`),
+  ...FIXED_WAIT_FUNCTIONS.map((name) => `await ${name}(`),
+  `new Promise((resolve) => ${TIMER_FUNCTION}(`,
+  ...Object.keys(SELECTOR_ACTIONS).map((name) => `.${name}(`),
+  ...[...PAGE_OBJECTS, ...UI_ROOTS, ...HTTP_CLIENTS, ...Object.keys(GLOBAL_OBJECTS)].map((object) => `${object}.`),
+  ...TEST_ID_ATTRIBUTES,
+  ...Object.keys(HTTP_METHODS).map((method) => `.${method}(`),
+  `${HTTP_FUNCTION}(`, `cy.${CYPRESS_REQUEST}(`, `cy.${CYPRESS_INTERCEPT}(`, `.${ROUTE_METHOD}(`,
+  ...MODULE_MOCKS, ...Object.keys(FUNCTION_MOCKS),
+  ...ACTUAL_MODULE_CALLS.map((name) => `${name}(`),
+  ...[...STUB_METHODS, ...ROUTE_FULFILL, ...ROUTE_CONTINUE, ...RELEASE_METHODS].map((name) => `.${name}(`),
+  ...MATCH_ALL_PATTERNS,
+  ...Object.keys(RESOURCE_CALLS), ...Object.keys(RELEASE_CALLS), `${API_CONTEXT_OWNER}.newContext(`,
+  ...Object.keys(AUTO_FIXTURES).map((name) => `${name} }`),
 ];

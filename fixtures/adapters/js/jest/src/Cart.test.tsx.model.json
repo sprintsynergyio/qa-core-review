@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -99,7 +106,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 12,
+            "endLine": 7,
+            "endColumn": 38
+          },
+          "text": "screen.getByText('1 item')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "1 item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],

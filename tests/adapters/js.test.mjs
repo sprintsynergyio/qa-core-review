@@ -7,8 +7,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 import {
-  JS_VOCAB_SURFACE, MAX_SOURCE_BYTES, bodyHash, clipText, createHelperIndex, createRegistry, createTreeSitterService, jsAdapter, jsGrammarFor, parseSuppression,
-  readAsset, readSourceFile,
+  CAPABILITIES, JS_VOCAB_SURFACE, MAX_SOURCE_BYTES, bodyHash, clipText, createHelperIndex, createRegistry, createTreeSitterService, jsAdapter, jsGrammarFor, parseSuppression,
+  readAsset, readSourceFile, selectorStrategy,
 } from '../../dist/index.js';
 import { adapterContext, capabilityFilled, fixtureRoot, frameworkFolders, normalizeProject, normalizeText } from '../helpers/adapter-suite.mjs';
 import { BIG_FILES } from '../helpers/big-files.mjs';
@@ -40,7 +40,7 @@ for (const framework of FRAMEWORKS) {
       assert.deepEqual(schemaErrors('model.schema.json', model), [], file);
       expectGolden(model, path.join(fixtureRoot('adapters', 'js', framework), `${file}.model.json`));
       assert.equal(model.role, file.includes('/pages/') ? 'support' : 'test', file);
-      assert.equal(model.parseStatus, 'ok', file);
+      assert.equal(model.parseStatus, file.includes('broken') ? 'partial' : 'ok', file);
     }
   });
 }
@@ -55,22 +55,30 @@ test('framework detection is right for every fixture file', async () => {
   assert.deepEqual(detected, {
     'cypress/cypress/e2e/assertions.cy.js': ['cypress', 'javascript', 'medium'],
     'cypress/cypress/e2e/login.cy.js': ['cypress', 'javascript', 'medium'], // the `cy` global
+    'cypress/cypress/e2e/network.cy.js': ['cypress', 'javascript', 'medium'],
     'jest/src/Cart.test.tsx': ['jest', 'typescript', 'medium'], // no import: the project's only runner with globals
     'jest/src/CartDom.test.tsx': ['jest', 'typescript', 'medium'],
+    'jest/src/broken.test.ts': ['jest', 'typescript', 'high'], // read without a tree
     'jest/src/cart.test.ts': ['jest', 'typescript', 'high'], // imports @jest/globals
     'jest/src/matchers.test.ts': ['jest', 'typescript', 'high'],
+    'jest/src/orders.test.ts': ['jest', 'typescript', 'high'],
     'mocha/test/chai.test.js': ['mocha', 'javascript', 'medium'],
     'mocha/test/orders.test.js': ['mocha', 'javascript', 'medium'],
+    'mocha/test/stubs.test.js': ['mocha', 'javascript', 'medium'],
     'mocha/test/tdd.test.js': ['mocha', 'javascript', 'high'],
     'node-test/test/assert.test.mjs': ['node-test', 'javascript', 'high'],
     'node-test/test/cart.test.mjs': ['node-test', 'javascript', 'high'],
+    'node-test/test/server.test.mjs': ['node-test', 'javascript', 'high'],
     'playwright/tests/api.spec.ts': ['playwright', 'typescript', 'high'],
     'playwright/tests/assertions.spec.ts': ['playwright', 'typescript', 'high'],
     'playwright/tests/checkout.spec.ts': ['playwright', 'typescript', 'high'],
+    'playwright/tests/flow.spec.ts': ['playwright', 'typescript', 'high'],
     'playwright/tests/pages/cart-page.ts': ['playwright', 'typescript', 'high'], // a support file
     'vitest/src/assertions.test.ts': ['vitest', 'typescript', 'high'],
     'vitest/src/price.test.ts': ['vitest', 'typescript', 'high'],
+    'vitest/src/rates.test.ts': ['vitest', 'typescript', 'high'],
     'webdriverio/test/specs/cart.e2e.js': ['webdriverio', 'javascript', 'medium'], // `browser.` and `$(` count because the project has WebdriverIO
+    'webdriverio/test/specs/checkout.e2e.ts': ['webdriverio', 'typescript', 'high'],
     'webdriverio/test/specs/login.e2e.ts': ['webdriverio', 'typescript', 'high'],
     'webdriverio/test/specs/matchers.e2e.ts': ['webdriverio', 'typescript', 'high'],
   });
@@ -282,16 +290,17 @@ test('every vocabulary entry appears in at least one fixture', () => {
     return !new RegExp(pattern).test(all);
   });
   assert.deepEqual(missing, []);
-  assert.ok(JS_VOCAB_SURFACE.length > 350);
+  assert.ok(new Set(JS_VOCAB_SURFACE).size > 480);
 });
 
 test('every capability the adapter declares is filled in at least one golden', async () => {
   const all = [];
   for (const framework of FRAMEWORKS) all.push(...(await modelsOf(framework)).map((entry) => entry.model));
-  assert.deepEqual(jsAdapter.capabilities, ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability']);
+  // The adapter fills every capability of the model.
+  assert.deepEqual([...jsAdapter.capabilities].sort(), [...CAPABILITIES].sort());
   for (const capability of jsAdapter.capabilities) {
     assert.ok(all.some((model) => capabilityFilled(capability, model)), `no golden fills "${capability}"`);
-    assert.ok(all.every((model) => model.capabilities.includes(capability)));
+    assert.ok(all.every((model) => model.parseStatus !== 'ok' || model.capabilities.includes(capability)));
   }
 });
 
@@ -307,14 +316,16 @@ test('robustness: an empty file, a file with no tests, and a file that is not co
   assert.deepEqual([empty.role, empty.parseStatus, empty.tests.length, empty.runner], ['support', 'ok', 0, 'unknown']);
   assert.equal((await js("export function login(page) { return page.goto('/'); }\n")).role, 'support');
   const garbage = await js('<<<<<<< HEAD\n}}}} ))) ((( === @@@ ### \n>>>>>>> branch\n ]]] {{{ ;;; ??? \n');
-  assert.deepEqual([garbage.parseStatus, garbage.capabilities, garbage.tests], ['failed', [], []]);
+  assert.deepEqual([garbage.parseStatus, garbage.capabilities, garbage.tests, garbage.role], ['failed', [], [], 'support']);
   assert.deepEqual(schemaErrors('model.schema.json', garbage), []);
 });
 
-test('robustness: a missing grammar gives a failed file, not a crash', async () => {
+test('robustness: with a missing grammar the lexical scanner reads the file', async () => {
   const parser = createTreeSitterService({ readAsset: (name) => (name.endsWith('typescript.wasm') ? (() => { throw new Error('gone'); })() : readAsset(name)) });
   const model = await js("test('a', () => {});", 'a.test.ts', { parser });
-  assert.deepEqual([model.parseStatus, model.capabilities, model.role], ['failed', [], 'support']);
+  assert.deepEqual([model.parseStatus, model.capabilities, model.role, model.tests.length], ['partial', ['tests', 'modifiers', 'assertions', 'waits'], 'test', 1]);
+  assert.deepEqual((await js('export const x = 1;', 'x.ts', { parser })).parseStatus, 'failed');
+  assert.deepEqual(jsAdapter.collectHelpers(await jsAdapter.parse({ path: 'a.ts', absPath: '/a.ts', language: 'typescript', project: null, text: 'x' }, { ...adapterContext(), parser })), []);
 });
 
 test('robustness: CRLF, a byte order mark and non-ASCII titles', async (t) => {
@@ -583,4 +594,128 @@ test('hooks keep their assertions, and the library follows the imports', async (
   const local = await js("import { test, expect } from './fixtures';\ntest('t', async ({ page }) => { expect(page.locator('a')).toBeVisible(); });", 'a.spec.ts', { project: { dir: '.', adapterId: 'js', languages: ['typescript'], frameworks: ['playwright'], evidence: ['package.json'] } });
   assert.deepEqual([local.runner, local.tests[0].assertions[0].library, local.tests[0].assertions[0].awaited], ['playwright', 'playwright', 'no']);
   assert.equal((await checks('assert.isOk(1);', { file: 'a.cy.js' })).assertions[0].library, 'chai');
+});
+
+// Waits, selectors, mocks, resources and the lexical fallback (the third part of Milestone 4).
+
+const lines = (list, format) => list.map((item) => format(item));
+
+test('waits: fixed sleeps, conditions and fake timers', async () => {
+  const t = await checks(`
+    await page.waitForTimeout(3000); await browser.pause(2_000); cy.wait(500); cy.wait(delay); await sleep(250); await delay(ms); await wait(1); await pause(1);
+    await new Promise((resolve) => setTimeout(resolve, 750)); await new Promise((r) => { setTimeout(r, pause); });
+    cy.wait('@orders'); cy.wait(['@a', '@b']); await page.waitForResponse('**/x'); await page.waitForURL('/x'); await el.waitFor(); await browser.waitUntil(() => true);
+    vi.advanceTimersByTime(1000); jest.runAllTimers(); cy.tick(60000); clock.tick(5);
+    page.pause(); await wait(() => ready); setTimeout(done, 100); sleep(5); new Promise((resolve) => setTimeout(resolve, 5)); await new Promise((resolve) => resolve());`);
+  assert.deepEqual(lines(t.waits, (w) => `${w.kind} ${w.ms}`), [
+    'fixed-sleep 3000', 'fixed-sleep 2000', 'fixed-sleep 500', 'fixed-sleep null', 'fixed-sleep 250', 'fixed-sleep null', 'fixed-sleep 1', 'fixed-sleep 1',
+    'fixed-sleep 750', 'fixed-sleep null',
+    'condition null', 'condition null', 'condition null', 'condition null', 'condition null', 'condition null',
+    'fake-timer 1000', 'fake-timer null', 'fake-timer 60000', 'fake-timer 5',
+  ]);
+  assert.deepEqual([t.waits[0].text, t.waits[0].span], ['page.waitForTimeout(3000)', { startLine: 4, startColumn: 11, endLine: 4, endColumn: 36 }]);
+});
+
+test('selectors: the call, the strategy, the value and positional picks', async () => {
+  const t = await checks(`
+    page.locator('#root > div:nth-child(2)'); page.locator('//div[2]').nth(3); page.getByRole('button', { name: 'Buy' }).first(); page.getByTestId('total');
+    page.getByLabel('Name').last(); page.getByText('Buy'); page.getByPlaceholder('Name'); page.frameLocator('#pay').locator('.card').filter({ hasText: 'x' }).nth(0);
+    page.click('[data-test="buy"]'); page.fill('#name', 'Sam'); page.$('.title'); page.$$eval('.item', count); page.waitForSelector(\`.done\`);
+    page.locator(\`#item-\${id}\`); page.locator(selector); document.querySelector('[name=q]');
+    button.click('left'); locator.fill('Sam'); list.find((x) => x); map.get('key'); items.first(); $('.jquery');`, PLAYWRIGHT);
+  assert.deepEqual(lines(t.selectors, (s) => [s.api, s.strategy, s.value, s.positional && `${s.positional.kind}:${s.positional.index}:${s.positional.baseStrategy}`].filter((part) => part !== undefined).join(' | ')), [
+    'locator | css | #root > div:nth-child(2)', 'locator | xpath | //div[2] | nth:3:xpath', 'getByRole | role | button | first:null:role', 'getByTestId | test-id | total',
+    'getByLabel | label | Name | last:null:label', 'getByText | text | Buy', 'getByPlaceholder | other | Name', 'frameLocator | id | #pay', 'locator | class | .card | nth:0:class',
+    'click | test-id | [data-test="buy"]', 'fill | id | #name', '$ | class | .title', '$$eval | class | .item', 'waitForSelector | class | .done',
+    'locator | other | ', 'locator | other | ', 'querySelector | name | [name=q]',
+  ]);
+  const others = await checks("cy.get('.item').eq(2).find('button'); cy.get('[data-cy=row]').first(); $('=Twitter'); $$('.row')[2]; browser.$('~menu');", { file: 'a.cy.js', project: { dir: '.', adapterId: 'js', languages: ['javascript'], frameworks: ['webdriverio'], evidence: [] } });
+  assert.deepEqual(lines(others.selectors, (s) => `${s.api} ${s.strategy}${s.positional ? ` ${s.positional.kind}:${s.positional.index}` : ''}`), ['cy.get class nth:2', 'cy.find css', 'cy.get test-id first:null', '$ link-text', '$$ class', '$ label']);
+  // The strategy reader is shared by every adapter.
+  const strategies = {
+    '//div': 'xpath', '/html/body': 'xpath', '(//a)[1]': 'xpath', 'xpath=//a': 'xpath', './/a': 'xpath', '../a': 'xpath', 'text=Buy': 'text', 'role=button': 'role', 'id=buy': 'id',
+    'aria/Menu': 'label', '~menu': 'label', '=Home': 'link-text', '*=Hom': 'link-text', '#buy': 'id', ' #buy ': 'id', '.btn': 'class', 'css=.btn': 'class', '[name="q"]': 'name', '[id=x]': 'id',
+    '[data-testid="x"]': 'test-id', '[data-pw=x]': 'test-id', 'data-testid=x': 'test-id', '[data-test=x]': 'css', '[href^="/a"]': 'css', 'div > .btn': 'css', '#a .b': 'css', 'button': 'css',
+  };
+  assert.deepEqual(Object.fromEntries(Object.keys(strategies).map((selector) => [selector, selectorStrategy(selector, ['data-testid', 'data-pw'])])), strategies);
+  assert.equal((await checks("page.locator('[data-pw=buy]');", { ...PLAYWRIGHT, config: { testIdAttribute: 'data-pw' } })).selectors[0].strategy, 'test-id');
+});
+
+test('steps and data operations', async () => {
+  const t = await checks(`
+    await page.goto('/'); await page.getByRole('button').click(); await page.fill('#a', 'b'); cy.visit('/'); cy.get('a').type('x'); await browser.url('/cart'); page.url();
+    await request.post('/orders'); await request.get('/orders'); await request.put('/o/1'); await request.patch('/o/1'); await request.delete('/o/1'); await axios.head('/o');
+    await fetch('/orders'); await fetch('/orders', { method: 'DELETE' }); cy.request('/orders'); cy.request('POST', '/orders', {}); cy.request({ method: 'PUT', url: '/o/1' });
+    list.fill(0); map.clear(); cache.get('x'); api.post('/unknown-client');`, PLAYWRIGHT);
+  assert.deepEqual(lines(t.steps, (s) => s.kind), ['navigate', 'action', 'action', 'navigate', 'action', 'navigate', ...Array(11).fill('request')]);
+  assert.deepEqual(lines(t.data, (d) => `${d.op} ${d.via}`).join(', '), 'create http, read http, update http, update http, delete http, read http, read http, delete http, read http, create http, update http');
+});
+
+test('mocks: modules, functions and the network, and whether they replace the subject', async () => {
+  const head = "import { test, expect, vi } from 'vitest';\nimport * as cart from './cart';\nimport { send as sendMail } from './mailer';\nvi.mock('./cart');\nvi.mock('./tax', async (importOriginal) => ({ ...(await importOriginal()), rate: 0 }));\nbeforeEach(() => { vi.mock('../src/cart.ts', () => ({})); });";
+  const model = await js(`${head}\ntest('t', async ({ page }) => {
+    const total = vi.spyOn(cart, 'total'); const add = vi.spyOn(cart, 'add').mockReturnValue(1); const send = sinon.stub(mailer, 'send'); const log = sinon.spy(console, 'log');
+    total.mockResolvedValue(5); vi.doMock('./stock', () => ({ ...vi.importActual('./stock') })); vi.spyOn(sendMail, 'now'); sinon.stub(); vi.fn();
+    await page.route('**/*', (route) => route.fulfill({ body: '{}' })); await page.route('**/api', (route) => route.continue()); await page.route('**', (route) => route.abort());
+    cy.intercept('*', { body: [] }); cy.intercept('GET', '**/orders', { fixture: 'o.json' }); cy.intercept('POST', '/orders'); cy.intercept('**', (req) => req.reply({}));
+  });`, 'src/cart.test.ts');
+  const brief = (m) => `${m.kind} ${m.target} subject:${m.targetsSubject}${m.passthrough ? ' passthrough' : ''}${m.stubbedReturn ? ' stubbed' : ''}${m.fulfillsAllNetwork ? ' all-network' : ''}`;
+  assert.deepEqual(model.subject, { module: './cart', via: 'filename' });
+  assert.deepEqual(model.fileMocks.map(brief), ['module ./cart subject:true', 'module ./tax subject:false passthrough', 'module ../src/cart.ts subject:false']);
+  assert.deepEqual(model.tests[0].mocks.map(brief), [
+    'function cart.total subject:true stubbed', 'function cart.add subject:true stubbed', 'function mailer.send subject:false', 'function console.log subject:false passthrough',
+    'module ./stock subject:false passthrough', 'function sendMail.now subject:false passthrough',
+    'network **/* subject:false stubbed all-network', 'network **/api subject:false passthrough', 'network ** subject:false',
+    'network * subject:false stubbed all-network', 'network **/orders subject:false stubbed', 'network /orders subject:false passthrough', 'network ** subject:false passthrough',
+  ]);
+  // Without a known subject nothing is said about it. The config can name the subject.
+  assert.deepEqual((await js("vi.mock('./cart'); test('t', () => { vi.spyOn(cart, 'total'); });", 'tests/checkout.spec.ts')).fileMocks[0].targetsSubject, null);
+  const mapped = await js("import { total } from '../lib/basket';\nvi.mock('../lib/basket');\ntest('t', () => {});", 'tests/cart.test.ts', { config: { rules: { 'QCR-M001': { subjectMap: { 'tests/cart.*': '../lib/basket' } } } } });
+  assert.deepEqual([mapped.subject, mapped.fileMocks[0].targetsSubject], [{ module: '../lib/basket', via: 'subjectMap' }, true]);
+  const subjects = { 'src/Cart.test.tsx': "import { Cart } from './cart';", 'a/cart.spec.js': "const cart = require('../src/cart.js');", 'cart.test.ts': "import type { Cart } from './cart';\nimport { vi } from 'vitest';\nimport { x } from '@/cart';", 'e2e/login.cy.js': "import './commands';" };
+  const found = {};
+  for (const [file, source] of Object.entries(subjects)) found[file] = (await js(`${source}\ntest('t', () => {});`, file)).subject?.module ?? null;
+  assert.deepEqual(found, { 'src/Cart.test.tsx': './cart', 'a/cart.spec.js': '../src/cart.js', 'cart.test.ts': '@/cart', 'e2e/login.cy.js': null });
+});
+
+test('resources: what a test takes, and whether it or an after hook gives it back', async () => {
+  const source = (hook) => `import { test, expect, chromium, request } from '@playwright/test';
+    let shared; vi.useFakeTimers();
+    test.beforeAll(async () => { shared = await chromium.launch(); process.env.MODE = 'test'; });
+    ${hook}
+    test('t', async ({ page, context, browser }) => {
+      const ctx = await browser.newContext(); const tab = await ctx.newPage(); const popup = await context.newPage(); const lost = await browser.newPage();
+      const api = await request.newContext(); const spy = vi.spyOn(cart, 'total'); const kept = vi.spyOn(cart, 'add'); vi.stubGlobal('fetch', fake); vi.stubEnv('API', 'x');
+      process.env.REGION = 'eu'; globalThis.fetch = fake; Date.now = () => 0; window.name = 'a'; cy.clock(); cy.stub(win, 'open'); local.value = 1;
+      await ctx.close(); await api.dispose(); spy.mockRestore(); process.env.REGION = before; delete globalThis.fetch;
+    });`;
+  const brief = (r) => `${r.kind} ${r.acquiredIn}${r.released ? ' released' : ''}${r.autoManaged ? ' auto' : ''}`;
+  const bare = await js(source(''), 'a.spec.ts');
+  assert.deepEqual(bare.tests[0].resources.map(brief), [
+    'page test released auto', 'context test released auto', 'browser test released auto',
+    'context test released', 'page test released', 'page test released auto', 'page test', 'api-context test released', 'spy test released', 'spy test', 'global test released', 'env test',
+    'env test released', 'global test released', 'global test', 'global test', 'fake-timers test released auto', 'spy test released auto',
+  ]);
+  assert.deepEqual(bare.fileResources.map(brief), ['fake-timers file', 'browser hook', 'env hook']);
+  const hooked = await js(source("test.afterAll(async () => { await shared.close(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.unstubAllEnvs(); delete process.env.MODE; Date.now = realNow; window.name = ''; });"), 'a.spec.ts');
+  assert.ok(hooked.tests[0].resources.filter((r) => r.kind !== 'page').every((r) => r.released));
+  assert.deepEqual(hooked.fileResources.map(brief), ['fake-timers file released', 'browser hook released', 'env hook released']);
+  assert.deepEqual(hooked.fileHooks.map((hook) => [hook.kind, hook.releases]), [
+    ['beforeAll', []], ['afterAll', ['var:shared', 'timers', 'mocks', 'globals', 'envs', 'env:MODE', 'global:Date.now', 'global:name']],
+  ]);
+});
+
+test('lexical fallback: tests, markers, assertions and sleeps from a file that cannot be parsed', async () => {
+  const model = await modelOf('jest', 'src/broken.test.ts');
+  assert.deepEqual([model.parseStatus, model.role, model.runner, model.capabilities], ['partial', 'test', 'jest', ['tests', 'modifiers', 'assertions', 'waits']]);
+  assert.deepEqual(model.tests.map((t) => [t.fullTitle, t.modifiers.join(), t.assertions.length, t.waits.map((w) => w.ms).join(), t.statementCount, t.span.startLine, t.span.endLine]), [
+    ['Checkout > adds the tax', '', 1, '', 2, 5, 8], ['Checkout with tax > adds the tax', 'only', 1, '500,', 4, 10, 14], ['Checkout with tax > has no check', '', 0, '', 1, 16, 17],
+    ['Checkout with tax > rounds the total', 'skip', 0, '250', 2, 18, 20], ['Checkout with tax > is switched off', 'skip', 1, '', 1, 21, 23],
+  ]);
+  assert.deepEqual(model.tests[3].skip, { unconditional: true, conditional: false, reason: null });
+  assert.deepEqual(model.suppressions.map((s) => [s.scope, s.rules, s.span.startLine]), [['next-line', ['QCR-A001'], 15]]);
+  assert.deepEqual([model.suites, model.imports, model.subject, model.tests[0].bodyHash], [[], [], null, null]);
+  assert.equal(new Set(model.tests.map((t) => t.id)).size, 5);
+  const cypress = await js("<<<<<<<\ndescribe.only('a', () => {\n  fit('b', () => {\n    cy.get('x').should('be.visible')\n    browser.pause(100\n}}}}} ))))) ((((( ]]]]] [[[[[ }}}}}", 'e2e/a.cy.js');
+  assert.deepEqual(cypress.tests.map((t) => [t.fullTitle, t.modifiers, t.assertions.length, t.waits[0].ms, t.assertions[0].text]), [['a > b', ['only'], 1, 100, "cy.get('x').should('be.visible')"]]);
 });

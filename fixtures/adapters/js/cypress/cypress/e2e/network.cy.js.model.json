@@ -1,0 +1,1151 @@
+{
+  "path": "cypress/e2e/network.cy.js",
+  "language": "javascript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "cypress",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "Orders",
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 54,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "fe5d6b333b94",
+        "cc6a72b9116f",
+        "9b9a04568533",
+        "ace4e80cbe13",
+        "e14f47c0f146",
+        "524421dafd70"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "fe5d6b333b94",
+      "title": "fakes every request",
+      "fullTitle": "Orders > fakes every request",
+      "suitePath": [
+        "Orders"
+      ],
+      "span": {
+        "startLine": 2,
+        "startColumn": 3,
+        "endLine": 6,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 2,
+        "startColumn": 35,
+        "endLine": 6,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 22,
+            "endLine": 5,
+            "endColumn": 53
+          },
+          "text": "cy.get('.title').should('have.text', 'Products')",
+          "kind": "ui-state",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('.title')",
+            "normalized": "cy.get('.title')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Products'",
+            "normalized": "'Products'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "have.text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 5,
+            "endLine": 5,
+            "endColumn": 21
+          },
+          "text": "cy.get('.title')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".title"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 3,
+            "startColumn": 5,
+            "endLine": 3,
+            "endColumn": 54
+          },
+          "text": "cy.intercept('**', { statusCode: 200, body: {} })",
+          "kind": "network",
+          "target": "**",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 4,
+            "startColumn": 5,
+            "endLine": 4,
+            "endColumn": 57
+          },
+          "text": "cy.visit('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "c678692ff50cce058c1290a535520c62c25501b4"
+    },
+    {
+      "id": "cc6a72b9116f",
+      "title": "fakes one endpoint and watches another",
+      "fullTitle": "Orders > fakes one endpoint and watches another",
+      "suitePath": [
+        "Orders"
+      ],
+      "span": {
+        "startLine": 8,
+        "startColumn": 3,
+        "endLine": 18,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 8,
+        "startColumn": 54,
+        "endLine": 18,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 37,
+            "endLine": 17,
+            "endColumn": 61
+          },
+          "text": "cy.get('[data-cy=\"order-row\"]').should('have.length', 2)",
+          "kind": "count",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.get('[data-cy=\"order-row\"]')",
+            "normalized": "cy.get('[data-cy=\"order-row\"]')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "have.length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 23
+          },
+          "text": "cy.wait('@orders')",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 36
+          },
+          "text": "cy.wait(['@orders', '@create'])",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 18
+          },
+          "text": "cy.wait(2000)",
+          "kind": "fixed-sleep",
+          "ms": 2000
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 36
+          },
+          "text": "cy.get('[data-cy=\"order-row\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-cy=\"order-row\"]"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 5,
+            "endLine": 9,
+            "endColumn": 69
+          },
+          "text": "cy.intercept('GET', '**/api/orders', { fixture: 'orders.json' })",
+          "kind": "network",
+          "target": "**/api/orders",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 5,
+            "endLine": 10,
+            "endColumn": 42
+          },
+          "text": "cy.intercept('POST', '**/api/orders')",
+          "kind": "network",
+          "target": "**/api/orders",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 69
+          },
+          "text": "cy.intercept('**/api/user', (req) => req.reply({ name: 'Sam' }))",
+          "kind": "network",
+          "target": "**/api/user",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 26
+          },
+          "text": "cy.intercept('*', [])",
+          "kind": "network",
+          "target": "*",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 57
+          },
+          "text": "cy.visit('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 9,
+      "bodyHash": "17bf841ff91fd2da8e7086949e8f56717449d0bd"
+    },
+    {
+      "id": "9b9a04568533",
+      "title": "moves the clock",
+      "fullTitle": "Orders > moves the clock",
+      "suitePath": [
+        "Orders"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 3,
+        "endLine": 25,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 31,
+        "endLine": 25,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 44
+          },
+          "text": "cy.contains('Your session has expired')",
+          "kind": "ui-state",
+          "library": "cypress",
+          "actual": {
+            "text": "cy.contains('Your session has expired')",
+            "normalized": "cy.contains('Your session has expired')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'Your session has expired'",
+            "normalized": "'Your session has expired'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Your session has expired"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 15
+          },
+          "text": "cy.clock()",
+          "kind": "fake-timer",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 19
+          },
+          "text": "cy.tick(60000)",
+          "kind": "fake-timer",
+          "ms": 60000
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 15
+          },
+          "text": "cy.clock()",
+          "kind": "fake-timers",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 57
+          },
+          "text": "cy.visit('https://www.saucedemo.com/inventory.html')",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "03ddd4c78aa2e14eff6e9eb0ad596ff08d637857"
+    },
+    {
+      "id": "ace4e80cbe13",
+      "title": "picks elements by position",
+      "fullTitle": "Orders > picks elements by position",
+      "suitePath": [
+        "Orders"
+      ],
+      "span": {
+        "startLine": 27,
+        "startColumn": 3,
+        "endLine": 37,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 42,
+        "endLine": 37,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 14,
+            "endLine": 36,
+            "endColumn": 44
+          },
+          "text": "cy.url().should('include', 'inventory')",
+          "kind": "contains",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.url()",
+            "normalized": "cy.url()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'inventory'",
+            "normalized": "'inventory'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "inventory"
+            }
+          },
+          "matcher": "include",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "nth",
+            "index": 3,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 51
+          },
+          "text": "cy.get('.inventory_item').eq(3).find('button')",
+          "api": "cy.find",
+          "strategy": "css",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 30
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 67
+          },
+          "text": "cy.get('.inventory_item').first().find('.inventory_item_name')",
+          "api": "cy.find",
+          "strategy": "class",
+          "value": ".inventory_item_name"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 54
+          },
+          "text": "cy.get('#root > div > div:nth-child(2) > button')",
+          "api": "cy.get",
+          "strategy": "css",
+          "value": "#root > div > div:nth-child(2) > button"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 39
+          },
+          "text": "cy.get('[data-test=\"first-name\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"first-name\"]"
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 34
+          },
+          "text": "cy.get('[data-test=\"terms\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"terms\"]"
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 36
+          },
+          "text": "cy.get('[data-test=\"receipt\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"receipt\"]"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 38
+          },
+          "text": "cy.get('.product_sort_container')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 59
+          },
+          "text": "cy.get('.inventory_item').eq(3).find('button').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 75
+          },
+          "text": "cy.get('.inventory_item').first().find('.inventory_item_name').click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 65
+          },
+          "text": "cy.get('#root > div > div:nth-child(2) > button').dblclick()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 51
+          },
+          "text": "cy.get('[data-test=\"first-name\"]').type('Sam')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 59
+          },
+          "text": "cy.get('[data-test=\"first-name\"]').type('Sam').clear()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 42
+          },
+          "text": "cy.get('[data-test=\"terms\"]').check()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 52
+          },
+          "text": "cy.get('[data-test=\"terms\"]').check().uncheck()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 62
+          },
+          "text": "cy.get('[data-test=\"receipt\"]').selectFile('receipt.pdf')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 16
+          },
+          "text": "cy.reload()",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 9,
+      "bodyHash": "3defe4f915892e5c41d3c5b285cf411097769a68"
+    },
+    {
+      "id": "e14f47c0f146",
+      "title": "creates data over the API",
+      "fullTitle": "Orders > creates data over the API",
+      "suitePath": [
+        "Orders"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 3,
+        "endLine": 44,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 41,
+        "endLine": 44,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 95,
+            "endLine": 40,
+            "endColumn": 112
+          },
+          "text": "cy.request('POST', 'https://api.example.test/orders', { item: 'backpack' }).its('status').should('eq', 201)",
+          "kind": "status",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.request('POST', 'https://api.example.test/orders', { item: 'backpack' }).its('status')",
+            "normalized": "cy.request('POST','https://api.example.test/orders',{item:'backpack'}).its('status')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "eq",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 63,
+            "endLine": 42,
+            "endColumn": 87
+          },
+          "text": "cy.request('https://api.example.test/orders').its('body').should('have.length', 0)",
+          "kind": "count",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.request('https://api.example.test/orders').its('body')",
+            "normalized": "cy.request('https://api.example.test/orders').its('body')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "have.length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 80
+          },
+          "text": "cy.request('POST', 'https://api.example.test/orders', { item: 'backpack' })",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 79
+          },
+          "text": "cy.request({ method: 'DELETE', url: 'https://api.example.test/orders/1' })",
+          "op": "delete",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 50
+          },
+          "text": "cy.request('https://api.example.test/orders')",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 79
+          },
+          "text": "cy.request('PATCH', 'https://api.example.test/orders/2', { note: 'gift' })",
+          "op": "update",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 80
+          },
+          "text": "cy.request('POST', 'https://api.example.test/orders', { item: 'backpack' })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 79
+          },
+          "text": "cy.request({ method: 'DELETE', url: 'https://api.example.test/orders/1' })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 50
+          },
+          "text": "cy.request('https://api.example.test/orders')",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 79
+          },
+          "text": "cy.request('PATCH', 'https://api.example.test/orders/2', { note: 'gift' })",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "075044d404be321db0bd6d1f40a8ba0674567b24"
+    },
+    {
+      "id": "524421dafd70",
+      "title": "spies on the window",
+      "fullTitle": "Orders > spies on the window",
+      "suitePath": [
+        "Orders"
+      ],
+      "span": {
+        "startLine": 46,
+        "startColumn": 3,
+        "endLine": 53,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 46,
+        "startColumn": 35,
+        "endLine": 53,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 29,
+            "endLine": 52,
+            "endColumn": 59
+          },
+          "text": "cy.window().its('open').should('have.been.calledOnce')",
+          "kind": "mock-call",
+          "library": "cypress-should",
+          "actual": {
+            "text": "cy.window().its('open')",
+            "normalized": "cy.window().its('open')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "have.been.calledOnce",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 5,
+            "endLine": 51,
+            "endColumn": 25
+          },
+          "text": "cy.get('#open-help')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#open-help"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 7,
+            "endLine": 48,
+            "endColumn": 35
+          },
+          "text": "cy.spy(win.console, 'error')",
+          "kind": "function",
+          "target": "win.console.error",
+          "targetsSubject": null,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 7,
+            "endLine": 49,
+            "endColumn": 27
+          },
+          "text": "cy.stub(win, 'open')",
+          "kind": "function",
+          "target": "win.open",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 7,
+            "endLine": 48,
+            "endColumn": 35
+          },
+          "text": "cy.spy(win.console, 'error')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 7,
+            "endLine": 49,
+            "endColumn": 27
+          },
+          "text": "cy.stub(win, 'open')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 5,
+            "endLine": 51,
+            "endColumn": 33
+          },
+          "text": "cy.get('#open-help').click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "4a31373c336489b76fb7b920db640e3c44b7f0bf"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,8 +1,8 @@
 // JS/TS: from a syntax tree to the normalized model (SPEC.md Sections 8.1 and 9.1).
 //
 // This file finds the structure of a test file: suites, tests, hooks, modifiers, skips,
-// parameterized tests, imports and suppression comments. Assertions and try blocks are read
-// from each body by assertions.ts. Waits, selectors and mocks are added by the next milestone.
+// parameterized tests, imports and suppression comments. What each body checks is read by
+// assertions.ts, and what it does (waits, selectors, mocks, resources) by body.ts.
 import { clipText, emptyTest, parseSuppression } from '../../model/build.js';
 import { bodyHash, testId } from '../../model/hash.js';
 import type { Capability, Modifier, NFile, NHook, NImport, NSuite, NSuppression, NTest } from '../../model/types.js';
@@ -10,17 +10,19 @@ import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import type { AdapterContext, FrameworkGuess, ParsedFile } from '../types.js';
 import { readBody } from './assertions.js';
+import { readCalls, type CallContext, type Held } from './body.js';
 import { learnNames } from './expr.js';
-import { collectJsHelpers, fileContext } from './helpers.js';
+import { collectJsHelpers, fileContext, findSubject } from './helpers.js';
 import { argumentsOf, hasAncestor, isFunction, memberChain, stringValue, tokensOf } from './syntax.js';
 import {
   ALIASES, CONDITIONAL_MEMBERS, EACH_MEMBERS, FRAMEWORK_MODULES, HOOK_CALLEES, IN_BODY_SKIPS, ITERATION_MEMBERS, MODIFIER_MEMBERS,
-  OPTION_MODIFIERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES, TEST_LIBRARY_MODULES,
+  OPTION_MODIFIERS, SUITE_CALLEES, SUITE_MEMBER, TEST_CALLEES, TEST_ID_ATTRIBUTES, TEST_LIBRARY_MODULES,
 } from './vocab.js';
 
-/** What the adapter fills in so far. The next milestone adds waits, selectors, mocks and the rest. */
+/** What the adapter fills in from a syntax tree: every capability of the model. */
 export const JS_CAPABILITIES: Capability[] = [
-  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability',
+  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'waits', 'selectors', 'try-blocks', 'mocks', 'subject',
+  'network', 'data', 'resources', 'body-hash', 'helpers', 'reachability',
 ];
 
 const LOOPS = new Set(['for_statement', 'for_in_statement', 'while_statement', 'do_statement']);
@@ -251,7 +253,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
     libraries: frameworks.libraries,
     role: 'support',
     parseStatus: parsed.parseStatus,
-    capabilities: tree ? [...JS_CAPABILITIES] : [],
+    capabilities: [...JS_CAPABILITIES],
     suites: [],
     tests: [],
     fileHooks: [],
@@ -261,9 +263,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
     subject: null,
     suppressions: [],
   };
-  if (!tree) return model;
-
-  const root = tree.rootNode;
+  const root = tree!.rootNode; // the adapter calls this only with a tree; without one it uses the lexical scanner
   const { imports, aliases } = readImports(root);
   model.imports = imports;
   model.suppressions = readSuppressions(root);
@@ -311,18 +311,48 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
   const shared = fileContext(root, frameworks, imports, new Set([...bodies].filter(([target]) => 'id' in target).map(([, body]) => body.id)));
   const local = new Set(collectJsHelpers(root, file.path, shared).map((helper) => helper.name));
   const isHelper = (name: string): boolean => local.has(name) || ctx.helperIndex.has(name) || ctx.config.assertionHelpers.includes(name);
+  // What each body does. The module under test, with the local names imported from it, tells which mocks replace it.
+  model.subject = findSubject(file.path, imports, ctx.config);
+  const subjectImport = imports.find((entry) => entry.source === model.subject?.module);
+  const subjectNode = subjectImport && root.namedChildren.find((node) => spanOfNode(node).startLine === subjectImport.span.startLine);
+  const calls: Omit<CallContext, 'env' | 'acquiredIn' | 'restores'> = {
+    subject: model.subject && { module: model.subject.module, names: new Set(subjectNode?.descendantsOfType('identifier').map((node) => node!.text)) },
+    testIdAttributes: [...new Set([ctx.config.testIdAttribute, ...TEST_ID_ATTRIBUTES])],
+    skip: new Set(),
+  };
+  const afterReleases = new Set<string>();
+  const taken: Array<{ held: Held[]; releases: string[]; into: NFile['fileResources'] }> = [];
+  const outside = readCalls(root, { ...calls, env: shared.env, acquiredIn: 'file', restores: false, skip: new Set([...bodies.values()].map((body) => body.id)) });
+  model.fileMocks = outside.mocks;
+  taken.push({ held: outside.held, releases: outside.releases, into: model.fileResources });
+
   for (const [target, body] of bodies) {
     const isTest = 'id' in target;
     const env = isTest ? { ...shared.env, locators: new Set(shared.env.locators), counts: new Set(shared.env.counts), mocks: new Set(shared.env.mocks) } : shared.env;
     if (isTest) learnNames(body, env);
     const facts = readBody(body, { ...shared, env, isHelper });
+    const after = !isTest && (target.kind === 'afterEach' || target.kind === 'afterAll');
+    const did = readCalls(body, { ...calls, env, acquiredIn: isTest ? 'test' : 'hook', restores: after });
     target.assertions = facts.assertions;
+    taken.push({ held: did.held, releases: did.releases, into: isTest ? target.resources : model.fileResources });
     if (isTest) {
       target.assertionGuards = facts.guards;
       target.expectsException = facts.expectsException;
       target.tryBlocks = facts.tryBlocks;
+      Object.assign(target, { waits: did.waits, selectors: did.selectors, steps: did.steps, data: did.data, mocks: did.mocks });
+    } else {
+      target.releases = [...new Set(did.releases)];
+      model.fileMocks.push(...did.mocks);
+      if (after) did.releases.forEach((token) => afterReleases.add(token));
     }
   }
+  // A resource is released in its own body or in an after hook of the file.
+  for (const { held, releases, into } of taken) {
+    for (const { resource, tokens } of held) into.push({ ...resource, released: resource.released || tokens.some((token) => releases.includes(token) || afterReleases.has(token)) });
+  }
+  const byPosition = (a: { span: NFile['imports'][number]['span'] }, b: typeof a): number => a.span.startLine - b.span.startLine || a.span.startColumn - b.span.startColumn;
+  model.fileMocks.sort(byPosition);
+  model.fileResources.sort(byPosition);
 
   model.role = model.tests.length > 0 || model.suites.length > 0 ? 'test' : 'support';
   return model;

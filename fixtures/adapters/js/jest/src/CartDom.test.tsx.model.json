@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -258,7 +265,56 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 19,
+            "endLine": 8,
+            "endColumn": 46
+          },
+          "text": "screen.getByTestId('total')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "total"
+        },
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 12,
+            "endLine": 9,
+            "endColumn": 40
+          },
+          "text": "screen.getByText('Backpack')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Backpack"
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 12,
+            "endLine": 13,
+            "endColumn": 60
+          },
+          "text": "screen.getByRole('button', { name: 'Checkout' })",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 12,
+            "endLine": 15,
+            "endColumn": 38
+          },
+          "text": "screen.getByText('1 item')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "1 item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -488,7 +544,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 14,
+            "endLine": 30,
+            "endColumn": 39
+          },
+          "text": "screen.getByRole('alert')",
+          "api": "getByRole",
+          "strategy": "role",
+          "value": "alert"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],

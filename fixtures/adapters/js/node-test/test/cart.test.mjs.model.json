@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -589,6 +596,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "../src/cart.mjs",
+    "via": "filename"
+  },
   "suppressions": []
 }

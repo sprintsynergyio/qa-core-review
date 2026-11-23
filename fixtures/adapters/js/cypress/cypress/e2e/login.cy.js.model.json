@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -179,12 +186,80 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 7,
+            "endLine": 18,
+            "endColumn": 39
+          },
+          "text": "cy.get('[data-test=\"username\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"username\"]"
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 7,
+            "endLine": 19,
+            "endColumn": 39
+          },
+          "text": "cy.get('[data-test=\"password\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"password\"]"
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 7,
+            "endLine": 20,
+            "endColumn": 43
+          },
+          "text": "cy.get('[data-test=\"login-button\"]')",
+          "api": "cy.get",
+          "strategy": "test-id",
+          "value": "[data-test=\"login-button\"]"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 7,
+            "endLine": 18,
+            "endColumn": 61
+          },
+          "text": "cy.get('[data-test=\"username\"]').type('standard_user')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 7,
+            "endLine": 19,
+            "endColumn": 60
+          },
+          "text": "cy.get('[data-test=\"password\"]').type('secret_sauce')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 7,
+            "endLine": 20,
+            "endColumn": 51
+          },
+          "text": "cy.get('[data-test=\"login-button\"]').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 4,
       "bodyHash": "1ddcb977f9400fdf459be1f20e3e59f9b3e4ddf7"
     },
@@ -287,7 +362,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 7,
+            "endLine": 25,
+            "endColumn": 32
+          },
+          "text": "cy.get('.inventory_item')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -356,7 +444,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 7,
+            "endLine": 29,
+            "endColumn": 37
+          },
+          "text": "cy.get('.shopping_cart_badge')",
+          "api": "cy.get",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -437,13 +538,93 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
-      "selectors": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 7,
+            "endLine": 38,
+            "endColumn": 20
+          },
+          "text": "cy.wait(1000)",
+          "kind": "fixed-sleep",
+          "ms": 1000
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 7,
+            "endLine": 35,
+            "endColumn": 27
+          },
+          "text": "cy.get('#user-name')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#user-name"
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 7,
+            "endLine": 36,
+            "endColumn": 26
+          },
+          "text": "cy.get('#password')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#password"
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 7,
+            "endLine": 37,
+            "endColumn": 30
+          },
+          "text": "cy.get('#login-button')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#login-button"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 7,
+            "endLine": 35,
+            "endColumn": 51
+          },
+          "text": "cy.get('#user-name').type('locked_out_user')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 7,
+            "endLine": 36,
+            "endColumn": 47
+          },
+          "text": "cy.get('#password').type('secret_sauce')",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 7,
+            "endLine": 37,
+            "endColumn": 38
+          },
+          "text": "cy.get('#login-button').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 5,
       "bodyHash": "8bf65da002b38b28648ae12698ce4ef02fb10e26"
     },
@@ -484,12 +665,36 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 7,
+            "endLine": 43,
+            "endColumn": 30
+          },
+          "text": "cy.get('#login-button')",
+          "api": "cy.get",
+          "strategy": "id",
+          "value": "#login-button"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 7,
+            "endLine": 43,
+            "endColumn": 38
+          },
+          "text": "cy.get('#login-button').click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "92b845d085ac2ba8149e217a48a7ee64e2285d83"
     }

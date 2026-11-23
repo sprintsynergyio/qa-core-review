@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -53,7 +60,9 @@
           },
           "kind": "afterAll",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "timers"
+          ],
           "assertions": []
         },
         {
@@ -984,8 +993,38 @@
     }
   ],
   "fileHooks": [],
-  "fileMocks": [],
-  "fileResources": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 22
+      },
+      "text": "jest.mock('./mailer')",
+      "kind": "module",
+      "target": "./mailer",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    }
+  ],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 5,
+        "endLine": 11,
+        "endColumn": 25
+      },
+      "text": "jest.useFakeTimers()",
+      "kind": "fake-timers",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {
@@ -1036,6 +1075,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "./cart",
+    "via": "filename"
+  },
   "suppressions": []
 }

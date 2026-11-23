@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -53,7 +60,9 @@
           },
           "kind": "afterAll",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:this.clock"
+          ],
           "assertions": []
         }
       ],
@@ -546,7 +555,21 @@
   ],
   "fileHooks": [],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 18,
+        "endLine": 8,
+        "endColumn": 39
+      },
+      "text": "sinon.useFakeTimers()",
+      "kind": "fake-timers",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {
@@ -605,6 +628,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "../src/orders",
+    "via": "filename"
+  },
   "suppressions": []
 }

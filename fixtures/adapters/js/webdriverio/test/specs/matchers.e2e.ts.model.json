@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -529,7 +536,80 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 19,
+            "endLine": 11,
+            "endColumn": 44
+          },
+          "text": "$('.shopping_cart_badge')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 24,
+            "endLine": 12,
+            "endColumn": 60
+          },
+          "text": "browser.$('.product_sort_container')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 18,
+            "endLine": 20,
+            "endColumn": 42
+          },
+          "text": "$('.shopping_cart_link')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 18,
+            "endLine": 21,
+            "endColumn": 42
+          },
+          "text": "$('.shopping_cart_link')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 18,
+            "endLine": 22,
+            "endColumn": 34
+          },
+          "text": "sort.$('option')",
+          "api": "$",
+          "strategy": "css",
+          "value": "option"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 18,
+            "endLine": 23,
+            "endColumn": 39
+          },
+          "text": "$$('.inventory_item')",
+          "api": "$$",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -636,7 +716,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 12,
+            "endLine": 28,
+            "endColumn": 37
+          },
+          "text": "$('.shopping_cart_badge')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -732,7 +825,32 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 25,
+            "endLine": 33,
+            "endColumn": 50
+          },
+          "text": "$('.shopping_cart_badge')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 12,
+            "endLine": 35,
+            "endColumn": 25
+          },
+          "text": "$('.missing')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".missing"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -850,7 +968,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 25,
+            "endLine": 39,
+            "endColumn": 46
+          },
+          "text": "$$('.inventory_item')",
+          "api": "$$",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -928,8 +1059,33 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
-      "selectors": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 11,
+            "endLine": 50,
+            "endColumn": 7
+          },
+          "text": "browser.waitUntil(async () => { const text = await $('.shopping_cart_badge').getText(); expect(text).toBe('1'); return true; })",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 26,
+            "endLine": 47,
+            "endColumn": 51
+          },
+          "text": "$('.shopping_cart_badge')",
+          "api": "$",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],

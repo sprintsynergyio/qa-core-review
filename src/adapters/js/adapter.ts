@@ -5,6 +5,7 @@ import type { LanguageAdapter } from '../types.js';
 import { jsProfile } from './detect.js';
 import { detectJsFrameworks } from './frameworks.js';
 import { collectJsHelpers, fileContext } from './helpers.js';
+import { normalizeJsLexical } from './lexical.js';
 import { JS_CAPABILITIES, normalizeJs, readImports } from './normalize.js';
 import { ALIASES, SUITE_CALLEES, TEST_CALLEES } from './vocab.js';
 
@@ -32,14 +33,15 @@ export const jsAdapter: LanguageAdapter = {
 
   async parse(file, ctx) {
     const result = await ctx.parser.parseForReview(jsGrammarFor(file.path), file.text);
-    // No tree: the grammar is unavailable or the file is too broken. The lexical fallback for
-    // JS/TS comes with the next milestone; until then such a file is reported as failed.
+    // No tree: the grammar is unavailable or the file is too broken. `normalize` then uses the
+    // lexical scanner, which decides between 'partial' (tests found) and 'failed'.
     if (!result.tree) return { file, tree: null, tokens: null, parseStatus: 'failed' };
     return { file, tree: result.tree, tokens: null, parseStatus: result.tree.rootNode.hasError ? 'partial' : 'ok' };
   },
 
   normalize(parsed, ctx) {
-    return normalizeJs(parsed, detectJsFrameworks(parsed.file), ctx);
+    const frameworks = detectJsFrameworks(parsed.file);
+    return parsed.tree ? normalizeJs(parsed, frameworks, ctx) : normalizeJsLexical(parsed.file, frameworks, ctx);
   },
 
   /** For the helper index: the functions and methods of any file, test or support, that contain an assertion. */

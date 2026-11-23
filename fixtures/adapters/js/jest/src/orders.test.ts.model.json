@@ -1,0 +1,1383 @@
+{
+  "path": "src/orders.test.ts",
+  "language": "typescript",
+  "languageHint": null,
+  "adapter": "js",
+  "tier": 1,
+  "runner": "jest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "orders",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 95,
+        "endColumn": 3
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 3,
+            "endLine": 18,
+            "endColumn": 5
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": []
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 3,
+            "endLine": 24,
+            "endColumn": 5
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "timers",
+            "mocks",
+            "env:API_URL"
+          ],
+          "assertions": []
+        }
+      ],
+      "testIds": [
+        "20a57f1b7481",
+        "059deeff6bbe",
+        "6bf142ee34e4",
+        "d682d016b351",
+        "aa04755e9222",
+        "54b7c4e6ac35",
+        "df13e7915c5a",
+        "57b338774273",
+        "108a7702d8bd"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "20a57f1b7481",
+      "title": "returns the total",
+      "fullTitle": "orders > returns the total",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 26,
+        "startColumn": 3,
+        "endLine": 28,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 33,
+        "endLine": 28,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 65
+          },
+          "text": "expect(orders.total([{ price: 40 }, { price: 2 }])).toBe(42)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "orders.total([{ price: 40 }, { price: 2 }])",
+            "normalized": "orders.total([{price:40},{price:2}])",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "1e92491ff282d02000a0538197ea409dd5b6f335"
+    },
+    {
+      "id": "059deeff6bbe",
+      "title": "stubs the function it then checks",
+      "fullTitle": "orders > stubs the function it then checks",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 30,
+        "startColumn": 3,
+        "endLine": 34,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 49,
+        "endLine": 34,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 51
+          },
+          "text": "expect(orders.find('o-1').status).toBe('PAID')",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "orders.find('o-1').status",
+            "normalized": "orders.find('o-1').status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'PAID'",
+            "normalized": "'PAID'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "PAID"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 45
+          },
+          "text": "expect(find).toHaveBeenCalledWith('o-1')",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "find",
+            "normalized": "find",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'o-1'",
+            "normalized": "'o-1'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "o-1"
+            }
+          },
+          "matcher": "toHaveBeenCalledWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 18,
+            "endLine": 31,
+            "endColumn": 44
+          },
+          "text": "jest.spyOn(orders, 'find')",
+          "kind": "function",
+          "target": "orders.find",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 18,
+            "endLine": 31,
+            "endColumn": 44
+          },
+          "text": "jest.spyOn(orders, 'find')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "a8edd52b4c7c55e4dcba4991275da4b51c00bd72"
+    },
+    {
+      "id": "6bf142ee34e4",
+      "title": "spies without changing the code",
+      "fullTitle": "orders > spies without changing the code",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 36,
+        "startColumn": 3,
+        "endLine": 43,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 36,
+        "startColumn": 53,
+        "endLine": 43,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 42
+          },
+          "text": "expect(save).toHaveBeenCalledTimes(1)",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "save",
+            "normalized": "save",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "toHaveBeenCalledTimes",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 43
+          },
+          "text": "expect(sendReceipt).toHaveBeenCalled()",
+          "kind": "mock-call",
+          "library": "expect",
+          "actual": {
+            "text": "sendReceipt",
+            "normalized": "sendReceipt",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toHaveBeenCalled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 30
+          },
+          "text": "expect(taxRate()).toBe(0)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "taxRate()",
+            "normalized": "taxRate()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 18,
+            "endLine": 37,
+            "endColumn": 44
+          },
+          "text": "jest.spyOn(orders, 'save')",
+          "kind": "function",
+          "target": "orders.save",
+          "targetsSubject": true,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 18,
+            "endLine": 37,
+            "endColumn": 44
+          },
+          "text": "jest.spyOn(orders, 'save')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "9af8b929b784484b03fd2a16496a7bd7a9d74d2d"
+    },
+    {
+      "id": "d682d016b351",
+      "title": "stubs later, in every way",
+      "fullTitle": "orders > stubs later, in every way",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 3,
+        "endLine": 55,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 47,
+        "endLine": 55,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 11,
+            "endLine": 54,
+            "endColumn": 69
+          },
+          "text": "expect(orders.load('o-2')).resolves.toEqual({ id: 'o-2' })",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "orders.load('o-2')",
+            "normalized": "orders.load('o-2')",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "{ id: 'o-2' }",
+            "normalized": "{id:'o-2'}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "toEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 18,
+            "endLine": 46,
+            "endColumn": 44
+          },
+          "text": "jest.spyOn(orders, 'load')",
+          "kind": "function",
+          "target": "orders.load",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 18,
+            "endLine": 46,
+            "endColumn": 44
+          },
+          "text": "jest.spyOn(orders, 'load')",
+          "kind": "spy",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "3717a96ee895183a0415401d7226bd81898c2c1c"
+    },
+    {
+      "id": "aa04755e9222",
+      "title": "moves the clock",
+      "fullTitle": "orders > moves the clock",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 57,
+        "startColumn": 3,
+        "endLine": 65,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 57,
+        "startColumn": 37,
+        "endLine": 65,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 11,
+            "endLine": 64,
+            "endColumn": 51
+          },
+          "text": "expect(pending).resolves.toBe('EXPIRED')",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "pending",
+            "normalized": "pending",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'EXPIRED'",
+            "normalized": "'EXPIRED'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "EXPIRED"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 5,
+            "endLine": 59,
+            "endColumn": 35
+          },
+          "text": "jest.advanceTimersByTime(1000)",
+          "kind": "fake-timer",
+          "ms": 1000
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 11,
+            "endLine": 60,
+            "endColumn": 44
+          },
+          "text": "jest.advanceTimersByTimeAsync(10)",
+          "kind": "fake-timer",
+          "ms": 10
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 61,
+            "endColumn": 24
+          },
+          "text": "jest.runAllTimers()",
+          "kind": "fake-timer",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 11,
+            "endLine": 62,
+            "endColumn": 35
+          },
+          "text": "jest.runAllTimersAsync()",
+          "kind": "fake-timer",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 32
+          },
+          "text": "jest.runOnlyPendingTimers()",
+          "kind": "fake-timer",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "52da4311ac625ace18fe4322a183eda97ade3c15"
+    },
+    {
+      "id": "54b7c4e6ac35",
+      "title": "changes globals and never puts them back",
+      "fullTitle": "orders > changes globals and never puts them back",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 67,
+        "startColumn": 3,
+        "endLine": 74,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 67,
+        "startColumn": 62,
+        "endLine": 74,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 11,
+            "endLine": 73,
+            "endColumn": 52
+          },
+          "text": "expect(orders.sync()).resolves.toBe(true)",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "orders.sync()",
+            "normalized": "orders.sync()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "true",
+            "normalized": "true",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "true"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 5,
+            "endLine": 68,
+            "endColumn": 59
+          },
+          "text": "globalThis.fetch = jest.fn(async () => ({ ok: true }))",
+          "kind": "global",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 5,
+            "endLine": 69,
+            "endColumn": 42
+          },
+          "text": "global.navigator = { language: 'en' }",
+          "kind": "global",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 5,
+            "endLine": 70,
+            "endColumn": 28
+          },
+          "text": "window.innerWidth = 320",
+          "kind": "global",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 5,
+            "endLine": 71,
+            "endColumn": 23
+          },
+          "text": "Date.now = () => 0",
+          "kind": "global",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 5,
+            "endLine": 72,
+            "endColumn": 33
+          },
+          "text": "process.env.CURRENCY = 'EUR'",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "57d04646095dc7f33c92a5050776e26c7b8aca27"
+    },
+    {
+      "id": "df13e7915c5a",
+      "title": "changes an env value and puts it back",
+      "fullTitle": "orders > changes an env value and puts it back",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 76,
+        "startColumn": 3,
+        "endLine": 81,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 76,
+        "startColumn": 53,
+        "endLine": 81,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 5,
+            "endLine": 79,
+            "endColumn": 39
+          },
+          "text": "expect(orders.region()).toBe('eu')",
+          "kind": "equality",
+          "library": "expect",
+          "actual": {
+            "text": "orders.region()",
+            "normalized": "orders.region()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'eu'",
+            "normalized": "'eu'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "eu"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 5,
+            "endLine": 78,
+            "endColumn": 30
+          },
+          "text": "process.env.REGION = 'eu'",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "fd7ee994264206eb5a7c2f0d5c07b25acfe3ad4f"
+    },
+    {
+      "id": "57b338774273",
+      "title": "mocks one module for one test",
+      "fullTitle": "orders > mocks one module for one test",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 83,
+        "startColumn": 3,
+        "endLine": 87,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 83,
+        "startColumn": 51,
+        "endLine": 87,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 11,
+            "endLine": 86,
+            "endColumn": 82
+          },
+          "text": "expect(create({ items: ['backpack'] })).rejects.toThrow('out of stock')",
+          "kind": "throws",
+          "library": "expect",
+          "actual": {
+            "text": "create({ items: ['backpack'] })",
+            "normalized": "create({items:['backpack']})",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'out of stock'",
+            "normalized": "'out of stock'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "out of stock"
+            }
+          },
+          "matcher": "toThrow",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 5,
+            "endLine": 84,
+            "endColumn": 61
+          },
+          "text": "jest.doMock('./stock', () => ({ inStock: () => false }))",
+          "kind": "module",
+          "target": "./stock",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "1b5bd76917d26afffed55eb1d1b5e4e55ec8e713"
+    },
+    {
+      "id": "108a7702d8bd",
+      "title": "calls a real API and cleans up",
+      "fullTitle": "orders > calls a real API and cleans up",
+      "suitePath": [
+        "orders"
+      ],
+      "span": {
+        "startLine": 89,
+        "startColumn": 3,
+        "endLine": 94,
+        "endColumn": 5
+      },
+      "bodySpan": {
+        "startLine": 89,
+        "startColumn": 52,
+        "endLine": 94,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 91,
+            "startColumn": 5,
+            "endLine": 91,
+            "endColumn": 37
+          },
+          "text": "expect(created.status).toBe(201)",
+          "kind": "status",
+          "library": "expect",
+          "actual": {
+            "text": "created.status",
+            "normalized": "created.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 27,
+            "endLine": 90,
+            "endColumn": 94
+          },
+          "text": "axios.post('https://api.example.test/orders', { item: 'backpack' })",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 11,
+            "endLine": 92,
+            "endColumn": 74
+          },
+          "text": "axios.get(`https://api.example.test/orders/${created.data.id}`)",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 11,
+            "endLine": 93,
+            "endColumn": 77
+          },
+          "text": "axios.delete(`https://api.example.test/orders/${created.data.id}`)",
+          "op": "delete",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 27,
+            "endLine": 90,
+            "endColumn": 94
+          },
+          "text": "axios.post('https://api.example.test/orders', { item: 'backpack' })",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 11,
+            "endLine": 92,
+            "endColumn": 74
+          },
+          "text": "axios.get(`https://api.example.test/orders/${created.data.id}`)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 11,
+            "endLine": 93,
+            "endColumn": 77
+          },
+          "text": "axios.delete(`https://api.example.test/orders/${created.data.id}`)",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "28d23e0dccc0c518a657f86226a3d246f232a53b"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 60
+      },
+      "text": "jest.mock('./orders', () => ({ total: jest.fn(() => 42) }))",
+      "kind": "module",
+      "target": "./orders",
+      "targetsSubject": true,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 22
+      },
+      "text": "jest.mock('./mailer')",
+      "kind": "module",
+      "target": "./mailer",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 81
+      },
+      "text": "jest.mock('./tax', () => ({ ...jest.requireActual('./tax'), taxRate: () => 0 }))",
+      "kind": "module",
+      "target": "./tax",
+      "targetsSubject": false,
+      "passthrough": true,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 67
+      },
+      "text": "jest.unstable_mockModule('./audit', () => ({ record: jest.fn() }))",
+      "kind": "module",
+      "target": "./audit",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    }
+  ],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 16,
+        "endColumn": 25
+      },
+      "text": "jest.useFakeTimers()",
+      "kind": "fake-timers",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 17,
+        "endColumn": 53
+      },
+      "text": "process.env.API_URL = 'https://api.example.test'",
+      "kind": "env",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
+  "imports": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 83
+      },
+      "source": "@jest/globals",
+      "names": [
+        "afterEach",
+        "beforeEach",
+        "describe",
+        "expect",
+        "it",
+        "jest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 27
+      },
+      "source": "axios",
+      "names": [
+        "default"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 36
+      },
+      "source": "./orders",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 40
+      },
+      "source": "./mailer",
+      "names": [
+        "sendReceipt"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 33
+      },
+      "source": "./tax",
+      "names": [
+        "taxRate"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": {
+    "module": "./orders",
+    "via": "filename"
+  },
+  "suppressions": []
+}

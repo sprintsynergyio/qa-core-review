@@ -123,3 +123,75 @@ The scanner is simple on purpose. Two known limits: a JavaScript regex literal t
 ### Assets
 
 Grammars, schemas and the other files that ship next to the code are read only through `src/assets.ts` (`readAsset('grammars/python.wasm')`), by name, as bytes. The parser is given bytes, never a file path. This is what lets the standalone binary carry its grammars inside the executable.
+
+## The JS/TS adapter (`js`)
+
+The `js` adapter reads JavaScript, TypeScript, JSX and TSX test files for Playwright, Cypress, Jest, Vitest, Mocha, WebdriverIO and node:test. It fills every capability of the model. The code is in `src/adapters/js/`:
+
+| File | What it does |
+| --- | --- |
+| `vocab.ts` | Every framework name the adapter knows, as data tables. Nothing else holds a matcher or method name. |
+| `detect.ts`, `frameworks.ts` | Finds projects, and decides the runner of each file. |
+| `normalize.ts` | Tests, suites, hooks, modifiers, skips, `.each` tables, imports, suppression comments. |
+| `assertions.ts`, `expr.ts` | What each body checks, with operands, try blocks and promise catches. |
+| `body.ts` | What each body does: waits, selectors, steps, data operations, mocks, resources. |
+| `helpers.ts` | Functions that contain an assertion, and the module under test. |
+| `lexical.ts` | The reduced reading of a file that cannot be parsed. |
+
+### The runner of a file
+
+The first rule that matches wins:
+
+1. The config names it (`framework`, or a `projects` entry).
+2. The file imports the framework's module: `@playwright/test`, `vitest`, `@jest/globals`, `node:test`, `@wdio/globals`, `mocha`.
+3. The file uses a global only that framework has: `cy.`, `vi.`, `jest.`. For WebdriverIO, `browser.` or `$(` count only when the project declares WebdriverIO.
+4. The project has one runner with global `describe` and `it` (Jest, Mocha, WebdriverIO, Cypress), or the file is named `*.cy.*`.
+
+A Jest file and a Playwright file in the same project each get their own runner.
+
+### Assertions
+
+An assertion is a chain that starts at `expect(...)` (also `expect.soft`, `expect.poll`, `expect.element`), `assert(...)` or `assert.method(...)`, a Chai `should`, a Cypress `.should('chainer')` or `.and('chainer')`, `sinon.assert`, or a call that fails the test (`expect.fail()`, `assert.fail()`, `fail()`, a `throw` in the test's own flow). A Cypress chain that ends with `.contains(...)` counts when it is the last command of the test.
+
+Each assertion has:
+
+| Field | How it is decided |
+| --- | --- |
+| `kind` | From the matcher name, through `MATCHER_KINDS`. A status check needs a number: `expect(res.status()).toBe(404)`. |
+| `actual`, `expected` | The operands, with `isLocator`, `isCount` and `isMock`. Names are followed inside one test: after `const rows = page.locator('tr')`, `rows` is a locator. |
+| `complete` | False for `expect(x);` and `expect(x).toBe;` written as a whole statement. |
+| `awaited` | `no` when a Playwright web-first matcher, `expect.poll`, `.resolves`, `.rejects`, `assert.rejects` or an expect-webdriverio matcher on an element is neither awaited nor returned. |
+| `guarded` | True inside an `if`, `switch`, ternary, `&&`, loop, `catch` block, or a callback that may never run. Callbacks that always run are listed in `ALWAYS_RUN_CALLBACKS` (`test.step`, a promise `then`, `waitFor`, Cypress `within`). |
+| `reachable` | False after an unconditional `return`, `throw`, `break` or fail call in the same block. |
+| `viaHelper` | Set when the test calls a function, a page object method or a custom Cypress command that contains an assertion. |
+
+Helpers are counted one level deep: a helper that only calls another helper does not count. Helpers from other files come from the helper index, which the review builds from every file it discovers. Add names by hand with `assertionHelpers` in the config.
+
+### Waits, selectors, mocks and resources
+
+| Fact | What counts |
+| --- | --- |
+| Fixed sleep | `waitForTimeout(n)`, `browser.pause(n)`, `cy.wait(n)`, awaited `sleep`, `delay`, `wait` or `pause`, awaited `setTimeout(n)` from `node:timers/promises`, and `await new Promise((r) => setTimeout(r, n))`. |
+| Not a sleep | `cy.wait('@alias')`, `waitForResponse`, `waitForURL`, `waitUntil` (kind `condition`), and fake clocks such as `vi.advanceTimersByTime` (kind `fake-timer`). |
+| Selector | The first argument of `locator`, `frameLocator`, `$`, `$$`, `waitForSelector`, `querySelector`, `cy.get`, `cy.find`, `page.click(selector)`, and the `getBy...` calls. The strategy (`css`, `xpath`, `id`, `test-id`, `role` and so on) comes from the call or from the text, through `selectorStrategy` in `src/model/selectors.ts`. `.first()`, `.last()`, `.nth(n)` and `.eq(n)` are stored as `positional` on the selector they narrow. |
+| Mock | `vi.mock` and `jest.mock` (module), `vi.spyOn`, `jest.spyOn`, `sinon.stub`, `mock.method` (function), `page.route` and `cy.intercept` (network). A module mock that calls `importActual` or `requireActual` is `passthrough`. |
+| Subject | The import whose last part is the test file's own name (`cart.test.ts` and `./cart`), or `rules.QCR-M001.subjectMap` in the config: `{ "tests/cart.*": "../lib/basket" }`. With no subject, `targetsSubject` is `null`. |
+| Resource | Spies, fake timers, `vi.stubGlobal`, `vi.stubEnv`, a write to `process.env.X`, `globalThis.X`, `window.X` or `Date.now`, and `launch()`, `newContext()`, `newPage()`. |
+| Released | By the matching call in the same test or in an `afterEach` or `afterAll` hook of the file: `mockRestore`, `restoreAllMocks`, `sinon.restore`, `useRealTimers`, `unstubAllGlobals`, `unstubAllEnvs`, `close`, `dispose`, or a second write or `delete` of the same global. Playwright fixtures and Cypress stubs and clocks clean up after themselves (`autoManaged`). |
+
+### When a file cannot be parsed
+
+If the grammar cannot be loaded, or `ERROR` nodes cover more than 30% of the file, the adapter reads the file by lines. It finds tests by their declaration line and their indentation, and inside each test the lines that assert and the fixed sleeps. The file gets `parseStatus: "partial"` and four capabilities: `tests`, `modifiers`, `assertions`, `waits`. Rules that need anything else are skipped for that file. If no test is found either, the file is `failed`.
+
+### Known limits
+
+- There is no type information. A locator kept on a page object (`cartPage.checkoutButton`) is not known to be a locator.
+- `const check = expect(x); check.toBe(1);` is not read as an assertion.
+- An HTTP call counts as a data operation for `request.*`, `axios.*`, `fetch` and `cy.request`. A client under another name (`api.post(...)`) is not seen.
+- A sleep or a mock inside a hook is not stored, because hooks in the model hold only assertions and releases. Module mocks in hooks are stored as file mocks.
+- An after hook releases resources for every test in the file, also when it sits in another `describe` block.
+- The adapter walks the syntax tree directly and has no `.scm` query files.
+
+### Adding to the vocabulary
+
+Add the name to the right table in `src/adapters/js/vocab.ts`, use it once in a fixture under `fixtures/adapters/js/`, then run `UPDATE_GOLDEN=1 npm test` and check the golden diff. The vocabulary test fails when an entry appears in no fixture.
