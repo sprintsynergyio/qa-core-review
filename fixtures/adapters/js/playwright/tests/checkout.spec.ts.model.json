@@ -49,7 +49,8 @@
           "kind": "afterEach",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         }
       ],
       "testIds": [
@@ -85,7 +86,8 @@
               "kind": "beforeAll",
               "scope": "suite",
               "releases": [],
-              "assertions": []
+              "assertions": [],
+              "waits": []
             },
             {
               "span": {
@@ -97,7 +99,8 @@
               "kind": "afterAll",
               "scope": "suite",
               "releases": [],
-              "assertions": []
+              "assertions": [],
+              "waits": []
             }
           ],
           "testIds": [
@@ -1268,7 +1271,8 @@
       "kind": "beforeEach",
       "scope": "file",
       "releases": [],
-      "assertions": []
+      "assertions": [],
+      "waits": []
     }
   ],
   "fileMocks": [],

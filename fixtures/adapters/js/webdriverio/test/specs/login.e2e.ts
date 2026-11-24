@@ -3,6 +3,7 @@ import { expect } from 'expect-webdriverio';
 
 describe('Login page', () => {
   beforeEach(async () => {
+    await browser.setTimeout({ implicit: 10000 });
     await browser.url('https://www.saucedemo.com');
   });
 

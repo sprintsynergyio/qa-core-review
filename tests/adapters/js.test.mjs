@@ -613,12 +613,17 @@ test('waits: fixed sleeps, conditions and fake timers', async () => {
     await new Promise((resolve) => setTimeout(resolve, 750)); await new Promise((r) => { setTimeout(r, pause); });
     cy.wait('@orders'); cy.wait(['@a', '@b']); await page.waitForResponse('**/x'); await page.waitForURL('/x'); await el.waitFor(); await browser.waitUntil(() => true);
     vi.advanceTimersByTime(1000); jest.runAllTimers(); cy.tick(60000); clock.tick(5);
-    page.pause(); await wait(() => ready); setTimeout(done, 100); sleep(5); new Promise((resolve) => setTimeout(resolve, 5)); await new Promise((resolve) => resolve());`);
+    page.pause(); await wait(() => ready); setTimeout(done, 100); sleep(5); new Promise((resolve) => setTimeout(resolve, 5)); await new Promise((resolve) => resolve());
+    await new Promise((resolve, reject) => { job.once('done', resolve); setTimeout(() => reject(new Error('late')), 2000); }); await new Promise(() => setTimeout(tick, 5));
+    await browser.setTimeout({ implicit: 10_000 }); await browser.setTimeout({ pageLoad: 30000 }); await browser.setTimeout({ implicit: limit }); test.setTimeout(60000);
+    await new Promise(resolve => { setTimeout(() => { log('waited'); resolve(); }, 40); });`);
   assert.deepEqual(lines(t.waits, (w) => `${w.kind} ${w.ms}`), [
     'fixed-sleep 3000', 'fixed-sleep 2000', 'fixed-sleep 500', 'fixed-sleep null', 'fixed-sleep 250', 'fixed-sleep null', 'fixed-sleep 1', 'fixed-sleep 1',
     'fixed-sleep 750', 'fixed-sleep null',
     'condition null', 'condition null', 'condition null', 'condition null', 'condition null', 'condition null',
     'fake-timer 1000', 'fake-timer null', 'fake-timer 60000', 'fake-timer 5',
+    // A timer that only limits the wait for an event is not a sleep. An implicit wait is a setting with its own kind.
+    'implicit-wait-config 10000', 'implicit-wait-config null', 'fixed-sleep 40',
   ]);
   assert.deepEqual([t.waits[0].text, t.waits[0].span], ['page.waitForTimeout(3000)', { startLine: 4, startColumn: 11, endLine: 4, endColumn: 36 }]);
 });
@@ -640,6 +645,7 @@ test('selectors: the call, the strategy, the value and positional picks', async 
   assert.deepEqual(lines(others.selectors, (s) => `${s.api} ${s.strategy}${s.positional ? ` ${s.positional.kind}:${s.positional.index}` : ''}`), ['cy.get class nth:2', 'cy.find css', 'cy.get test-id first:null', '$ link-text', '$$ class', '$ label']);
   // The strategy reader is shared by every adapter.
   const strategies = {
+    'h1=Welcome to the shop': 'text', '.title*=Sauce Labs': 'text', 'button=Add to cart': 'text', 'a[href=x]': 'css',
     '//div': 'xpath', '/html/body': 'xpath', '(//a)[1]': 'xpath', 'xpath=//a': 'xpath', './/a': 'xpath', '../a': 'xpath', 'text=Buy': 'text', 'role=button': 'role', 'id=buy': 'id',
     'aria/Menu': 'label', '~menu': 'label', '=Home': 'link-text', '*=Hom': 'link-text', '#buy': 'id', ' #buy ': 'id', '.btn': 'class', 'css=.btn': 'class', '[name="q"]': 'name', '[id=x]': 'id',
     '[data-testid="x"]': 'test-id', '[data-pw=x]': 'test-id', 'data-testid=x': 'test-id', '[data-test=x]': 'css', '[href^="/a"]': 'css', 'div > .btn': 'css', '#a .b': 'css', 'button': 'css',

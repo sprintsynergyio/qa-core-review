@@ -49,7 +49,8 @@
           "kind": "beforeAll",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         },
         {
           "span": {
@@ -61,7 +62,8 @@
           "kind": "beforeEach",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         },
         {
           "span": {
@@ -73,7 +75,8 @@
           "kind": "afterAll",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         }
       ],
       "testIds": [],

@@ -78,6 +78,19 @@
               "reachable": true,
               "viaHelper": null
             }
+          ],
+          "waits": [
+            {
+              "span": {
+                "startLine": 10,
+                "startColumn": 5,
+                "endLine": 10,
+                "endColumn": 31
+              },
+              "text": "await page.waitForTimeout(500)",
+              "kind": "fixed-sleep",
+              "ms": 500
+            }
           ]
         }
       ],
@@ -478,7 +491,8 @@
       "kind": "beforeAll",
       "scope": "file",
       "releases": [],
-      "assertions": []
+      "assertions": [],
+      "waits": []
     }
   ],
   "fileMocks": [

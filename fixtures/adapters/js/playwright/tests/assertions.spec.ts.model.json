@@ -4197,7 +4197,8 @@
           "reachable": true,
           "viaHelper": null
         }
-      ]
+      ],
+      "waits": []
     }
   ],
   "fileMocks": [],

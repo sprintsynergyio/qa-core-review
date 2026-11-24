@@ -49,7 +49,8 @@
           "kind": "beforeAll",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         },
         {
           "span": {
@@ -63,7 +64,8 @@
           "releases": [
             "timers"
           ],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         },
         {
           "span": {
@@ -75,7 +77,8 @@
           "kind": "beforeEach",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         }
       ],
       "testIds": [

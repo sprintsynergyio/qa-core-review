@@ -49,7 +49,8 @@
           "kind": "beforeAll",
           "scope": "suite",
           "releases": [],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         },
         {
           "span": {
@@ -63,7 +64,8 @@
           "releases": [
             "var:this.clock"
           ],
-          "assertions": []
+          "assertions": [],
+          "waits": []
         }
       ],
       "testIds": [

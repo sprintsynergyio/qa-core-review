@@ -290,6 +290,9 @@ export const CYPRESS_SUPPORT_FILES = ['cypress/support/commands', 'cypress/suppo
 export const FIXED_WAIT_METHODS = ['waitForTimeout', 'pause', 'wait'] as const;
 /** Bare functions that sleep when awaited: `await sleep(500)`. `setTimeout` is the promise form from node:timers/promises. */
 export const FIXED_WAIT_FUNCTIONS = ['sleep', 'delay', 'wait', 'pause', 'setTimeout'] as const;
+/** `browser.setTimeout({ implicit: 10000 })` sets a wait that every element lookup then uses (WebdriverIO). */
+export const IMPLICIT_WAIT_METHODS = ['setTimeout'] as const;
+export const IMPLICIT_WAIT_KEY = 'implicit';
 /** `new Promise((resolve) => setTimeout(resolve, 500))`. */
 export const TIMER_FUNCTION = 'setTimeout';
 /** Methods that wait for a condition, and methods that move a fake clock. Neither is a hard wait. */
@@ -443,6 +446,7 @@ export const VOCAB_SURFACE: readonly string[] = [
   ...[...FIXED_WAIT_METHODS, ...Object.keys(WAIT_METHODS), ...Object.keys(SELECTOR_CALLS), ...Object.keys(POSITIONAL_CALLS), ...Object.keys(STEP_METHODS)].map((name) => `.${name}(`),
   ...FIXED_WAIT_FUNCTIONS.map((name) => `await ${name}(`),
   `new Promise((resolve) => ${TIMER_FUNCTION}(`,
+  ...IMPLICIT_WAIT_METHODS.map((name) => `.${name}({ ${IMPLICIT_WAIT_KEY}:`),
   ...Object.keys(SELECTOR_ACTIONS).map((name) => `.${name}(`),
   ...[...PAGE_OBJECTS, ...UI_ROOTS, ...HTTP_CLIENTS, ...Object.keys(GLOBAL_OBJECTS)].map((object) => `${object}.`),
   ...TEST_ID_ATTRIBUTES,

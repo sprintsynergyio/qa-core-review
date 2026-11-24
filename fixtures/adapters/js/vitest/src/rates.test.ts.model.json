@@ -623,7 +623,8 @@
         "globals",
         "envs"
       ],
-      "assertions": []
+      "assertions": [],
+      "waits": []
     }
   ],
   "fileMocks": [

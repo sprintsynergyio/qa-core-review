@@ -204,6 +204,8 @@ export interface NHook {
   /** Normalized targets released here: 'driver', 'mocks', 'timers', 'env:API_URL', and so on. */
   releases: string[];
   assertions: NAssertion[];
+  /** Sleeps and waits inside the hook, so a hard wait in a `beforeEach` is seen like one in a test. */
+  waits: NWait[];
 }
 
 export interface NTest {

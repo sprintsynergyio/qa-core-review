@@ -278,7 +278,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
       const fn = [...args].reverse().find(isFunction) ?? null;
 
       if (declaration?.kind === 'hook') {
-        const hook: NHook = { span: spanOfNode(node), kind: declaration.hook!, scope: scope.suite ? 'suite' : 'file', releases: [], assertions: [] };
+        const hook: NHook = { span: spanOfNode(node), kind: declaration.hook!, scope: scope.suite ? 'suite' : 'file', releases: [], assertions: [], waits: [] };
         (scope.suite ? scope.suite.hooks : model.fileHooks).push(hook);
         const body = fn?.childForFieldName('body');
         if (body) bodies.set(hook, body);
@@ -342,6 +342,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
       Object.assign(target, { waits: did.waits, selectors: did.selectors, steps: did.steps, data: did.data, mocks: did.mocks });
     } else {
       target.releases = [...new Set(did.releases)];
+      target.waits = did.waits;
       model.fileMocks.push(...did.mocks);
       if (after) did.releases.forEach((token) => afterReleases.add(token));
     }
