@@ -166,6 +166,94 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
       good: "// Fails until SHOP-142 is fixed: the tax is rounded down.\ntest.fail('rounds the tax up', async ({ page }) => {\n  // ...\n});",
     } },
   },
+  'QCR-D001': {
+    title: 'A test with the same body as another test',
+    fix: 'Delete the copy, or change it so that it checks another case. For the same steps with other data, write one parameterized test.',
+    examples: { js: {
+      bad: "test('login works', async ({ page }) => {\n  await login(page, 'standard_user');\n  await expect(page).toHaveURL(/inventory/);\n});\n\ntest('login works for standard user', async ({ page }) => {\n  await login(page, 'standard_user');\n  await expect(page).toHaveURL(/inventory/);\n});",
+      good: "for (const user of ['standard_user', 'performance_glitch_user']) {\n  test(`login works for ${user}`, async ({ page }) => {\n    await login(page, user);\n    await expect(page).toHaveURL(/inventory/);\n  });\n}",
+    } },
+  },
+  'QCR-D001/title': {
+    title: 'Two tests with the same title in one file',
+    fix: 'Give each test a title that says what it checks, so that a failure report points to one test.',
+    examples: { js: {
+      bad: "it('adds an item', () => {\n  expect(new Cart().add('backpack').items).toHaveLength(1);\n});\n\nit('adds an item', () => {\n  expect(new Cart().add('backpack').add('onesie').total).toBe(37.98);\n});",
+      good: "it('adds an item', () => {\n  expect(new Cart().add('backpack').items).toHaveLength(1);\n});\n\nit('adds the prices of two items', () => {\n  expect(new Cart().add('backpack').add('onesie').total).toBe(37.98);\n});",
+    } },
+  },
+  'QCR-P001': {
+    title: 'A test with only snapshot assertions',
+    fix: 'Add assertions on the values that matter, so that the test says what must be true. Keep the snapshot next to them if it helps.',
+    examples: { js: {
+      bad: "it('renders the cart', () => {\n  const html = renderCart([{ name: 'Backpack', price: 29.99 }]);\n  expect(html).toMatchSnapshot();\n});",
+      good: "it('renders the cart', () => {\n  const html = renderCart([{ name: 'Backpack', price: 29.99 }]);\n  expect(html).toContain('Backpack');\n  expect(html).toContain('$29.99');\n  expect(html).toMatchSnapshot();\n});",
+    } },
+  },
+  'QCR-P001/inline': {
+    title: 'An inline snapshot recorded empty',
+    fix: 'Run the test once, read what the runner writes into the snapshot, and commit it only when it is right.',
+    examples: { js: {
+      bad: "it('formats the receipt', () => {\n  const receipt = formatReceipt({ items: ['backpack'], tax: 2.4 });\n  expect(receipt.total).toBe('$32.39');\n  expect(receipt.lines).toMatchInlineSnapshot();\n});",
+      good: "it('formats the receipt', () => {\n  const receipt = formatReceipt({ items: ['backpack'], tax: 2.4 });\n  expect(receipt.total).toBe('$32.39');\n  expect(receipt.lines).toMatchInlineSnapshot(`\"Backpack $29.99, Tax $2.40\"`);\n});",
+    } },
+  },
+  'QCR-P001/visual': {
+    title: 'A test with only visual checks (info)',
+    fix: 'Look at each new baseline image before you commit it. One assertion on what the page must show makes a failure easier to read.',
+    examples: { js: {
+      bad: "test('shows the cart', async ({ page }) => {\n  await page.goto('https://www.saucedemo.com/cart.html');\n  await expect(page).toHaveScreenshot('cart.png');\n});",
+      good: "test('shows the cart', async ({ page }) => {\n  await page.goto('https://www.saucedemo.com/cart.html');\n  await expect(page.getByTestId('cart-list')).toBeVisible();\n  await expect(page).toHaveScreenshot('cart.png');\n});",
+    } },
+  },
+  'QCR-C001/timers': {
+    title: 'Fake timers that are never switched back',
+    fix: 'Switch back to real timers in an afterEach hook. A hook also runs when the test fails; a line at the end of the test does not.',
+    examples: { js: {
+      bad: "it('uses the fixed date', () => {\n  vi.useFakeTimers();\n  vi.setSystemTime(new Date('2026-01-01'));\n  expect(formatToday()).toBe('Jan 1, 2026');\n});",
+      good: "afterEach(() => {\n  vi.useRealTimers();\n});\n\nit('uses the fixed date', () => {\n  vi.useFakeTimers();\n  vi.setSystemTime(new Date('2026-01-01'));\n  expect(formatToday()).toBe('Jan 1, 2026');\n});",
+    } },
+  },
+  'QCR-C001/spy': {
+    title: 'A spy or stub that is never restored',
+    fix: 'Restore every spy in an afterEach hook. If the runner config already does it (restoreMocks), set restoreMocksConfigured for this rule.',
+    examples: { js: {
+      bad: "it('logs the order', () => {\n  const log = jest.spyOn(console, 'log').mockImplementation(() => {});\n  placeOrder({ id: 7 });\n  expect(log).toHaveBeenCalledWith('order 7 placed');\n});",
+      good: "afterEach(() => {\n  jest.restoreAllMocks();\n});\n\nit('logs the order', () => {\n  const log = jest.spyOn(console, 'log').mockImplementation(() => {});\n  placeOrder({ id: 7 });\n  expect(log).toHaveBeenCalledWith('order 7 placed');\n});",
+    } },
+  },
+  'QCR-C001/env': {
+    title: 'An environment variable that is never set back',
+    fix: 'Set the variable back in an afterEach hook, or use the stub helper of the runner and undo it there.',
+    examples: { js: {
+      bad: "it('uses the staging API', () => {\n  process.env.API_URL = 'https://api.example.test';\n  expect(apiUrl()).toBe('https://api.example.test');\n});",
+      good: "const original = process.env.API_URL;\n\nafterEach(() => {\n  process.env.API_URL = original;\n});\n\nit('uses the staging API', () => {\n  process.env.API_URL = 'https://api.example.test';\n  expect(apiUrl()).toBe('https://api.example.test');\n});",
+    } },
+  },
+  'QCR-C001/global': {
+    title: 'A global that is never put back',
+    fix: 'Put the global back in an afterEach hook, or use the stub helper of the runner and undo it there.',
+    examples: { js: {
+      bad: "it('loads the rates', async () => {\n  vi.stubGlobal('fetch', vi.fn(async () => new Response('{\"EUR\":0.92}')));\n  expect(await loadRates()).toEqual({ EUR: 0.92 });\n});",
+      good: "afterEach(() => {\n  vi.unstubAllGlobals();\n});\n\nit('loads the rates', async () => {\n  vi.stubGlobal('fetch', vi.fn(async () => new Response('{\"EUR\":0.92}')));\n  expect(await loadRates()).toEqual({ EUR: 0.92 });\n});",
+    } },
+  },
+  'QCR-C001/handle': {
+    title: 'A browser, context, page or client that is never closed',
+    fix: 'Close it in an after hook, or let the test runner make it for you: a fixture is closed by the runner.',
+    examples: { js: {
+      bad: "test('opens the shop', async () => {\n  const browser = await chromium.launch();\n  const page = await browser.newPage();\n  await page.goto('https://www.saucedemo.com');\n  await expect(page).toHaveTitle('Swag Labs');\n});",
+      good: "test('opens the shop', async ({ page }) => {\n  await page.goto('https://www.saucedemo.com');\n  await expect(page).toHaveTitle('Swag Labs');\n});",
+    } },
+  },
+  'QCR-C001/data': {
+    title: 'Test data that is never deleted (info)',
+    fix: 'Delete what the test creates, in the test or in an after hook, so that the next run starts from the same data.',
+    examples: { js: {
+      bad: "test('creates an order', async ({ request }) => {\n  const response = await request.post('https://api.example.test/orders', { data: { item: 'backpack' } });\n  expect(response.status()).toBe(201);\n});",
+      good: "test('creates an order', async ({ request }) => {\n  const response = await request.post('https://api.example.test/orders', { data: { item: 'backpack' } });\n  expect(response.status()).toBe(201);\n  const { id } = await response.json();\n  await request.delete(`https://api.example.test/orders/${id}`);\n});",
+    } },
+  },
 };
 
 /** The fix and the good example for a finding in a file of this language. */

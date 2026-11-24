@@ -190,7 +190,7 @@ Helpers are counted one level deep: a helper that only calls another helper does
 | Mock | `vi.mock` and `jest.mock` (module), `vi.spyOn`, `jest.spyOn`, `sinon.stub`, `mock.method` (function), `page.route` and `cy.intercept` (network). A module mock that calls `importActual` or `requireActual` is `passthrough`. |
 | Subject | The import whose last part is the test file's own name (`cart.test.ts` and `./cart`), or `rules.QCR-M001.subjectMap` in the config: `{ "tests/cart.*": "../lib/basket" }`. With no subject, `targetsSubject` is `null`. |
 | Resource | Spies, fake timers, `vi.stubGlobal`, `vi.stubEnv`, a write to `process.env.X`, `globalThis.X`, `window.X` or `Date.now`, and `launch()`, `newContext()`, `newPage()`. |
-| Released | By the matching call in the same test or in an `afterEach` or `afterAll` hook of the file: `mockRestore`, `restoreAllMocks`, `sinon.restore`, `useRealTimers`, `unstubAllGlobals`, `unstubAllEnvs`, `close`, `dispose`, or a second write or `delete` of the same global. Playwright fixtures and Cypress stubs and clocks clean up after themselves (`autoManaged`). |
+| Released | By the matching call in the same test, or in an `afterEach` or `afterAll` hook of the same suite or of a suite around it (a hook at the top of the file covers every test): `mockRestore`, `restoreAllMocks`, `sinon.restore`, `useRealTimers`, `unstubAllGlobals`, `unstubAllEnvs`, `close`, `dispose`, or a second write or `delete` of the same global. Playwright fixtures and Cypress stubs and clocks clean up after themselves (`autoManaged`). |
 
 ### When a file cannot be parsed
 
@@ -202,7 +202,7 @@ If the grammar cannot be loaded, or `ERROR` nodes cover more than 30% of the fil
 - `const check = expect(x); check.toBe(1);` is not read as an assertion.
 - An HTTP call counts as a data operation for `request.*`, `axios.*`, `fetch` and `cy.request`. A client under another name (`api.post(...)`) is not seen.
 - Hooks in the model hold assertions, releases, waits and selectors. A function mock or a try block inside a hook is not stored. Module mocks in hooks are stored as file mocks.
-- An after hook releases resources for every test in the file, also when it sits in another `describe` block.
+- A spy stored through a chain of stub calls keeps its variable: in `const send = vi.spyOn(mailer, 'send').mockResolvedValue(1)`, `send.mockRestore()` releases it.
 - The adapter walks the syntax tree directly and has no `.scm` query files.
 
 ### Adding to the vocabulary

@@ -730,6 +730,36 @@ test('resources: what a test takes, and whether it or an after hook gives it bac
   assert.deepEqual(hooked.fileHooks.map((hook) => [hook.kind, hook.releases]), [
     ['beforeAll', []], ['afterAll', ['var:shared', 'timers', 'mocks', 'globals', 'envs', 'env:MODE', 'global:Date.now', 'global:name']],
   ]);
+
+  // An after hook covers its own suite and the suites inside it, not a suite next to it.
+  const scoped = await js(`import { afterEach, beforeEach, describe, it, vi } from 'vitest';
+    describe('A', () => {
+      afterEach(() => { vi.useRealTimers(); });
+      beforeEach(() => { vi.stubEnv('MODE', 'test'); });
+      it('in A', () => { vi.useFakeTimers(); });
+      describe('inside A', () => { it('nested', () => { vi.useFakeTimers(); vi.spyOn(cart, 'total'); }); });
+    });
+    describe('B', () => {
+      beforeEach(() => { vi.useFakeTimers(); });
+      it('in B', () => { vi.useFakeTimers(); });
+      describe('inside B', () => { afterEach(() => { vi.restoreAllMocks(); }); it('deep', () => { vi.spyOn(cart, 'add'); }); });
+    });
+    it('at the top', () => { vi.useFakeTimers(); });`, 'a.test.ts');
+  assert.deepEqual(scoped.tests.map((t) => `${t.title}: ${t.resources.map(brief).join(', ')}`), [
+    'in A: fake-timers test released', 'nested: fake-timers test released, spy test', 'in B: fake-timers test', 'deep: spy test released', 'at the top: fake-timers test',
+  ]);
+  assert.deepEqual(scoped.fileResources.map(brief), ['env hook', 'fake-timers hook']);
+  // A hook at the top of the file covers every test.
+  const whole = await js(`import { afterEach, describe, it, vi } from 'vitest';
+    afterEach(() => vi.useRealTimers());
+    describe('A', () => { it('a', () => { vi.useFakeTimers(); }); });
+    it('b', () => { vi.useFakeTimers(); });`, 'a.test.ts');
+  assert.deepEqual(whole.tests.map((t) => t.resources.map(brief).join()), ['fake-timers test released', 'fake-timers test released']);
+  // A stub method gives the mock back, so the variable still names the spy.
+  const chained = await js(`import { it, vi } from 'vitest';
+    it('a', async () => { const send = vi.spyOn(mailer, 'send').mockResolvedValue(1); const log = vi.spyOn(console, 'log').mockImplementation(() => {}).mockName('log'); send.mockRestore(); });
+    it('b', () => { const stub = sinon.stub(mailer, 'send').resolves(); stub.restore(); const kept = sinon.stub(mailer, 'queue').returns(1); });`, 'a.test.ts');
+  assert.deepEqual(chained.tests.map((t) => t.resources.map(brief).join(', ')), ['spy test released, spy test', 'spy test released, spy test']);
 });
 
 test('lexical fallback: tests, markers, assertions and sleeps from a file that cannot be parsed', async () => {

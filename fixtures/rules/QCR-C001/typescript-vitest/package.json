@@ -1,0 +1,5 @@
+{
+  "name": "rule-fixture",
+  "private": true,
+  "devDependencies": { "vitest": "^2.1.0" }
+}

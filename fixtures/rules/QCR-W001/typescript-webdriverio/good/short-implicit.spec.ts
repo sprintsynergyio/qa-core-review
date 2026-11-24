@@ -8,6 +8,7 @@ describe('Login', () => {
 
   it('shows the login button', async () => {
     await browser.url('https://www.saucedemo.com');
-    await expect($('[data-test="login-button"]')).toBeDisplayed();
+    await expect($('[data-test="username"]')).toBeDisplayed();
+    await expect($('[data-test="login-button"]')).toBeEnabled();
   });
 });
