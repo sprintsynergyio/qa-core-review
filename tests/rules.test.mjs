@@ -27,13 +27,15 @@ for (const { ruleId, name, dir } of folders) {
 }
 
 test('every rule with fixtures has them for JS/TS, and the registry lists the rules in id order', () => {
-  assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004']);
+  assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-S001', 'QCR-W001']);
   assert.ok(folders.every((entry) => /^(typescript|javascript)-[a-z]+$/.test(entry.name)));
   assert.deepEqual(builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires.join(' ')]), [
     ['QCR-A001', 'no-assertion', 'error', 'universal', 'tests assertions'],
     ['QCR-A002', 'trivial-assertion', 'error', 'universal', 'assertions assertion-operands'],
     ['QCR-A003', 'cannot-fail-assertion', 'error', 'universal', 'assertions assertion-operands reachability'],
     ['QCR-A004', 'conditional-assertion', 'warn', 'universal', 'assertions'],
+    ['QCR-W001', 'hard-wait', 'warn', 'universal', 'waits'],
+    ['QCR-S001', 'brittle-selector', 'warn', 'framework', 'selectors'],
     ['QCR-X001', 'parse-error', 'info', 'universal', ''],
   ]);
 });
@@ -124,8 +126,8 @@ test('helpers: the config, the same file, a page object the spec imports, and Cy
 test('a file read by the lexical scanner gets the rules it supports, with low confidence', async () => {
   const { report } = await review(fixtureRoot('adapters', 'js', 'jest'));
   const broken = report.files.find((file) => file.file === 'src/broken.test.ts');
-  assert.deepEqual(report.findings.filter((finding) => finding.location.file === broken.file).map((finding) => [finding.ruleId, finding.location.startLine, finding.confidence]), [['QCR-A001', 16, 'low']]);
-  assert.deepEqual(broken.rulesSkipped.map((rule) => rule.ruleId), ['QCR-A002', 'QCR-A003']);
+  assert.deepEqual(report.findings.filter((finding) => finding.location.file === broken.file).map((finding) => [finding.ruleId, finding.location.startLine, finding.confidence]), [['QCR-W001', 11, 'low'], ['QCR-W001', 12, 'low'], ['QCR-A001', 16, 'low'], ['QCR-W001', 20, 'low']]);
+  assert.deepEqual(broken.rulesSkipped.map((rule) => rule.ruleId), ['QCR-A002', 'QCR-A003', 'QCR-S001']);
   assert.match(broken.rulesSkipped[0].reason, /^needs a capability this file does not have: assertion-operands/);
 });
 

@@ -183,9 +183,12 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
         const occurrence = seen.get(key) ?? 0;
         seen.set(key, occurrence + 1);
         const location: Location = { file: file.path, ...draft.span };
+        // The config sets the level of the rule. A sub-case that the rule reports at a level of its own, such as the
+        // positional picks of QCR-S001 (info), keeps that level.
+        const ownLevel = draft.severity !== undefined && draft.severity !== rule.defaultSeverity ? draft.severity : undefined;
         fileFindings.push({
           id: fingerprint(rule.id, file.path, test?.fullTitle ?? null, evidence, occurrence), ruleId: rule.id, ruleName: rule.name,
-          severity: setting?.severity ?? draft.severity ?? rule.defaultSeverity, source: 'static', message: draft.message, evidence, fix: draft.fix ?? '',
+          severity: ownLevel ?? setting?.severity ?? rule.defaultSeverity, source: 'static', message: draft.message, evidence, fix: draft.fix ?? '',
           ...(draft.goodExample === undefined ? {} : { goodExample: draft.goodExample }),
           location, testId: test?.id ?? null, confidence: reduced ? 'low' : draft.confidence ?? 'high', suppressed: false, docsUrl: docsUrlFor(rule.id),
         });

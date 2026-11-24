@@ -16,6 +16,8 @@ interface Entry {
   examples: Partial<Record<Family, Example>>;
 }
 
+const SELECTOR_FIX = 'Prefer role, label or test id selectors. For Playwright suites, qa-core-heal can repair many broken locators at once.';
+
 export const FIX_TEXT: Readonly<Record<string, Entry>> = {
   'QCR-A001': {
     title: 'A test with no assertion',
@@ -69,6 +71,59 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
     examples: { js: {
       bad: "const error = page.getByTestId('error');\nif (await error.isVisible()) {\n  await expect(error).toContainText('locked out');\n}",
       good: "await expect(page.getByTestId('error')).toContainText('locked out');",
+    } },
+  },
+  'QCR-W001': {
+    title: 'A fixed sleep',
+    fix: 'Wait for a condition instead: a web-first assertion, an explicit wait (WebDriverWait, waitForResponse) or a polling helper. For timing failures that come and go, see qa-core-flaky.',
+    examples: { js: {
+      bad: "await page.getByRole('button', { name: 'Add to cart' }).click();\nawait page.waitForTimeout(3000);\nawait expect(page.getByTestId('shopping-cart-badge')).toHaveText('1');",
+      good: "await page.getByRole('button', { name: 'Add to cart' }).click();\nawait expect(page.getByTestId('shopping-cart-badge')).toHaveText('1');",
+    } },
+  },
+  'QCR-W001/implicit': {
+    title: 'A long implicit wait (info)',
+    fix: 'Keep the implicit wait at 0 or short, and wait for each condition where the test needs it.',
+    examples: { js: {
+      bad: 'await browser.setTimeout({ implicit: 10000 });',
+      good: "await $('[data-test=\"shopping-cart-badge\"]').waitForDisplayed({ timeout: 10000 });",
+    } },
+  },
+  'QCR-S001/xpath': {
+    title: 'An XPath that depends on layout',
+    fix: SELECTOR_FIX,
+    examples: { js: {
+      bad: "await page.locator('//div[3]/div[2]/button[2]').click();",
+      good: "await page.getByRole('button', { name: 'Add to cart' }).click();",
+    } },
+  },
+  'QCR-S001/position': {
+    title: 'A selector that picks by position',
+    fix: SELECTOR_FIX,
+    examples: { js: {
+      bad: "cy.get('.inventory_list > div:nth-child(2) button').click();",
+      good: "cy.get('[data-test=\"add-to-cart-sauce-labs-backpack\"]').click();",
+    } },
+  },
+  'QCR-S001/generated': {
+    title: 'A generated class or id',
+    fix: SELECTOR_FIX,
+    examples: { js: { bad: "await page.locator('.css-1q2w3e4').click();", good: "await page.getByTestId('checkout').click();" } },
+  },
+  'QCR-S001/deep': {
+    title: 'A selector that follows the page structure through 4 or more levels',
+    fix: SELECTOR_FIX,
+    examples: { js: {
+      bad: "await page.locator('#root > div > main > section > button').click();",
+      good: "await page.getByRole('button', { name: 'Checkout' }).click();",
+    } },
+  },
+  'QCR-S001/pick': {
+    title: 'A pick by position in a list (info)',
+    fix: 'Pick the element by something it shows, such as its text, a role with a name or a test id, not by its place in a list.',
+    examples: { js: {
+      bad: "await page.locator('.inventory_item').nth(2).click();",
+      good: "await page.locator('.inventory_item').filter({ hasText: 'Sauce Labs Backpack' }).click();",
     } },
   },
 };

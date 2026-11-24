@@ -10,6 +10,8 @@ This page covers the rules that exist so far. The examples are in TypeScript. Th
 | [QCR-A002](#qcr-a002) | trivial-assertion | error | An assertion whose result is fixed by the code itself. |
 | [QCR-A003](#qcr-a003) | cannot-fail-assertion | error | An assertion that looks real and cannot fail. |
 | [QCR-A004](#qcr-a004) | conditional-assertion | warn | Every assertion sits inside a condition, a loop or a callback. |
+| [QCR-W001](#qcr-w001) | hard-wait | warn | A fixed sleep in a test or a hook. |
+| [QCR-S001](#qcr-s001) | brittle-selector | warn | A selector that depends on page layout or on generated names. |
 | [QCR-X001](#qcr-x001) | parse-error | info | A file that cannot be parsed, or a test file with no test in it. |
 
 ## Settings every rule has
@@ -26,7 +28,7 @@ In the config, a rule is `"off"`, a severity (`"error"`, `"warn"`, `"info"`), or
 }
 ```
 
-A severity in the config applies to every finding of the rule. `languages` limits the rule to those languages.
+A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001` and the implicit wait of `QCR-W001` stay info. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
 
 <a id="qcr-a001"></a>
 ## QCR-A001 `no-assertion` (error)
@@ -250,6 +252,182 @@ Not reported when:
 - The condition is the check: `if (!ok) throw new Error(...)` or `if (!ok) expect.fail(...)`.
 
 Turn it off: `"rules": { "QCR-A004": "off" }` in the config, or `--disable QCR-A004` on the command line.
+
+<a id="qcr-w001"></a>
+## QCR-W001 `hard-wait` (warn)
+
+A fixed sleep in a test or in a hook. It makes every run slower, and the test still fails on the day the page needs longer than the sleep.
+
+Bad:
+
+```ts
+await page.getByRole('button', { name: 'Add to cart' }).click();
+await page.waitForTimeout(3000);
+await expect(page.getByTestId('shopping-cart-badge')).toHaveText('1');
+```
+
+Good:
+
+```ts
+await page.getByRole('button', { name: 'Add to cart' }).click();
+await expect(page.getByTestId('shopping-cart-badge')).toHaveText('1');
+```
+
+Fix: Wait for a condition instead: a web-first assertion, an explicit wait (WebDriverWait, waitForResponse) or a polling helper. For timing failures that come and go, see qa-core-flaky.
+
+What counts as a fixed sleep:
+
+- Playwright `page.waitForTimeout(3000)`, Cypress `cy.wait(2000)`, WebdriverIO `browser.pause(3000)`.
+- `await sleep(500)`, `await delay(500)`, `await setTimeout(500)` from `node:timers/promises`, and `await new Promise((resolve) => setTimeout(resolve, 500))`.
+- A sleep whose amount is a variable, such as `cy.wait(pageLoad)`. The message then has no number.
+
+Not reported:
+
+- A wait for a condition: `cy.wait('@orders')`, `page.waitForResponse(...)`, `page.waitForURL(...)`, `waitForDisplayed`, `browser.waitUntil(...)`, `waitFor(...)`, `expect.poll(...)`.
+- A fake clock: `jest.advanceTimersByTime(300)`, `vi.runAllTimers()`, `cy.tick(1000)`, `page.clock.fastForward(...)`.
+- A timeout setting: `test.setTimeout(60_000)`, `{ timeout: 10000 }`.
+- A sleep at or below `maxMs`.
+
+### A long implicit wait (info)
+
+WebdriverIO only, for now. `browser.setTimeout({ implicit: ... })` above 5000 ms is reported as info. With an implicit wait, every lookup of a missing element takes that long to fail, and it adds up with your explicit waits.
+
+Bad:
+
+```ts
+await browser.setTimeout({ implicit: 10000 });
+```
+
+Good:
+
+```ts
+await $('[data-test="shopping-cart-badge"]').waitForDisplayed({ timeout: 10000 });
+```
+
+Fix: Keep the implicit wait at 0 or short, and wait for each condition where the test needs it.
+
+### Options
+
+```json
+{ "rules": { "QCR-W001": { "maxMs": 250 } } }
+```
+
+`maxMs` (default 0): a sleep of this many milliseconds or fewer is not reported.
+
+Turn it off: `"rules": { "QCR-W001": "off" }` in the config, or `--disable QCR-W001` on the command line.
+
+<a id="qcr-s001"></a>
+## QCR-S001 `brittle-selector` (warn)
+
+A selector that depends on the layout of the page or on generated names. It breaks when the page changes, while the feature still works. This rule runs on UI tests: Playwright, Cypress and WebdriverIO so far.
+
+Fix: Prefer role, label or test id selectors. For Playwright suites, qa-core-heal can repair many broken locators at once.
+
+### An XPath that depends on layout
+
+The XPath starts at `/html`, has a positional index such as `[3]` or `[last()]`, or has 4 or more steps. A short XPath on an attribute, such as `//button[@data-test="add-to-cart"]`, is fine.
+
+Bad:
+
+```ts
+await page.locator('//div[3]/div[2]/button[2]').click();
+```
+
+Good:
+
+```ts
+await page.getByRole('button', { name: 'Add to cart' }).click();
+```
+
+### A selector that picks by position
+
+The selector has `:nth-child(`, `:nth-of-type(`, `:nth-last-child(`, `:nth-last-of-type(` or the Playwright `>> nth=`.
+
+Bad:
+
+```ts
+cy.get('.inventory_list > div:nth-child(2) button').click();
+```
+
+Good:
+
+```ts
+cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+```
+
+### A generated class or id
+
+A class or an id that a styling library or a framework writes at build time, so it changes with the next build: `css-1q2w3e4` (Emotion), `sc-bdnylx` (styled-components), `jss42` and `makeStyles-root-12` (Material UI), `_button_1x2y3_12` and `Button_primary__3xK2a` (CSS modules), `ng-tns-c123-4` (Angular), `ember123` (Ember), or a name with a hash in it such as `item-4f3a2b1c`.
+
+Bad:
+
+```ts
+await page.locator('.css-1q2w3e4').click();
+```
+
+Good:
+
+```ts
+await page.getByTestId('checkout').click();
+```
+
+### A selector that follows the page structure
+
+The selector chains 4 or more combinators (`>`, a space, `+`, `~`). One new wrapper `div` breaks it.
+
+Bad:
+
+```ts
+await page.locator('#root > div > main > section > button').click();
+```
+
+Good:
+
+```ts
+await page.getByRole('button', { name: 'Checkout' }).click();
+```
+
+### A pick by position in a list (info)
+
+`.nth(2)` or `.eq(2)` with an index above 0, and `.first()` or `.last()` on a selector that is not a role, a label or a test id. Often there is no better way, so this is info: it never changes the verdict of a test.
+
+Bad:
+
+```ts
+await page.locator('.inventory_item').nth(2).click();
+```
+
+Good:
+
+```ts
+await page.locator('.inventory_item').filter({ hasText: 'Sauce Labs Backpack' }).click();
+```
+
+Fix: Pick the element by something it shows, such as its text, a role with a name or a test id, not by its place in a list.
+
+### Not reported
+
+- Role, label, text and test id locators: `getByRole`, `getByLabel`, `getByText`, `getByTestId`, `cy.contains`, `$('aria/Username')`.
+- Test id attributes: `[data-testid=...]`, `[data-test=...]`, `[data-qa=...]`, `[data-cy=...]`, and the attribute you name in `testIdAttribute`.
+- Plain ids and classes written by people: `#login-button`, `.inventory_item_name`, `.card__title`.
+- `.first()` or `.last()` of a role, a label or a test id, and index 0.
+- A selector built at run time (a variable or a template with a value in it). The tool only reads literal text.
+
+Each selector gives one finding: the first case that fits, in the order above.
+
+### Options
+
+```json
+{
+  "testIdAttribute": "data-automation",
+  "rules": { "QCR-S001": { "allowPatterns": ["^#app-root", "\\.legacy-"] } }
+}
+```
+
+- `allowPatterns` (default none): regular expressions. A selector whose text matches one of them is not reported.
+- `testIdAttribute` (top level, default `data-testid`): your own test id attribute. A selector on it counts as a test id.
+
+Turn it off: `"rules": { "QCR-S001": "off" }` in the config, or `--disable QCR-S001` on the command line.
 
 <a id="qcr-x001"></a>
 ## QCR-X001 `parse-error` (info)

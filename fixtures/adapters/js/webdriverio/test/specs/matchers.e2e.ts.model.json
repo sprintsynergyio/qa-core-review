@@ -89,7 +89,8 @@
               "reachable": true,
               "viaHelper": null
             }
-          ]
+          ],
+          "waits": []
         }
       ],
       "testIds": [

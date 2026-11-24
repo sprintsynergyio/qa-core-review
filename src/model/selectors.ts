@@ -20,6 +20,8 @@ export function selectorStrategy(selector: string, testIdAttributes: readonly st
   const attribute = /^\[\s*([\w-]+)\s*[~|^$*]?=?[^\]]*\]$/.exec(css)?.[1];
   if (attribute !== undefined) return testIdAttributes.includes(attribute) ? 'test-id' : attribute === 'name' ? 'name' : attribute === 'id' ? 'id' : 'css';
   if (testIdAttributes.some((name) => css.startsWith(`${name}=`))) return 'test-id';
+  // WebdriverIO: `h1=Welcome` and `.title*=Sauce` find an element by its text.
+  if (/^[\w.#-]+\*?=/.test(css)) return 'text';
   if (/^#[\w-]+$/.test(css)) return 'id';
   return /^\.[\w-]+$/.test(css) ? 'class' : 'css';
 }

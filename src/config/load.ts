@@ -120,17 +120,22 @@ function readConfigFile(file: string, shown: string): unknown {
 let schema: object | null = null;
 
 /** The regex strings in the config must compile. The schema cannot check that. */
-function regexProblems(generic: GenericEntry[]): SchemaProblem[] {
+function regexProblems(generic: GenericEntry[], rules: Record<string, unknown>): SchemaProblem[] {
   const problems: SchemaProblem[] = [];
-  generic.forEach((entry, index) => {
-    for (const [key, source] of Object.entries(entry.patterns ?? {})) {
-      try {
-        new RegExp(source as string);
-      } catch (error) {
-        problems.push({ pointer: `/generic/${index}/patterns/${key}`, message: `not a valid regular expression: ${(error as Error).message}` });
-      }
+  const compile = (source: string, pointer: string): void => {
+    try {
+      new RegExp(source);
+    } catch (error) {
+      problems.push({ pointer, message: `not a valid regular expression: ${(error as Error).message}` });
     }
+  };
+  generic.forEach((entry, index) => {
+    for (const [key, source] of Object.entries(entry.patterns ?? {})) compile(source as string, `/generic/${index}/patterns/${key}`);
   });
+  for (const [id, setting] of Object.entries(rules)) {
+    const patterns = isObject(setting) && Array.isArray(setting.allowPatterns) ? (setting.allowPatterns as string[]) : [];
+    patterns.forEach((source, index) => compile(source, `/rules/${id}/allowPatterns/${index}`));
+  }
   return problems;
 }
 
@@ -156,7 +161,7 @@ function resolveRule(user: unknown, base: RuleSetting | undefined): RuleSetting 
 export function resolveConfig(raw: unknown, shown = 'config', knownRuleIds?: readonly string[]): { config: ResolvedConfig; warnings: string[] } {
   schema ??= JSON.parse(readAssetText('schemas/config.schema.json')) as object;
   const problems = validateSchema(raw, schema);
-  if (problems.length === 0) problems.push(...regexProblems(((raw as { generic?: GenericEntry[] }).generic ?? [])));
+  if (problems.length === 0) problems.push(...regexProblems((raw as { generic?: GenericEntry[] }).generic ?? [], (raw as { rules?: Record<string, unknown> }).rules ?? {}));
   if (problems.length > 0) throw new ConfigError(shown, problems);
 
   const user = raw as Record<string, unknown>;

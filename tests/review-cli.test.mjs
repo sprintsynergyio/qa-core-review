@@ -44,11 +44,14 @@ test('review on the js-basic fixture writes a valid report.json and prints the t
     'fail  fixtures/projects/js-basic/tests/checkout.spec.ts:11  Checkout > opens the cart page',
     '  QCR-A001  error  11:3  This test has no assertion, so it passes whatever the code does.',
     '    Evidence: opens the cart page',
-    '    Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.', '',
+    '    Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.',
+    '  QCR-W001  warn   14:11  Hard wait of 2000 ms.',
+    '    Evidence: page.waitForTimeout(2000)',
+    '    Fix: Wait for a condition instead: a web-first assertion, an explicit wait (WebDriverWait, waitForResponse) or a polling helper. For timing failures that come and go, see qa-core-flaky.', '',
     'pass  fixtures/projects/js-basic/src/cart.test.ts:4  Cart > adds an item', '',
     'pass  fixtures/projects/js-basic/src/cart.test.ts:11  Cart > starts empty', '',
     'pass  fixtures/projects/js-basic/tests/checkout.spec.ts:5  Checkout > adds a backpack to the cart', '',
-    'Summary: 3 pass, 0 review, 1 fail. 1 error, 0 warnings, 0 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
+    'Summary: 3 pass, 0 review, 1 fail. 1 error, 1 warning, 0 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
     `Reports: ${path.join(out, 'report.json').split(path.sep).join('/')}`, '',
   ]);
   assert.equal(fs.existsSync(path.join(out, 'model.json')), false);

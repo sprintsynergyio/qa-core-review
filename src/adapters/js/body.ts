@@ -9,7 +9,7 @@ import { calleeName, isLocator, normalizedText, numberValue, rootName, unwrap, t
 import { argumentsOf, isFunction, memberChain, stringValue } from './syntax.js';
 import {
   ACTUAL_MODULE_CALLS, API_CONTEXT_OWNER, AUTO_FIXTURES, CYPRESS_INTERCEPT, CYPRESS_ONLY_SELECTOR_CALLS, CYPRESS_REQUEST, CYPRESS_ROOT, FIXED_WAIT_FUNCTIONS,
-  FIXED_WAIT_METHODS, FUNCTION_MOCKS, GLOBAL_OBJECTS, HTTP_CLIENTS, HTTP_FUNCTION, HTTP_METHODS, MATCH_ALL_PATTERNS, MODULE_MOCKS, NEEDS_ARGUMENT, PAGE_OBJECTS,
+  FIXED_WAIT_METHODS, FUNCTION_MOCKS, GLOBAL_OBJECTS, HTTP_CLIENTS, HTTP_FUNCTION, HTTP_METHODS, IMPLICIT_WAIT_KEY, IMPLICIT_WAIT_METHODS, MATCH_ALL_PATTERNS, MODULE_MOCKS, NEEDS_ARGUMENT, PAGE_OBJECTS,
   POSITIONAL_CALLS, RELEASE_CALLS, RELEASE_METHODS, RESOURCE_CALLS, ROUTE_CONTINUE, ROUTE_FULFILL, ROUTE_METHOD, SELECTOR_ACTIONS, SELECTOR_CALLS, STEP_METHODS,
   STUB_METHODS, TIMER_FUNCTION, UI_ROOTS, WAIT_METHODS, WDIO_LOCATORS,
 } from './vocab.js';
@@ -121,6 +121,10 @@ export function readCalls(body: SyntaxNode, ctx: CallContext): CallFacts {
     if (object && includes(FIXED_WAIT_METHODS, name) && sleeps) facts.waits.push({ ...entry, kind: alias ? 'condition' : 'fixed-sleep', ms: alias ? null : ms });
     else if (!object && includes(FIXED_WAIT_FUNCTIONS, name) && sleeps && call.parent?.type === 'await_expression') facts.waits.push({ ...entry, kind: 'fixed-sleep', ms });
     else if (object && own(WAIT_METHODS, name)) facts.waits.push({ ...entry, kind: WAIT_METHODS[name!]!, ms: WAIT_METHODS[name!] === 'fake-timer' ? ms : null });
+    else if (object && includes(IMPLICIT_WAIT_METHODS, name) && first?.type === 'object') {
+      const implicit = first.namedChildren.find((pair) => pair.childForFieldName('key')?.text === IMPLICIT_WAIT_KEY)?.childForFieldName('value');
+      if (implicit) facts.waits.push({ ...entry, kind: 'implicit-wait-config', ms: numberValue(unwrap(implicit)) });
+    }
 
     // Selectors.
     const pageAction = (own(SELECTOR_ACTIONS, name) ?? Infinity) <= args.length && object?.type === 'identifier' && includes(PAGE_OBJECTS, object.text) && literalText(args[0]) !== null;
@@ -203,10 +207,15 @@ export function readCalls(body: SyntaxNode, ctx: CallContext): CallFacts {
     else if (node.type === 'assignment_expression') onAssignment(node.childForFieldName('left')!, node);
     else if (node.type === 'unary_expression' && node.childForFieldName('operator')?.text === 'delete') onAssignment(unwrap(node.childForFieldName('argument')!), node);
     else if (node.type === 'new_expression' && node.childForFieldName('constructor')?.text === 'Promise') {
-      // `new Promise((resolve) => setTimeout(resolve, 500))` is a sleep.
+      // `new Promise((resolve) => setTimeout(resolve, 500))` is a sleep: only the timer ends it. When something else can
+      // call `resolve` too (`job.once('done', resolve)`), the timer is a time limit, not a sleep.
       const timer = node.descendantsOfType('call_expression').find((call) => call!.childForFieldName('function')?.text === TIMER_FUNCTION);
-      const delay = timer ? argumentsOf(timer)[1] : undefined;
-      if (timer && node.parent?.type === 'await_expression') facts.waits.push({ span: spanOfNode(node), text: clipText(node.text), kind: 'fixed-sleep', ms: numberValue(delay) });
+      const executor = node.childForFieldName('arguments')?.namedChildren[0];
+      const resolve = isFunction(executor) ? (executor!.childForFieldName('parameters')?.namedChildren[0] ?? executor!.childForFieldName('parameter'))?.text : undefined;
+      const uses = (within: SyntaxNode): number => within.descendantsOfType('identifier').filter((name) => name!.text === resolve).length;
+      if (timer && resolve !== undefined && node.parent?.type === 'await_expression' && uses(timer) > 0 && uses(timer) === uses(executor!.childForFieldName('body')!)) {
+        facts.waits.push({ span: spanOfNode(node), text: clipText(node.text), kind: 'fixed-sleep', ms: numberValue(argumentsOf(timer)[1]) });
+      }
     }
     for (const child of node.namedChildren) visit(child);
   };

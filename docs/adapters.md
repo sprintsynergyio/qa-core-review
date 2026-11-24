@@ -172,8 +172,9 @@ Helpers are counted one level deep: a helper that only calls another helper does
 
 | Fact | What counts |
 | --- | --- |
-| Fixed sleep | `waitForTimeout(n)`, `browser.pause(n)`, `cy.wait(n)`, awaited `sleep`, `delay`, `wait` or `pause`, awaited `setTimeout(n)` from `node:timers/promises`, and `await new Promise((r) => setTimeout(r, n))`. |
-| Not a sleep | `cy.wait('@alias')`, `waitForResponse`, `waitForURL`, `waitUntil` (kind `condition`), and fake clocks such as `vi.advanceTimersByTime` (kind `fake-timer`). |
+| Fixed sleep | `waitForTimeout(n)`, `browser.pause(n)`, `cy.wait(n)`, awaited `sleep`, `delay`, `wait` or `pause`, awaited `setTimeout(n)` from `node:timers/promises`, and `await new Promise((r) => setTimeout(r, n))` when only the timer can end the promise. Sleeps in hooks are stored on the hook (`waits`). |
+| Not a sleep | `cy.wait('@alias')`, `waitForResponse`, `waitForURL`, `waitUntil` (kind `condition`), and fake clocks such as `vi.advanceTimersByTime` (kind `fake-timer`). A promise that an event can resolve, with a timer as its time limit, is not a sleep either. |
+| Implicit wait | WebdriverIO `browser.setTimeout({ implicit: n })` (kind `implicit-wait-config`). |
 | Selector | The first argument of `locator`, `frameLocator`, `$`, `$$`, `waitForSelector`, `querySelector`, `cy.get`, `cy.find`, `page.click(selector)`, and the `getBy...` calls. The strategy (`css`, `xpath`, `id`, `test-id`, `role` and so on) comes from the call or from the text, through `selectorStrategy` in `src/model/selectors.ts`. `.first()`, `.last()`, `.nth(n)` and `.eq(n)` are stored as `positional` on the selector they narrow. |
 | Mock | `vi.mock` and `jest.mock` (module), `vi.spyOn`, `jest.spyOn`, `sinon.stub`, `mock.method` (function), `page.route` and `cy.intercept` (network). A module mock that calls `importActual` or `requireActual` is `passthrough`. |
 | Subject | The import whose last part is the test file's own name (`cart.test.ts` and `./cart`), or `rules.QCR-M001.subjectMap` in the config: `{ "tests/cart.*": "../lib/basket" }`. With no subject, `targetsSubject` is `null`. |
@@ -189,7 +190,7 @@ If the grammar cannot be loaded, or `ERROR` nodes cover more than 30% of the fil
 - There is no type information. A locator kept on a page object (`cartPage.checkoutButton`) is not known to be a locator.
 - `const check = expect(x); check.toBe(1);` is not read as an assertion.
 - An HTTP call counts as a data operation for `request.*`, `axios.*`, `fetch` and `cy.request`. A client under another name (`api.post(...)`) is not seen.
-- A sleep or a mock inside a hook is not stored, because hooks in the model hold only assertions and releases. Module mocks in hooks are stored as file mocks.
+- Hooks in the model hold assertions, releases and waits. A selector or a function mock inside a hook is not stored, so `QCR-S001` does not see a brittle selector in a `beforeEach`. Module mocks in hooks are stored as file mocks.
 - An after hook releases resources for every test in the file, also when it sits in another `describe` block.
 - The adapter walks the syntax tree directly and has no `.scm` query files.
 
