@@ -57,6 +57,7 @@ Fix: Add an assertion that checks the result of the action, for example the URL,
 What counts as an assertion:
 
 - `expect(...)`, `assert(...)` and `assert.method(...)`, Chai `should`, Cypress `.should(...)` and `.and(...)`, `sinon.assert`.
+- A supertest check inside the request chain: `request(app).get('/orders').expect(200)`.
 - A call to a helper that contains an assertion: a function in the same file, a page object method or a function the test file imports, a custom Cypress command. Helpers are counted one level deep: a helper that only calls another helper does not count.
 - A test that expects an error: `expect(fn).toThrow()`, `.rejects`, `assert.throws`.
 - A check written by hand: `if (response.status() !== 200) throw new Error(...)`, `expect.fail()`, `assert.fail()`.

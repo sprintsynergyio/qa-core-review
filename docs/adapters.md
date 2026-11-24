@@ -151,7 +151,7 @@ A Jest file and a Playwright file in the same project each get their own runner.
 
 ### Assertions
 
-An assertion is a chain that starts at `expect(...)` (also `expect.soft`, `expect.poll`, `expect.element`), `assert(...)` or `assert.method(...)`, a Chai `should`, a Cypress `.should('chainer')` or `.and('chainer')`, `sinon.assert`, or a call that fails the test (`expect.fail()`, `assert.fail()`, `fail()`, a `throw` in the test's own flow). A Cypress chain that ends with `.contains(...)` counts when it is the last command of the test.
+An assertion is a chain that starts at `expect(...)` (also `expect.soft`, `expect.poll`, `expect.element`), `assert(...)` or `assert.method(...)`, a Chai `should`, a Cypress `.should('chainer')` or `.and('chainer')`, `sinon.assert`, a supertest `.expect(...)` inside a request chain (kind `status` when the first argument is a status code), or a call that fails the test (`expect.fail()`, `assert.fail()`, `fail()`, a `throw` in the test's own flow). A Cypress chain that ends with `.contains(...)` counts when it is the last command of the test.
 
 Each assertion has:
 
