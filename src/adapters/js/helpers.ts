@@ -5,11 +5,14 @@ import type { NFile, NImport } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import { matchGlob } from '../../util/glob.js';
-import type { FrameworkGuess, HelperDef } from '../types.js';
+import path from 'node:path';
+import type { FrameworkGuess, HelperDef, SourceFile } from '../types.js';
 import { readBody, type BodyContext } from './assertions.js';
 import { learnNames } from './expr.js';
 import { argumentsOf, isFunction, stringValue } from './syntax.js';
-import { ASSERT_ROOT, CYPRESS_COMMAND_DEFINERS, EXPECT_LIBRARY_BY_MODULE, EXPECT_LIBRARY_BY_RUNNER, EXPECT_ROOT } from './vocab.js';
+import {
+  ASSERT_ROOT, CYPRESS_COMMAND_DEFINERS, CYPRESS_SUPPORT_FILES, EXPECT_LIBRARY_BY_MODULE, EXPECT_LIBRARY_BY_RUNNER, EXPECT_ROOT, MODULE_EXTENSIONS,
+} from './vocab.js';
 
 /** The context for reading bodies in one file. `skip` holds the test functions, whose names are local to them. */
 export function fileContext(root: SyntaxNode, frameworks: FrameworkGuess, imports: readonly NImport[], skip: ReadonlySet<number> = new Set()): BodyContext {
@@ -65,4 +68,16 @@ export function findSubject(filePath: string, imports: readonly NImport[], confi
   const own = lastPart(filePath).replace(/\.(test|spec|cy|e2e)$/, '');
   const match = imports.find((entry) => !entry.typeOnly && !entry.framework && lastPart(entry.source) === own);
   return match ? { module: match.source, via: 'filename' } : null;
+}
+
+/**
+ * Where the helpers of a file may come from: the local modules it imports, and for Cypress the
+ * support files that hold custom commands. Returns root-relative guesses; not all of them exist.
+ */
+export function supportFilesOf(file: SourceFile, frameworks: FrameworkGuess, imports: readonly NImport[]): string[] {
+  const guesses = (base: string): string[] => [base, ...MODULE_EXTENSIONS.flatMap((extension) => [`${base}${extension}`, `${base}/index${extension}`, base.replace(/\.[cm]?js$/, extension)])];
+  const local = imports.filter((entry) => entry.source.startsWith('.')).flatMap((entry) => guesses(path.posix.join(path.posix.dirname(file.path), entry.source)));
+  const usesCypress = frameworks.runner === 'cypress' || frameworks.libraries.includes('cypress');
+  const support = usesCypress ? CYPRESS_SUPPORT_FILES.flatMap((name) => guesses(path.posix.join(file.project?.dir ?? '.', name))) : [];
+  return [...new Set([...local, ...support])].filter((guess) => !guess.startsWith('..'));
 }

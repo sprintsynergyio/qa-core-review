@@ -199,7 +199,8 @@
           "viaHelper": null,
           "statusCodes": [
             201
-          ]
+          ],
+          "operator": ">="
         },
         {
           "span": {

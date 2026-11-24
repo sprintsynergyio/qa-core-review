@@ -136,7 +136,8 @@
         "guarded": { "type": "boolean" },
         "reachable": { "type": "boolean" },
         "viaHelper": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
-        "statusCodes": { "type": "array", "items": { "type": "integer", "minimum": 100, "maximum": 599 } }
+        "statusCodes": { "type": "array", "items": { "type": "integer", "minimum": 100, "maximum": 599 } },
+        "operator": { "enum": [">", ">=", "<", "<="] }
       }
     },
     "NWait": {

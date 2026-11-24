@@ -27,11 +27,11 @@ function project(t, extra = {}) {
   return dir;
 }
 
-test('review on the js-basic fixture writes a valid report.json and prints the text layout', (t) => {
+test('review on the js-basic fixture writes a valid report.json and prints the text layout, with exit 1 for its error', (t) => {
   const out = fs.mkdtempSync(path.join(os.tmpdir(), 'qcr-out-'));
   t.after(() => fs.rmSync(out, { recursive: true, force: true }));
   const ran = run(repoRoot, ['review', 'fixtures/projects/js-basic', '--output', out]);
-  assert.deepEqual([ran.status, ran.stderr], [0, '']);
+  assert.deepEqual([ran.status, ran.stderr], [1, '']);
   const report = readJson(path.join(out, 'report.json'));
   assert.deepEqual(schemaErrors('report.schema.json', report), []);
   assert.deepEqual(report.files.map((file) => [file.file, file.runner, file.tests.length]), [
@@ -41,11 +41,14 @@ test('review on the js-basic fixture writes a valid report.json and prints the t
   const dot = process.platform === 'win32' && process.env.WT_SESSION === undefined ? '-' : String.fromCharCode(0xb7);
   assert.deepEqual(ran.stdout.split('\n'), [
     `qa-core-review ${report.tool.version} ${dot} 3 files ${dot} 4 tests ${dot} static rules ${dot} TypeScript`, '',
+    'fail  fixtures/projects/js-basic/tests/checkout.spec.ts:11  Checkout > opens the cart page',
+    '  QCR-A001  error  11:3  This test has no assertion, so it passes whatever the code does.',
+    '    Evidence: opens the cart page',
+    '    Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.', '',
     'pass  fixtures/projects/js-basic/src/cart.test.ts:4  Cart > adds an item', '',
     'pass  fixtures/projects/js-basic/src/cart.test.ts:11  Cart > starts empty', '',
     'pass  fixtures/projects/js-basic/tests/checkout.spec.ts:5  Checkout > adds a backpack to the cart', '',
-    'pass  fixtures/projects/js-basic/tests/checkout.spec.ts:11  Checkout > opens the cart page', '',
-    'Summary: 4 pass, 0 review, 0 fail. 0 errors, 0 warnings, 0 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
+    'Summary: 3 pass, 0 review, 1 fail. 1 error, 0 warnings, 0 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
     `Reports: ${path.join(out, 'report.json').split(path.sep).join('/')}`, '',
   ]);
   assert.equal(fs.existsSync(path.join(out, 'model.json')), false);
@@ -75,7 +78,7 @@ test('exit codes: 0 with nothing at the level, 1 with a finding at the level, an
 test('exit code 2: a mistake in the call or in the config, on one line, with nothing on stdout', (t) => {
   const dir = project(t, { 'bad.config.json': '{ "failOn": "sometimes" }', 'a-file': 'x' });
   const table = [
-    [['--no-such-flag'], /--no-such-flag/], [['--fail-on', 'maybe'], /--fail-on must be error, warn, info or never, not "maybe"/], [['--rules', 'QCR-Z999'], /--rules: unknown rule id "QCR-Z999"\. Known: QCR-X001/],
+    [['--no-such-flag'], /--no-such-flag/], [['--fail-on', 'maybe'], /--fail-on must be error, warn, info or never, not "maybe"/], [['--rules', 'QCR-Z999'], /--rules: unknown rule id "QCR-Z999"\. Known: QCR-A001, .*QCR-X001/],
     [['--disable', ''], /--disable: give at least one rule id/], [['--language', 'klingon'], /--language: unknown language "klingon"/], [['--framework', 'nope'], /--framework must be .*, not "nope"/],
     [['--format', 'pretty,sarif'], /the sarif format is not available yet/], [['--format', 'html'], /--format: unknown format "html"/], [['--stdout', 'junit'], /the junit format is not available yet/],
     [['--stdout', 'pretty'], /--stdout must be/], [['--max-findings', 'many'], /--max-findings must be a whole number, 0 or more, not "many"/], [['--max-findings=-1'], /--max-findings must be/], [['--max-findings', '-1'], /--max-findings' argument is ambiguous$/m], [['missing.test.ts'], /path not found: missing\.test\.ts/], [[path.join('..', 'elsewhere')], /path is outside the root/],

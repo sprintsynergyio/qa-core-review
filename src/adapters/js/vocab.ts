@@ -2,7 +2,7 @@
 // hooks, the modifiers, and how a file shows which framework it uses. The normalizer reads
 // these tables and holds no framework names of its own. A test checks that every entry here
 // appears in at least one fixture under fixtures/adapters/js/.
-import type { AssertionKind, FrameworkId, Modifier, NDataOp, NHook, NResource, NStep, NWait, SelectorStrategy } from '../../model/types.js';
+import type { AssertionKind, ComparisonOperator, FrameworkId, Modifier, NDataOp, NHook, NResource, NStep, NWait, SelectorStrategy } from '../../model/types.js';
 
 /** A file with one of these names is a test file by its name, whatever is in it: `cart.test.ts`, `login.cy.js`. */
 export const TEST_FILE_NAME = /\.(spec|test|cy|e2e)\.[cm]?[jt]sx?$/i;
@@ -213,6 +213,12 @@ export const MATCHER_KINDS: Readonly<Partial<Record<AssertionKind, readonly stri
   count: ['toHaveLength', 'toHaveCount', 'lengthOf', 'length', 'toBeElementsArrayOfSize'],
 };
 
+/** The direction of a comparison matcher: what the value must be, next to the expected one. */
+export const COMPARISONS: Readonly<Record<string, ComparisonOperator>> = {
+  toBeGreaterThan: '>', toBeGreaterThanOrEqual: '>=', toBeLessThan: '<', toBeLessThanOrEqual: '<=', above: '>', below: '<', least: '>=', most: '<=',
+  gt: '>', gte: '>=', lt: '<', lte: '<=', greaterThan: '>', lessThan: '<', isAbove: '>', isAtLeast: '>=', isBelow: '<', isAtMost: '<=',
+};
+
 /** In a Cypress chainer these last words are about the page: `should('have.text', 'x')`, `should('not.exist')`. */
 export const CYPRESS_UI_WORDS = [
   'visible', 'hidden', 'exist', 'text', 'value', 'class', 'attr', 'css', 'prop', 'html', 'checked', 'disabled', 'enabled', 'selected', 'focused', 'empty', 'id',
@@ -270,6 +276,13 @@ export const PROMISE_CATCH = 'catch';
 export const PROMISE_MEMBERS = ['then', 'catch', 'finally'] as const;
 /** A call in a catch handler that passes the error on and fails the test: Mocha `done(error)`. */
 export const HANDLER_FAIL_CALLS = ['done', 'reject'] as const;
+
+// Support files: where assertion helpers may live outside the test files.
+
+/** What a relative import can point to: `./cart` may be `./cart.ts` or `./cart/index.ts`. In TypeScript `./cart.js` may be `./cart.ts`. */
+export const MODULE_EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.mts', '.cts'] as const;
+/** Files Cypress loads before every spec, relative to the project. Custom commands are defined there. */
+export const CYPRESS_SUPPORT_FILES = ['cypress/support/commands', 'cypress/support/e2e', 'cypress/support/index'] as const;
 
 // Waits (SPEC.md Section 9.1). Method tables are keyed by the name of the method called.
 
@@ -426,6 +439,7 @@ export const VOCAB_SURFACE: readonly string[] = [
   ...ALWAYS_RUN_CALLBACKS.map((name) => `${name}(`),
   ...PROMISE_MEMBERS.map((member) => `.${member}`),
   ...HANDLER_FAIL_CALLS.map((name) => `${name}(`),
+  ...CYPRESS_SUPPORT_FILES,
   ...[...FIXED_WAIT_METHODS, ...Object.keys(WAIT_METHODS), ...Object.keys(SELECTOR_CALLS), ...Object.keys(POSITIONAL_CALLS), ...Object.keys(STEP_METHODS)].map((name) => `.${name}(`),
   ...FIXED_WAIT_FUNCTIONS.map((name) => `await ${name}(`),
   `new Promise((resolve) => ${TIMER_FUNCTION}(`,

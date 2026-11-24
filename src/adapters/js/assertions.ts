@@ -5,10 +5,10 @@ import { clipText } from '../../model/build.js';
 import type { AssertionKind, NAssertion, NTest, NTryBlock } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
-import { calleeName, isLocator, rootName, toExpr, unwrap, type Env } from './expr.js';
+import { calleeName, isLocator, numberValue, rootName, toExpr, unwrap, type Env } from './expr.js';
 import { argumentsOf, isFunction, memberChain, stringValue } from './syntax.js';
 import {
-  ALWAYS_RUN_CALLBACKS, ASSERTION_GUARDS, ASSERT_ROOT, ASYNC_ASSERT_METHODS, CHAIN_WORDS, CYPRESS_ASSERT_COMMANDS, CYPRESS_CONTAINS, CYPRESS_ROOT,
+  ALWAYS_RUN_CALLBACKS, ASSERTION_GUARDS, ASSERT_ROOT, ASYNC_ASSERT_METHODS, CHAIN_WORDS, COMPARISONS, CYPRESS_ASSERT_COMMANDS, CYPRESS_CONTAINS, CYPRESS_ROOT,
   CYPRESS_UI_WORDS, EXCEPTION_MATCHERS, EXPECT_ROOT, EXPECT_VARIANTS, FAIL_CALLS, HANDLER_FAIL_CALLS, LIBRARY_OWNERS, MATCHER_KINDS, NEGATED_ASSERT_METHOD,
   NEGATIONS, PLAYWRIGHT_ASYNC_MATCHERS, PROMISE_CATCH, PROMISE_MATCHERS, PROMISE_MEMBERS, PROMISE_MODIFIERS, PROPERTY_MATCHERS, RETRYING_VARIANTS, SHOULD_MEMBER,
   SOFT_VARIANT, STATUS_MEMBERS,
@@ -122,15 +122,28 @@ function statusCodes(value: SyntaxNode | null, codes: SyntaxNode | null): number
   return items.filter((item) => item.type === 'number').map((item) => Number(item.text)).filter((code) => Number.isInteger(code));
 }
 
+/** The plain names among a function's parameters: `done` in `(done) => {}`, nothing in `({ page }) => {}`. */
+function parameterNames(fn: SyntaxNode): string[] {
+  const list = fn.childForFieldName('parameters')?.namedChildren ?? [fn.childForFieldName('parameter')];
+  return list.flatMap((parameter) => {
+    const name = parameter?.type === 'identifier' ? parameter : parameter?.childForFieldName('pattern');
+    return name?.type === 'identifier' ? [name.text] : [];
+  });
+}
+
 /** Reads the body of a test, a hook or a helper function. */
 export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
   const facts: BodyFacts = { assertions: [], guards: { expectedCount: false, hasAssertions: false }, expectsException: false, tryBlocks: [] };
   const { env } = ctx;
   const statements = body.type === 'statement_block' ? body.namedChildren.filter((node) => node.type !== 'comment') : [body];
   const lastStatement = statements.at(-1) ?? null;
+  /** Functions that end the test when called: the test's own `done`, and the `resolve` and `reject` of a promise it builds. */
+  const finishers = new Set(isFunction(body.parent) ? parameterNames(body.parent!) : []);
 
   const make = (node: SyntaxNode, state: State, fields: Pick<NAssertion, 'kind' | 'library'> & Partial<NAssertion>, top: SyntaxNode = node): NAssertion => {
     const { kind, library, ...rest } = fields;
+    const lastWord = rest.matcher?.split('.').at(-1) ?? '';
+    const operator = Object.hasOwn(COMPARISONS, lastWord) ? COMPARISONS[lastWord] : undefined;
     if (state.handler) state.handler[kind === 'fail-call' ? 'fails' : 'asserts'] = true;
     return {
       span: spanOfNode(node), text: clipText(node.text), kind, library,
@@ -139,6 +152,8 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
       // `if (!ok) fail()` is a check in itself: the condition is the assertion.
       guarded: kind === 'fail-call' ? state.other : state.cond || state.other,
       reachable: isReachable(top, body), viaHelper: null, ...rest,
+      // The last word names the matcher, also in a Cypress chainer such as 'have.length.greaterThan'.
+      ...(operator === undefined ? {} : { operator }),
     };
   };
 
@@ -196,10 +211,7 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
             library: 'cypress-should', matcher: chainer, negated: words.includes('not'),
             actual: toExpr(subject, env), expected: args[1] ? toExpr(args[1], env) : null, ...(codes.length > 0 ? { statusCodes: codes } : {}),
           }, top);
-          // The span starts at `should`, so two checks on one chain do not share a line.
-          const start = spanOfNode(step.node.childForFieldName('property')!);
-          assertion.span = { ...assertion.span, startLine: start.startLine, startColumn: start.startColumn };
-          found.push(assertion);
+          found.push(fromMember(assertion, step));
         } else if (step.call && KIND_OF.get(step.name) === 'visual') found.push(make(step.call, state, { kind: 'visual', library: 'cypress', matcher: step.name }, top));
         else if (step.call && ctx.isHelper(step.name)) found.push(make(step.call, state, { kind: 'other', library: 'helper', viaHelper: step.name }, top)); // a custom command
       }
@@ -229,9 +241,21 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
       return fromChain(top, state, argumentsOf(variant.call)[0] ?? null, rest.slice(1), ctx.expectLibrary, variant.name);
     }
 
-    // `chai.expect(x)`: expect one level down.
-    if (rest[0]?.name === EXPECT_ROOT && rest[0].call && root.name !== '') {
+    // `chai.expect(x).to.equal(1)`: expect one level down, with a matcher after it.
+    if (rest[0]?.name === EXPECT_ROOT && rest[0].call && root.name !== '' && rest.length > 1) {
       return fromChain(top, state, argumentsOf(rest[0].call)[0] ?? null, rest.slice(1), LIBRARY_OWNERS[root.name] ?? ctx.expectLibrary, null);
+    }
+    // `request(app).get('/orders').expect(200)`, `agent.expect(404)`: an HTTP client that checks the response in the chain (supertest).
+    const inChain = rest.filter((step) => step.name === EXPECT_ROOT && step.call);
+    if (inChain.length > 0) {
+      return inChain.map((step) => {
+        const first = argumentsOf(step.call!)[0];
+        const code = numberValue(first ? unwrap(first) : null);
+        const status = code !== null && code >= 100 && code <= 599;
+        return fromMember(make(step.call!, state, {
+          kind: status ? 'status' : 'other', library: 'supertest', matcher: EXPECT_ROOT, expected: first ? toExpr(first, env) : null, ...(status ? { statusCodes: [code] } : {}),
+        }, top), step);
+      });
     }
 
     // `assert(x)`, `assert.equal(a, b)`, and `sinon.assert.x(...)` or `t.assert.x(...)` one level down.
@@ -261,6 +285,11 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
     const name = top.type === 'call_expression' ? calleeName(top) : null;
     return name !== null && ctx.isHelper(name) ? [make(top, state, { kind: 'other', library: 'helper', viaHelper: name })] : null;
   };
+  /** For a check that is one link of a longer chain: start its span at the link, so two checks on one chain do not share a line. */
+  const fromMember = (assertion: NAssertion, step: Step): NAssertion => {
+    const start = spanOfNode(step.node.childForFieldName('property')!);
+    return { ...assertion, span: { ...assertion.span, startLine: start.startLine, startColumn: start.startColumn } };
+  };
   const operand = (call: SyntaxNode, index: number): NAssertion['actual'] => {
     const argument = argumentsOf(call)[index];
     return argument ? toExpr(argument, env) : null;
@@ -287,7 +316,11 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
     if (isFunction(node)) {
       if (node.parent?.type === 'variable_declarator') return;
       const owner = node.parent?.type === 'arguments' ? calleeName(node.parent.parent!) ?? undefined : undefined;
-      return branch(field('body'), includes(ALWAYS_RUN_CALLBACKS, owner) ? {} : { other: true, callback: true });
+      if (node.parent?.parent?.type === 'new_expression') for (const name of parameterNames(node)) finishers.add(name); // `resolve`, `reject`
+      // A callback that calls `done()` or `resolve()` has to run for the test to end, so what it asserts is not conditional.
+      const mustRun = includes(ALWAYS_RUN_CALLBACKS, owner)
+        || node.descendantsOfType('call_expression').some((call) => call!.childForFieldName('function')?.type === 'identifier' && finishers.has(call!.childForFieldName('function')!.text));
+      return branch(field('body'), mustRun ? {} : { other: true, callback: true });
     }
     if (node.type === 'method_definition') return branch(field('body'), { other: true, callback: true });
     if (node.type === 'if_statement') {

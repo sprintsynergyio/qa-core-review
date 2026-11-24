@@ -1,0 +1,5 @@
+{
+  "name": "rule-fixture",
+  "private": true,
+  "devDependencies": { "mocha": "^10.7.0", "chai": "^4.5.0" }
+}

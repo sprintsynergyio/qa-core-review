@@ -136,6 +136,12 @@ export interface LanguageAdapter extends AdapterProfile {
   normalize(parsed: ParsedFile, ctx: AdapterContext): NFile;
   /** For the helper index. */
   collectHelpers?(parsed: ParsedFile): HelperDef[];
+  /**
+   * For the helper index: root-relative paths of local files this file loads and that may hold
+   * assertion helpers, such as a page object it imports. Several guesses per import are fine
+   * (`./pages/cart.ts`, `./pages/cart/index.ts`); the engine keeps the ones that exist.
+   */
+  supportFiles?(parsed: ParsedFile): string[];
   /** Framework-specific rules owned by this adapter. */
   rules?: Rule[];
 }

@@ -1756,7 +1756,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         }
       ],
       "assertionGuards": {
@@ -2285,7 +2286,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">="
         },
         {
           "span": {
@@ -2324,7 +2326,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": "<"
         },
         {
           "span": {
@@ -2363,7 +2366,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">="
         }
       ],
       "assertionGuards": {
@@ -2891,7 +2895,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {

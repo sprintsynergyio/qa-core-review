@@ -47,6 +47,9 @@ export const ASSERTION_KINDS = [
 ] as const;
 export type AssertionKind = (typeof ASSERTION_KINDS)[number];
 
+export const COMPARISON_OPERATORS = ['>', '>=', '<', '<='] as const;
+export type ComparisonOperator = (typeof COMPARISON_OPERATORS)[number];
+
 export const SELECTOR_STRATEGIES = [
   'css', 'xpath', 'role', 'test-id', 'label', 'text', 'id', 'name', 'class', 'link-text', 'other',
 ] as const;
@@ -110,6 +113,11 @@ export interface NAssertion {
   viaHelper: string | null;
   /** For 'status' assertions. */
   statusCodes?: number[];
+  /**
+   * For a comparison: how `actual` must relate to `expected` for the check to pass, before
+   * `negated` is applied. `expect(n).toBeGreaterThanOrEqual(0)` has '>='.
+   */
+  operator?: ComparisonOperator;
 }
 
 export interface NWait {
