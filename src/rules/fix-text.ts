@@ -194,8 +194,8 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
     title: 'An inline snapshot recorded empty',
     fix: 'Run the test once, read what the runner writes into the snapshot, and commit it only when it is right.',
     examples: { js: {
-      bad: 'expect(formatPrice(29.99)).toMatchInlineSnapshot();',
-      good: "expect(formatPrice(29.99)).toMatchInlineSnapshot(`\"$29.99\"`);",
+      bad: "it('formats the receipt', () => {\n  const receipt = formatReceipt({ items: ['backpack'], tax: 2.4 });\n  expect(receipt.total).toBe('$32.39');\n  expect(receipt.lines).toMatchInlineSnapshot();\n});",
+      good: "it('formats the receipt', () => {\n  const receipt = formatReceipt({ items: ['backpack'], tax: 2.4 });\n  expect(receipt.total).toBe('$32.39');\n  expect(receipt.lines).toMatchInlineSnapshot(`\"Backpack $29.99, Tax $2.40\"`);\n});",
     } },
   },
   'QCR-P001/visual': {
