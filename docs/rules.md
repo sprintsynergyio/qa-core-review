@@ -15,6 +15,9 @@ This page covers the rules that exist so far. The examples are in TypeScript. Th
 | [QCR-E001](#qcr-e001) | swallowed-error | error | An assertion failure that is caught and ignored. |
 | [QCR-F001](#qcr-f001) | focused-test | error | A focused test or suite: `.only`, `fit`, `fdescribe`. |
 | [QCR-F002](#qcr-f002) | skipped-test | warn | A test or suite that is skipped with no condition, a to-do, or a fixme. |
+| [QCR-D001](#qcr-d001) | duplicate-test | warn | A test with the same body as another test, or the same title in one file. |
+| [QCR-P001](#qcr-p001) | snapshot-only | warn | A test whose only assertions are snapshots. |
+| [QCR-C001](#qcr-c001) | missing-cleanup | warn | State that a test creates and never restores. |
 | [QCR-X001](#qcr-x001) | parse-error | info | A file that cannot be parsed, or a test file with no test in it. |
 
 ## Settings every rule has
@@ -31,7 +34,7 @@ In the config, a rule is `"off"`, a severity (`"error"`, `"warn"`, `"info"`), or
 }
 ```
 
-A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001`, the implicit wait of `QCR-W001` and the expected failure of `QCR-F002` stay info. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
+A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001`, the implicit wait of `QCR-W001`, the expected failure of `QCR-F002`, the visual checks of `QCR-P001` and the test data of `QCR-C001` stay info. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
 
 <a id="qcr-a001"></a>
 ## QCR-A001 `no-assertion` (error)
@@ -583,6 +586,354 @@ test.fail('rounds the tax up', async ({ page }) => {
 Fix: Say which bug makes the test fail and where it is tracked, and remove the mark when the bug is fixed.
 
 Turn it off: `"rules": { "QCR-F002": "off" }` in the config, or `--disable QCR-F002` on the command line.
+
+<a id="qcr-d001"></a>
+## QCR-D001 `duplicate-test` (warn)
+
+A copied test. It adds run time and a second place to fix, and it often means a case was planned and never written.
+
+### A test with the same body as another test
+
+Two tests have the same body when their code is the same after comments and spaces are taken out. Every copy after the first is reported, in the same file or in another file of the same language. The message and the evidence name the first copy.
+
+Bad:
+
+```ts
+test('login works', async ({ page }) => {
+  await login(page, 'standard_user');
+  await expect(page).toHaveURL(/inventory/);
+});
+
+test('login works for standard user', async ({ page }) => {
+  await login(page, 'standard_user');
+  await expect(page).toHaveURL(/inventory/);
+});
+```
+
+Good:
+
+```ts
+for (const user of ['standard_user', 'performance_glitch_user']) {
+  test(`login works for ${user}`, async ({ page }) => {
+    await login(page, user);
+    await expect(page).toHaveURL(/inventory/);
+  });
+}
+```
+
+Fix: Delete the copy, or change it so that it checks another case. For the same steps with other data, write one parameterized test.
+
+### Two tests with the same title in one file
+
+Two tests in one file with the same full title (suite titles and test title). Their bodies may differ.
+
+Bad:
+
+```ts
+it('adds an item', () => {
+  expect(new Cart().add('backpack').items).toHaveLength(1);
+});
+
+it('adds an item', () => {
+  expect(new Cart().add('backpack').add('onesie').total).toBe(37.98);
+});
+```
+
+Good:
+
+```ts
+it('adds an item', () => {
+  expect(new Cart().add('backpack').items).toHaveLength(1);
+});
+
+it('adds the prices of two items', () => {
+  expect(new Cart().add('backpack').add('onesie').total).toBe(37.98);
+});
+```
+
+Fix: Give each test a title that says what it checks, so that a failure report points to one test.
+
+### Not reported
+
+- A parameterized test: `it.each(...)`, `test.each(...)`, and tests made in a `for` loop or a `forEach`. It is one test with many cases.
+- The same steps with other data. A different user name or price makes a different body.
+- A body with fewer than 2 statements. It is too small to call a copy.
+- The same title in two different suites, or in two files.
+- A copy in another language. A `.js` file is not compared with a `.ts` file.
+
+Turn it off: `"rules": { "QCR-D001": "off" }` in the config, or `--disable QCR-D001` on the command line.
+
+<a id="qcr-p001"></a>
+## QCR-P001 `snapshot-only` (warn)
+
+A test whose only assertions are snapshots. A snapshot passes on the first run whatever the output is, and when it fails it is often recorded again without a look.
+
+### A test with only snapshot assertions
+
+Snapshot matchers: `toMatchSnapshot`, `toMatchInlineSnapshot`, `toMatchFileSnapshot`, `toThrowErrorMatchingSnapshot`, `toThrowErrorMatchingInlineSnapshot` and the Playwright `toMatchAriaSnapshot`. One finding per test, on its first snapshot.
+
+Bad:
+
+```ts
+it('renders the cart', () => {
+  const html = renderCart([{ name: 'Backpack', price: 29.99 }]);
+  expect(html).toMatchSnapshot();
+});
+```
+
+Good:
+
+```ts
+it('renders the cart', () => {
+  const html = renderCart([{ name: 'Backpack', price: 29.99 }]);
+  expect(html).toContain('Backpack');
+  expect(html).toContain('$29.99');
+  expect(html).toMatchSnapshot();
+});
+```
+
+Fix: Add assertions on the values that matter, so that the test says what must be true. Keep the snapshot next to them if it helps.
+
+### An inline snapshot recorded empty
+
+Reported for each empty inline snapshot, also when the test has other assertions.
+
+Bad:
+
+```ts
+expect(formatPrice(29.99)).toMatchInlineSnapshot();
+```
+
+Good:
+
+```ts
+expect(formatPrice(29.99)).toMatchInlineSnapshot(`"$29.99"`);
+```
+
+Fix: Run the test once, read what the runner writes into the snapshot, and commit it only when it is right.
+
+### A test with only visual checks (info)
+
+Visual matchers: `toHaveScreenshot`, `toMatchImageSnapshot` and `matchImageSnapshot`. Visual testing is a valid choice, so this is info and never changes the verdict of a test. A test with a visual check and a snapshot is reported as snapshot-only (warn).
+
+Bad:
+
+```ts
+test('shows the cart', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/cart.html');
+  await expect(page).toHaveScreenshot('cart.png');
+});
+```
+
+Good:
+
+```ts
+test('shows the cart', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/cart.html');
+  await expect(page.getByTestId('cart-list')).toBeVisible();
+  await expect(page).toHaveScreenshot('cart.png');
+});
+```
+
+Fix: Look at each new baseline image before you commit it. One assertion on what the page must show makes a failure easier to read.
+
+Not reported: a test with at least one assertion that is not a snapshot or a visual check.
+
+Turn it off: `"rules": { "QCR-P001": "off" }` in the config, or `--disable QCR-P001` on the command line.
+
+<a id="qcr-c001"></a>
+## QCR-C001 `missing-cleanup` (warn)
+
+State that a test or a hook takes hold of and never gives back. It leaks into the tests that run after it, and they pass or fail by the order of the run.
+
+A thing counts as given back when the release is in the same test, or in an `afterEach` or `afterAll` hook of the same suite or of a suite around it. A hook in another suite does not count. An after hook at the top of the file covers every test in the file.
+
+### Fake timers that are never switched back
+
+`vi.useFakeTimers()`, `jest.useFakeTimers()` and `sinon.useFakeTimers()`, given back by `useRealTimers()` or `sinon.restore()`.
+
+Bad:
+
+```ts
+it('uses the fixed date', () => {
+  vi.useFakeTimers();
+  vi.setSystemTime(new Date('2026-01-01'));
+  expect(formatToday()).toBe('Jan 1, 2026');
+});
+```
+
+Good:
+
+```ts
+afterEach(() => {
+  vi.useRealTimers();
+});
+
+it('uses the fixed date', () => {
+  vi.useFakeTimers();
+  vi.setSystemTime(new Date('2026-01-01'));
+  expect(formatToday()).toBe('Jan 1, 2026');
+});
+```
+
+Fix: Switch back to real timers in an afterEach hook. A hook also runs when the test fails; a line at the end of the test does not.
+
+### A spy or stub that is never restored
+
+`vi.spyOn`, `jest.spyOn`, `sinon.spy`, `sinon.stub` and `mock.method`, given back by `mockRestore()`, `restore()`, `restoreAllMocks()` or `sinon.restore()`.
+
+Bad:
+
+```ts
+it('logs the order', () => {
+  const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+  placeOrder({ id: 7 });
+  expect(log).toHaveBeenCalledWith('order 7 placed');
+});
+```
+
+Good:
+
+```ts
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+it('logs the order', () => {
+  const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+  placeOrder({ id: 7 });
+  expect(log).toHaveBeenCalledWith('order 7 placed');
+});
+```
+
+Fix: Restore every spy in an afterEach hook. If the runner config already does it (restoreMocks), set restoreMocksConfigured for this rule.
+
+### An environment variable that is never set back
+
+An assignment to `process.env.NAME`, or `vi.stubEnv(...)`. Given back by a second assignment or a `delete` in an after hook, or by `vi.unstubAllEnvs()`.
+
+Bad:
+
+```ts
+it('uses the staging API', () => {
+  process.env.API_URL = 'https://api.example.test';
+  expect(apiUrl()).toBe('https://api.example.test');
+});
+```
+
+Good:
+
+```ts
+const original = process.env.API_URL;
+
+afterEach(() => {
+  process.env.API_URL = original;
+});
+
+it('uses the staging API', () => {
+  process.env.API_URL = 'https://api.example.test';
+  expect(apiUrl()).toBe('https://api.example.test');
+});
+```
+
+Fix: Set the variable back in an afterEach hook, or use the stub helper of the runner and undo it there.
+
+### A global that is never put back
+
+An assignment to a member of `globalThis`, `global`, `window` or `Date`, or `vi.stubGlobal(...)`. Given back by a second assignment or a `delete` in an after hook, or by `vi.unstubAllGlobals()`.
+
+Bad:
+
+```ts
+it('loads the rates', async () => {
+  vi.stubGlobal('fetch', vi.fn(async () => new Response('{"EUR":0.92}')));
+  expect(await loadRates()).toEqual({ EUR: 0.92 });
+});
+```
+
+Good:
+
+```ts
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+it('loads the rates', async () => {
+  vi.stubGlobal('fetch', vi.fn(async () => new Response('{"EUR":0.92}')));
+  expect(await loadRates()).toEqual({ EUR: 0.92 });
+});
+```
+
+Fix: Put the global back in an afterEach hook, or use the stub helper of the runner and undo it there.
+
+### A browser, context, page or client that is never closed
+
+`chromium.launch()`, `browser.newContext()`, `browser.newPage()` and `request.newContext()`, given back by `close()` or `dispose()`. A page of a context you open is closed with that context.
+
+Bad:
+
+```ts
+test('opens the shop', async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://www.saucedemo.com');
+  await expect(page).toHaveTitle('Swag Labs');
+});
+```
+
+Good:
+
+```ts
+test('opens the shop', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com');
+  await expect(page).toHaveTitle('Swag Labs');
+});
+```
+
+Fix: Close it in an after hook, or let the test runner make it for you: a fixture is closed by the runner.
+
+### Test data that is never deleted (info)
+
+A test that makes a `POST` request (`request.post`, `axios.post`, `cy.request('POST', ...)`) and makes no `DELETE` request. This is info with low confidence: a `POST` is not always a create, and the tool cannot see what an after hook deletes. When the file has an after hook, nothing is reported.
+
+Bad:
+
+```ts
+test('creates an order', async ({ request }) => {
+  const response = await request.post('https://api.example.test/orders', { data: { item: 'backpack' } });
+  expect(response.status()).toBe(201);
+});
+```
+
+Good:
+
+```ts
+test('creates an order', async ({ request }) => {
+  const response = await request.post('https://api.example.test/orders', { data: { item: 'backpack' } });
+  expect(response.status()).toBe(201);
+  const { id } = await response.json();
+  await request.delete(`https://api.example.test/orders/${id}`);
+});
+```
+
+Fix: Delete what the test creates, in the test or in an after hook, so that the next run starts from the same data.
+
+### Not reported
+
+- Playwright fixtures (`page`, `context`, `browser`, `request`) and a second tab of the fixture context. The runner closes them.
+- Cypress `cy.clock()`, `cy.stub()` and `cy.spy()`. Cypress restores them after each test.
+- `vi.mock(...)` and `jest.mock(...)`. A module mock belongs to the file.
+- `jest.fn()` and `vi.fn()` on their own. They replace nothing.
+
+### Options
+
+```json
+{ "rules": { "QCR-C001": { "restoreMocksConfigured": true } } }
+```
+
+`restoreMocksConfigured` (default false): set it to true when the runner config has `restoreMocks: true` (Jest or Vitest). Spies with no restore are then not reported. The tool does not read the runner config itself.
+
+Turn it off: `"rules": { "QCR-C001": "off" }` in the config, or `--disable QCR-C001` on the command line.
 
 <a id="qcr-x001"></a>
 ## QCR-X001 `parse-error` (info)

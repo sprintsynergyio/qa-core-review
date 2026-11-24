@@ -64,6 +64,13 @@ function storedAs(call: SyntaxNode): string | null {
   return target && target.type !== 'object_pattern' && target.type !== 'array_pattern' ? normalizedText(target) : null;
 }
 
+/** The end of `spy.mockReturnValue(1).mockName('x')`: a stub method gives the mock back, so that is what a variable holds. */
+function withStubs(call: SyntaxNode): SyntaxNode {
+  let node = call;
+  while (node.parent?.type === 'member_expression' && node.parent.parent?.type === 'call_expression' && includes(STUB_METHODS, node.parent.childForFieldName('property')?.text)) node = node.parent.parent;
+  return node;
+}
+
 /** True when the chain goes on with a call that gives the mock a fixed reply: `.mockReturnValue(1)`. */
 function stubbedLater(call: SyntaxNode): boolean {
   for (let node = call; node.parent?.type === 'member_expression' && node.parent.parent?.type === 'call_expression'; node = node.parent.parent) {
@@ -169,7 +176,7 @@ export function readCalls(body: SyntaxNode, ctx: CallContext): CallFacts {
         kind: 'function', target: `${normalizedText(args[0]!)}.${literalText(args[1]) ?? normalizedText(args[1]!)}`,
         targetsSubject: ctx.subject ? ctx.subject.names.has(rootName(args[0]!) ?? '') : null, passthrough: functionMock.passthrough && !stubbed, stubbedReturn: stubbed, fulfillsAllNetwork: false,
       });
-      const variable = storedAs(call);
+      const variable = storedAs(withStubs(call));
       if (variable) mockNamed.set(variable, made);
       hold(call, 'spy', ['mocks', ...(variable ? [`var:${variable}`] : [])], functionMock.autoManaged ?? false);
     } else if (object && includes(STUB_METHODS, name) && mockNamed.has(normalizedText(object))) {

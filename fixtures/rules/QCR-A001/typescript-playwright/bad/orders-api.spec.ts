@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { CartPage } from '../good/pages/cart-page';
 
 test('creates an order', async ({ request }) => { // expect: QCR-A001
-  await request.post('https://api.example.test/orders', { data: { item: 'backpack' } });
+  await request.post('https://api.example.test/orders', { data: { item: 'backpack' } }); // expect: QCR-C001
 });
 
 test('opens the cart in a step', async ({ page }) => { // expect: QCR-A001

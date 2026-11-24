@@ -323,11 +323,19 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
     testIdAttributes: [...new Set([ctx.config.testIdAttribute, ...TEST_ID_ATTRIBUTES])],
     skip: new Set(),
   };
-  const afterReleases = new Set<string>();
-  const taken: Array<{ held: Held[]; releases: string[]; into: NFile['fileResources'] }> = [];
+  // What each after hook releases, with the part of the file it covers: the suite it is declared in, or the whole file.
+  const afterReleases: Array<{ covers: SyntaxNode; tokens: string[] }> = [];
+  const functionAround = (node: SyntaxNode | null): SyntaxNode | null => {
+    let up = node?.parent ?? null;
+    while (up && !isFunction(up)) up = up.parent;
+    return up;
+  };
+  // The hook's own function comes first, then the callback of the suite around it.
+  const suiteOf = (body: SyntaxNode): SyntaxNode => functionAround(functionAround(body)) ?? root;
+  const taken: Array<{ held: Held[]; releases: string[]; into: NFile['fileResources']; body: SyntaxNode }> = [];
   const outside = readCalls(root, { ...calls, env: shared.env, acquiredIn: 'file', restores: false, skip: new Set([...bodies.values()].map((body) => body.id)) });
   model.fileMocks = outside.mocks;
-  taken.push({ held: outside.held, releases: outside.releases, into: model.fileResources });
+  taken.push({ held: outside.held, releases: outside.releases, into: model.fileResources, body: root });
 
   for (const [target, body] of bodies) {
     const isTest = 'id' in target;
@@ -337,7 +345,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
     const after = !isTest && (target.kind === 'afterEach' || target.kind === 'afterAll');
     const did = readCalls(body, { ...calls, env, acquiredIn: isTest ? 'test' : 'hook', restores: after });
     target.assertions = facts.assertions;
-    taken.push({ held: did.held, releases: did.releases, into: isTest ? target.resources : model.fileResources });
+    taken.push({ held: did.held, releases: did.releases, into: isTest ? target.resources : model.fileResources, body });
     if (isTest) {
       target.assertionGuards = facts.guards;
       target.expectsException = facts.expectsException;
@@ -348,12 +356,13 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
       target.waits = did.waits;
       target.selectors = did.selectors;
       model.fileMocks.push(...did.mocks);
-      if (after) did.releases.forEach((token) => afterReleases.add(token));
+      if (after) afterReleases.push({ covers: suiteOf(body), tokens: did.releases });
     }
   }
-  // A resource is released in its own body or in an after hook of the file.
-  for (const { held, releases, into } of taken) {
-    for (const { resource, tokens } of held) into.push({ ...resource, released: resource.released || tokens.some((token) => releases.includes(token) || afterReleases.has(token)) });
+  // A resource is released in its own body, or in an after hook of its own suite or of a suite around it.
+  for (const { held, releases, into, body } of taken) {
+    const later = afterReleases.filter(({ covers }) => covers.startIndex <= body.startIndex && body.endIndex <= covers.endIndex).flatMap(({ tokens }) => tokens);
+    for (const { resource, tokens } of held) into.push({ ...resource, released: resource.released || tokens.some((token) => releases.includes(token) || later.includes(token)) });
   }
   const byPosition = (a: { span: NFile['imports'][number]['span'] }, b: typeof a): number => a.span.startLine - b.span.startLine || a.span.startColumn - b.span.startColumn;
   model.fileMocks.sort(byPosition);
