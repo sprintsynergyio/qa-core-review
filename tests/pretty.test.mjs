@@ -103,7 +103,7 @@ test('color is on for a terminal or FORCE_COLOR, and --no-color and NO_COLOR tur
 });
 
 test('the review command: --quiet, --no-color, NO_COLOR and --max-findings', (t) => {
-  const dir = project(t, { 'a.test.ts': "test('a', () => { expect(1).toBe(1); });", 'empty.test.ts': '', 'other.spec.ts': '' });
+  const dir = project(t, { 'a.test.ts': "test('a', () => { expect(total).toBe(1); });", 'empty.test.ts': '', 'other.spec.ts': '' });
   const run = (args, env = {}) => spawnSync(process.execPath, [path.join(repoRoot, 'dist', 'cli.js'), ...args], { cwd: dir, encoding: 'utf8', windowsHide: true, shell: false, env: Object.fromEntries(Object.entries({ ...process.env, NO_COLOR: undefined, FORCE_COLOR: undefined, ...env }).filter(([, value]) => value !== undefined)) });
   const plain = run([]);
   assert.deepEqual([plain.status, plain.stderr, plain.stdout.includes(ESC)], [0, '', false]); // a pipe is not a terminal

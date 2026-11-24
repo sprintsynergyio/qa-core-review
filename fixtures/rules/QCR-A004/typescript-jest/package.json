@@ -1,0 +1,5 @@
+{
+  "name": "rule-fixture",
+  "private": true,
+  "devDependencies": { "jest": "^29.7.0" }
+}

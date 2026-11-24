@@ -851,7 +851,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {

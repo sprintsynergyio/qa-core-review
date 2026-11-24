@@ -1,0 +1,5 @@
+{
+  "name": "rule-fixture",
+  "private": true,
+  "devDependencies": { "@wdio/cli": "^9.2.0", "@wdio/mocha-framework": "^9.2.0" }
+}

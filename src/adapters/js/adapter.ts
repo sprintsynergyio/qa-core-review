@@ -4,7 +4,7 @@ import { JS_LEXICAL, scanLines } from '../../parse/lexical.js';
 import type { LanguageAdapter } from '../types.js';
 import { jsProfile } from './detect.js';
 import { detectJsFrameworks } from './frameworks.js';
-import { collectJsHelpers, fileContext } from './helpers.js';
+import { collectJsHelpers, fileContext, supportFilesOf } from './helpers.js';
 import { normalizeJsLexical } from './lexical.js';
 import { JS_CAPABILITIES, normalizeJs, readImports } from './normalize.js';
 import { ALIASES, SUITE_CALLEES, TEST_CALLEES } from './vocab.js';
@@ -49,5 +49,9 @@ export const jsAdapter: LanguageAdapter = {
     if (!parsed.tree) return [];
     const root = parsed.tree.rootNode;
     return collectJsHelpers(root, parsed.file.path, fileContext(root, detectJsFrameworks(parsed.file), readImports(root).imports));
+  },
+
+  supportFiles(parsed) {
+    return parsed.tree ? supportFilesOf(parsed.file, detectJsFrameworks(parsed.file), readImports(parsed.tree.rootNode).imports) : [];
   },
 };

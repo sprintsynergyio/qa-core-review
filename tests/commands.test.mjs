@@ -26,7 +26,7 @@ test('rules lists every rule with its severity, scope and description', () => {
   assert.match(lines[0], /^Id +Name +Severity +Scope +Description$/);
   assert.deepEqual(lines.slice(1, 1 + builtinRules.length).map((line) => line.split(/ {2,}/)), builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.description]));
   assert.deepEqual(lines.slice(-3), ['', `${builtinRules.length} ${builtinRules.length === 1 ? 'rule' : 'rules'}. Run qa-core-review explain <ruleId> for more.`, '']);
-  assert.match(ok(['rules', '--language', 'python']), /\n1 rule for Python\. /);
+  assert.ok(ok(['rules', '--language', 'python']).includes(`\n${builtinRules.length} rules for Python. `));
   assert.match(ok(['rules', '--help']), /^Usage: qa-core-review rules/);
   usageError(['rules', '--language', 'elvish'], /--language must be .*, not "elvish"/);
   usageError(['rules', 'extra'], /rules takes no arguments \(got "extra"\)/);
@@ -40,8 +40,15 @@ test('explain describes one rule and says how to turn it off', () => {
     'Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-x001', '',
   ]);
   assert.match(ok(['explain', 'qcr-x001', '--language', 'java']), /\nJava: the rule applies\n/);
+  // A rule with fix texts also shows each sub-case with a bad and a good example in the language asked for.
+  const a003 = ok(['explain', 'QCR-A003']);
+  assert.ok(a003.includes("\n\nAn async assertion that is not awaited\n  Fix: Put await before the assertion, or return it from the test.\n  Bad:\n    expect(page.getByRole('button', { name: 'Checkout' })).toBeVisible();\n"));
+  assert.ok(a003.includes("\n  Good:\n    await expect(page.getByRole('button', { name: 'Checkout' })).toBeVisible();\n"));
+  assert.equal(a003.split('\n  Bad:\n').length - 1, 6);
+  assert.equal(ok(['explain', 'QCR-A003', '--language', 'javascript']).replace('JavaScript: the rule applies\n', ''), a003);
+  assert.ok(ok(['explain', 'QCR-A001', '--language', 'python']).includes('\n\nA test with no assertion\n  Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.\n  No example for Python yet.\n'));
   assert.match(ok(['explain', '-h']), /^Usage: qa-core-review explain/);
-  usageError(['explain'], /explain needs one rule id\. Known: QCR-X001/);
+  usageError(['explain'], /explain needs one rule id\. Known: QCR-A001, .*QCR-X001/);
   usageError(['explain', 'QCR-Z999'], /unknown rule id "QCR-Z999"\. Known: /);
   usageError(['explain', 'QCR-X001', 'QCR-X002'], /explain needs one rule id/);
 });

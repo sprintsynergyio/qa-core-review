@@ -3,6 +3,7 @@
 import { builtinProfiles, createRegistry } from '../adapters/index.js';
 import { LANGUAGE_IDS, type LanguageId } from '../model/types.js';
 import { languageName } from '../report/pretty.js';
+import { examplesFor } from '../rules/fix-text.js';
 import { builtinRules, docsUrlFor } from '../rules/index.js';
 import type { Rule } from '../rules/types.js';
 import { choiceFlag, parse, UsageError } from './args.js';
@@ -18,10 +19,11 @@ Flags:
 
 export const EXPLAIN_USAGE = `Usage: qa-core-review explain <ruleId> [--language <id>]
 
-Prints what a rule looks for, what it needs from a file, and where it is documented.
+Prints what a rule looks for, with a bad and a good example, what it needs from a file,
+and where it is documented.
 
 Flags:
-  --language <id>   Say whether the rule applies to this language.
+  --language <id>   Show the examples in this language. Default: typescript.
   --help, -h        Print this help.
 `;
 
@@ -70,6 +72,13 @@ export function explain(argv: string[]): number {
     `Turn it off: "rules": { "${rule.id}": "off" } in the config, or --disable ${rule.id}`,
     `Docs: ${docsUrlFor(rule.id)}`,
   ];
+  // The sub-cases of the rule, each with its fix and, when there is one for the language, a bad and a good example.
+  const indent = (code: string): string => code.split('\n').map((line) => `    ${line}`).join('\n');
+  for (const { title, fix, example } of examplesFor(rule.id, language ?? 'typescript')) {
+    lines.push('', title, `  Fix: ${fix}`);
+    if (example) lines.push('  Bad:', indent(example.bad), '  Good:', indent(example.good));
+    else lines.push(`  No example for ${languageName(language ?? 'typescript')} yet.`);
+  }
   process.stdout.write(`${lines.join('\n')}\n`);
   return 0;
 }

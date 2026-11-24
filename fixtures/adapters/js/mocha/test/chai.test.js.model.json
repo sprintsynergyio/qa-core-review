@@ -277,7 +277,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {
@@ -355,7 +356,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">="
         },
         {
           "span": {
@@ -394,7 +396,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {
@@ -1177,7 +1180,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {
@@ -1216,7 +1220,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {
@@ -2125,7 +2130,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": "<"
         },
         {
           "span": {
@@ -2675,7 +2681,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {
@@ -2714,7 +2721,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">="
         },
         {
           "span": {
@@ -2753,7 +2761,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": "<"
         },
         {
           "span": {
@@ -2792,7 +2801,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": "<="
         },
         {
           "span": {
@@ -3675,7 +3685,7 @@
           "soft": false,
           "complete": true,
           "awaited": "not-needed",
-          "guarded": true,
+          "guarded": false,
           "reachable": true,
           "viaHelper": null
         }
@@ -3858,7 +3868,7 @@
           "soft": false,
           "complete": true,
           "awaited": "not-needed",
-          "guarded": true,
+          "guarded": false,
           "reachable": true,
           "viaHelper": null
         }

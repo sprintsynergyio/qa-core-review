@@ -596,6 +596,11 @@ test('hooks keep their assertions, and the library follows the imports', async (
   const local = await js("import { test, expect } from './fixtures';\ntest('t', async ({ page }) => { expect(page.locator('a')).toBeVisible(); });", 'a.spec.ts', { project: { dir: '.', adapterId: 'js', languages: ['typescript'], frameworks: ['playwright'], evidence: ['package.json'] } });
   assert.deepEqual([local.runner, local.tests[0].assertions[0].library, local.tests[0].assertions[0].awaited], ['playwright', 'playwright', 'no']);
   assert.equal((await checks('assert.isOk(1);', { file: 'a.cy.js' })).assertions[0].library, 'chai');
+  // supertest checks the response inside the request chain.
+  const supertest = await checks("await request(app).get('/orders')\n.expect(200)\n.expect('Content-Type', /json/); await request(app).get('/x'); agent.expect(404).then(() => {});");
+  assert.deepEqual(supertest.assertions.map((a) => [brief(a), a.library, a.span.startLine, a.expected.normalized]), [
+    ['status expect codes:200', 'supertest', 4, '200'], ['other expect', 'supertest', 5, "'Content-Type'"], ['status expect codes:404', 'supertest', 5, '404'],
+  ]);
 });
 
 // Waits, selectors, mocks, resources and the lexical fallback (the third part of Milestone 4).

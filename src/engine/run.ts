@@ -1,11 +1,13 @@
 // One review run (SPEC.md Section 7.1): find the files, read and parse them, collect the
 // assertion helpers of each project, normalize, run the rules that each file supports, and
 // build the report. It reads files and writes nothing.
+import fs from 'node:fs';
 import path from 'node:path';
 import { createRegistry, builtinProfiles, type AdapterRegistry } from '../adapters/index.js';
 import type { AdapterProfile, HelperDef, ParsedFile } from '../adapters/types.js';
 import type { ResolvedConfig } from '../config/types.js';
 import { discover, readSourceFile, type DiscoveredFile, type PathSelection } from '../discover/files.js';
+import { createGlobMatcher } from '../util/glob.js';
 import { clipText } from '../model/build.js';
 import { createHelperIndex } from '../model/helpers-index.js';
 import type { NFile } from '../model/types.js';
@@ -44,6 +46,10 @@ export interface ReviewResult {
 }
 
 interface Loaded { found: DiscoveredFile; parsed: ParsedFile }
+
+/** How far to follow imports for helpers, and how many such files to read at most. */
+const SUPPORT_DEPTH = 2;
+const SUPPORT_LIMIT = 500;
 
 /** A model for a file that no adapter in this build can read. It is listed, not reviewed. */
 function unread(found: DiscoveredFile, profile: AdapterProfile | undefined, parseStatus: NFile['parseStatus']): NFile {
@@ -91,10 +97,46 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
   }
   for (const [name, count] of noAdapter) notices.push(`${count} ${name} ${count === 1 ? 'file is' : 'files are'} listed but not reviewed: this build has no static adapter for ${name}.`);
 
+  // Helpers also live in files that discovery does not pick: a page object in src/pages, Cypress
+  // support files. Follow what the reviewed files load, two steps deep (a spec, its fixtures file,
+  // the page objects that file imports). These files feed the helper index and are not reviewed.
+  const extras: Loaded[] = [];
+  const known = new Set(loaded.map(({ found }) => found.path));
+  const excluded = createGlobMatcher(config.exclude);
+  let frontier = loaded;
+  for (let depth = 0; depth < SUPPORT_DEPTH && extras.length < SUPPORT_LIMIT; depth += 1) {
+    const next: Loaded[] = [];
+    for (const { found, parsed } of frontier) {
+      const adapter = registry.get(found.adapterId)!;
+      let guesses: string[] = [];
+      try {
+        guesses = adapter.supportFiles?.(parsed) ?? [];
+      } catch {
+        // A file whose imports cannot be read brings no helpers from elsewhere. Its own problems are reported when it is normalized.
+      }
+      for (const guess of guesses) {
+        // Each guess is looked at once: many files import the same modules.
+        if (known.has(guess)) continue;
+        known.add(guess);
+        if (excluded(guess) || !adapter.extensions.some((extension) => guess.endsWith(extension)) || !fs.statSync(path.join(root, guess), { throwIfNoEntry: false })?.isFile()) continue;
+        const extra: DiscoveredFile = { path: guess, adapterId: found.adapterId, language: adapter.languageOf(guess), languageHint: null, project: found.project };
+        const source = readSourceFile(root, extra);
+        if (!source) continue;
+        try {
+          next.push({ found: extra, parsed: await adapter.parse(source, { config, helperIndex: createHelperIndex([]), parser }) });
+        } catch {
+          // Not a file the review was asked about: leave it out.
+        }
+      }
+    }
+    extras.push(...next);
+    frontier = next;
+  }
+
   // The helper index of a project holds the assertion helpers of all its files, support files included.
   const projectOf = ({ found }: Loaded): string => `${found.adapterId}\0${found.project?.dir ?? ''}`;
   const helpers = new Map<string, HelperDef[]>();
-  for (const entry of loaded) {
+  for (const entry of [...loaded, ...extras]) {
     try {
       const list = helpers.get(projectOf(entry)) ?? [];
       list.push(...(registry.get(entry.found.adapterId)!.collectHelpers?.(entry.parsed) ?? []));
@@ -113,6 +155,7 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
       entry.parsed.tree?.delete();
     }
   }
+  for (const extra of extras) extra.parsed.tree?.delete();
 
   // Which rules run at all: the config, then the command line.
   const rules = (options.rules ?? builtinRules).filter((rule) => config.rules[rule.id]?.enabled !== false

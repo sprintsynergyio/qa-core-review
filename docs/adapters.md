@@ -151,7 +151,7 @@ A Jest file and a Playwright file in the same project each get their own runner.
 
 ### Assertions
 
-An assertion is a chain that starts at `expect(...)` (also `expect.soft`, `expect.poll`, `expect.element`), `assert(...)` or `assert.method(...)`, a Chai `should`, a Cypress `.should('chainer')` or `.and('chainer')`, `sinon.assert`, or a call that fails the test (`expect.fail()`, `assert.fail()`, `fail()`, a `throw` in the test's own flow). A Cypress chain that ends with `.contains(...)` counts when it is the last command of the test.
+An assertion is a chain that starts at `expect(...)` (also `expect.soft`, `expect.poll`, `expect.element`), `assert(...)` or `assert.method(...)`, a Chai `should`, a Cypress `.should('chainer')` or `.and('chainer')`, `sinon.assert`, a supertest `.expect(...)` inside a request chain (kind `status` when the first argument is a status code), or a call that fails the test (`expect.fail()`, `assert.fail()`, `fail()`, a `throw` in the test's own flow). A Cypress chain that ends with `.contains(...)` counts when it is the last command of the test.
 
 Each assertion has:
 
@@ -161,11 +161,12 @@ Each assertion has:
 | `actual`, `expected` | The operands, with `isLocator`, `isCount` and `isMock`. Names are followed inside one test: after `const rows = page.locator('tr')`, `rows` is a locator. |
 | `complete` | False for `expect(x);` and `expect(x).toBe;` written as a whole statement. |
 | `awaited` | `no` when a Playwright web-first matcher, `expect.poll`, `.resolves`, `.rejects`, `assert.rejects` or an expect-webdriverio matcher on an element is neither awaited nor returned. |
-| `guarded` | True inside an `if`, `switch`, ternary, `&&`, loop, `catch` block, or a callback that may never run. Callbacks that always run are listed in `ALWAYS_RUN_CALLBACKS` (`test.step`, a promise `then`, `waitFor`, Cypress `within`). |
+| `guarded` | True inside an `if`, `switch`, ternary, `&&`, loop, `catch` block, or a callback that may never run. Callbacks that always run are listed in `ALWAYS_RUN_CALLBACKS` (`test.step`, a promise `then`, `waitFor`, Cypress `within`). A callback that calls the test's `done` or the `resolve` of a promise the test builds also counts as always run, because the test cannot end without it. |
+| `operator` | For a comparison matcher, what the value must be next to the expected one: `>`, `>=`, `<` or `<=`, before `negated` is applied. |
 | `reachable` | False after an unconditional `return`, `throw`, `break` or fail call in the same block. |
 | `viaHelper` | Set when the test calls a function, a page object method or a custom Cypress command that contains an assertion. |
 
-Helpers are counted one level deep: a helper that only calls another helper does not count. Helpers from other files come from the helper index, which the review builds from every file it discovers. Add names by hand with `assertionHelpers` in the config.
+Helpers are counted one level deep: a helper that only calls another helper does not count. Helpers from other files come from the helper index. The review builds it from every file it discovers, plus the local files those files import, two steps deep (a spec, its fixtures file, the page objects that file imports), plus `cypress/support/commands`, `e2e` and `index` for Cypress projects. Files found this way are read for helpers only and are not reviewed. An adapter names them through its optional `supportFiles(parsed)` method. Add names by hand with `assertionHelpers` in the config.
 
 ### Waits, selectors, mocks and resources
 

@@ -55,6 +55,7 @@ export type { ReviewOptions, ReviewResult } from './engine/run.js';
 export { fingerprint } from './engine/fingerprint.js';
 export { failsAt, verdictOf } from './engine/verdict.js';
 export { builtinRules, docsUrlFor } from './rules/index.js';
+export { FIX_TEXT, examplesFor, fixFor } from './rules/fix-text.js';
 export { LANGUAGE_NAMES, formatPretty, formatSummary, languageName, useColor } from './report/pretty.js';
 export type { PrettyOptions } from './report/pretty.js';
 

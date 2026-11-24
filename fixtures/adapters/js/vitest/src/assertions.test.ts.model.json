@@ -507,7 +507,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         },
         {
           "span": {
@@ -602,7 +603,8 @@
           "awaited": "not-needed",
           "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         }
       ],
       "assertionGuards": {
@@ -918,9 +920,10 @@
           "soft": false,
           "complete": true,
           "awaited": "not-needed",
-          "guarded": true,
+          "guarded": false,
           "reachable": true,
-          "viaHelper": null
+          "viaHelper": null,
+          "operator": ">"
         }
       ],
       "assertionGuards": {

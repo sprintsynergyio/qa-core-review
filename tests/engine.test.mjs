@@ -146,7 +146,7 @@ test('files that cannot be reviewed are listed or noticed, and never stop the ru
   assert.deepEqual(mixed.models.map((model) => model.adapter), ['js', 'js']);
   assert.deepEqual(schemaErrors('report.schema.json', mixed.report), []);
 
-  const root = project(t, { 'big.test.ts': `test('a', () => {});\n${'// filler\n'.repeat(120_000)}`, 'ok.test.ts': "test('a', () => { expect(1).toBe(1); });", 'bad.test.ts': "test('a', () => {});" });
+  const root = project(t, { 'big.test.ts': `test('a', () => {});\n${'// filler\n'.repeat(120_000)}`, 'ok.test.ts': "test('a', () => { expect(total).toBe(1); });", 'bad.test.ts': "test('a', () => {});" });
   const fussy = (stage) => ({ ...jsAdapter, [stage]: (first, ...rest) => (first.path === 'bad.test.ts' || first.file?.path === 'bad.test.ts' ? (() => { throw new Error(`${stage} broke`); })() : jsAdapter[stage](first, ...rest)) });
   for (const stage of ['parse', 'normalize', 'collectHelpers']) {
     const result = await review(root, { registry: createRegistry([fussy(stage)]), rules: builtinRules });
@@ -161,12 +161,13 @@ test('files that cannot be reviewed are listed or noticed, and never stop the ru
 });
 
 test('QCR-X001: a file that cannot be parsed, or a test file with no test in it', async (t) => {
-  assert.deepEqual(builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires]), [['QCR-X001', 'parse-error', 'info', 'universal', []]]);
+  const x001 = builtinRules.filter((rule) => rule.id === 'QCR-X001');
+  assert.deepEqual(x001.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires]), [['QCR-X001', 'parse-error', 'info', 'universal', []]]);
   const root = project(t, {
     'empty.test.ts': '// nothing here yet\n', 'only-suite.spec.js': "describe('a', () => {});", 'garbage.test.ts': '<<<<<<< HEAD\n}}}} ))) ((( === @@@\n>>>>>>> b\n ]]] {{{ ;;;\n',
     'tests/helpers/util.ts': 'export const x = 1;', 'fine.test.ts': "test('a', () => {});",
   });
-  const { report } = await review(root, { rules: builtinRules });
+  const { report } = await review(root, { rules: x001 });
   assert.deepEqual(report.findings.map((finding) => [finding.location.file, finding.message, finding.testId, finding.evidence, finding.location.startLine, finding.severity]), [
     ['empty.test.ts', 'No test was found in this file, although its name says it is a test file.', null, 'empty.test.ts', 1, 'info'],
     ['garbage.test.ts', 'This file could not be parsed, so it was not reviewed.', null, 'garbage.test.ts', 1, 'info'],
