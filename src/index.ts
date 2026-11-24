@@ -55,7 +55,8 @@ export type { ReviewOptions, ReviewResult } from './engine/run.js';
 export { fingerprint } from './engine/fingerprint.js';
 export { failsAt, verdictOf } from './engine/verdict.js';
 export { builtinRules, docsUrlFor } from './rules/index.js';
-export { formatClosing, formatSummary } from './report/pretty.js';
+export { LANGUAGE_NAMES, formatPretty, formatSummary, languageName, useColor } from './report/pretty.js';
+export type { PrettyOptions } from './report/pretty.js';
 
 // Config (SPEC.md Section 12).
 export { CONFIG_FILE_NAMES, ConfigError, findConfigFile, loadConfig, resolveConfig } from './config/load.js';

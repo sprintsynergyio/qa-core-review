@@ -27,7 +27,7 @@ function project(t, extra = {}) {
   return dir;
 }
 
-test('review on the js-basic fixture writes a valid report.json and prints the summary', (t) => {
+test('review on the js-basic fixture writes a valid report.json and prints the text layout', (t) => {
   const out = fs.mkdtempSync(path.join(os.tmpdir(), 'qcr-out-'));
   t.after(() => fs.rmSync(out, { recursive: true, force: true }));
   const ran = run(repoRoot, ['review', 'fixtures/projects/js-basic', '--output', out]);
@@ -38,8 +38,14 @@ test('review on the js-basic fixture writes a valid report.json and prints the s
     ['fixtures/projects/js-basic/src/cart.test.ts', 'jest', 2], ['fixtures/projects/js-basic/tests/checkout.spec.ts', 'playwright', 2], ['fixtures/projects/js-basic/tests/helpers/login.ts', 'playwright', 0],
   ]);
   assert.deepEqual(report.projects, [{ dir: 'fixtures/projects/js-basic', adapter: 'js', frameworks: ['playwright', 'jest'] }]);
+  const dot = process.platform === 'win32' && process.env.WT_SESSION === undefined ? '-' : String.fromCharCode(0xb7);
   assert.deepEqual(ran.stdout.split('\n'), [
-    `qa-core-review ${report.tool.version}: 3 files, 4 tests`, 'Summary: 4 pass, 0 review, 0 fail. 0 errors, 0 warnings, 0 info. 0 suppressed.',
+    `qa-core-review ${report.tool.version} ${dot} 3 files ${dot} 4 tests ${dot} static rules ${dot} TypeScript`, '',
+    'pass  fixtures/projects/js-basic/src/cart.test.ts:4  Cart > adds an item', '',
+    'pass  fixtures/projects/js-basic/src/cart.test.ts:11  Cart > starts empty', '',
+    'pass  fixtures/projects/js-basic/tests/checkout.spec.ts:5  Checkout > adds a backpack to the cart', '',
+    'pass  fixtures/projects/js-basic/tests/checkout.spec.ts:11  Checkout > opens the cart page', '',
+    'Summary: 4 pass, 0 review, 0 fail. 0 errors, 0 warnings, 0 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
     `Reports: ${path.join(out, 'report.json').split(path.sep).join('/')}`, '',
   ]);
   assert.equal(fs.existsSync(path.join(out, 'model.json')), false);
@@ -49,7 +55,8 @@ test('exit codes: 0 with nothing at the level, 1 with a finding at the level, an
   const dir = project(t);
   const plain = run(dir, []);
   assert.deepEqual([plain.status, plain.stderr], [0, '']);
-  assert.match(plain.stdout, /: 3 files, 1 test\nSummary: 1 pass, 0 review, 0 fail\. 0 errors, 0 warnings, 1 info\. 0 suppressed\.\nReports: \.qa-core\/review\/report\.json\n$/);
+  assert.match(plain.stdout, / 3 files . 1 test . static rules . TypeScript, JavaScript\n/);
+  assert.match(plain.stdout, /\nSummary: 1 pass, 0 review, 0 fail\. 0 errors, 0 warnings, 1 info\. 0 suppressed\.\nBy language: TypeScript 1 test, JavaScript 0 tests\.\nReports: \.qa-core\/review\/report\.json\n$/);
   const report = readJson(path.join(dir, '.qa-core', 'review', 'report.json'));
   assert.deepEqual(report.findings.map((finding) => [finding.ruleId, finding.location.file, finding.severity]), [['QCR-X001', 'src/empty.test.js', 'info']]);
 
@@ -71,7 +78,7 @@ test('exit code 2: a mistake in the call or in the config, on one line, with not
     [['--no-such-flag'], /--no-such-flag/], [['--fail-on', 'maybe'], /--fail-on must be error, warn, info or never, not "maybe"/], [['--rules', 'QCR-Z999'], /--rules: unknown rule id "QCR-Z999"\. Known: QCR-X001/],
     [['--disable', ''], /--disable: give at least one rule id/], [['--language', 'klingon'], /--language: unknown language "klingon"/], [['--framework', 'nope'], /--framework must be .*, not "nope"/],
     [['--format', 'pretty,sarif'], /the sarif format is not available yet/], [['--format', 'html'], /--format: unknown format "html"/], [['--stdout', 'junit'], /the junit format is not available yet/],
-    [['--stdout', 'pretty'], /--stdout must be/], [['missing.test.ts'], /path not found: missing\.test\.ts/], [[path.join('..', 'elsewhere')], /path is outside the root/],
+    [['--stdout', 'pretty'], /--stdout must be/], [['--max-findings', 'many'], /--max-findings must be a whole number, 0 or more, not "many"/], [['--max-findings=-1'], /--max-findings must be/], [['--max-findings', '-1'], /--max-findings' argument is ambiguous$/m], [['missing.test.ts'], /path not found: missing\.test\.ts/], [[path.join('..', 'elsewhere')], /path is outside the root/],
     [['--root', 'nowhere'], /--root is not a folder: nowhere/], [['--output', 'a-file'], /cannot write to --output a-file/], [['ui'], /the "ui" command is not available yet/],
   ];
   for (const [args, message] of table) {
@@ -115,11 +122,12 @@ test('review --help prints the flags, and notices go to stderr', (t) => {
   for (const args of [['review', '--help'], ['src', '-h']]) {
     const help = run(repoRoot, args);
     assert.deepEqual([help.status, help.stderr], [0, '']);
-    for (const flag of ['--fail-on', '--rules', '--disable', '--language', '--framework', '--format', '--stdout', '--output', '--dump-model', '--root', '--config']) assert.ok(help.stdout.includes(flag), flag);
+    for (const flag of ['--fail-on', '--rules', '--disable', '--language', '--framework', '--format', '--stdout', '--output', '--dump-model', '--max-findings', '--quiet', '--no-color', '--root', '--config']) assert.ok(help.stdout.includes(flag), flag);
     assert.match(help.stdout, /^Usage: qa-core-review review \[paths\.\.\.\] \[flags\]/);
   }
   const dir = project(t, { 'tests/test_cart.py': 'def test_a():\n    assert True\n', 'requirements.txt': 'pytest\n' });
   const ran = run(dir, []);
   assert.deepEqual([ran.status, ran.stderr], [0, 'qa-core-review: 1 python file is listed but not reviewed: this build has no static adapter for python.\n']);
-  assert.match(ran.stdout, /: 4 files, 1 test\n/);
+  assert.match(ran.stdout, / 4 files . 1 test . /);
+  assert.match(ran.stdout, /\nBy language: TypeScript 1 test, JavaScript 0 tests, Python 1 file \(not reviewed in this build\)\.\n/);
 });
