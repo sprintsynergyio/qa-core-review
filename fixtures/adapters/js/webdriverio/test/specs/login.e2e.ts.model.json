@@ -62,7 +62,8 @@
               "kind": "implicit-wait-config",
               "ms": 10000
             }
-          ]
+          ],
+          "selectors": []
         }
       ],
       "testIds": [

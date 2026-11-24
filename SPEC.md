@@ -411,6 +411,7 @@ export interface NAssertion {
   reachable: boolean;           // false after an unconditional return / throw / fail in the same block
   viaHelper: string | null;     // helper name when counted through a helper call
   statusCodes?: number[];       // for 'status' assertions
+  operator?: '>' | '>=' | '<' | '<=';      // set for comparison matchers: toBeGreaterThan is '>', assertGreaterEqual is '>='
 }
 
 export interface NWait {
@@ -467,6 +468,8 @@ export interface NHook {
   scope: 'file' | 'suite' | 'global';
   releases: string[];           // normalized targets released here ('driver', 'mocks', 'timers', 'env:API_URL', ...)
   assertions: NAssertion[];
+  waits: NWait[];               // sleeps and waits inside the hook (W001 reads them)
+  selectors: NSelector[];       // selectors used in the hook (S001 reads them)
 }
 
 export interface NTest {

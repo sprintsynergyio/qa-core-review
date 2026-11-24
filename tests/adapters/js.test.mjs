@@ -540,10 +540,24 @@ test('try blocks: what is protected and what the handler does', async () => {
     try { expect(a).toBe(1); } finally { close(); }
     await expect(p).resolves.toBe(1).catch(() => {});
     await page.click('a').catch(console.error);
-    await load().then((x) => expect(x).toBe(1)).catch((e) => { throw e; });`);
+    await load().then((x) => expect(x).toBe(1)).catch((e) => { throw e; });
+    try { expect.soft(a).toBe(1); expect(b).toBe(2); expect.soft(c).toBe(3); } catch (e) {}
+    await expect(a).resolves.toBe(1).catch(() => undefined); await expect(a).resolves.toBe(1).catch(() => null); await expect(a).resolves.toBe(1).catch(noop);
+    await expect(a).resolves.toBe(1).catch((e) => console.warn(e)); await expect(a).resolves.toBe(1).catch(() => void 0); await expect(a).resolves.toBe(1).catch(async (e) => { await log(e); return; });
+    load().then((x) => { expect(x).toBe(1); done(); }).catch(done); load().then((x) => expect(x).toBe(1)).catch((e) => done(e)); await expect(a).resolves.toBe(1).catch(() => done());
+    await expect(a).resolves.toBe(1).catch(report); await expect(a).resolves.toBe(1).catch(this.onError); const ok = await expect(a).resolves.toBe(1).then(() => true).catch(() => false);
+    const error = await run().catch((e) => e); await expect(a).resolves.toBe(1).catch((e) => { if (e.code) return e.code; }); await expect(a).resolves.toBe(1).catch(() => { items.map((i) => { return i; }); });`);
   assert.deepEqual(t.tryBlocks.map((b) => [b.kind, b.assertionsInside, b.handlerRethrows, b.handlerFails, b.handlerAsserts].join(' ')), [
     'try-catch 2 false false false', 'try-catch 1 true false false', 'try-catch 0 false true false', 'try-catch 0 false false true', 'try-catch 1 false true false',
     'promise-catch 1 false false false', 'promise-catch 0 false false false', 'promise-catch 1 true false false',
+    // A soft assertion does not throw, so it is not counted as protected.
+    'try-catch 1 false false false',
+    // Handlers that do nothing or only log.
+    'promise-catch 1 false false false', 'promise-catch 1 false false false', 'promise-catch 1 false false false', 'promise-catch 1 false false false', 'promise-catch 1 false false false', 'promise-catch 1 false false false',
+    // done gets the error: the test fails. done() with no argument hides it.
+    'promise-catch 1 false true false', 'promise-catch 1 false true false', 'promise-catch 1 false false false',
+    // No block for a handler we cannot see (report, this.onError) or for one that returns a value (false, e, e.code). A return in a nested function is not the handler's.
+    'promise-catch 1 false false false',
   ]);
   assert.ok(t.tryBlocks.every((b) => b.catchesAssertionFailures && b.catches.join() === '*'));
   assert.deepEqual(t.tryBlocks[0].span, { startLine: 4, startColumn: 5, endLine: 4, endColumn: 80 });

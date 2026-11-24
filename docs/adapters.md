@@ -168,6 +168,17 @@ Each assertion has:
 
 Helpers are counted one level deep: a helper that only calls another helper does not count. Helpers from other files come from the helper index. The review builds it from every file it discovers, plus the local files those files import, two steps deep (a spec, its fixtures file, the page objects that file imports), plus `cypress/support/commands`, `e2e` and `index` for Cypress projects. Files found this way are read for helpers only and are not reviewed. An adapter names them through its optional `supportFiles(parsed)` method. Add names by hand with `assertionHelpers` in the config.
 
+### Try blocks and promise handlers
+
+| Case | What is stored |
+| --- | --- |
+| `try { ... } catch { ... }` | A block of kind `try-catch`. `assertionsInside` counts the assertions in the `try` part, one helper deep. Soft assertions are not counted: they do not throw. `try` with only `finally` is not a block. |
+| What the handler does | `handlerRethrows` for a `throw`, `handlerFails` for `done(error)`, `reject(error)` or a fail call such as `expect.fail(...)`, `handlerAsserts` for an assertion. |
+| `promise.catch(handler)` | A block of kind `promise-catch` when the handler is a function written in place, `done` or `reject` (`handlerFails`), or one of `console.log`, `console.error`, `console.warn` and `noop`. |
+| No block | A handler given by another name (`.catch(reportFailure)`), because its body is not seen, and a handler that returns a value (`.catch(() => false)`, `.catch((e) => e)`), because the test goes on with that value. Cypress chains have no `catch`. |
+
+`catchesAssertionFailures` is always true in JS and TS: a `catch` takes every error.
+
 ### Waits, selectors, mocks and resources
 
 | Fact | What counts |
@@ -190,7 +201,7 @@ If the grammar cannot be loaded, or `ERROR` nodes cover more than 30% of the fil
 - There is no type information. A locator kept on a page object (`cartPage.checkoutButton`) is not known to be a locator.
 - `const check = expect(x); check.toBe(1);` is not read as an assertion.
 - An HTTP call counts as a data operation for `request.*`, `axios.*`, `fetch` and `cy.request`. A client under another name (`api.post(...)`) is not seen.
-- Hooks in the model hold assertions, releases and waits. A selector or a function mock inside a hook is not stored, so `QCR-S001` does not see a brittle selector in a `beforeEach`. Module mocks in hooks are stored as file mocks.
+- Hooks in the model hold assertions, releases, waits and selectors. A function mock or a try block inside a hook is not stored. Module mocks in hooks are stored as file mocks.
 - An after hook releases resources for every test in the file, also when it sits in another `describe` block.
 - The adapter walks the syntax tree directly and has no `.scm` query files.
 

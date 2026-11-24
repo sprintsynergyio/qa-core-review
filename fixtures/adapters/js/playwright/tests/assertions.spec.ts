@@ -164,6 +164,13 @@ test.describe('swallowed errors', () => {
     await expect(page.getByTestId('total')).toHaveText('$32.39').catch(() => {});
     await page.getByRole('button', { name: 'Accept cookies' }).click().catch(() => undefined);
     await page.reload().then(() => expect(page).toHaveTitle('Swag Labs')).catch(console.error);
+    await expect(page.getByTestId('tax')).toHaveText('$2.40').catch(console.log);
+    await expect(page.getByTestId('fee')).toBeHidden().catch(console.warn);
+    await expect(page.getByTestId('coupon')).toBeHidden().catch(noop);
+    // A handler we cannot see, and one that turns the failure into a value: no block is stored.
+    await expect(page.getByTestId('promo')).toBeVisible().catch(reportFailure);
+    const hasBanner = await expect(page.getByTestId('banner')).toBeVisible().then(() => true).catch(() => false);
+    expect(hasBanner).toBe(true);
     await page.waitForLoadState().finally(() => expect(badge).toBeVisible());
   });
 });

@@ -11,7 +11,7 @@ import {
   ALWAYS_RUN_CALLBACKS, ASSERTION_GUARDS, ASSERT_ROOT, ASYNC_ASSERT_METHODS, CHAIN_WORDS, COMPARISONS, CYPRESS_ASSERT_COMMANDS, CYPRESS_CONTAINS, CYPRESS_ROOT,
   CYPRESS_UI_WORDS, EXCEPTION_MATCHERS, EXPECT_ROOT, EXPECT_VARIANTS, FAIL_CALLS, HANDLER_FAIL_CALLS, LIBRARY_OWNERS, MATCHER_KINDS, NEGATED_ASSERT_METHOD,
   NEGATIONS, PLAYWRIGHT_ASYNC_MATCHERS, PROMISE_CATCH, PROMISE_MATCHERS, PROMISE_MEMBERS, PROMISE_MODIFIERS, PROPERTY_MATCHERS, RETRYING_VARIANTS, SHOULD_MEMBER,
-  SOFT_VARIANT, STATUS_MEMBERS,
+  SOFT_VARIANT, STATUS_MEMBERS, SWALLOWING_HANDLERS,
 } from './vocab.js';
 
 export interface BodyContext {
@@ -295,12 +295,38 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
     return argument ? toExpr(argument, env) : null;
   };
 
+  /**
+   * What a handler given to `.catch(...)` does with the error. 'value': it turns the error into a
+   * result the test goes on with (`.catch(() => false)`). 'unknown': a function we cannot see.
+   */
+  const promiseHandler = (part: SyntaxNode, handler: HandlerFacts): 'seen' | 'value' | 'unknown' => {
+    if (!isFunction(part)) {
+      if (finishers.has(part.text) || includes(HANDLER_FAIL_CALLS, part.text)) handler.fails = true; // `.catch(done)`
+      return handler.fails || includes(SWALLOWING_HANDLERS, part.text) ? 'seen' : 'unknown';
+    }
+    const body = part.childForFieldName('body')!;
+    // The handler's own `return` statements, not those of a function inside it.
+    const own = (statement: SyntaxNode): boolean => {
+      let up = statement.parent;
+      while (up && !isFunction(up)) up = up.parent;
+      return up?.id === part.id;
+    };
+    const returned = body.type === 'statement_block'
+      ? body.descendantsOfType('return_statement').filter((statement) => own(statement!)).map((statement) => statement!.namedChildren[0])
+      : [unwrap(body)];
+    const empty = (value: SyntaxNode | undefined): boolean => !value || ['undefined', 'null', 'call_expression', 'await_expression'].includes(value.type) || value.text.startsWith('void ');
+    return returned.every(empty) ? 'seen' : 'value';
+  };
+
   const tryBlock = (node: SyntaxNode, kind: NTryBlock['kind'], state: State, guardedPart: SyntaxNode, handlers: SyntaxNode[]): void => {
     const before = facts.assertions.length;
     walk(guardedPart, state);
-    const assertionsInside = facts.assertions.length - before;
+    // A soft assertion does not throw, so a handler cannot hide it.
+    const assertionsInside = facts.assertions.slice(before).filter((assertion) => !assertion.soft).length;
     const handler: HandlerFacts = { rethrows: false, fails: false, asserts: false };
     for (const part of handlers) walk(part, { ...state, other: true, handler });
+    // Never guess: when we cannot tell what a promise handler does with the error, the block is left out.
+    if (kind === 'promise-catch' && handlers.some((part) => promiseHandler(part, handler) !== 'seen')) return;
     facts.tryBlocks.push({
       span: spanOfNode(node), kind, assertionsInside, catches: ['*'], catchesAssertionFailures: true,
       handlerRethrows: handler.rethrows, handlerFails: handler.fails, handlerAsserts: handler.asserts,

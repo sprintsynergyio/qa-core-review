@@ -274,6 +274,8 @@ export const ALWAYS_RUN_CALLBACKS = ['step', 'then', 'finally', 'within', 'waitF
 export const PROMISE_CATCH = 'catch';
 /** Members that end an assertion chain and start promise handling. */
 export const PROMISE_MEMBERS = ['then', 'catch', 'finally'] as const;
+/** A function given to `.catch(...)` by name that only logs or does nothing, so the failure is lost. */
+export const SWALLOWING_HANDLERS = ['console.log', 'console.error', 'console.warn', 'noop'] as const;
 /** A call in a catch handler that passes the error on and fails the test: Mocha `done(error)`. */
 export const HANDLER_FAIL_CALLS = ['done', 'reject'] as const;
 
@@ -442,6 +444,7 @@ export const VOCAB_SURFACE: readonly string[] = [
   ...ALWAYS_RUN_CALLBACKS.map((name) => `${name}(`),
   ...PROMISE_MEMBERS.map((member) => `.${member}`),
   ...HANDLER_FAIL_CALLS.map((name) => `${name}(`),
+  ...SWALLOWING_HANDLERS.map((name) => `.${PROMISE_CATCH}(${name})`),
   ...CYPRESS_SUPPORT_FILES,
   ...[...FIXED_WAIT_METHODS, ...Object.keys(WAIT_METHODS), ...Object.keys(SELECTOR_CALLS), ...Object.keys(POSITIONAL_CALLS), ...Object.keys(STEP_METHODS)].map((name) => `.${name}(`),
   ...FIXED_WAIT_FUNCTIONS.map((name) => `await ${name}(`),

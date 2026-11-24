@@ -90,7 +90,8 @@
               "viaHelper": null
             }
           ],
-          "waits": []
+          "waits": [],
+          "selectors": []
         }
       ],
       "testIds": [

@@ -90,7 +90,21 @@
               "viaHelper": null
             }
           ],
-          "waits": []
+          "waits": [],
+          "selectors": [
+            {
+              "span": {
+                "startLine": 14,
+                "startColumn": 5,
+                "endLine": 14,
+                "endColumn": 34
+              },
+              "text": "cy.get('[data-test=\"title\"]')",
+              "api": "cy.get",
+              "strategy": "test-id",
+              "value": "[data-test=\"title\"]"
+            }
+          ]
         }
       ],
       "testIds": [

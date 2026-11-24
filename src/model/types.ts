@@ -206,6 +206,8 @@ export interface NHook {
   assertions: NAssertion[];
   /** Sleeps and waits inside the hook, so a hard wait in a `beforeEach` is seen like one in a test. */
   waits: NWait[];
+  /** Selectors used in the hook: login steps often sit in a `beforeEach`. */
+  selectors: NSelector[];
 }
 
 export interface NTest {
