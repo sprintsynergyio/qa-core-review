@@ -12,6 +12,9 @@ This page covers the rules that exist so far. The examples are in TypeScript. Th
 | [QCR-A004](#qcr-a004) | conditional-assertion | warn | Every assertion sits inside a condition, a loop or a callback. |
 | [QCR-W001](#qcr-w001) | hard-wait | warn | A fixed sleep in a test or a hook. |
 | [QCR-S001](#qcr-s001) | brittle-selector | warn | A selector that depends on page layout or on generated names. |
+| [QCR-E001](#qcr-e001) | swallowed-error | error | An assertion failure that is caught and ignored. |
+| [QCR-F001](#qcr-f001) | focused-test | error | A focused test or suite: `.only`, `fit`, `fdescribe`. |
+| [QCR-F002](#qcr-f002) | skipped-test | warn | A test or suite that is skipped with no condition, a to-do, or a fixme. |
 | [QCR-X001](#qcr-x001) | parse-error | info | A file that cannot be parsed, or a test file with no test in it. |
 
 ## Settings every rule has
@@ -28,7 +31,7 @@ In the config, a rule is `"off"`, a severity (`"error"`, `"warn"`, `"info"`), or
 }
 ```
 
-A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001` and the implicit wait of `QCR-W001` stay info. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
+A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001`, the implicit wait of `QCR-W001` and the expected failure of `QCR-F002` stay info. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
 
 <a id="qcr-a001"></a>
 ## QCR-A001 `no-assertion` (error)
@@ -319,7 +322,7 @@ Turn it off: `"rules": { "QCR-W001": "off" }` in the config, or `--disable QCR-W
 <a id="qcr-s001"></a>
 ## QCR-S001 `brittle-selector` (warn)
 
-A selector that depends on the layout of the page or on generated names. It breaks when the page changes, while the feature still works. This rule runs on UI tests: Playwright, Cypress and WebdriverIO so far.
+A selector that depends on the layout of the page or on generated names. It breaks when the page changes, while the feature still works. This rule runs on UI tests: Playwright, Cypress and WebdriverIO so far. Selectors in hooks such as `beforeEach` are checked too.
 
 Fix: Prefer role, label or test id selectors. For Playwright suites, qa-core-heal can repair many broken locators at once.
 
@@ -428,6 +431,158 @@ Each selector gives one finding: the first case that fits, in the order above.
 - `testIdAttribute` (top level, default `data-testid`): your own test id attribute. A selector on it counts as a test id.
 
 Turn it off: `"rules": { "QCR-S001": "off" }` in the config, or `--disable QCR-S001` on the command line.
+
+<a id="qcr-e001"></a>
+## QCR-E001 `swallowed-error` (error)
+
+An assertion inside a `try` block or a promise chain whose handler catches the failure and goes on. The check fails, the handler logs a line, and the test passes.
+
+### A catch block that hides a failed assertion
+
+Bad:
+
+```ts
+try {
+  await expect(page.getByTestId('total')).toHaveText('$32.39');
+} catch (e) {
+  console.log('total did not match', e);
+}
+```
+
+Good:
+
+```ts
+await expect(page.getByTestId('total')).toHaveText('$32.39');
+```
+
+Fix: Take the assertion out of the try block, or throw the error again in the handler. To go on after a failed check, use a soft assertion.
+
+Reported when the `try` part has an assertion (also one level down, in a helper) and the `catch` block does none of these: throw, call `expect.fail(...)`, `assert.fail(...)` or `done(error)`, or make an assertion of its own.
+
+### A .catch() handler that hides a failed assertion
+
+Bad:
+
+```ts
+await expect(page.getByTestId('promo-banner')).toBeVisible().catch(() => {});
+```
+
+Good:
+
+```ts
+await expect(page.getByTestId('promo-banner')).toBeVisible();
+```
+
+Fix: Remove the .catch() from the assertion, so that a failed check fails the test. To go on after a failed check, use a soft assertion.
+
+Reported when the chain before `.catch(...)` has an assertion and the handler does nothing or only logs: `() => {}`, `() => undefined`, `() => null`, `console.log`, `console.error`, `console.warn`, `noop`, or a function whose body does not throw. `.catch(() => done())` is reported too: `done()` with no argument ends a Mocha test as passed.
+
+### Not reported
+
+- `try` with `finally` and no `catch`.
+- A handler that throws again, also with a new error: `catch (e) { throw new Error('cart', { cause: e }); }`.
+- A handler that fails the test or checks the error: `.catch(done)`, `catch (e) { expect(e.status).toBe(400); }`.
+- A `try` block with no assertion inside, such as a click on a cookie banner that may not be there.
+- Soft assertions (`expect.soft`). They do not throw, so a handler cannot hide them, and the runner still fails the test at the end.
+- A handler that turns the failure into a value the test goes on with: `.then(() => true).catch(() => false)`.
+- A handler given by a name the tool cannot see into: `.catch(reportFailure)`.
+
+Turn it off: `"rules": { "QCR-E001": "off" }` in the config, or `--disable QCR-E001` on the command line.
+
+<a id="qcr-f001"></a>
+## QCR-F001 `focused-test` (error)
+
+A test or a suite that is marked to run alone. When it is committed by mistake, the runner skips every other test and the run is still green.
+
+Bad:
+
+```ts
+test.only('adds item to cart', async ({ page }) => {
+  // ...
+});
+```
+
+Good:
+
+```ts
+test('adds item to cart', async ({ page }) => {
+  // ...
+});
+```
+
+Fix: Remove the focus before you commit. To stop it from coming back, let CI refuse focused tests (Playwright forbidOnly, Mocha --forbid-only).
+
+What counts: `test.only`, `it.only`, `describe.only`, `context.only`, `specify.only`, `test.describe.only`, `fit`, `fdescribe`, `it.only.each(...)`, and `{ only: true }` in the options of a `node:test` test. A focused suite gives one finding, on the suite.
+
+Not reported: the word `only` in a title or as a method of your own code (`filters.only('in-stock')`), and tags that select tests from the command line.
+
+Turn it off: `"rules": { "QCR-F001": "off" }` in the config, or `--disable QCR-F001` on the command line.
+
+<a id="qcr-f002"></a>
+## QCR-F002 `skipped-test` (warn)
+
+A test or a suite that is switched off with no condition. Nobody is told, and the check it made is gone until someone remembers it.
+
+Bad:
+
+```ts
+it.skip('rejects an empty password', () => {
+  // ...
+});
+```
+
+Good:
+
+```ts
+test('uploads a file', async ({ page }) => {
+  test.skip(process.platform === 'win32', 'File picker is not supported on Windows CI');
+  // ...
+});
+```
+
+Fix: Turn the test back on, or delete it. If it has to wait, skip it on a condition and say why, with the ticket that tracks it.
+
+What counts:
+
+- `test.skip('title', ...)`, `it.skip`, `xit`, `xtest`, `test.fixme('title', ...)`, `test.skip.each(...)`, and `{ skip: true }` in the options of a `node:test` test.
+- A bare `test.skip()`, `test.fixme()` or `this.skip()` at the top of a test body.
+- A to-do: `it.todo('title')`, `{ todo: true }`, and a Mocha test with a title and no function.
+- A skipped suite: `describe.skip`, `xdescribe`, `context.skip`, `test.describe.skip`, `test.describe.fixme`. It gives one finding, on the suite.
+
+The message has the reason when the test gives one: "This test is skipped: The orders API is down until SHOP-142 is fixed."
+
+A skipped test with no assertion is reported once, by this rule, and not by `QCR-A001`.
+
+Not reported:
+
+- A skip on a condition: `test.skip(browserName === 'webkit', 'reason')`, `test.fixme(isMobile, 'reason')`, `if (!process.env.API_URL) this.skip();`, `it.skipIf(...)`, `it.runIf(...)`.
+- A condition for a whole file or group: `test.skip(process.platform === 'win32', 'reason')` and `test.skip(({ browserName }) => browserName !== 'chromium', 'reason')`.
+- `test.slow()`.
+
+### An expected failure (info)
+
+`test.fail(...)`, `it.failing(...)` and `it.fails(...)` say that a test is known to fail. That is a fair way to keep a known bug visible, so it is info: "Expected failure: make sure this is tracked."
+
+Bad:
+
+```ts
+test.fail('rounds the tax up', async ({ page }) => {
+  // ...
+});
+```
+
+Good:
+
+```ts
+// Fails until SHOP-142 is fixed: the tax is rounded down.
+test.fail('rounds the tax up', async ({ page }) => {
+  // ...
+});
+```
+
+Fix: Say which bug makes the test fail and where it is tracked, and remove the mark when the bug is fixed.
+
+Turn it off: `"rules": { "QCR-F002": "off" }` in the config, or `--disable QCR-F002` on the command line.
 
 <a id="qcr-x001"></a>
 ## QCR-X001 `parse-error` (info)

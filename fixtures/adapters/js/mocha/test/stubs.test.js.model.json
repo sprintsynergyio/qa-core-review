@@ -52,7 +52,8 @@
             "mocks"
           ],
           "assertions": [],
-          "waits": []
+          "waits": [],
+          "selectors": []
         }
       ],
       "testIds": [

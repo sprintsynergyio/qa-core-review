@@ -624,7 +624,8 @@
         "envs"
       ],
       "assertions": [],
-      "waits": []
+      "waits": [],
+      "selectors": []
     }
   ],
   "fileMocks": [

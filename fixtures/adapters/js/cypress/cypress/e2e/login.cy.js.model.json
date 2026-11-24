@@ -50,7 +50,8 @@
           "scope": "suite",
           "releases": [],
           "assertions": [],
-          "waits": []
+          "waits": [],
+          "selectors": []
         },
         {
           "span": {
@@ -63,7 +64,8 @@
           "scope": "suite",
           "releases": [],
           "assertions": [],
-          "waits": []
+          "waits": [],
+          "selectors": []
         },
         {
           "span": {
@@ -76,7 +78,8 @@
           "scope": "suite",
           "releases": [],
           "assertions": [],
-          "waits": []
+          "waits": [],
+          "selectors": []
         }
       ],
       "testIds": [],

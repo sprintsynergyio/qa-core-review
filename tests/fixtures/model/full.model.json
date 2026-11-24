@@ -91,6 +91,20 @@
               "kind": "fixed-sleep",
               "ms": 500
             }
+          ],
+          "selectors": [
+            {
+              "span": {
+                "startLine": 9,
+                "startColumn": 11,
+                "endLine": 9,
+                "endColumn": 42
+              },
+              "text": "page.locator('#login-button')",
+              "api": "locator",
+              "strategy": "id",
+              "value": "#login-button"
+            }
           ]
         }
       ],
@@ -492,7 +506,8 @@
       "scope": "file",
       "releases": [],
       "assertions": [],
-      "waits": []
+      "waits": [],
+      "selectors": []
     }
   ],
   "fileMocks": [

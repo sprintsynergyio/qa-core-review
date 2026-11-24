@@ -88,7 +88,7 @@
       "span": {
         "startLine": 143,
         "startColumn": 1,
-        "endLine": 169,
+        "endLine": 176,
         "endColumn": 3
       },
       "modifiers": [],
@@ -103,9 +103,9 @@
     {
       "title": "helpers",
       "span": {
-        "startLine": 171,
+        "startLine": 178,
         "startColumn": 1,
-        "endLine": 197,
+        "endLine": 204,
         "endColumn": 3
       },
       "modifiers": [],
@@ -3534,13 +3534,13 @@
       "span": {
         "startLine": 163,
         "startColumn": 3,
-        "endLine": 168,
+        "endLine": 175,
         "endColumn": 5
       },
       "bodySpan": {
         "startLine": 163,
         "startColumn": 54,
-        "endLine": 168,
+        "endLine": 175,
         "endColumn": 4
       },
       "kind": "test",
@@ -3629,8 +3629,198 @@
         {
           "span": {
             "startLine": 167,
-            "startColumn": 49,
+            "startColumn": 11,
             "endLine": 167,
+            "endColumn": 62
+          },
+          "text": "expect(page.getByTestId('tax')).toHaveText('$2.40')",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('tax')",
+            "normalized": "page.getByTestId('tax')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "'$2.40'",
+            "normalized": "'$2.40'",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "$2.40"
+            }
+          },
+          "matcher": "toHaveText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 168,
+            "startColumn": 11,
+            "endLine": 168,
+            "endColumn": 55
+          },
+          "text": "expect(page.getByTestId('fee')).toBeHidden()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('fee')",
+            "normalized": "page.getByTestId('fee')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeHidden",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 169,
+            "startColumn": 11,
+            "endLine": 169,
+            "endColumn": 58
+          },
+          "text": "expect(page.getByTestId('coupon')).toBeHidden()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('coupon')",
+            "normalized": "page.getByTestId('coupon')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeHidden",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 171,
+            "startColumn": 11,
+            "endLine": 171,
+            "endColumn": 58
+          },
+          "text": "expect(page.getByTestId('promo')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('promo')",
+            "normalized": "page.getByTestId('promo')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 172,
+            "startColumn": 29,
+            "endLine": 172,
+            "endColumn": 77
+          },
+          "text": "expect(page.getByTestId('banner')).toBeVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId('banner')",
+            "normalized": "page.getByTestId('banner')",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toBeVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 173,
+            "startColumn": 5,
+            "endLine": 173,
+            "endColumn": 33
+          },
+          "text": "expect(hasBanner).toBe(true)",
+          "kind": "equality",
+          "library": "playwright",
+          "actual": {
+            "text": "hasBanner",
+            "normalized": "hasBanner",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "true",
+            "normalized": "true",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "true"
+            }
+          },
+          "matcher": "toBe",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 174,
+            "startColumn": 49,
+            "endLine": 174,
             "endColumn": 76
           },
           "text": "expect(badge).toBeVisible()",
@@ -3663,9 +3853,9 @@
       "waits": [
         {
           "span": {
-            "startLine": 167,
+            "startLine": 174,
             "startColumn": 11,
-            "endLine": 167,
+            "endLine": 174,
             "endColumn": 34
           },
           "text": "page.waitForLoadState()",
@@ -3697,6 +3887,66 @@
           "api": "getByRole",
           "strategy": "role",
           "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 167,
+            "startColumn": 18,
+            "endLine": 167,
+            "endColumn": 41
+          },
+          "text": "page.getByTestId('tax')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "tax"
+        },
+        {
+          "span": {
+            "startLine": 168,
+            "startColumn": 18,
+            "endLine": 168,
+            "endColumn": 41
+          },
+          "text": "page.getByTestId('fee')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "fee"
+        },
+        {
+          "span": {
+            "startLine": 169,
+            "startColumn": 18,
+            "endLine": 169,
+            "endColumn": 44
+          },
+          "text": "page.getByTestId('coupon')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "coupon"
+        },
+        {
+          "span": {
+            "startLine": 171,
+            "startColumn": 18,
+            "endLine": 171,
+            "endColumn": 43
+          },
+          "text": "page.getByTestId('promo')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "promo"
+        },
+        {
+          "span": {
+            "startLine": 172,
+            "startColumn": 36,
+            "endLine": 172,
+            "endColumn": 62
+          },
+          "text": "page.getByTestId('banner')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "banner"
         }
       ],
       "tryBlocks": [
@@ -3750,6 +4000,57 @@
           "handlerRethrows": false,
           "handlerFails": false,
           "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 167,
+            "startColumn": 11,
+            "endLine": 167,
+            "endColumn": 81
+          },
+          "kind": "promise-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 168,
+            "startColumn": 11,
+            "endLine": 168,
+            "endColumn": 75
+          },
+          "kind": "promise-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 169,
+            "startColumn": 11,
+            "endLine": 169,
+            "endColumn": 70
+          },
+          "kind": "promise-catch",
+          "assertionsInside": 1,
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
         }
       ],
       "mocks": [],
@@ -3791,8 +4092,8 @@
           "kind": "navigate"
         }
       ],
-      "statementCount": 4,
-      "bodyHash": "59d5d01d31f296c847d5ee146a649af068646205"
+      "statementCount": 10,
+      "bodyHash": "3bea78cbb5f6d692a78dfbd602a0885624f7becb"
     },
     {
       "id": "79d7efc90006",
@@ -3802,15 +4103,15 @@
         "helpers"
       ],
       "span": {
-        "startLine": 172,
+        "startLine": 179,
         "startColumn": 3,
-        "endLine": 174,
+        "endLine": 181,
         "endColumn": 5
       },
       "bodySpan": {
-        "startLine": 172,
+        "startLine": 179,
         "startColumn": 45,
-        "endLine": 174,
+        "endLine": 181,
         "endColumn": 4
       },
       "kind": "test",
@@ -3820,9 +4121,9 @@
       "assertions": [
         {
           "span": {
-            "startLine": 173,
+            "startLine": 180,
             "startColumn": 11,
-            "endLine": 173,
+            "endLine": 180,
             "endColumn": 25
           },
           "text": "expectBadge(1)",
@@ -3863,15 +4164,15 @@
         "helpers"
       ],
       "span": {
-        "startLine": 176,
+        "startLine": 183,
         "startColumn": 3,
-        "endLine": 181,
+        "endLine": 188,
         "endColumn": 5
       },
       "bodySpan": {
-        "startLine": 176,
+        "startLine": 183,
         "startColumn": 65,
-        "endLine": 181,
+        "endLine": 188,
         "endColumn": 4
       },
       "kind": "test",
@@ -3881,9 +4182,9 @@
       "assertions": [
         {
           "span": {
-            "startLine": 179,
+            "startLine": 186,
             "startColumn": 11,
-            "endLine": 179,
+            "endLine": 186,
             "endColumn": 34
           },
           "text": "cart.expectItemCount(2)",
@@ -3902,9 +4203,9 @@
         },
         {
           "span": {
-            "startLine": 180,
+            "startLine": 187,
             "startColumn": 11,
-            "endLine": 180,
+            "endLine": 187,
             "endColumn": 29
           },
           "text": "cart.expectEmpty()",
@@ -3934,9 +4235,9 @@
       "resources": [
         {
           "span": {
-            "startLine": 176,
+            "startLine": 183,
             "startColumn": 54,
-            "endLine": 176,
+            "endLine": 183,
             "endColumn": 58
           },
           "text": "page",
@@ -3959,15 +4260,15 @@
         "helpers"
       ],
       "span": {
-        "startLine": 183,
+        "startLine": 190,
         "startColumn": 3,
-        "endLine": 185,
+        "endLine": 192,
         "endColumn": 5
       },
       "bodySpan": {
-        "startLine": 183,
+        "startLine": 190,
         "startColumn": 62,
-        "endLine": 185,
+        "endLine": 192,
         "endColumn": 4
       },
       "kind": "test",
@@ -3977,9 +4278,9 @@
       "assertions": [
         {
           "span": {
-            "startLine": 184,
+            "startLine": 191,
             "startColumn": 11,
-            "endLine": 184,
+            "endLine": 191,
             "endColumn": 31
           },
           "text": "expectLoggedIn(page)",
@@ -4009,9 +4310,9 @@
       "resources": [
         {
           "span": {
-            "startLine": 183,
+            "startLine": 190,
             "startColumn": 51,
-            "endLine": 183,
+            "endLine": 190,
             "endColumn": 55
           },
           "text": "page",
@@ -4034,15 +4335,15 @@
         "helpers"
       ],
       "span": {
-        "startLine": 187,
+        "startLine": 194,
         "startColumn": 3,
-        "endLine": 190,
+        "endLine": 197,
         "endColumn": 5
       },
       "bodySpan": {
-        "startLine": 187,
+        "startLine": 194,
         "startColumn": 86,
-        "endLine": 190,
+        "endLine": 197,
         "endColumn": 4
       },
       "kind": "test",
@@ -4062,9 +4363,9 @@
       "resources": [
         {
           "span": {
-            "startLine": 187,
+            "startLine": 194,
             "startColumn": 75,
-            "endLine": 187,
+            "endLine": 194,
             "endColumn": 79
           },
           "text": "page",
@@ -4087,15 +4388,15 @@
         "helpers"
       ],
       "span": {
-        "startLine": 192,
+        "startLine": 199,
         "startColumn": 3,
-        "endLine": 196,
+        "endLine": 203,
         "endColumn": 5
       },
       "bodySpan": {
-        "startLine": 192,
+        "startLine": 199,
         "startColumn": 51,
-        "endLine": 196,
+        "endLine": 203,
         "endColumn": 4
       },
       "kind": "test",
@@ -4112,9 +4413,9 @@
       "selectors": [
         {
           "span": {
-            "startLine": 195,
+            "startLine": 202,
             "startColumn": 11,
-            "endLine": 195,
+            "endLine": 202,
             "endColumn": 57
           },
           "text": "page.getByRole('button', { name: 'Checkout' })",
@@ -4128,9 +4429,9 @@
       "resources": [
         {
           "span": {
-            "startLine": 192,
+            "startLine": 199,
             "startColumn": 40,
-            "endLine": 192,
+            "endLine": 199,
             "endColumn": 44
           },
           "text": "page",
@@ -4144,9 +4445,9 @@
       "steps": [
         {
           "span": {
-            "startLine": 195,
+            "startLine": 202,
             "startColumn": 11,
-            "endLine": 195,
+            "endLine": 202,
             "endColumn": 65
           },
           "text": "page.getByRole('button', { name: 'Checkout' }).click()",
@@ -4198,7 +4499,33 @@
           "viaHelper": null
         }
       ],
-      "waits": []
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 11,
+            "endLine": 12,
+            "endColumn": 50
+          },
+          "text": "page.getByTestId('shopping-cart-badge')",
+          "api": "getByTestId",
+          "strategy": "test-id",
+          "value": "shopping-cart-badge"
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 16,
+            "endLine": 13,
+            "endColumn": 42
+          },
+          "text": "page.getByText('Products')",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Products"
+        }
+      ]
     }
   ],
   "fileMocks": [],

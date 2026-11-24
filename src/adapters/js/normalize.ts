@@ -136,6 +136,9 @@ function buildTest(call: SyntaxNode, declaration: Declaration, scope: Scope, fil
   const titleNode = args[0] && !isFunction(args[0]) ? args[0] : null;
   const options = optionModifiers(args.find((arg) => arg.type === 'object' && arg !== titleNode));
   const modifiers = [...new Set([...declaration.modifiers, ...options.modifiers])];
+  // Playwright: `test.skip(({ browserName }) => browserName !== 'chromium', 'Chromium only')` skips a group on a condition.
+  // It declares no test.
+  if (fn && fn.id === args[0]?.id && declaration.modifiers.length > 0 && args[1] && stringValue(args[1]) !== null) return null;
   if (!fn) {
     // No function: `test.todo('title')`, or a pending Mocha test `it('title')`.
     if (titleNode?.type !== 'string' || args.length !== 1) return null;
@@ -278,7 +281,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
       const fn = [...args].reverse().find(isFunction) ?? null;
 
       if (declaration?.kind === 'hook') {
-        const hook: NHook = { span: spanOfNode(node), kind: declaration.hook!, scope: scope.suite ? 'suite' : 'file', releases: [], assertions: [], waits: [] };
+        const hook: NHook = { span: spanOfNode(node), kind: declaration.hook!, scope: scope.suite ? 'suite' : 'file', releases: [], assertions: [], waits: [], selectors: [] };
         (scope.suite ? scope.suite.hooks : model.fileHooks).push(hook);
         const body = fn?.childForFieldName('body');
         if (body) bodies.set(hook, body);
@@ -343,6 +346,7 @@ export function normalizeJs(parsed: ParsedFile, frameworks: FrameworkGuess, ctx:
     } else {
       target.releases = [...new Set(did.releases)];
       target.waits = did.waits;
+      target.selectors = did.selectors;
       model.fileMocks.push(...did.mocks);
       if (after) did.releases.forEach((token) => afterReleases.add(token));
     }

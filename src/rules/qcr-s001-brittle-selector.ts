@@ -2,9 +2,11 @@
 // the page or on names a build tool makes up. The classifier in ./selectors.ts decides; this
 // rule turns its answer into a finding.
 import { clipText } from '../model/build.js';
+import type { NSelector } from '../model/types.js';
 import { fixFor } from './fix-text.js';
 import { classifySelector, type Brittle } from './selectors.js';
 import type { FindingDraft, Rule } from './types.js';
+import { hooksOf } from './util.js';
 
 const MESSAGES: Record<Brittle['reason'], (detail: string) => string> = {
   xpath: (detail) => `XPath depends on layout: ${detail}.`,
@@ -26,16 +28,18 @@ export const brittleSelector: Rule = {
   check({ file, options }) {
     const allow = (Array.isArray(options.allowPatterns) ? options.allowPatterns : []).map((source) => new RegExp(String(source)));
     const drafts: FindingDraft[] = [];
-    for (const test of file.tests) {
-      for (const selector of test.selectors) {
+    const scan = (selectors: readonly NSelector[], testId: string | null): void => {
+      for (const selector of selectors) {
         const found = classifySelector(selector, allow);
         if (!found) continue;
         drafts.push({
-          message: MESSAGES[found.reason](clipText(found.detail)), evidence: selector.text, span: selector.span, testId: test.id,
+          message: MESSAGES[found.reason](clipText(found.detail)), evidence: selector.text, span: selector.span, testId,
           ...(found.reason === 'pick' ? { severity: 'info' as const } : {}), ...fixFor(`QCR-S001/${found.reason}`, file.language),
         });
       }
-    }
+    };
+    for (const test of file.tests) scan(test.selectors, test.id);
+    for (const hook of hooksOf(file)) scan(hook.selectors, null);
     return drafts;
   },
 };

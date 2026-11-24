@@ -126,6 +126,46 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
       good: "await page.locator('.inventory_item').filter({ hasText: 'Sauce Labs Backpack' }).click();",
     } },
   },
+  'QCR-E001': {
+    title: 'A catch block that hides a failed assertion',
+    fix: 'Take the assertion out of the try block, or throw the error again in the handler. To go on after a failed check, use a soft assertion.',
+    examples: { js: {
+      bad: "try {\n  await expect(page.getByTestId('total')).toHaveText('$32.39');\n} catch (e) {\n  console.log('total did not match', e);\n}",
+      good: "await expect(page.getByTestId('total')).toHaveText('$32.39');",
+    } },
+  },
+  'QCR-E001/promise': {
+    title: 'A .catch() handler that hides a failed assertion',
+    fix: 'Remove the .catch() from the assertion, so that a failed check fails the test. To go on after a failed check, use a soft assertion.',
+    examples: { js: {
+      bad: "await expect(page.getByTestId('promo-banner')).toBeVisible().catch(() => {});",
+      good: "await expect(page.getByTestId('promo-banner')).toBeVisible();",
+    } },
+  },
+  'QCR-F001': {
+    title: 'A focused test or suite',
+    fix: 'Remove the focus before you commit. To stop it from coming back, let CI refuse focused tests (Playwright forbidOnly, Mocha --forbid-only).',
+    examples: { js: {
+      bad: "test.only('adds item to cart', async ({ page }) => {\n  // ...\n});",
+      good: "test('adds item to cart', async ({ page }) => {\n  // ...\n});",
+    } },
+  },
+  'QCR-F002': {
+    title: 'A skipped test or suite, a to-do, or a fixme',
+    fix: 'Turn the test back on, or delete it. If it has to wait, skip it on a condition and say why, with the ticket that tracks it.',
+    examples: { js: {
+      bad: "it.skip('rejects an empty password', () => {\n  // ...\n});",
+      good: "test('uploads a file', async ({ page }) => {\n  test.skip(process.platform === 'win32', 'File picker is not supported on Windows CI');\n  // ...\n});",
+    } },
+  },
+  'QCR-F002/expected-failure': {
+    title: 'An expected failure (info)',
+    fix: 'Say which bug makes the test fail and where it is tracked, and remove the mark when the bug is fixed.',
+    examples: { js: {
+      bad: "test.fail('rounds the tax up', async ({ page }) => {\n  // ...\n});",
+      good: "// Fails until SHOP-142 is fixed: the tax is rounded down.\ntest.fail('rounds the tax up', async ({ page }) => {\n  // ...\n});",
+    } },
+  },
 };
 
 /** The fix and the good example for a finding in a file of this language. */
