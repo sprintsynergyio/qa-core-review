@@ -701,13 +701,21 @@ Reported for each empty inline snapshot, also when the test has other assertions
 Bad:
 
 ```ts
-expect(formatPrice(29.99)).toMatchInlineSnapshot();
+it('formats the receipt', () => {
+  const receipt = formatReceipt({ items: ['backpack'], tax: 2.4 });
+  expect(receipt.total).toBe('$32.39');
+  expect(receipt.lines).toMatchInlineSnapshot();
+});
 ```
 
 Good:
 
 ```ts
-expect(formatPrice(29.99)).toMatchInlineSnapshot(`"$29.99"`);
+it('formats the receipt', () => {
+  const receipt = formatReceipt({ items: ['backpack'], tax: 2.4 });
+  expect(receipt.total).toBe('$32.39');
+  expect(receipt.lines).toMatchInlineSnapshot(`"Backpack $29.99, Tax $2.40"`);
+});
 ```
 
 Fix: Run the test once, read what the runner writes into the snapshot, and commit it only when it is right.
