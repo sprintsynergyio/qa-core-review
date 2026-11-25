@@ -302,6 +302,14 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
       good: "await page.route('**/api/cart', (route) => route.fulfill({ json: { items: [] } }));\nawait page.goto('https://www.saucedemo.com/cart.html');\nawait expect(page.getByTestId('cart-list')).toBeVisible();",
     } },
   },
+  'QCR-X002': {
+    title: 'A suppression with no reason',
+    fix: 'Say why the rule does not apply here, after two dashes. A suppression with a reason is one that a reviewer can agree or disagree with.',
+    examples: { js: {
+      bad: '// qa-core-review-disable-next-line QCR-W001\nawait page.waitForTimeout(500);',
+      good: '// qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for\nawait page.waitForTimeout(500);',
+    } },
+  },
 };
 
 /** The fix and the good example for a finding in a file of this language. */

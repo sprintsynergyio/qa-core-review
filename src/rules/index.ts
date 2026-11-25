@@ -15,9 +15,10 @@ import { snapshotOnly } from './qcr-p001-snapshot-only.js';
 import { brittleSelector } from './qcr-s001-brittle-selector.js';
 import { hardWait } from './qcr-w001-hard-wait.js';
 import { parseError } from './qcr-x001-parse-error.js';
+import { suppressionWithoutReason } from './qcr-x002-suppression-without-reason.js';
 import type { Rule } from './types.js';
 
-export const builtinRules: readonly Rule[] = [noAssertion, trivialAssertion, cannotFailAssertion, conditionalAssertion, hardWait, brittleSelector, swallowedError, focusedTest, skippedTest, duplicateTest, missingNegativeCase, overMocking, snapshotOnly, missingCleanup, parseError];
+export const builtinRules: readonly Rule[] = [noAssertion, trivialAssertion, cannotFailAssertion, conditionalAssertion, hardWait, brittleSelector, swallowedError, focusedTest, skippedTest, duplicateTest, missingNegativeCase, overMocking, snapshotOnly, missingCleanup, parseError, suppressionWithoutReason];
 
 /** Where a rule is documented. */
 export function docsUrlFor(ruleId: string): string {

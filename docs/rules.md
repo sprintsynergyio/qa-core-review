@@ -21,10 +21,11 @@ This page covers every rule that is built. The examples are in TypeScript. The s
 | [QCR-P001](#qcr-p001) | snapshot-only | warn / info | universal | A test whose only assertions are snapshots. | none |
 | [QCR-C001](#qcr-c001) | missing-cleanup | warn | universal | State that a test creates and never restores. | none |
 | [QCR-X001](#qcr-x001) | parse-error | info | universal | A file that cannot be parsed, or a test file with no test in it. | QCV-W000 (similar) |
+| [QCR-X002](#qcr-x002) | suppression-without-reason | info | universal | A suppression comment that does not say why. | none |
 
 The last column names the check in qa-core-verify that looks for the same problem when it runs your tests. qa-core-review finds it by reading the code, before anything runs.
 
-Not built yet: `QCR-X002` suppression-without-reason, `QCR-X003` no-static-adapter, and for v0.2 `QCR-G001` unmatched-step (Gherkin) and `QCR-K001` perf-no-thresholds (k6, JMeter).
+Not built yet: `QCR-X003` no-static-adapter, and for v0.2 `QCR-G001` unmatched-step (Gherkin) and `QCR-K001` perf-no-thresholds (k6, JMeter).
 
 ## Which rules run on which language
 
@@ -48,6 +49,7 @@ A rule runs on a file when the adapter of its language fills in everything the r
 | [QCR-P001](#qcr-p001) | assertions | yes | planned | planned |
 | [QCR-C001](#qcr-c001) | resources, hooks | yes | planned | planned |
 | [QCR-X001](#qcr-x001) | none | yes | planned | planned |
+| [QCR-X002](#qcr-x002) | none | yes | planned | planned |
 <!-- support-matrix:end -->
 
 When a file cannot be parsed, the tool reads it line by line. It then knows the tests, their modifiers, their assertions and their sleeps, so only the rules that need nothing more still run, and their findings have low confidence.
@@ -67,6 +69,48 @@ In the config, a rule is `"off"`, a severity (`"error"`, `"warn"`, `"info"`), or
 ```
 
 A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001`, the implicit wait of `QCR-W001`, the expected failure of `QCR-F002`, the visual checks of `QCR-P001` and the test data of `QCR-C001` stay info, and the three warn cases of `QCR-M001` stay warn. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
+
+## Suppressing a finding
+
+When a rule is right in general and wrong in one place, switch it off there and say why. There are three ways.
+
+**For the next line**, with a comment in the syntax of the language:
+
+```ts
+// qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for
+await page.waitForTimeout(500);
+```
+
+```python
+# qa-core-review-disable-next-line QCR-W001 -- the report job has no event to wait for
+time.sleep(2)
+```
+
+The comment covers the findings that start on the line after it. Name one rule or several, with commas between them. A finding about a whole test, such as `QCR-A001`, starts on the line of the test, so the comment goes above the test.
+
+**For a whole file**, with a comment before the first statement of the file:
+
+```ts
+// qa-core-review-disable QCR-S001 -- the legacy grid has no test ids, tracked in SHOP-142
+import { expect, test } from '@playwright/test';
+```
+
+**In the config**, which also works for files that have no comments:
+
+```json
+{
+  "suppressions": [
+    { "file": "legacy/**", "rules": ["QCR-W001", "QCR-S001"], "reason": "The legacy suite is replaced in Q1." },
+    { "file": "tests/smoke.spec.ts", "rules": ["QCR-A001"], "test": "Smoke > opens the shop", "reason": "It only has to load." }
+  ]
+}
+```
+
+`file` is a glob. `test` is optional and is the full title of one test: the titles of its suites and its own title, joined by " > ".
+
+A reason is required: the text after ` -- ` in a comment, or `reason` in the config. A comment with no reason does nothing, and [QCR-X002](#qcr-x002) reports it. A config entry with no reason is a config error.
+
+A suppressed finding is not printed and counts for nothing: not for the verdict of a test, not for the totals, not for the exit code. It stays in `report.json` with `"suppressed": true`, and the summary line says how many there are.
 
 <a id="qcr-a001"></a>
 ## QCR-A001 `no-assertion` (error)
@@ -1181,3 +1225,28 @@ Reported once per file, in two cases:
 It never changes the exit code unless you run with `--fail-on info`.
 
 Turn it off: `"rules": { "QCR-X001": "off" }` in the config, or `--disable QCR-X001` on the command line.
+
+<a id="qcr-x002"></a>
+## QCR-X002 `suppression-without-reason` (info)
+
+A suppression comment that does not say why. It is ignored, so the finding it was written for is still reported.
+
+Bad:
+
+```ts
+// qa-core-review-disable-next-line QCR-W001
+await page.waitForTimeout(500);
+```
+
+Good:
+
+```ts
+// qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for
+await page.waitForTimeout(500);
+```
+
+Fix: Say why the rule does not apply here, after two dashes. A suppression with a reason is one that a reviewer can agree or disagree with.
+
+See [Suppressing a finding](#suppressing-a-finding) for the three ways to suppress.
+
+Turn it off: `"rules": { "QCR-X002": "off" }` in the config, or `--disable QCR-X002` on the command line.

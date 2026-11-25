@@ -6,6 +6,7 @@ import path from 'node:path';
 import { loadConfig } from '../config/load.js';
 import type { FailOn } from '../config/types.js';
 import type { PathSelection } from '../discover/files.js';
+import { changedLines, DiffError, type ChangedLines } from '../discover/diff.js';
 import { runReview } from '../engine/run.js';
 import { failsAt } from '../engine/verdict.js';
 import { FRAMEWORK_IDS, LANGUAGE_IDS } from '../model/types.js';
@@ -20,6 +21,9 @@ Reviews test files with the static rules and writes report.json. With no paths i
 every test file under the root. Paths can be files, folders or globs.
 
 Flags:
+  --diff <base>         Review only the tests whose lines changed since the branch left <base>, plus changes
+                        that are not committed and untracked test files. --diff HEAD: only uncommitted changes.
+  --staged              Like --diff, for what git add has staged. Made for pre-commit hooks.
   --fail-on <level>     error, warn, info or never. Exit 1 when a finding is at or above the level. Default: error.
   --rules <list>        Only run these rule ids (comma separated).
   --disable <list>      Skip these rule ids.
@@ -39,7 +43,7 @@ Flags:
 Exit codes: 0 no finding at or above --fail-on, 1 findings, 2 usage or config error, 3 internal error.
 `;
 
-const FLAGS = ['help', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model', 'max-findings', 'no-color', 'quiet'] as const;
+const FLAGS = ['help', 'diff', 'staged', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model', 'max-findings', 'no-color', 'quiet'] as const;
 const LATER_FORMATS = ['sarif', 'markdown', 'junit'] as const;
 const posix = (value: string): string => value.split(path.sep).join('/');
 
@@ -82,12 +86,23 @@ export async function review(argv: string[]): Promise<number> {
   const later = [...(formats ?? []), ...(stdout ? [stdout] : [])].find((format) => (LATER_FORMATS as readonly string[]).includes(format));
   if (later) throw new UsageError(`the ${later} format is not available yet in this development build`);
 
+  // Diff mode. A folder that is not a git repo, or a base git does not know, is a usage error.
+  if (typeof values.diff === 'string' && values.staged) throw new UsageError('use --diff or --staged, not both');
+  let diff: { base: string; lines: ChangedLines } | undefined;
+  try {
+    if (typeof values.diff === 'string') diff = { base: values.diff, lines: changedLines(root, { base: values.diff }) };
+    else if (values.staged) diff = { base: 'staged', lines: changedLines(root, { staged: true }) };
+  } catch (error) {
+    if (error instanceof DiffError) throw new UsageError(error.message);
+    throw error;
+  }
+
   const loaded = loadConfig({ root, ...(typeof values.config === 'string' ? { configPath: values.config } : {}) });
   for (const warning of loaded.warnings) process.stderr.write(`qa-core-review: warning: ${warning}\n`);
   const config = { ...loaded.config, ...(languages ? { languages } : {}), ...(framework ? { framework } : {}), ...(failOn ? { failOn } : {}) };
   const paths = selectPaths(positionals, root);
   const { report, models, notices } = await runReview({
-    root, config, ...(paths ? { paths } : {}), ...(onlyRules ? { onlyRules } : {}), ...(disabledRules ? { disabledRules } : {}),
+    root, config, ...(paths ? { paths } : {}), ...(onlyRules ? { onlyRules } : {}), ...(disabledRules ? { disabledRules } : {}), ...(diff ? { diff } : {}),
   });
   for (const notice of notices) process.stderr.write(`qa-core-review: ${notice}\n`);
 
