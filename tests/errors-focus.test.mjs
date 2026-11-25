@@ -14,7 +14,8 @@ async function findings(file, source, { dependencies = { '@playwright/test': '^1
   try {
     fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify({ devDependencies: dependencies }));
     fs.writeFileSync(path.join(dir, file), source.replace(/^\n/, ''));
-    const { report } = await runReview({ root: dir, config: resolveConfig(config).config, git: false });
+    // QCR-N001 reports any small group of happy-path tests. It has its own tests, so it is switched off here.
+    const { report } = await runReview({ root: dir, config: resolveConfig({ ...config, rules: { 'QCR-N001': 'off', ...config.rules } }).config, git: false });
     const mine = report.findings.filter((finding) => rules.test(finding.ruleId));
     return Object.assign(mine.map((finding) => `${finding.ruleId.slice(4)} ${finding.location.startLine} ${finding.severity}: ${finding.message}`), { all: mine, report });
   } finally {

@@ -254,6 +254,54 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
       good: "test('creates an order', async ({ request }) => {\n  const response = await request.post('https://api.example.test/orders', { data: { item: 'backpack' } });\n  expect(response.status()).toBe(201);\n  const { id } = await response.json();\n  await request.delete(`https://api.example.test/orders/${id}`);\n});",
     } },
   },
+  'QCR-N001': {
+    title: 'A group of tests with happy paths only',
+    fix: 'Add at least one test for what must not work: bad input, a missing value, or a failure of something the code depends on.',
+    examples: { js: {
+      bad: "describe('applyDiscount', () => {\n  it('applies 10% off', () => {\n    expect(applyDiscount(100, 'SAVE10')).toBe(90);\n  });\n  it('applies 20% off', () => {\n    expect(applyDiscount(100, 'SAVE20')).toBe(80);\n  });\n});",
+      good: "describe('applyDiscount', () => {\n  it('applies 10% off', () => {\n    expect(applyDiscount(100, 'SAVE10')).toBe(90);\n  });\n  it('rejects an unknown code', () => {\n    expect(() => applyDiscount(100, 'NOPE')).toThrow('Invalid code');\n  });\n});",
+    } },
+  },
+  'QCR-M001/subject': {
+    title: 'The code under test is mocked',
+    fix: 'Mock what the code under test depends on, not the code under test itself.',
+    examples: { js: {
+      bad: "import { getTotal } from './cart';\n\nvi.mock('./cart', () => ({ getTotal: vi.fn(() => 42) }));\n\nit('returns the total', () => {\n  expect(getTotal([{ price: 40 }, { price: 2 }])).toBe(42);\n});",
+      good: "import { getTotal } from './cart';\n\nvi.mock('./tax', () => ({ taxRate: () => 0 }));\n\nit('returns the total', () => {\n  expect(getTotal([{ price: 40 }, { price: 2 }])).toBe(42);\n});",
+    } },
+  },
+  'QCR-M001/stubbed': {
+    title: 'A stubbed function is called and checked',
+    fix: 'Call the real function and check what it returns. Give fixed replies only to the things it depends on.',
+    examples: { js: {
+      bad: "it('loads the user', async () => {\n  const getUser = vi.fn().mockResolvedValue({ id: 7, name: 'Sam' });\n  expect(await getUser(7)).toEqual({ id: 7, name: 'Sam' });\n});",
+      good: "it('loads the user', async () => {\n  const http = { get: vi.fn().mockResolvedValue({ id: 7, name: 'Sam' }) };\n  expect(await new UserService(http).getUser(7)).toEqual({ id: 7, name: 'Sam' });\n});",
+    } },
+  },
+  'QCR-M001/calls-only': {
+    title: 'A test that checks only calls on mocks (warn)',
+    fix: 'Also check a result: what the code returns, what it saves, or what the user sees.',
+    examples: { js: {
+      bad: "it('places the order', async () => {\n  await placeOrder(cart);\n  expect(mailer.send).toHaveBeenCalledTimes(1);\n});",
+      good: "it('places the order', async () => {\n  const order = await placeOrder(cart);\n  expect(order.status).toBe('placed');\n  expect(mailer.send).toHaveBeenCalledTimes(1);\n});",
+    } },
+  },
+  'QCR-M001/everything': {
+    title: 'Every import of the file is mocked (warn)',
+    fix: 'Keep the module under test real. Mock only what is slow, random or outside your control.',
+    examples: { js: {
+      bad: "import { placeOrder } from '../src/orders';\nimport { charge } from '../src/payments';\n\njest.mock('../src/orders');\njest.mock('../src/payments');",
+      good: "import { placeOrder } from '../src/orders';\nimport { charge } from '../src/payments';\n\njest.mock('../src/payments');",
+    } },
+  },
+  'QCR-M001/network': {
+    title: 'Every network request is faked (warn)',
+    fix: 'Fake only the requests this test is about, and let the others go to the real server or to a test server.',
+    examples: { js: {
+      bad: "await page.route('**/*', (route) => route.fulfill({ json: { items: [] } }));\nawait page.goto('https://www.saucedemo.com/cart.html');\nawait expect(page.getByTestId('cart-list')).toBeVisible();",
+      good: "await page.route('**/api/cart', (route) => route.fulfill({ json: { items: [] } }));\nawait page.goto('https://www.saucedemo.com/cart.html');\nawait expect(page.getByTestId('cart-list')).toBeVisible();",
+    } },
+  },
 };
 
 /** The fix and the good example for a finding in a file of this language. */

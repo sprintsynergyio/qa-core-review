@@ -2,23 +2,55 @@
 
 Each rule has an id that never changes. A finding names the rule, the place, the evidence and a fix. Run `qa-core-review rules` for the list and `qa-core-review explain <ruleId>` for one rule with its examples.
 
-This page covers the rules that exist so far. The examples are in TypeScript. The same rules run on JavaScript files. Python and Java examples are added with those adapters.
+This page covers every rule that is built. The examples are in TypeScript. The same rules run on JavaScript files. Python and Java examples are added with those adapters.
 
-| Id | Name | Default | What it finds |
-| --- | --- | --- | --- |
-| [QCR-A001](#qcr-a001) | no-assertion | error | A test with no assertion. |
-| [QCR-A002](#qcr-a002) | trivial-assertion | error | An assertion whose result is fixed by the code itself. |
-| [QCR-A003](#qcr-a003) | cannot-fail-assertion | error | An assertion that looks real and cannot fail. |
-| [QCR-A004](#qcr-a004) | conditional-assertion | warn | Every assertion sits inside a condition, a loop or a callback. |
-| [QCR-W001](#qcr-w001) | hard-wait | warn | A fixed sleep in a test or a hook. |
-| [QCR-S001](#qcr-s001) | brittle-selector | warn | A selector that depends on page layout or on generated names. |
-| [QCR-E001](#qcr-e001) | swallowed-error | error | An assertion failure that is caught and ignored. |
-| [QCR-F001](#qcr-f001) | focused-test | error | A focused test or suite: `.only`, `fit`, `fdescribe`. |
-| [QCR-F002](#qcr-f002) | skipped-test | warn | A test or suite that is skipped with no condition, a to-do, or a fixme. |
-| [QCR-D001](#qcr-d001) | duplicate-test | warn | A test with the same body as another test, or the same title in one file. |
-| [QCR-P001](#qcr-p001) | snapshot-only | warn | A test whose only assertions are snapshots. |
-| [QCR-C001](#qcr-c001) | missing-cleanup | warn | State that a test creates and never restores. |
-| [QCR-X001](#qcr-x001) | parse-error | info | A file that cannot be parsed, or a test file with no test in it. |
+| Id | Name | Default | Scope | What it finds | Also in qa-core-verify |
+| --- | --- | --- | --- | --- | --- |
+| [QCR-A001](#qcr-a001) | no-assertion | error | universal | A test with no assertion. | QCV-W001 |
+| [QCR-A002](#qcr-a002) | trivial-assertion | error | universal | An assertion whose result is fixed by the code itself. | QCV-W004 |
+| [QCR-A003](#qcr-a003) | cannot-fail-assertion | error | universal, with cases for some frameworks | An assertion that looks real and cannot fail. | QCV-W002, QCV-W003 |
+| [QCR-A004](#qcr-a004) | conditional-assertion | warn | universal | Every assertion sits inside a condition, a loop or a callback. | QCV-W007 |
+| [QCR-W001](#qcr-w001) | hard-wait | warn | universal | A fixed sleep in a test or a hook. | QCV-W010 |
+| [QCR-S001](#qcr-s001) | brittle-selector | warn | UI frameworks | A selector that depends on page layout or on generated names. | locator checks |
+| [QCR-E001](#qcr-e001) | swallowed-error | error | universal | An assertion failure that is caught and ignored. | QCV-W008 |
+| [QCR-F001](#qcr-f001) | focused-test | error | runners with focus | A focused test or suite: `.only`, `fit`, `fdescribe`. | QCV-W009 |
+| [QCR-F002](#qcr-f002) | skipped-test | warn | universal | A test or suite that is skipped with no condition, a to-do, or a fixme. | QCV-W009 |
+| [QCR-D001](#qcr-d001) | duplicate-test | warn | universal | A test with the same body as another test, or the same title in one file. | none |
+| [QCR-N001](#qcr-n001) | missing-negative-case | info | universal | A group of tests with happy paths only. | none |
+| [QCR-M001](#qcr-m001) | over-mocking | error / warn | universal, with subject detection per framework | The code under test is replaced by a mock. | none |
+| [QCR-P001](#qcr-p001) | snapshot-only | warn / info | universal | A test whose only assertions are snapshots. | none |
+| [QCR-C001](#qcr-c001) | missing-cleanup | warn | universal | State that a test creates and never restores. | none |
+| [QCR-X001](#qcr-x001) | parse-error | info | universal | A file that cannot be parsed, or a test file with no test in it. | QCV-W000 (similar) |
+
+The last column names the check in qa-core-verify that looks for the same problem when it runs your tests. qa-core-review finds it by reading the code, before anything runs.
+
+Not built yet: `QCR-X002` suppression-without-reason, `QCR-X003` no-static-adapter, and for v0.2 `QCR-G001` unmatched-step (Gherkin) and `QCR-K001` perf-no-thresholds (k6, JMeter).
+
+## Which rules run on which language
+
+A rule runs on a file when the adapter of its language fills in everything the rule needs. This table is made from the code by `scripts/gen-support-matrix.mjs`.
+
+<!-- support-matrix:start -->
+| Rule | Needs from the adapter | JavaScript, TypeScript | Python | Java |
+| --- | --- | --- | --- | --- |
+| [QCR-A001](#qcr-a001) | tests, assertions | yes | planned | planned |
+| [QCR-A002](#qcr-a002) | assertions, assertion-operands | yes | planned | planned |
+| [QCR-A003](#qcr-a003) | assertions, assertion-operands, reachability | yes | planned | planned |
+| [QCR-A004](#qcr-a004) | assertions | yes | planned | planned |
+| [QCR-W001](#qcr-w001) | waits | yes | planned | planned |
+| [QCR-S001](#qcr-s001) | selectors | yes | planned | planned |
+| [QCR-E001](#qcr-e001) | try-blocks | yes | planned | planned |
+| [QCR-F001](#qcr-f001) | modifiers | yes | planned | planned |
+| [QCR-F002](#qcr-f002) | modifiers | yes | planned | planned |
+| [QCR-D001](#qcr-d001) | body-hash | yes | planned | planned |
+| [QCR-N001](#qcr-n001) | tests, assertions | yes | planned | planned |
+| [QCR-M001](#qcr-m001) | mocks, assertions, assertion-operands | yes | planned | planned |
+| [QCR-P001](#qcr-p001) | assertions | yes | planned | planned |
+| [QCR-C001](#qcr-c001) | resources, hooks | yes | planned | planned |
+| [QCR-X001](#qcr-x001) | none | yes | planned | planned |
+<!-- support-matrix:end -->
+
+When a file cannot be parsed, the tool reads it line by line. It then knows the tests, their modifiers, their assertions and their sleeps, so only the rules that need nothing more still run, and their findings have low confidence.
 
 ## Settings every rule has
 
@@ -34,7 +66,7 @@ In the config, a rule is `"off"`, a severity (`"error"`, `"warn"`, `"info"`), or
 }
 ```
 
-A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001`, the implicit wait of `QCR-W001`, the expected failure of `QCR-F002`, the visual checks of `QCR-P001` and the test data of `QCR-C001` stay info. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
+A severity in the config sets the level of the rule. A case that a rule reports at a level of its own keeps it: the picks by position of `QCR-S001`, the implicit wait of `QCR-W001`, the expected failure of `QCR-F002`, the visual checks of `QCR-P001` and the test data of `QCR-C001` stay info, and the three warn cases of `QCR-M001` stay warn. Set the rule to `"info"` to bring everything down to info. `languages` limits the rule to those languages.
 
 <a id="qcr-a001"></a>
 ## QCR-A001 `no-assertion` (error)
@@ -662,6 +694,201 @@ Fix: Give each test a title that says what it checks, so that a failure report p
 - A copy in another language. A `.js` file is not compared with a `.ts` file.
 
 Turn it off: `"rules": { "QCR-D001": "off" }` in the config, or `--disable QCR-D001` on the command line.
+
+<a id="qcr-n001"></a>
+## QCR-N001 `missing-negative-case` (info)
+
+A group of tests where every test is a happy path. Tests written in one go, by a person or by an AI tool, often cover only what should work. This rule is a hint with low confidence: it reads titles and assertions, it does not know your feature.
+
+Bad:
+
+```ts
+describe('applyDiscount', () => {
+  it('applies 10% off', () => {
+    expect(applyDiscount(100, 'SAVE10')).toBe(90);
+  });
+  it('applies 20% off', () => {
+    expect(applyDiscount(100, 'SAVE20')).toBe(80);
+  });
+});
+```
+
+Good:
+
+```ts
+describe('applyDiscount', () => {
+  it('applies 10% off', () => {
+    expect(applyDiscount(100, 'SAVE10')).toBe(90);
+  });
+  it('rejects an unknown code', () => {
+    expect(() => applyDiscount(100, 'NOPE')).toThrow('Invalid code');
+  });
+});
+```
+
+Fix: Add at least one test for what must not work: bad input, a missing value, or a failure of something the code depends on.
+
+A group is the tests of one `describe` block (the innermost one), or the tests of a file that are in no block. The rule reports once per group, on the line of the block, when the group has 2 or more tests and none of them looks like an error case. A test looks like an error case when:
+
+- a word in its title or in the titles of its blocks starts with one of: invalid, error, fail, reject, wrong, empty, missing, denied, unauthorized, forbidden, expired, locked, limit, max, min, zero, negative, boundary, overflow, timeout, edge, null, undefined, none, nil, 404, 401, 403, 500, or the title has "not found". `rejectsUnknownCode` and `rejects_unknown_code` are read as words;
+- it expects an exception: `toThrow`, `rejects`, `assert.throws`;
+- it checks a status code of 400 or more;
+- one of its assertions has the text "error", "invalid" or "required" in it.
+
+The message suggests two or three cases from the title of the group: a group named "checkout" gets "checkout with an empty cart", "checkout with a missing postal code" and "checkout with a payment that is declined". A title the rule does not know gets "empty input", "invalid input" and "a server error".
+
+This rule never changes the verdict of a test or the exit code at the default `--fail-on error`.
+
+Turn it off: `"rules": { "QCR-N001": "off" }` in the config, or `--disable QCR-N001` on the command line.
+
+<a id="qcr-m001"></a>
+## QCR-M001 `over-mocking` (error)
+
+The code under test is replaced by a mock, so the test checks the mock. Such a test stays green when the real code is broken or deleted. The first two cases are errors. The other three are warnings, because the test may still check something real.
+
+### The code under test is mocked
+
+Error. The module under test is the one the test file is named after: `cart.test.ts` tests the import `./cart` or `../src/cart`. Reported when that module is mocked with `vi.mock`, `jest.mock` or `jest.doMock`.
+
+Bad:
+
+```ts
+import { getTotal } from './cart';
+
+vi.mock('./cart', () => ({ getTotal: vi.fn(() => 42) }));
+
+it('returns the total', () => {
+  expect(getTotal([{ price: 40 }, { price: 2 }])).toBe(42);
+});
+```
+
+Good:
+
+```ts
+import { getTotal } from './cart';
+
+vi.mock('./tax', () => ({ taxRate: () => 0 }));
+
+it('returns the total', () => {
+  expect(getTotal([{ price: 40 }, { price: 2 }])).toBe(42);
+});
+```
+
+Fix: Mock what the code under test depends on, not the code under test itself.
+
+### A stubbed function is called and checked
+
+Error. A mock function is given a fixed reply (`mockReturnValue`, `mockResolvedValue`, `vi.fn(() => 42)`, sinon `returns` or `resolves`), and the test then calls that same function inside an assertion. Like the first case, it is reported only in a file whose module under test is known. This covers `vi.fn()`, `jest.fn()` and `sinon.stub()` stored under a name, and `vi.spyOn`, `jest.spyOn` and `sinon.stub` on a method.
+
+Bad:
+
+```ts
+it('loads the user', async () => {
+  const getUser = vi.fn().mockResolvedValue({ id: 7, name: 'Sam' });
+  expect(await getUser(7)).toEqual({ id: 7, name: 'Sam' });
+});
+```
+
+Good:
+
+```ts
+it('loads the user', async () => {
+  const http = { get: vi.fn().mockResolvedValue({ id: 7, name: 'Sam' }) };
+  expect(await new UserService(http).getUser(7)).toEqual({ id: 7, name: 'Sam' });
+});
+```
+
+Fix: Call the real function and check what it returns. Give fixed replies only to the things it depends on.
+
+### A test that checks only calls on mocks (warn)
+
+Warn. Every assertion of the test checks a call on a mock (`toHaveBeenCalled`, `toHaveBeenCalledWith`, `sinon.assert.calledOnce`), in a test or file where a mock stands in for real code.
+
+Bad:
+
+```ts
+it('places the order', async () => {
+  await placeOrder(cart);
+  expect(mailer.send).toHaveBeenCalledTimes(1);
+});
+```
+
+Good:
+
+```ts
+it('places the order', async () => {
+  const order = await placeOrder(cart);
+  expect(order.status).toBe('placed');
+  expect(mailer.send).toHaveBeenCalledTimes(1);
+});
+```
+
+Fix: Also check a result: what the code returns, what it saves, or what the user sees.
+
+### Every import of the file is mocked (warn)
+
+Warn, once per file. Every module the file imports is mocked. Type imports and the test framework do not count. When the module under test is among them, only that case is reported.
+
+Bad:
+
+```ts
+import { placeOrder } from '../src/orders';
+import { charge } from '../src/payments';
+
+jest.mock('../src/orders');
+jest.mock('../src/payments');
+```
+
+Good:
+
+```ts
+import { placeOrder } from '../src/orders';
+import { charge } from '../src/payments';
+
+jest.mock('../src/payments');
+```
+
+Fix: Keep the module under test real. Mock only what is slow, random or outside your control.
+
+### Every network request is faked (warn)
+
+Warn. A `page.route` or `cy.intercept` on `**/*`, `**`, `*` or `/.*/` answers every request with a fixed reply, and the test then checks the page.
+
+Bad:
+
+```ts
+await page.route('**/*', (route) => route.fulfill({ json: { items: [] } }));
+await page.goto('https://www.saucedemo.com/cart.html');
+await expect(page.getByTestId('cart-list')).toBeVisible();
+```
+
+Good:
+
+```ts
+await page.route('**/api/cart', (route) => route.fulfill({ json: { items: [] } }));
+await page.goto('https://www.saucedemo.com/cart.html');
+await expect(page.getByTestId('cart-list')).toBeVisible();
+```
+
+Fix: Fake only the requests this test is about, and let the others go to the real server or to a test server.
+
+### Not reported
+
+- A module mock that keeps the real module: `vi.importActual`, `jest.requireActual`, or `importOriginal` in the factory.
+- A mock of something the code under test depends on.
+- A test that watches the real code through a plain callback or a spy that calls through: `const onSave = vi.fn(); save(form, onSave); expect(onSave).toHaveBeenCalledWith(form)`.
+- A fake for one endpoint, and a route handler that lets requests go on (`route.continue()`).
+- The first two cases in a file whose module under test is not known. They need a file name that matches an import, or an entry in `subjectMap`.
+
+### Options
+
+```json
+{ "rules": { "QCR-M001": { "subjectMap": { "tests/checkout/**": "../../src/checkout" } } } }
+```
+
+`subjectMap` (default none): for test files whose name does not match the module they test. The key is a glob for test files, and the value is the module as the test files import it.
+
+Turn it off: `"rules": { "QCR-M001": "off" }` in the config, or `--disable QCR-M001` on the command line.
 
 <a id="qcr-p001"></a>
 ## QCR-P001 `snapshot-only` (warn)

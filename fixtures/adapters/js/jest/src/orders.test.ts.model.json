@@ -51,7 +51,8 @@
           "releases": [],
           "assertions": [],
           "waits": [],
-          "selectors": []
+          "selectors": [],
+          "data": []
         },
         {
           "span": {
@@ -69,7 +70,8 @@
           ],
           "assertions": [],
           "waits": [],
-          "selectors": []
+          "selectors": [],
+          "data": []
         }
       ],
       "testIds": [
@@ -802,7 +804,23 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 24,
+            "endLine": 68,
+            "endColumn": 59
+          },
+          "text": "jest.fn(async () => ({ ok: true }))",
+          "kind": "function",
+          "target": "globalThis.fetch",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [
         {
           "span": {

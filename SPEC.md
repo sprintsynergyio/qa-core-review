@@ -470,6 +470,7 @@ export interface NHook {
   assertions: NAssertion[];
   waits: NWait[];               // sleeps and waits inside the hook (W001 reads them)
   selectors: NSelector[];       // selectors used in the hook (S001 reads them)
+  data: NDataOp[];              // data the hook creates or deletes (C001 reads them)
 }
 
 export interface NTest {

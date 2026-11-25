@@ -1,9 +1,9 @@
 // QCR-C001 missing-cleanup (SPEC.md Section 10.14): state that a test or a hook takes hold of
 // and never gives back, so it leaks into the tests that run after it.
-import type { NFile, NResource } from '../model/types.js';
+import type { NResource } from '../model/types.js';
 import { fixFor } from './fix-text.js';
 import type { FindingDraft, Rule } from './types.js';
-import { hooksOf } from './util.js';
+import { hooksAround } from './util.js';
 
 /** The sub-case of each kind of resource, and how the message names it. */
 const KINDS: Record<NResource['kind'], { key: string; message: string }> = {
@@ -21,8 +21,6 @@ const KINDS: Record<NResource['kind'], { key: string; message: string }> = {
   server: { key: 'handle', message: 'This server is started and never stopped.' },
   file: { key: 'handle', message: 'This file is opened or created and never closed or removed.' },
 };
-
-const isAfter = (file: NFile): boolean => hooksOf(file).some((hook) => hook.kind === 'afterEach' || hook.kind === 'afterAll' || hook.kind === 'fixture-teardown');
 
 export const missingCleanup: Rule = {
   id: 'QCR-C001',
@@ -42,12 +40,12 @@ export const missingCleanup: Rule = {
       }
     };
     scan(file.fileResources, null);
-    // The model does not hold what an after hook deletes. With an after hook in the file, we do not guess.
-    const mayDelete = isAfter(file);
     for (const test of file.tests) {
       scan(test.resources, test.id);
       const created = test.data.find((op) => op.op === 'create' && op.via === 'http');
-      if (created && !mayDelete && !test.data.some((op) => op.op === 'delete')) {
+      // A delete counts in the test itself and in any hook that runs around it.
+      const deleted = [...test.data, ...hooksAround(file, test).flatMap((hook) => hook.data)].some((op) => op.op === 'delete');
+      if (created && !deleted) {
         drafts.push({
           message: 'This test creates data over HTTP and never deletes it.', evidence: created.text, span: created.span, testId: test.id,
           severity: 'info', confidence: 'low', ...fixFor('QCR-C001/data', file.language),

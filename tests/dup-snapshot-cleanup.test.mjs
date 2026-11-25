@@ -31,13 +31,14 @@ const { expect, test } = require('@playwright/test');
 test('legacy cart', ${copy});
 `,
   }, { dependencies: PLAYWRIGHT });
-  assert.deepEqual(lines, [
+  assert.deepEqual(only(lines, 'D001'), [
     'tests/a-cart.spec.ts:7 D001 warn: This test has the same body as "opens the cart" (line 3).',
     'tests/b-smoke.spec.ts:2 D001 warn: This test has the same body as "opens the cart" (tests/a-cart.spec.ts:3).',
   ]);
   // The evidence names the first copy by its file and full title. It has no line number, so it stays the same when lines move.
-  assert.deepEqual(findings.map((finding) => finding.evidence), ['tests/a-cart.spec.ts > Cart > opens the cart', 'tests/a-cart.spec.ts > Cart > opens the cart']);
-  assert.deepEqual([findings[0].fix, findings[0].goodExample], [FIX_TEXT['QCR-D001'].fix, FIX_TEXT['QCR-D001'].examples.js.good]);
+  const copies = findings.filter((finding) => finding.ruleId === 'QCR-D001');
+  assert.deepEqual(copies.map((finding) => finding.evidence), ['tests/a-cart.spec.ts > Cart > opens the cart', 'tests/a-cart.spec.ts > Cart > opens the cart']);
+  assert.deepEqual([copies[0].fix, copies[0].goodExample], [FIX_TEXT['QCR-D001'].fix, FIX_TEXT['QCR-D001'].examples.js.good]);
 });
 
 test('QCR-D001: parameterized tests, short bodies and the same title', async () => {
@@ -63,12 +64,13 @@ describe('C', () => {
 });
 `,
   }, { dependencies: VITEST });
-  assert.deepEqual(lines, [
+  assert.deepEqual(only(lines, 'D001'), [
     'cart.test.ts:16 D001 warn: This test has the same title as the test on line 15, so a report cannot tell the two apart.',
     // The same body and the same title: one finding, for the body.
     'cart.test.ts:17 D001 warn: This test has the same body as "adds" (line 15).',
   ]);
-  assert.deepEqual([findings[0].evidence, findings[0].fix, findings[0].goodExample], ['C > adds', FIX_TEXT['QCR-D001/title'].fix, FIX_TEXT['QCR-D001/title'].examples.js.good]);
+  const titles = findings.filter((finding) => finding.ruleId === 'QCR-D001');
+  assert.deepEqual([titles[0].evidence, titles[0].fix, titles[0].goodExample], ['C > adds', FIX_TEXT['QCR-D001/title'].fix, FIX_TEXT['QCR-D001/title'].examples.js.good]);
   assert.deepEqual(examplesFor('QCR-D001', 'typescript').map((entry) => entry.title), ['A test with the same body as another test', 'Two tests with the same title in one file']);
 });
 
@@ -180,7 +182,7 @@ test('creates', async ({ request }) => { const created = await request.post('/or
     'shop.spec.ts:6 C001 warn: This API client is created and never disposed.',
     'shop.spec.ts:8 C001 info: This test creates data over HTTP and never deletes it.',
   ]);
-  const data = findings.find((finding) => finding.severity === 'info');
+  const data = findings.find((finding) => finding.ruleId === 'QCR-C001' && finding.severity === 'info');
   assert.deepEqual([data.confidence, data.evidence, data.fix, data.goodExample], ['low', "request.post('/orders', { data: {} })", FIX_TEXT['QCR-C001/data'].fix, FIX_TEXT['QCR-C001/data'].examples.js.good]);
   assert.equal(examplesFor('QCR-C001', 'typescript').length, 6);
 });

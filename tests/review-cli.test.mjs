@@ -51,7 +51,11 @@ test('review on the js-basic fixture writes a valid report.json and prints the t
     'pass  fixtures/projects/js-basic/src/cart.test.ts:4  Cart > adds an item', '',
     'pass  fixtures/projects/js-basic/src/cart.test.ts:11  Cart > starts empty', '',
     'pass  fixtures/projects/js-basic/tests/checkout.spec.ts:5  Checkout > adds a backpack to the cart', '',
-    'Summary: 3 pass, 0 review, 1 fail. 1 error, 1 warning, 0 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
+    'file  fixtures/projects/js-basic/tests/checkout.spec.ts',
+    '  QCR-N001  info   4:1  All 2 tests of "Checkout" are happy paths. Cases to think about: Checkout with an empty cart; Checkout with a missing postal code; Checkout with a payment that is declined.',
+    '    Evidence: Checkout',
+    '    Fix: Add at least one test for what must not work: bad input, a missing value, or a failure of something the code depends on.', '',
+    'Summary: 3 pass, 0 review, 1 fail. 1 error, 1 warning, 1 info. 0 suppressed.', 'By language: TypeScript 4 tests.',
     `Reports: ${path.join(out, 'report.json').split(path.sep).join('/')}`, '',
   ]);
   assert.equal(fs.existsSync(path.join(out, 'model.json')), false);

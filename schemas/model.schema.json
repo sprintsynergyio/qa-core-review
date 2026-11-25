@@ -250,7 +250,7 @@
     "NHook": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["span", "kind", "scope", "releases", "assertions", "waits", "selectors"],
+      "required": ["span", "kind", "scope", "releases", "assertions", "waits", "selectors", "data"],
       "properties": {
         "span": { "$ref": "#/$defs/Span" },
         "kind": { "enum": ["beforeAll", "beforeEach", "afterEach", "afterAll", "fixture-teardown"] },
@@ -258,7 +258,8 @@
         "releases": { "type": "array", "items": { "type": "string" } },
         "assertions": { "type": "array", "items": { "$ref": "#/$defs/NAssertion" } },
         "waits": { "type": "array", "items": { "$ref": "#/$defs/NWait" } },
-        "selectors": { "type": "array", "items": { "$ref": "#/$defs/NSelector" } }
+        "selectors": { "type": "array", "items": { "$ref": "#/$defs/NSelector" } },
+        "data": { "type": "array", "items": { "$ref": "#/$defs/NDataOp" } }
       }
     },
     "NTest": {

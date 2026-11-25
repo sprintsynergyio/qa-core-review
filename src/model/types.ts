@@ -208,6 +208,8 @@ export interface NHook {
   waits: NWait[];
   /** Selectors used in the hook: login steps often sit in a `beforeEach`. */
   selectors: NSelector[];
+  /** Data the hook creates or deletes: cleanup often sits in an `afterEach`. */
+  data: NDataOp[];
 }
 
 export interface NTest {

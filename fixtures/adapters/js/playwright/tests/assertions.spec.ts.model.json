@@ -4525,7 +4525,8 @@
           "strategy": "text",
           "value": "Products"
         }
-      ]
+      ],
+      "data": []
     }
   ],
   "fileMocks": [],

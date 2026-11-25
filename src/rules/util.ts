@@ -22,3 +22,15 @@ export function isNotRun(file: NFile, test: NTest): boolean {
   const within = (suite: NSuite): boolean => suite.testIds.includes(test.id) || suite.suites.some(within);
   return suitesOf(file).some((suite) => suite.modifiers.some((modifier) => (NOT_RUN as readonly string[]).includes(modifier)) && within(suite));
 }
+
+/** The hooks that run around a test: those of the file, and those of each suite the test sits in. */
+export function hooksAround(file: NFile, test: NTest): NHook[] {
+  const found: NHook[] = [...file.fileHooks];
+  const visit = (suites: readonly NSuite[]): boolean => suites.some((suite) => {
+    const inside = suite.testIds.includes(test.id) || visit(suite.suites);
+    if (inside) found.push(...suite.hooks);
+    return inside;
+  });
+  visit(file.suites);
+  return found;
+}

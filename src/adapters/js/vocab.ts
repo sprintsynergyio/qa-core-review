@@ -353,6 +353,8 @@ export const FUNCTION_MOCKS: Readonly<Record<string, { passthrough: boolean; aut
   'vi.spyOn': { passthrough: true }, 'jest.spyOn': { passthrough: true }, 'sinon.spy': { passthrough: true }, 'sinon.stub': { passthrough: false },
   'mock.method': { passthrough: true }, 'cy.spy': { passthrough: true, autoManaged: true }, 'cy.stub': { passthrough: false, autoManaged: true },
 };
+/** A mock function that replaces nothing by itself: `const save = vi.fn()`. */
+export const BARE_MOCKS = ['vi.fn', 'jest.fn', 'sinon.stub', 'sinon.fake', 'mock.fn'] as const;
 /** Chained calls that give a mock a fixed reply. */
 export const STUB_METHODS = [
   'mockReturnValue', 'mockReturnValueOnce', 'mockResolvedValue', 'mockResolvedValueOnce', 'mockRejectedValue', 'mockRejectedValueOnce',
@@ -455,7 +457,7 @@ export const VOCAB_SURFACE: readonly string[] = [
   ...TEST_ID_ATTRIBUTES,
   ...Object.keys(HTTP_METHODS).map((method) => `.${method}(`),
   `${HTTP_FUNCTION}(`, `cy.${CYPRESS_REQUEST}(`, `cy.${CYPRESS_INTERCEPT}(`, `.${ROUTE_METHOD}(`,
-  ...MODULE_MOCKS, ...Object.keys(FUNCTION_MOCKS),
+  ...MODULE_MOCKS, ...Object.keys(FUNCTION_MOCKS), ...BARE_MOCKS.map((name) => `= ${name}(`),
   ...ACTUAL_MODULE_CALLS.map((name) => `${name}(`),
   ...[...STUB_METHODS, ...ROUTE_FULFILL, ...ROUTE_CONTINUE, ...RELEASE_METHODS].map((name) => `.${name}(`),
   ...MATCH_ALL_PATTERNS,

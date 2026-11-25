@@ -53,7 +53,8 @@
           ],
           "assertions": [],
           "waits": [],
-          "selectors": []
+          "selectors": [],
+          "data": []
         }
       ],
       "testIds": [
