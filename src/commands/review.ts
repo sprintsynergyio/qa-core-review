@@ -10,7 +10,10 @@ import { changedLines, DiffError, type ChangedLines } from '../discover/diff.js'
 import { runReview } from '../engine/run.js';
 import { failsAt } from '../engine/verdict.js';
 import { FRAMEWORK_IDS, LANGUAGE_IDS } from '../model/types.js';
-import { formatPretty, useColor } from '../report/pretty.js';
+import { formatJunit } from '../report/junit.js';
+import { formatMarkdown } from '../report/markdown.js';
+import { formatPretty, formatSummary, useColor } from '../report/pretty.js';
+import { formatSarif } from '../report/sarif.js';
 import { builtinRules } from '../rules/index.js';
 import { choiceFlag, listFlag, parse, UsageError } from './args.js';
 
@@ -29,8 +32,9 @@ Flags:
   --disable <list>      Skip these rule ids.
   --language <list>     Only review these languages, for example typescript,python.
   --framework <name>    Use this runner for every reviewed file.
-  --format <list>       pretty, json. Default: pretty. report.json is always written.
-  --stdout <format>     Print json to stdout instead of the text view.
+  --format <list>       Comma list of pretty, json, sarif, markdown, junit. Default: pretty. pretty is the text view,
+                        the others are files: report.json (always written), report.sarif, report.md, report.junit.xml.
+  --stdout <format>     Print json, sarif, markdown or junit to stdout instead of the text view, for piping.
   --output <dir>        Folder for the report files. Default: .qa-core/review
   --dump-model          Also write model.json, the normalized model of every file.
   --max-findings <n>    Stop printing findings after n. The report file keeps all of them. Default: 200.
@@ -44,7 +48,7 @@ Exit codes: 0 no finding at or above --fail-on, 1 findings, 2 usage or config er
 `;
 
 const FLAGS = ['help', 'diff', 'staged', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model', 'max-findings', 'no-color', 'quiet'] as const;
-const LATER_FORMATS = ['sarif', 'markdown', 'junit'] as const;
+const FILE_FORMATS = ['json', 'sarif', 'markdown', 'junit'] as const;
 const posix = (value: string): string => value.split(path.sep).join('/');
 
 /** Sorts the paths of the command line into files, folders and globs, relative to the root. */
@@ -79,12 +83,10 @@ export async function review(argv: string[]): Promise<number> {
   const languages = listFlag('language', values.language, LANGUAGE_IDS, 'language');
   const framework = choiceFlag('framework', values.framework, FRAMEWORK_IDS);
   const failOn = choiceFlag<FailOn>('fail-on', values['fail-on'], ['error', 'warn', 'info', 'never']);
-  const formats = listFlag('format', values.format, ['pretty', 'json', ...LATER_FORMATS], 'format');
-  const stdout = choiceFlag('stdout', values.stdout, ['json', ...LATER_FORMATS]);
+  const formatFlag = listFlag('format', values.format, ['pretty', ...FILE_FORMATS], 'format');
+  const stdout = choiceFlag('stdout', values.stdout, FILE_FORMATS);
   const maxFindings = typeof values['max-findings'] === 'string' ? Number(values['max-findings']) : 200;
   if (!Number.isInteger(maxFindings) || maxFindings < 0) throw new UsageError(`--max-findings must be a whole number, 0 or more, not "${String(values['max-findings'])}"`);
-  const later = [...(formats ?? []), ...(stdout ? [stdout] : [])].find((format) => (LATER_FORMATS as readonly string[]).includes(format));
-  if (later) throw new UsageError(`the ${later} format is not available yet in this development build`);
 
   // Diff mode. A folder that is not a git repo, or a base git does not know, is a usage error.
   if (typeof values.diff === 'string' && values.staged) throw new UsageError('use --diff or --staged, not both');
@@ -112,11 +114,11 @@ export async function review(argv: string[]): Promise<number> {
     const relative = posix(path.relative(root, file));
     return relative.startsWith('..') || path.isAbsolute(relative) ? posix(file) : relative;
   };
-  const write = (name: string, data: unknown): string => {
+  const write = (name: string, text: string): string => {
     const file = path.join(outputDir, name);
     try {
       fs.mkdirSync(outputDir, { recursive: true });
-      fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
+      fs.writeFileSync(file, text);
     } catch (error) {
       const code = (error as NodeJS.ErrnoException).code;
       if (code === 'ENOTDIR' || code === 'EEXIST' || code === 'EACCES' || code === 'EPERM' || code === 'EROFS') throw new UsageError(`cannot write to --output ${shown(outputDir)} (${code})`);
@@ -124,10 +126,25 @@ export async function review(argv: string[]): Promise<number> {
     }
     return shown(file);
   };
-  const written = [write('report.json', report)];
-  if (values['dump-model']) written.push(write('model.json', models));
+  const json = (data: unknown): string => `${JSON.stringify(data, null, 2)}\n`;
+  const formats = formatFlag ?? config.output.formats;
+  const reportJson = shown(path.join(outputDir, 'report.json'));
+  const texts = {
+    json: (): string => json(report),
+    sarif: (): string => json(formatSarif(report, builtinRules)),
+    markdown: (): string => formatMarkdown(report, { reportPath: reportJson }),
+    junit: (): string => formatJunit(report, config.failOn),
+  };
+  const names = { sarif: 'report.sarif', markdown: 'report.md', junit: 'report.junit.xml' } as const;
+  const written = [write('report.json', texts.json())];
+  for (const format of ['sarif', 'markdown', 'junit'] as const) {
+    if (formats.includes(format)) written.push(write(names[format], texts[format]()));
+  }
+  if (values['dump-model']) written.push(write('model.json', json(models)));
 
-  if (stdout === 'json') process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
+  if (stdout) process.stdout.write(texts[stdout]());
+  // Only files were asked for: the text view is left out, and two lines say what happened and where the files are.
+  else if (!formats.includes('pretty')) process.stdout.write(`${formatSummary(report)}\nReports: ${written.join(', ')}\n`);
   else {
     process.stdout.write(formatPretty(report, {
       color: useColor({ noColorFlag: values['no-color'] === true, env: process.env, isTTY: process.stdout.isTTY === true }), quiet: values.quiet === true, maxFindings,

@@ -87,7 +87,7 @@ test('exit code 2: a mistake in the call or in the config, on one line, with not
   const table = [
     [['--no-such-flag'], /--no-such-flag/], [['--fail-on', 'maybe'], /--fail-on must be error, warn, info or never, not "maybe"/], [['--rules', 'QCR-Z999'], /--rules: unknown rule id "QCR-Z999"\. Known: QCR-A001, .*QCR-X001/],
     [['--disable', ''], /--disable: give at least one rule id/], [['--language', 'klingon'], /--language: unknown language "klingon"/], [['--framework', 'nope'], /--framework must be .*, not "nope"/],
-    [['--format', 'pretty,sarif'], /the sarif format is not available yet/], [['--format', 'html'], /--format: unknown format "html"/], [['--stdout', 'junit'], /the junit format is not available yet/],
+    [['--format', 'pretty,html'], /--format: unknown format "html"/], [['--format', ''], /--format: give at least one format/], [['--stdout', 'html'], /--stdout must be json, sarif, markdown or junit, not "html"/],
     [['--stdout', 'pretty'], /--stdout must be/], [['--max-findings', 'many'], /--max-findings must be a whole number, 0 or more, not "many"/], [['--max-findings=-1'], /--max-findings must be/], [['--max-findings', '-1'], /--max-findings' argument is ambiguous$/m], [['missing.test.ts'], /path not found: missing\.test\.ts/], [[path.join('..', 'elsewhere')], /path is outside the root/],
     [['--root', 'nowhere'], /--root is not a folder: nowhere/], [['--output', 'a-file'], /cannot write to --output a-file/], [['ui'], /the "ui" command is not available yet/],
   ];

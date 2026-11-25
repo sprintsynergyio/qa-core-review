@@ -62,6 +62,11 @@ export { classifySelector, isGeneratedName } from './rules/selectors.js';
 export type { Brittle, BrittleReason } from './rules/selectors.js';
 export { LANGUAGE_NAMES, formatPretty, formatSummary, languageName, useColor } from './report/pretty.js';
 export type { PrettyOptions } from './report/pretty.js';
+// The report files (SPEC.md Sections 11.5 to 11.7).
+export { SARIF_SCHEMA_URL, formatSarif } from './report/sarif.js';
+export { MARKDOWN_LIMIT, MARKDOWN_MARKER, formatMarkdown, markdownCode, markdownText } from './report/markdown.js';
+export type { MarkdownOptions } from './report/markdown.js';
+export { formatJunit, xmlAttribute, xmlText } from './report/junit.js';
 
 // Config (SPEC.md Section 12).
 export { CONFIG_FILE_NAMES, ConfigError, findConfigFile, loadConfig, resolveConfig } from './config/load.js';

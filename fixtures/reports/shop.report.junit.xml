@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="qa-core-review" tests="8" failures="1" time="0">
+  <testsuite name="specs/CartSpec.scala" tests="1" failures="0" errors="0" skipped="1" time="0">
+    <testcase name="(file)" classname="specs.CartSpec" file="specs/CartSpec.scala" line="1" time="0">
+      <skipped message="No static adapter"/>
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/cart.spec.ts" tests="4" failures="1" errors="0" skipped="0" time="0">
+    <testcase name="Cart &gt; adds an item @smoke | &lt;b&gt;bold&lt;/b&gt; &amp; `code` &quot;quoted&quot;" classname="tests.cart.spec" file="tests/cart.spec.ts" line="9" time="0">
+      <system-out>QCR-T002 warn: Hard wait of 3000 ms.
+tests/cart.spec.ts:11:11
+Evidence: page.waitForTimeout(3000)
+Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-t002</system-out>
+    </testcase>
+    <testcase name="Cart &gt; opens" classname="tests.cart.spec" file="tests/cart.spec.ts" line="15" time="0">
+      <failure type="QCR-T001" message="This test checks nothing.">tests/cart.spec.ts:15:3
+Evidence: opens
+Fix: Add an assertion.
+Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-t001</failure>
+      <system-out>QCR-T002 warn: Hard wait of 500 ms.
+tests/cart.spec.ts:17:11
+Evidence: page.waitForTimeout(500)
+Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-t002</system-out>
+    </testcase>
+    <testcase name="Cart &gt; is empty at first" classname="tests.cart.spec" file="tests/cart.spec.ts" line="20" time="0"/>
+    <testcase name="(file)" classname="tests.cart.spec" file="tests/cart.spec.ts" line="1" time="0">
+      <system-out>QCR-T003 info: One of 3 files.
+tests/cart.spec.ts:1:1
+Evidence: tests/cart.spec.ts with spaces
+Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-t003
+
+QCR-T004 warn: Hard wait of 250 ms in a hook.
+tests/cart.spec.ts:6:11
+Evidence: page.waitForTimeout(250)
+Fix: Wait for a condition.
+Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-t004</system-out>
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/checkout.spec.ts" tests="3" failures="0" errors="0" skipped="0" time="0">
+    <testcase name="zeigt den Preis in € an" classname="tests.checkout.spec" file="tests/checkout.spec.ts" line="3" time="0"/>
+    <testcase name="rejects an empty first name" classname="tests.checkout.spec" file="tests/checkout.spec.ts" line="8" time="0"/>
+    <testcase name="(file)" classname="tests.checkout.spec" file="tests/checkout.spec.ts" line="1" time="0">
+      <system-out>QCR-T003 info: One of 3 files.
+tests/checkout.spec.ts:1:1
+Evidence: tests/checkout.spec.ts with spaces
+Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/rules.md#qcr-t003</system-out>
+    </testcase>
+  </testsuite>
+</testsuites>

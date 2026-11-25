@@ -110,8 +110,12 @@ function updateRequested() {
  * Compares `actual` with the golden file. See the top of this file for the outcomes.
  * @returns {'match' | 'created' | 'updated'}
  */
-export function expectGolden(actual, goldenPath, { update = updateRequested() } = {}) {
-  const actualText = stableJson(actual);
+export function expectGolden(actual, goldenPath, options) {
+  return expectGoldenText(stableJson(actual), goldenPath, options);
+}
+
+/** The same for a golden file that is plain text, such as a Markdown or an XML report. */
+export function expectGoldenText(actualText, goldenPath, { update = updateRequested() } = {}) {
   const shown = path.relative(process.cwd(), goldenPath).split(path.sep).join('/');
   const exists = fs.existsSync(goldenPath);
   const expectedText = exists ? fs.readFileSync(goldenPath, 'utf8').replace(/\r\n/g, '\n') : null;
