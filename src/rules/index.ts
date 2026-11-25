@@ -9,13 +9,15 @@ import { duplicateTest } from './qcr-d001-duplicate-test.js';
 import { swallowedError } from './qcr-e001-swallowed-error.js';
 import { focusedTest } from './qcr-f001-focused-test.js';
 import { skippedTest } from './qcr-f002-skipped-test.js';
+import { overMocking } from './qcr-m001-over-mocking.js';
+import { missingNegativeCase } from './qcr-n001-missing-negative-case.js';
 import { snapshotOnly } from './qcr-p001-snapshot-only.js';
 import { brittleSelector } from './qcr-s001-brittle-selector.js';
 import { hardWait } from './qcr-w001-hard-wait.js';
 import { parseError } from './qcr-x001-parse-error.js';
 import type { Rule } from './types.js';
 
-export const builtinRules: readonly Rule[] = [noAssertion, trivialAssertion, cannotFailAssertion, conditionalAssertion, hardWait, brittleSelector, swallowedError, focusedTest, skippedTest, duplicateTest, snapshotOnly, missingCleanup, parseError];
+export const builtinRules: readonly Rule[] = [noAssertion, trivialAssertion, cannotFailAssertion, conditionalAssertion, hardWait, brittleSelector, swallowedError, focusedTest, skippedTest, duplicateTest, missingNegativeCase, overMocking, snapshotOnly, missingCleanup, parseError];
 
 /** Where a rule is documented. */
 export function docsUrlFor(ruleId: string): string {

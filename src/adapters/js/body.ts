@@ -9,7 +9,7 @@ import { calleeName, isLocator, normalizedText, numberValue, rootName, unwrap, t
 import { argumentsOf, isFunction, memberChain, stringValue } from './syntax.js';
 import {
   ACTUAL_MODULE_CALLS, API_CONTEXT_OWNER, AUTO_FIXTURES, CYPRESS_INTERCEPT, CYPRESS_ONLY_SELECTOR_CALLS, CYPRESS_REQUEST, CYPRESS_ROOT, FIXED_WAIT_FUNCTIONS,
-  FIXED_WAIT_METHODS, FUNCTION_MOCKS, GLOBAL_OBJECTS, HTTP_CLIENTS, HTTP_FUNCTION, HTTP_METHODS, IMPLICIT_WAIT_KEY, IMPLICIT_WAIT_METHODS, MATCH_ALL_PATTERNS, MODULE_MOCKS, NEEDS_ARGUMENT, PAGE_OBJECTS,
+  BARE_MOCKS, FIXED_WAIT_METHODS, FUNCTION_MOCKS, GLOBAL_OBJECTS, HTTP_CLIENTS, HTTP_FUNCTION, HTTP_METHODS, IMPLICIT_WAIT_KEY, IMPLICIT_WAIT_METHODS, MATCH_ALL_PATTERNS, MODULE_MOCKS, NEEDS_ARGUMENT, PAGE_OBJECTS,
   POSITIONAL_CALLS, RELEASE_CALLS, RELEASE_METHODS, RESOURCE_CALLS, ROUTE_CONTINUE, ROUTE_FULFILL, ROUTE_METHOD, SELECTOR_ACTIONS, SELECTOR_CALLS, STEP_METHODS,
   STUB_METHODS, TIMER_FUNCTION, UI_ROOTS, WAIT_METHODS, WDIO_LOCATORS,
 } from './vocab.js';
@@ -64,7 +64,7 @@ function storedAs(call: SyntaxNode): string | null {
   return target && target.type !== 'object_pattern' && target.type !== 'array_pattern' ? normalizedText(target) : null;
 }
 
-/** The end of `spy.mockReturnValue(1).mockName('x')`: a stub method gives the mock back, so that is what a variable holds. */
+/** The end of `spy.mockReturnValue(1).mockReturnValueOnce(2)`: a stub method gives the mock back, so that is what a variable holds. */
 function withStubs(call: SyntaxNode): SyntaxNode {
   let node = call;
   while (node.parent?.type === 'member_expression' && node.parent.parent?.type === 'call_expression' && includes(STUB_METHODS, node.parent.childForFieldName('property')?.text)) node = node.parent.parent;
@@ -179,6 +179,10 @@ export function readCalls(body: SyntaxNode, ctx: CallContext): CallFacts {
       const variable = storedAs(withStubs(call));
       if (variable) mockNamed.set(variable, made);
       hold(call, 'spy', ['mocks', ...(variable ? [`var:${variable}`] : [])], functionMock.autoManaged ?? false);
+    } else if (includes(BARE_MOCKS, dotted) && args.length < 2) {
+      // `const total = vi.fn(() => 42)`: a mock with a name of its own. The name is its target.
+      const variable = storedAs(withStubs(call));
+      if (variable) mockNamed.set(variable, mock({ kind: 'function', target: variable, targetsSubject: ctx.subject ? false : null, passthrough: false, stubbedReturn: isFunction(first) || stubbedLater(call), fulfillsAllNetwork: false }));
     } else if (object && includes(STUB_METHODS, name) && mockNamed.has(normalizedText(object))) {
       Object.assign(mockNamed.get(normalizedText(object))!, { stubbedReturn: true, passthrough: false });
     } else if (object && name === ROUTE_METHOD && isFunction(args[1])) {

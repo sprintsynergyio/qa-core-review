@@ -104,7 +104,8 @@
               "strategy": "test-id",
               "value": "[data-test=\"title\"]"
             }
-          ]
+          ],
+          "data": []
         }
       ],
       "testIds": [

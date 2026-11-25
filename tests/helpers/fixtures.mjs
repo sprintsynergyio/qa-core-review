@@ -28,8 +28,17 @@ export function expectedIn(file) {
  * Reviews one fixture folder with every rule and the default config. Returns the files under
  * bad/ and good/ as { file, expected, actual }, both lists sorted, plus the whole report.
  */
+/**
+ * Rules that are checked in their own fixture folders only. QCR-N001 reports any group of two
+ * or more tests with no error case, which is what almost every small fixture file is. In the
+ * folders of the other rules it is switched off, so that their good files can stay small.
+ */
+export const OWN_FOLDERS_ONLY = ['QCR-N001'];
+
 export async function runRuleFixtures(dir, config = {}) {
-  const { report } = await runReview({ root: dir, config: resolveConfig(config).config, git: false });
+  const own = path.basename(path.dirname(dir));
+  const quiet = Object.fromEntries(OWN_FOLDERS_ONLY.filter((ruleId) => ruleId !== own).map((ruleId) => [ruleId, 'off']));
+  const { report } = await runReview({ root: dir, config: resolveConfig({ ...config, rules: { ...quiet, ...config.rules } }).config, git: false });
   const entries = report.files.filter((file) => /^(bad|good)\//.test(file.file)).map((file) => ({
     file: file.file,
     expected: expectedIn(path.join(dir, file.file)),

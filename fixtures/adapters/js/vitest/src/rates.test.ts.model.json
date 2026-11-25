@@ -625,7 +625,8 @@
       ],
       "assertions": [],
       "waits": [],
-      "selectors": []
+      "selectors": [],
+      "data": []
     }
   ],
   "fileMocks": [

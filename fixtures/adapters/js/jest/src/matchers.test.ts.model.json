@@ -1827,6 +1827,21 @@
       "mocks": [
         {
           "span": {
+            "startLine": 70,
+            "startColumn": 22,
+            "endLine": 70,
+            "endColumn": 31
+          },
+          "text": "jest.fn()",
+          "kind": "function",
+          "target": "onChange",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
             "startLine": 71,
             "startColumn": 18,
             "endLine": 71,

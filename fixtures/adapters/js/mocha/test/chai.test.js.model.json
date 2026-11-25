@@ -3497,6 +3497,21 @@
           "passthrough": false,
           "stubbedReturn": true,
           "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 122,
+            "startColumn": 17,
+            "endLine": 122,
+            "endColumn": 29
+          },
+          "text": "sinon.fake()",
+          "kind": "function",
+          "target": "log",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
         }
       ],
       "resources": [

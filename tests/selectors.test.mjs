@@ -11,7 +11,8 @@ import { ruleFixtureFolders } from './helpers/fixtures.mjs';
 const TEST_IDS = ['data-testid', 'data-test', 'data-qa', 'data-cy'];
 const classify = (value, strategy = selectorStrategy(value, TEST_IDS), positional) => classifySelector({ value, strategy, ...(positional ? { positional } : {}) })?.reason ?? null;
 const folder = (ruleId, name) => ruleFixtureFolders().find((entry) => entry.ruleId === ruleId && entry.name === name).dir;
-const review = (root, config = {}) => runReview({ root, config: resolveConfig(config).config, git: false });
+// QCR-N001 reports any small group of happy-path tests. It has its own tests, so it is switched off here.
+const review = (root, config = {}) => runReview({ root, config: resolveConfig({ ...config, rules: { 'QCR-N001': 'off', ...config.rules } }).config, git: false });
 const found = (report, file) => report.findings.filter((finding) => finding.location.file === file).map((finding) => `${finding.location.startLine} ${finding.severity}`);
 
 // Selector as it is written in a test, and why it is brittle (null: it is fine).

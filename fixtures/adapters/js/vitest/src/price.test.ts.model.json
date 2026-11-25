@@ -51,7 +51,8 @@
           "releases": [],
           "assertions": [],
           "waits": [],
-          "selectors": []
+          "selectors": [],
+          "data": []
         },
         {
           "span": {
@@ -67,7 +68,8 @@
           ],
           "assertions": [],
           "waits": [],
-          "selectors": []
+          "selectors": [],
+          "data": []
         }
       ],
       "testIds": [

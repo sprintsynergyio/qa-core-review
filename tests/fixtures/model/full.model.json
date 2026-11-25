@@ -105,6 +105,19 @@
               "strategy": "id",
               "value": "#login-button"
             }
+          ],
+          "data": [
+            {
+              "span": {
+                "startLine": 11,
+                "startColumn": 11,
+                "endLine": 11,
+                "endColumn": 58
+              },
+              "text": "request.delete('https://api.example.test/orders/1')",
+              "op": "delete",
+              "via": "http"
+            }
           ]
         }
       ],
@@ -507,7 +520,8 @@
       "releases": [],
       "assertions": [],
       "waits": [],
-      "selectors": []
+      "selectors": [],
+      "data": []
     }
   ],
   "fileMocks": [

@@ -7,7 +7,7 @@ afterEach(() => {
 
 it('logs the order', () => {
   const log = vi.spyOn(console, 'log').mockImplementation(() => {});
-  placeOrder({ id: 8 });
+  expect(placeOrder({ id: 8 })).toEqual({ id: 8, status: 'placed' });
   expect(log).toHaveBeenCalledWith('order 8 placed');
 });
 

@@ -7,6 +7,6 @@ afterEach(() => {
 
 it('sends a mail', () => {
   const send = jest.spyOn(mailer, 'send').mockResolvedValue(undefined);
-  placeOrder({ id: 8 });
+  expect(placeOrder({ id: 8 })).toEqual({ id: 8, status: 'placed' });
   expect(send).toHaveBeenCalledWith('order-8');
 });

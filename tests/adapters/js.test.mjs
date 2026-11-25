@@ -695,6 +695,18 @@ test('mocks: modules, functions and the network, and whether they replace the su
     'network **/* subject:false stubbed all-network', 'network **/api subject:false passthrough', 'network ** subject:false',
     'network * subject:false stubbed all-network', 'network **/orders subject:false stubbed', 'network /orders subject:false passthrough', 'network ** subject:false passthrough',
   ]);
+  // A mock function stored under a name is a mock of its own, with the name as its target. One that is not stored is not.
+  const named = await js(`import { vi } from 'vitest';\nimport { load } from './cart';
+    const shared = jest.fn(() => 1);
+    test('t', () => {
+      const plain = vi.fn(); const withBody = vi.fn(() => 42); const chained = jest.fn().mockResolvedValue(1).mockResolvedValueOnce(2); const later = sinon.stub(); later.returns(2);
+      api.find = vi.fn(async () => []); const fake = sinon.fake(); render(vi.fn()); const { a } = { a: vi.fn() };
+    });`, 'src/cart.test.ts');
+  assert.deepEqual([named.fileMocks.map(brief), named.tests[0].mocks.map(brief)], [
+    ['function shared subject:false stubbed'],
+    ['function plain subject:false', 'function withBody subject:false stubbed', 'function chained subject:false stubbed', 'function later subject:false stubbed', 'function api.find subject:false stubbed', 'function fake subject:false'],
+  ]);
+  assert.deepEqual((await js("test('t', () => { const total = vi.fn(() => 42); });", 'tests/checkout.spec.ts')).tests[0].mocks.map(brief), ['function total subject:null stubbed']);
   // Without a known subject nothing is said about it. The config can name the subject.
   assert.deepEqual((await js("vi.mock('./cart'); test('t', () => { vi.spyOn(cart, 'total'); });", 'tests/checkout.spec.ts')).fileMocks[0].targetsSubject, null);
   const mapped = await js("import { total } from '../lib/basket';\nvi.mock('../lib/basket');\ntest('t', () => {});", 'tests/cart.test.ts', { config: { rules: { 'QCR-M001': { subjectMap: { 'tests/cart.*': '../lib/basket' } } } } });
@@ -730,6 +742,13 @@ test('resources: what a test takes, and whether it or an after hook gives it bac
   assert.deepEqual(hooked.fileHooks.map((hook) => [hook.kind, hook.releases]), [
     ['beforeAll', []], ['afterAll', ['var:shared', 'timers', 'mocks', 'globals', 'envs', 'env:MODE', 'global:Date.now', 'global:name']],
   ]);
+
+  // A hook keeps the data it creates or deletes.
+  const cleaned = await js(`import { test } from '@playwright/test';
+    test.beforeEach(async ({ request }) => { await request.post('/orders', { data: {} }); });
+    test.afterEach(async ({ request }) => { await request.delete('/orders/1'); });
+    test('t', async () => {});`, 'a.spec.ts');
+  assert.deepEqual(cleaned.fileHooks.map((hook) => [hook.kind, hook.data.map((op) => `${op.op} ${op.via}`)]), [['beforeEach', ['create http']], ['afterEach', ['delete http']]]);
 
   // An after hook covers its own suite and the suites inside it, not a suite next to it.
   const scoped = await js(`import { afterEach, beforeEach, describe, it, vi } from 'vitest';

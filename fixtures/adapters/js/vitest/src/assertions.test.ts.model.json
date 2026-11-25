@@ -373,6 +373,21 @@
       "mocks": [
         {
           "span": {
+            "startLine": 17,
+            "startColumn": 24,
+            "endLine": 17,
+            "endColumn": 55
+          },
+          "text": "vi.fn(async () => ({ EUR: 1 }))",
+          "kind": "function",
+          "target": "fetchRates",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
             "startLine": 18,
             "startColumn": 18,
             "endLine": 18,
@@ -1003,7 +1018,23 @@
           "handlerAsserts": false
         }
       ],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 24,
+            "endLine": 62,
+            "endColumn": 7
+          },
+          "text": "vi.fn(() => { throw new Error('offline'); })",
+          "kind": "function",
+          "target": "fetchRates",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],

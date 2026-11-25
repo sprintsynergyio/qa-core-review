@@ -1197,6 +1197,21 @@
       "mocks": [
         {
           "span": {
+            "startLine": 56,
+            "startColumn": 20,
+            "endLine": 56,
+            "endColumn": 29
+          },
+          "text": "mock.fn()",
+          "kind": "function",
+          "target": "onChange",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
             "startLine": 57,
             "startColumn": 16,
             "endLine": 57,

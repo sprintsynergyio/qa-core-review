@@ -69,7 +69,7 @@
     "build": "tsc -p tsconfig.build.json",
     "prepack": "npm run build",
     "typecheck": "tsc --noEmit",
-    "lint": "npm run typecheck && node scripts/check-text.mjs",
+    "lint": "npm run typecheck && node scripts/check-text.mjs && npm run build && node scripts/gen-support-matrix.mjs --check",
     "test": "npm run build && node --test \"tests/**/*.test.mjs\"",
     "coverage": "npm run build && c8 --check-coverage --lines 90 --functions 90 --branches 85 node --test \"tests/**/*.test.mjs\"",
     "eval": "npm run build && node evals/run.mjs",

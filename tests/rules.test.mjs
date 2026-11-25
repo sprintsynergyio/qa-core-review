@@ -12,7 +12,8 @@ import { repoRoot } from './helpers/schema.mjs';
 
 const folders = ruleFixtureFolders();
 const folder = (ruleId, name) => folders.find((entry) => entry.ruleId === ruleId && entry.name === name).dir;
-const review = (root, { config = {}, ...options } = {}) => runReview({ root, config: resolveConfig(config).config, git: false, ...options });
+// QCR-N001 reports any small group of happy-path tests. It has its own tests, so it is switched off here.
+const review = (root, { config = {}, ...options } = {}) => runReview({ root, config: resolveConfig({ ...config, rules: { 'QCR-N001': 'off', ...config.rules } }).config, git: false, ...options });
 
 for (const { ruleId, name, dir } of folders) {
   test(`${ruleId} ${name}: every marker is matched and the good files are clean`, async () => {
@@ -27,7 +28,7 @@ for (const { ruleId, name, dir } of folders) {
 }
 
 test('every rule with fixtures has them for JS/TS, and the registry lists the rules in id order', () => {
-  assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-C001', 'QCR-D001', 'QCR-E001', 'QCR-F001', 'QCR-F002', 'QCR-P001', 'QCR-S001', 'QCR-W001']);
+  assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-C001', 'QCR-D001', 'QCR-E001', 'QCR-F001', 'QCR-F002', 'QCR-M001', 'QCR-N001', 'QCR-P001', 'QCR-S001', 'QCR-W001']);
   assert.ok(folders.every((entry) => /^(typescript|javascript)-[a-z]+$/.test(entry.name)));
   assert.deepEqual(builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires.join(' ')]), [
     ['QCR-A001', 'no-assertion', 'error', 'universal', 'tests assertions'],
@@ -40,6 +41,8 @@ test('every rule with fixtures has them for JS/TS, and the registry lists the ru
     ['QCR-F001', 'focused-test', 'error', 'framework', 'modifiers'],
     ['QCR-F002', 'skipped-test', 'warn', 'universal', 'modifiers'],
     ['QCR-D001', 'duplicate-test', 'warn', 'universal', 'body-hash'],
+    ['QCR-N001', 'missing-negative-case', 'info', 'universal', 'tests assertions'],
+    ['QCR-M001', 'over-mocking', 'error', 'universal', 'mocks assertions assertion-operands'],
     ['QCR-P001', 'snapshot-only', 'warn', 'universal', 'assertions'],
     ['QCR-C001', 'missing-cleanup', 'warn', 'universal', 'resources hooks'],
     ['QCR-X001', 'parse-error', 'info', 'universal', ''],
@@ -135,7 +138,7 @@ test('a file read by the lexical scanner gets the rules it supports, with low co
   assert.deepEqual(report.findings.filter((finding) => finding.location.file === broken.file).map((finding) => [finding.ruleId, finding.location.startLine, finding.confidence]), [
     ['QCR-F001', 10, 'low'], ['QCR-W001', 11, 'low'], ['QCR-W001', 12, 'low'], ['QCR-A001', 16, 'low'], ['QCR-F002', 18, 'low'], ['QCR-W001', 20, 'low'], ['QCR-F002', 21, 'low'],
   ]);
-  assert.deepEqual(broken.rulesSkipped.map((rule) => rule.ruleId), ['QCR-A002', 'QCR-A003', 'QCR-S001', 'QCR-E001', 'QCR-D001', 'QCR-C001']);
+  assert.deepEqual(broken.rulesSkipped.map((rule) => rule.ruleId), ['QCR-A002', 'QCR-A003', 'QCR-S001', 'QCR-E001', 'QCR-D001', 'QCR-M001', 'QCR-C001']);
   assert.match(broken.rulesSkipped[0].reason, /^needs a capability this file does not have: assertion-operands/);
 });
 
