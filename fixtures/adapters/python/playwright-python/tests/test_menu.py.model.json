@@ -1,0 +1,104 @@
+{
+  "path": "tests/test_menu.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "playwright-python"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "65ac0d988761",
+      "title": "test_menu_opens",
+      "fullTitle": "test_menu_opens",
+      "suitePath": [],
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 64
+      },
+      "bodySpan": {
+        "startLine": 5,
+        "startColumn": 5,
+        "endLine": 7,
+        "endColumn": 64
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "09111f2e3188489f3d7ebf323c342e15a5f9685e"
+    },
+    {
+      "id": "6634e3b9c988",
+      "title": "test_about_link_points_to_the_company",
+      "fullTitle": "test_about_link_points_to_the_company",
+      "suitePath": [],
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 95
+      },
+      "bodySpan": {
+        "startLine": 11,
+        "startColumn": 5,
+        "endLine": 13,
+        "endColumn": 95
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "b58a44897eb2f14761a7a238363cf1084dd6366f"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,0 +1,154 @@
+{
+  "path": "tests/test_broken.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "4cb3a9a42a0c",
+      "title": "test_before",
+      "fullTitle": "test_before",
+      "suitePath": [],
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 22
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 5,
+        "endLine": 6,
+        "endColumn": 22
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b042efa1bde765e4940a2207ebe55a9c5feddd5a"
+    },
+    {
+      "id": "08069418ef48",
+      "title": "test_broken",
+      "fullTitle": "test_broken",
+      "suitePath": [],
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 23
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 5,
+        "endLine": 10,
+        "endColumn": 23
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b7ce9e33fb2c4af36f41f2af56cab88c895451d9"
+    },
+    {
+      "id": "007279d2d0f6",
+      "title": "test_after",
+      "fullTitle": "test_after",
+      "suitePath": [],
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 30
+      },
+      "bodySpan": {
+        "startLine": 14,
+        "startColumn": 5,
+        "endLine": 14,
+        "endColumn": 30
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "64978a356052efcb4424491fc805b28070e248a2"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

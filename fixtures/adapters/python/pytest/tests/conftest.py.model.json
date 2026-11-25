@@ -1,0 +1,147 @@
+{
+  "path": "tests/conftest.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "support",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 20
+      },
+      "kind": "beforeAll",
+      "scope": "global",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 5,
+        "endLine": 13,
+        "endColumn": 20
+      },
+      "kind": "fixture-teardown",
+      "scope": "global",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 52
+      },
+      "kind": "beforeAll",
+      "scope": "global",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 53
+      },
+      "kind": "beforeEach",
+      "scope": "global",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 28,
+        "startColumn": 9,
+        "endLine": 28,
+        "endColumn": 53
+      },
+      "kind": "fixture-teardown",
+      "scope": "global",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 31,
+        "startColumn": 1,
+        "endLine": 33,
+        "endColumn": 44
+      },
+      "kind": "beforeEach",
+      "scope": "global",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 16
+      },
+      "source": "requests",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

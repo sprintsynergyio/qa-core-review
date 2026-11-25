@@ -1,0 +1,791 @@
+{
+  "path": "tests/test_cart.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "unittest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "CartTests",
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 84,
+        "endColumn": 33
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 61
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 26
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 41
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 26
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "4966de1c86d7",
+        "993ceeb2478c",
+        "f4e4fdbb8df4",
+        "516de0ae41e1",
+        "a11c509b3c2d",
+        "c48ff8a4356e",
+        "c0192edc1f37",
+        "072e3473b914",
+        "b15c78a4c1c4",
+        "3cb631abd80c",
+        "42aaf33f78e4"
+      ],
+      "suites": []
+    },
+    {
+      "title": "BaseFlow",
+      "span": {
+        "startLine": 87,
+        "startColumn": 1,
+        "endLine": 89,
+        "endColumn": 27
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 5,
+            "endLine": 89,
+            "endColumn": 27
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [],
+      "suites": []
+    },
+    {
+      "title": "CheckoutFlow",
+      "span": {
+        "startLine": 92,
+        "startColumn": 1,
+        "endLine": 97,
+        "endColumn": 33
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "b8c26ef981e2"
+      ],
+      "suites": []
+    },
+    {
+      "title": "WishlistTests",
+      "span": {
+        "startLine": 100,
+        "startColumn": 1,
+        "endLine": 103,
+        "endColumn": 46
+      },
+      "modifiers": [
+        "skip"
+      ],
+      "hooks": [],
+      "testIds": [
+        "6bedd5852d4d"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "4966de1c86d7",
+      "title": "test_new_cart_is_empty",
+      "fullTitle": "CartTests > test_new_cart_is_empty",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 32,
+        "startColumn": 5,
+        "endLine": 34,
+        "endColumn": 46
+      },
+      "bodySpan": {
+        "startLine": 33,
+        "startColumn": 9,
+        "endLine": 34,
+        "endColumn": 46
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "812e15bd5040513305db8d945b14978f214e2e2b"
+    },
+    {
+      "id": "993ceeb2478c",
+      "title": "test_add_item",
+      "fullTitle": "CartTests > test_add_item",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 36,
+        "startColumn": 5,
+        "endLine": 39,
+        "endColumn": 57
+      },
+      "bodySpan": {
+        "startLine": 37,
+        "startColumn": 9,
+        "endLine": 39,
+        "endColumn": 57
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "dc1c91b2497c98a74b58643ae6a96cd14c7c0ea5"
+    },
+    {
+      "id": "f4e4fdbb8df4",
+      "title": "test_coupon",
+      "fullTitle": "CartTests > test_coupon",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 5,
+        "endLine": 44,
+        "endColumn": 51
+      },
+      "bodySpan": {
+        "startLine": 43,
+        "startColumn": 9,
+        "endLine": 44,
+        "endColumn": 51
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the coupon service is being replaced"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "4fafb26e8d6a87dcc299600844af3a5c8cb62964"
+    },
+    {
+      "id": "516de0ae41e1",
+      "title": "test_receipt",
+      "fullTitle": "CartTests > test_receipt",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 46,
+        "startColumn": 5,
+        "endLine": 48,
+        "endColumn": 60
+      },
+      "bodySpan": {
+        "startLine": 48,
+        "startColumn": 9,
+        "endLine": 48,
+        "endColumn": 60
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "the receipt printer driver is POSIX only"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "aa1aae0b58f643eecef672a84cf689291ff761d7"
+    },
+    {
+      "id": "a11c509b3c2d",
+      "title": "test_barcode",
+      "fullTitle": "CartTests > test_barcode",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 50,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 47
+      },
+      "bodySpan": {
+        "startLine": 52,
+        "startColumn": 9,
+        "endLine": 52,
+        "endColumn": 47
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "needs the Linux barcode reader"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "14a7264db07c02709d6cff5b95945ac3adf961a3"
+    },
+    {
+      "id": "c48ff8a4356e",
+      "title": "test_rounding",
+      "fullTitle": "CartTests > test_rounding",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 57,
+        "endColumn": 51
+      },
+      "bodySpan": {
+        "startLine": 56,
+        "startColumn": 9,
+        "endLine": 57,
+        "endColumn": 51
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "43341ef9a5f2286d2f1e585b1578273dfba86018"
+    },
+    {
+      "id": "c0192edc1f37",
+      "title": "test_prices_for_every_quantity",
+      "fullTitle": "CartTests > test_prices_for_every_quantity",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 59,
+        "startColumn": 5,
+        "endLine": 64,
+        "endColumn": 76
+      },
+      "bodySpan": {
+        "startLine": 60,
+        "startColumn": 9,
+        "endLine": 64,
+        "endColumn": 76
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": 4
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "5190fa80bdf710199df2c692e082fe8606fd354a"
+    },
+    {
+      "id": "072e3473b914",
+      "title": "test_every_known_sku",
+      "fullTitle": "CartTests > test_every_known_sku",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 66,
+        "startColumn": 5,
+        "endLine": 69,
+        "endColumn": 63
+      },
+      "bodySpan": {
+        "startLine": 67,
+        "startColumn": 9,
+        "endLine": 69,
+        "endColumn": 63
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "244e9a9fc8ff12273fbbeb561f083c7140761c9c"
+    },
+    {
+      "id": "b15c78a4c1c4",
+      "title": "test_loyalty_points",
+      "fullTitle": "CartTests > test_loyalty_points",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 71,
+        "startColumn": 5,
+        "endLine": 73,
+        "endColumn": 49
+      },
+      "bodySpan": {
+        "startLine": 72,
+        "startColumn": 9,
+        "endLine": 73,
+        "endColumn": 49
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "needs the staging database"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "89f5bce2638dbe6b7ee7bec3f0d75ce1cb09f931"
+    },
+    {
+      "id": "3cb631abd80c",
+      "title": "test_stock",
+      "fullTitle": "CartTests > test_stock",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 75,
+        "startColumn": 5,
+        "endLine": 78,
+        "endColumn": 57
+      },
+      "bodySpan": {
+        "startLine": 76,
+        "startColumn": 9,
+        "endLine": 78,
+        "endColumn": 57
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "the stock service is down"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "16c9bbb9bbae66a8bc02176c9a62a982a3b920e2"
+    },
+    {
+      "id": "42aaf33f78e4",
+      "title": "test_gift_wrap",
+      "fullTitle": "CartTests > test_gift_wrap",
+      "suitePath": [
+        "CartTests"
+      ],
+      "span": {
+        "startLine": 80,
+        "startColumn": 5,
+        "endLine": 81,
+        "endColumn": 61
+      },
+      "bodySpan": {
+        "startLine": 81,
+        "startColumn": 9,
+        "endLine": 81,
+        "endColumn": 61
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "gift wrap is not released"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "388d170d5ae36d8d2e2103995d5efed989921d80"
+    },
+    {
+      "id": "b8c26ef981e2",
+      "title": "test_checkout_needs_an_item",
+      "fullTitle": "CheckoutFlow > test_checkout_needs_an_item",
+      "suitePath": [
+        "CheckoutFlow"
+      ],
+      "span": {
+        "startLine": 95,
+        "startColumn": 5,
+        "endLine": 97,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 96,
+        "startColumn": 9,
+        "endLine": 97,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "04ab0177c23a18c4cef65838947455b8997b1b53"
+    },
+    {
+      "id": "6bedd5852d4d",
+      "title": "test_add",
+      "fullTitle": "WishlistTests > test_add",
+      "suitePath": [
+        "WishlistTests"
+      ],
+      "span": {
+        "startLine": 102,
+        "startColumn": 5,
+        "endLine": 103,
+        "endColumn": 46
+      },
+      "bodySpan": {
+        "startLine": 103,
+        "startColumn": 9,
+        "endLine": 103,
+        "endColumn": 46
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "884b67e22eb137210a89616eb22f81ea2df348b2"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 30
+      },
+      "kind": "beforeAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 22
+      },
+      "kind": "afterAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 11
+      },
+      "source": "sys",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 16
+      },
+      "source": "unittest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 27
+      },
+      "source": "shop.cart",
+      "names": [
+        "Cart"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

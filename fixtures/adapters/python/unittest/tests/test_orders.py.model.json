@@ -1,0 +1,424 @@
+{
+  "path": "tests/test_orders.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "unittest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "OrderClientTests",
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 26,
+        "endColumn": 49
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 33
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 34
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "312e2627b279",
+        "f8da3179b03a"
+      ],
+      "suites": []
+    },
+    {
+      "title": "OrderHistory",
+      "span": {
+        "startLine": 29,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 63
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "96932cb9c785"
+      ],
+      "suites": []
+    },
+    {
+      "title": "OrderNumbers",
+      "span": {
+        "startLine": 34,
+        "startColumn": 1,
+        "endLine": 41,
+        "endColumn": 74
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "0cda813caee2",
+        "f33b4c0891c1"
+      ],
+      "suites": []
+    },
+    {
+      "title": "OrderApiTests",
+      "span": {
+        "startLine": 44,
+        "startColumn": 1,
+        "endLine": 49,
+        "endColumn": 52
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "d33488f42dac"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "312e2627b279",
+      "title": "test_order_is_created",
+      "fullTitle": "OrderClientTests > test_order_is_created",
+      "suitePath": [
+        "OrderClientTests"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 53
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 9,
+        "endLine": 22,
+        "endColumn": 53
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "70f3339919c2bdd1dc9861ed66873ebbdc1b526b"
+    },
+    {
+      "id": "f8da3179b03a",
+      "title": "test_unknown_sku_is_rejected",
+      "fullTitle": "OrderClientTests > test_unknown_sku_is_rejected",
+      "suitePath": [
+        "OrderClientTests"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 26,
+        "endColumn": 49
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 9,
+        "endLine": 26,
+        "endColumn": 49
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6899b714010bd7c7d75ab06aec47ed24db7b68ca"
+    },
+    {
+      "id": "96932cb9c785",
+      "title": "test_history_starts_empty",
+      "fullTitle": "OrderHistory > test_history_starts_empty",
+      "suitePath": [
+        "OrderHistory"
+      ],
+      "span": {
+        "startLine": 30,
+        "startColumn": 5,
+        "endLine": 31,
+        "endColumn": 63
+      },
+      "bodySpan": {
+        "startLine": 31,
+        "startColumn": 9,
+        "endLine": 31,
+        "endColumn": 63
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "68930559978867b3ac57c7a24cb3c221fca99265"
+    },
+    {
+      "id": "0cda813caee2",
+      "title": "test_format",
+      "fullTitle": "OrderNumbers > test_format",
+      "suitePath": [
+        "OrderNumbers"
+      ],
+      "span": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 37,
+        "endColumn": 60
+      },
+      "bodySpan": {
+        "startLine": 37,
+        "startColumn": 9,
+        "endLine": 37,
+        "endColumn": 60
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the number format changes in the next release"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "87c8cb0bee9152b46e7c44bb2aa0d794e09c713f"
+    },
+    {
+      "id": "f33b4c0891c1",
+      "title": "test_numbers_are_unique",
+      "fullTitle": "OrderNumbers > test_numbers_are_unique",
+      "suitePath": [
+        "OrderNumbers"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 41,
+        "endColumn": 74
+      },
+      "bodySpan": {
+        "startLine": 41,
+        "startColumn": 9,
+        "endLine": 41,
+        "endColumn": 74
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d9bbac63d06c9379a4cf1f4d3d64e51d53e7fd7d"
+    },
+    {
+      "id": "d33488f42dac",
+      "title": "test_list_needs_a_login",
+      "fullTitle": "OrderApiTests > test_list_needs_a_login",
+      "suitePath": [
+        "OrderApiTests"
+      ],
+      "span": {
+        "startLine": 47,
+        "startColumn": 5,
+        "endLine": 49,
+        "endColumn": 52
+      },
+      "bodySpan": {
+        "startLine": 48,
+        "startColumn": 9,
+        "endLine": 49,
+        "endColumn": 52
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "1b294e555a035d4ade8054b6d5977f90a3b2c3a0"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 78
+      },
+      "source": "unittest",
+      "names": [
+        "IsolatedAsyncioTestCase",
+        "TestCase",
+        "expectedFailure",
+        "skip"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 16
+      },
+      "source": "unittest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 44
+      },
+      "source": "rest_framework.test",
+      "names": [
+        "APITestCase"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 36
+      },
+      "source": "shop.orders",
+      "names": [
+        "OrderClient"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

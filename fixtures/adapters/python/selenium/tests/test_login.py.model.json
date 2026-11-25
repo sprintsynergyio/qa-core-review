@@ -1,0 +1,281 @@
+{
+  "path": "tests/test_login.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "unittest",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "LoginTests",
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 44,
+        "endColumn": 17
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 30
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 27
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "173b2c6e89f8",
+        "75a29d34f123",
+        "3088a6752b3e"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "173b2c6e89f8",
+      "title": "test_standard_user_sees_the_inventory",
+      "fullTitle": "LoginTests > test_standard_user_sees_the_inventory",
+      "suitePath": [
+        "LoginTests"
+      ],
+      "span": {
+        "startLine": 27,
+        "startColumn": 5,
+        "endLine": 30,
+        "endColumn": 60
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 9,
+        "endLine": 30,
+        "endColumn": 60
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "675548da4b3a79fcb850abf82063410dd3ca2e31"
+    },
+    {
+      "id": "75a29d34f123",
+      "title": "test_locked_out_user_sees_an_error",
+      "fullTitle": "LoginTests > test_locked_out_user_sees_an_error",
+      "suitePath": [
+        "LoginTests"
+      ],
+      "span": {
+        "startLine": 32,
+        "startColumn": 5,
+        "endLine": 36,
+        "endColumn": 48
+      },
+      "bodySpan": {
+        "startLine": 33,
+        "startColumn": 9,
+        "endLine": 36,
+        "endColumn": 48
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "71750b6e160461091acd9f0688cf90b2245280ad"
+    },
+    {
+      "id": "3088a6752b3e",
+      "title": "test_wrong_password",
+      "fullTitle": "LoginTests > test_wrong_password",
+      "suitePath": [
+        "LoginTests"
+      ],
+      "span": {
+        "startLine": 38,
+        "startColumn": 5,
+        "endLine": 44,
+        "endColumn": 17
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 9,
+        "endLine": 44,
+        "endColumn": 17
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "0d72c23ca725075a3ac7834412232c208b262f6a"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 12
+      },
+      "source": "time",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 16
+      },
+      "source": "unittest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 31
+      },
+      "source": "selenium",
+      "names": [
+        "webdriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 44
+      },
+      "source": "selenium.webdriver.common.by",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 65
+      },
+      "source": "selenium.webdriver.support",
+      "names": [
+        "expected_conditions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 56
+      },
+      "source": "selenium.webdriver.support.ui",
+      "names": [
+        "WebDriverWait"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

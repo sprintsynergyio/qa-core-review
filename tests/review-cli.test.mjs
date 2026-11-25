@@ -135,9 +135,10 @@ test('review --help prints the flags, and notices go to stderr', (t) => {
     for (const flag of ['--fail-on', '--rules', '--disable', '--language', '--framework', '--format', '--stdout', '--output', '--dump-model', '--max-findings', '--quiet', '--no-color', '--root', '--config']) assert.ok(help.stdout.includes(flag), flag);
     assert.match(help.stdout, /^Usage: qa-core-review review \[paths\.\.\.\] \[flags\]/);
   }
-  const dir = project(t, { 'tests/test_cart.py': 'def test_a():\n    assert True\n', 'requirements.txt': 'pytest\n' });
+  // Java has no static adapter in this build yet.
+  const dir = project(t, { 'src/test/java/CartTest.java': 'class CartTest {}\n', 'pom.xml': '<project><artifactId>junit-jupiter</artifactId></project>\n' });
   const ran = run(dir, []);
-  assert.deepEqual([ran.status, ran.stderr], [0, 'qa-core-review: 1 python file is listed but not reviewed: this build has no static adapter for python.\n']);
+  assert.deepEqual([ran.status, ran.stderr], [0, 'qa-core-review: 1 java file is listed but not reviewed: this build has no static adapter for java.\n']);
   assert.match(ran.stdout, / 4 files . 1 test . /);
-  assert.match(ran.stdout, /\nBy language: TypeScript 1 test, JavaScript 0 tests, Python 1 file \(not reviewed in this build\)\.\n/);
+  assert.match(ran.stdout, /\nBy language: TypeScript 1 test, Java 1 file \(not reviewed in this build\), JavaScript 0 tests\.\n/);
 });

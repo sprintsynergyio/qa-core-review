@@ -1,0 +1,218 @@
+{
+  "path": "tests/test_search.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "e4f48fa802e4",
+      "title": "test_six_products_are_listed",
+      "fullTitle": "test_six_products_are_listed",
+      "suitePath": [],
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 75
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 20,
+        "endColumn": 75
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "2c17a3827cd75f4b03a1e777a370121347b9ca86"
+    },
+    {
+      "id": "324111f9c4ea",
+      "title": "test_first_product_is_the_backpack",
+      "fullTitle": "test_first_product_is_the_backpack",
+      "suitePath": [],
+      "span": {
+        "startLine": 23,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 46
+      },
+      "bodySpan": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 25,
+        "endColumn": 46
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "ff01e280c11d38aa51caa761b55161d1e3e8c1f4"
+    },
+    {
+      "id": "2e3757846f1c",
+      "title": "test_sort_option_exists",
+      "fullTitle": "test_sort_option_exists",
+      "suitePath": [],
+      "span": {
+        "startLine": 28,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 56
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 5,
+        "endLine": 31,
+        "endColumn": 56
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 4
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "9dd77e9fd2796cfd47795a2f861b74d7fde4bb5c"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 19
+      },
+      "kind": "beforeAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 16,
+        "endColumn": 19
+      },
+      "kind": "fixture-teardown",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 31
+      },
+      "source": "selenium",
+      "names": [
+        "webdriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 44
+      },
+      "source": "selenium.webdriver.common.by",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

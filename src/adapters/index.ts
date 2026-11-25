@@ -4,6 +4,7 @@ import { genericProfile } from './generic/languages.js';
 import { javaProfile } from './java/detect.js';
 import { jsAdapter } from './js/adapter.js';
 import { jsProfile } from './js/detect.js';
+import { pythonAdapter } from './python/adapter.js';
 import { pythonProfile } from './python/detect.js';
 import type { AdapterProfile, LanguageAdapter } from './types.js';
 
@@ -69,8 +70,8 @@ export class AdapterRegistry {
  */
 export const builtinProfiles: AdapterProfile[] = [jsProfile, pythonProfile, javaProfile, genericProfile];
 
-/** The full adapters that ship with the tool. Python, Java and generic join in later milestones. */
-export const builtinAdapters: LanguageAdapter[] = [jsAdapter];
+/** The full adapters that ship with the tool. Java and generic join in later milestones. */
+export const builtinAdapters: LanguageAdapter[] = [jsAdapter, pythonAdapter];
 
 export function createRegistry(adapters: LanguageAdapter[] = builtinAdapters): AdapterRegistry {
   const registry = new AdapterRegistry();

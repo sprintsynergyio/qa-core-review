@@ -118,10 +118,11 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
     const clean = await repoDir.review({ base: 'HEAD' });
     assert.deepEqual([clean.report.summary.files, clean.lines, clean.report.mode.diffBase], [0, [], 'HEAD']);
 
-    // One line inside "opens the cart" changes. A new test file and a new Python file are not tracked yet.
+    // One line inside "opens the cart" changes. A new test file, a new Python file and a new Scala file are not tracked yet.
     repoDir.edit('tests/cart.spec.ts', "toBeVisible();", "toBeVisible({ timeout: 10_000 });");
     repoDir.write('tests/new.spec.ts', "import { test } from '@playwright/test';\n\ntest('opens the menu', async ({ page }) => {\n  await page.goto('/menu.html');\n});\n");
     repoDir.write('tests/test_refunds.py', 'def test_refunds(client):\n    assert client.post("/refunds").status_code == 201\n');
+    repoDir.write('specs/RefundSpec.scala', 'class RefundSpec\n');
     repoDir.write('notes.md', 'Not a test file.\n');
     const { report, lines, tests } = await repoDir.review({ base: 'HEAD' });
     assert.deepEqual(lines, [
@@ -131,10 +132,10 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
       'tests/cart.spec.ts:20 F001',
       'tests/new.spec.ts:3 A001',
     ]);
-    assert.deepEqual(tests, ['tests/cart.spec.ts > opens the cart', 'tests/cart.spec.ts > removes an item', 'tests/new.spec.ts > opens the menu']);
-    // login.spec.ts, test_orders.py and CartTest.java did not change. The new Python file is listed, with no static review yet.
-    assert.deepEqual(report.files.map((file) => [file.file, file.parseStatus]), [['tests/cart.spec.ts', 'ok'], ['tests/new.spec.ts', 'ok'], ['tests/test_refunds.py', 'llm-only']]);
-    assert.deepEqual([report.summary.files, report.summary.tests, report.summary.llmOnlyFiles, report.mode.diffBase], [3, 3, 1, 'HEAD']);
+    assert.deepEqual(tests, ['tests/cart.spec.ts > opens the cart', 'tests/cart.spec.ts > removes an item', 'tests/new.spec.ts > opens the menu', 'tests/test_refunds.py > test_refunds']);
+    // login.spec.ts, test_orders.py and CartTest.java did not change. The new Scala file is listed, with no static review.
+    assert.deepEqual(report.files.map((file) => [file.file, file.parseStatus]), [['specs/RefundSpec.scala', 'llm-only'], ['tests/cart.spec.ts', 'ok'], ['tests/new.spec.ts', 'ok'], ['tests/test_refunds.py', 'ok']]);
+    assert.deepEqual([report.summary.files, report.summary.tests, report.summary.llmOnlyFiles, report.mode.diffBase], [4, 4, 1, 'HEAD']);
     assert.deepEqual(schemaErrors('report.schema.json', report), []);
 
     // A change in the hook: the finding about the hook sits on a changed line now.
@@ -149,16 +150,16 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
     // Java: a changed Java file is listed too. A path on the command line narrows the diff.
     repoDir.edit('src/test/java/shop/CartTest.java', 'assertEquals(1,', 'assertEquals(2,');
     const all = await repoDir.review({ base: 'HEAD' });
-    assert.deepEqual(all.report.files.map((file) => file.file), ['src/test/java/shop/CartTest.java', 'tests/cart.spec.ts', 'tests/login.spec.ts', 'tests/new.spec.ts', 'tests/test_refunds.py']);
+    assert.deepEqual(all.report.files.map((file) => file.file), ['specs/RefundSpec.scala', 'src/test/java/shop/CartTest.java', 'tests/cart.spec.ts', 'tests/login.spec.ts', 'tests/new.spec.ts', 'tests/test_refunds.py']);
     const narrowed = await repoDir.review({ base: 'HEAD' }, { paths: { files: [], folders: ['src'], globs: [] } });
     assert.deepEqual(narrowed.report.files.map((file) => file.file), ['src/test/java/shop/CartTest.java']);
 
     // The command line: the header names the base, and the exit code follows the findings that are left.
     const text = repoDir.run('--diff', 'HEAD', '--disable', 'QCR-N001,QCR-F001,QCR-A001');
     assert.equal(text.status, 0, text.stderr);
-    // Three changed tests. The focused test did not change, and with F001 off nothing is left to say about it.
-    assert.match(text.stdout, /^qa-core-review \S+ . changes since HEAD . 5 files . 3 tests . static rules . TypeScript, Java, Python\n/);
-    assert.match(text.stdout, /Summary: 1 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 0 info\. 0 suppressed\.\n/);
+    // Four changed tests. The focused test did not change, and with F001 off nothing is left to say about it.
+    assert.match(text.stdout, /^qa-core-review \S+ . changes since HEAD . 6 files . 4 tests . static rules . TypeScript, Java, Python, Scala\n/);
+    assert.match(text.stdout, /Summary: 2 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 0 info\. 0 suppressed\.\n/);
     assert.equal(repoDir.run('--diff', 'HEAD', '--quiet').status, 1);
     // With --root on a folder, paths and changes are those of the folder.
     const inTests = JSON.parse(repoDir.run('--root', 'tests', '--diff', 'HEAD', '--stdout', 'json').stdout);

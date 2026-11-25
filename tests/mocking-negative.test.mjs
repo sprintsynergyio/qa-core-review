@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { ConfigError, FIX_TEXT, builtinRules, examplesFor, resolveConfig } from '../dist/index.js';
+import { ConfigError, FIX_TEXT, builtinRules, examplesFor, pythonAdapter, resolveConfig } from '../dist/index.js';
 import { reviewFiles } from './helpers/temp-project.mjs';
 
 const repo = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -246,7 +246,9 @@ test('the support matrix in docs/rules.md is made from the code and checked by l
   const docs = fs.readFileSync(path.join(repo, 'docs/rules.md'), 'utf8');
   const matrix = docs.slice(docs.indexOf('<!-- support-matrix:start -->'), docs.indexOf('<!-- support-matrix:end -->')).split('\n').filter((line) => line.startsWith('| [QCR-'));
   assert.deepEqual(matrix.map((line) => line.slice(3, 11)), builtinRules.map((rule) => rule.id));
-  assert.ok(matrix.every((line) => line.endsWith('| yes | planned | planned |')));
+  // JS/TS fills every capability. Python says yes where its adapter fills what the rule needs. Java is not built yet.
+  const python = (rule) => (rule.requires.every((need) => pythonAdapter.capabilities.includes(need)) ? 'yes' : 'no');
+  assert.deepEqual(matrix.map((line) => line.split(' | ').slice(-3).join(' | ')), builtinRules.map((rule) => `yes | ${python(rule)} | planned |`));
   // The top table has every rule too, with the qa-core-verify column.
   for (const rule of builtinRules) assert.match(docs, new RegExp(`\\| \\[${rule.id}\\]\\(#${rule.id.toLowerCase()}\\) \\| ${rule.name} \\| .* \\| (QCV-W\\d{3}.*|none|locator checks) \\|`));
 
