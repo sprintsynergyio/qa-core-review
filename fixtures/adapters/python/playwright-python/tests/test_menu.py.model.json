@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [],
   "tests": [
@@ -41,7 +46,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 5,
+            "endLine": 7,
+            "endColumn": 64
+          },
+          "text": "assert page.get_by_role(\"link\", name=\"Logout\").is_visible()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.get_by_role(\"link\", name=\"Logout\").is_visible()",
+            "normalized": "page.get_by_role(\"link\",name=\"Logout\").is_visible()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -78,7 +112,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 95
+          },
+          "text": "assert page.get_by_role(\"link\", name=\"About\").get_attribute(\"href\").startswith(\"https://\")",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.get_by_role(\"link\", name=\"About\").get_attribute(\"href\").startswith(\"https://\")",
+            "normalized": "page.get_by_role(\"link\",name=\"About\").get_attribute(\"href\").startswith(\"https://\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

@@ -7,7 +7,7 @@
 import type { FrameworkId } from '../../model/types.js';
 import { PYTHON_LEXICAL, scanLines } from '../../parse/lexical.js';
 import type { FrameworkGuess, SourceFile } from '../types.js';
-import { FRAMEWORK_MODULES, TESTCASE_SUFFIX, TEST_FUNCTION_PREFIX } from './vocab.js';
+import { FRAMEWORK_MODULES, MOCK_MODULES, TESTCASE_SUFFIX, TEST_FUNCTION_PREFIX } from './vocab.js';
 
 /** The modules a file imports, as written: 'shop.cart', 'playwright.sync_api', '.helpers'. */
 export function importedModules(code: string): string[] {
@@ -26,7 +26,8 @@ export function detectPythonFrameworks(file: SourceFile): FrameworkGuess {
   const declared = project?.frameworks ?? [];
   // Markers are searched in code only, not in strings or comments.
   const code = scanLines(file.text, PYTHON_LEXICAL).map((line) => line.codeNoStrings).join('\n');
-  const modules = importedModules(code);
+  // `unittest.mock` is a mock library that pytest files use too: importing it does not make a file a unittest file.
+  const modules = importedModules(code.replace(/^\s*from\s+unittest\s+import\s+mock\s*$/gm, '')).filter((name) => !MOCK_MODULES.some((module) => name === module || name.startsWith(`${module}.`)));
   const imported = [...new Set(modules.map((name) => FRAMEWORK_MODULES[name.split('.')[0]!]).filter((id): id is FrameworkId => id !== undefined))];
 
   const usesPytest = imported.includes('pytest') || /(?<![\w.])pytest\./.test(code);

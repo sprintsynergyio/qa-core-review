@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -135,7 +140,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 9,
+            "endLine": 22,
+            "endColumn": 53
+          },
+          "text": "self.assertEqual(order[\"status\"], \"created\")",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "order[\"status\"]",
+            "normalized": "order[\"status\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"created\"",
+            "normalized": "\"created\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "created"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -174,15 +219,62 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 14,
+            "endLine": 25,
+            "endColumn": 44
+          },
+          "text": "self.assertRaises(LookupError)",
+          "kind": "throws",
+          "library": "unittest",
+          "actual": null,
+          "expected": {
+            "text": "LookupError",
+            "normalized": "LookupError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertRaises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
       },
-      "expectsException": false,
+      "expectsException": true,
       "waits": [],
       "selectors": [],
-      "tryBlocks": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 26,
+            "endColumn": 49
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "LookupError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
       "mocks": [],
       "resources": [],
       "data": [],
@@ -213,7 +305,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 63
+          },
+          "text": "self.assertEqual(await OrderClient(API).history(), [])",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "await OrderClient(API).history()",
+            "normalized": "await OrderClient(API).history()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -258,7 +390,47 @@
         "reason": "the number format changes in the next release"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 9,
+            "endLine": 37,
+            "endColumn": 60
+          },
+          "text": "self.assertRegex(OrderClient.number(7), r\"^A-\\d+$\")",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "OrderClient.number(7)",
+            "normalized": "OrderClient.number(7)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "r\"^A-\\d+$\"",
+            "normalized": "r\"^A-\\d+$\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "^A-\\d+$"
+            }
+          },
+          "matcher": "assertRegex",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -299,7 +471,43 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 74
+          },
+          "text": "self.assertNotEqual(OrderClient.number(7), OrderClient.number(7))",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "OrderClient.number(7)",
+            "normalized": "OrderClient.number(7)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "OrderClient.number(7)",
+            "normalized": "OrderClient.number(7)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertNotEqual",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -338,7 +546,50 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 52
+          },
+          "text": "self.assertEqual(response.status_code, 401)",
+          "kind": "status",
+          "library": "unittest",
+          "actual": {
+            "text": "response.status_code",
+            "normalized": "response.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "401",
+            "normalized": "401",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "401"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            401
+          ]
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

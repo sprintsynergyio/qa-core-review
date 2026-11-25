@@ -1,0 +1,1364 @@
+{
+  "path": "tests/test_matchers.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "playwright-python"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "be74282bfcec",
+      "title": "test_page_matchers",
+      "fullTitle": "test_page_matchers",
+      "suitePath": [],
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 66
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 5,
+        "endLine": 13,
+        "endColumn": 66
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 44
+          },
+          "text": "expect(page).to_have_title(\"Swag Labs\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page",
+            "normalized": "page",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "to_have_title",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 55
+          },
+          "text": "expect(page).to_have_url(re.compile(r\"inventory\"))",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page",
+            "normalized": "page",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "re.compile(r\"inventory\")",
+            "normalized": "re.compile(r\"inventory\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "to_have_url",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 66
+          },
+          "text": "expect(page.request.get(f\"{BASE}/inventory.html\")).to_be_ok()",
+          "kind": "status",
+          "library": "playwright",
+          "actual": {
+            "text": "page.request.get(f\"{BASE}/inventory.html\")",
+            "normalized": "page.request.get(f\"{BASE}/inventory.html\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_ok",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "bf68fc5f40942e0624afcbf25999e2b05ede4d2c"
+    },
+    {
+      "id": "41360d8ab910",
+      "title": "test_state_matchers",
+      "fullTitle": "test_state_matchers",
+      "suitePath": [],
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 63
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 31,
+        "endColumn": 63
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 38
+          },
+          "text": "expect(username).to_be_attached()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_attached",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 37
+          },
+          "text": "expect(username).to_be_visible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_visible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 37
+          },
+          "text": "expect(username).to_be_enabled()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_enabled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 38
+          },
+          "text": "expect(username).to_be_editable()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_editable",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 35
+          },
+          "text": "expect(username).to_be_empty()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_empty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 37
+          },
+          "text": "expect(username).to_be_focused()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_focused",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 41
+          },
+          "text": "expect(username).to_be_in_viewport()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "username",
+            "normalized": "username",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_in_viewport",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 57
+          },
+          "text": "expect(page.get_by_role(\"checkbox\")).to_be_checked()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_role(\"checkbox\")",
+            "normalized": "page.get_by_role(\"checkbox\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_checked",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 74
+          },
+          "text": "expect(page.get_by_role(\"button\", name=\"Login\")).not_to_be_disabled()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_role(\"button\", name=\"Login\")",
+            "normalized": "page.get_by_role(\"button\",name=\"Login\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not_to_be_disabled",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 60
+          },
+          "text": "expect(page.get_by_text(\"Epic sadface\")).to_be_hidden()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_text(\"Epic sadface\")",
+            "normalized": "page.get_by_text(\"Epic sadface\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_hidden",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 59
+          },
+          "text": "expect(page.locator(\"#login-button\")).to_be_disabled()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\"#login-button\")",
+            "normalized": "page.locator(\"#login-button\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_disabled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 63
+          },
+          "text": "expect(page.locator(\"#login-button\")).not_to_be_attached()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\"#login-button\")",
+            "normalized": "page.locator(\"#login-button\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not_to_be_attached",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 15,
+      "bodyHash": "3f5b27728816065bf77f470f98a845db2d4f9d4e"
+    },
+    {
+      "id": "50bf5c1149b5",
+      "title": "test_content_matchers",
+      "fullTitle": "test_content_matchers",
+      "suitePath": [],
+      "span": {
+        "startLine": 34,
+        "startColumn": 1,
+        "endLine": 49,
+        "endColumn": 89
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 49,
+        "endColumn": 89
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 43
+          },
+          "text": "expect(title).to_have_text(\"Products\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "title",
+            "normalized": "title",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "to_have_text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 42
+          },
+          "text": "expect(title).to_contain_text(\"Prod\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "title",
+            "normalized": "title",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Prod\"",
+            "normalized": "\"Prod\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Prod"
+            }
+          },
+          "matcher": "to_contain_text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 58
+          },
+          "text": "expect(page.get_by_label(\"Sort\")).to_have_value(\"az\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_label(\"Sort\")",
+            "normalized": "page.get_by_label(\"Sort\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"az\"",
+            "normalized": "\"az\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "az"
+            }
+          },
+          "matcher": "to_have_value",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 61
+          },
+          "text": "expect(page.get_by_label(\"Sort\")).to_have_values([\"az\"])",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_label(\"Sort\")",
+            "normalized": "page.get_by_label(\"Sort\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[\"az\"]",
+            "normalized": "[\"az\"]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "to_have_values",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 104
+          },
+          "text": "expect(page.get_by_alt_text(\"Sauce Labs Backpack\")).to_have_attribute(\"src\", re.compile(r\"\\.jpg$\"))",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_alt_text(\"Sauce Labs Backpack\")",
+            "normalized": "page.get_by_alt_text(\"Sauce Labs Backpack\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"src\"",
+            "normalized": "\"src\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "src"
+            }
+          },
+          "matcher": "to_have_attribute",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 104
+          },
+          "text": "expect(page.get_by_test_id(\"inventory-container\")).to_have_class(re.compile(\"inventory_container\"))",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_test_id(\"inventory-container\")",
+            "normalized": "page.get_by_test_id(\"inventory-container\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "re.compile(\"inventory_container\")",
+            "normalized": "re.compile(\"inventory_container\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "to_have_class",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 87
+          },
+          "text": "expect(page.get_by_test_id(\"inventory-container\")).to_have_css(\"display\", \"block\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_test_id(\"inventory-container\")",
+            "normalized": "page.get_by_test_id(\"inventory-container\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"display\"",
+            "normalized": "\"display\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "display"
+            }
+          },
+          "matcher": "to_have_css",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 5,
+            "endLine": 44,
+            "endColumn": 89
+          },
+          "text": "expect(page.get_by_test_id(\"inventory-container\")).to_have_id(\"inventory_container\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_test_id(\"inventory-container\")",
+            "normalized": "page.get_by_test_id(\"inventory-container\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"inventory_container\"",
+            "normalized": "\"inventory_container\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "inventory_container"
+            }
+          },
+          "matcher": "to_have_id",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 68
+          },
+          "text": "expect(page.get_by_role(\"button\").first).to_have_role(\"button\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_role(\"button\").first",
+            "normalized": "page.get_by_role(\"button\").first",
+            "kind": "member",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"button\"",
+            "normalized": "\"button\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "button"
+            }
+          },
+          "matcher": "to_have_role",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 83
+          },
+          "text": "expect(page.get_by_role(\"button\").last).to_have_accessible_name(\"Add to cart\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_role(\"button\").last",
+            "normalized": "page.get_by_role(\"button\").last",
+            "kind": "member",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Add to cart\"",
+            "normalized": "\"Add to cart\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Add to cart"
+            }
+          },
+          "matcher": "to_have_accessible_name",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 5,
+            "endLine": 47,
+            "endColumn": 61
+          },
+          "text": "expect(page.locator(\".inventory_item\")).to_have_count(6)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\".inventory_item\")",
+            "normalized": "page.locator(\".inventory_item\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "to_have_count",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 79
+          },
+          "text": "expect(page.frame_locator(\"#ads\").locator(\"a\").nth(0)).not_to_be_visible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.frame_locator(\"#ads\").locator(\"a\").nth(0)",
+            "normalized": "page.frame_locator(\"#ads\").locator(\"a\").nth(0)",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "not_to_be_visible",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 89
+          },
+          "text": "expect(page.locator(\".inventory_item\").filter(has_text=\"Backpack\")).to_have_count(1)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\".inventory_item\").filter(has_text=\"Backpack\")",
+            "normalized": "page.locator(\".inventory_item\").filter(has_text=\"Backpack\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "to_have_count",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 15,
+      "bodyHash": "18a179109b3f9a9378e4b53002dc881450174c1f"
+    },
+    {
+      "id": "6378cc9f940c",
+      "title": "test_assertions_that_cannot_fail",
+      "fullTitle": "test_assertions_that_cannot_fail",
+      "suitePath": [],
+      "span": {
+        "startLine": 52,
+        "startColumn": 1,
+        "endLine": 62,
+        "endColumn": 56
+      },
+      "bodySpan": {
+        "startLine": 53,
+        "startColumn": 5,
+        "endLine": 62,
+        "endColumn": 56
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 5,
+            "endLine": 56,
+            "endColumn": 17
+          },
+          "text": "assert badge",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 60
+          },
+          "text": "assert page.locator(\".shopping_cart_badge\") is not None",
+          "kind": "nullness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.locator(\".shopping_cart_badge\")",
+            "normalized": "page.locator(\".shopping_cart_badge\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is not",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 5,
+            "endLine": 58,
+            "endColumn": 18
+          },
+          "text": "assert handle",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "handle",
+            "normalized": "handle",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 5,
+            "endLine": 59,
+            "endColumn": 56
+          },
+          "text": "assert page.locator(\".inventory_item\").count() >= 0",
+          "kind": "comparison",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.locator(\".inventory_item\").count()",
+            "normalized": "page.locator(\".inventory_item\").count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": ">=",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 18
+          },
+          "text": "expect(badge)",
+          "kind": "other",
+          "library": "playwright",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 61,
+            "endColumn": 32
+          },
+          "text": "expect(badge).to_be_visible",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_visible",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 5,
+            "endLine": 62,
+            "endColumn": 56
+          },
+          "text": "assert page.locator(\".inventory_item\").count() == 6",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.locator(\".inventory_item\").count()",
+            "normalized": "page.locator(\".inventory_item\").count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 10,
+      "bodyHash": "a3af577c1a1f46b33058e659b7553cd91099dafa"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 10
+      },
+      "source": "re",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 69
+      },
+      "source": "playwright.sync_api",
+      "names": [
+        "ElementHandle",
+        "Locator",
+        "Page",
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

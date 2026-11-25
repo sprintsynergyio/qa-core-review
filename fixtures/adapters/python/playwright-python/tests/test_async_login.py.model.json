@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [],
   "tests": [
@@ -41,7 +46,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 11,
+            "endLine": 24,
+            "endColumn": 84
+          },
+          "text": "expect(page.locator(\"[data-test='error']\")).to_contain_text(\"locked out\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\"[data-test='error']\")",
+            "normalized": "page.locator(\"[data-test='error']\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"locked out\"",
+            "normalized": "\"locked out\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "locked out"
+            }
+          },
+          "matcher": "to_contain_text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "yes",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -78,7 +123,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 63
+          },
+          "text": "expect(page.locator(\"[data-test='error']\")).to_be_hidden()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\"[data-test='error']\")",
+            "normalized": "page.locator(\"[data-test='error']\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_hidden",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "no",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

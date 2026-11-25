@@ -1,0 +1,334 @@
+{
+  "path": "tests/test_elements.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "288302b60015",
+      "title": "test_element_checks",
+      "fullTitle": "test_element_checks",
+      "suitePath": [],
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 39
+      },
+      "bodySpan": {
+        "startLine": 8,
+        "startColumn": 5,
+        "endLine": 16,
+        "endColumn": 39
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 5,
+            "endLine": 10,
+            "endColumn": 17
+          },
+          "text": "assert badge",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 73
+          },
+          "text": "assert driver.find_element(By.ID, \"inventory_container\") is not None",
+          "kind": "nullness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "driver.find_element(By.ID, \"inventory_container\")",
+            "normalized": "driver.find_element(By.ID,\"inventory_container\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is not",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 60
+          },
+          "text": "assert driver.find_element_by_id(\"inventory_container\")",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "driver.find_element_by_id(\"inventory_container\")",
+            "normalized": "driver.find_element_by_id(\"inventory_container\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 65
+          },
+          "text": "assert driver.find_elements(By.CLASS_NAME, \"inventory_item\")",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "driver.find_elements(By.CLASS_NAME, \"inventory_item\")",
+            "normalized": "driver.find_elements(By.CLASS_NAME,\"inventory_item\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 75
+          },
+          "text": "assert len(driver.find_elements(By.CLASS_NAME, \"inventory_item\")) == 6",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "len(driver.find_elements(By.CLASS_NAME, \"inventory_item\"))",
+            "normalized": "len(driver.find_elements(By.CLASS_NAME,\"inventory_item\"))",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 32
+          },
+          "text": "assert badge.is_displayed()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "badge.is_displayed()",
+            "normalized": "badge.is_displayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 39
+          },
+          "text": "assert \"Swag Labs\" in driver.title",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "driver.title",
+            "normalized": "driver.title",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "0f42973ffbe16054b2cc571135e8817c12bd2894"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 31
+      },
+      "source": "selenium",
+      "names": [
+        "webdriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 44
+      },
+      "source": "selenium.webdriver.common.by",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 60
+      },
+      "source": "selenium.webdriver.remote.webelement",
+      "names": [
+        "WebElement"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

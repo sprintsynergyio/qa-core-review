@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -167,7 +172,86 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 28
+          },
+          "text": "assert cart.items == []",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 33
+          },
+          "text": "assert cart_total(cart) == 0",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart_total(cart)",
+            "normalized": "cart_total(cart)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -207,7 +291,43 @@
         "source": "parametrize",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 51
+          },
+          "text": "assert cart.total() == pytest.approx(expected)",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "pytest.approx(expected)",
+            "normalized": "pytest.approx(expected)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -247,7 +367,48 @@
         "source": "parametrize",
         "cases": 6
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 49
+          },
+          "text": "assert Cart(region=region).price_of(sku) > 0",
+          "kind": "comparison",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Cart(region=region).price_of(sku)",
+            "normalized": "Cart(region=region).price_of(sku)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": ">",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -287,7 +448,43 @@
         "source": "parametrize",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 29
+          },
+          "text": "assert sku in cart.items",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "sku",
+            "normalized": "sku",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -330,7 +527,47 @@
         "reason": "the coupon service is being replaced"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 33
+          },
+          "text": "assert cart.total() == 26.99",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "26.99",
+            "normalized": "26.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "26.99"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -373,7 +610,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 38
+          },
+          "text": "assert Cart().gift_wrap() is True",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Cart().gift_wrap()",
+            "normalized": "Cart().gift_wrap()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "True",
+            "normalized": "True",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "True"
+            }
+          },
+          "matcher": "is",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -414,7 +691,36 @@
         "reason": "the receipt printer driver is POSIX only"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 28
+          },
+          "text": "assert receipt.exists()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "receipt.exists()",
+            "normalized": "receipt.exists()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -453,7 +759,47 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 61,
+            "endColumn": 33
+          },
+          "text": "assert cart.total() == 29.97",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.97",
+            "normalized": "29.97",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.97"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -494,7 +840,50 @@
         "reason": "the stock service is down"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 5,
+            "endLine": 68,
+            "endColumn": 39
+          },
+          "text": "assert response.status_code == 409",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.status_code",
+            "normalized": "response.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "409",
+            "normalized": "409",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "409"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            409
+          ]
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -535,7 +924,47 @@
         "reason": "needs the staging database"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 5,
+            "endLine": 73,
+            "endColumn": 33
+          },
+          "text": "assert Cart().points() == 10",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Cart().points()",
+            "normalized": "Cart().points()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "10",
+            "normalized": "10",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "10"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -576,7 +1005,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 5,
+            "endLine": 79,
+            "endColumn": 60
+          },
+          "text": "assert openpyxl.load_workbook(path).active.max_row == 1",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "openpyxl.load_workbook(path).active.max_row",
+            "normalized": "openpyxl.load_workbook(path).active.max_row",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -613,7 +1082,50 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 5,
+            "endLine": 84,
+            "endColumn": 39
+          },
+          "text": "assert response.status_code == 201",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.status_code",
+            "normalized": "response.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -724,7 +1236,43 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 105,
+            "startColumn": 5,
+            "endLine": 105,
+            "endColumn": 40
+          },
+          "text": "assert cart.items == [\"bike-light\"]",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[\"bike-light\"]",
+            "normalized": "[\"bike-light\"]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -763,7 +1311,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 128,
+            "startColumn": 9,
+            "endLine": 128,
+            "endColumn": 42
+          },
+          "text": "assert self.cart.total() == 26.99",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "self.cart.total()",
+            "normalized": "self.cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "26.99",
+            "normalized": "26.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "26.99"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -802,15 +1390,62 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 131,
+            "startColumn": 14,
+            "endLine": 131,
+            "endColumn": 63
+          },
+          "text": "pytest.raises(ValueError, match=\"unknown coupon\")",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
       },
-      "expectsException": false,
+      "expectsException": true,
       "waits": [],
       "selectors": [],
-      "tryBlocks": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 131,
+            "startColumn": 9,
+            "endLine": 132,
+            "endColumn": 43
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "ValueError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
       "mocks": [],
       "resources": [],
       "data": [],
@@ -842,15 +1477,62 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 142,
+            "startColumn": 18,
+            "endLine": 142,
+            "endColumn": 43
+          },
+          "text": "pytest.raises(ValueError)",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
       },
-      "expectsException": false,
+      "expectsException": true,
       "waits": [],
       "selectors": [],
-      "tryBlocks": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 142,
+            "startColumn": 13,
+            "endLine": 143,
+            "endColumn": 43
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "ValueError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
       "mocks": [],
       "resources": [],
       "data": [],
@@ -884,7 +1566,43 @@
         "source": "parametrize",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 149,
+            "startColumn": 9,
+            "endLine": 149,
+            "endColumn": 62
+          },
+          "text": "assert Cart(currency=currency).symbol() in {\"€\", \"$\"}",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Cart(currency=currency).symbol()",
+            "normalized": "Cart(currency=currency).symbol()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "{\"€\", \"$\"}",
+            "normalized": "{\"€\",\"$\"}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -926,7 +1644,36 @@
         "source": "parametrize",
         "cases": 6
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 153,
+            "startColumn": 9,
+            "endLine": 153,
+            "endColumn": 73
+          },
+          "text": "assert Cart(currency=currency).format(amount).endswith(currency)",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Cart(currency=currency).format(amount).endswith(currency)",
+            "normalized": "Cart(currency=currency).format(amount).endswith(currency)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -965,7 +1712,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 161,
+            "startColumn": 9,
+            "endLine": 161,
+            "endColumn": 37
+          },
+          "text": "assert Cart().wishlist == []",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Cart().wishlist",
+            "normalized": "Cart().wishlist",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
