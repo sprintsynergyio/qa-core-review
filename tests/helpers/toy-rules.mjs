@@ -24,3 +24,20 @@ export const fileNote = {
 };
 
 export const toyRules = [noCheck, sleep, fileNote];
+
+const suitesOf = (file) => {
+  const all = [];
+  const walk = (suites) => suites.forEach((suite) => {
+    all.push(suite);
+    walk(suite.suites);
+  });
+  walk(file.suites);
+  return all;
+};
+
+/** Warn: a fixed sleep in a hook. A file-level finding that is not info. Not in toyRules: only the report tests use it. */
+export const hookSleep = {
+  id: 'QCR-T004', name: 'toy-hook-sleep', defaultSeverity: 'warn', scope: 'universal', requires: ['waits'], description: 'A fixed sleep in a hook. It slows every test of the file.',
+  check: ({ file }) => [...file.fileHooks, ...suitesOf(file).flatMap((suite) => suite.hooks)].flatMap((hook) => hook.waits.filter((wait) => wait.kind === 'fixed-sleep')
+    .map((wait) => ({ message: `Hard wait of ${wait.ms} ms in a hook.`, evidence: wait.text, span: wait.span, testId: null, fix: 'Wait for a condition.' }))),
+};

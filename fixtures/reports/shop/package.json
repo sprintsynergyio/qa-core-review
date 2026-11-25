@@ -1,0 +1,5 @@
+{
+  "name": "report-fixture",
+  "private": true,
+  "devDependencies": { "@playwright/test": "^1.49.0" }
+}
