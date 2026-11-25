@@ -1,0 +1,179 @@
+{
+  "path": "tests/test_async_login.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "playwright-python"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "e7c98cb81d9a",
+      "title": "test_locked_out_user_sees_an_error",
+      "fullTitle": "test_locked_out_user_sees_an_error",
+      "suitePath": [],
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 24,
+        "endColumn": 84
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 24,
+        "endColumn": 84
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "b755d4fcd8f7380613d3202b3e2eacd2cf76d3b2"
+    },
+    {
+      "id": "ef4f6869ac99",
+      "title": "test_error_can_be_closed",
+      "fullTitle": "test_error_can_be_closed",
+      "suitePath": [],
+      "span": {
+        "startLine": 27,
+        "startColumn": 1,
+        "endLine": 32,
+        "endColumn": 63
+      },
+      "bodySpan": {
+        "startLine": 29,
+        "startColumn": 5,
+        "endLine": 32,
+        "endColumn": 63
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "28fe457e24556ac70d8a18f942b1446da59698e8"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 30
+      },
+      "kind": "beforeEach",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 9,
+        "endLine": 15,
+        "endColumn": 30
+      },
+      "kind": "fixture-teardown",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 22
+      },
+      "source": "pytest_asyncio",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 58
+      },
+      "source": "playwright.async_api",
+      "names": [
+        "async_playwright",
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

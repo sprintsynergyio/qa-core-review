@@ -1,0 +1,1035 @@
+{
+  "path": "tests/test_cart.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "TestCartDiscounts",
+      "span": {
+        "startLine": 108,
+        "startColumn": 1,
+        "endLine": 143,
+        "endColumn": 43
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 111,
+            "startColumn": 5,
+            "endLine": 113,
+            "endColumn": 53
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 115,
+            "startColumn": 5,
+            "endLine": 117,
+            "endColumn": 25
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 119,
+            "startColumn": 5,
+            "endLine": 121,
+            "endColumn": 34
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 5,
+            "endLine": 124,
+            "endColumn": 26
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "01e94ee0a1b1",
+        "a76c14385dec"
+      ],
+      "suites": [
+        {
+          "title": "TestStacking",
+          "span": {
+            "startLine": 137,
+            "startColumn": 5,
+            "endLine": 143,
+            "endColumn": 43
+          },
+          "modifiers": [],
+          "hooks": [],
+          "testIds": [
+            "96031850e30a"
+          ],
+          "suites": []
+        }
+      ]
+    },
+    {
+      "title": "TestCurrencies",
+      "span": {
+        "startLine": 146,
+        "startColumn": 1,
+        "endLine": 153,
+        "endColumn": 73
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "f5e6f47ccef2",
+        "e5159e10ccce"
+      ],
+      "suites": []
+    },
+    {
+      "title": "TestWishlist",
+      "span": {
+        "startLine": 156,
+        "startColumn": 1,
+        "endLine": 161,
+        "endColumn": 37
+      },
+      "modifiers": [
+        "skip",
+        "xfail"
+      ],
+      "hooks": [],
+      "testIds": [
+        "d7596fbac019"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "609f3b23fb04",
+      "title": "test_new_cart_is_empty",
+      "fullTitle": "test_new_cart_is_empty",
+      "suitePath": [],
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 5,
+        "endLine": 15,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "0c1c50869213fa1966bb17df82b4048a21f56e5a"
+    },
+    {
+      "id": "2d35d75cc680",
+      "title": "test_total_grows_with_quantity",
+      "fullTitle": "test_total_grows_with_quantity",
+      "suitePath": [],
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 51
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 51
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "8bb0fac35839836c6a4da5a4f783ac3c78004a54"
+    },
+    {
+      "id": "c5b488d22bb9",
+      "title": "test_price_exists_in_every_region",
+      "fullTitle": "test_price_exists_in_every_region",
+      "suitePath": [],
+      "span": {
+        "startLine": 25,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 49
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 5,
+        "endLine": 28,
+        "endColumn": 49
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 6
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d81bc6676abaaa9d0a07c4296b5533150f340532"
+    },
+    {
+      "id": "3ad8222be8a9",
+      "title": "test_every_sku_can_be_added",
+      "fullTitle": "test_every_sku_can_be_added",
+      "suitePath": [],
+      "span": {
+        "startLine": 31,
+        "startColumn": 1,
+        "endLine": 35,
+        "endColumn": 29
+      },
+      "bodySpan": {
+        "startLine": 33,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 29
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "c67232123a38bc1414a272ada5246026da05408a"
+    },
+    {
+      "id": "79fba12d8055",
+      "title": "test_coupon_lowers_the_total",
+      "fullTitle": "test_coupon_lowers_the_total",
+      "suitePath": [],
+      "span": {
+        "startLine": 38,
+        "startColumn": 1,
+        "endLine": 43,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 5,
+        "endLine": 43,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the coupon service is being replaced"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "df39ef16473f33d0438e8ba9a9a2c86fa9fea99a"
+    },
+    {
+      "id": "696e0e426d33",
+      "title": "test_gift_wrap",
+      "fullTitle": "test_gift_wrap",
+      "suitePath": [],
+      "span": {
+        "startLine": 46,
+        "startColumn": 1,
+        "endLine": 48,
+        "endColumn": 38
+      },
+      "bodySpan": {
+        "startLine": 48,
+        "startColumn": 5,
+        "endLine": 48,
+        "endColumn": 38
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "c423ef9b9bcddad44dc9a7ec037fd2ba12f7f871"
+    },
+    {
+      "id": "0c097ca91806",
+      "title": "test_receipt_is_printed",
+      "fullTitle": "test_receipt_is_printed",
+      "suitePath": [],
+      "span": {
+        "startLine": 51,
+        "startColumn": 1,
+        "endLine": 54,
+        "endColumn": 28
+      },
+      "bodySpan": {
+        "startLine": 53,
+        "startColumn": 5,
+        "endLine": 54,
+        "endColumn": 28
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "the receipt printer driver is POSIX only"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "884ba12b08dd2573cac7f7c8985a2da87f2a8f06"
+    },
+    {
+      "id": "4a5c69947733",
+      "title": "test_total_is_rounded_to_cents",
+      "fullTitle": "test_total_is_rounded_to_cents",
+      "suitePath": [],
+      "span": {
+        "startLine": 57,
+        "startColumn": 1,
+        "endLine": 61,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 59,
+        "startColumn": 5,
+        "endLine": 61,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "56ca836c6692906cfab32c32367b9f9e0978f40f"
+    },
+    {
+      "id": "b992135913b2",
+      "title": "test_stock_is_checked",
+      "fullTitle": "test_stock_is_checked",
+      "suitePath": [],
+      "span": {
+        "startLine": 64,
+        "startColumn": 1,
+        "endLine": 68,
+        "endColumn": 39
+      },
+      "bodySpan": {
+        "startLine": 65,
+        "startColumn": 5,
+        "endLine": 68,
+        "endColumn": 39
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "the stock service is down"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "2f4b9ccf8d6a49a6651726097822b9683085f337"
+    },
+    {
+      "id": "ac57fe86d086",
+      "title": "test_loyalty_points",
+      "fullTitle": "test_loyalty_points",
+      "suitePath": [],
+      "span": {
+        "startLine": 71,
+        "startColumn": 1,
+        "endLine": 73,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 72,
+        "startColumn": 5,
+        "endLine": 73,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "needs the staging database"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "3c217b649fe94687e9bcf58fd012217f15e635c4"
+    },
+    {
+      "id": "dc936c13d2d2",
+      "title": "test_export_to_spreadsheet",
+      "fullTitle": "test_export_to_spreadsheet",
+      "suitePath": [],
+      "span": {
+        "startLine": 76,
+        "startColumn": 1,
+        "endLine": 79,
+        "endColumn": 60
+      },
+      "bodySpan": {
+        "startLine": 77,
+        "startColumn": 5,
+        "endLine": 79,
+        "endColumn": 60
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "69deb1aa13726ab18eb7d735b17d8646ee065e0d"
+    },
+    {
+      "id": "2845ea1cd256",
+      "title": "test_async_checkout",
+      "fullTitle": "test_async_checkout",
+      "suitePath": [],
+      "span": {
+        "startLine": 82,
+        "startColumn": 1,
+        "endLine": 84,
+        "endColumn": 39
+      },
+      "bodySpan": {
+        "startLine": 83,
+        "startColumn": 5,
+        "endLine": 84,
+        "endColumn": 39
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "a7184a01e5afb0608c7e53490dc4f367d0881989"
+    },
+    {
+      "id": "91c3edb92f71",
+      "title": "test_placeholder",
+      "fullTitle": "test_placeholder",
+      "suitePath": [],
+      "span": {
+        "startLine": 87,
+        "startColumn": 1,
+        "endLine": 88,
+        "endColumn": 9
+      },
+      "bodySpan": {
+        "startLine": 88,
+        "startColumn": 5,
+        "endLine": 88,
+        "endColumn": 9
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": "9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684"
+    },
+    {
+      "id": "222202756e07",
+      "title": "test_todo_later",
+      "fullTitle": "test_todo_later",
+      "suitePath": [],
+      "span": {
+        "startLine": 91,
+        "startColumn": 1,
+        "endLine": 93,
+        "endColumn": 8
+      },
+      "bodySpan": {
+        "startLine": 92,
+        "startColumn": 5,
+        "endLine": 93,
+        "endColumn": 8
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": "6eae3a5b062c6d0d79f070c26e6d62486b40cb46"
+    },
+    {
+      "id": "6128430d48af",
+      "title": "test_remove_item",
+      "fullTitle": "test_remove_item",
+      "suitePath": [],
+      "span": {
+        "startLine": 96,
+        "startColumn": 1,
+        "endLine": 105,
+        "endColumn": 40
+      },
+      "bodySpan": {
+        "startLine": 97,
+        "startColumn": 5,
+        "endLine": 105,
+        "endColumn": 40
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "5939252dc36811601740336769b5626d46948a22"
+    },
+    {
+      "id": "01e94ee0a1b1",
+      "title": "test_welcome_discount",
+      "fullTitle": "TestCartDiscounts > test_welcome_discount",
+      "suitePath": [
+        "TestCartDiscounts"
+      ],
+      "span": {
+        "startLine": 126,
+        "startColumn": 5,
+        "endLine": 128,
+        "endColumn": 42
+      },
+      "bodySpan": {
+        "startLine": 127,
+        "startColumn": 9,
+        "endLine": 128,
+        "endColumn": 42
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "dc5edb11c151157f64d74331f2b4555210ee52a4"
+    },
+    {
+      "id": "a76c14385dec",
+      "title": "test_unknown_coupon_is_rejected",
+      "fullTitle": "TestCartDiscounts > test_unknown_coupon_is_rejected",
+      "suitePath": [
+        "TestCartDiscounts"
+      ],
+      "span": {
+        "startLine": 130,
+        "startColumn": 5,
+        "endLine": 132,
+        "endColumn": 43
+      },
+      "bodySpan": {
+        "startLine": 131,
+        "startColumn": 9,
+        "endLine": 132,
+        "endColumn": 43
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6c5a83a924d16fceef292855edb784c47b0fcec8"
+    },
+    {
+      "id": "96031850e30a",
+      "title": "test_two_coupons_do_not_stack",
+      "fullTitle": "TestCartDiscounts > TestStacking > test_two_coupons_do_not_stack",
+      "suitePath": [
+        "TestCartDiscounts",
+        "TestStacking"
+      ],
+      "span": {
+        "startLine": 138,
+        "startColumn": 9,
+        "endLine": 143,
+        "endColumn": 43
+      },
+      "bodySpan": {
+        "startLine": 139,
+        "startColumn": 13,
+        "endLine": 143,
+        "endColumn": 43
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "386f6014a090d7b54fb09eb1778d3878504a2793"
+    },
+    {
+      "id": "f5e6f47ccef2",
+      "title": "test_symbol",
+      "fullTitle": "TestCurrencies > test_symbol",
+      "suitePath": [
+        "TestCurrencies"
+      ],
+      "span": {
+        "startLine": 148,
+        "startColumn": 5,
+        "endLine": 149,
+        "endColumn": 62
+      },
+      "bodySpan": {
+        "startLine": 149,
+        "startColumn": 9,
+        "endLine": 149,
+        "endColumn": 62
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "3fcfcb813e799b63d16bd4d119260f016fa394d7"
+    },
+    {
+      "id": "e5159e10ccce",
+      "title": "test_format",
+      "fullTitle": "TestCurrencies > test_format",
+      "suitePath": [
+        "TestCurrencies"
+      ],
+      "span": {
+        "startLine": 151,
+        "startColumn": 5,
+        "endLine": 153,
+        "endColumn": 73
+      },
+      "bodySpan": {
+        "startLine": 153,
+        "startColumn": 9,
+        "endLine": 153,
+        "endColumn": 73
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 6
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "975f3ee3b425a0b28a2818596c407ad2d296a297"
+    },
+    {
+      "id": "d7596fbac019",
+      "title": "test_add_to_wishlist",
+      "fullTitle": "TestWishlist > test_add_to_wishlist",
+      "suitePath": [
+        "TestWishlist"
+      ],
+      "span": {
+        "startLine": 160,
+        "startColumn": 5,
+        "endLine": 161,
+        "endColumn": 37
+      },
+      "bodySpan": {
+        "startLine": 161,
+        "startColumn": 9,
+        "endLine": 161,
+        "endColumn": 37
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "3ad25b5e45d863738eaea9094024abec1430a76e"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 11
+      },
+      "source": "sys",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 48
+      },
+      "source": "shop.cart",
+      "names": [
+        "Cart",
+        "total"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

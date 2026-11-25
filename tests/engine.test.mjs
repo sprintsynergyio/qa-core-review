@@ -136,14 +136,13 @@ test('paths limit a review to files, folders and globs', async (t) => {
 test('files that cannot be reviewed are listed or noticed, and never stop the run', async (t) => {
   const mixed = await review(fixtureRoot('projects', 'monorepo-mixed'));
   assert.deepEqual(mixed.report.files.filter((file) => file.parseStatus === 'llm-only').map((file) => [file.language, file.languageHint, file.adapter, file.tier, file.tests.length]), [
-    ['generic', 'scala', 'generic', 3, 0], ['java', null, 'java', 1, 0], ['python', null, 'python', 1, 0], ['python', null, 'python', 1, 0],
+    ['generic', 'scala', 'generic', 3, 0], ['java', null, 'java', 1, 0],
   ]);
-  assert.deepEqual([mixed.report.summary.llmOnlyFiles, Object.keys(mixed.report.summary.byLanguage).sort()], [4, ['java', 'python', 'scala', 'typescript']]);
+  assert.deepEqual([mixed.report.summary.llmOnlyFiles, Object.keys(mixed.report.summary.byLanguage).sort()], [2, ['java', 'python', 'scala', 'typescript']]);
   assert.deepEqual(mixed.notices.sort(), [
     '1 java file is listed but not reviewed: this build has no static adapter for java.', '1 scala file is listed but not reviewed: this build has no static adapter for scala.',
-    '2 python files are listed but not reviewed: this build has no static adapter for python.',
   ]);
-  assert.deepEqual(mixed.models.map((model) => model.adapter), ['js', 'js']);
+  assert.deepEqual(mixed.models.map((model) => [model.adapter, model.role]), [['js', 'test'], ['js', 'test'], ['python', 'support'], ['python', 'test']]);
   assert.deepEqual(schemaErrors('report.schema.json', mixed.report), []);
 
   const root = project(t, { 'big.test.ts': `test('a', () => {});\n${'// filler\n'.repeat(120_000)}`, 'ok.test.ts': "test('a', () => { expect(total).toBe(1); });", 'bad.test.ts': "test('a', () => {});" });

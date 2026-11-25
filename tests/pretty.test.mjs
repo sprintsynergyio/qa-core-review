@@ -26,14 +26,14 @@ const SHOP = {
   'package.json': '{ "devDependencies": { "@playwright/test": "^1.49.0" } }',
   'tests/cart.spec.ts': "import { test, expect } from '@playwright/test';\n\ntest.describe('Cart', () => {\n  test('adds an item', async ({ page }) => {\n    await page.locator('#add').click();\n    await page.waitForTimeout(3000);\n    await expect(page.locator('.badge')).toHaveText('1');\n  });\n\n  test('opens', async ({ page }) => {\n    await page.goto('/cart');\n    await page.waitForTimeout(500);\n  });\n\n  test('is empty at first', async ({ page }) => {\n    await expect(page.locator('.badge')).toBeHidden();\n  });\n});\n",
   'tests/a.spec.ts': "import { test, expect } from '@playwright/test';\ntest('first file, passes', async ({ page }) => { await expect(page).toHaveTitle('Shop'); });\n",
-  'specs/CartSpec.scala': 'class CartSpec\n', 'tests/test_cart.py': 'def test_a():\n    assert True\n',
+  'specs/CartSpec.scala': 'class CartSpec\n', 'src/test/java/CartTest.java': 'class CartTest {}\n',
 };
 const shop = async (t) => (await runReview({ root: project(t, SHOP), config: resolveConfig({}).config, git: false, rules: toyRules })).report;
 
 test('the layout: header, fail then review then pass, file findings, summary, languages, reports', async (t) => {
   const report = await shop(t);
   assert.deepEqual(formatPretty(report, options()).split('\n'), [
-    `qa-core-review ${report.tool.version} ${DOT} 4 files ${DOT} 4 tests ${DOT} static rules ${DOT} TypeScript, Python, Scala`,
+    `qa-core-review ${report.tool.version} ${DOT} 4 files ${DOT} 4 tests ${DOT} static rules ${DOT} TypeScript, Java, Scala`,
     '',
     'fail  tests/cart.spec.ts:10  Cart > opens',
     '  QCR-T001  error  10:3  This test checks nothing.',
@@ -59,7 +59,7 @@ test('the layout: header, fail then review then pass, file findings, summary, la
     '    Evidence: tests/cart.spec.ts with spaces',
     '',
     'Summary: 2 pass, 1 review, 1 fail. 1 error, 2 warnings, 2 info. 0 suppressed.',
-    'By language: TypeScript 4 tests, Python 1 file (not reviewed in this build), Scala 1 file (LLM only).',
+    'By language: TypeScript 4 tests, Java 1 file (not reviewed in this build), Scala 1 file (LLM only).',
     'Reports: .qa-core/review/report.json',
     '',
   ]);
@@ -79,7 +79,7 @@ test('quiet, max-findings, color, the plain dot and suppressed findings', async 
   assert.ok(colored.includes(`${ESC}[31mfail${ESC}[0m  tests/cart.spec.ts:10`) && colored.includes(`${ESC}[33mreview${ESC}[0m  `) && colored.includes(`${ESC}[32mpass${ESC}[0m  `));
   assert.equal(colored.replaceAll(/\u001b\[\d+m/g, ''), formatPretty(report, options()));
   assert.equal(formatPretty(report, options()).includes(ESC), false);
-  assert.match(formatPretty(report, options({ unicode: false })), /^qa-core-review \S+ - 4 files - 4 tests - static rules - TypeScript, Python, Scala\n/);
+  assert.match(formatPretty(report, options({ unicode: false })), /^qa-core-review \S+ - 4 files - 4 tests - static rules - TypeScript, Java, Scala\n/);
   assert.match(formatPretty(report, options({ reportPaths: ['a/report.json', 'a/model.json'] })), /\nReports: a\/report\.json, a\/model\.json\n$/);
 
   // A suppressed finding is only in the JSON report.

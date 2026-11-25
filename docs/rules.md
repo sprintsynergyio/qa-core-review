@@ -34,22 +34,22 @@ A rule runs on a file when the adapter of its language fills in everything the r
 <!-- support-matrix:start -->
 | Rule | Needs from the adapter | JavaScript, TypeScript | Python | Java |
 | --- | --- | --- | --- | --- |
-| [QCR-A001](#qcr-a001) | tests, assertions | yes | planned | planned |
-| [QCR-A002](#qcr-a002) | assertions, assertion-operands | yes | planned | planned |
-| [QCR-A003](#qcr-a003) | assertions, assertion-operands, reachability | yes | planned | planned |
-| [QCR-A004](#qcr-a004) | assertions | yes | planned | planned |
-| [QCR-W001](#qcr-w001) | waits | yes | planned | planned |
-| [QCR-S001](#qcr-s001) | selectors | yes | planned | planned |
-| [QCR-E001](#qcr-e001) | try-blocks | yes | planned | planned |
-| [QCR-F001](#qcr-f001) | modifiers | yes | planned | planned |
-| [QCR-F002](#qcr-f002) | modifiers | yes | planned | planned |
-| [QCR-D001](#qcr-d001) | body-hash | yes | planned | planned |
-| [QCR-N001](#qcr-n001) | tests, assertions | yes | planned | planned |
-| [QCR-M001](#qcr-m001) | mocks, assertions, assertion-operands | yes | planned | planned |
-| [QCR-P001](#qcr-p001) | assertions | yes | planned | planned |
-| [QCR-C001](#qcr-c001) | resources, hooks | yes | planned | planned |
-| [QCR-X001](#qcr-x001) | none | yes | planned | planned |
-| [QCR-X002](#qcr-x002) | none | yes | planned | planned |
+| [QCR-A001](#qcr-a001) | tests, assertions | yes | no | planned |
+| [QCR-A002](#qcr-a002) | assertions, assertion-operands | yes | no | planned |
+| [QCR-A003](#qcr-a003) | assertions, assertion-operands, reachability | yes | no | planned |
+| [QCR-A004](#qcr-a004) | assertions | yes | no | planned |
+| [QCR-W001](#qcr-w001) | waits | yes | no | planned |
+| [QCR-S001](#qcr-s001) | selectors | yes | no | planned |
+| [QCR-E001](#qcr-e001) | try-blocks | yes | no | planned |
+| [QCR-F001](#qcr-f001) | modifiers | yes | yes | planned |
+| [QCR-F002](#qcr-f002) | modifiers | yes | yes | planned |
+| [QCR-D001](#qcr-d001) | body-hash | yes | yes | planned |
+| [QCR-N001](#qcr-n001) | tests, assertions | yes | no | planned |
+| [QCR-M001](#qcr-m001) | mocks, assertions, assertion-operands | yes | no | planned |
+| [QCR-P001](#qcr-p001) | assertions | yes | no | planned |
+| [QCR-C001](#qcr-c001) | resources, hooks | yes | no | planned |
+| [QCR-X001](#qcr-x001) | none | yes | yes | planned |
+| [QCR-X002](#qcr-x002) | none | yes | yes | planned |
 <!-- support-matrix:end -->
 
 When a file cannot be parsed, the tool reads it line by line. It then knows the tests, their modifiers, their assertions and their sleeps, so only the rules that need nothing more still run, and their findings have low confidence.

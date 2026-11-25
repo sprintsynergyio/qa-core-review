@@ -1,0 +1,280 @@
+{
+  "path": "tests/test_checkout.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "playwright-python"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "TestCheckout",
+      "span": {
+        "startLine": 44,
+        "startColumn": 1,
+        "endLine": 52,
+        "endColumn": 78
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "8387abf68ef4"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "efd54596518a",
+      "title": "test_login_shows_the_inventory",
+      "fullTitle": "test_login_shows_the_inventory",
+      "suitePath": [],
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 57
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 5,
+        "endLine": 28,
+        "endColumn": 57
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "c686d988d5abb823f877d883a4ba99d244839a3f"
+    },
+    {
+      "id": "64a376331821",
+      "title": "test_add_to_cart_shows_the_badge",
+      "fullTitle": "test_add_to_cart_shows_the_badge",
+      "suitePath": [],
+      "span": {
+        "startLine": 31,
+        "startColumn": 1,
+        "endLine": 34,
+        "endColumn": 77
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 5,
+        "endLine": 34,
+        "endColumn": 77
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "5bfde2a6cbb28f449d6760d36b45424685875255"
+    },
+    {
+      "id": "27afba838786",
+      "title": "test_sort_by_price",
+      "fullTitle": "test_sort_by_price",
+      "suitePath": [],
+      "span": {
+        "startLine": 37,
+        "startColumn": 1,
+        "endLine": 41,
+        "endColumn": 40
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 41,
+        "endColumn": 40
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the sort menu is being redesigned"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "eaccf39282364aefb6c6834fbbd223281f7f541f"
+    },
+    {
+      "id": "8387abf68ef4",
+      "title": "test_missing_field_shows_an_error",
+      "fullTitle": "TestCheckout > test_missing_field_shows_an_error",
+      "suitePath": [
+        "TestCheckout"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 78
+      },
+      "bodySpan": {
+        "startLine": 47,
+        "startColumn": 9,
+        "endLine": 52,
+        "endColumn": 78
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "5513a9990fa099b7811604e5354067680f6c70f2"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 20
+      },
+      "kind": "beforeAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 19,
+        "endColumn": 20
+      },
+      "kind": "fixture-teardown",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 10
+      },
+      "source": "re",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 45
+      },
+      "source": "playwright.sync_api",
+      "names": [
+        "Page",
+        "expect"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

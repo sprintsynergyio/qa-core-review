@@ -1,0 +1,27 @@
+{
+  "path": "tests/helpers/pages.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "support",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

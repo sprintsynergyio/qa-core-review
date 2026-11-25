@@ -1,0 +1,650 @@
+{
+  "path": "tests/test_orders.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "TestOrderNumbers",
+      "span": {
+        "startLine": 82,
+        "startColumn": 1,
+        "endLine": 85,
+        "endColumn": 46
+      },
+      "modifiers": [
+        "xfail"
+      ],
+      "hooks": [],
+      "testIds": [
+        "10691ddcf318"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "8b21f4e09f1f",
+      "title": "test_order_is_created",
+      "fullTitle": "test_order_is_created",
+      "suitePath": [],
+      "span": {
+        "startLine": 57,
+        "startColumn": 1,
+        "endLine": 58,
+        "endColumn": 40
+      },
+      "bodySpan": {
+        "startLine": 58,
+        "startColumn": 5,
+        "endLine": 58,
+        "endColumn": 40
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "29839397410ec8c1109494a59d2f167ee883c83c"
+    },
+    {
+      "id": "c0b17265e767",
+      "title": "test_order_can_be_refunded",
+      "fullTitle": "test_order_can_be_refunded",
+      "suitePath": [],
+      "span": {
+        "startLine": 61,
+        "startColumn": 1,
+        "endLine": 64,
+        "endColumn": 39
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 5,
+        "endLine": 64,
+        "endColumn": 39
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip",
+        "xfail"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the refund flow moves to another service"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "8a40311ee9ae5a6f71246bb5f9a7693787780db8"
+    },
+    {
+      "id": "27887d9fe4f2",
+      "title": "test_invalid_order_is_rejected",
+      "fullTitle": "test_invalid_order_is_rejected",
+      "suitePath": [],
+      "span": {
+        "startLine": 67,
+        "startColumn": 1,
+        "endLine": 69,
+        "endColumn": 78
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 5,
+        "endLine": 69,
+        "endColumn": 78
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "069ae3a7ecb45aad49ff3b401a0cc5a247da74df"
+    },
+    {
+      "id": "0fda9a891663",
+      "title": "test_status_is_known",
+      "fullTitle": "test_status_is_known",
+      "suitePath": [],
+      "span": {
+        "startLine": 72,
+        "startColumn": 1,
+        "endLine": 74,
+        "endColumn": 45
+      },
+      "bodySpan": {
+        "startLine": 74,
+        "startColumn": 5,
+        "endLine": 74,
+        "endColumn": 45
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 4
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "900f34c458520558fc804319ea4d5ea9dc9ed5f9"
+    },
+    {
+      "id": "d4df44af248e",
+      "title": "test_order_line",
+      "fullTitle": "test_order_line",
+      "suitePath": [],
+      "span": {
+        "startLine": 77,
+        "startColumn": 1,
+        "endLine": 79,
+        "endColumn": 94
+      },
+      "bodySpan": {
+        "startLine": 79,
+        "startColumn": 5,
+        "endLine": 79,
+        "endColumn": 94
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "2bfdde0a26c8b25ef118c2c3c4d3fa9f33eaf678"
+    },
+    {
+      "id": "10691ddcf318",
+      "title": "test_format",
+      "fullTitle": "TestOrderNumbers > test_format",
+      "suitePath": [
+        "TestOrderNumbers"
+      ],
+      "span": {
+        "startLine": 83,
+        "startColumn": 5,
+        "endLine": 85,
+        "endColumn": 46
+      },
+      "bodySpan": {
+        "startLine": 85,
+        "startColumn": 9,
+        "endLine": 85,
+        "endColumn": 46
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "parametrize",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "8f24ba5dcb55d14f3aff15baddfc3d6f31ea8308"
+    },
+    {
+      "id": "8b8aeee428cd",
+      "title": "test_export_uses_posix_paths",
+      "fullTitle": "test_export_uses_posix_paths",
+      "suitePath": [],
+      "span": {
+        "startLine": 89,
+        "startColumn": 5,
+        "endLine": 90,
+        "endColumn": 51
+      },
+      "bodySpan": {
+        "startLine": 90,
+        "startColumn": 9,
+        "endLine": 90,
+        "endColumn": 51
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d08a5dd3ca14b9c67799a9f64b167e7a8ec0eb20"
+    },
+    {
+      "id": "8d7a6c25b121",
+      "title": "test_export_uses_windows_paths",
+      "fullTitle": "test_export_uses_windows_paths",
+      "suitePath": [],
+      "span": {
+        "startLine": 92,
+        "startColumn": 5,
+        "endLine": 93,
+        "endColumn": 52
+      },
+      "bodySpan": {
+        "startLine": 93,
+        "startColumn": 9,
+        "endLine": 93,
+        "endColumn": 52
+      },
+      "kind": "test",
+      "modifiers": [
+        "xfail"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "1f6eceac98e42d24a727970b9471d03adad73a5c"
+    }
+  ],
+  "fileHooks": [
+    {
+      "span": {
+        "startLine": 26,
+        "startColumn": 1,
+        "endLine": 27,
+        "endColumn": 26
+      },
+      "kind": "beforeAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 30,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 27
+      },
+      "kind": "afterAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 34,
+        "startColumn": 1,
+        "endLine": 35,
+        "endColumn": 23
+      },
+      "kind": "beforeEach",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 38,
+        "startColumn": 1,
+        "endLine": 39,
+        "endColumn": 26
+      },
+      "kind": "afterEach",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 42,
+        "startColumn": 1,
+        "endLine": 48,
+        "endColumn": 22
+      },
+      "kind": "beforeAll",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 46,
+        "startColumn": 5,
+        "endLine": 48,
+        "endColumn": 22
+      },
+      "kind": "fixture-teardown",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    },
+    {
+      "span": {
+        "startLine": 51,
+        "startColumn": 1,
+        "endLine": 54,
+        "endColumn": 19
+      },
+      "kind": "beforeEach",
+      "scope": "file",
+      "releases": [],
+      "assertions": [],
+      "waits": [],
+      "selectors": [],
+      "data": []
+    }
+  ],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 11
+      },
+      "source": "sys",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 14
+      },
+      "source": "typing",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 20
+      },
+      "source": "pytest_cases",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 40
+      },
+      "source": "parameterized",
+      "names": [
+        "parameterized"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 33
+      },
+      "source": "pytest",
+      "names": [
+        "fixture",
+        "mark"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 23
+      },
+      "source": ".",
+      "names": [
+        "conftest"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 36
+      },
+      "source": ".helpers.pages",
+      "names": [
+        "CartPage"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 5,
+        "endLine": 14,
+        "endColumn": 34
+      },
+      "source": "shop.orders",
+      "names": [
+        "Order"
+      ],
+      "typeOnly": true,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 17,
+        "endColumn": 26
+      },
+      "source": "orjson",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 19,
+        "endColumn": 16
+      },
+      "source": "json",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 92
+      },
+      "scope": "file",
+      "rules": [
+        "QCR-S001"
+      ],
+      "reason": "the order API has no page, so no selector rule applies"
+    },
+    {
+      "span": {
+        "startLine": 47,
+        "startColumn": 5,
+        "endLine": 47,
+        "endColumn": 92
+      },
+      "scope": "next-line",
+      "rules": [
+        "QCR-W001"
+      ],
+      "reason": "the delete is asynchronous on the server"
+    }
+  ]
+}
