@@ -10,7 +10,7 @@
 //     sleep <milliseconds>
 // A test runs until the next `test` or `suite` line. A suite runs until the next `suite` line.
 
-import { testId } from '../../dist/index.js';
+import { parseSuppression, testId } from '../../dist/index.js';
 
 /** @typedef {import('../../dist/index.js').LanguageAdapter} LanguageAdapter */
 /** @typedef {import('../../dist/index.js').NFile} NFile */
@@ -63,10 +63,16 @@ function normalize(parsed) {
   const seenTitles = new Map();
   let suite = null;
   let test = null;
+  const suppressions = [];
 
   parsed.tokens.forEach((line, index) => {
     const lineNumber = index + 1;
     const trimmed = line.trim();
+    if (trimmed.startsWith('#')) {
+      // The whole-file form only counts before the first test or suite.
+      const suppression = parseSuppression(trimmed, span(lineNumber, line));
+      if (suppression && (suppression.scope === 'next-line' || (tests.length === 0 && suites.length === 0))) suppressions.push(suppression);
+    }
     if (trimmed === '' || trimmed.startsWith('#')) return;
     const [keyword, ...rest] = trimmed.split(' ');
     const text = rest.join(' ').trim();
@@ -150,7 +156,7 @@ function normalize(parsed) {
     fileResources: [],
     imports: [],
     subject: null,
-    suppressions: [],
+    suppressions,
   };
 }
 

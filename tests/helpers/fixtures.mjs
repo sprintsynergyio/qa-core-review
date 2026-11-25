@@ -42,7 +42,8 @@ export async function runRuleFixtures(dir, config = {}) {
   const entries = report.files.filter((file) => /^(bad|good)\//.test(file.file)).map((file) => ({
     file: file.file,
     expected: expectedIn(path.join(dir, file.file)),
-    actual: report.findings.filter((finding) => finding.location.file === file.file).map((finding) => `${finding.ruleId}@${finding.location.startLine}`).sort(),
+    // A finding that the file suppresses with a reason is not printed, so it does not count here.
+    actual: report.findings.filter((finding) => finding.location.file === file.file && !finding.suppressed).map((finding) => `${finding.ruleId}@${finding.location.startLine}`).sort(),
   }));
   return { report, bad: entries.filter((entry) => entry.file.startsWith('bad/')), good: entries.filter((entry) => entry.file.startsWith('good/')) };
 }

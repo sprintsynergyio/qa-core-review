@@ -6,6 +6,7 @@ import path from 'node:path';
 import { createRegistry, builtinProfiles, type AdapterRegistry } from '../adapters/index.js';
 import type { AdapterProfile, HelperDef, ParsedFile } from '../adapters/types.js';
 import type { ResolvedConfig } from '../config/types.js';
+import { touches, type ChangedLines } from '../discover/diff.js';
 import { discover, readSourceFile, type DiscoveredFile, type PathSelection } from '../discover/files.js';
 import { createGlobMatcher } from '../util/glob.js';
 import { clipText } from '../model/build.js';
@@ -17,6 +18,7 @@ import type { FileResult, Finding, Location, Report, Rule, SkippedRule } from '.
 import { VERSION } from '../version.js';
 import { selectRules } from './capabilities.js';
 import { fingerprint } from './fingerprint.js';
+import { applySuppressions } from './suppress.js';
 import { verdictOf } from './verdict.js';
 
 export interface ReviewOptions {
@@ -34,6 +36,11 @@ export interface ReviewOptions {
   parser?: TreeSitterService;
   /** Pass false to list files by walking the folder instead of asking git. */
   git?: boolean;
+  /**
+   * Diff mode: review only the files in `lines`, and in them only the tests on changed lines.
+   * `base` is what the report shows as its base: the revision, or 'staged'.
+   */
+  diff?: { base: string; lines: ChangedLines };
   now?: () => Date;
 }
 
@@ -46,6 +53,9 @@ export interface ReviewResult {
 }
 
 interface Loaded { found: DiscoveredFile; parsed: ParsedFile }
+
+/** In diff mode these are reported for a changed file wherever they sit in it. */
+const ALWAYS_IN_CHANGED_FILES = ['QCR-F001', 'QCR-X001'];
 
 /** How far to follow imports for helpers, and how many such files to read at most. */
 const SUPPORT_DEPTH = 2;
@@ -66,7 +76,7 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
   const parser = options.parser ?? createTreeSitterService();
   const notices: string[] = [];
   const discovery = discover(root, config, { profiles, ...(options.git === undefined ? {} : { git: options.git }), ...(options.paths ? { paths: options.paths } : {}) });
-  const files = [...discovery.files].sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+  const files = discovery.files.filter((found) => !options.diff || options.diff.lines.has(found.path)).sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
 
   // Read and parse every file that has an adapter. A file that makes its adapter throw is kept as a failed file.
   const loaded: Loaded[] = [];
@@ -194,12 +204,19 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
         });
       }
     }
-    findings.push(...fileFindings);
+    applySuppressions(file, fileFindings, config.suppressions);
+    // Diff mode: keep the findings of the tests on changed lines, and the findings about the file that sit on
+    // a changed line. A focused test and a file that cannot be parsed are always worth saying in a changed file.
+    const ranges = options.diff?.lines.get(file.path);
+    const changedTests = options.diff ? new Set(file.tests.filter((test) => touches(ranges, test.span.startLine, test.span.endLine)).map((test) => test.id)) : null;
+    const kept = changedTests === null ? fileFindings : fileFindings.filter((finding) => ALWAYS_IN_CHANGED_FILES.includes(finding.ruleId)
+      || (finding.testId === null ? touches(ranges, finding.location.startLine, finding.location.endLine) : changedTests.has(finding.testId)));
+    findings.push(...kept);
     results.push({
       file: file.path, language: file.language, languageHint: file.languageHint, adapter: file.adapter, tier: file.tier, runner: file.runner, libraries: file.libraries,
       parseStatus: file.parseStatus, rulesSkipped: skipped,
-      tests: file.tests.map((test) => {
-        const own = fileFindings.filter((finding) => finding.testId === test.id);
+      tests: file.tests.filter((test) => changedTests === null || changedTests.has(test.id) || kept.some((finding) => finding.testId === test.id)).map((test) => {
+        const own = kept.filter((finding) => finding.testId === test.id);
         return {
           id: test.id, title: test.title, fullTitle: test.fullTitle, location: { file: file.path, ...test.span }, bodyLocation: { file: file.path, ...test.bodySpan },
           modifiers: test.modifiers, assertionCount: test.assertions.length, verdict: verdictOf(own), findingIds: own.map((finding) => finding.id),
@@ -225,7 +242,7 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
     tool: { name: 'qa-core-review', version: VERSION },
     createdAt: (options.now?.() ?? new Date()).toISOString(),
     root: root.split(path.sep).join('/'),
-    mode: { diffBase: null, llm: 'off' },
+    mode: { diffBase: options.diff?.base ?? null, llm: 'off' },
     // Only the projects that own a reviewed file: a review of one folder does not list the rest of a monorepo.
     projects: discovery.projects.filter((project) => files.some((found) => found.project === project))
       .map((project) => ({ dir: project.dir, adapter: project.adapterId, frameworks: project.frameworks })),

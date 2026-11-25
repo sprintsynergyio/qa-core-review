@@ -9,6 +9,8 @@ export const OPTIONS = {
   version: { type: 'boolean', short: 'v' },
   help: { type: 'boolean', short: 'h' },
   format: { type: 'string' },
+  diff: { type: 'string' },
+  staged: { type: 'boolean' },
   root: { type: 'string' },
   config: { type: 'string' },
   output: { type: 'string' },

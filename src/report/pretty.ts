@@ -53,7 +53,10 @@ export function formatPretty(report: Report, options: PrettyOptions): string {
   const dot = options.unicode ? '·' : '-';
   const mode = report.mode.llm === 'off' ? 'static rules' : `static rules and ${report.mode.llm}`;
   const names = languages(report).map(([id]) => languageName(id));
-  lines.push([`qa-core-review ${report.tool.version}`, plural(summary.files, 'file', 'files'), plural(summary.tests, 'test', 'tests'), mode, ...(names.length > 0 ? [names.join(', ')] : [])].join(` ${dot} `), '');
+  // Diff mode: the counts are of changed files and changed tests only.
+  const { diffBase } = report.mode;
+  const scope = diffBase === null ? [] : [diffBase === 'staged' ? 'staged changes' : `changes since ${diffBase}`];
+  lines.push([`qa-core-review ${report.tool.version}`, ...scope, plural(summary.files, 'file', 'files'), plural(summary.tests, 'test', 'tests'), mode, ...(names.length > 0 ? [names.join(', ')] : [])].join(` ${dot} `), '');
 
   const open = report.findings.filter((finding) => !finding.suppressed);
   const byId = new Map(open.map((finding) => [finding.id, finding]));

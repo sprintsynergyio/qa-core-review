@@ -33,6 +33,8 @@ export { ROOT_DIR, applyOverrides, detectProjects, nearestOverride, nearestProje
 export { buildDetectReport, formatDetectPretty } from './detect/report.js';
 export type { DetectReport } from './detect/report.js';
 export { MAX_SOURCE_BYTES, discover, listFiles, readSourceFile } from './discover/files.js';
+export { DiffError, changedLines, parseUnifiedDiff, touches } from './discover/diff.js';
+export type { ChangedLines } from './discover/diff.js';
 export type { DiscoverOptions, DiscoveredFile, Discovery, FileList, PathSelection } from './discover/files.js';
 
 // Parsing (SPEC.md Section 7.2).
