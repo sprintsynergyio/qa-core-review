@@ -9,6 +9,11 @@ import { hooksOf } from './util.js';
 const EXISTENCE_KINDS: ReadonlyArray<NAssertion['kind']> = ['truthiness', 'nullness'];
 
 const SUB_CASES: ReadonlyArray<{ key: string; message: string; matches(assertion: NAssertion): boolean }> = [
+  {
+    // `mock.called_once_with(42)` in Python, where a mock accepts any name, or a real method that is named and never called.
+    key: 'mock', message: 'This is not a check on the mock: the assertion method does not exist or is never called, so nothing is checked.',
+    matches: (a) => !a.complete && a.kind === 'mock-call',
+  },
   { key: 'incomplete', message: 'This assertion is never finished: no matcher is called, so nothing is checked.', matches: (a) => !a.complete },
   { key: 'unreachable', message: 'This assertion is never reached: the code before it always returns or throws.', matches: (a) => !a.reachable },
   { key: 'unawaited', message: 'This assertion is not awaited, so the test can end before it fails.', matches: (a) => a.awaited === 'no' },
@@ -25,6 +30,11 @@ const SUB_CASES: ReadonlyArray<{ key: string; message: string; matches(assertion
   {
     key: 'collection', message: 'A list or an object that is written out with items is always truthy, so this check always passes.',
     matches: (a) => a.actual?.kind === 'collection' && a.kind === 'truthiness' && !a.negated,
+  },
+  {
+    // `self.assertTrue(total, 29.99)`: a second value that is no message. The author meant an equality check.
+    key: 'second-value', message: 'This check looks only at the first value. The second one is taken as the failure message, so the two are never compared.',
+    matches: (a) => a.kind === 'truthiness' && a.expected !== null,
   },
 ];
 

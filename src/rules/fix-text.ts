@@ -1,11 +1,12 @@
 // The fix and the examples of each rule, per language (SPEC.md Section 10.0), so that a finding
 // in a TypeScript file suggests TypeScript and one in a Python file suggests Python. A key is a
-// rule id, or a rule id and a sub-case. The Python and Java texts arrive with those adapters;
-// until then such a file gets the general fix and no example.
+// rule id, or a rule id and a sub-case. The JS/TS texts are in the first table and the Python
+// texts in the second. The Java texts arrive with that adapter; until then such a file gets the
+// general fix and no example.
 import type { LanguageId } from '../model/types.js';
 
-type Family = 'js';
-const FAMILY: Partial<Record<LanguageId, Family>> = { javascript: 'js', typescript: 'js' };
+type Family = 'js' | 'python';
+const FAMILY: Partial<Record<LanguageId, Family>> = { javascript: 'js', typescript: 'js', python: 'python' };
 
 interface Example { bad: string; good: string }
 interface Entry {
@@ -13,12 +14,14 @@ interface Entry {
   title: string;
   /** The fix in words that fit any language. */
   fix: string;
+  /** The fix in the words of one language, where the general one names things that language does not have. */
+  fixes?: Partial<Record<Family, string>>;
   examples: Partial<Record<Family, Example>>;
 }
 
 const SELECTOR_FIX = 'Prefer role, label or test id selectors. For Playwright suites, qa-core-heal can repair many broken locators at once.';
 
-export const FIX_TEXT: Readonly<Record<string, Entry>> = {
+const BASE: Readonly<Record<string, Entry>> = {
   'QCR-A001': {
     title: 'A test with no assertion',
     fix: 'Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.',
@@ -64,6 +67,16 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
     title: 'A list or object literal checked for being truthy',
     fix: 'Check the value itself. A list or an object that is written out is always truthy.',
     examples: { js: { bad: 'expect([cart.total(), 42]).toBeTruthy();', good: 'expect(cart.total()).toBe(42);' } },
+  },
+  'QCR-A003/mock': {
+    title: 'A check on a mock that does not exist or is never called',
+    fix: 'Use a real assertion method of the mock, and call it.',
+    examples: { js: { bad: 'expect(mailer.send).toHaveBeenCalled;', good: 'expect(mailer.send).toHaveBeenCalled();' } },
+  },
+  'QCR-A003/second-value': {
+    title: 'A truth check that is given a second value',
+    fix: 'Compare the two values with an equality assertion.',
+    examples: {},
   },
   'QCR-A004': {
     title: 'Every assertion is inside a condition, a loop or a callback',
@@ -312,15 +325,194 @@ export const FIX_TEXT: Readonly<Record<string, Entry>> = {
   },
 };
 
+/** The Python texts: an example for each case that a Python file can have, and the fix where Python says it in other words. */
+const PYTHON: Readonly<Record<string, Partial<Example> & { fix?: string }>> = {
+  'QCR-A001': {
+    bad: 'def test_user_can_log_in(driver):\n    driver.get("https://www.saucedemo.com")\n    driver.find_element(By.ID, "login-button").click()',
+    good: 'def test_user_can_log_in(driver):\n    driver.get("https://www.saucedemo.com")\n    driver.find_element(By.ID, "login-button").click()\n    assert driver.find_element(By.CLASS_NAME, "title").text == "Products"',
+  },
+  'QCR-A002': {
+    bad: 'assert True\nassert cart.total() == cart.total()',
+    good: 'assert item in cart.items\nassert cart.total() == 29.99',
+  },
+  'QCR-A003/incomplete': {
+    fix: 'Finish the assertion by calling a matcher, for example to_be_visible() or to_have_text(...).',
+    bad: 'expect(page.get_by_text("Products"))',
+    good: 'expect(page.get_by_text("Products")).to_be_visible()',
+  },
+  'QCR-A003/unreachable': {
+    fix: 'Move the assertion before the return or raise, or remove the early exit.',
+    bad: 'return\nassert len(cart.items) == 1',
+    good: 'assert len(cart.items) == 1\nreturn',
+  },
+  'QCR-A003/unawaited': {
+    fix: 'Put await before the assertion. In the async API of Playwright every expect(...) check has to be awaited.',
+    bad: 'async def test_checkout_is_shown(page):\n    expect(page.get_by_role("button", name="Checkout")).to_be_visible()',
+    good: 'async def test_checkout_is_shown(page):\n    await expect(page.get_by_role("button", name="Checkout")).to_be_visible()',
+  },
+  'QCR-A003/locator': {
+    bad: 'assert page.locator("#checkout")',
+    good: 'expect(page.locator("#checkout")).to_be_visible()',
+  },
+  'QCR-A003/count': {
+    bad: 'assert len(rows) >= 0',
+    good: 'assert len(rows) == 3',
+  },
+  'QCR-A003/collection': {
+    fix: 'Check the value itself. A tuple or a list that is written out with items is always true, so assert (value, "message") never fails.',
+    bad: 'assert (cart.total(), 42)',
+    good: 'assert cart.total() == 42',
+  },
+  'QCR-A003/mock': {
+    fix: 'Use a real assertion method of the mock, and call it: assert_called_once_with(...), not called_once_with(...). A mock accepts any other name and returns a new mock.',
+    bad: 'payment.called_once_with(42)\nmailer.send.assert_called_once',
+    good: 'payment.assert_called_once_with(42)\nmailer.send.assert_called_once()',
+  },
+  'QCR-A003/second-value': {
+    fix: 'Use assertEqual to compare the two values. assertTrue checks only the first one and takes the second as the failure message.',
+    bad: 'self.assertTrue(cart.total(), 29.99)',
+    good: 'self.assertEqual(cart.total(), 29.99)',
+  },
+  'QCR-A004': {
+    bad: 'for item in api.get("/items").json():\n    assert item["price"] > 0',
+    good: 'items = api.get("/items").json()\nassert len(items) > 0\nfor item in items:\n    assert item["price"] > 0',
+  },
+  'QCR-W001': {
+    fix: 'Wait for a condition instead: WebDriverWait(driver, 10).until(...) in Selenium, an expect(...) assertion in Playwright, or a polling helper. For timing failures that come and go, see qa-core-flaky.',
+    bad: 'driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()\ntime.sleep(3)\nassert driver.find_element(By.CLASS_NAME, "shopping_cart_badge").text == "1"',
+    good: 'driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()\nWebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.CLASS_NAME, "shopping_cart_badge"), "1"))',
+  },
+  'QCR-W001/implicit': {
+    bad: 'driver.implicitly_wait(10)',
+    good: 'WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))',
+  },
+  'QCR-S001/xpath': {
+    bad: 'driver.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/button[3]").click()',
+    good: 'driver.find_element(By.CSS_SELECTOR, "[data-test=\'add-to-cart-sauce-labs-backpack\']").click()',
+  },
+  'QCR-S001/position': {
+    bad: 'page.locator(".inventory_list > div:nth-child(2) button").click()',
+    good: 'page.locator("[data-test=\'add-to-cart-sauce-labs-backpack\']").click()',
+  },
+  'QCR-S001/generated': {
+    bad: 'page.locator(".css-1q2w3e4").click()',
+    good: 'page.get_by_test_id("checkout").click()',
+  },
+  'QCR-S001/deep': {
+    bad: 'page.locator("#root > div > main > section > button").click()',
+    good: 'page.get_by_role("button", name="Checkout").click()',
+  },
+  'QCR-S001/pick': {
+    bad: 'page.locator(".inventory_item").nth(2).click()',
+    good: 'page.locator(".inventory_item").filter(has_text="Sauce Labs Backpack").click()',
+  },
+  'QCR-E001': {
+    fix: 'Take the assertion out of the try block, or raise the error again in the except block. To go on after a failed check, use a soft assertion (pytest-check).',
+    bad: 'try:\n    expect(page.get_by_test_id("total")).to_have_text("$32.39")\nexcept Exception as error:\n    print("total did not match", error)',
+    good: 'expect(page.get_by_test_id("total")).to_have_text("$32.39")',
+  },
+  'QCR-F002': {
+    fix: 'Turn the test back on, or delete it. If it has to wait, use skipif with a condition and a reason that names the ticket.',
+    bad: '@pytest.mark.skip\ndef test_rejects_empty_password(page):\n    ...',
+    good: '@pytest.mark.skipif(sys.platform == "win32", reason="File picker is not supported on Windows CI")\ndef test_uploads_a_file(page):\n    ...',
+  },
+  'QCR-F002/expected-failure': {
+    fix: 'Say which bug makes the test fail and where it is tracked, in reason=. With strict=True the test fails as soon as the bug is fixed, so the mark does not stay forever.',
+    bad: '@pytest.mark.xfail\ndef test_rounds_the_tax_up(cart):\n    ...',
+    good: '@pytest.mark.xfail(reason="SHOP-142: the tax is rounded down", strict=True)\ndef test_rounds_the_tax_up(cart):\n    ...',
+  },
+  'QCR-D001': {
+    fix: 'Delete the copy, or change it so that it checks another case. For the same steps with other data, use @pytest.mark.parametrize or subTest.',
+    bad: 'def test_login_works(page):\n    login(page, "standard_user")\n    expect(page).to_have_url(re.compile("inventory"))\n\n\ndef test_login_works_for_standard_user(page):\n    login(page, "standard_user")\n    expect(page).to_have_url(re.compile("inventory"))',
+    good: '@pytest.mark.parametrize("user", ["standard_user", "performance_glitch_user"])\ndef test_login_works(page, user):\n    login(page, user)\n    expect(page).to_have_url(re.compile("inventory"))',
+  },
+  'QCR-D001/title': {
+    fix: 'Give each test a name that says what it checks. Python keeps only the last function with a name, so the first of the two never runs.',
+    bad: 'def test_adds_an_item():\n    assert len(Cart().add("backpack").items) == 1\n\n\ndef test_adds_an_item():\n    assert Cart().add("backpack").add("onesie").total == 37.98',
+    good: 'def test_adds_an_item():\n    assert len(Cart().add("backpack").items) == 1\n\n\ndef test_adds_the_prices_of_two_items():\n    assert Cart().add("backpack").add("onesie").total == 37.98',
+  },
+  'QCR-P001': {
+    bad: 'def test_renders_cart(snapshot):\n    html = render_cart([{"name": "Backpack", "price": 29.99}])\n    assert html == snapshot',
+    good: 'def test_renders_cart(snapshot):\n    html = render_cart([{"name": "Backpack", "price": 29.99}])\n    assert "Backpack" in html\n    assert "$29.99" in html\n    assert html == snapshot',
+  },
+  'QCR-C001/spy': {
+    fix: 'Stop every patcher that you start: call self.addCleanup(patcher.stop) right after start(). A patch used as a decorator or in a with block, and the mocker fixture, undo themselves.',
+    bad: 'class OrderTests(unittest.TestCase):\n    def setUp(self):\n        self.charge = patch("shop.payments.charge").start()',
+    good: 'class OrderTests(unittest.TestCase):\n    def setUp(self):\n        patcher = patch("shop.payments.charge")\n        self.charge = patcher.start()\n        self.addCleanup(patcher.stop)',
+  },
+  'QCR-C001/env': {
+    fix: 'Use monkeypatch.setenv, which pytest puts back after the test, or patch.dict(os.environ, {...}) in a with block.',
+    bad: 'def test_uses_the_staging_api():\n    os.environ["API_URL"] = "https://api.example.test"\n    assert api_url() == "https://api.example.test"',
+    good: 'def test_uses_the_staging_api(monkeypatch):\n    monkeypatch.setenv("API_URL", "https://api.example.test")\n    assert api_url() == "https://api.example.test"',
+  },
+  'QCR-C001/handle': {
+    fix: 'Close it after the yield of a fixture, in tearDown, or with a with block, so that it is closed when the test fails too.',
+    bad: 'def test_checkout():\n    driver = webdriver.Chrome()\n    driver.get("https://www.saucedemo.com")\n    assert "Swag Labs" in driver.title',
+    good: '@pytest.fixture\ndef driver():\n    driver = webdriver.Chrome()\n    yield driver\n    driver.quit()\n\n\ndef test_checkout(driver):\n    driver.get("https://www.saucedemo.com")\n    assert "Swag Labs" in driver.title',
+  },
+  'QCR-C001/data': {
+    fix: 'Delete what the test creates, in the test or after the yield of a fixture, so that the next run starts from the same data.',
+    bad: 'def test_creates_an_order(api):\n    response = api.post("https://api.example.test/orders", json={"item": "backpack"})\n    assert response.status_code == 201',
+    good: 'def test_creates_an_order(api):\n    response = api.post("https://api.example.test/orders", json={"item": "backpack"})\n    assert response.status_code == 201\n    api.delete(f"https://api.example.test/orders/{response.json()[\'id\']}")',
+  },
+  'QCR-N001': {
+    bad: 'class TestApplyDiscount:\n    def test_ten_percent(self):\n        assert apply_discount(100, "SAVE10") == 90\n\n    def test_twenty_percent(self):\n        assert apply_discount(100, "SAVE20") == 80',
+    good: 'class TestApplyDiscount:\n    def test_ten_percent(self):\n        assert apply_discount(100, "SAVE10") == 90\n\n    def test_rejects_unknown_code(self):\n        with pytest.raises(ValueError, match="Invalid code"):\n            apply_discount(100, "NOPE")',
+  },
+  'QCR-M001/subject': {
+    bad: 'from shop.cart import Cart\n\n\n@patch("shop.cart.Cart")\ndef test_returns_total(cart_class):\n    cart_class.return_value.total.return_value = 42\n    assert Cart().total() == 42',
+    good: 'from shop.cart import Cart\n\n\n@patch("shop.cart.tax_rate", return_value=0)\ndef test_returns_total(tax_rate):\n    assert Cart([{"price": 40}, {"price": 2}]).total() == 42',
+  },
+  'QCR-M001/stubbed': {
+    bad: 'from shop.cart import get_total\n\n\n@patch("shop.cart.get_total", return_value=42)\ndef test_returns_total(mock_total):\n    assert get_total([{"price": 40}, {"price": 2}]) == 42',
+    good: 'from shop.cart import get_total\n\n\n@patch("shop.cart.tax_rate", return_value=0)\ndef test_returns_total(tax_rate):\n    assert get_total([{"price": 40}, {"price": 2}]) == 42',
+  },
+  'QCR-M001/calls-only': {
+    bad: 'def test_places_the_order(mailer):\n    place_order(cart, mailer)\n    mailer.send.assert_called_once()',
+    good: 'def test_places_the_order(mailer):\n    order = place_order(cart, mailer)\n    assert order.status == "placed"\n    mailer.send.assert_called_once()',
+  },
+  'QCR-M001/everything': {
+    bad: 'from shop.orders import OrderService\nfrom shop.payments import PaymentClient\n\n\n@patch("shop.orders.OrderService")\n@patch("shop.payments.PaymentClient")\ndef test_places_the_order(payment_client, order_service):\n    ...',
+    good: 'from shop.orders import OrderService\nfrom shop.payments import PaymentClient\n\n\n@patch("shop.payments.PaymentClient")\ndef test_places_the_order(payment_client):\n    ...',
+  },
+  'QCR-M001/network': {
+    bad: 'page.route("**/*", lambda route: route.fulfill(json={"items": []}))\npage.goto("https://www.saucedemo.com/cart.html")\nexpect(page.get_by_test_id("cart-list")).to_be_visible()',
+    good: 'page.route("**/api/cart", lambda route: route.fulfill(json={"items": []}))\npage.goto("https://www.saucedemo.com/cart.html")\nexpect(page.get_by_test_id("cart-list")).to_be_visible()',
+  },
+  'QCR-X002': {
+    bad: '# qa-core-review-disable-next-line QCR-W001\ntime.sleep(0.5)',
+    good: '# qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for\ntime.sleep(0.5)',
+  },
+};
+
+/** Every key with its texts in every language that has them. */
+export const FIX_TEXT: Readonly<Record<string, Entry>> = Object.fromEntries(Object.entries(BASE).map(([key, entry]) => {
+  const { fix, ...example } = PYTHON[key] ?? {};
+  const python = 'bad' in example ? { python: example as Example } : {};
+  return [key, { ...entry, ...(fix ? { fixes: { python: fix } } : {}), examples: { ...entry.examples, ...python } }];
+}));
+
+/** Words of a rule message that another language names differently. */
+const TERMS: Readonly<Record<string, Partial<Record<Family, string>>>> = { 'catch block': { python: 'except block' } };
+
+/** The word a message uses in a file of this language: `catch block` is `except block` in Python. */
+export function termFor(term: string, language: LanguageId): string {
+  return TERMS[term]?.[FAMILY[language] ?? ('none' as Family)] ?? term;
+}
+
+const inLanguage = (entry: Entry, language: LanguageId): { fix: string; example: Example | null } => {
+  const family = FAMILY[language] ?? ('none' as Family);
+  return { fix: entry.fixes?.[family] ?? entry.fix, example: entry.examples[family] ?? null };
+};
+
 /** The fix and the good example for a finding in a file of this language. */
 export function fixFor(key: string, language: LanguageId): { fix: string; goodExample?: string } {
-  const entry = FIX_TEXT[key]!;
-  const example = entry.examples[FAMILY[language] ?? ('none' as Family)];
-  return { fix: entry.fix, ...(example ? { goodExample: example.good } : {}) };
+  const { fix, example } = inLanguage(FIX_TEXT[key]!, language);
+  return { fix, ...(example ? { goodExample: example.good } : {}) };
 }
 
 /** The sub-cases of a rule with their examples in this language, for `explain`. */
 export function examplesFor(ruleId: string, language: LanguageId): Array<{ title: string; fix: string; example: Example | null }> {
   return Object.entries(FIX_TEXT).filter(([key]) => key === ruleId || key.startsWith(`${ruleId}/`))
-    .map(([, entry]) => ({ title: entry.title, fix: entry.fix, example: entry.examples[FAMILY[language] ?? ('none' as Family)] ?? null }));
+    .map(([, entry]) => ({ title: entry.title, ...inLanguage(entry, language) }));
 }

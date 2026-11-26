@@ -1,0 +1,2 @@
+# unittest is part of the standard library.
+requests==2.32.3

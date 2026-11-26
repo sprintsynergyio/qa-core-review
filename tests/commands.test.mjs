@@ -44,9 +44,15 @@ test('explain describes one rule and says how to turn it off', () => {
   const a003 = ok(['explain', 'QCR-A003']);
   assert.ok(a003.includes("\n\nAn async assertion that is not awaited\n  Fix: Put await before the assertion, or return it from the test.\n  Bad:\n    expect(page.getByRole('button', { name: 'Checkout' })).toBeVisible();\n"));
   assert.ok(a003.includes("\n  Good:\n    await expect(page.getByRole('button', { name: 'Checkout' })).toBeVisible();\n"));
-  assert.equal(a003.split('\n  Bad:\n').length - 1, 6);
-  assert.equal(ok(['explain', 'QCR-A003', '--language', 'javascript']).replace('JavaScript: the rule applies\n', ''), a003);
-  assert.ok(ok(['explain', 'QCR-A001', '--language', 'python']).includes('\n\nA test with no assertion\n  Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.\n  No example for Python yet.\n'));
+  // Seven of the eight cases have a JS/TS example. The eighth is found in Python only.
+  assert.equal(a003.split('\n  Bad:\n').length - 1, 7);
+  assert.ok(a003.endsWith('\n\nA truth check that is given a second value\n  Fix: Compare the two values with an equality assertion.\n  No example for TypeScript yet.\n'));
+  assert.equal(ok(['explain', 'QCR-A003', '--language', 'javascript']).replace('JavaScript: the rule applies\n', '').replace('for JavaScript yet', 'for TypeScript yet'), a003);
+  // Python has its own examples, and its own words for the fix where the general ones do not fit.
+  const python = ok(['explain', 'QCR-A003', '--language', 'python']);
+  assert.equal(python.split('\n  Bad:\n').length - 1, 8);
+  assert.ok(python.includes('\n\nA truth check that is given a second value\n  Fix: Use assertEqual to compare the two values. assertTrue checks only the first one and takes the second as the failure message.\n  Bad:\n    self.assertTrue(cart.total(), 29.99)\n  Good:\n    self.assertEqual(cart.total(), 29.99)\n'));
+  assert.ok(ok(['explain', 'QCR-A001', '--language', 'java']).includes('\n\nA test with no assertion\n  Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.\n  No example for Java yet.\n'));
   assert.match(ok(['explain', '-h']), /^Usage: qa-core-review explain/);
   usageError(['explain'], /explain needs one rule id\. Known: QCR-A001, .*QCR-X001/);
   usageError(['explain', 'QCR-Z999'], /unknown rule id "QCR-Z999"\. Known: /);

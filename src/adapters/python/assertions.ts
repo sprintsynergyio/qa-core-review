@@ -174,16 +174,18 @@ export function readBody(body: SyntaxNode, ctx: BodyContext, options: BodyOption
   };
 
   /** `assert <condition>` or `assert <condition>, "message"`. */
-  const fromAssert = (node: SyntaxNode, state: State): NAssertion => {
-    let negated = false;
-    let condition = node.namedChildren.find((child) => child.type !== 'comment');
+  const fromAssert = (node: SyntaxNode, state: State): NAssertion => fromCondition(node, state, node.namedChildren.find((child) => child.type !== 'comment'), false, ASSERT_LIBRARY, 'assert');
+  /** A condition that must be true: the one of an `assert` statement, or a comparison handed to `self.assertTrue(...)`. */
+  const fromCondition = (node: SyntaxNode, state: State, start: SyntaxNode | undefined, negatedAtStart: boolean, library: string, bare: string): NAssertion => {
+    let negated = negatedAtStart;
+    let condition = start;
     // A tuple is kept as it is: `assert (x, "message")` is always true.
     while (condition && (condition.type === 'not_operator' || (condition.type === 'parenthesized_expression' && condition.namedChildCount === 1))) {
       if (condition.type === 'not_operator') negated = !negated;
       condition = condition.namedChildren.find((child) => child.type !== 'comment');
     }
-    if (!condition) return make(node, state, { kind: 'other', library: ASSERT_LIBRARY, complete: false });
-    const base = { library: ASSERT_LIBRARY };
+    if (!condition) return make(node, state, { kind: 'other', library, complete: false });
+    const base = { library };
     const pseudo = pseudoMock(condition);
     if (pseudo) return make(node, state, { ...base, ...pseudo });
 
@@ -219,7 +221,7 @@ export function readBody(body: SyntaxNode, ctx: BodyContext, options: BodyOption
       const { positional } = argumentsOf(condition);
       return make(node, state, { ...base, kind: 'type', matcher: condition.childForFieldName('function')!.text, negated, actual: operand(positional[0]), expected: operand(positional[1]) });
     }
-    return make(node, state, { ...base, kind: mockState(condition) ? 'mock-call' : 'truthiness', matcher: 'assert', negated, actual: operand(condition) });
+    return make(node, state, { ...base, kind: mockState(condition) ? 'mock-call' : 'truthiness', matcher: bare, negated, actual: operand(condition) });
   };
   /** `send.called`, `send.call_count`: an attribute that says how a mock was called. */
   const mockState = (node: SyntaxNode): boolean => {
@@ -307,6 +309,10 @@ export function readBody(body: SyntaxNode, ctx: BodyContext, options: BodyOption
       const second = args[1];
       // `self.assertTrue(a, b)` checks only `a`. A second argument that is not a message is kept, so a rule can see it.
       const extra = check?.kind === 'truthiness' && second && !['string', 'concatenated_string'].includes(second.type) ? { expected: operand(second) } : {};
+      // `self.assertTrue(a == b)` and `self.assertFalse(len(rows) < 0)` are read as the comparison they hold.
+      if (check?.kind === 'truthiness' && !('expected' in extra) && args[0] && ['comparison_operator', 'not_operator'].includes(unwrap(args[0]).type)) {
+        return [{ ...fromCondition(top, state, args[0], check.negated ?? false, 'unittest', last.name), matcher: last.name }];
+      }
       return [fromCheck(top, state, 'unittest', last.name, check, args[0], second, { ...extra, ...(check?.kind === 'throws' ? { complete: raisesComplete(top, last.call) } : {}) })];
     }
 
@@ -330,6 +336,10 @@ export function readBody(body: SyntaxNode, ctx: BodyContext, options: BodyOption
     if (!last.call) return null;
     if (rest.length > 0 && includes(STATUS_CHECK_METHODS, last.name)) return [make(top, state, { kind: 'status', library: 'http-client', matcher: last.name, actual: operand(last.node.childForFieldName('object')) })];
     if (ctx.isHelper(last.name)) return [make(top, state, { kind: 'other', library: 'helper', viaHelper: last.name })];
+    // A helper that is handed over to be called later, `for_each_item(check_price)`: its checks run when and if the callee calls it.
+    const given = argumentsOf(last.call);
+    const handed = [...given.positional, ...given.keywords.values()].find((value) => value.type === 'identifier' && ctx.isHelper(value.text));
+    if (handed) return [{ ...make(top, state, { kind: 'other', library: 'helper', viaHelper: handed.text }), guarded: true }];
     // A function named assert_something is an assertion by its name: numpy.testing, pandas.testing and many more.
     return last.name.startsWith(ASSERT_FUNCTION_PREFIX) && steps.every((step, index) => index === steps.length - 1 || !step.call)
       ? [make(top, state, { kind: 'other', library: 'assert-function', matcher: last.name, actual: operand(args[0]), expected: operand(args[1]) })] : null;

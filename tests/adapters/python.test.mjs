@@ -882,6 +882,8 @@ test('the rules read the Python model: a swallowed failure is QCR-E001, an unawa
   assert.deepEqual(unittest.filter((line) => line.includes('QCR-C001')), ['tests/test_checkout.py:35 QCR-C001 This patch is never undone.', 'tests/test_checkout.py:36 QCR-C001 This environment variable is changed and never set back.']);
   const body = (lines) => lines.filter((line) => /QCR-(W001|S001|M001|C001)/.test(line)).map((line) => line.split(' ').slice(0, 2).join(' ').replace('tests/test_', '').replace('QCR-', ''));
   assert.deepEqual(body(pytest), [
+    // Tests whose only checks are calls on mocks that stand in for real code (warn).
+    'assertions.py:150 M001', 'assertions.py:165 M001', 'assertions.py:172 M001',
     // Requests that create data and never delete it (info), fixed sleeps, and the test that takes eight things and gives none back.
     'cart.py:67 C001', 'checkout.py:25 C001', 'checkout.py:26 W001', 'checkout.py:27 W001', 'checkout.py:28 W001', 'checkout.py:33 C001', 'checkout.py:34 W001', 'checkout.py:66 C001',
     'checkout.py:133 C001', 'checkout.py:134 C001', 'checkout.py:135 C001', 'checkout.py:136 C001', 'checkout.py:137 C001', 'checkout.py:138 C001', 'checkout.py:140 C001', 'checkout.py:141 C001',
@@ -947,7 +949,7 @@ test('selectors: Playwright calls, page actions with a selector, Selenium By str
     ['click', 'id', '#buy'], ['fill', 'id', '#name'], ['click', 'text', 'text=Login'],
     ['locator', 'css', 'li', 'nth:2:css'], ['locator', 'css', 'li', 'first:null:css'], ['get_by_role', 'role', 'row', 'last:null:role'], ['locator', 'css', 'ul'], ['locator', 'css', 'li', 'nth:null:css'],
     // Selenium: the strategy comes from the By constant. For CSS it is read from the selector.
-    ['By.ID', 'id', 'name'], ['By.CSS_SELECTOR', 'id', '#name'], ['By.CSS_SELECTOR', 'css', '.a > .b'], ['By.XPATH', 'xpath', '//li', 'first:0:xpath'], ['By.CLASS_NAME', 'class', 'row', 'nth:3:class'],
+    ['By.ID', 'id', 'name'], ['By.CSS_SELECTOR', 'id', '#name'], ['By.CSS_SELECTOR', 'css', '.a > .b'], ['By.XPATH', 'xpath', '//li', 'nth:0:xpath'], ['By.CLASS_NAME', 'class', 'row', 'nth:3:class'],
     ['By.LINK_TEXT', 'link-text', 'Home'], ['By.ID', 'id', null], ['find_element_by_xpath', 'xpath', '//a'], ['find_elements_by_class_name', 'class', 'row'],
   ]);
   assert.deepEqual([t.selectors[0].text, t.selectors[23].text, t.selectors[28].text], ['page.locator("#buy")', 'driver.find_element(By.ID, "name")', '(By.LINK_TEXT, "Home")']);
@@ -989,14 +991,14 @@ test('mocks: patch in every form, named mocks, monkeypatch, network fakes, and w
     ['function', 'get_total', true, 'stubbed'],
     // `tax_rate` is in the same module, and the test does not import it: it may be something the module imports. Not known, so null.
     // `send.side_effect = OSError` in the body gives the third patch a fixed reply: the decorators fill the parameters from the bottom up.
-    ['function', 'cart_module.tax_rate', null, 'stubbed'], ['function', 'shop.mail.send', false, 'stubbed'], ['function', 'Cart.total', true, 'stubbed'], ['class', 'shop.cart.Cart', true, ''],
+    ['function', 'cart_module.tax_rate', null, 'stubbed'], ['function', 'shop.mail.send', false, 'stubbed'], ['function', 'Cart.total', true, 'stubbed'], ['class', 'shop.cart.Cart', true, 'stubbed'],
+    // A patch answers in place of the real code, with a new mock when no reply is given, so it always counts as a fixed reply.
     // `wraps=` keeps the real behavior. A spy does too.
-    ['function', 'cart_module.audit', null, 'passthrough'], ['function', 'cart_module.charge', true, ''],
+    ['function', 'cart_module.audit', null, 'passthrough'], ['function', 'cart_module.charge', true, 'stubbed'],
     // The module under test itself, a package the file imports from, and a dotted name that is not known to be a module.
-    ['module', 'shop.cart', true, ''], ['module', 'shop', false, ''], ['function', 'shop.orders', false, ''], ['function', 'Cart.total', true, 'passthrough'],
-    // A second argument, `return_value=`, or `.return_value = ...` later: a fixed reply.
+    ['module', 'shop.cart', true, 'stubbed'], ['module', 'shop', false, 'stubbed'], ['function', 'shop.orders', false, 'stubbed'], ['function', 'Cart.total', true, 'passthrough'],
     ['function', 'cart_module.rates', null, 'stubbed'], ['function', 'cart_module.stock', null, 'stubbed'],
-    // A mock with a name of its own. One that is not stored is not kept.
+    // A mock with a name of its own has a fixed reply only when it is given one. One that is not stored is not kept.
     ['function', 'callback', false, ''], ['function', 'reply', false, 'stubbed'],
     // monkeypatch: a lambda, a literal or a mock with a reply is a canned value. A real function is not.
     // A name in capitals only is a constant, not a class.
@@ -1010,7 +1012,7 @@ test('mocks: patch in every form, named mocks, monkeypatch, network fakes, and w
     HEADER, '@patch("shop.mail.send")', 'class CartTests(unittest.TestCase):', '    def setUp(self):', '        self.charge = patch("shop.pay.charge", return_value=True).start()', '        self.addCleanup(patch.stopall)',
     '    def test_a(self, send):', '        self.assertTrue(pay())', '',
   ].join('\n'), 'tests/test_misc.py');
-  assert.deepEqual([file.subject, mockRows(file.fileMocks), file.tests[0].mocks], [null, [['function', 'shop.mail.send', null, ''], ['function', 'shop.pay.charge', null, 'stubbed']], []]);
+  assert.deepEqual([file.subject, mockRows(file.fileMocks), file.tests[0].mocks], [null, [['function', 'shop.mail.send', null, 'stubbed'], ['function', 'shop.pay.charge', null, 'stubbed']], []]);
 });
 
 test('subject: the import that has the name of the test file, or the subjectMap of the config', async () => {
@@ -1030,7 +1032,7 @@ test('subject: the import that has the name of the test file, or the subjectMap 
   assert.deepEqual(await subject('tests/api/test_orders.py', 'from shop.api import views\nfrom shop import orders', config), { module: 'shop.api.views', via: 'subjectMap' });
   // The module is imported as a whole, so no name is imported from it. A patched name that the file calls there itself is part of what it tests.
   const mapped = await py('from unittest.mock import patch\nfrom shop.api import views\n\n@patch("shop.api.views.list_orders")\n@patch("shop.api.views.fetch")\n@patch("shop.db.query")\ndef test_a(query, fetch, listed):\n    assert views.list_orders()\n', 'tests/api/test_orders.py', { config });
-  assert.deepEqual(mockRows(mapped.tests[0].mocks), [['function', 'views.list_orders', true, ''], ['function', 'views.fetch', null, ''], ['function', 'shop.db.query', false, '']]);
+  assert.deepEqual(mockRows(mapped.tests[0].mocks), [['function', 'views.list_orders', true, 'stubbed'], ['function', 'views.fetch', null, 'stubbed'], ['function', 'shop.db.query', false, 'stubbed']]);
 });
 
 test('resources: what a body takes, and whether it is released there, in a hook that covers it, or by pytest', async () => {
@@ -1085,4 +1087,48 @@ test('resources: what a body takes, and whether it is released there, in a hook 
   assert.deepEqual([hook.waits.map((w) => [w.kind, w.ms]), (await modelOf('playwright-python', 'tests/test_checkout.py')).fileHooks[0].selectors.length], [[['implicit-wait-config', 10000]], 3]);
   const teardown = (await modelOf('pytest', 'tests/conftest.py')).fileHooks.filter((entry) => entry.kind === 'fixture-teardown');
   assert.deepEqual(teardown.map((entry) => [entry.releases, entry.data.map((d) => d.op)]), [[['var:session'], []], [[], ['delete']]]);
+});
+
+test('unittest: a comparison handed to assertTrue or assertFalse is read as that comparison', async () => {
+  const t = await testWith([
+    'self.assertTrue(len(rows) >= 0)', 'self.assertFalse(len(rows) < 0)', 'self.assertTrue(cart.total() == cart.total())', 'self.assertTrue(not cart.total() == 29.99)', 'self.assertTrue(("a" in names))',
+    'self.assertFalse(1 == 1, "never")', 'self.assertTrue(cart.total() == 29.99, 30)', 'self.assertTrue(cart.is_empty())', 'self.assertTrue(response.status_code == 404)',
+  ], { params: 'self, cart, rows, names, response' });
+  assert.deepEqual(rows(t), [
+    ['comparison', 'unittest', 'assertTrue', '>='], ['comparison', 'unittest', 'assertFalse', 'not', '<'], ['equality', 'unittest', 'assertTrue'], ['equality', 'unittest', 'assertTrue', 'not'], ['contains', 'unittest', 'assertTrue'],
+    // A message does not change the reading. A second value that is no message does: the check is then on the first value only.
+    ['equality', 'unittest', 'assertFalse', 'not'], ['truthiness', 'unittest', 'assertTrue'], ['truthiness', 'unittest', 'assertTrue'], ['status', 'unittest', 'assertTrue', 'codes:404'],
+  ]);
+  assert.deepEqual(operands(t).slice(0, 3), [['len(rows) <call count>', '0 <literal number>'], ['len(rows) <call count>', '0 <literal number>'], ['cart.total() <call>', 'cart.total() <call>']]);
+  assert.deepEqual([t.assertions[0].text, t.assertions[6].expected.text], ['self.assertTrue(len(rows) >= 0)', '30']);
+});
+
+test('resources: what is made inside a with-Playwright block is closed by the block', async () => {
+  const header = `${HEADER}from playwright.sync_api import sync_playwright\nfrom playwright.async_api import async_playwright\n`;
+  const sync = await testWith([
+    'with sync_playwright() as p:', '    browser = p.chromium.launch()', '    made = browser.new_context()', '    tab = made.new_page()', '    tab.goto("https://www.saucedemo.com")',
+    'started = sync_playwright().start()', 'other = started.firefox.launch()', 'with sync_playwright():', '    loose = launch_somewhere()',
+  ], { header, params: '' });
+  const line = (n) => n + 9;
+  assert.deepEqual(resourceRows(sync.resources), [
+    [line(2), 'browser', 'test', 'released'], [line(3), 'context', 'test', 'released'], [line(4), 'page', 'test', 'released'],
+    // Started by hand, with no block: nothing stops it.
+    [line(6), 'browser', 'test', 'leak'], [line(7), 'browser', 'test', 'leak'],
+  ]);
+  const model = await py(`${header}\n\nasync def test_a():\n    async with async_playwright() as p:\n        browser = await p.webkit.launch()\n        page = await browser.new_page()\n    assert page\n`);
+  assert.deepEqual(resourceRows(model.tests[0].resources), [[11, 'browser', 'test', 'released'], [12, 'page', 'test', 'released']]);
+});
+
+test('helpers: one that is handed to another call counts as a check inside a callback', async () => {
+  const model = await py([
+    'from shop.cart import Cart, for_each_item', '', '', 'def test_handed_over():', '    def check_price(item):', '        assert item.price > 0', '', '    for_each_item(check_price)', '', '',
+    'def test_as_a_keyword(page):', '    page.on("response", handler=check_status)', '', '', 'def test_called_and_handed():', '    check_status(Cart().response)', '    for_each_item(print)', '', '',
+    'def check_status(response):', '    assert response.ok', '',
+  ].join('\n'));
+  assert.deepEqual(model.tests.map((t) => [t.title, rows(t)]), [
+    // The checks run only when the callee calls the helper, so they are guarded: QCR-A004 can report the test, QCR-A001 does not.
+    ['test_handed_over', [['other', 'helper', null, 'guarded', 'via:check_price']]], ['test_as_a_keyword', [['other', 'helper', null, 'guarded', 'via:check_status']]],
+    // A direct call is a plain check. A function that asserts nothing is no helper.
+    ['test_called_and_handed', [['other', 'helper', null, 'via:check_status']]],
+  ]);
 });

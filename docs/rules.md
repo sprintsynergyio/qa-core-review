@@ -138,6 +138,21 @@ test('user can log in', async ({ page }) => {
 
 Fix: Add an assertion that checks the result of the action, for example the URL, a visible element or the response body.
 
+In Python:
+
+```python
+# Bad
+def test_user_can_log_in(driver):
+    driver.get("https://www.saucedemo.com")
+    driver.find_element(By.ID, "login-button").click()
+
+# Good
+def test_user_can_log_in(driver):
+    driver.get("https://www.saucedemo.com")
+    driver.find_element(By.ID, "login-button").click()
+    assert driver.find_element(By.CLASS_NAME, "title").text == "Products"
+```
+
 What counts as an assertion:
 
 - `expect(...)`, `assert(...)` and `assert.method(...)`, Chai `should`, Cypress `.should(...)` and `.and(...)`, `sinon.assert`.
@@ -154,6 +169,8 @@ If the tool cannot see into one of your helpers, for example one that comes from
 ```json
 { "assertionHelpers": ["verifyCart", "expectLoggedIn"] }
 ```
+
+In Python, a check is an `assert` statement, a `self.assert*` method, `pytest.raises` and its relatives, a Playwright `expect(...)`, a mock assertion such as `assert_called_once()`, a pytest-check, PyHamcrest or assertpy check, a snapshot comparison, or a call to a helper that holds one of these (in the file, in a module it imports, or in `conftest.py`). A wait such as `WebDriverWait(...).until(...)` is not counted as a check.
 
 Turn it off: `"rules": { "QCR-A001": "off" }` in the config, or `--disable QCR-A001` on the command line.
 
@@ -178,12 +195,26 @@ expect(cart.total()).toBe(29.99);
 
 Fix: Check a value that the code under test produced, against the value you expect.
 
+In Python:
+
+```python
+# Bad
+assert True
+assert cart.total() == cart.total()
+
+# Good
+assert item in cart.items
+assert cart.total() == 29.99
+```
+
 Also reported: `assert(true)`, `assert.ok(1)`, `expect(null).toBeNull()`, and the same assertions inside a hook.
 
 Not reported:
 
 - A real check written backwards, with the expected value first: `expect(2).toBe(items.length)`.
 - A negated self comparison such as `expect(nextId()).not.toBe(nextId())`. It can fail, so it is a real check.
+
+In Python, `assert True`, `assert 1 == 1`, `self.assertTrue(True)` and `self.assertEqual(x, x)` are reported. A comparison handed to `assertTrue` or `assertFalse` is read as that comparison, so `self.assertTrue(total == total)` is reported too.
 
 Turn it off: `"rules": { "QCR-A002": "off" }` in the config, or `--disable QCR-A002` on the command line.
 
@@ -210,6 +241,18 @@ expect(total).toBeTruthy();
 
 Fix: Finish the assertion by calling a matcher.
 
+In Python:
+
+```python
+# Bad
+expect(page.get_by_text("Products"))
+
+# Good
+expect(page.get_by_text("Products")).to_be_visible()
+```
+
+Fix in Python: Finish the assertion by calling a matcher, for example to_be_visible() or to_have_text(...).
+
 ### An assertion after a return or a throw
 
 Bad:
@@ -227,6 +270,20 @@ return;
 ```
 
 Fix: Move the assertion before the return or throw, or remove the early exit.
+
+In Python:
+
+```python
+# Bad
+return
+assert len(cart.items) == 1
+
+# Good
+assert len(cart.items) == 1
+return
+```
+
+Fix in Python: Move the assertion before the return or raise, or remove the early exit.
 
 ### An async assertion that is not awaited
 
@@ -246,6 +303,20 @@ await expect(loadCart('c-1')).resolves.toHaveProperty('items');
 
 Fix: Put await before the assertion, or return it from the test.
 
+In Python:
+
+```python
+# Bad
+async def test_checkout_is_shown(page):
+    expect(page.get_by_role("button", name="Checkout")).to_be_visible()
+
+# Good
+async def test_checkout_is_shown(page):
+    await expect(page.get_by_role("button", name="Checkout")).to_be_visible()
+```
+
+Fix in Python: Put await before the assertion. In the async API of Playwright every expect(...) check has to be awaited.
+
 ### A check that a locator object exists
 
 Bad:
@@ -261,6 +332,16 @@ await expect(page.locator('#checkout')).toBeVisible();
 ```
 
 Fix: Check what the element shows or does, for example that it is visible or has the right text.
+
+In Python:
+
+```python
+# Bad
+assert page.locator("#checkout")
+
+# Good
+expect(page.locator("#checkout")).to_be_visible()
+```
 
 ### A count compared with zero in a way that is always true
 
@@ -278,6 +359,16 @@ await expect(rows).toHaveCount(3);
 
 Fix: Compare the count with the number you expect, or check that it is greater than zero.
 
+In Python:
+
+```python
+# Bad
+assert len(rows) >= 0
+
+# Good
+assert len(rows) == 3
+```
+
 ### A list or object literal checked for being truthy
 
 Bad:
@@ -294,12 +385,78 @@ expect(cart.total()).toBe(42);
 
 Fix: Check the value itself. A list or an object that is written out is always truthy.
 
+In Python:
+
+```python
+# Bad
+assert (cart.total(), 42)
+
+# Good
+assert cart.total() == 42
+```
+
+Fix in Python: Check the value itself. A tuple or a list that is written out with items is always true, so assert (value, "message") never fails.
+
+### A check on a mock that does not exist or is never called
+
+Bad:
+
+```ts
+expect(mailer.send).toHaveBeenCalled;
+```
+
+Good:
+
+```ts
+expect(mailer.send).toHaveBeenCalled();
+```
+
+Fix: Use a real assertion method of the mock, and call it.
+
+In Python:
+
+```python
+# Bad
+payment.called_once_with(42)
+mailer.send.assert_called_once
+
+# Good
+payment.assert_called_once_with(42)
+mailer.send.assert_called_once()
+```
+
+Fix in Python: Use a real assertion method of the mock, and call it: assert_called_once_with(...), not called_once_with(...). A mock accepts any other name and returns a new mock.
+
+In JS/TS this is a mock matcher that is named and never called. In Python it is also a method that a mock does not have: a mock accepts any name, so `send.called_once_with(1)` and a misspelled `assert_called_once_wiht(1)` run and check nothing.
+
+### A truth check that is given a second value
+
+Found in Python files only: `self.assertTrue(a, b)` with a second value that is not a text. unittest takes the second value as the failure message, so only `a` is checked.
+
+Bad:
+
+```python
+self.assertTrue(cart.total(), 29.99)
+```
+
+Good:
+
+```python
+self.assertEqual(cart.total(), 29.99)
+```
+
+Fix: Compare the two values with an equality assertion.
+
+Fix in Python: Use assertEqual to compare the two values. assertTrue checks only the first one and takes the second as the failure message.
+
 Details:
 
 - **Not finished** is only reported for a whole statement. `const check = expect(total)` is left alone, because it may be finished later.
 - **Not awaited** covers Playwright web-first matchers, `expect.poll`, `.resolves` and `.rejects`, `assert.rejects`, and expect-webdriverio matchers on an element or on `browser`. An assertion that is returned, or passed to `Promise.all` that is awaited, counts as awaited.
 - **Locator** needs the tool to know that the value is a locator: a call such as `page.locator(...)`, `page.getByRole(...)`, `cy.get(...)`, `$(...)`, or a variable that holds one in the same test. In a Testing Library file, `getByText` throws when the text is missing, so `expect(screen.getByText('x')).toBeTruthy()` is a real check and is not reported.
 - **Count** means "at least 0": `toBeGreaterThanOrEqual(0)` or `not.toBeLessThan(0)` on a `.length`, a `.size` or a `.count()`.
+
+In Python: the tuple form `assert (value, "message")` is reported as the list case, because a tuple with items is always true. **Not awaited** covers `expect(...)` of the async Playwright API. **Count** covers `len(...)` and `.count()`, also inside `self.assertTrue(len(rows) >= 0)`. **Never reached** is an assertion after a `return` or a `raise` in the same block.
 
 Turn it off: `"rules": { "QCR-A003": "off" }` in the config, or `--disable QCR-A003` on the command line.
 
@@ -325,6 +482,20 @@ await expect(page.getByTestId('error')).toContainText('locked out');
 
 Fix: Assert without the condition, or first check that there is something to check: for example the length of the list before the loop.
 
+In Python:
+
+```python
+# Bad
+for item in api.get("/items").json():
+    assert item["price"] > 0
+
+# Good
+items = api.get("/items").json()
+assert len(items) > 0
+for item in items:
+    assert item["price"] > 0
+```
+
 Not reported when:
 
 - At least one assertion always runs, for example a check of the length before the loop.
@@ -332,6 +503,8 @@ Not reported when:
 - The callback always runs: `test.step`, a promise `then`, `waitFor`, Cypress `should(fn)`, `then` and `within`, the function given to `expect(...)`.
 - The callback is what ends the test: it calls `done()`, or the `resolve` of a promise the test returns.
 - The condition is the check: `if (!ok) throw new Error(...)` or `if (!ok) expect.fail(...)`.
+
+In Python, a guard is an `if`, a `while`, a `for` over something that can be empty, a `lambda`, or a helper that is handed to another call to be called later (`for_each_item(check_price)`). A `for` over a list that is written out (`for user in ["a", "b"]:`) always runs and is not a guard, and neither is a `with` block such as `with self.subTest(...)`. `if a != b: pytest.fail(...)` is not reported: there the condition is the check.
 
 Turn it off: `"rules": { "QCR-A004": "off" }` in the config, or `--disable QCR-A004` on the command line.
 
@@ -356,6 +529,21 @@ await expect(page.getByTestId('shopping-cart-badge')).toHaveText('1');
 ```
 
 Fix: Wait for a condition instead: a web-first assertion, an explicit wait (WebDriverWait, waitForResponse) or a polling helper. For timing failures that come and go, see qa-core-flaky.
+
+In Python:
+
+```python
+# Bad
+driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+time.sleep(3)
+assert driver.find_element(By.CLASS_NAME, "shopping_cart_badge").text == "1"
+
+# Good
+driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.CLASS_NAME, "shopping_cart_badge"), "1"))
+```
+
+Fix in Python: Wait for a condition instead: WebDriverWait(driver, 10).until(...) in Selenium, an expect(...) assertion in Playwright, or a polling helper. For timing failures that come and go, see qa-core-flaky.
 
 What counts as a fixed sleep:
 
@@ -388,6 +576,16 @@ await $('[data-test="shopping-cart-badge"]').waitForDisplayed({ timeout: 10000 }
 
 Fix: Keep the implicit wait at 0 or short, and wait for each condition where the test needs it.
 
+In Python:
+
+```python
+# Bad
+driver.implicitly_wait(10)
+
+# Good
+WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))
+```
+
 ### Options
 
 ```json
@@ -396,12 +594,14 @@ Fix: Keep the implicit wait at 0 or short, and wait for each condition where the
 
 `maxMs` (default 0): a sleep of this many milliseconds or fewer is not reported.
 
+In Python: `time.sleep(...)` and `asyncio.sleep(...)` (seconds, shown as milliseconds), also under another name after `from time import sleep`, and `page.wait_for_timeout(...)`. Selenium `implicitly_wait(...)` over 5 seconds is the info case. `WebDriverWait(...).until(...)`, `page.wait_for_selector(...)` and the other `wait_for_*` calls wait for a condition and are not reported.
+
 Turn it off: `"rules": { "QCR-W001": "off" }` in the config, or `--disable QCR-W001` on the command line.
 
 <a id="qcr-s001"></a>
 ## QCR-S001 `brittle-selector` (warn)
 
-A selector that depends on the layout of the page or on generated names. It breaks when the page changes, while the feature still works. This rule runs on UI tests: Playwright, Cypress and WebdriverIO so far. Selectors in hooks such as `beforeEach` are checked too.
+A selector that depends on the layout of the page or on generated names. It breaks when the page changes, while the feature still works. This rule runs on UI tests: Playwright, Cypress and WebdriverIO in JS/TS, and Playwright and Selenium in Python. Selectors in hooks such as `beforeEach` are checked too.
 
 Fix: Prefer role, label or test id selectors. For Playwright suites, qa-core-heal can repair many broken locators at once.
 
@@ -421,6 +621,16 @@ Good:
 await page.getByRole('button', { name: 'Add to cart' }).click();
 ```
 
+In Python:
+
+```python
+# Bad
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/button[3]").click()
+
+# Good
+driver.find_element(By.CSS_SELECTOR, "[data-test='add-to-cart-sauce-labs-backpack']").click()
+```
+
 ### A selector that picks by position
 
 The selector has `:nth-child(`, `:nth-of-type(`, `:nth-last-child(`, `:nth-last-of-type(` or the Playwright `>> nth=`.
@@ -435,6 +645,16 @@ Good:
 
 ```ts
 cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+```
+
+In Python:
+
+```python
+# Bad
+page.locator(".inventory_list > div:nth-child(2) button").click()
+
+# Good
+page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click()
 ```
 
 ### A generated class or id
@@ -453,6 +673,16 @@ Good:
 await page.getByTestId('checkout').click();
 ```
 
+In Python:
+
+```python
+# Bad
+page.locator(".css-1q2w3e4").click()
+
+# Good
+page.get_by_test_id("checkout").click()
+```
+
 ### A selector that follows the page structure
 
 The selector chains 4 or more combinators (`>`, a space, `+`, `~`). One new wrapper `div` breaks it.
@@ -467,6 +697,16 @@ Good:
 
 ```ts
 await page.getByRole('button', { name: 'Checkout' }).click();
+```
+
+In Python:
+
+```python
+# Bad
+page.locator("#root > div > main > section > button").click()
+
+# Good
+page.get_by_role("button", name="Checkout").click()
 ```
 
 ### A pick by position in a list (info)
@@ -486,6 +726,16 @@ await page.locator('.inventory_item').filter({ hasText: 'Sauce Labs Backpack' })
 ```
 
 Fix: Pick the element by something it shows, such as its text, a role with a name or a test id, not by its place in a list.
+
+In Python:
+
+```python
+# Bad
+page.locator(".inventory_item").nth(2).click()
+
+# Good
+page.locator(".inventory_item").filter(has_text="Sauce Labs Backpack").click()
+```
 
 ### Not reported
 
@@ -509,6 +759,8 @@ Each selector gives one finding: the first case that fits, in the order above.
 - `allowPatterns` (default none): regular expressions. A selector whose text matches one of them is not reported.
 - `testIdAttribute` (top level, default `data-testid`): your own test id attribute. A selector on it counts as a test id.
 
+In Python the rule reads Playwright (`page.locator`, `get_by_*`, `page.click("...")`) and Selenium (`By.XPATH`, `By.CSS_SELECTOR` and the other `By` strategies, and the old `find_element_by_*` methods). A pick is `.nth(n)`, `.first` or `.last` in Playwright and `find_elements(...)[n]` with `n` above 0 in Selenium.
+
 Turn it off: `"rules": { "QCR-S001": "off" }` in the config, or `--disable QCR-S001` on the command line.
 
 <a id="qcr-e001"></a>
@@ -527,6 +779,21 @@ try {
   console.log('total did not match', e);
 }
 ```
+
+In Python:
+
+```python
+# Bad
+try:
+    expect(page.get_by_test_id("total")).to_have_text("$32.39")
+except Exception as error:
+    print("total did not match", error)
+
+# Good
+expect(page.get_by_test_id("total")).to_have_text("$32.39")
+```
+
+Fix in Python: Take the assertion out of the try block, or raise the error again in the except block. To go on after a failed check, use a soft assertion (pytest-check).
 
 Good:
 
@@ -566,6 +833,8 @@ Reported when the chain before `.catch(...)` has an assertion and the handler do
 - A handler that turns the failure into a value the test goes on with: `.then(() => true).catch(() => false)`.
 - A handler given by a name the tool cannot see into: `.catch(reportFailure)`.
 
+In Python the handler is an `except` block. `except Exception`, `except BaseException`, `except AssertionError`, a bare `except` and `contextlib.suppress(...)` of one of these catch a failed assertion. `except ValueError` and other specific errors do not, so they are not reported. Not reported either: a handler that has `raise`, calls `pytest.fail(...)` or `self.fail(...)`, or asserts, and `try` with `finally` only.
+
 Turn it off: `"rules": { "QCR-E001": "off" }` in the config, or `--disable QCR-E001` on the command line.
 
 <a id="qcr-f001"></a>
@@ -595,6 +864,8 @@ What counts: `test.only`, `it.only`, `describe.only`, `context.only`, `specify.o
 
 Not reported: the word `only` in a title or as a method of your own code (`filters.only('in-stock')`), and tags that select tests from the command line.
 
+Python: pytest and unittest have no way to focus one test in the code, so this rule finds nothing in a Python file.
+
 Turn it off: `"rules": { "QCR-F001": "off" }` in the config, or `--disable QCR-F001` on the command line.
 
 <a id="qcr-f002"></a>
@@ -620,6 +891,22 @@ test('uploads a file', async ({ page }) => {
 ```
 
 Fix: Turn the test back on, or delete it. If it has to wait, skip it on a condition and say why, with the ticket that tracks it.
+
+In Python:
+
+```python
+# Bad
+@pytest.mark.skip
+def test_rejects_empty_password(page):
+    ...
+
+# Good
+@pytest.mark.skipif(sys.platform == "win32", reason="File picker is not supported on Windows CI")
+def test_uploads_a_file(page):
+    ...
+```
+
+Fix in Python: Turn the test back on, or delete it. If it has to wait, use skipif with a condition and a reason that names the ticket.
 
 What counts:
 
@@ -661,6 +948,24 @@ test.fail('rounds the tax up', async ({ page }) => {
 
 Fix: Say which bug makes the test fail and where it is tracked, and remove the mark when the bug is fixed.
 
+In Python:
+
+```python
+# Bad
+@pytest.mark.xfail
+def test_rounds_the_tax_up(cart):
+    ...
+
+# Good
+@pytest.mark.xfail(reason="SHOP-142: the tax is rounded down", strict=True)
+def test_rounds_the_tax_up(cart):
+    ...
+```
+
+Fix in Python: Say which bug makes the test fail and where it is tracked, in reason=. With strict=True the test fails as soon as the bug is fixed, so the mark does not stay forever.
+
+In Python: `@pytest.mark.skip` and `@unittest.skip(...)` on a test or on a class, and `pytest.skip(...)` or `self.skipTest(...)` as a plain statement of a test body. Not reported: `@pytest.mark.skipif(...)`, `@unittest.skipIf(...)`, `@unittest.skipUnless(...)`, and a skip inside an `if`. `@pytest.mark.xfail` and `@unittest.expectedFailure` are the info case.
+
 Turn it off: `"rules": { "QCR-F002": "off" }` in the config, or `--disable QCR-F002` on the command line.
 
 <a id="qcr-d001"></a>
@@ -699,6 +1004,28 @@ for (const user of ['standard_user', 'performance_glitch_user']) {
 
 Fix: Delete the copy, or change it so that it checks another case. For the same steps with other data, write one parameterized test.
 
+In Python:
+
+```python
+# Bad
+def test_login_works(page):
+    login(page, "standard_user")
+    expect(page).to_have_url(re.compile("inventory"))
+
+
+def test_login_works_for_standard_user(page):
+    login(page, "standard_user")
+    expect(page).to_have_url(re.compile("inventory"))
+
+# Good
+@pytest.mark.parametrize("user", ["standard_user", "performance_glitch_user"])
+def test_login_works(page, user):
+    login(page, user)
+    expect(page).to_have_url(re.compile("inventory"))
+```
+
+Fix in Python: Delete the copy, or change it so that it checks another case. For the same steps with other data, use @pytest.mark.parametrize or subTest.
+
 ### Two tests with the same title in one file
 
 Two tests in one file with the same full title (suite titles and test title). Their bodies may differ.
@@ -729,6 +1056,28 @@ it('adds the prices of two items', () => {
 
 Fix: Give each test a title that says what it checks, so that a failure report points to one test.
 
+In Python:
+
+```python
+# Bad
+def test_adds_an_item():
+    assert len(Cart().add("backpack").items) == 1
+
+
+def test_adds_an_item():
+    assert Cart().add("backpack").add("onesie").total == 37.98
+
+# Good
+def test_adds_an_item():
+    assert len(Cart().add("backpack").items) == 1
+
+
+def test_adds_the_prices_of_two_items():
+    assert Cart().add("backpack").add("onesie").total == 37.98
+```
+
+Fix in Python: Give each test a name that says what it checks. Python keeps only the last function with a name, so the first of the two never runs.
+
 ### Not reported
 
 - A parameterized test: `it.each(...)`, `test.each(...)`, and tests made in a `for` loop or a `forEach`. It is one test with many cases.
@@ -736,6 +1085,8 @@ Fix: Give each test a title that says what it checks, so that a failure report p
 - A body with fewer than 2 statements. It is too small to call a copy.
 - The same title in two different suites, or in two files.
 - A copy in another language. A `.js` file is not compared with a `.ts` file.
+
+In Python, two functions with the same name in one module or class are the same title, and there the first one never runs: Python keeps the last definition. A test with `@pytest.mark.parametrize` is not compared.
 
 Turn it off: `"rules": { "QCR-D001": "off" }` in the config, or `--disable QCR-D001` on the command line.
 
@@ -772,6 +1123,27 @@ describe('applyDiscount', () => {
 
 Fix: Add at least one test for what must not work: bad input, a missing value, or a failure of something the code depends on.
 
+In Python:
+
+```python
+# Bad
+class TestApplyDiscount:
+    def test_ten_percent(self):
+        assert apply_discount(100, "SAVE10") == 90
+
+    def test_twenty_percent(self):
+        assert apply_discount(100, "SAVE20") == 80
+
+# Good
+class TestApplyDiscount:
+    def test_ten_percent(self):
+        assert apply_discount(100, "SAVE10") == 90
+
+    def test_rejects_unknown_code(self):
+        with pytest.raises(ValueError, match="Invalid code"):
+            apply_discount(100, "NOPE")
+```
+
 A group is the tests of one `describe` block (the innermost one), or the tests of a file that are in no block. The rule reports once per group, on the line of the block, when the group has 2 or more tests and none of them looks like an error case. A test looks like an error case when:
 
 - a word in its title or in the titles of its blocks starts with one of: invalid, error, fail, reject, wrong, empty, missing, denied, unauthorized, forbidden, expired, locked, limit, max, min, zero, negative, boundary, overflow, timeout, edge, null, undefined, none, nil, 404, 401, 403, 500, or the title has "not found". `rejectsUnknownCode` and `rejects_unknown_code` are read as words;
@@ -782,6 +1154,8 @@ A group is the tests of one `describe` block (the innermost one), or the tests o
 The message suggests two or three cases from the title of the group: a group named "checkout" gets "checkout with an empty cart", "checkout with a missing postal code" and "checkout with a payment that is declined". A title the rule does not know gets "empty input", "invalid input" and "a server error".
 
 This rule never changes the verdict of a test or the exit code at the default `--fail-on error`.
+
+In Python a group is a test class, or the tests of a file that are outside every class. A test counts as a negative case when it uses `pytest.raises`, `assertRaises` or a relative, checks a status of 400 or above, or says so in its name (`test_rejects_...`, `test_wrong_password`, `test_empty_cart`).
 
 Turn it off: `"rules": { "QCR-N001": "off" }` in the config, or `--disable QCR-N001` on the command line.
 
@@ -820,6 +1194,27 @@ it('returns the total', () => {
 
 Fix: Mock what the code under test depends on, not the code under test itself.
 
+In Python:
+
+```python
+# Bad
+from shop.cart import Cart
+
+
+@patch("shop.cart.Cart")
+def test_returns_total(cart_class):
+    cart_class.return_value.total.return_value = 42
+    assert Cart().total() == 42
+
+# Good
+from shop.cart import Cart
+
+
+@patch("shop.cart.tax_rate", return_value=0)
+def test_returns_total(tax_rate):
+    assert Cart([{"price": 40}, {"price": 2}]).total() == 42
+```
+
 ### A stubbed function is called and checked
 
 Error. A mock function is given a fixed reply (`mockReturnValue`, `mockResolvedValue`, `vi.fn(() => 42)`, sinon `returns` or `resolves`), and the test then calls that same function inside an assertion. Like the first case, it is reported only in a file whose module under test is known. This covers `vi.fn()`, `jest.fn()` and `sinon.stub()` stored under a name, and `vi.spyOn`, `jest.spyOn` and `sinon.stub` on a method.
@@ -843,6 +1238,26 @@ it('loads the user', async () => {
 ```
 
 Fix: Call the real function and check what it returns. Give fixed replies only to the things it depends on.
+
+In Python:
+
+```python
+# Bad
+from shop.cart import get_total
+
+
+@patch("shop.cart.get_total", return_value=42)
+def test_returns_total(mock_total):
+    assert get_total([{"price": 40}, {"price": 2}]) == 42
+
+# Good
+from shop.cart import get_total
+
+
+@patch("shop.cart.tax_rate", return_value=0)
+def test_returns_total(tax_rate):
+    assert get_total([{"price": 40}, {"price": 2}]) == 42
+```
 
 ### A test that checks only calls on mocks (warn)
 
@@ -869,6 +1284,21 @@ it('places the order', async () => {
 
 Fix: Also check a result: what the code returns, what it saves, or what the user sees.
 
+In Python:
+
+```python
+# Bad
+def test_places_the_order(mailer):
+    place_order(cart, mailer)
+    mailer.send.assert_called_once()
+
+# Good
+def test_places_the_order(mailer):
+    order = place_order(cart, mailer)
+    assert order.status == "placed"
+    mailer.send.assert_called_once()
+```
+
 ### Every import of the file is mocked (warn)
 
 Warn, once per file. Every module the file imports is mocked. Type imports and the test framework do not count. When the module under test is among them, only that case is reported.
@@ -894,6 +1324,29 @@ jest.mock('../src/payments');
 
 Fix: Keep the module under test real. Mock only what is slow, random or outside your control.
 
+In Python:
+
+```python
+# Bad
+from shop.orders import OrderService
+from shop.payments import PaymentClient
+
+
+@patch("shop.orders.OrderService")
+@patch("shop.payments.PaymentClient")
+def test_places_the_order(payment_client, order_service):
+    ...
+
+# Good
+from shop.orders import OrderService
+from shop.payments import PaymentClient
+
+
+@patch("shop.payments.PaymentClient")
+def test_places_the_order(payment_client):
+    ...
+```
+
 ### Every network request is faked (warn)
 
 Warn. A `page.route` or `cy.intercept` on `**/*`, `**`, `*` or `/.*/` answers every request with a fixed reply, and the test then checks the page.
@@ -916,6 +1369,20 @@ await expect(page.getByTestId('cart-list')).toBeVisible();
 
 Fix: Fake only the requests this test is about, and let the others go to the real server or to a test server.
 
+In Python:
+
+```python
+# Bad
+page.route("**/*", lambda route: route.fulfill(json={"items": []}))
+page.goto("https://www.saucedemo.com/cart.html")
+expect(page.get_by_test_id("cart-list")).to_be_visible()
+
+# Good
+page.route("**/api/cart", lambda route: route.fulfill(json={"items": []}))
+page.goto("https://www.saucedemo.com/cart.html")
+expect(page.get_by_test_id("cart-list")).to_be_visible()
+```
+
 ### Not reported
 
 - A module mock that keeps the real module: `vi.importActual`, `jest.requireActual`, or `importOriginal` in the factory.
@@ -931,6 +1398,8 @@ Fix: Fake only the requests this test is about, and let the others go to the rea
 ```
 
 `subjectMap` (default none): for test files whose name does not match the module they test. The key is a glob for test files, and the value is the module as the test files import it.
+
+In Python the rule reads `patch`, `patch.object`, `mocker.patch`, `mocker.spy`, `monkeypatch.setattr`, named `Mock` objects, Playwright `page.route`, and `responses`, `respx` and `requests_mock`. The module under test is the import with the name of the test file (`test_cart.py` and `shop.cart`), or the one that `subjectMap` gives. A patch replaces the code under test when the file imports the patched name from that module or calls it there; when the tool cannot tell, it says nothing. A patch with no `return_value` still answers in place of the real code, so it counts as a fixed reply; `wraps=` and `mocker.spy` keep the real behavior and do not. One limit: after `from shop.cart import get_total`, `patch("shop.cart.get_total")` does not replace the name the test already holds, so such a test calls the real function. It is reported all the same, because the test sets out to stub what it tests.
 
 Turn it off: `"rules": { "QCR-M001": "off" }` in the config, or `--disable QCR-M001` on the command line.
 
@@ -964,6 +1433,22 @@ it('renders the cart', () => {
 ```
 
 Fix: Add assertions on the values that matter, so that the test says what must be true. Keep the snapshot next to them if it helps.
+
+In Python:
+
+```python
+# Bad
+def test_renders_cart(snapshot):
+    html = render_cart([{"name": "Backpack", "price": 29.99}])
+    assert html == snapshot
+
+# Good
+def test_renders_cart(snapshot):
+    html = render_cart([{"name": "Backpack", "price": 29.99}])
+    assert "Backpack" in html
+    assert "$29.99" in html
+    assert html == snapshot
+```
 
 ### An inline snapshot recorded empty
 
@@ -1017,6 +1502,8 @@ test('shows the cart', async ({ page }) => {
 Fix: Look at each new baseline image before you commit it. One assertion on what the page must show makes a failure easier to read.
 
 Not reported: a test with at least one assertion that is not a snapshot or a visual check.
+
+In Python: syrupy (`assert value == snapshot`), pytest-snapshot (`snapshot.assert_match(...)`) and snapshottest (`self.assertMatchSnapshot(...)`).
 
 Turn it off: `"rules": { "QCR-P001": "off" }` in the config, or `--disable QCR-P001` on the command line.
 
@@ -1087,6 +1574,24 @@ it('logs the order', () => {
 
 Fix: Restore every spy in an afterEach hook. If the runner config already does it (restoreMocks), set restoreMocksConfigured for this rule.
 
+In Python:
+
+```python
+# Bad
+class OrderTests(unittest.TestCase):
+    def setUp(self):
+        self.charge = patch("shop.payments.charge").start()
+
+# Good
+class OrderTests(unittest.TestCase):
+    def setUp(self):
+        patcher = patch("shop.payments.charge")
+        self.charge = patcher.start()
+        self.addCleanup(patcher.stop)
+```
+
+Fix in Python: Stop every patcher that you start: call self.addCleanup(patcher.stop) right after start(). A patch used as a decorator or in a with block, and the mocker fixture, undo themselves.
+
 ### An environment variable that is never set back
 
 An assignment to `process.env.NAME`, or `vi.stubEnv(...)`. Given back by a second assignment or a `delete` in an after hook, or by `vi.unstubAllEnvs()`.
@@ -1116,6 +1621,22 @@ it('uses the staging API', () => {
 ```
 
 Fix: Set the variable back in an afterEach hook, or use the stub helper of the runner and undo it there.
+
+In Python:
+
+```python
+# Bad
+def test_uses_the_staging_api():
+    os.environ["API_URL"] = "https://api.example.test"
+    assert api_url() == "https://api.example.test"
+
+# Good
+def test_uses_the_staging_api(monkeypatch):
+    monkeypatch.setenv("API_URL", "https://api.example.test")
+    assert api_url() == "https://api.example.test"
+```
+
+Fix in Python: Use monkeypatch.setenv, which pytest puts back after the test, or patch.dict(os.environ, {...}) in a with block.
 
 ### A global that is never put back
 
@@ -1171,6 +1692,30 @@ test('opens the shop', async ({ page }) => {
 
 Fix: Close it in an after hook, or let the test runner make it for you: a fixture is closed by the runner.
 
+In Python:
+
+```python
+# Bad
+def test_checkout():
+    driver = webdriver.Chrome()
+    driver.get("https://www.saucedemo.com")
+    assert "Swag Labs" in driver.title
+
+# Good
+@pytest.fixture
+def driver():
+    driver = webdriver.Chrome()
+    yield driver
+    driver.quit()
+
+
+def test_checkout(driver):
+    driver.get("https://www.saucedemo.com")
+    assert "Swag Labs" in driver.title
+```
+
+Fix in Python: Close it after the yield of a fixture, in tearDown, or with a with block, so that it is closed when the test fails too.
+
 ### Test data that is never deleted (info)
 
 A test that makes a `POST` request (`request.post`, `axios.post`, `cy.request('POST', ...)`) and makes no `DELETE` request. This is info with low confidence: a `POST` is not always a create, and the tool cannot see what an after hook deletes. When the file has an after hook, nothing is reported.
@@ -1197,6 +1742,23 @@ test('creates an order', async ({ request }) => {
 
 Fix: Delete what the test creates, in the test or in an after hook, so that the next run starts from the same data.
 
+In Python:
+
+```python
+# Bad
+def test_creates_an_order(api):
+    response = api.post("https://api.example.test/orders", json={"item": "backpack"})
+    assert response.status_code == 201
+
+# Good
+def test_creates_an_order(api):
+    response = api.post("https://api.example.test/orders", json={"item": "backpack"})
+    assert response.status_code == 201
+    api.delete(f"https://api.example.test/orders/{response.json()['id']}")
+```
+
+Fix in Python: Delete what the test creates, in the test or after the yield of a fixture, so that the next run starts from the same data.
+
 ### Not reported
 
 - Playwright fixtures (`page`, `context`, `browser`, `request`) and a second tab of the fixture context. The runner closes them.
@@ -1211,6 +1773,8 @@ Fix: Delete what the test creates, in the test or in an after hook, so that the 
 ```
 
 `restoreMocksConfigured` (default false): set it to true when the runner config has `restoreMocks: true` (Jest or Vitest). Spies with no restore are then not reported. The tool does not read the runner config itself.
+
+In Python: a Selenium driver, a Playwright browser, context or page that the test starts itself, a file from `open(...)`, a database connection, a patcher started with `.start()`, and a write to `os.environ`. Released means: closed in the test (also in `finally`), in `tearDown` or a `teardown_*` function, after the `yield` of the fixture that made it, by `self.addCleanup(...)` or `request.addfinalizer(...)`, or by a `with` block. Fixtures that clean up after themselves are never reported: `page`, `context`, `browser`, `tmp_path`, `monkeypatch`, `mocker`. Everything made inside `with sync_playwright() as p:` is closed by that block. One limit: a delete in a fixture of `conftest.py` is in another file, so a test that relies on it can get the info finding about test data.
 
 Turn it off: `"rules": { "QCR-C001": "off" }` in the config, or `--disable QCR-C001` on the command line.
 
@@ -1247,6 +1811,20 @@ await page.waitForTimeout(500);
 
 Fix: Say why the rule does not apply here, after two dashes. A suppression with a reason is one that a reviewer can agree or disagree with.
 
+In Python:
+
+```python
+# Bad
+# qa-core-review-disable-next-line QCR-W001
+time.sleep(0.5)
+
+# Good
+# qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for
+time.sleep(0.5)
+```
+
 See [Suppressing a finding](#suppressing-a-finding) for the three ways to suppress.
+
+In Python the comment starts with `#`: `# qa-core-review-disable-next-line QCR-W001 -- the reason`.
 
 Turn it off: `"rules": { "QCR-X002": "off" }` in the config, or `--disable QCR-X002` on the command line.

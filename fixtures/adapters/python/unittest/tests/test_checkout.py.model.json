@@ -461,7 +461,7 @@
       "target": "shop.checkout.charge",
       "targetsSubject": null,
       "passthrough": false,
-      "stubbedReturn": false,
+      "stubbedReturn": true,
       "fulfillsAllNetwork": false
     },
     {
@@ -476,7 +476,7 @@
       "target": "Checkout.send_receipt",
       "targetsSubject": true,
       "passthrough": false,
-      "stubbedReturn": false,
+      "stubbedReturn": true,
       "fulfillsAllNetwork": false
     },
     {
@@ -491,7 +491,7 @@
       "target": "shop.checkout.charge",
       "targetsSubject": null,
       "passthrough": false,
-      "stubbedReturn": false,
+      "stubbedReturn": true,
       "fulfillsAllNetwork": false
     },
     {
@@ -506,7 +506,7 @@
       "target": "shop.checkout.charge",
       "targetsSubject": null,
       "passthrough": false,
-      "stubbedReturn": false,
+      "stubbedReturn": true,
       "fulfillsAllNetwork": false
     }
   ],

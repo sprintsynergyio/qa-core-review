@@ -182,7 +182,7 @@ test('every case of QCR-W001 and QCR-S001 has a bad fixture, across Playwright, 
   // The good example of a finding tells which case of the fix text table it is.
   const keyOf = (finding) => Object.keys(FIX_TEXT).find((key) => key.startsWith(finding.ruleId) && FIX_TEXT[key].examples.js.good === finding.goodExample && FIX_TEXT[key].fix === finding.fix);
   const seen = {};
-  for (const { ruleId, name, dir } of ruleFixtureFolders().filter((entry) => ['QCR-W001', 'QCR-S001'].includes(entry.ruleId) && !entry.name.endsWith('jest'))) {
+  for (const { ruleId, name, dir } of ruleFixtureFolders().filter((entry) => ['QCR-W001', 'QCR-S001'].includes(entry.ruleId) && /^(typescript|javascript)-/.test(entry.name) && !entry.name.endsWith('jest'))) {
     const { report } = await review(dir);
     seen[`${ruleId} ${name.split('-')[1]}`] = [...new Set(report.findings.filter((finding) => finding.location.file.startsWith('bad/')).map(keyOf))].map((key) => key.split('/')[1] ?? 'sleep').sort();
   }
