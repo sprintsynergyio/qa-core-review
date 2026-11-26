@@ -1,14 +1,15 @@
 // The Python adapter (SPEC.md Sections 9.2 and 17): golden models, framework detection,
 // vocabulary coverage, capabilities and robustness. The first half covers the structure of a
 // test file: suites, tests, hooks and fixtures, marks, parametrize, imports and suppressions.
-// The second half covers what a body checks: assertions, try blocks and helpers.
+// The second half covers what a body checks (assertions, try blocks and helpers) and what it
+// does (waits, selectors, requests, mocks and resources), and the lexical fallback.
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { PYTHON_VOCAB_SURFACE, builtinRules, createHelperIndex, createRegistry, createTreeSitterService, pythonAdapter, readAsset, resolveConfig, runReview } from '../../dist/index.js';
+import { CAPABILITIES, PYTHON_VOCAB_SURFACE, builtinRules, createHelperIndex, createRegistry, createTreeSitterService, pythonAdapter, readAsset, resolveConfig, runReview, toLf } from '../../dist/index.js';
 import { adapterContext, capabilityFilled, fixtureRoot, frameworkFolders, normalizeProject, normalizeText } from '../helpers/adapter-suite.mjs';
 import { BIG_FILES } from '../helpers/big-files.mjs';
 import { expectGolden } from '../helpers/golden.mjs';
@@ -61,19 +62,23 @@ test('framework detection is right for every fixture file', async () => {
     'playwright-python/tests/test_checkout.py': ['pytest', ['playwright-python'], 'high'],
     'playwright-python/tests/test_matchers.py': ['pytest', ['playwright-python'], 'medium'], // it imports Playwright, and pytest is the project's runner
     'playwright-python/tests/test_menu.py': ['pytest', ['playwright-python'], 'medium'], // no import: the project's pytest, and the `page` fixture
+    'playwright-python/tests/test_routes.py': ['pytest', ['playwright-python'], 'high'],
     'pytest/tests/conftest.py': ['pytest', [], 'high'],
     'pytest/tests/helpers/pages.py': ['pytest', [], 'medium'], // a support file: the runner of its project
     'pytest/tests/test_assertions.py': ['pytest', [], 'high'],
     'pytest/tests/test_assertpy.py': ['pytest', [], 'medium'],
     'pytest/tests/test_broken.py': ['pytest', [], 'high'],
     'pytest/tests/test_cart.py': ['pytest', [], 'high'],
+    'pytest/tests/test_checkout.py': ['pytest', [], 'high'],
     'pytest/tests/test_matcher_libraries.py': ['pytest', [], 'medium'],
     'pytest/tests/test_orders.py': ['pytest', [], 'high'], // `from pytest import fixture, mark`
     'selenium/tests/test_elements.py': ['pytest', ['selenium'], 'medium'], // plain test functions with assert
     'selenium/tests/test_login.py': ['unittest', ['selenium'], 'high'], // a TestCase class, and no pytest in the project
     'selenium/tests/test_search.py': ['pytest', ['selenium'], 'high'], // the file imports pytest itself
+    'selenium/tests/test_waits.py': ['unittest', ['selenium'], 'high'],
     'unittest/tests/test_assertions.py': ['unittest', [], 'high'],
     'unittest/tests/test_cart.py': ['unittest', [], 'high'],
+    'unittest/tests/test_checkout.py': ['unittest', [], 'high'],
     'unittest/tests/test_orders.py': ['unittest', [], 'high'],
   });
 });
@@ -381,22 +386,17 @@ test('every vocabulary entry appears in at least one fixture', () => {
   const missing = PYTHON_VOCAB_SURFACE.filter((entry) => !new RegExp(`${/^\w/.test(entry) ? '(?<![\\w])' : ''}${entry.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${/\w$/.test(entry) ? '(?![\\w])' : ''}`).test(all));
   assert.deepEqual(missing, []);
   assert.equal(new Set(PYTHON_VOCAB_SURFACE).size, PYTHON_VOCAB_SURFACE.length);
-  assert.ok(PYTHON_VOCAB_SURFACE.length >= 240, String(PYTHON_VOCAB_SURFACE.length));
+  assert.ok(PYTHON_VOCAB_SURFACE.length >= 370, String(PYTHON_VOCAB_SURFACE.length));
 });
 
 test('every capability the adapter declares is filled in at least one golden', async () => {
   const all = [];
   for (const framework of FRAMEWORKS) all.push(...(await modelsOf(framework)).map((entry) => entry.model));
-  // The structure of a file and what a body checks. The capabilities for what a body does are not declared yet, so no rule that needs them runs.
-  assert.deepEqual(pythonAdapter.capabilities, ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability']);
+  // Every capability of the model, as for JS/TS.
+  assert.deepEqual([...pythonAdapter.capabilities].sort(), [...CAPABILITIES].sort());
   for (const capability of pythonAdapter.capabilities) {
     assert.ok(all.some((model) => capabilityFilled(capability, model)), `no golden fills "${capability}"`);
     assert.ok(all.every((model) => model.capabilities.includes(capability)));
-  }
-  // Nothing is filled in that the adapter does not declare.
-  for (const model of all) {
-    assert.deepEqual([model.subject, model.fileMocks, model.fileResources], [null, [], []], model.path);
-    for (const t of model.tests) assert.deepEqual([t.waits, t.selectors, t.mocks, t.resources, t.data, t.steps], [[], [], [], [], [], []], t.fullTitle);
   }
 });
 
@@ -428,11 +428,37 @@ test('robustness: an empty file, a file with no tests, and a file that is not co
   }
 });
 
-test('robustness: with a missing grammar the file is listed as failed, with nothing claimed about it', async () => {
+test('robustness: with a missing grammar the lexical scanner still finds tests, skips, assertions and fixed sleeps', async () => {
   const parser = createTreeSitterService({ readAsset: (name) => (name.endsWith('python.wasm') ? (() => { throw new Error('gone'); })() : readAsset(name)) });
-  const model = await py('import pytest\n\ndef test_a():\n    assert True\n', 'tests/test_a.py', { parser });
-  assert.deepEqual([model.parseStatus, model.capabilities, model.role, model.tests, model.runner], ['failed', [], 'test', [], 'pytest']);
-  assert.equal((await py('x = 1\n', 'tests/conftest.py', { parser })).role, 'support');
+  const model = await py([
+    '# qa-core-review-disable QCR-W001 -- the scanner reads comments too', 'import pytest', '', 'def helper():', '    def test_nested():', '        assert False', '',
+    '@pytest.mark.skip(reason="later")', 'def test_skipped():', '    assert total() == 1', '', '@pytest.mark.skipif(True, reason="x")', '@pytest.mark.xfail', 'async def test_sleeps(page):',
+    '    """A docstring with assert in it."""', '    time.sleep(2.5)', '    await asyncio.sleep(1)', '    page.wait_for_timeout(300)', '    time.sleep(DELAY)', '    note = "assert nothing, time.sleep(9)"  # assert in a comment', '', '    expect(page).to_have_title("x")', '',
+    'class CartPage:', '    def test_connection(self):', '        assert True', '', 'class TestCart(Base):', '    def test_empty(self):', '        pass', '', '    @unittest.skip("no")', '    def test_total(self):', '        self.assertEqual(1, 1)',
+    '        with pytest.raises(ValueError):', '            go()', '        send.assert_called_once()', '', 'class OrderTests(unittest.TestCase):', '  def test_two_spaces(self):', '    pytest.fail("x")', '',
+  ].join('\n'), 'tests/test_a.py', { parser });
+  assert.deepEqual([model.parseStatus, model.capabilities, model.role, model.runner], ['partial', ['tests', 'modifiers', 'assertions', 'waits'], 'test', 'pytest']);
+  assert.deepEqual(model.tests.map((t) => [t.fullTitle, t.modifiers, t.skip?.unconditional ?? null, t.span.startLine, t.span.endLine, t.statementCount, t.assertions.map((a) => a.span.startLine), t.waits.map((w) => [w.span.startLine, w.ms])]), [
+    // The span starts at the first decorator. Only an unconditional skip is read.
+    ['test_skipped', ['skip'], true, 8, 10, 1, [10], []],
+    // time.sleep takes seconds, wait_for_timeout milliseconds. Strings and comments are not searched.
+    ['test_sleeps', ['xfail'], null, 12, 22, 6, [22], [[16, 2500], [17, 1000], [18, 300], [19, null]]],
+    // A method of a class that is no test class is no test. Neither is a function inside a function.
+    ['TestCart > test_empty', [], null, 29, 30, 0, [], []],
+    ['TestCart > test_total', ['skip'], true, 32, 37, 4, [34, 35, 37], []],
+    ['OrderTests > test_two_spaces', [], null, 40, 41, 1, [41], []],
+  ]);
+  assert.deepEqual([model.tests[0].assertions[0], model.suppressions.map((s) => s.rules), model.suites, model.imports], [
+    { span: { startLine: 10, startColumn: 5, endLine: 10, endColumn: 24 }, text: 'assert total() == 1', kind: 'other', library: 'unknown', actual: null, expected: null, matcher: null, negated: false, soft: false, complete: true, awaited: 'not-needed', guarded: false, reachable: true, viaHelper: null },
+    [['QCR-W001']], [], [],
+  ]);
+  // CRLF line ends and a byte order mark are taken out when a file is read (toLf), so they change nothing here either.
+  const crlf = await py(toLf(`${String.fromCharCode(0xfeff)}def test_a():\r\n    time.sleep(1)\r\n    assert 1\r\n`), 'tests/test_a.py', { parser });
+  assert.deepEqual([crlf.tests.map((t) => t.title), crlf.tests[0].waits.map((w) => w.ms), crlf.tests[0].assertions.map((a) => [a.text, a.span.startLine, a.span.endColumn])], [['test_a'], [1000], [['assert 1', 3, 13]]]);
+  // With no test found the scanner has nothing to offer, and the file stays failed. conftest.py stays a support file.
+  const none = await py('x = 1\n', 'tests/test_b.py', { parser });
+  assert.deepEqual([none.parseStatus, none.capabilities, none.role, none.tests], ['failed', [], 'test', []]);
+  assert.deepEqual((({ role, parseStatus, tests }) => [role, parseStatus, tests.length])(await py('def test_a():\n    assert 1\n', 'tests/conftest.py', { parser })), ['support', 'partial', 1]);
   assert.deepEqual(schemaErrors('model.schema.json', model), []);
   assert.equal((await pythonAdapter.parse({ path: 'a.py', absPath: '/a.py', language: 'python', project: null, text: 'x' }, { ...adapterContext(), parser })).tree, null);
 });
@@ -830,7 +856,7 @@ test('hooks keep their assertions, and the two halves of a fixture each keep the
   assert.deepEqual(unittestSetUp.suites[0].hooks[0].assertions.map((a) => [a.matcher, operandOf(a.actual)]), [['assertEqual', 'len(self.cart.items) <call count>']]);
 });
 
-test('the rules read the Python model: a swallowed failure is QCR-E001, an unawaited async expect is QCR-A003', async () => {
+test('the rules read the Python model: a swallowed failure is QCR-E001, an unawaited async expect is QCR-A003, and the rules on waits, selectors, mocks and cleanup run', async () => {
   const review = async (framework) => {
     const { report } = await runReview({ root: fixtureRoot('adapters', 'python', framework), config: resolveConfig({ rules: { 'QCR-N001': 'off', 'QCR-D001': 'off' } }).config, git: false, rules: builtinRules });
     return report.findings.map((finding) => `${finding.location.file}:${finding.location.startLine} ${finding.ruleId} ${finding.message}`);
@@ -846,7 +872,217 @@ test('the rules read the Python model: a swallowed failure is QCR-E001, an unawa
   const playwright = await review('playwright-python');
   assert.ok(playwright.includes('tests/test_async_login.py:32 QCR-A003 This assertion is not awaited, so the test can end before it fails.'), playwright.join('\n'));
   assert.deepEqual(playwright.filter((line) => line.includes('QCR-A003') && line.includes('test_matchers.py')).map((line) => Number(line.split(':')[1].split(' ')[0])), [56, 57, 58, 59, 60, 61]);
-  // The rules that need what a body does (waits, selectors, mocks, resources) do not run yet.
+  // The rules that need what a body does: a hard wait, a brittle selector, a driver and a patch that are never released. No rule is skipped any more.
+  const selenium = await review('selenium');
+  for (const line of [
+    'tests/test_login.py:34 QCR-W001 Hard wait of 2000 ms.', "tests/test_search.py:24 QCR-S001 XPath depends on layout: (//div[@class='inventory_item_name'])[1].", 'tests/test_waits.py:45 QCR-C001 This driver is started and never quit.',
+  ]) assert.ok(selenium.includes(line), `${line}\n${selenium.join('\n')}`);
+  assert.deepEqual(selenium.filter((line) => line.includes('QCR-C001')).length, 1); // the drivers closed in tearDown, in finally, by addCleanup and by a fixture teardown are not reported
+  const unittest = await review('unittest');
+  assert.deepEqual(unittest.filter((line) => line.includes('QCR-C001')), ['tests/test_checkout.py:35 QCR-C001 This patch is never undone.', 'tests/test_checkout.py:36 QCR-C001 This environment variable is changed and never set back.']);
+  const body = (lines) => lines.filter((line) => /QCR-(W001|S001|M001|C001)/.test(line)).map((line) => line.split(' ').slice(0, 2).join(' ').replace('tests/test_', '').replace('QCR-', ''));
+  assert.deepEqual(body(pytest), [
+    // Requests that create data and never delete it (info), fixed sleeps, and the test that takes eight things and gives none back.
+    'cart.py:67 C001', 'checkout.py:25 C001', 'checkout.py:26 W001', 'checkout.py:27 W001', 'checkout.py:28 W001', 'checkout.py:33 C001', 'checkout.py:34 W001', 'checkout.py:66 C001',
+    'checkout.py:133 C001', 'checkout.py:134 C001', 'checkout.py:135 C001', 'checkout.py:136 C001', 'checkout.py:137 C001', 'checkout.py:138 C001', 'checkout.py:140 C001', 'checkout.py:141 C001',
+    // Over-mocking: the function under test has a fixed reply and is then checked, the class under test is patched, the module under test is patched.
+    // `@patch("shop.checkout.tax_rate", return_value=0)` stubs a dependency and is not reported.
+    'checkout.py:173 M001', 'checkout.py:176 M001', 'checkout.py:187 M001',
+  ]);
+  assert.ok(pytest.includes('tests/test_checkout.py:173 QCR-M001 charge is given a fixed reply and is then called and checked, so this assertion checks the mock.'));
+  assert.deepEqual(body(playwright), [
+    'checkout.py:33 W001', 'checkout.py:40 S001',
+    // A route that answers every request, before a check on the page.
+    'routes.py:18 M001', 'routes.py:31 W001', 'routes.py:54 S001', 'routes.py:55 S001', 'routes.py:56 S001',
+    // A browser, a context and a page started by hand and never closed. The ones closed in `finally`, by `with` or by a fixture are not reported.
+    'routes.py:67 C001', 'routes.py:68 C001', 'routes.py:69 C001', 'routes.py:70 C001', 'routes.py:101 C001',
+  ]);
   const { report } = await runReview({ root: fixtureRoot('adapters', 'python', 'selenium'), config: resolveConfig({}).config, git: false, rules: builtinRules });
-  assert.deepEqual(report.files[0].rulesSkipped.map((rule) => rule.ruleId), ['QCR-W001', 'QCR-S001', 'QCR-M001', 'QCR-C001']);
+  assert.deepEqual(report.files.flatMap((entry) => entry.rulesSkipped), []);
+});
+
+// What a body does.
+
+const BODY_HEADER = `${HEADER}import asyncio\nimport os\nimport time\nfrom time import sleep as nap\nfrom selenium import webdriver\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver.support.ui import WebDriverWait\n`;
+const selectorRows = (list) => list.map((s) => [s.api, s.strategy, s.value, ...(s.positional ? [`${s.positional.kind}:${s.positional.index}:${s.positional.baseStrategy}`] : [])]);
+const mockRows = (list) => list.map((m) => [m.kind, m.target, m.targetsSubject, [m.passthrough && 'passthrough', m.stubbedReturn && 'stubbed', m.fulfillsAllNetwork && 'all-network'].filter(Boolean).join(' ')]);
+const resourceRows = (list) => list.map((r) => [r.span.startLine, r.kind, r.acquiredIn, r.autoManaged ? 'auto' : r.released ? 'released' : 'leak']);
+
+test('waits: fixed sleeps in milliseconds, implicit waits, condition waits and fake time', async () => {
+  const t = await testWith([
+    'time.sleep(2)', 'time.sleep(0.25)', 'time.sleep(1_000)', 'time.sleep(DELAY)', 'nap(3)', 'await asyncio.sleep(1.5)', 'page.wait_for_timeout(500)', 'driver.implicitly_wait(10)',
+    'page.wait_for_selector("#a")', 'page.locator("#a").wait_for()', 'page.wait_for_load_state()', 'WebDriverWait(driver, 5).until(ready)', 'wait = WebDriverWait(driver, 5)', 'wait.until_not(busy)',
+    'self.wait.until(ready)', 'loop.run_until_complete(job)', 'retry.until(ready)', 'freeze_time("2026-01-01")', 'sleep(4)', 'thread.sleep(5)',
+  ], { header: `${BODY_HEADER}from freezegun import freeze_time\n`, params: 'self, page, driver' });
+  assert.deepEqual(t.waits.map((w) => [w.kind, w.ms, w.text]), [
+    ['fixed-sleep', 2000, 'time.sleep(2)'], ['fixed-sleep', 250, 'time.sleep(0.25)'], ['fixed-sleep', 1000000, 'time.sleep(1_000)'], ['fixed-sleep', null, 'time.sleep(DELAY)'],
+    // `from time import sleep as nap`: the name is followed through the import.
+    ['fixed-sleep', 3000, 'nap(3)'], ['fixed-sleep', 1500, 'asyncio.sleep(1.5)'], ['fixed-sleep', 500, 'page.wait_for_timeout(500)'], ['implicit-wait-config', 10000, 'driver.implicitly_wait(10)'],
+    ['condition', null, 'page.wait_for_selector("#a")'], ['condition', null, 'page.locator("#a").wait_for()'], ['condition', null, 'page.wait_for_load_state()'],
+    ['condition', null, 'WebDriverWait(driver, 5).until(ready)'], ['condition', null, 'wait.until_not(busy)'], ['condition', null, 'self.wait.until(ready)'],
+    ['fake-timer', null, 'freeze_time("2026-01-01")'],
+    // A bare `sleep` that is not imported from time, `thread.sleep`, `retry.until` and `run_until_complete` are not known.
+  ]);
+  assert.deepEqual(t.waits[0].span, { startLine: 16, startColumn: 5, endLine: 16, endColumn: 18 });
+});
+
+test('selectors: Playwright calls, page actions with a selector, Selenium By strategies and picks by position', async () => {
+  const t = await testWith([
+    'page.locator("#buy").click()', 'page.locator(".price")', 'page.locator("//div[@id=\'a\']")', 'page.locator("[data-testid=\'buy\']")', 'page.locator("[data-automation=\'buy\']")', 'page.locator(f"#row-{n}")', 'page.locator(SELECTOR)',
+    'page.get_by_role("button", name="Buy")', 'page.get_by_test_id("buy")', 'page.get_by_label("Name")', 'page.get_by_text("Buy")', 'page.get_by_placeholder("Name")', 'page.query_selector_all("li")',
+    'page.frame_locator("#ads").locator("a")', 'page.click("#buy")', 'page.fill("#name", "Ada")', 'page.fill("#name")', 'self.login_page.click("text=Login")', 'button.click("#not-a-selector")', 'page.click(SELECTOR)',
+    'page.locator("li").nth(2)', 'page.locator("li").first', 'page.get_by_role("row").last.click()', 'page.locator("ul").locator("li").nth(n)',
+    'driver.find_element(By.ID, "name")', 'driver.find_element(By.CSS_SELECTOR, "#name")', 'driver.find_element(By.CSS_SELECTOR, ".a > .b")', 'driver.find_elements(By.XPATH, "//li")[0]', 'driver.find_elements(By.CLASS_NAME, "row")[3]',
+    'driver.find_element(by=By.NAME, value="q")', 'located((By.LINK_TEXT, "Home"))', 'driver.find_element(By.ID, name)', 'driver.find_element_by_xpath("//a")', 'driver.find_elements_by_class_name("row")', 'By.ID', 'x = (By.UNKNOWN, "a")',
+  ], { header: BODY_HEADER, params: 'self, page, driver, button, n, name', config: { testIdAttribute: 'data-automation' } });
+  assert.deepEqual(selectorRows(t.selectors), [
+    ['locator', 'id', '#buy'], ['locator', 'class', '.price'], ['locator', 'xpath', "//div[@id='a']"], ['locator', 'test-id', "[data-testid='buy']"],
+    // The test id attribute of the config counts too.
+    ['locator', 'test-id', "[data-automation='buy']"],
+    // A selector that is not written out: the call is known, the value is not.
+    ['locator', 'other', null], ['locator', 'other', null],
+    ['get_by_role', 'role', 'button'], ['get_by_test_id', 'test-id', 'buy'], ['get_by_label', 'label', 'Name'], ['get_by_text', 'text', 'Buy'], ['get_by_placeholder', 'other', 'Name'], ['query_selector_all', 'css', 'li'],
+    ['frame_locator', 'id', '#ads'], ['locator', 'css', 'a'],
+    // On a page the first argument of click and fill is a selector. On a locator it is not, and fill needs two arguments.
+    ['click', 'id', '#buy'], ['fill', 'id', '#name'], ['click', 'text', 'text=Login'],
+    ['locator', 'css', 'li', 'nth:2:css'], ['locator', 'css', 'li', 'first:null:css'], ['get_by_role', 'role', 'row', 'last:null:role'], ['locator', 'css', 'ul'], ['locator', 'css', 'li', 'nth:null:css'],
+    // Selenium: the strategy comes from the By constant. For CSS it is read from the selector.
+    ['By.ID', 'id', 'name'], ['By.CSS_SELECTOR', 'id', '#name'], ['By.CSS_SELECTOR', 'css', '.a > .b'], ['By.XPATH', 'xpath', '//li', 'first:0:xpath'], ['By.CLASS_NAME', 'class', 'row', 'nth:3:class'],
+    ['By.LINK_TEXT', 'link-text', 'Home'], ['By.ID', 'id', null], ['find_element_by_xpath', 'xpath', '//a'], ['find_elements_by_class_name', 'class', 'row'],
+  ]);
+  assert.deepEqual([t.selectors[0].text, t.selectors[23].text, t.selectors[28].text], ['page.locator("#buy")', 'driver.find_element(By.ID, "name")', '(By.LINK_TEXT, "Home")']);
+});
+
+test('steps and data: navigation, actions, HTTP requests by verb, and SQL by its first word', async () => {
+  const t = await testWith([
+    'page.goto("/cart")', 'page.locator("#buy").click()', 'page.get_by_label("Name").fill("Ada")', 'self.checkout_page.reload()', 'driver.get("https://www.saucedemo.com")', 'driver.find_element(By.ID, "q").send_keys("x")',
+    'cart.click()', 'items.clear()', 'cache.get("key")', 'requests.post(URL, json={})', 'httpx.get(URL)', 'self.client.put("/a", {})', 'api_session.delete(URL)', 'page.request.patch(URL)', 'settings.get("x")',
+    'cursor.execute("INSERT INTO orders VALUES (1)")', 'cursor.execute("  select 1")', 'cursor.execute(QUERY)', 'cursor.execute("VACUUM")', 'pool.submit(job)',
+  ], { header: `${BODY_HEADER}import httpx\nimport requests\n`, params: 'self, page, driver, cart, items, cache, api_session, settings, cursor, pool' });
+  assert.deepEqual(t.steps.map((s) => [s.kind, s.text]), [
+    ['navigate', 'page.goto("/cart")'], ['action', 'page.locator("#buy").click()'], ['action', 'page.get_by_label("Name").fill("Ada")'], ['navigate', 'self.checkout_page.reload()'],
+    ['navigate', 'driver.get("https://www.saucedemo.com")'], ['action', 'driver.find_element(By.ID, "q").send_keys("x")'],
+    // `cart.click()` and `items.clear()` are on objects that are not known to be a page or an element.
+    ['request', 'requests.post(URL, json={})'], ['request', 'httpx.get(URL)'], ['request', 'self.client.put("/a", {})'], ['request', 'api_session.delete(URL)'], ['request', 'page.request.patch(URL)'],
+  ]);
+  assert.deepEqual(t.data.map((d) => [d.op, d.via]), [['create', 'http'], ['read', 'http'], ['update', 'http'], ['delete', 'http'], ['update', 'http'], ['create', 'db'], ['read', 'db']]);
+});
+
+test('mocks: patch in every form, named mocks, monkeypatch, network fakes, and which ones replace the module under test', async () => {
+  const header = `${HEADER}import responses\nimport respx\nfrom shop.cart import Cart, get_total\nfrom shop import cart as cart_module\n`;
+  const model = await py([
+    header, '@patch("shop.cart.get_total", return_value=42)', '@patch("shop.cart.tax_rate", return_value=0)', '@patch("shop.mail.send")', '@mock.patch.object(Cart, "total", return_value=1)', '@patch("shop.cart.Cart")',
+    'def test_a(cart_class, total, send, tax_rate, mock_total, mocker, monkeypatch, page, requests_mock):',
+    '    with patch("shop.cart.audit", wraps=real_audit) as audit, patch.object(cart_module, "charge") as charge:', '        pass',
+    '    with patch("shop.cart"), patch("shop"), patch("shop.orders"):', '        pass',
+    '    spy = mocker.spy(Cart, "total")', '    fake = mocker.patch("shop.cart.rates", {"EUR": 1})', '    later = mocker.patch("shop.cart.stock")', '    later.return_value = 3', '    send.side_effect = OSError',
+    '    callback = Mock()', '    reply = MagicMock(return_value=1)', '    Mock()', '    monkeypatch.setattr("shop.cart.get_total", lambda items: 42)', '    monkeypatch.setattr(cart_module, "charge", real_charge)',
+    '    monkeypatch.setattr(Cart, "tax", Mock(return_value=0))', '    monkeypatch.setattr("shop.cart.LIMIT", 5)', '    monkeypatch.setitem(settings, "a", 1)',
+    '    page.route("**/*", lambda route: route.fulfill(json={}))', '    page.route("**/api", lambda route: route.continue_())', '    page.route("**/img", handler)', '    page.route(PATTERN, answer)',
+    '    responses.add(responses.GET, "https://api.example.test/a", json={})', '    respx.post("https://api.example.test/b")', '    requests_mock.get("**/*", json={})', '    router.route("/x", view)', '    tax_rate.return_value = 7', '',
+    'def answer(route):', '    route.fulfill(status=204)', '',
+  ].join('\n'), 'tests/test_cart.py');
+  assert.deepEqual(model.subject, { module: 'shop.cart', via: 'filename' });
+  assert.deepEqual(mockRows(model.tests[0].mocks), [
+    // The decorators come first. `get_total` is imported by this test from the module under test, so the patch replaces what is tested.
+    // A patched function is named the way the file calls it: `get_total`, and `cart_module.tax_rate` after `from shop import cart as cart_module`.
+    ['function', 'get_total', true, 'stubbed'],
+    // `tax_rate` is in the same module, and the test does not import it: it may be something the module imports. Not known, so null.
+    // `send.side_effect = OSError` in the body gives the third patch a fixed reply: the decorators fill the parameters from the bottom up.
+    ['function', 'cart_module.tax_rate', null, 'stubbed'], ['function', 'shop.mail.send', false, 'stubbed'], ['function', 'Cart.total', true, 'stubbed'], ['class', 'shop.cart.Cart', true, ''],
+    // `wraps=` keeps the real behavior. A spy does too.
+    ['function', 'cart_module.audit', null, 'passthrough'], ['function', 'cart_module.charge', true, ''],
+    // The module under test itself, a package the file imports from, and a dotted name that is not known to be a module.
+    ['module', 'shop.cart', true, ''], ['module', 'shop', false, ''], ['function', 'shop.orders', false, ''], ['function', 'Cart.total', true, 'passthrough'],
+    // A second argument, `return_value=`, or `.return_value = ...` later: a fixed reply.
+    ['function', 'cart_module.rates', null, 'stubbed'], ['function', 'cart_module.stock', null, 'stubbed'],
+    // A mock with a name of its own. One that is not stored is not kept.
+    ['function', 'callback', false, ''], ['function', 'reply', false, 'stubbed'],
+    // monkeypatch: a lambda, a literal or a mock with a reply is a canned value. A real function is not.
+    // A name in capitals only is a constant, not a class.
+    ['function', 'get_total', true, 'stubbed'], ['function', 'cart_module.charge', true, ''], ['function', 'Cart.tax', true, 'stubbed'], ['function', 'cart_module.LIMIT', null, 'stubbed'],
+    // Network: a route that answers every request, one that lets the call through, one whose handler is not known, and one whose handler is a function of this file.
+    ['network', '**/*', false, 'stubbed all-network'], ['network', '**/api', false, 'passthrough'], ['network', '**/img', false, ''], ['network', 'PATTERN', false, 'stubbed'],
+    ['network', 'https://api.example.test/a', false, 'stubbed'], ['network', 'https://api.example.test/b', false, 'stubbed'], ['network', '**/*', false, 'stubbed all-network'],
+  ]);
+  // `@patch` on a class and a patcher started in setUp are mocks of the file. With no module under test, nothing is claimed about the target.
+  const file = await py([
+    HEADER, '@patch("shop.mail.send")', 'class CartTests(unittest.TestCase):', '    def setUp(self):', '        self.charge = patch("shop.pay.charge", return_value=True).start()', '        self.addCleanup(patch.stopall)',
+    '    def test_a(self, send):', '        self.assertTrue(pay())', '',
+  ].join('\n'), 'tests/test_misc.py');
+  assert.deepEqual([file.subject, mockRows(file.fileMocks), file.tests[0].mocks], [null, [['function', 'shop.mail.send', null, ''], ['function', 'shop.pay.charge', null, 'stubbed']], []]);
+});
+
+test('subject: the import that has the name of the test file, or the subjectMap of the config', async () => {
+  const subject = async (relPath, imports, config) => (await py(`${imports}\n\ndef test_a():\n    assert True\n`, relPath, config ? { config } : undefined)).subject;
+  assert.deepEqual(await subject('tests/test_cart.py', 'from shop.cart import Cart'), { module: 'shop.cart', via: 'filename' });
+  assert.deepEqual(await subject('tests/cart_test.py', 'import shop.cart'), { module: 'shop.cart', via: 'filename' });
+  assert.deepEqual(await subject('tests/test_cart.py', 'from shop import cart'), { module: 'shop.cart', via: 'filename' });
+  assert.deepEqual(await subject('tests/test_cart.py', 'from . import cart'), { module: '.cart', via: 'filename' });
+  assert.deepEqual(await subject('tests/test_Cart.py', 'import cart as c'), { module: 'cart', via: 'filename' });
+  // No import with the name of the file, an import under TYPE_CHECKING, or a framework import: not known.
+  assert.equal(await subject('tests/test_cart.py', 'from shop.orders import Order'), null);
+  assert.equal(await subject('tests/test_cart.py', 'from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from shop.cart import Cart'), null);
+  assert.equal(await subject('tests/test_pytest.py', 'import pytest'), null);
+  assert.equal(await subject('tests/test_assertpy.py', 'from assertpy import assert_that'), null);
+  assert.equal(await subject('tests/test_.py', 'import shop'), null);
+  const config = { rules: { 'QCR-M001': { subjectMap: { 'tests/api/**': 'shop.api.views' } } } };
+  assert.deepEqual(await subject('tests/api/test_orders.py', 'from shop.api import views\nfrom shop import orders', config), { module: 'shop.api.views', via: 'subjectMap' });
+  // The module is imported as a whole, so no name is imported from it. A patched name that the file calls there itself is part of what it tests.
+  const mapped = await py('from unittest.mock import patch\nfrom shop.api import views\n\n@patch("shop.api.views.list_orders")\n@patch("shop.api.views.fetch")\n@patch("shop.db.query")\ndef test_a(query, fetch, listed):\n    assert views.list_orders()\n', 'tests/api/test_orders.py', { config });
+  assert.deepEqual(mockRows(mapped.tests[0].mocks), [['function', 'views.list_orders', true, ''], ['function', 'views.fetch', null, ''], ['function', 'shop.db.query', false, '']]);
+});
+
+test('resources: what a body takes, and whether it is released there, in a hook that covers it, or by pytest', async () => {
+  const t = await testWith([
+    'driver = webdriver.Chrome()', 'other = webdriver.Firefox()', 'other.quit()', 'log = open("a.log")', 'with open("b.log") as handle, webdriver.Edge() as edge:', '    pass',
+    'os.environ["A"] = "1"', 'os.environ["B"] = "1"', 'del os.environ["B"]', 'os.environ["C"] = "1"', 'os.environ["C"] = old', 'os.environ["D"] = "1"', 'os.environ.pop("D")', 'os.environ[key] = "1"',
+    'monkeypatch.setenv("E", "1")', 'patcher = patch("a.b")', 'patcher.start()', 'started = patch("a.c").start()', 'held = patch("a.d")', 'held.start()', 'held.stop()', 'patch("a.e").start()',
+    'playwright = sync_playwright().start()', 'browser = playwright.chromium.launch()', 'made = browser.new_context()', 'tab = made.new_page()', 'own = context.new_page()', 'server.start()', 'mock_server.start()',
+    'request.addfinalizer(log.close)', 'thread.join()',
+  ], { header: `${BODY_HEADER}from playwright.sync_api import sync_playwright\n`, params: 'page, context, tmp_path, monkeypatch, mocker, capsys, request, mock_server, key, old' });
+  const line = (n) => n + 15;
+  assert.deepEqual(resourceRows(t.resources), [
+    // The fixtures of pytest and its plugins clean up after themselves.
+    [15, 'page', 'test', 'auto'], [15, 'context', 'test', 'auto'], [15, 'file', 'test', 'auto'], [15, 'patch', 'test', 'auto'], [15, 'patch', 'test', 'auto'], [15, 'global', 'test', 'auto'],
+    [line(1), 'driver', 'test', 'leak'], [line(2), 'driver', 'test', 'released'],
+    // `request.addfinalizer(log.close)` further down closes the file. A `with` block closes what it opens.
+    [line(4), 'file', 'test', 'released'], [line(5), 'file', 'test', 'released'], [line(5), 'driver', 'test', 'released'],
+    // The environment: put back by `del`, by a second write, or by `pop`. A key that is not written out is not tracked.
+    [line(7), 'env', 'test', 'leak'], [line(8), 'env', 'test', 'released'], [line(10), 'env', 'test', 'released'], [line(12), 'env', 'test', 'released'], [line(15), 'env', 'test', 'auto'],
+    // A patcher started by hand needs a stop. A mock that only has a method named start is no patcher.
+    [line(17), 'patch', 'test', 'leak'], [line(18), 'patch', 'test', 'leak'], [line(20), 'patch', 'test', 'released'], [line(22), 'patch', 'test', 'leak'],
+    [line(23), 'browser', 'test', 'leak'], [line(24), 'browser', 'test', 'leak'], [line(25), 'context', 'test', 'leak'], [line(26), 'page', 'test', 'leak'],
+    // A page made from the `context` fixture is closed with it.
+    [line(27), 'page', 'test', 'auto'],
+  ]);
+
+  // Hooks: tearDown covers its class, teardown_module the file, and the code after a yield its fixture.
+  const model = await py([
+    BODY_HEADER, 'def setup_module(module):', '    module.driver = webdriver.Chrome()', '', 'def teardown_module(module):', '    module.driver.quit()', '', '@pytest.fixture', 'def firefox():', '    browser = webdriver.Firefox()', '    yield browser',
+    '    browser.quit()', '', '@pytest.fixture', 'def edge():', '    browser = webdriver.Edge()', '    return browser', '',
+    'class A(unittest.TestCase):', '    def setUp(self):', '        self.driver = webdriver.Chrome()', '        self.other = webdriver.Safari()', '        self.addCleanup(self.other.quit)', '    def tearDown(self):', '        self.driver.quit()',
+    '    def test_a(self):', '        self.assertTrue(self.driver.title)', '',
+    'class B(unittest.TestCase):', '    def setUp(self):', '        self.driver = webdriver.Chrome()', '    def test_b(self):', '        self.driver.quit()', '',
+    'shared = webdriver.Remote()', 'patch("a.b").start()', '', 'def make_driver():', '    return webdriver.Chrome()', '',
+  ].join('\n'));
+  const at = (n) => n + 12;
+  assert.deepEqual(resourceRows(model.fileResources), [
+    [at(2), 'driver', 'hook', 'released'], [at(9), 'driver', 'hook', 'released'],
+    // A fixture that returns its driver has no teardown, so nothing closes it. The tearDown of class A does not cover class B.
+    [at(15), 'driver', 'hook', 'leak'], [at(20), 'driver', 'hook', 'released'], [at(21), 'driver', 'hook', 'released'], [at(30), 'driver', 'hook', 'leak'],
+    // At the top of the file. A helper function is not read: what it makes belongs to whoever calls it.
+    [at(34), 'driver', 'file', 'leak'], [at(35), 'patch', 'file', 'leak'],
+  ]);
+  const hooks = [...model.fileHooks, ...model.suites.flatMap((suite) => suite.hooks)];
+  assert.deepEqual(hooks.map((hook) => [hook.kind, hook.releases]), [
+    ['beforeAll', []], ['afterAll', ['var:module.driver']], ['beforeEach', []], ['fixture-teardown', ['var:browser']], ['beforeEach', []],
+    // `self.addCleanup(self.other.quit)` counts as a release where it is registered.
+    ['beforeEach', ['var:self.other']], ['afterEach', ['var:self.driver']], ['beforeEach', []],
+  ]);
+  // Hooks keep their own waits, selectors and data.
+  const hook = (await modelOf('selenium', 'tests/test_login.py')).suites[0].hooks[0];
+  assert.deepEqual([hook.waits.map((w) => [w.kind, w.ms]), (await modelOf('playwright-python', 'tests/test_checkout.py')).fileHooks[0].selectors.length], [[['implicit-wait-config', 10000]], 3]);
+  const teardown = (await modelOf('pytest', 'tests/conftest.py')).fileHooks.filter((entry) => entry.kind === 'fixture-teardown');
+  assert.deepEqual(teardown.map((entry) => [entry.releases, entry.data.map((d) => d.op)]), [[['var:session'], []], [[], ['delete']]]);
 });

@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -82,12 +89,72 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 5,
+            "endLine": 6,
+            "endColumn": 49
+          },
+          "text": "page.get_by_role(\"button\", name=\"Open Menu\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 12,
+            "endLine": 7,
+            "endColumn": 51
+          },
+          "text": "page.get_by_role(\"link\", name=\"Logout\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "link"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 4,
+            "startColumn": 21,
+            "endLine": 4,
+            "endColumn": 25
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 5,
+            "endLine": 5,
+            "endColumn": 58
+          },
+          "text": "page.goto(\"https://www.saucedemo.com/inventory.html\")",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 5,
+            "endLine": 6,
+            "endColumn": 57
+          },
+          "text": "page.get_by_role(\"button\", name=\"Open Menu\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "09111f2e3188489f3d7ebf323c342e15a5f9685e"
     },
@@ -148,12 +215,72 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 49
+          },
+          "text": "page.get_by_role(\"button\", name=\"Open Menu\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 12,
+            "endLine": 13,
+            "endColumn": 50
+          },
+          "text": "page.get_by_role(\"link\", name=\"About\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "link"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 43,
+            "endLine": 10,
+            "endColumn": 47
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 5,
+            "endLine": 11,
+            "endColumn": 58
+          },
+          "text": "page.goto(\"https://www.saucedemo.com/inventory.html\")",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 57
+          },
+          "text": "page.get_by_role(\"button\", name=\"Open Menu\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "b58a44897eb2f14761a7a238363cf1084dd6366f"
     }

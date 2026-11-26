@@ -3,10 +3,9 @@
 // the syntax tree. Names are fully qualified: `@mark.skip` after `from pytest import mark` is
 // looked up as `pytest.mark.skip`.
 //
-// The first half holds the structure of a test file, the second half what a body checks. The
-// names for waits, selectors, mocks and resources join it with the part of the adapter that
-// reads them.
-import type { AssertionKind, ComparisonOperator, FrameworkId, Modifier, NHook } from '../../model/types.js';
+// Three parts: the structure of a test file, what a body checks, and what a body does (waits,
+// selectors, requests, mocks and resources).
+import type { AssertionKind, ComparisonOperator, FrameworkId, Modifier, NDataOp, NHook, NResource, NStep, SelectorStrategy } from '../../model/types.js';
 
 /** The top-level module of an import, and the framework it proves. */
 export const FRAMEWORK_MODULES: Readonly<Record<string, FrameworkId>> = {
@@ -16,8 +15,13 @@ export const FRAMEWORK_MODULES: Readonly<Record<string, FrameworkId>> = {
   selenium: 'selenium',
 };
 
-/** Test libraries that are no framework of their own: an import of one is still a test import. */
-export const TEST_LIBRARY_MODULES: readonly string[] = ['pytest_asyncio', 'pytest_cases', 'parameterized'];
+/**
+ * Test libraries that are no framework of their own: an import of one is still a test import, never the module under test.
+ * Assertion, mock, fake time and network mock libraries are among them.
+ */
+export const TEST_LIBRARY_MODULES: readonly string[] = [
+  'pytest_asyncio', 'pytest_cases', 'parameterized', 'pytest_check', 'hamcrest', 'assertpy', 'mock', 'freezegun', 'time_machine', 'responses', 'respx', 'requests_mock',
+];
 
 /** A function or method is a test when its name starts with this, and a class is a pytest suite when its name starts with `Test`. */
 export const TEST_FUNCTION_PREFIX = 'test';
@@ -264,6 +268,136 @@ export const ASSERTION_CATCHERS: readonly string[] = ['BaseException', 'Exceptio
 /** `with contextlib.suppress(Exception):` swallows what its block raises. */
 export const SUPPRESS_CALLS: readonly string[] = ['contextlib.suppress'];
 
+// What a body does: waits.
+
+/** Calls that sleep, with what one unit of their argument is in milliseconds. */
+export const FIXED_SLEEPS: Readonly<Record<string, number>> = { 'time.sleep': 1000, 'asyncio.sleep': 1000 };
+/** Methods that sleep: Playwright's `page.wait_for_timeout(500)` takes milliseconds. */
+export const FIXED_WAIT_METHODS: Readonly<Record<string, number>> = { wait_for_timeout: 1 };
+/** Selenium: `driver.implicitly_wait(10)` takes seconds and applies to every lookup. */
+export const IMPLICIT_WAIT_METHODS: Readonly<Record<string, number>> = { implicitly_wait: 1000 };
+/** Any other method that starts like this waits for a condition: `wait_for_selector`, `wait_for_url`, `locator.wait_for()`. */
+export const CONDITION_WAIT_PREFIX = 'wait_for';
+/** Selenium: `WebDriverWait(driver, 5).until(condition)`. */
+export const SELENIUM_WAIT = 'WebDriverWait';
+export const SELENIUM_WAIT_METHODS: readonly string[] = ['until', 'until_not'];
+/** Libraries that replace the clock. Not waits. */
+export const FAKE_TIME_CALLS: readonly string[] = ['freezegun.freeze_time', 'time_machine.travel'];
+
+// Selectors.
+
+/** Calls whose first argument is a selector. Null: the strategy is read from the selector itself. */
+export const SELECTOR_CALLS: Readonly<Record<string, SelectorStrategy | null>> = {
+  locator: null, frame_locator: null, query_selector: null, query_selector_all: null, wait_for_selector: null,
+  get_by_role: 'role', get_by_test_id: 'test-id', get_by_label: 'label', get_by_text: 'text', get_by_placeholder: 'other', get_by_alt_text: 'other', get_by_title: 'other',
+};
+/** Page methods that take a selector first when they are given at least this many arguments: `page.click("#buy")`, `page.fill("#name", "Ada")`. */
+export const SELECTOR_ACTIONS: Readonly<Record<string, number>> = { click: 1, dblclick: 1, hover: 1, check: 1, uncheck: 1, fill: 2, type: 2, press: 2, select_option: 2, is_visible: 1, text_content: 1, inner_text: 1 };
+/** An object is a page when its name is one of these or ends in `_page`. On a locator the first argument is a value, not a selector. */
+export const PAGE_OBJECTS: readonly string[] = ['page', 'frame', 'popup'];
+/** Selenium: the constants of `By`, with the strategy each one is. Null: read from the selector. */
+export const SELENIUM_BY = 'By';
+export const BY_STRATEGIES: Readonly<Record<string, SelectorStrategy | null>> = {
+  XPATH: 'xpath', CSS_SELECTOR: null, CLASS_NAME: 'class', ID: 'id', NAME: 'name', LINK_TEXT: 'link-text', PARTIAL_LINK_TEXT: 'link-text', TAG_NAME: 'css',
+};
+/** Selenium calls that look up one element or all of them. */
+export const SELENIUM_FINDERS: readonly string[] = ['find_element', 'find_elements'];
+/** Attribute names that mark a test id in a CSS selector. The configured `testIdAttribute` is added to them. */
+export const TEST_ID_ATTRIBUTES: readonly string[] = ['data-testid', 'data-test', 'data-qa', 'data-cy'];
+/** A pick by position: `.first`, `.last`, `.nth(2)`, and an index on a list of elements. */
+export const POSITIONAL: Readonly<Record<string, 'nth' | 'first' | 'last'>> = { first: 'first', last: 'last', nth: 'nth' };
+
+// Steps and data.
+
+export const STEP_METHODS: Readonly<Record<string, NStep['kind']>> = {
+  goto: 'navigate', reload: 'navigate', go_back: 'navigate',
+  click: 'action', dblclick: 'action', fill: 'action', type: 'action', press: 'action', check: 'action', uncheck: 'action', select_option: 'action', hover: 'action',
+  send_keys: 'action', clear: 'action', submit: 'action',
+};
+/** HTTP verbs, and what each one does to data. */
+export const HTTP_METHODS: Readonly<Record<string, NDataOp['op']>> = { get: 'read', head: 'read', post: 'create', put: 'update', patch: 'update', delete: 'delete' };
+/** An object is an HTTP client when its qualified name is one of these modules, or its last name is one of the client names. */
+export const HTTP_MODULES: readonly string[] = ['requests', 'httpx'];
+export const HTTP_CLIENT_NAMES: readonly string[] = ['client', 'session', 'api', 'api_client', 'api_session', 'http', 'request'];
+/** `cursor.execute("INSERT ...")`: the first word of the SQL says what it does. */
+export const SQL_METHODS: readonly string[] = ['execute', 'executemany'];
+export const SQL_VERBS: Readonly<Record<string, NDataOp['op']>> = { insert: 'create', update: 'update', delete: 'delete', select: 'read' };
+
+// Mocks.
+
+/** `patch("pkg.mod.name")`, by qualified name. The value: the mock keeps the real behavior (a spy). */
+export const PATCH_CALLS: Readonly<Record<string, boolean>> = { 'unittest.mock.patch': false, 'mock.patch': false, 'mocker.patch': false };
+/** `patch.object(Target, "name")` and `mocker.spy(Target, "name")`: an object and the name of an attribute. */
+export const OBJECT_PATCH_CALLS: Readonly<Record<string, boolean>> = { 'unittest.mock.patch.object': false, 'mock.patch.object': false, 'mocker.patch.object': false, 'mocker.spy': true };
+/** `monkeypatch.setattr(obj, "name", value)` or `monkeypatch.setattr("pkg.mod.name", value)`. */
+export const MONKEYPATCH_SETATTR = 'monkeypatch.setattr';
+/** Mocks with a name of their own: `send = Mock()`. */
+export const BARE_MOCKS: readonly string[] = ['unittest.mock.Mock', 'unittest.mock.MagicMock', 'unittest.mock.AsyncMock', 'unittest.mock.create_autospec', 'mocker.Mock', 'mocker.MagicMock', 'mocker.stub'];
+/** Keywords that give a mock a fixed reply, and the attributes that do the same later: `send.return_value = 1`. */
+export const STUB_KEYWORDS: readonly string[] = ['return_value', 'side_effect', 'new'];
+export const STUB_ATTRIBUTES: readonly string[] = ['return_value', 'side_effect'];
+/** `wraps=real` keeps the real behavior. */
+export const PASSTHROUGH_KEYWORD = 'wraps';
+/** Libraries that answer HTTP calls with a canned reply, by the name the library or its fixture goes by. */
+export const NETWORK_MOCK_ROOTS: readonly string[] = ['responses', 'respx', 'requests_mock', 'httpx_mock'];
+export const NETWORK_MOCK_METHODS: readonly string[] = ['add', 'add_response', 'register_uri', 'route', ...Object.keys(HTTP_METHODS)];
+/** Playwright: `page.route(pattern, handler)`. The handler answers with `route.fulfill(...)` or lets the call through with `route.continue_()`. */
+export const ROUTE_METHOD = 'route';
+export const ROUTE_FULFILL = 'fulfill';
+export const ROUTE_CONTINUE: readonly string[] = ['continue_', 'fallback'];
+export const MATCH_ALL_PATTERNS: readonly string[] = ['*', '**', '**/*'];
+
+// Resources and how they are released (SPEC.md Section 10.14). A release is a token: a resource is
+// released when one of its tokens is released in its own body or in a hook that covers it.
+
+export interface ResourceRule {
+  kind: NResource['kind'];
+  /** Tokens that release it besides a release call on the variable that holds it. */
+  releasedBy: readonly string[];
+}
+/** By qualified name, or `.method` for a method of any object. */
+export const RESOURCE_CALLS: Readonly<Record<string, ResourceRule>> = {
+  'selenium.webdriver.Chrome': { kind: 'driver', releasedBy: [] },
+  'selenium.webdriver.Firefox': { kind: 'driver', releasedBy: [] },
+  'selenium.webdriver.Edge': { kind: 'driver', releasedBy: [] },
+  'selenium.webdriver.Safari': { kind: 'driver', releasedBy: [] },
+  'selenium.webdriver.Remote': { kind: 'driver', releasedBy: [] },
+  '.launch': { kind: 'browser', releasedBy: [] },
+  '.new_context': { kind: 'context', releasedBy: [] },
+  '.new_page': { kind: 'page', releasedBy: [] },
+  open: { kind: 'file', releasedBy: [] },
+  'sqlite3.connect': { kind: 'connection', releasedBy: [] },
+  'psycopg2.connect': { kind: 'connection', releasedBy: [] },
+  'requests.Session': { kind: 'connection', releasedBy: [] },
+  'httpx.Client': { kind: 'connection', releasedBy: [] },
+};
+/** `sync_playwright().start()` and `patch(...).start()`: started by hand, so stopped by hand. */
+export const START_METHOD = 'start';
+export const PLAYWRIGHT_STARTERS: readonly string[] = ['playwright.sync_api.sync_playwright', 'playwright.async_api.async_playwright'];
+/** Calling one of these on the variable that holds a resource releases it. */
+export const RELEASE_METHODS: readonly string[] = ['quit', 'close', 'stop', 'aclose'];
+/** Calls that release every resource of one kind. */
+export const RELEASE_CALLS: Readonly<Record<string, string>> = { 'unittest.mock.patch.stopall': 'patches', 'mock.patch.stopall': 'patches', 'mocker.stopall': 'patches' };
+/** Calls that register a release for later: `self.addCleanup(self.driver.quit)`, `request.addfinalizer(driver.quit)`. */
+export const CLEANUP_REGISTRARS: readonly string[] = ['self.addCleanup', 'cls.addClassCleanup', 'request.addfinalizer'];
+/** The environment: a write changes it for every test that runs after. */
+export const ENVIRONMENT = 'os.environ';
+/** `monkeypatch.setenv("KEY", "value")` is put back by pytest. */
+export const MONKEYPATCH_ENV: readonly string[] = ['monkeypatch.setenv', 'monkeypatch.delenv'];
+/** Fixtures that pytest and its plugins make and clean up themselves, as parameters of a test or a fixture. */
+export const AUTO_FIXTURES: Readonly<Record<string, NResource['kind']>> = {
+  page: 'page', context: 'context', browser: 'browser', tmp_path: 'file', monkeypatch: 'patch', mocker: 'patch', capsys: 'global',
+};
+
+// The lexical fallback (SPEC.md Section 7.2): line patterns for a file that cannot be parsed.
+
+export const LEXICAL_TEST = /^(\s*)(?:async\s+)?def\s+(test\w*)\s*\(/;
+export const LEXICAL_CLASS = /^(\s*)class\s+(\w+)/;
+export const LEXICAL_SKIP = /^\s*@(?:pytest\.mark\.skip|unittest\.skip)\b(?!if|If|Unless)/;
+export const LEXICAL_XFAIL = /^\s*@(?:pytest\.mark\.xfail|unittest\.expectedFailure)\b/;
+export const LEXICAL_ASSERTION = /^\s*assert\b|\bself\.assert\w+\s*\(|\bpytest\.(raises|fail|warns)\s*\(|(?<![\w.])expect\s*\(|\.assert_\w+\s*\(/;
+export const LEXICAL_FIXED_WAIT = /\b(?:time|asyncio)\.sleep\s*\(\s*([\d.]+)?|\.wait_for_timeout\s*\(\s*(\d+)?/;
+
 /** A qualified name as it is written after `import <module>`: `parameterized.parameterized.expand` is written `parameterized.expand`. */
 const written = (name: string): string => name.replace(/^(\w+)\.\1(?=\.|$)/, '$1');
 
@@ -286,4 +420,15 @@ export const PYTHON_VOCAB_SURFACE: readonly string[] = [...new Set([
   ...LOCATOR_TYPES.map((name) => `: ${name}`), ...COUNT_FUNCTIONS.map((name) => `${name}(`), ...COUNT_ATTRIBUTES.map((name) => `.${name}`),
   ...MOCK_MODULES.map((name) => `${name} import`), ...MOCK_FACTORIES.map((name) => `${name}(`), ...MOCKER_FACTORIES.map((name) => `${MOCKER_FIXTURE}.${name}(`),
   ...ASSERTION_CATCHERS.map((name) => `except ${name}`), ...SUPPRESS_CALLS,
+  ...Object.keys(FIXED_SLEEPS), ...[...Object.keys(FIXED_WAIT_METHODS), ...Object.keys(IMPLICIT_WAIT_METHODS), ...SELENIUM_WAIT_METHODS, ...Object.keys(SELECTOR_CALLS)].map((name) => `.${name}(`),
+  `.${CONDITION_WAIT_PREFIX}(`, `${SELENIUM_WAIT}(`, ...FAKE_TIME_CALLS.map((name) => name.split('.').at(-1)!),
+  ...Object.keys(SELECTOR_ACTIONS).map((name) => `page.${name}("`), ...PAGE_OBJECTS.map((name) => `${name}.`), ...Object.keys(BY_STRATEGIES).map((name) => `${SELENIUM_BY}.${name}`),
+  ...SELENIUM_FINDERS.map((name) => `.${name}(`), ...TEST_ID_ATTRIBUTES, ...Object.keys(STEP_METHODS).map((name) => `.${name}(`),
+  ...Object.keys(HTTP_METHODS).map((name) => `.${name}(`), ...HTTP_MODULES.map((name) => `${name}.`), ...HTTP_CLIENT_NAMES.map((name) => `${name}.`),
+  ...SQL_METHODS.map((name) => `.${name}(`), ...Object.keys(SQL_VERBS).map((verb) => `"${verb.toUpperCase()} `),
+  MONKEYPATCH_SETATTR, ...STUB_KEYWORDS.map((name) => `${name}=`), ...STUB_ATTRIBUTES.map((name) => `.${name} =`), `${PASSTHROUGH_KEYWORD}=`,
+  ...NETWORK_MOCK_ROOTS.map((name) => `${name}.`), ...NETWORK_MOCK_METHODS.map((name) => `.${name}(`), `.${ROUTE_FULFILL}(`, ...ROUTE_CONTINUE.map((name) => `.${name}(`), ...MATCH_ALL_PATTERNS.map((pattern) => `"${pattern}"`),
+  ...Object.keys(RESOURCE_CALLS).map((name) => `${name.startsWith('.') ? name : name.split('.').slice(-2).join('.')}(`), `.${START_METHOD}(`, 'sync_playwright', 'async_playwright',
+  ...RELEASE_METHODS.map((name) => `.${name}(`), 'patch.stopall(', 'mocker.stopall(', ...CLEANUP_REGISTRARS, `${ENVIRONMENT}[`, ...MONKEYPATCH_ENV,
+  ...Object.keys(AUTO_FIXTURES),
 ])];

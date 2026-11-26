@@ -2,7 +2,9 @@
 // (SPEC.md Section 8.1, helper index), and what is known about a file before its bodies are
 // read.
 import path from 'node:path';
-import type { NImport } from '../../model/types.js';
+import type { ResolvedConfig } from '../../config/types.js';
+import type { NFile, NImport } from '../../model/types.js';
+import { matchGlob } from '../../util/glob.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import type { FrameworkGuess, HelperDef, SourceFile } from '../types.js';
@@ -46,6 +48,27 @@ export function collectPythonHelpers(root: SyntaxNode, file: string, ctx: BodyCo
     helpers.push({ name, owner: owner?.type === 'class_definition' ? owner.childForFieldName('name')?.text ?? null : null, file, span: spanOfNode(node) });
   }
   return helpers;
+}
+
+/**
+ * The module a test file is about (SPEC.md Section 8.1): a `subjectMap` entry of QCR-M001, or the
+ * import that has the name of the test file: `test_cart.py` and `from shop.cart import Cart`,
+ * `import shop.cart` or `from shop import cart`. `names` are the local names that stand for the
+ * module or for something imported from it.
+ */
+export function findSubject(filePath: string, imports: readonly NImport[], aliases: ReadonlyMap<string, string>, config: ResolvedConfig): { subject: NFile['subject']; names: Set<string> } {
+  const namesOf = (module: string): Set<string> => new Set([...aliases].filter(([, value]) => value === module || value.startsWith(`${module}.`)).map(([name]) => name));
+  const map = config.rules['QCR-M001']?.options['subjectMap'];
+  for (const [glob, module] of Object.entries(map !== null && typeof map === 'object' ? map : {})) {
+    if (typeof module === 'string' && matchGlob(glob, filePath)) return { subject: { module, via: 'subjectMap' }, names: namesOf(module) };
+  }
+  const own = path.posix.basename(filePath, '.py').replace(/^test_|_test$/g, '').toLowerCase();
+  for (const entry of imports.filter((candidate) => !candidate.typeOnly && !candidate.framework)) {
+    const module = entry.source.split('.').at(-1)!.toLowerCase() === own ? entry.source : entry.names.some((name) => name.toLowerCase() === own) ? `${entry.source}.${entry.names.find((name) => name.toLowerCase() === own)}`.replace(/^(\.+)\./, '$1') : null;
+    // The names of the import itself count too: a relative import has no entry in `aliases`.
+    if (module !== null && own !== '') return { subject: { module, via: 'filename' }, names: new Set([...namesOf(module), ...(module === entry.source ? entry.names.filter((name) => name !== '*') : [own])]) };
+  }
+  return { subject: null, names: new Set() };
 }
 
 /**

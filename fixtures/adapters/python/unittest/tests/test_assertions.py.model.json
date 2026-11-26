@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -1808,8 +1815,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 20,
+            "endLine": 71,
+            "endColumn": 49
+          },
+          "text": "self.client.get(\"/api/cart/\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 20,
+            "endLine": 71,
+            "endColumn": 49
+          },
+          "text": "self.client.get(\"/api/cart/\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 6,
       "bodyHash": "8ddf6fbc2d34bd1a3cc1cc963d7f29de3fb867b2"
     },
@@ -2031,7 +2061,23 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 6,
+            "endLine": 83,
+            "endColumn": 31
+          },
+          "text": "patch(\"shop.cart.charge\")",
+          "kind": "function",
+          "target": "shop.cart.charge",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],

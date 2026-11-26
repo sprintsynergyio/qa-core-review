@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -71,7 +78,9 @@
           },
           "kind": "beforeEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "call:self.cart.clear"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -86,7 +95,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:self.cart"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -1281,6 +1292,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "shop.cart",
+    "via": "filename"
+  },
   "suppressions": []
 }

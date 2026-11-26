@@ -38,16 +38,16 @@ A rule runs on a file when the adapter of its language fills in everything the r
 | [QCR-A002](#qcr-a002) | assertions, assertion-operands | yes | yes | planned |
 | [QCR-A003](#qcr-a003) | assertions, assertion-operands, reachability | yes | yes | planned |
 | [QCR-A004](#qcr-a004) | assertions | yes | yes | planned |
-| [QCR-W001](#qcr-w001) | waits | yes | no | planned |
-| [QCR-S001](#qcr-s001) | selectors | yes | no | planned |
+| [QCR-W001](#qcr-w001) | waits | yes | yes | planned |
+| [QCR-S001](#qcr-s001) | selectors | yes | yes | planned |
 | [QCR-E001](#qcr-e001) | try-blocks | yes | yes | planned |
 | [QCR-F001](#qcr-f001) | modifiers | yes | yes | planned |
 | [QCR-F002](#qcr-f002) | modifiers | yes | yes | planned |
 | [QCR-D001](#qcr-d001) | body-hash | yes | yes | planned |
 | [QCR-N001](#qcr-n001) | tests, assertions | yes | yes | planned |
-| [QCR-M001](#qcr-m001) | mocks, assertions, assertion-operands | yes | no | planned |
+| [QCR-M001](#qcr-m001) | mocks, assertions, assertion-operands | yes | yes | planned |
 | [QCR-P001](#qcr-p001) | assertions | yes | yes | planned |
-| [QCR-C001](#qcr-c001) | resources, hooks | yes | no | planned |
+| [QCR-C001](#qcr-c001) | resources, hooks | yes | yes | planned |
 | [QCR-X001](#qcr-x001) | none | yes | yes | planned |
 | [QCR-X002](#qcr-x002) | none | yes | yes | planned |
 <!-- support-matrix:end -->

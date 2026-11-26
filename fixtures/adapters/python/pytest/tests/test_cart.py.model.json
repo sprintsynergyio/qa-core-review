@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -730,7 +737,21 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 29,
+            "endLine": 52,
+            "endColumn": 37
+          },
+          "text": "tmp_path",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 2,
@@ -894,8 +915,52 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 12,
+            "endLine": 65,
+            "endColumn": 50
+          },
+          "text": "api_session.get(f\"{API}/stock/health\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 16,
+            "endLine": 67,
+            "endColumn": 104
+          },
+          "text": "api_session.post(f\"{API}/carts/{cart}/items\", json={\"sku\": \"backpack\", \"quantity\": 999})",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 12,
+            "endLine": 65,
+            "endColumn": 50
+          },
+          "text": "api_session.get(f\"{API}/stock/health\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 16,
+            "endLine": 67,
+            "endColumn": 104
+          },
+          "text": "api_session.post(f\"{API}/carts/{cart}/items\", json={\"sku\": \"backpack\", \"quantity\": 999})",
+          "kind": "request"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "2f4b9ccf8d6a49a6651726097822b9683085f337"
     },
@@ -1055,7 +1120,21 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 32,
+            "endLine": 76,
+            "endColumn": 40
+          },
+          "text": "tmp_path",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 3,
@@ -1817,6 +1896,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "shop.cart",
+    "via": "filename"
+  },
   "suppressions": []
 }

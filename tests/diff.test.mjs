@@ -131,6 +131,8 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
       // A focused test is reported in a changed file wherever it is.
       'tests/cart.spec.ts:20 F001',
       'tests/new.spec.ts:3 A001',
+      // The new Python test posts a refund and never deletes it (info).
+      'tests/test_refunds.py:2 C001',
     ]);
     assert.deepEqual(tests, ['tests/cart.spec.ts > opens the cart', 'tests/cart.spec.ts > removes an item', 'tests/new.spec.ts > opens the menu', 'tests/test_refunds.py > test_refunds']);
     // login.spec.ts, test_orders.py and CartTest.java did not change. The new Scala file is listed, with no static review.
@@ -159,7 +161,7 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
     assert.equal(text.status, 0, text.stderr);
     // Four changed tests. The focused test did not change, and with F001 off nothing is left to say about it.
     assert.match(text.stdout, /^qa-core-review \S+ . changes since HEAD . 6 files . 4 tests . static rules . TypeScript, Java, Python, Scala\n/);
-    assert.match(text.stdout, /Summary: 2 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 0 info\. 0 suppressed\.\n/);
+    assert.match(text.stdout, /Summary: 2 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 1 info\. 0 suppressed\.\n/);
     assert.equal(repoDir.run('--diff', 'HEAD', '--quiet').status, 1);
     // With --root on a folder, paths and changes are those of the folder.
     const inTests = JSON.parse(repoDir.run('--root', 'tests', '--diff', 'HEAD', '--stdout', 'json').stdout);

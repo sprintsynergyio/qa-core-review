@@ -1,0 +1,670 @@
+{
+  "path": "tests/test_checkout.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "unittest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "PatcherTests",
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 29,
+        "endColumn": 47
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 41
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 41
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:self.patcher",
+            "patches",
+            "env:SHOP_REGION"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "3984973b966a",
+        "71f7b598a67c"
+      ],
+      "suites": []
+    },
+    {
+      "title": "LeakyTests",
+      "span": {
+        "startLine": 32,
+        "startColumn": 1,
+        "endLine": 39,
+        "endColumn": 42
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 38
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "6361ad86b5e8"
+      ],
+      "suites": []
+    },
+    {
+      "title": "CleanupTests",
+      "span": {
+        "startLine": 42,
+        "startColumn": 1,
+        "endLine": 50,
+        "endColumn": 42
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 47,
+            "endColumn": 44
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [
+            "var:patcher",
+            "patches"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "9ef81395ecac"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "3984973b966a",
+      "title": "test_pay_charges_once",
+      "fullTitle": "PatcherTests > test_pay_charges_once",
+      "suitePath": [
+        "PatcherTests"
+      ],
+      "span": {
+        "startLine": 23,
+        "startColumn": 5,
+        "endLine": 25,
+        "endColumn": 41
+      },
+      "bodySpan": {
+        "startLine": 24,
+        "startColumn": 9,
+        "endLine": 25,
+        "endColumn": 41
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 41
+          },
+          "text": "self.charge.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "self.charge",
+            "normalized": "self.charge",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "95db5150c64acf89b37fd4b0c732c56acd721846"
+    },
+    {
+      "id": "71f7b598a67c",
+      "title": "test_pay_returns_the_total",
+      "fullTitle": "PatcherTests > test_pay_returns_the_total",
+      "suitePath": [
+        "PatcherTests"
+      ],
+      "span": {
+        "startLine": 27,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 47
+      },
+      "bodySpan": {
+        "startLine": 29,
+        "startColumn": 9,
+        "endLine": 29,
+        "endColumn": 47
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 9,
+            "endLine": 29,
+            "endColumn": 47
+          },
+          "text": "self.assertEqual(Checkout().pay(), 42)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "Checkout().pay()",
+            "normalized": "Checkout().pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 6,
+            "endLine": 27,
+            "endColumn": 64
+          },
+          "text": "old_patch(\"shop.checkout.Checkout.total\", return_value=42)",
+          "kind": "function",
+          "target": "Checkout.total",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "31ac8953425835d9cc9e656576bd91e8e6037795"
+    },
+    {
+      "id": "6361ad86b5e8",
+      "title": "test_pay",
+      "fullTitle": "LeakyTests > test_pay",
+      "suitePath": [
+        "LeakyTests"
+      ],
+      "span": {
+        "startLine": 38,
+        "startColumn": 5,
+        "endLine": 39,
+        "endColumn": 42
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 9,
+        "endLine": 39,
+        "endColumn": 42
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 42
+          },
+          "text": "self.assertTrue(Checkout().pay())",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "Checkout().pay()",
+            "normalized": "Checkout().pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "cf8f14ed81e2029237fc9fb3c8566134dd5887b2"
+    },
+    {
+      "id": "9ef81395ecac",
+      "title": "test_pay",
+      "fullTitle": "CleanupTests > test_pay",
+      "suitePath": [
+        "CleanupTests"
+      ],
+      "span": {
+        "startLine": 49,
+        "startColumn": 5,
+        "endLine": 50,
+        "endColumn": 42
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 9,
+        "endLine": 50,
+        "endColumn": 42
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 42
+          },
+          "text": "self.assertTrue(Checkout().pay())",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "Checkout().pay()",
+            "normalized": "Checkout().pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "cf8f14ed81e2029237fc9fb3c8566134dd5887b2"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 24,
+        "endLine": 13,
+        "endColumn": 58
+      },
+      "text": "mock.patch(\"shop.checkout.charge\")",
+      "kind": "function",
+      "target": "shop.checkout.charge",
+      "targetsSubject": null,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 25,
+        "endLine": 15,
+        "endColumn": 68
+      },
+      "text": "mock.patch.object(Checkout, \"send_receipt\")",
+      "kind": "function",
+      "target": "Checkout.send_receipt",
+      "targetsSubject": true,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 34,
+        "startColumn": 24,
+        "endLine": 34,
+        "endColumn": 58
+      },
+      "text": "mock.patch(\"shop.checkout.charge\")",
+      "kind": "function",
+      "target": "shop.checkout.charge",
+      "targetsSubject": null,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 44,
+        "startColumn": 19,
+        "endLine": 44,
+        "endColumn": 53
+      },
+      "text": "mock.patch(\"shop.checkout.charge\")",
+      "kind": "function",
+      "target": "shop.checkout.charge",
+      "targetsSubject": null,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    }
+  ],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 23,
+        "endLine": 14,
+        "endColumn": 43
+      },
+      "text": "self.patcher.start()",
+      "kind": "patch",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 25,
+        "endLine": 15,
+        "endColumn": 76
+      },
+      "text": "mock.patch.object(Checkout, \"send_receipt\").start()",
+      "kind": "patch",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 9,
+        "endLine": 16,
+        "endColumn": 41
+      },
+      "text": "os.environ[\"SHOP_REGION\"] = \"eu\"",
+      "kind": "env",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 35,
+        "startColumn": 23,
+        "endLine": 35,
+        "endColumn": 43
+      },
+      "text": "self.patcher.start()",
+      "kind": "patch",
+      "acquiredIn": "hook",
+      "released": false,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 36,
+        "startColumn": 9,
+        "endLine": 36,
+        "endColumn": 38
+      },
+      "text": "os.environ[\"SHOP_TAX\"] = \"19\"",
+      "kind": "env",
+      "acquiredIn": "hook",
+      "released": false,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 45,
+        "startColumn": 23,
+        "endLine": 45,
+        "endColumn": 38
+      },
+      "text": "patcher.start()",
+      "kind": "patch",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 10
+      },
+      "source": "os",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 16
+      },
+      "source": "unittest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 12
+      },
+      "source": "mock",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 36
+      },
+      "source": "mock",
+      "names": [
+        "patch"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 35
+      },
+      "source": "shop.checkout",
+      "names": [
+        "Checkout"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": {
+    "module": "shop.checkout",
+    "via": "filename"
+  },
+  "suppressions": []
+}

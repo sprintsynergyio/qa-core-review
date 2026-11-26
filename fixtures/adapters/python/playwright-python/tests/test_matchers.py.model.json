@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -159,9 +166,56 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
-      "data": [],
-      "steps": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 24,
+            "endLine": 9,
+            "endColumn": 28
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 12,
+            "endLine": 13,
+            "endColumn": 54
+          },
+          "text": "page.request.get(f\"{BASE}/inventory.html\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 5,
+            "endLine": 10,
+            "endColumn": 40
+          },
+          "text": "page.goto(f\"{BASE}/inventory.html\")",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 12,
+            "endLine": 13,
+            "endColumn": 54
+          },
+          "text": "page.request.get(f\"{BASE}/inventory.html\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 4,
       "bodyHash": "bf68fc5f40942e0624afcbf25999e2b05ede4d2c"
     },
@@ -530,12 +584,110 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 16,
+            "endLine": 18,
+            "endColumn": 51
+          },
+          "text": "page.get_by_placeholder(\"Username\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Username"
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 12,
+            "endLine": 27,
+            "endColumn": 40
+          },
+          "text": "page.get_by_role(\"checkbox\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "checkbox"
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 12,
+            "endLine": 28,
+            "endColumn": 52
+          },
+          "text": "page.get_by_role(\"button\", name=\"Login\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 12,
+            "endLine": 29,
+            "endColumn": 44
+          },
+          "text": "page.get_by_text(\"Epic sadface\")",
+          "api": "get_by_text",
+          "strategy": "text",
+          "value": "Epic sadface"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 12,
+            "endLine": 30,
+            "endColumn": 41
+          },
+          "text": "page.locator(\"#login-button\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#login-button"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 12,
+            "endLine": 31,
+            "endColumn": 41
+          },
+          "text": "page.locator(\"#login-button\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#login-button"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 25,
+            "endLine": 16,
+            "endColumn": 29
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 20
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        }
+      ],
       "statementCount": 15,
       "bodyHash": "3f5b27728816065bf77f470f98a845db2d4f9d4e"
     },
@@ -1056,12 +1208,209 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 13,
+            "endLine": 36,
+            "endColumn": 42
+          },
+          "text": "page.get_by_title(\"Products\")",
+          "api": "get_by_title",
+          "strategy": "other",
+          "value": "Products"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 12,
+            "endLine": 39,
+            "endColumn": 37
+          },
+          "text": "page.get_by_label(\"Sort\")",
+          "api": "get_by_label",
+          "strategy": "label",
+          "value": "Sort"
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 12,
+            "endLine": 40,
+            "endColumn": 37
+          },
+          "text": "page.get_by_label(\"Sort\")",
+          "api": "get_by_label",
+          "strategy": "label",
+          "value": "Sort"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 12,
+            "endLine": 41,
+            "endColumn": 55
+          },
+          "text": "page.get_by_alt_text(\"Sauce Labs Backpack\")",
+          "api": "get_by_alt_text",
+          "strategy": "other",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 12,
+            "endLine": 42,
+            "endColumn": 54
+          },
+          "text": "page.get_by_test_id(\"inventory-container\")",
+          "api": "get_by_test_id",
+          "strategy": "test-id",
+          "value": "inventory-container"
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 12,
+            "endLine": 43,
+            "endColumn": 54
+          },
+          "text": "page.get_by_test_id(\"inventory-container\")",
+          "api": "get_by_test_id",
+          "strategy": "test-id",
+          "value": "inventory-container"
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 12,
+            "endLine": 44,
+            "endColumn": 54
+          },
+          "text": "page.get_by_test_id(\"inventory-container\")",
+          "api": "get_by_test_id",
+          "strategy": "test-id",
+          "value": "inventory-container"
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 12,
+            "endLine": 45,
+            "endColumn": 38
+          },
+          "text": "page.get_by_role(\"button\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "role"
+          }
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 12,
+            "endLine": 46,
+            "endColumn": 38
+          },
+          "text": "page.get_by_role(\"button\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button",
+          "positional": {
+            "kind": "last",
+            "index": null,
+            "baseStrategy": "role"
+          }
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 12,
+            "endLine": 47,
+            "endColumn": 43
+          },
+          "text": "page.locator(\".inventory_item\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 12,
+            "endLine": 48,
+            "endColumn": 38
+          },
+          "text": "page.frame_locator(\"#ads\")",
+          "api": "frame_locator",
+          "strategy": "id",
+          "value": "#ads"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 12,
+            "endLine": 48,
+            "endColumn": 51
+          },
+          "text": "page.frame_locator(\"#ads\").locator(\"a\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "a",
+          "positional": {
+            "kind": "nth",
+            "index": 0,
+            "baseStrategy": "css"
+          }
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 12,
+            "endLine": 49,
+            "endColumn": 43
+          },
+          "text": "page.locator(\".inventory_item\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 27,
+            "endLine": 34,
+            "endColumn": 31
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 40
+          },
+          "text": "page.goto(f\"{BASE}/inventory.html\")",
+          "kind": "navigate"
+        }
+      ],
       "statementCount": 15,
       "bodyHash": "18a179109b3f9a9378e4b53002dc881450174c1f"
     },
@@ -1313,12 +1662,98 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 22,
+            "endLine": 54,
+            "endColumn": 58
+          },
+          "text": "page.locator(\".shopping_cart_badge\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 29,
+            "endLine": 55,
+            "endColumn": 71
+          },
+          "text": "page.query_selector(\".shopping_cart_link\")",
+          "api": "query_selector",
+          "strategy": "class",
+          "value": ".shopping_cart_link"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 12,
+            "endLine": 57,
+            "endColumn": 48
+          },
+          "text": "page.locator(\".shopping_cart_badge\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 12,
+            "endLine": 59,
+            "endColumn": 43
+          },
+          "text": "page.locator(\".inventory_item\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 12,
+            "endLine": 62,
+            "endColumn": 43
+          },
+          "text": "page.locator(\".inventory_item\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 38,
+            "endLine": 52,
+            "endColumn": 42
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 5,
+            "endLine": 53,
+            "endColumn": 40
+          },
+          "text": "page.goto(f\"{BASE}/inventory.html\")",
+          "kind": "navigate"
+        }
+      ],
       "statementCount": 10,
       "bodyHash": "a3af577c1a1f46b33058e659b7553cd91099dafa"
     }

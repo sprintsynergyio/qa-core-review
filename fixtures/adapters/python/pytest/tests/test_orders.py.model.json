@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -202,8 +209,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 16,
+            "endLine": 63,
+            "endColumn": 70
+          },
+          "text": "api_session.post(f\"{API}/orders/{order['id']}/refund\")",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 16,
+            "endLine": 63,
+            "endColumn": 70
+          },
+          "text": "api_session.post(f\"{API}/orders/{order['id']}/refund\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "8a40311ee9ae5a6f71246bb5f9a7693787780db8"
     },
@@ -287,8 +317,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 12,
+            "endLine": 69,
+            "endColumn": 59
+          },
+          "text": "api_session.post(f\"{API}/orders\", json=payload)",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 12,
+            "endLine": 69,
+            "endColumn": 59
+          },
+          "text": "api_session.post(f\"{API}/orders\", json=payload)",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "069ae3a7ecb45aad49ff3b401a0cc5a247da74df"
     },
@@ -592,7 +645,21 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 38,
+            "endLine": 89,
+            "endColumn": 46
+          },
+          "text": "tmp_path",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 1,
@@ -671,7 +738,21 @@
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 40,
+            "endLine": 92,
+            "endColumn": 48
+          },
+          "text": "tmp_path",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 1,
@@ -752,7 +833,19 @@
       "assertions": [],
       "waits": [],
       "selectors": [],
-      "data": []
+      "data": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 15,
+            "endLine": 44,
+            "endColumn": 74
+          },
+          "text": "api_session.post(f\"{API}/orders\", json={\"sku\": \"backpack\"})",
+          "op": "create",
+          "via": "http"
+        }
+      ]
     },
     {
       "span": {
@@ -767,7 +860,19 @@
       "assertions": [],
       "waits": [],
       "selectors": [],
-      "data": []
+      "data": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 63
+          },
+          "text": "api_session.delete(f\"{API}/orders/{created.json()['id']}\")",
+          "op": "delete",
+          "via": "http"
+        }
+      ]
     },
     {
       "span": {

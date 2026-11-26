@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -45,7 +52,19 @@
           "scope": "suite",
           "releases": [],
           "assertions": [],
-          "waits": [],
+          "waits": [
+            {
+              "span": {
+                "startLine": 16,
+                "startColumn": 9,
+                "endLine": 16,
+                "endColumn": 40
+              },
+              "text": "self.driver.implicitly_wait(10)",
+              "kind": "implicit-wait-config",
+              "ms": 10000
+            }
+          ],
           "selectors": [],
           "data": []
         },
@@ -58,7 +77,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:self.driver"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -143,7 +164,19 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 9,
+            "endLine": 29,
+            "endColumn": 74
+          },
+          "text": "WebDriverWait(self.driver, 5).until(EC.url_contains(\"inventory\"))",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
@@ -222,8 +255,33 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
-      "selectors": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 22
+          },
+          "text": "time.sleep(2)",
+          "kind": "fixed-sleep",
+          "ms": 2000
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 17,
+            "endLine": 35,
+            "endColumn": 103
+          },
+          "text": "self.driver.find_element(By.XPATH, \"//div[@class='error-message-container error']/h3\")",
+          "api": "By.XPATH",
+          "strategy": "xpath",
+          "value": "//div[@class='error-message-container error']/h3"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -291,7 +349,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 21,
+            "endLine": 41,
+            "endColumn": 87
+          },
+          "text": "self.driver.find_element(By.CLASS_NAME, \"error-message-container\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "error-message-container"
+        }
+      ],
       "tryBlocks": [
         {
           "span": {
@@ -321,7 +392,21 @@
   ],
   "fileHooks": [],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 23,
+        "endLine": 15,
+        "endColumn": 41
+      },
+      "text": "webdriver.Chrome()",
+      "kind": "driver",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {

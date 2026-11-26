@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -93,7 +100,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 16,
+            "endLine": 20,
+            "endColumn": 69
+          },
+          "text": "driver.find_elements(By.CLASS_NAME, \"inventory_item\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -170,7 +190,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 12,
+            "endLine": 24,
+            "endColumn": 85
+          },
+          "text": "driver.find_element(By.XPATH, \"(//div[@class='inventory_item_name'])[1]\")",
+          "api": "By.XPATH",
+          "strategy": "xpath",
+          "value": "(//div[@class='inventory_item_name'])[1]"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -246,7 +279,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 15,
+            "endLine": 30,
+            "endColumn": 92
+          },
+          "text": "driver.find_elements(By.CSS_SELECTOR, \"select.product_sort_container option\")",
+          "api": "By.CSS_SELECTOR",
+          "strategy": "css",
+          "value": "select.product_sort_container option"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -281,7 +327,9 @@
       },
       "kind": "fixture-teardown",
       "scope": "file",
-      "releases": [],
+      "releases": [
+        "var:browser"
+      ],
       "assertions": [],
       "waits": [],
       "selectors": [],
@@ -289,7 +337,21 @@
     }
   ],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 15,
+        "endLine": 13,
+        "endColumn": 48
+      },
+      "text": "webdriver.Chrome(options=options)",
+      "kind": "driver",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {

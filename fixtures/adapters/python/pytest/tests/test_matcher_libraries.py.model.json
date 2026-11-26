@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -822,7 +829,7 @@
         "raises"
       ],
       "typeOnly": false,
-      "framework": false
+      "framework": true
     },
     {
       "span": {

@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -272,12 +279,84 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 25,
+            "endLine": 9,
+            "endColumn": 81
+          },
+          "text": "driver.find_element(By.CLASS_NAME, \"shopping_cart_link\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "shopping_cart_link"
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 12,
+            "endLine": 11,
+            "endColumn": 61
+          },
+          "text": "driver.find_element(By.ID, \"inventory_container\")",
+          "api": "By.ID",
+          "strategy": "id",
+          "value": "inventory_container"
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 12,
+            "endLine": 12,
+            "endColumn": 60
+          },
+          "text": "driver.find_element_by_id(\"inventory_container\")",
+          "api": "find_element_by_id",
+          "strategy": "id",
+          "value": "inventory_container"
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 12,
+            "endLine": 13,
+            "endColumn": 65
+          },
+          "text": "driver.find_elements(By.CLASS_NAME, \"inventory_item\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "inventory_item"
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 16,
+            "endLine": 14,
+            "endColumn": 69
+          },
+          "text": "driver.find_elements(By.CLASS_NAME, \"inventory_item\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 5,
+            "endLine": 8,
+            "endColumn": 59
+          },
+          "text": "driver.get(\"https://www.saucedemo.com/inventory.html\")",
+          "kind": "navigate"
+        }
+      ],
       "statementCount": 9,
       "bodyHash": "0f42973ffbe16054b2cc571135e8817c12bd2894"
     }
