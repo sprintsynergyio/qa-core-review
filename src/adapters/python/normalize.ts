@@ -2,13 +2,17 @@
 //
 // This file finds the structure of a test file: suites (classes), tests, hooks and fixtures,
 // skip and xfail marks, parametrized tests, imports and suppression comments. What each body
-// checks and does is read by later parts of the adapter.
+// checks is read by assertions.ts. What it does (waits, selectors, mocks, resources) is read
+// by a later part of the adapter.
 import { emptyTest, parseSuppression } from '../../model/build.js';
 import { bodyHash, testId } from '../../model/hash.js';
 import type { Capability, Modifier, NFile, NHook, NImport, NSuite, NSuppression, NTest, Span } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import type { AdapterContext, FrameworkGuess, ParsedFile, SourceFile } from '../types.js';
+import { readBody } from './assertions.js';
+import { learnNames } from './expr.js';
+import { collectPythonHelpers, fileContext, isAsync } from './helpers.js';
 import { argumentsOf, docstringOf, dottedName, hasAncestor, isPlaceholder, ownDescendants, qualify, statementsOf, stringValue, tokensOf } from './syntax.js';
 import {
   CONDITIONAL_IN_BODY_SKIPS, FIXTURE_DECORATORS, FRAMEWORK_MODULES, HOOK_FUNCTIONS, HOOK_METHODS, IN_BODY_SKIPS, MARKS, MARK_VARIABLE, PARAMETRIZE_DECORATORS,
@@ -16,8 +20,10 @@ import {
   TYPE_CHECKING_NAMES, UNITTEST_BASES, WIDE_FIXTURE_SCOPES,
 } from './vocab.js';
 
-/** What the adapter fills in from a syntax tree so far. The other capabilities join with the parts that read them. */
-export const PYTHON_CAPABILITIES: Capability[] = ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'body-hash'];
+/** What the adapter fills in from a syntax tree so far. The other capabilities join with the part that reads them. */
+export const PYTHON_CAPABILITIES: Capability[] = [
+  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability',
+];
 
 const BRANCHES = new Set(['if_statement', 'conditional_expression', 'boolean_operator', 'try_statement', 'match_statement', 'for_statement', 'while_statement']);
 const COLLECTIONS = new Set(['list', 'tuple', 'set']);
@@ -284,10 +290,13 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
   const seen = new Map<string, number>();
   /** Classes of this file that are unittest suites, so a class that extends one of them is a suite too. */
   const testCases = new Set<string>();
+  /** What to read for each test and hook: its function, and for the two halves of a fixture which statements are its own. */
+  const bodies = new Map<NTest | NHook, { definition: SyntaxNode; skip?: SyntaxNode[]; only?: SyntaxNode[] }>();
 
-  const addHook = (scope: Scope, kind: NHook['kind'], span: Span): void => {
+  const addHook = (scope: Scope, kind: NHook['kind'], span: Span, body: { definition: SyntaxNode; skip?: SyntaxNode[]; only?: SyntaxNode[] }): void => {
     const hook: NHook = { span, kind, scope: scope.suite ? 'suite' : support ? 'global' : 'file', releases: [], assertions: [], waits: [], selectors: [], data: [] };
     (scope.suite ? scope.suite.hooks : model.fileHooks).push(hook);
+    bodies.set(hook, body);
   };
 
   const addTest = (statement: SyntaxNode, definition: SyntaxNode, name: string, marks: Marks, scope: Scope): void => {
@@ -315,6 +324,7 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
     }
     model.tests.push(test);
     scope.suite?.testIds.push(test.id);
+    bodies.set(test, { definition });
   };
 
   const visit = (statements: readonly SyntaxNode[], scope: Scope): void => {
@@ -327,10 +337,10 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
         if (fixture) {
           // The fixture itself runs before the tests that ask for it. What follows its `yield` runs after them.
           const wide = includes(WIDE_FIXTURE_SCOPES, stringValue(argumentsOf(fixture.call).keywords.get('scope')));
-          addHook(scope, wide ? 'beforeAll' : 'beforeEach', spanOfNode(statement));
           const teardown = teardownOf(definition.childForFieldName('body') ?? definition);
-          if (teardown.length > 0) addHook(scope, 'fixture-teardown', spanOver(teardown));
-        } else if ((scope.suite ? HOOK_METHODS : HOOK_FUNCTIONS)[name]) addHook(scope, (scope.suite ? HOOK_METHODS : HOOK_FUNCTIONS)[name]!, spanOfNode(statement));
+          addHook(scope, wide ? 'beforeAll' : 'beforeEach', spanOfNode(statement), { definition, skip: teardown });
+          if (teardown.length > 0) addHook(scope, 'fixture-teardown', spanOver(teardown), { definition, only: teardown });
+        } else if ((scope.suite ? HOOK_METHODS : HOOK_FUNCTIONS)[name]) addHook(scope, (scope.suite ? HOOK_METHODS : HOOK_FUNCTIONS)[name]!, spanOfNode(statement), { definition });
         else if (name.startsWith(TEST_FUNCTION_PREFIX)) addTest(statement, definition, name, readMarks(decorators), scope);
       } else if (definition?.type === 'class_definition') {
         const bases = (definition.childForFieldName('superclasses')?.namedChildren ?? []).map((base) => qualify(dottedName(base), aliases));
@@ -356,6 +366,26 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
   // A module `pytestmark` covers the suites of the module like a decorator on each of them.
   visit(top, { suite: null, path: [], inherited: moduleMarks });
   for (const suite of model.suites) suite.modifiers = [...new Set([...suite.modifiers, ...moduleMarks.modifiers])];
+
+  // What each body checks. Names assigned inside a test are known only to that test.
+  const tests = new Set([...bodies].filter(([target]) => 'id' in target).map(([, { definition }]) => definition.id));
+  const shared = fileContext(root, frameworks, imports, aliases, tests);
+  const local = new Set(collectPythonHelpers(root, file.path, shared).map((helper) => helper.name));
+  const isHelper = (name: string): boolean => local.has(name) || ctx.helperIndex.has(name) || ctx.config.assertionHelpers.includes(name);
+  for (const [target, { definition, skip, only }] of bodies) {
+    const body = definition.childForFieldName('body');
+    if (!body) continue;
+    const env = { ...shared.env, locators: new Set(shared.env.locators), counts: new Set(shared.env.counts), mocks: new Set(shared.env.mocks) };
+    learnNames(definition, env);
+    const facts = readBody(body, { ...shared, env, isHelper }, {
+      async: isAsync(definition), ...(skip ? { skip: new Set(skip.map((node) => node.id)) } : {}), ...(only ? { statements: only } : {}),
+    });
+    target.assertions = facts.assertions;
+    if ('id' in target) {
+      target.expectsException = facts.expectsException;
+      target.tryBlocks = facts.tryBlocks;
+    }
+  }
 
   if (!support && (model.tests.length > 0 || model.suites.length > 0)) model.role = 'test';
   return model;

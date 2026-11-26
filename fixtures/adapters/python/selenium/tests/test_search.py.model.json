@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [],
   "tests": [
@@ -41,7 +46,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 75
+          },
+          "text": "assert len(driver.find_elements(By.CLASS_NAME, \"inventory_item\")) == 6",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "len(driver.find_elements(By.CLASS_NAME, \"inventory_item\"))",
+            "normalized": "len(driver.find_elements(By.CLASS_NAME,\"inventory_item\"))",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -78,7 +123,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 46
+          },
+          "text": "assert name.text == \"Sauce Labs Backpack\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "name.text",
+            "normalized": "name.text",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Sauce Labs Backpack\"",
+            "normalized": "\"Sauce Labs Backpack\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Sauce Labs Backpack"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -118,7 +203,43 @@
         "source": "parametrize",
         "cases": 4
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 56
+          },
+          "text": "assert label in [option.text for option in options]",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "[option.text for option in options]",
+            "normalized": "[option.text for option in options]",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "label",
+            "normalized": "label",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

@@ -4,7 +4,8 @@ import { PYTHON_LEXICAL, scanLines } from '../../parse/lexical.js';
 import type { LanguageAdapter } from '../types.js';
 import { pythonProfile } from './detect.js';
 import { detectPythonFrameworks } from './frameworks.js';
-import { PYTHON_CAPABILITIES, normalizePython, unparsedPython } from './normalize.js';
+import { collectPythonHelpers, fileContext, supportFilesOf } from './helpers.js';
+import { PYTHON_CAPABILITIES, normalizePython, readImports, unparsedPython } from './normalize.js';
 import { SUPPORT_FILE_NAMES, TESTCASE_SUFFIX, TEST_CLASS_PREFIX, TEST_FUNCTION_PREFIX } from './vocab.js';
 
 const DECLARES = new RegExp(`^\\s*(?:(?:async\\s+)?def\\s+${TEST_FUNCTION_PREFIX}\\w*\\s*\\(|class\\s+(?:${TEST_CLASS_PREFIX}\\w*\\b|\\w+\\s*\\([^)]*${TESTCASE_SUFFIX}\\b))`);
@@ -33,5 +34,17 @@ export const pythonAdapter: LanguageAdapter = {
   normalize(parsed, ctx) {
     const frameworks = detectPythonFrameworks(parsed.file);
     return parsed.tree ? normalizePython(parsed, frameworks, ctx) : unparsedPython(parsed.file, frameworks, ctx, 'failed');
+  },
+
+  /** For the helper index: the functions and methods of any file, test or support, that contain an assertion. */
+  collectHelpers(parsed) {
+    if (!parsed.tree) return [];
+    const root = parsed.tree.rootNode;
+    const { imports, aliases } = readImports(root);
+    return collectPythonHelpers(root, parsed.file.path, fileContext(root, detectPythonFrameworks(parsed.file), imports, aliases));
+  },
+
+  supportFiles(parsed) {
+    return parsed.tree ? supportFilesOf(parsed.file, readImports(parsed.tree.rootNode).imports) : [];
   },
 };

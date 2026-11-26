@@ -1,0 +1,4190 @@
+{
+  "path": "tests/test_assertions.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "c5145ba910c1",
+      "title": "test_assert_forms",
+      "fullTitle": "test_assert_forms",
+      "suitePath": [],
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 41,
+        "endColumn": 32
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 5,
+        "endLine": 41,
+        "endColumn": 32
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 39
+          },
+          "text": "assert response.status_code == 200",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.status_code",
+            "normalized": "response.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 39
+          },
+          "text": "assert 200 == response.status_code",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.status_code",
+            "normalized": "response.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 41
+          },
+          "text": "assert response.status in (200, 204)",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.status",
+            "normalized": "response.status",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "(200, 204)",
+            "normalized": "(200,204)",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200,
+            204
+          ]
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 65
+          },
+          "text": "assert response.json()[\"total\"] != 0, \"the cart has a total\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"total\"]",
+            "normalized": "response.json()[\"total\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "!=",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 50
+          },
+          "text": "assert \"backpack\" in response.json()[\"items\"]",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"items\"]",
+            "normalized": "response.json()[\"items\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"backpack\"",
+            "normalized": "\"backpack\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "backpack"
+            }
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 43
+          },
+          "text": "assert \"coupon\" not in response.json()",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()",
+            "normalized": "response.json()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"coupon\"",
+            "normalized": "\"coupon\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "coupon"
+            }
+          },
+          "matcher": "not in",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 48
+          },
+          "text": "assert response.json().get(\"owner\") is None",
+          "kind": "nullness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json().get(\"owner\")",
+            "normalized": "response.json().get(\"owner\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 45
+          },
+          "text": "assert response.json()[\"id\"] is not None",
+          "kind": "nullness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"id\"]",
+            "normalized": "response.json()[\"id\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is not",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 23
+          },
+          "text": "assert response.ok",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.ok",
+            "normalized": "response.ok",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 41
+          },
+          "text": "assert not response.json()[\"locked\"]",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"locked\"]",
+            "normalized": "response.json()[\"locked\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 45
+          },
+          "text": "assert len(response.json()[\"items\"]) > 1",
+          "kind": "comparison",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "len(response.json()[\"items\"])",
+            "normalized": "len(response.json()[\"items\"])",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": ">",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 47
+          },
+          "text": "assert 0 < response.json()[\"total\"] <= 500",
+          "kind": "comparison",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"total\"]",
+            "normalized": "response.json()[\"total\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "<",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 54
+          },
+          "text": "assert isinstance(response.json()[\"items\"], list)",
+          "kind": "type",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"items\"]",
+            "normalized": "response.json()[\"items\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "list",
+            "normalized": "list",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isinstance",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 46
+          },
+          "text": "assert issubclass(type(response), object)",
+          "kind": "type",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "type(response)",
+            "normalized": "type(response)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "object",
+            "normalized": "object",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "issubclass",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 59
+          },
+          "text": "assert response.json()[\"items\"].count(\"backpack\") == 1",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "response.json()[\"items\"].count(\"backpack\")",
+            "normalized": "response.json()[\"items\"].count(\"backpack\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 32
+          },
+          "text": "response.raise_for_status()",
+          "kind": "status",
+          "library": "http-client",
+          "actual": {
+            "text": "response",
+            "normalized": "response",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "raise_for_status",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 17,
+      "bodyHash": "a493b5349a9ac65f023377740b993ef7376b593c"
+    },
+    {
+      "id": "7905d0b9749e",
+      "title": "test_asserts_that_cannot_fail",
+      "fullTitle": "test_asserts_that_cannot_fail",
+      "suitePath": [],
+      "span": {
+        "startLine": 44,
+        "startColumn": 1,
+        "endLine": 49,
+        "endColumn": 40
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 5,
+        "endLine": 49,
+        "endColumn": 40
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 16
+          },
+          "text": "assert True",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "True",
+            "normalized": "True",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "bool",
+              "value": "True"
+            }
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 18
+          },
+          "text": "assert 1 == 1",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 5,
+            "endLine": 47,
+            "endColumn": 30
+          },
+          "text": "assert (cart.total(), 42)",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "(cart.total(), 42)",
+            "normalized": "(cart.total(),42)",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 32
+          },
+          "text": "assert len(cart.items) >= 0",
+          "kind": "comparison",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "len(cart.items)",
+            "normalized": "len(cart.items)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": ">=",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 40
+          },
+          "text": "assert cart.total() == cart.total()",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "9160af709901bcb57ad7d3b10bcfd9f16216bbcf"
+    },
+    {
+      "id": "a75749ab0926",
+      "title": "test_snapshots",
+      "fullTitle": "test_snapshots",
+      "suitePath": [],
+      "span": {
+        "startLine": 52,
+        "startColumn": 1,
+        "endLine": 55,
+        "endColumn": 54
+      },
+      "bodySpan": {
+        "startLine": 53,
+        "startColumn": 5,
+        "endLine": 55,
+        "endColumn": 54
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 5,
+            "endLine": 53,
+            "endColumn": 38
+          },
+          "text": "assert cart.to_dict() == snapshot",
+          "kind": "snapshot",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.to_dict()",
+            "normalized": "cart.to_dict()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "snapshot",
+            "normalized": "snapshot",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 51
+          },
+          "text": "assert cart.to_json() == snapshot(name=\"json\")",
+          "kind": "snapshot",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.to_json()",
+            "normalized": "cart.to_json()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "snapshot(name=\"json\")",
+            "normalized": "snapshot(name=\"json\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 5,
+            "endLine": 55,
+            "endColumn": 54
+          },
+          "text": "snapshot.assert_match(cart.to_text(), \"cart.txt\")",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart.to_text()",
+            "normalized": "cart.to_text()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert_match",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "2fbe1abb13b3ce546e282d89c48c82d4af65e5de"
+    },
+    {
+      "id": "52cd8cecd588",
+      "title": "test_exceptions_and_warnings",
+      "fullTitle": "test_exceptions_and_warnings",
+      "suitePath": [],
+      "span": {
+        "startLine": 58,
+        "startColumn": 1,
+        "endLine": 69,
+        "endColumn": 30
+      },
+      "bodySpan": {
+        "startLine": 59,
+        "startColumn": 5,
+        "endLine": 69,
+        "endColumn": 30
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 10,
+            "endLine": 59,
+            "endColumn": 53
+          },
+          "text": "pytest.raises(ValueError, match=\"quantity\")",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 10,
+            "endLine": 61,
+            "endColumn": 48
+          },
+          "text": "pytest.raises((KeyError, LookupError))",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "(KeyError, LookupError)",
+            "normalized": "(KeyError,LookupError)",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 38
+          },
+          "text": "assert \"nope\" in str(error.value)",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "str(error.value)",
+            "normalized": "str(error.value)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"nope\"",
+            "normalized": "\"nope\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "nope"
+            }
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 10,
+            "endLine": 64,
+            "endColumn": 42
+          },
+          "text": "pytest.warns(DeprecationWarning)",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "DeprecationWarning",
+            "normalized": "DeprecationWarning",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.warns",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 10,
+            "endLine": 66,
+            "endColumn": 34
+          },
+          "text": "pytest.deprecated_call()",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": null,
+          "matcher": "pytest.deprecated_call",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 5,
+            "endLine": 68,
+            "endColumn": 45
+          },
+          "text": "pytest.raises(TypeError, cart.add, None)",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "TypeError",
+            "normalized": "TypeError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 5,
+            "endLine": 69,
+            "endColumn": 30
+          },
+          "text": "pytest.raises(ValueError)",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 32
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "ValueError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 62,
+            "endColumn": 28
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "KeyError",
+            "LookupError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 5,
+            "endLine": 65,
+            "endColumn": 28
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "DeprecationWarning"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 5,
+            "endLine": 67,
+            "endColumn": 28
+          },
+          "kind": "expected-exception-block",
+          "catches": [],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "6e135fc115616533d2fe61e6ab85cba58f96fda3"
+    },
+    {
+      "id": "630708767c50",
+      "title": "test_fail_calls",
+      "fullTitle": "test_fail_calls",
+      "suitePath": [],
+      "span": {
+        "startLine": 72,
+        "startColumn": 1,
+        "endLine": 82,
+        "endColumn": 22
+      },
+      "bodySpan": {
+        "startLine": 73,
+        "startColumn": 5,
+        "endLine": 82,
+        "endColumn": 22
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 45
+          },
+          "text": "pytest.fail(\"the total is negative\")",
+          "kind": "fail-call",
+          "library": "pytest",
+          "actual": null,
+          "expected": null,
+          "matcher": "pytest.fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 9,
+            "endLine": 76,
+            "endColumn": 50
+          },
+          "text": "raise AssertionError(\"the cart is empty\")",
+          "kind": "fail-call",
+          "library": "raise",
+          "actual": null,
+          "expected": {
+            "text": "AssertionError(\"the cart is empty\")",
+            "normalized": "AssertionError(\"the cart is empty\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "raise",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 9,
+            "endLine": 78,
+            "endColumn": 30
+          },
+          "text": "assert item.price > 0",
+          "kind": "comparison",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "item.price",
+            "normalized": "item.price",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": ">",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 5,
+            "endLine": 80,
+            "endColumn": 41
+          },
+          "text": "assert names if cart.items else True",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "names if cart.items else True",
+            "normalized": "names if cart.items else True",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 5,
+            "endLine": 82,
+            "endColumn": 22
+          },
+          "text": "assert cart.items",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": false,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "b814a25b8c58c9fa8c1bda5dbfba725bec5652cb"
+    },
+    {
+      "id": "fd5a9c1b48ff",
+      "title": "test_helpers",
+      "fullTitle": "test_helpers",
+      "suitePath": [],
+      "span": {
+        "startLine": 85,
+        "startColumn": 1,
+        "endLine": 89,
+        "endColumn": 62
+      },
+      "bodySpan": {
+        "startLine": 86,
+        "startColumn": 5,
+        "endLine": 89,
+        "endColumn": 62
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 5,
+            "endLine": 87,
+            "endColumn": 35
+          },
+          "text": "assert_cart_total(response, 0)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "assert_cart_total"
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 5,
+            "endLine": 88,
+            "endColumn": 25
+          },
+          "text": "assert_empty(Cart())",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "assert_empty"
+        },
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 5,
+            "endLine": 89,
+            "endColumn": 62
+          },
+          "text": "np.testing.assert_allclose(response.json()[\"total\"], 0.0)",
+          "kind": "other",
+          "library": "assert-function",
+          "actual": {
+            "text": "response.json()[\"total\"]",
+            "normalized": "response.json()[\"total\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0.0",
+            "normalized": "0.0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0.0"
+            }
+          },
+          "matcher": "assert_allclose",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "21ab7b4a2dfd75560b9d41ec292dcd8ca4225177"
+    },
+    {
+      "id": "aa0c4d12889f",
+      "title": "test_soft_checks",
+      "fullTitle": "test_soft_checks",
+      "suitePath": [],
+      "span": {
+        "startLine": 92,
+        "startColumn": 1,
+        "endLine": 110,
+        "endColumn": 32
+      },
+      "bodySpan": {
+        "startLine": 93,
+        "startColumn": 5,
+        "endLine": 110,
+        "endColumn": 32
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 5,
+            "endLine": 93,
+            "endColumn": 33
+          },
+          "text": "check.equal(cart.total(), 0)",
+          "kind": "equality",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "equal",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 5,
+            "endLine": 94,
+            "endColumn": 39
+          },
+          "text": "check.not_equal(cart.currency, \"\")",
+          "kind": "equality",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.currency",
+            "normalized": "cart.currency",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"\"",
+            "normalized": "\"\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": ""
+            }
+          },
+          "matcher": "not_equal",
+          "negated": true,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 5,
+            "endLine": 95,
+            "endColumn": 40
+          },
+          "text": "check.almost_equal(cart.tax(), 0.0)",
+          "kind": "equality",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.tax()",
+            "normalized": "cart.tax()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0.0",
+            "normalized": "0.0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0.0"
+            }
+          },
+          "matcher": "almost_equal",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 5,
+            "endLine": 96,
+            "endColumn": 32
+          },
+          "text": "check.is_true(cart.is_open)",
+          "kind": "truthiness",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.is_open",
+            "normalized": "cart.is_open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_true",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 97,
+            "startColumn": 5,
+            "endLine": 97,
+            "endColumn": 32
+          },
+          "text": "check.is_false(cart.locked)",
+          "kind": "truthiness",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.locked",
+            "normalized": "cart.locked",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_false",
+          "negated": true,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 5,
+            "endLine": 98,
+            "endColumn": 30
+          },
+          "text": "check.is_none(cart.owner)",
+          "kind": "nullness",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.owner",
+            "normalized": "cart.owner",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_none",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 5,
+            "endLine": 99,
+            "endColumn": 31
+          },
+          "text": "check.is_not_none(cart.id)",
+          "kind": "nullness",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.id",
+            "normalized": "cart.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_not_none",
+          "negated": true,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 5,
+            "endLine": 100,
+            "endColumn": 40
+          },
+          "text": "check.is_in(\"EUR\", cart.currencies)",
+          "kind": "contains",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.currencies",
+            "normalized": "cart.currencies",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"EUR\"",
+            "normalized": "\"EUR\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "EUR"
+            }
+          },
+          "matcher": "is_in",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 5,
+            "endLine": 101,
+            "endColumn": 44
+          },
+          "text": "check.is_not_in(\"XXX\", cart.currencies)",
+          "kind": "contains",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.currencies",
+            "normalized": "cart.currencies",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"XXX\"",
+            "normalized": "\"XXX\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "XXX"
+            }
+          },
+          "matcher": "is_not_in",
+          "negated": true,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 5,
+            "endLine": 102,
+            "endColumn": 34
+          },
+          "text": "check.is_instance(cart, Cart)",
+          "kind": "type",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Cart",
+            "normalized": "Cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "is_instance",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 5,
+            "endLine": 103,
+            "endColumn": 33
+          },
+          "text": "check.greater(cart.limit, 0)",
+          "kind": "comparison",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.limit",
+            "normalized": "cart.limit",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "greater",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 104,
+            "startColumn": 5,
+            "endLine": 104,
+            "endColumn": 39
+          },
+          "text": "check.greater_equal(cart.limit, 1)",
+          "kind": "comparison",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.limit",
+            "normalized": "cart.limit",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "greater_equal",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 105,
+            "startColumn": 5,
+            "endLine": 105,
+            "endColumn": 41
+          },
+          "text": "check.less(cart.total(), cart.limit)",
+          "kind": "comparison",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart.limit",
+            "normalized": "cart.limit",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "less",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        },
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 5,
+            "endLine": 106,
+            "endColumn": 47
+          },
+          "text": "check.less_equal(cart.total(), cart.limit)",
+          "kind": "comparison",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart.limit",
+            "normalized": "cart.limit",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "less_equal",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<="
+        },
+        {
+          "span": {
+            "startLine": 107,
+            "startColumn": 5,
+            "endLine": 107,
+            "endColumn": 45
+          },
+          "text": "check.raises(ValueError, cart.add, None)",
+          "kind": "throws",
+          "library": "pytest-check",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "raises",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 108,
+            "startColumn": 5,
+            "endLine": 108,
+            "endColumn": 45
+          },
+          "text": "pytest_check.check.is_true(cart.is_open)",
+          "kind": "truthiness",
+          "library": "pytest-check",
+          "actual": {
+            "text": "cart.is_open",
+            "normalized": "cart.is_open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_true",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 110,
+            "startColumn": 9,
+            "endLine": 110,
+            "endColumn": 32
+          },
+          "text": "assert cart.items == []",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 17,
+      "bodyHash": "c367f4302cd04f85552a14db8af6e84b1cba1270"
+    },
+    {
+      "id": "015330058ff2",
+      "title": "test_mock_assertions",
+      "fullTitle": "test_mock_assertions",
+      "suitePath": [],
+      "span": {
+        "startLine": 113,
+        "startColumn": 1,
+        "endLine": 139,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 114,
+        "startColumn": 5,
+        "endLine": 139,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 120,
+            "startColumn": 5,
+            "endLine": 120,
+            "endColumn": 25
+          },
+          "text": "send.assert_called()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 121,
+            "startColumn": 5,
+            "endLine": 121,
+            "endColumn": 30
+          },
+          "text": "send.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 122,
+            "startColumn": 5,
+            "endLine": 122,
+            "endColumn": 34
+          },
+          "text": "send.assert_called_with(cart)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_called_with",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 5,
+            "endLine": 123,
+            "endColumn": 39
+          },
+          "text": "send.assert_called_once_with(cart)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_called_once_with",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 124,
+            "startColumn": 5,
+            "endLine": 124,
+            "endColumn": 31
+          },
+          "text": "send.assert_any_call(cart)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_any_call",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 125,
+            "startColumn": 5,
+            "endLine": 125,
+            "endColumn": 45
+          },
+          "text": "send.assert_has_calls([mock.call(cart)])",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "[mock.call(cart)]",
+            "normalized": "[mock.call(cart)]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_has_calls",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 126,
+            "startColumn": 5,
+            "endLine": 126,
+            "endColumn": 44
+          },
+          "text": "mailer.send_receipt.assert_not_called()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "mailer.send_receipt",
+            "normalized": "mailer.send_receipt",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_not_called",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 127,
+            "startColumn": 5,
+            "endLine": 127,
+            "endColumn": 28
+          },
+          "text": "notify.assert_awaited()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_awaited",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 128,
+            "startColumn": 5,
+            "endLine": 128,
+            "endColumn": 33
+          },
+          "text": "notify.assert_awaited_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_awaited_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 129,
+            "startColumn": 5,
+            "endLine": 129,
+            "endColumn": 37
+          },
+          "text": "notify.assert_awaited_with(cart)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_awaited_with",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 130,
+            "startColumn": 5,
+            "endLine": 130,
+            "endColumn": 42
+          },
+          "text": "notify.assert_awaited_once_with(cart)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_awaited_once_with",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 131,
+            "startColumn": 5,
+            "endLine": 131,
+            "endColumn": 34
+          },
+          "text": "notify.assert_any_await(cart)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_any_await",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 132,
+            "startColumn": 5,
+            "endLine": 132,
+            "endColumn": 48
+          },
+          "text": "notify.assert_has_awaits([mock.call(cart)])",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "[mock.call(cart)]",
+            "normalized": "[mock.call(cart)]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assert_has_awaits",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 133,
+            "startColumn": 5,
+            "endLine": 133,
+            "endColumn": 32
+          },
+          "text": "notify.assert_not_awaited()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "notify",
+            "normalized": "notify",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_not_awaited",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 134,
+            "startColumn": 5,
+            "endLine": 134,
+            "endColumn": 23
+          },
+          "text": "assert send.called",
+          "kind": "mock-call",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "send.called",
+            "normalized": "send.called",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 135,
+            "startColumn": 5,
+            "endLine": 135,
+            "endColumn": 32
+          },
+          "text": "assert send.call_count == 1",
+          "kind": "mock-call",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "send.call_count",
+            "normalized": "send.call_count",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 136,
+            "startColumn": 5,
+            "endLine": 136,
+            "endColumn": 35
+          },
+          "text": "assert notify.await_count == 0",
+          "kind": "mock-call",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "notify.await_count",
+            "normalized": "notify.await_count",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": true
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 137,
+            "startColumn": 5,
+            "endLine": 137,
+            "endColumn": 45
+          },
+          "text": "assert send.call_args == mock.call(cart)",
+          "kind": "mock-call",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "send.call_args",
+            "normalized": "send.call_args",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "mock.call(cart)",
+            "normalized": "mock.call(cart)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 138,
+            "startColumn": 5,
+            "endLine": 138,
+            "endColumn": 52
+          },
+          "text": "assert send.call_args_list == [mock.call(cart)]",
+          "kind": "mock-call",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "send.call_args_list",
+            "normalized": "send.call_args_list",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "[mock.call(cart)]",
+            "normalized": "[mock.call(cart)]",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 139,
+            "startColumn": 5,
+            "endLine": 139,
+            "endColumn": 33
+          },
+          "text": "assert spec.mock_calls == []",
+          "kind": "mock-call",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "spec.mock_calls",
+            "normalized": "spec.mock_calls",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 26,
+      "bodyHash": "7884cb596264d79f8b33ac638a0071d619db66fd"
+    },
+    {
+      "id": "a9bae7b763dd",
+      "title": "test_mock_look_alikes",
+      "fullTitle": "test_mock_look_alikes",
+      "suitePath": [],
+      "span": {
+        "startLine": 142,
+        "startColumn": 1,
+        "endLine": 158,
+        "endColumn": 36
+      },
+      "bodySpan": {
+        "startLine": 143,
+        "startColumn": 5,
+        "endLine": 158,
+        "endColumn": 36
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 150,
+            "startColumn": 5,
+            "endLine": 150,
+            "endColumn": 23
+          },
+          "text": "send.called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "called_once",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 151,
+            "startColumn": 5,
+            "endLine": 151,
+            "endColumn": 29
+          },
+          "text": "send.called_once_with(1)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "called_once_with",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 152,
+            "startColumn": 5,
+            "endLine": 152,
+            "endColumn": 30
+          },
+          "text": "charge.called_with(29.99)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "charge",
+            "normalized": "charge",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "called_with",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 153,
+            "startColumn": 5,
+            "endLine": 153,
+            "endColumn": 25
+          },
+          "text": "refund.has_calls([])",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "refund",
+            "normalized": "refund",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "has_calls",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 154,
+            "startColumn": 5,
+            "endLine": 154,
+            "endColumn": 21
+          },
+          "text": "spy.not_called()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "spy",
+            "normalized": "spy",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "not_called",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 155,
+            "startColumn": 5,
+            "endLine": 155,
+            "endColumn": 20
+          },
+          "text": "stub.any_call()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "stub",
+            "normalized": "stub",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "any_call",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 156,
+            "startColumn": 5,
+            "endLine": 156,
+            "endColumn": 30
+          },
+          "text": "mailer.assert_called_once",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 157,
+            "startColumn": 5,
+            "endLine": 157,
+            "endColumn": 42
+          },
+          "text": "charge.assert_called_once_wiht(29.99)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "charge",
+            "normalized": "charge",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once_wiht",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 158,
+            "startColumn": 5,
+            "endLine": 158,
+            "endColumn": 36
+          },
+          "text": "assert send.called_once_with(1)",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "send",
+            "normalized": "send",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "called_once_with",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 16,
+      "bodyHash": "3a2452e476dcf2094543609bf5382bbe301bda5f"
+    },
+    {
+      "id": "ffeeb5f88376",
+      "title": "test_patch_decorators",
+      "fullTitle": "test_patch_decorators",
+      "suitePath": [],
+      "span": {
+        "startLine": 161,
+        "startColumn": 1,
+        "endLine": 166,
+        "endColumn": 31
+      },
+      "bodySpan": {
+        "startLine": 164,
+        "startColumn": 5,
+        "endLine": 166,
+        "endColumn": 31
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 165,
+            "startColumn": 5,
+            "endLine": 165,
+            "endColumn": 32
+          },
+          "text": "charge.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "charge",
+            "normalized": "charge",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 166,
+            "startColumn": 5,
+            "endLine": 166,
+            "endColumn": 31
+          },
+          "text": "refund.assert_not_called()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "refund",
+            "normalized": "refund",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_not_called",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "090fda94f54d4eae4246725fbd0f5f01fafaefdd"
+    },
+    {
+      "id": "602a0b4cce9e",
+      "title": "test_patch_as_context",
+      "fullTitle": "test_patch_as_context",
+      "suitePath": [],
+      "span": {
+        "startLine": 169,
+        "startColumn": 1,
+        "endLine": 173,
+        "endColumn": 31
+      },
+      "bodySpan": {
+        "startLine": 170,
+        "startColumn": 5,
+        "endLine": 173,
+        "endColumn": 31
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 172,
+            "startColumn": 5,
+            "endLine": 172,
+            "endColumn": 32
+          },
+          "text": "charge.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "charge",
+            "normalized": "charge",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 173,
+            "startColumn": 5,
+            "endLine": 173,
+            "endColumn": 31
+          },
+          "text": "refund.assert_not_called()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "refund",
+            "normalized": "refund",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_not_called",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "b998232f0523cfdad1f1152ff4654d90960bae59"
+    },
+    {
+      "id": "d0ce18313d32",
+      "title": "test_swallowed_failures",
+      "fullTitle": "test_swallowed_failures",
+      "suitePath": [],
+      "span": {
+        "startLine": 176,
+        "startColumn": 1,
+        "endLine": 192,
+        "endColumn": 27
+      },
+      "bodySpan": {
+        "startLine": 177,
+        "startColumn": 5,
+        "endLine": 192,
+        "endColumn": 27
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 178,
+            "startColumn": 9,
+            "endLine": 178,
+            "endColumn": 33
+          },
+          "text": "assert cart.total() == 0",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 182,
+            "startColumn": 9,
+            "endLine": 182,
+            "endColumn": 32
+          },
+          "text": "assert cart.items == []",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 186,
+            "startColumn": 9,
+            "endLine": 186,
+            "endColumn": 34
+          },
+          "text": "assert cart.owner is None",
+          "kind": "nullness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.owner",
+            "normalized": "cart.owner",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 190,
+            "startColumn": 9,
+            "endLine": 190,
+            "endColumn": 38
+          },
+          "text": "assert cart.currency == \"EUR\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.currency",
+            "normalized": "cart.currency",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"EUR\"",
+            "normalized": "\"EUR\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "EUR"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 191,
+            "startColumn": 10,
+            "endLine": 191,
+            "endColumn": 34
+          },
+          "text": "pytest.raises(Exception)",
+          "kind": "throws",
+          "library": "pytest",
+          "actual": null,
+          "expected": {
+            "text": "Exception",
+            "normalized": "Exception",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "pytest.raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 192,
+            "startColumn": 9,
+            "endLine": 192,
+            "endColumn": 27
+          },
+          "text": "assert cart.locked",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.locked",
+            "normalized": "cart.locked",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 177,
+            "startColumn": 5,
+            "endLine": 180,
+            "endColumn": 13
+          },
+          "kind": "try-catch",
+          "catches": [
+            "Exception"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 181,
+            "startColumn": 5,
+            "endLine": 184,
+            "endColumn": 21
+          },
+          "kind": "try-catch",
+          "catches": [
+            "BaseException"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 185,
+            "startColumn": 5,
+            "endLine": 188,
+            "endColumn": 13
+          },
+          "kind": "try-catch",
+          "catches": [
+            "*"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 189,
+            "startColumn": 5,
+            "endLine": 190,
+            "endColumn": 38
+          },
+          "kind": "try-catch",
+          "catches": [
+            "AssertionError"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 191,
+            "startColumn": 5,
+            "endLine": 192,
+            "endColumn": 27
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "Exception"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "1198b62e13880ed761b086c252281b92fd990edd"
+    },
+    {
+      "id": "25074ac3bc71",
+      "title": "test_handled_failures",
+      "fullTitle": "test_handled_failures",
+      "suitePath": [],
+      "span": {
+        "startLine": 195,
+        "startColumn": 1,
+        "endLine": 217,
+        "endColumn": 32
+      },
+      "bodySpan": {
+        "startLine": 196,
+        "startColumn": 5,
+        "endLine": 217,
+        "endColumn": 32
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 197,
+            "startColumn": 9,
+            "endLine": 197,
+            "endColumn": 33
+          },
+          "text": "assert cart.total() == 0",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 201,
+            "startColumn": 9,
+            "endLine": 201,
+            "endColumn": 32
+          },
+          "text": "assert cart.items == []",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 203,
+            "startColumn": 9,
+            "endLine": 203,
+            "endColumn": 55
+          },
+          "text": "pytest.fail(f\"the cart is not empty: {error}\")",
+          "kind": "fail-call",
+          "library": "pytest",
+          "actual": null,
+          "expected": null,
+          "matcher": "pytest.fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 209,
+            "startColumn": 9,
+            "endLine": 209,
+            "endColumn": 40
+          },
+          "text": "assert \"quantity\" in str(error)",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "str(error)",
+            "normalized": "str(error)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"quantity\"",
+            "normalized": "\"quantity\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "quantity"
+            }
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 215,
+            "startColumn": 9,
+            "endLine": 215,
+            "endColumn": 26
+          },
+          "text": "assert value == 0",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "value",
+            "normalized": "value",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 217,
+            "startColumn": 9,
+            "endLine": 217,
+            "endColumn": 32
+          },
+          "text": "assert cart is not None",
+          "kind": "nullness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is not",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 196,
+            "startColumn": 5,
+            "endLine": 199,
+            "endColumn": 14
+          },
+          "kind": "try-catch",
+          "catches": [
+            "AssertionError"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": true,
+          "handlerFails": false,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 200,
+            "startColumn": 5,
+            "endLine": 203,
+            "endColumn": 55
+          },
+          "kind": "try-catch",
+          "catches": [
+            "Exception"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": true,
+          "handlerAsserts": false
+        },
+        {
+          "span": {
+            "startLine": 204,
+            "startColumn": 5,
+            "endLine": 209,
+            "endColumn": 40
+          },
+          "kind": "try-catch",
+          "catches": [
+            "KeyError",
+            "ValueError",
+            "AssertionError"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": true
+        },
+        {
+          "span": {
+            "startLine": 210,
+            "startColumn": 5,
+            "endLine": 217,
+            "endColumn": 32
+          },
+          "kind": "try-catch",
+          "catches": [
+            "TypeError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "539286cb7acd60533bd2986c414174e8d9f28f13"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 18
+      },
+      "source": "contextlib",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 26
+      },
+      "source": "unittest",
+      "names": [
+        "mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 77
+      },
+      "source": "unittest.mock",
+      "names": [
+        "AsyncMock",
+        "MagicMock",
+        "Mock",
+        "create_autospec",
+        "patch"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 19
+      },
+      "source": "numpy",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 20
+      },
+      "source": "pytest_check",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 31
+      },
+      "source": "pytest_check",
+      "names": [
+        "check"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 27
+      },
+      "source": "shop.cart",
+      "names": [
+        "Cart"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 29
+      },
+      "source": "shop.mail",
+      "names": [
+        "Mailer"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 40
+      },
+      "source": ".conftest",
+      "names": [
+        "assert_cart_total"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -189,7 +194,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 46
+          },
+          "text": "self.assertEqual(self.cart.items, [])",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.items",
+            "normalized": "self.cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -228,7 +273,86 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 9,
+            "endLine": 38,
+            "endColumn": 51
+          },
+          "text": "self.assertIn(\"backpack\", self.cart.items)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.items",
+            "normalized": "self.cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"backpack\"",
+            "normalized": "\"backpack\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "backpack"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 57
+          },
+          "text": "self.assertAlmostEqual(self.cart.total(), 29.99)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.total()",
+            "normalized": "self.cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "assertAlmostEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -273,7 +397,47 @@
         "reason": "the coupon service is being replaced"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 51
+          },
+          "text": "self.assertEqual(self.cart.total(), 26.99)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.total()",
+            "normalized": "self.cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "26.99",
+            "normalized": "26.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "26.99"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -316,7 +480,36 @@
         "reason": "the receipt printer driver is POSIX only"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 60
+          },
+          "text": "self.assertTrue(self.cart.print_receipt().exists())",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.print_receipt().exists()",
+            "normalized": "self.cart.print_receipt().exists()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -359,7 +552,36 @@
         "reason": "needs the Linux barcode reader"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 9,
+            "endLine": 52,
+            "endColumn": 47
+          },
+          "text": "self.assertIsNotNone(self.cart.scan())",
+          "kind": "nullness",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.scan()",
+            "normalized": "self.cart.scan()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertIsNotNone",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -400,7 +622,47 @@
       ],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 51
+          },
+          "text": "self.assertEqual(self.cart.total(), 29.97)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.total()",
+            "normalized": "self.cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.97",
+            "normalized": "29.97",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.97"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -442,7 +704,43 @@
         "source": "loop",
         "cases": 4
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 17,
+            "endLine": 64,
+            "endColumn": 76
+          },
+          "text": "self.assertAlmostEqual(self.cart.total(), 29.99 * quantity)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.total()",
+            "normalized": "self.cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99 * quantity",
+            "normalized": "29.99*quantity",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertAlmostEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -484,7 +782,48 @@
         "source": "loop",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 17,
+            "endLine": 69,
+            "endColumn": 63
+          },
+          "text": "self.assertGreater(self.cart.price_of(sku), 0)",
+          "kind": "comparison",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.price_of(sku)",
+            "normalized": "self.cart.price_of(sku)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertGreater",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -527,7 +866,47 @@
         "reason": "needs the staging database"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 49
+          },
+          "text": "self.assertEqual(self.cart.points(), 10)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.points()",
+            "normalized": "self.cart.points()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "10",
+            "normalized": "10",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "10"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -570,7 +949,36 @@
         "reason": "the stock service is down"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 9,
+            "endLine": 78,
+            "endColumn": 57
+          },
+          "text": "self.assertFalse(self.cart.add(\"backpack\", 999))",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "self.cart.add(\"backpack\", 999)",
+            "normalized": "self.cart.add(\"backpack\",999)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -652,15 +1060,62 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 14,
+            "endLine": 96,
+            "endColumn": 43
+          },
+          "text": "self.assertRaises(ValueError)",
+          "kind": "throws",
+          "library": "unittest",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertRaises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
       },
-      "expectsException": false,
+      "expectsException": true,
       "waits": [],
       "selectors": [],
-      "tryBlocks": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 9,
+            "endLine": 97,
+            "endColumn": 33
+          },
+          "kind": "expected-exception-block",
+          "catches": [
+            "ValueError"
+          ],
+          "catchesAssertionFailures": false,
+          "assertionsInside": 0,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
       "mocks": [],
       "resources": [],
       "data": [],
@@ -691,7 +1146,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 9,
+            "endLine": 103,
+            "endColumn": 46
+          },
+          "text": "self.assertEqual(Cart().wishlist, [])",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "Cart().wishlist",
+            "normalized": "Cart().wishlist",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

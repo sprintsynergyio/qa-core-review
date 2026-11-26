@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -57,7 +62,71 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 63
+          },
+          "text": "expect(page).to_have_url(re.compile(r\"/inventory\\.html$\"))",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page",
+            "normalized": "page",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "re.compile(r\"/inventory\\.html$\")",
+            "normalized": "re.compile(r\"/inventory\\.html$\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "to_have_url",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 57
+          },
+          "text": "expect(page.get_by_text(\"Products\")).to_be_visible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.get_by_text(\"Products\")",
+            "normalized": "page.get_by_text(\"Products\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_visible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -94,7 +163,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 77
+          },
+          "text": "expect(logged_in_page.locator(\".shopping_cart_badge\")).to_have_text(\"1\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "logged_in_page.locator(\".shopping_cart_badge\")",
+            "normalized": "logged_in_page.locator(\".shopping_cart_badge\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"1\"",
+            "normalized": "\"1\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "to_have_text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -137,7 +246,47 @@
         "reason": "the sort menu is being redesigned"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 40
+          },
+          "text": "expect(first).to_have_text(\"$7.99\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "first",
+            "normalized": "first",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"$7.99\"",
+            "normalized": "\"$7.99\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "$7.99"
+            }
+          },
+          "matcher": "to_have_text",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -179,7 +328,36 @@
         "source": "parametrize",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 9,
+            "endLine": 52,
+            "endColumn": 78
+          },
+          "text": "expect(logged_in_page.locator(\"[data-test='error']\")).to_be_visible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "logged_in_page.locator(\"[data-test='error']\")",
+            "normalized": "logged_in_page.locator(\"[data-test='error']\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "to_be_visible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

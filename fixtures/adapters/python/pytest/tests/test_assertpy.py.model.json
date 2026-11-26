@@ -1,0 +1,781 @@
+{
+  "path": "tests/test_assertpy.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "c87752741195",
+      "title": "test_assertpy_checks",
+      "fullTitle": "test_assertpy_checks",
+      "suitePath": [],
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 30
+      },
+      "bodySpan": {
+        "startLine": 8,
+        "startColumn": 5,
+        "endLine": 28,
+        "endColumn": 30
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 31,
+            "endLine": 9,
+            "endColumn": 49
+          },
+          "text": "assert_that(cart.total()).is_equal_to(39.98)",
+          "kind": "equality",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "39.98",
+            "normalized": "39.98",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "39.98"
+            }
+          },
+          "matcher": "is_equal_to",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 31,
+            "endLine": 10,
+            "endColumn": 49
+          },
+          "text": "assert_that(cart.total()).is_not_equal_to(0)",
+          "kind": "equality",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "is_not_equal_to",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 31,
+            "endLine": 11,
+            "endColumn": 40
+          },
+          "text": "assert_that(cart.is_open).is_true()",
+          "kind": "truthiness",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.is_open",
+            "normalized": "cart.is_open",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_true",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 30,
+            "endLine": 12,
+            "endColumn": 40
+          },
+          "text": "assert_that(cart.locked).is_false()",
+          "kind": "truthiness",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.locked",
+            "normalized": "cart.locked",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_false",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 29,
+            "endLine": 13,
+            "endColumn": 38
+          },
+          "text": "assert_that(cart.owner).is_none()",
+          "kind": "nullness",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.owner",
+            "normalized": "cart.owner",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_none",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 26,
+            "endLine": 14,
+            "endColumn": 39
+          },
+          "text": "assert_that(cart.id).is_not_none()",
+          "kind": "nullness",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.id",
+            "normalized": "cart.id",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_not_none",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 29,
+            "endLine": 15,
+            "endColumn": 49
+          },
+          "text": "assert_that(cart.items).contains(\"backpack\")",
+          "kind": "contains",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"backpack\"",
+            "normalized": "\"backpack\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "backpack"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 29,
+            "endLine": 16,
+            "endColumn": 55
+          },
+          "text": "assert_that(cart.items).does_not_contain(\"coupon\")",
+          "kind": "contains",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"coupon\"",
+            "normalized": "\"coupon\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "coupon"
+            }
+          },
+          "matcher": "does_not_contain",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 23,
+            "endLine": 17,
+            "endColumn": 43
+          },
+          "text": "assert_that(cart).is_instance_of(Cart)",
+          "kind": "type",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Cart",
+            "normalized": "Cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "is_instance_of",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 29,
+            "endLine": 18,
+            "endColumn": 41
+          },
+          "text": "assert_that(cart.items).is_length(2)",
+          "kind": "count",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "is_length",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 31,
+            "endLine": 19,
+            "endColumn": 41
+          },
+          "text": "assert_that(Cart().items).is_empty()",
+          "kind": "count",
+          "library": "assertpy",
+          "actual": {
+            "text": "Cart().items",
+            "normalized": "Cart().items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_empty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 29,
+            "endLine": 20,
+            "endColumn": 43
+          },
+          "text": "assert_that(cart.items).is_not_empty()",
+          "kind": "count",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_not_empty",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 31,
+            "endLine": 21,
+            "endColumn": 49
+          },
+          "text": "assert_that(cart.total()).is_greater_than(0)",
+          "kind": "comparison",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "is_greater_than",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 31,
+            "endLine": 22,
+            "endColumn": 65
+          },
+          "text": "assert_that(cart.total()).is_greater_than_or_equal_to(39.98)",
+          "kind": "comparison",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "39.98",
+            "normalized": "39.98",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "39.98"
+            }
+          },
+          "matcher": "is_greater_than_or_equal_to",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 31,
+            "endLine": 23,
+            "endColumn": 48
+          },
+          "text": "assert_that(cart.total()).is_less_than(100)",
+          "kind": "comparison",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "100",
+            "normalized": "100",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "100"
+            }
+          },
+          "matcher": "is_less_than",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 31,
+            "endLine": 24,
+            "endColumn": 62
+          },
+          "text": "assert_that(cart.total()).is_less_than_or_equal_to(39.98)",
+          "kind": "comparison",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "39.98",
+            "normalized": "39.98",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "39.98"
+            }
+          },
+          "matcher": "is_less_than_or_equal_to",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<="
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 27,
+            "endLine": 25,
+            "endColumn": 68
+          },
+          "text": "assert_that(cart.add).raises(ValueError).when_called_with(None)",
+          "kind": "throws",
+          "library": "assertpy",
+          "actual": null,
+          "expected": {
+            "text": "ValueError",
+            "normalized": "ValueError",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "raises",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 29,
+            "endLine": 27,
+            "endColumn": 66
+          },
+          "text": "assert_that(cart.items).is_not_empty().contains(\"bike-light\")",
+          "kind": "count",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "is_not_empty",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 44,
+            "endLine": 27,
+            "endColumn": 66
+          },
+          "text": "assert_that(cart.items).is_not_empty().contains(\"bike-light\")",
+          "kind": "contains",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.items",
+            "normalized": "cart.items",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"bike-light\"",
+            "normalized": "\"bike-light\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "bike-light"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 30
+          },
+          "text": "assert_that(cart.total())",
+          "kind": "other",
+          "library": "assertpy",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 20,
+      "bodyHash": "993e5b6448ce0c9aadbe7952bc729fff4b1c59d4"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 33
+      },
+      "source": "assertpy",
+      "names": [
+        "assert_that"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 27
+      },
+      "source": "shop.cart",
+      "names": [
+        "Cart"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -92,7 +97,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 9,
+            "endLine": 30,
+            "endColumn": 60
+          },
+          "text": "self.assertIn(\"inventory\", self.driver.current_url)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "self.driver.current_url",
+            "normalized": "self.driver.current_url",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"inventory\"",
+            "normalized": "\"inventory\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "inventory"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -131,7 +176,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 9,
+            "endLine": 36,
+            "endColumn": 48
+          },
+          "text": "self.assertIn(\"locked out\", error.text)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "error.text",
+            "normalized": "error.text",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"locked out\"",
+            "normalized": "\"locked out\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "locked out"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -170,7 +255,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 13,
+            "endLine": 42,
+            "endColumn": 50
+          },
+          "text": "self.assertTrue(error.is_displayed())",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "error.is_displayed()",
+            "normalized": "error.is_displayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -178,7 +292,25 @@
       "expectsException": false,
       "waits": [],
       "selectors": [],
-      "tryBlocks": [],
+      "tryBlocks": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 17
+          },
+          "kind": "try-catch",
+          "catches": [
+            "Exception"
+          ],
+          "catchesAssertionFailures": true,
+          "assertionsInside": 1,
+          "handlerRethrows": false,
+          "handlerFails": false,
+          "handlerAsserts": false
+        }
+      ],
       "mocks": [],
       "resources": [],
       "data": [],
