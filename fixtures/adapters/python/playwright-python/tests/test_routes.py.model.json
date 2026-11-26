@@ -1,0 +1,1755 @@
+{
+  "path": "tests/test_routes.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [
+    "playwright-python"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "fbb383d3e6d6",
+      "title": "test_routes",
+      "fullTitle": "test_routes",
+      "suitePath": [],
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 56
+      },
+      "bodySpan": {
+        "startLine": 13,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 56
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 56
+          },
+          "text": "expect(page.locator(\".cart_item\")).to_have_count(0)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\".cart_item\")",
+            "normalized": "page.locator(\".cart_item\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "to_have_count",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 12,
+            "endLine": 22,
+            "endColumn": 38
+          },
+          "text": "page.locator(\".cart_item\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".cart_item"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 79
+          },
+          "text": "page.route(\"**/api/cart\", lambda route: route.fulfill(json={\"items\": []}))",
+          "kind": "network",
+          "target": "**/api/cart",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 56
+          },
+          "text": "page.route(\"**/api/prices\", answer_with_empty_cart)",
+          "kind": "network",
+          "target": "**/api/prices",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 56
+          },
+          "text": "page.route(\"**/*.png\", lambda route: route.abort())",
+          "kind": "network",
+          "target": "**/*.png",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 65
+          },
+          "text": "page.route(\"**/api/health\", lambda route: route.continue_())",
+          "kind": "network",
+          "target": "**/api/health",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 62
+          },
+          "text": "page.route(\"**/api/user\", lambda route: route.fallback())",
+          "kind": "network",
+          "target": "**/api/user",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 75
+          },
+          "text": "page.route(\"**/*\", lambda route: route.fulfill(status=200, body=\"{}\"))",
+          "kind": "network",
+          "target": "**/*",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 62
+          },
+          "text": "page.route(\"**\", lambda route: route.fulfill(status=200))",
+          "kind": "network",
+          "target": "**",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 61
+          },
+          "text": "page.route(\"*\", lambda route: route.fulfill(status=200))",
+          "kind": "network",
+          "target": "*",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 17,
+            "endLine": 12,
+            "endColumn": 21
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 35
+          },
+          "text": "page.goto(f\"{BASE}/cart.html\")",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 10,
+      "bodyHash": "1abb88c1ae0b51f32929a77c2382f072526e6ee3"
+    },
+    {
+      "id": "d8aeacaf427c",
+      "title": "test_condition_waits",
+      "fullTitle": "test_condition_waits",
+      "suitePath": [],
+      "span": {
+        "startLine": 25,
+        "startColumn": 1,
+        "endLine": 32,
+        "endColumn": 50
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 5,
+        "endLine": 32,
+        "endColumn": 50
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 50
+          },
+          "text": "assert page.query_selector_all(\".login_logo\")",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.query_selector_all(\".login_logo\")",
+            "normalized": "page.query_selector_all(\".login_logo\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 44
+          },
+          "text": "page.wait_for_selector(\"#login-button\")",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 39
+          },
+          "text": "page.wait_for_url(\"**/index.html\")",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 44
+          },
+          "text": "page.wait_for_load_state(\"networkidle\")",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 60
+          },
+          "text": "page.locator(\"#login-button\").wait_for(state=\"visible\")",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 5,
+            "endLine": 31,
+            "endColumn": 32
+          },
+          "text": "page.wait_for_timeout(1500)",
+          "kind": "fixed-sleep",
+          "ms": 1500
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 44
+          },
+          "text": "page.wait_for_selector(\"#login-button\")",
+          "api": "wait_for_selector",
+          "strategy": "id",
+          "value": "#login-button"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 34
+          },
+          "text": "page.locator(\"#login-button\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#login-button"
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 12,
+            "endLine": 32,
+            "endColumn": 50
+          },
+          "text": "page.query_selector_all(\".login_logo\")",
+          "api": "query_selector_all",
+          "strategy": "class",
+          "value": ".login_logo"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 26,
+            "endLine": 25,
+            "endColumn": 30
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 20
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 7,
+      "bodyHash": "b505f69f7b29e303179642cc365e9d4f84531879"
+    },
+    {
+      "id": "f7f25f285082",
+      "title": "test_page_actions_with_a_selector",
+      "fullTitle": "test_page_actions_with_a_selector",
+      "suitePath": [],
+      "span": {
+        "startLine": 35,
+        "startColumn": 1,
+        "endLine": 63,
+        "endColumn": 52
+      },
+      "bodySpan": {
+        "startLine": 36,
+        "startColumn": 5,
+        "endLine": 63,
+        "endColumn": 52
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 5,
+            "endLine": 46,
+            "endColumn": 51
+          },
+          "text": "assert page.is_visible(\"#inventory_container\")",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.is_visible(\"#inventory_container\")",
+            "normalized": "page.is_visible(\"#inventory_container\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 5,
+            "endLine": 47,
+            "endColumn": 53
+          },
+          "text": "assert page.text_content(\".title\") == \"Products\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.text_content(\".title\")",
+            "normalized": "page.text_content(\".title\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 51
+          },
+          "text": "assert page.inner_text(\".title\") == \"Products\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.inner_text(\".title\")",
+            "normalized": "page.inner_text(\".title\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 45
+          },
+          "text": "page.fill(\"#user-name\", \"standard_user\")",
+          "api": "fill",
+          "strategy": "id",
+          "value": "#user-name"
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 43
+          },
+          "text": "page.type(\"#password\", \"secret_sauce\")",
+          "api": "type",
+          "strategy": "id",
+          "value": "#password"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 37
+          },
+          "text": "page.press(\"#password\", \"Enter\")",
+          "api": "press",
+          "strategy": "id",
+          "value": "#password"
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 33
+          },
+          "text": "page.click(\"text=Open Menu\")",
+          "api": "click",
+          "strategy": "text",
+          "value": "text=Open Menu"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 42
+          },
+          "text": "page.dblclick(\"[data-testid='logo']\")",
+          "api": "dblclick",
+          "strategy": "test-id",
+          "value": "[data-testid='logo']"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 35
+          },
+          "text": "page.hover(\"[data-qa='menu']\")",
+          "api": "hover",
+          "strategy": "test-id",
+          "value": "[data-qa='menu']"
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 36
+          },
+          "text": "page.check(\"[data-cy='terms']\")",
+          "api": "check",
+          "strategy": "test-id",
+          "value": "[data-cy='terms']"
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 5,
+            "endLine": 44,
+            "endColumn": 45
+          },
+          "text": "page.uncheck(\"[data-test='newsletter']\")",
+          "api": "uncheck",
+          "strategy": "test-id",
+          "value": "[data-test='newsletter']"
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 64
+          },
+          "text": "page.select_option(\"select.product_sort_container\", \"lohi\")",
+          "api": "select_option",
+          "strategy": "css",
+          "value": "select.product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 12,
+            "endLine": 46,
+            "endColumn": 51
+          },
+          "text": "page.is_visible(\"#inventory_container\")",
+          "api": "is_visible",
+          "strategy": "id",
+          "value": "#inventory_container"
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 12,
+            "endLine": 47,
+            "endColumn": 39
+          },
+          "text": "page.text_content(\".title\")",
+          "api": "text_content",
+          "strategy": "class",
+          "value": ".title"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 12,
+            "endLine": 48,
+            "endColumn": 37
+          },
+          "text": "page.inner_text(\".title\")",
+          "api": "inner_text",
+          "strategy": "class",
+          "value": ".title"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 27
+          },
+          "text": "frame.click(\"#accept\")",
+          "api": "click",
+          "strategy": "id",
+          "value": "#accept"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 5,
+            "endLine": 50,
+            "endColumn": 26
+          },
+          "text": "popup.click(\"#close\")",
+          "api": "click",
+          "strategy": "id",
+          "value": "#close"
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 5,
+            "endLine": 51,
+            "endColumn": 35
+          },
+          "text": "checkout_page.click(\"#finish\")",
+          "api": "click",
+          "strategy": "id",
+          "value": "#finish"
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 23
+          },
+          "text": "page.locator(\"li\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "li",
+          "positional": {
+            "kind": "nth",
+            "index": 2,
+            "baseStrategy": "css"
+          }
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 5,
+            "endLine": 55,
+            "endColumn": 23
+          },
+          "text": "page.locator(\"li\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "li",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "css"
+          }
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 5,
+            "endLine": 56,
+            "endColumn": 23
+          },
+          "text": "page.locator(\"li\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "li",
+          "positional": {
+            "kind": "last",
+            "index": null,
+            "baseStrategy": "css"
+          }
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 27
+          },
+          "text": "page.locator(\"#terms\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#terms"
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 5,
+            "endLine": 58,
+            "endColumn": 27
+          },
+          "text": "page.locator(\"#terms\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#terms"
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 5,
+            "endLine": 59,
+            "endColumn": 26
+          },
+          "text": "page.locator(\"#name\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#name"
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 26
+          },
+          "text": "page.locator(\"#name\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#name"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 61,
+            "endColumn": 26
+          },
+          "text": "page.locator(\"#name\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#name"
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 5,
+            "endLine": 62,
+            "endColumn": 27
+          },
+          "text": "page.locator(\"select\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "select"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 31
+          },
+          "text": "page.frame_locator(\"#ads\")",
+          "api": "frame_locator",
+          "strategy": "id",
+          "value": "#ads"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 44
+          },
+          "text": "page.frame_locator(\"#ads\").locator(\"a\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "a"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 39,
+            "endLine": 35,
+            "endColumn": 43
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 20
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 45
+          },
+          "text": "page.fill(\"#user-name\", \"standard_user\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 43
+          },
+          "text": "page.type(\"#password\", \"secret_sauce\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 37
+          },
+          "text": "page.press(\"#password\", \"Enter\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 40,
+            "endColumn": 33
+          },
+          "text": "page.click(\"text=Open Menu\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 42
+          },
+          "text": "page.dblclick(\"[data-testid='logo']\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 5,
+            "endLine": 42,
+            "endColumn": 35
+          },
+          "text": "page.hover(\"[data-qa='menu']\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 36
+          },
+          "text": "page.check(\"[data-cy='terms']\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 5,
+            "endLine": 44,
+            "endColumn": 45
+          },
+          "text": "page.uncheck(\"[data-test='newsletter']\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 5,
+            "endLine": 45,
+            "endColumn": 64
+          },
+          "text": "page.select_option(\"select.product_sort_container\", \"lohi\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 27
+          },
+          "text": "frame.click(\"#accept\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 5,
+            "endLine": 50,
+            "endColumn": 26
+          },
+          "text": "popup.click(\"#close\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 5,
+            "endLine": 51,
+            "endColumn": 35
+          },
+          "text": "checkout_page.click(\"#finish\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 5,
+            "endLine": 52,
+            "endColumn": 18
+          },
+          "text": "page.reload()",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 5,
+            "endLine": 53,
+            "endColumn": 19
+          },
+          "text": "page.go_back()",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 38
+          },
+          "text": "page.locator(\"li\").nth(2).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 5,
+            "endLine": 55,
+            "endColumn": 40
+          },
+          "text": "page.locator(\"li\").first.dblclick()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 5,
+            "endLine": 56,
+            "endColumn": 36
+          },
+          "text": "page.locator(\"li\").last.hover()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 35
+          },
+          "text": "page.locator(\"#terms\").check()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 5,
+            "endLine": 58,
+            "endColumn": 37
+          },
+          "text": "page.locator(\"#terms\").uncheck()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 5,
+            "endLine": 59,
+            "endColumn": 38
+          },
+          "text": "page.locator(\"#name\").fill(\"Ada\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 36
+          },
+          "text": "page.locator(\"#name\").type(\"!\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 61,
+            "endColumn": 41
+          },
+          "text": "page.locator(\"#name\").press(\"Enter\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 5,
+            "endLine": 62,
+            "endColumn": 47
+          },
+          "text": "page.locator(\"select\").select_option(\"az\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 5,
+            "endLine": 63,
+            "endColumn": 52
+          },
+          "text": "page.frame_locator(\"#ads\").locator(\"a\").click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 28,
+      "bodyHash": "6564d91dbd031c31f02f0d65a6c8786e571b0fb4"
+    },
+    {
+      "id": "595ec8647c5b",
+      "title": "test_browser_started_by_hand",
+      "fullTitle": "test_browser_started_by_hand",
+      "suitePath": [],
+      "span": {
+        "startLine": 66,
+        "startColumn": 1,
+        "endLine": 72,
+        "endColumn": 39
+      },
+      "bodySpan": {
+        "startLine": 67,
+        "startColumn": 5,
+        "endLine": 72,
+        "endColumn": 39
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 5,
+            "endLine": 72,
+            "endColumn": 39
+          },
+          "text": "assert page.title() == \"Swag Labs\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.title()",
+            "normalized": "page.title()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 18,
+            "endLine": 67,
+            "endColumn": 43
+          },
+          "text": "sync_playwright().start()",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 15,
+            "endLine": 68,
+            "endColumn": 43
+          },
+          "text": "playwright.chromium.launch()",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 15,
+            "endLine": 69,
+            "endColumn": 36
+          },
+          "text": "browser.new_context()",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 12,
+            "endLine": 70,
+            "endColumn": 30
+          },
+          "text": "context.new_page()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 5,
+            "endLine": 71,
+            "endColumn": 20
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 6,
+      "bodyHash": "30666f58e111b0f097d4d864fcca8f38407b3c24"
+    },
+    {
+      "id": "ca01b7cb4881",
+      "title": "test_browser_closed_again",
+      "fullTitle": "test_browser_closed_again",
+      "suitePath": [],
+      "span": {
+        "startLine": 75,
+        "startColumn": 1,
+        "endLine": 84,
+        "endColumn": 26
+      },
+      "bodySpan": {
+        "startLine": 76,
+        "startColumn": 5,
+        "endLine": 84,
+        "endColumn": 26
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 9,
+            "endLine": 81,
+            "endColumn": 43
+          },
+          "text": "assert page.title() == \"Swag Labs\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "page.title()",
+            "normalized": "page.title()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 18,
+            "endLine": 76,
+            "endColumn": 43
+          },
+          "text": "sync_playwright().start()",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 15,
+            "endLine": 77,
+            "endColumn": 43
+          },
+          "text": "playwright.chromium.launch()",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 12,
+            "endLine": 78,
+            "endColumn": 30
+          },
+          "text": "browser.new_page()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 9,
+            "endLine": 80,
+            "endColumn": 24
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "b7ccc2a99b214ead1c03dfeddf46874eb9924281"
+    },
+    {
+      "id": "e5fb6ff385e3",
+      "title": "test_async_browser",
+      "fullTitle": "test_async_browser",
+      "suitePath": [],
+      "span": {
+        "startLine": 87,
+        "startColumn": 1,
+        "endLine": 96,
+        "endColumn": 31
+      },
+      "bodySpan": {
+        "startLine": 89,
+        "startColumn": 5,
+        "endLine": 96,
+        "endColumn": 31
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 9,
+            "endLine": 95,
+            "endColumn": 49
+          },
+          "text": "assert await page.title() == \"Swag Labs\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "await page.title()",
+            "normalized": "await page.title()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 25,
+            "endLine": 92,
+            "endColumn": 53
+          },
+          "text": "playwright.chromium.launch()",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 22,
+            "endLine": 93,
+            "endColumn": 40
+          },
+          "text": "browser.new_page()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 15,
+            "endLine": 94,
+            "endColumn": 30
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 2,
+      "bodyHash": "1391d61429f9b30d6755831a6ce9de882159e522"
+    },
+    {
+      "id": "79dd9ec908a3",
+      "title": "test_page_from_the_context_fixture",
+      "fullTitle": "test_page_from_the_context_fixture",
+      "suitePath": [],
+      "span": {
+        "startLine": 99,
+        "startColumn": 1,
+        "endLine": 103,
+        "endColumn": 29
+      },
+      "bodySpan": {
+        "startLine": 100,
+        "startColumn": 5,
+        "endLine": 103,
+        "endColumn": 29
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 5,
+            "endLine": 103,
+            "endColumn": 29
+          },
+          "text": "assert other.pages == []",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "other.pages",
+            "normalized": "other.pages",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "[]",
+            "normalized": "[]",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "empty-collection",
+              "value": "[]"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 40,
+            "endLine": 99,
+            "endColumn": 47
+          },
+          "text": "context",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 49,
+            "endLine": 99,
+            "endColumn": 56
+          },
+          "text": "browser",
+          "kind": "browser",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 12,
+            "endLine": 100,
+            "endColumn": 30
+          },
+          "text": "context.new_page()",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 13,
+            "endLine": 101,
+            "endColumn": 34
+          },
+          "text": "browser.new_context()",
+          "kind": "context",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 5,
+            "endLine": 102,
+            "endColumn": 20
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "ddea8cba4cfef8fba603da24d6a82c264c6bed83"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 62
+      },
+      "source": "playwright.sync_api",
+      "names": [
+        "Page",
+        "expect",
+        "sync_playwright"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

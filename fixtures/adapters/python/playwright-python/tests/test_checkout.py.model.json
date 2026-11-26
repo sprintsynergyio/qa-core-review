@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -133,12 +140,116 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 31
+          },
+          "text": "page.locator(\"#user-name\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#user-name"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 30
+          },
+          "text": "page.locator(\"#password\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#password"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 34
+          },
+          "text": "page.locator(\"#login-button\")",
+          "api": "locator",
+          "strategy": "id",
+          "value": "#login-button"
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 12,
+            "endLine": 28,
+            "endColumn": 40
+          },
+          "text": "page.get_by_text(\"Products\")",
+          "api": "get_by_text",
+          "strategy": "text",
+          "value": "Products"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 36,
+            "endLine": 22,
+            "endColumn": 40
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 20
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 53
+          },
+          "text": "page.locator(\"#user-name\").fill(\"standard_user\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 51
+          },
+          "text": "page.locator(\"#password\").fill(\"secret_sauce\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 42
+          },
+          "text": "page.locator(\"#login-button\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 6,
       "bodyHash": "c686d988d5abb823f877d883a4ba99d244839a3f"
     },
@@ -209,13 +320,61 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
-      "selectors": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 41
+          },
+          "text": "logged_in_page.wait_for_timeout(500)",
+          "kind": "fixed-sleep",
+          "ms": 500
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 69
+          },
+          "text": "logged_in_page.get_by_test_id(\"add-to-cart-sauce-labs-backpack\")",
+          "api": "get_by_test_id",
+          "strategy": "test-id",
+          "value": "add-to-cart-sauce-labs-backpack"
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 12,
+            "endLine": 34,
+            "endColumn": 58
+          },
+          "text": "logged_in_page.locator(\".shopping_cart_badge\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".shopping_cart_badge"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 77
+          },
+          "text": "logged_in_page.get_by_test_id(\"add-to-cart-sauce-labs-backpack\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "5bfde2a6cbb28f449d6760d36b45424685875255"
     },
@@ -293,12 +452,53 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 60
+          },
+          "text": "logged_in_page.locator(\"select.product_sort_container\")",
+          "api": "locator",
+          "strategy": "css",
+          "value": "select.product_sort_container"
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 13,
+            "endLine": 40,
+            "endColumn": 75
+          },
+          "text": "logged_in_page.locator(\"//div[@class='inventory_item_price']\")",
+          "api": "locator",
+          "strategy": "xpath",
+          "value": "//div[@class='inventory_item_price']",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "xpath"
+          }
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 82
+          },
+          "text": "logged_in_page.locator(\"select.product_sort_container\").select_option(\"lohi\")",
+          "kind": "action"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "eaccf39282364aefb6c6834fbbd223281f7f541f"
     },
@@ -364,12 +564,124 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 56
+          },
+          "text": "logged_in_page.get_by_placeholder(\"First Name\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "First Name"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 55
+          },
+          "text": "logged_in_page.get_by_placeholder(\"Last Name\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Last Name"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 61
+          },
+          "text": "logged_in_page.get_by_placeholder(\"Zip/Postal Code\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Zip/Postal Code"
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 62
+          },
+          "text": "logged_in_page.get_by_role(\"button\", name=\"Continue\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 16,
+            "endLine": 52,
+            "endColumn": 61
+          },
+          "text": "logged_in_page.locator(\"[data-test='error']\")",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "[data-test='error']"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 62
+          },
+          "text": "logged_in_page.goto(f\"{BASE}/checkout-step-one.html\")",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 73
+          },
+          "text": "logged_in_page.get_by_placeholder(\"First Name\").fill(first_name)",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 71
+          },
+          "text": "logged_in_page.get_by_placeholder(\"Last Name\").fill(last_name)",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 79
+          },
+          "text": "logged_in_page.get_by_placeholder(\"Zip/Postal Code\").fill(postal_code)",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 70
+          },
+          "text": "logged_in_page.get_by_role(\"button\", name=\"Continue\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 6,
       "bodyHash": "5513a9990fa099b7811604e5354067680f6c70f2"
     }
@@ -387,7 +699,44 @@
       "releases": [],
       "assertions": [],
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 40
+          },
+          "text": "page.get_by_placeholder(\"Username\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Username"
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 5,
+            "endLine": 16,
+            "endColumn": 40
+          },
+          "text": "page.get_by_placeholder(\"Password\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Password"
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 45
+          },
+          "text": "page.get_by_role(\"button\", name=\"Login\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        }
+      ],
       "data": []
     },
     {
@@ -399,7 +748,9 @@
       },
       "kind": "fixture-teardown",
       "scope": "file",
-      "releases": [],
+      "releases": [
+        "var:context"
+      ],
       "assertions": [],
       "waits": [],
       "selectors": [],
@@ -407,7 +758,47 @@
     }
   ],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 20,
+        "endLine": 11,
+        "endColumn": 27
+      },
+      "text": "browser",
+      "kind": "browser",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 15,
+        "endLine": 12,
+        "endColumn": 36
+      },
+      "text": "browser.new_context()",
+      "kind": "context",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 12,
+        "endLine": 13,
+        "endColumn": 30
+      },
+      "text": "context.new_page()",
+      "kind": "page",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {

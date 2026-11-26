@@ -1,0 +1,1045 @@
+{
+  "path": "tests/test_waits.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "unittest",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "StrategyTests",
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 40,
+        "endColumn": 49
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 45
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [
+            "var:cls.driver"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 30
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "fc3ab695e58b",
+        "d4280b1ad185"
+      ],
+      "suites": []
+    },
+    {
+      "title": "DriverTests",
+      "span": {
+        "startLine": 43,
+        "startColumn": 1,
+        "endLine": 61,
+        "endColumn": 44
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "086fdea72f55",
+        "4ba190931303",
+        "822cda3cfd9b"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "fc3ab695e58b",
+      "title": "test_every_strategy",
+      "fullTitle": "StrategyTests > test_every_strategy",
+      "suitePath": [
+        "StrategyTests"
+      ],
+      "span": {
+        "startLine": 22,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 81
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 9,
+        "endLine": 33,
+        "endColumn": 81
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 85
+          },
+          "text": "self.assertTrue(driver.find_element(By.LINK_TEXT, \"Twitter\").is_displayed())",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.find_element(By.LINK_TEXT, \"Twitter\").is_displayed()",
+            "normalized": "driver.find_element(By.LINK_TEXT,\"Twitter\").is_displayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 9,
+            "endLine": 29,
+            "endColumn": 90
+          },
+          "text": "self.assertTrue(driver.find_element(By.PARTIAL_LINK_TEXT, \"Face\").is_displayed())",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.find_element(By.PARTIAL_LINK_TEXT, \"Face\").is_displayed()",
+            "normalized": "driver.find_element(By.PARTIAL_LINK_TEXT,\"Face\").is_displayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 9,
+            "endLine": 30,
+            "endColumn": 78
+          },
+          "text": "self.assertEqual(len(driver.find_elements(By.TAG_NAME, \"footer\")), 1)",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "len(driver.find_elements(By.TAG_NAME, \"footer\"))",
+            "normalized": "len(driver.find_elements(By.TAG_NAME,\"footer\"))",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 116
+          },
+          "text": "self.assertEqual(driver.find_elements(By.CLASS_NAME, \"inventory_item_name\")[0].text, \"Sauce Labs Backpack\")",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.find_elements(By.CLASS_NAME, \"inventory_item_name\")[0].text",
+            "normalized": "driver.find_elements(By.CLASS_NAME,\"inventory_item_name\")[0].text",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Sauce Labs Backpack\"",
+            "normalized": "\"Sauce Labs Backpack\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Sauce Labs Backpack"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 9,
+            "endLine": 32,
+            "endColumn": 115
+          },
+          "text": "self.assertEqual(driver.find_elements(By.XPATH, \"//div[@class='inventory_item_price']\")[2].text, \"$15.99\")",
+          "kind": "equality",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.find_elements(By.XPATH, \"//div[@class='inventory_item_price']\")[2].text",
+            "normalized": "driver.find_elements(By.XPATH,\"//div[@class='inventory_item_price']\")[2].text",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"$15.99\"",
+            "normalized": "\"$15.99\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "$15.99"
+            }
+          },
+          "matcher": "assertEqual",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 9,
+            "endLine": 33,
+            "endColumn": 81
+          },
+          "text": "self.assertTrue(driver.find_elements_by_css_selector(\".inventory_item\"))",
+          "kind": "truthiness",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.find_elements_by_css_selector(\".inventory_item\")",
+            "normalized": "driver.find_elements_by_css_selector(\".inventory_item\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 9,
+            "endLine": 24,
+            "endColumn": 50
+          },
+          "text": "driver.find_element(By.NAME, \"user-name\")",
+          "api": "By.NAME",
+          "strategy": "name",
+          "value": "user-name"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 71
+          },
+          "text": "driver.find_element(By.CSS_SELECTOR, \"[data-test='password']\")",
+          "api": "By.CSS_SELECTOR",
+          "strategy": "test-id",
+          "value": "[data-test='password']"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 9,
+            "endLine": 26,
+            "endColumn": 73
+          },
+          "text": "driver.find_element(By.CSS_SELECTOR, \"[data-testid='password']\")",
+          "api": "By.CSS_SELECTOR",
+          "strategy": "test-id",
+          "value": "[data-testid='password']"
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 25,
+            "endLine": 28,
+            "endColumn": 69
+          },
+          "text": "driver.find_element(By.LINK_TEXT, \"Twitter\")",
+          "api": "By.LINK_TEXT",
+          "strategy": "link-text",
+          "value": "Twitter"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 25,
+            "endLine": 29,
+            "endColumn": 74
+          },
+          "text": "driver.find_element(By.PARTIAL_LINK_TEXT, \"Face\")",
+          "api": "By.PARTIAL_LINK_TEXT",
+          "strategy": "link-text",
+          "value": "Face"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 30,
+            "endLine": 30,
+            "endColumn": 73
+          },
+          "text": "driver.find_elements(By.TAG_NAME, \"footer\")",
+          "api": "By.TAG_NAME",
+          "strategy": "css",
+          "value": "footer"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 26,
+            "endLine": 31,
+            "endColumn": 84
+          },
+          "text": "driver.find_elements(By.CLASS_NAME, \"inventory_item_name\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "inventory_item_name",
+          "positional": {
+            "kind": "first",
+            "index": 0,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 26,
+            "endLine": 32,
+            "endColumn": 96
+          },
+          "text": "driver.find_elements(By.XPATH, \"//div[@class='inventory_item_price']\")",
+          "api": "By.XPATH",
+          "strategy": "xpath",
+          "value": "//div[@class='inventory_item_price']",
+          "positional": {
+            "kind": "nth",
+            "index": 2,
+            "baseStrategy": "xpath"
+          }
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 25,
+            "endLine": 33,
+            "endColumn": 80
+          },
+          "text": "driver.find_elements_by_css_selector(\".inventory_item\")",
+          "api": "find_elements_by_css_selector",
+          "strategy": "class",
+          "value": ".inventory_item"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 9,
+            "endLine": 24,
+            "endColumn": 77
+          },
+          "text": "driver.find_element(By.NAME, \"user-name\").send_keys(\"standard_user\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 97
+          },
+          "text": "driver.find_element(By.CSS_SELECTOR, \"[data-test='password']\").send_keys(\"secret_sauce\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 9,
+            "endLine": 26,
+            "endColumn": 81
+          },
+          "text": "driver.find_element(By.CSS_SELECTOR, \"[data-testid='password']\").clear()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 52
+          },
+          "text": "driver.find_element(*LOGIN_BUTTON).submit()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 11,
+      "bodyHash": "6086dc1eab16921724c4bcfe0ddc6675189a1ca0"
+    },
+    {
+      "id": "d4280b1ad185",
+      "title": "test_condition_waits",
+      "fullTitle": "StrategyTests > test_condition_waits",
+      "suitePath": [
+        "StrategyTests"
+      ],
+      "span": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 40,
+        "endColumn": 49
+      },
+      "bodySpan": {
+        "startLine": 36,
+        "startColumn": 9,
+        "endLine": 40,
+        "endColumn": 49
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 40,
+            "endColumn": 49
+          },
+          "text": "self.assertIn(\"Swag\", self.driver.title)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "self.driver.title",
+            "normalized": "self.driver.title",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag\"",
+            "normalized": "\"Swag\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 9,
+            "endLine": 37,
+            "endColumn": 61
+          },
+          "text": "wait.until(EC.element_to_be_clickable(LOGIN_BUTTON))",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 9,
+            "endLine": 38,
+            "endColumn": 98
+          },
+          "text": "WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, \"user-name\")))",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 108
+          },
+          "text": "WebDriverWait(self.driver, 5).until_not(EC.visibility_of_element_located((By.CLASS_NAME, \"error\")))",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 76,
+            "endLine": 38,
+            "endColumn": 96
+          },
+          "text": "(By.ID, \"user-name\")",
+          "api": "By.ID",
+          "strategy": "id",
+          "value": "user-name"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 82,
+            "endLine": 39,
+            "endColumn": 106
+          },
+          "text": "(By.CLASS_NAME, \"error\")",
+          "api": "By.CLASS_NAME",
+          "strategy": "class",
+          "value": "error"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "bb31e40ff66d40bebe46e9379def84bd1947cc20"
+    },
+    {
+      "id": "086fdea72f55",
+      "title": "test_driver_that_is_never_closed",
+      "fullTitle": "DriverTests > test_driver_that_is_never_closed",
+      "suitePath": [
+        "DriverTests"
+      ],
+      "span": {
+        "startLine": 44,
+        "startColumn": 5,
+        "endLine": 47,
+        "endColumn": 44
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 9,
+        "endLine": 47,
+        "endColumn": 44
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 44
+          },
+          "text": "self.assertIn(\"Swag\", driver.title)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.title",
+            "normalized": "driver.title",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag\"",
+            "normalized": "\"Swag\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 18,
+            "endLine": 45,
+            "endColumn": 34
+          },
+          "text": "webdriver.Edge()",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 25
+          },
+          "text": "driver.get(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "2498c38490c4b5aea162f72b6fc92af6673866f0"
+    },
+    {
+      "id": "4ba190931303",
+      "title": "test_driver_closed_in_finally",
+      "fullTitle": "DriverTests > test_driver_closed_in_finally",
+      "suitePath": [
+        "DriverTests"
+      ],
+      "span": {
+        "startLine": 49,
+        "startColumn": 5,
+        "endLine": 55,
+        "endColumn": 26
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 9,
+        "endLine": 55,
+        "endColumn": 26
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 13,
+            "endLine": 53,
+            "endColumn": 48
+          },
+          "text": "self.assertIn(\"Swag\", driver.title)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.title",
+            "normalized": "driver.title",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag\"",
+            "normalized": "\"Swag\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 18,
+            "endLine": 50,
+            "endColumn": 36
+          },
+          "text": "webdriver.Safari()",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 13,
+            "endLine": 52,
+            "endColumn": 29
+          },
+          "text": "driver.get(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 2,
+      "bodyHash": "c94cdc7b39e26ba1337e4ea935873e270a443011"
+    },
+    {
+      "id": "822cda3cfd9b",
+      "title": "test_remote_driver_with_cleanup",
+      "fullTitle": "DriverTests > test_remote_driver_with_cleanup",
+      "suitePath": [
+        "DriverTests"
+      ],
+      "span": {
+        "startLine": 57,
+        "startColumn": 5,
+        "endLine": 61,
+        "endColumn": 44
+      },
+      "bodySpan": {
+        "startLine": 58,
+        "startColumn": 9,
+        "endLine": 61,
+        "endColumn": 44
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 9,
+            "endLine": 61,
+            "endColumn": 44
+          },
+          "text": "self.assertIn(\"Swag\", driver.title)",
+          "kind": "contains",
+          "library": "unittest",
+          "actual": {
+            "text": "driver.title",
+            "normalized": "driver.title",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag\"",
+            "normalized": "\"Swag\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag"
+            }
+          },
+          "matcher": "assertIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 18,
+            "endLine": 58,
+            "endColumn": 84
+          },
+          "text": "webdriver.Remote(command_executor=\"http://grid.example.test:4444\")",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 25
+          },
+          "text": "driver.get(BASE)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "384258bfdda361f3895cd4a8aecffedeb5b2148e"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 22,
+        "endLine": 16,
+        "endColumn": 41
+      },
+      "text": "webdriver.Firefox()",
+      "kind": "driver",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 16
+      },
+      "source": "unittest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 31
+      },
+      "source": "selenium",
+      "names": [
+        "webdriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 44
+      },
+      "source": "selenium.webdriver.common.by",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 65
+      },
+      "source": "selenium.webdriver.support",
+      "names": [
+        "expected_conditions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 56
+      },
+      "source": "selenium.webdriver.support.ui",
+      "names": [
+        "WebDriverWait"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

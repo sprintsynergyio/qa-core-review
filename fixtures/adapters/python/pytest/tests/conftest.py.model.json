@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -48,7 +55,9 @@
       },
       "kind": "fixture-teardown",
       "scope": "global",
-      "releases": [],
+      "releases": [
+        "var:session"
+      ],
       "assertions": [],
       "waits": [],
       "selectors": [],
@@ -67,7 +76,19 @@
       "assertions": [],
       "waits": [],
       "selectors": [],
-      "data": []
+      "data": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 12,
+            "endLine": 18,
+            "endColumn": 45
+          },
+          "text": "api_session.get(f\"{API}/catalog\")",
+          "op": "read",
+          "via": "http"
+        }
+      ]
     },
     {
       "span": {
@@ -82,7 +103,19 @@
       "assertions": [],
       "waits": [],
       "selectors": [],
-      "data": []
+      "data": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 15,
+            "endLine": 23,
+            "endColumn": 56
+          },
+          "text": "api_session.post(f\"{API}/carts\", json={})",
+          "op": "create",
+          "via": "http"
+        }
+      ]
     },
     {
       "span": {
@@ -97,7 +130,19 @@
       "assertions": [],
       "waits": [],
       "selectors": [],
-      "data": []
+      "data": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 53
+          },
+          "text": "api_session.delete(f\"{API}/carts/{cart_id}\")",
+          "op": "delete",
+          "via": "http"
+        }
+      ]
     },
     {
       "span": {
@@ -116,7 +161,47 @@
     }
   ],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 15,
+        "endLine": 10,
+        "endColumn": 33
+      },
+      "text": "requests.Session()",
+      "kind": "connection",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 32,
+        "startColumn": 15,
+        "endLine": 32,
+        "endColumn": 26
+      },
+      "text": "monkeypatch",
+      "kind": "patch",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": true
+    },
+    {
+      "span": {
+        "startLine": 33,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 44
+      },
+      "text": "monkeypatch.setenv(\"SHOP_REGION\", \"eu\")",
+      "kind": "env",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": true
+    }
+  ],
   "imports": [
     {
       "span": {

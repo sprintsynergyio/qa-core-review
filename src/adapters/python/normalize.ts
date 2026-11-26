@@ -2,8 +2,8 @@
 //
 // This file finds the structure of a test file: suites (classes), tests, hooks and fixtures,
 // skip and xfail marks, parametrized tests, imports and suppression comments. What each body
-// checks is read by assertions.ts. What it does (waits, selectors, mocks, resources) is read
-// by a later part of the adapter.
+// checks is read by assertions.ts, and what it does (waits, selectors, mocks, resources) by
+// body.ts.
 import { emptyTest, parseSuppression } from '../../model/build.js';
 import { bodyHash, testId } from '../../model/hash.js';
 import type { Capability, Modifier, NFile, NHook, NImport, NSuite, NSuppression, NTest, Span } from '../../model/types.js';
@@ -11,18 +11,20 @@ import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import type { AdapterContext, FrameworkGuess, ParsedFile, SourceFile } from '../types.js';
 import { readBody } from './assertions.js';
+import { readCalls, type CallContext, type Held } from './body.js';
 import { learnNames } from './expr.js';
-import { collectPythonHelpers, fileContext, isAsync } from './helpers.js';
+import { collectPythonHelpers, fileContext, findSubject, isAsync } from './helpers.js';
 import { argumentsOf, docstringOf, dottedName, hasAncestor, isPlaceholder, ownDescendants, qualify, statementsOf, stringValue, tokensOf } from './syntax.js';
 import {
   CONDITIONAL_IN_BODY_SKIPS, FIXTURE_DECORATORS, FRAMEWORK_MODULES, HOOK_FUNCTIONS, HOOK_METHODS, IN_BODY_SKIPS, MARKS, MARK_VARIABLE, PARAMETRIZE_DECORATORS,
-  RAISED_SKIPS, REASON_KEYWORDS, SUBTEST_CALL, SUPPORT_FILE_NAMES, TESTCASE_SUFFIX, TEST_CLASS_PREFIX, TEST_FILE_NAME, TEST_FUNCTION_PREFIX, TEST_LIBRARY_MODULES,
+  RAISED_SKIPS, REASON_KEYWORDS, SUBTEST_CALL, SUPPORT_FILE_NAMES, TESTCASE_SUFFIX, TEST_CLASS_PREFIX, TEST_FILE_NAME, TEST_FUNCTION_PREFIX, TEST_ID_ATTRIBUTES, TEST_LIBRARY_MODULES,
   TYPE_CHECKING_NAMES, UNITTEST_BASES, WIDE_FIXTURE_SCOPES,
 } from './vocab.js';
 
-/** What the adapter fills in from a syntax tree so far. The other capabilities join with the part that reads them. */
+/** What the adapter fills in from a syntax tree: every capability of the model. */
 export const PYTHON_CAPABILITIES: Capability[] = [
-  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability',
+  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'waits', 'selectors', 'try-blocks', 'mocks', 'subject',
+  'network', 'data', 'resources', 'body-hash', 'helpers', 'reachability',
 ];
 
 const BRANCHES = new Set(['if_statement', 'conditional_expression', 'boolean_operator', 'try_statement', 'match_statement', 'for_statement', 'while_statement']);
@@ -48,6 +50,8 @@ interface Mark {
 
 interface Scope {
   suite: NSuite | null;
+  /** The class statement of the suite. An after hook covers what is inside it. */
+  node: SyntaxNode | null;
   path: string[];
   /** From a `pytestmark` or the decorators of the class around: they cover every test below. */
   inherited: Marks;
@@ -291,12 +295,13 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
   /** Classes of this file that are unittest suites, so a class that extends one of them is a suite too. */
   const testCases = new Set<string>();
   /** What to read for each test and hook: its function, and for the two halves of a fixture which statements are its own. */
-  const bodies = new Map<NTest | NHook, { definition: SyntaxNode; skip?: SyntaxNode[]; only?: SyntaxNode[] }>();
+  const bodies = new Map<NTest | NHook, { definition: SyntaxNode; skip?: SyntaxNode[]; only?: SyntaxNode[]; covers?: SyntaxNode }>();
 
   const addHook = (scope: Scope, kind: NHook['kind'], span: Span, body: { definition: SyntaxNode; skip?: SyntaxNode[]; only?: SyntaxNode[] }): void => {
     const hook: NHook = { span, kind, scope: scope.suite ? 'suite' : support ? 'global' : 'file', releases: [], assertions: [], waits: [], selectors: [], data: [] };
     (scope.suite ? scope.suite.hooks : model.fileHooks).push(hook);
-    bodies.set(hook, body);
+    // What a teardown releases covers the fixture it belongs to. What any other after hook releases covers its class, or the file.
+    bodies.set(hook, { ...body, covers: kind === 'fixture-teardown' ? body.definition : scope.node ?? root });
   };
 
   const addTest = (statement: SyntaxNode, definition: SyntaxNode, name: string, marks: Marks, scope: Scope): void => {
@@ -352,7 +357,7 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
         // A skip or xfail on the class is kept on the suite. Its tests inherit only what makes them many tests.
         const suite: NSuite = { title: name, span: spanOfNode(statement), modifiers: marks.modifiers, hooks: [], testIds: [], suites: [] };
         (scope.suite ? scope.suite.suites : model.suites).push(suite);
-        visit(own, { suite, path: [...scope.path, name], inherited: { ...NO_MARKS, parameterized: withInherited(marks, scope.inherited).parameterized } });
+        visit(own, { suite, node: statement, path: [...scope.path, name], inherited: { ...NO_MARKS, parameterized: withInherited(marks, scope.inherited).parameterized } });
       } else if (scope.suite === null && COMPOUND.has(statement.type)) {
         // Tests declared under `if sys.platform == ...:` or `try:` at the top of a module.
         for (const block of statement.descendantsOfType('block')) {
@@ -364,7 +369,7 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
   const top = statementsOf(root);
   const moduleMarks = variableMarks(top, aliases);
   // A module `pytestmark` covers the suites of the module like a decorator on each of them.
-  visit(top, { suite: null, path: [], inherited: moduleMarks });
+  visit(top, { suite: null, node: null, path: [], inherited: moduleMarks });
   for (const suite of model.suites) suite.modifiers = [...new Set([...suite.modifiers, ...moduleMarks.modifiers])];
 
   // What each body checks. Names assigned inside a test are known only to that test.
@@ -372,20 +377,59 @@ export function normalizePython(parsed: ParsedFile, frameworks: FrameworkGuess, 
   const shared = fileContext(root, frameworks, imports, aliases, tests);
   const local = new Set(collectPythonHelpers(root, file.path, shared).map((helper) => helper.name));
   const isHelper = (name: string): boolean => local.has(name) || ctx.helperIndex.has(name) || ctx.config.assertionHelpers.includes(name);
-  for (const [target, { definition, skip, only }] of bodies) {
+  // What each body does. The module under test, with the local names imported from it, tells which mocks replace it.
+  const found = findSubject(file.path, imports, aliases, ctx.config);
+  model.subject = found.subject;
+  const calls: Omit<CallContext, 'env' | 'acquiredIn' | 'restores' | 'skip'> = {
+    subject: found.subject && { module: found.subject.module, names: found.names },
+    modules: new Set(imports.filter((entry) => !entry.typeOnly && !entry.source.startsWith('.')).map((entry) => entry.source)),
+    called: new Set(root.descendantsOfType('call').flatMap((call) => dottedName(call?.childForFieldName('function') ?? null) ?? [])),
+    testIdAttributes: [...new Set([ctx.config.testIdAttribute, ...TEST_ID_ATTRIBUTES])],
+    root,
+  };
+  const afterReleases: Array<{ covers: SyntaxNode; tokens: string[] }> = [];
+  const taken: Array<{ held: Held[]; releases: string[]; into: NFile['fileResources']; at: SyntaxNode }> = [];
+  // Outside every function: the statements of the module and of its classes, and the decorators of the classes.
+  const functions = new Set(root.descendantsOfType('function_definition').flatMap((node) => (node ? [node.id, ...(node.parent?.type === 'decorated_definition' ? [node.parent.id] : [])] : [])));
+  const outside = readCalls([root], { ...calls, env: shared.env, acquiredIn: 'file', restores: false, skip: functions });
+  model.fileMocks = outside.mocks;
+  taken.push({ held: outside.held, releases: outside.releases, into: model.fileResources, at: root });
+
+  for (const [target, { definition, skip, only, covers }] of bodies) {
     const body = definition.childForFieldName('body');
     if (!body) continue;
+    const isTest = 'id' in target;
     const env = { ...shared.env, locators: new Set(shared.env.locators), counts: new Set(shared.env.counts), mocks: new Set(shared.env.mocks) };
     learnNames(definition, env);
-    const facts = readBody(body, { ...shared, env, isHelper }, {
-      async: isAsync(definition), ...(skip ? { skip: new Set(skip.map((node) => node.id)) } : {}), ...(only ? { statements: only } : {}),
-    });
+    const skipped = new Set((skip ?? []).map((node) => node.id));
+    const facts = readBody(body, { ...shared, env, isHelper }, { async: isAsync(definition), skip: skipped, ...(only ? { statements: only } : {}) });
+    const after = !isTest && (target.kind === 'afterEach' || target.kind === 'afterAll' || target.kind === 'fixture-teardown');
+    // The decorators of a test are part of it: `@patch("shop.cart.charge")` mocks for this test.
+    const decorators = isTest && definition.parent?.type === 'decorated_definition' ? definition.parent.namedChildren.filter((node) => node.type === 'decorator') : [];
+    const did = readCalls(only ?? [body], { ...calls, env, acquiredIn: isTest ? 'test' : 'hook', restores: after, skip: skipped, definition: only ? null : definition, decorators });
     target.assertions = facts.assertions;
-    if ('id' in target) {
+    taken.push({ held: did.held, releases: did.releases, into: isTest ? target.resources : model.fileResources, at: definition });
+    if (isTest) {
       target.expectsException = facts.expectsException;
       target.tryBlocks = facts.tryBlocks;
+      Object.assign(target, { waits: did.waits, selectors: did.selectors, steps: did.steps, data: did.data, mocks: did.mocks });
+    } else {
+      target.releases = [...new Set(did.releases)];
+      target.waits = did.waits;
+      target.selectors = did.selectors;
+      target.data = did.data;
+      model.fileMocks.push(...did.mocks);
+      if (after && covers) afterReleases.push({ covers, tokens: did.releases });
     }
   }
+  // A resource is released in its own body, or in an after hook that covers it: of its class, of its file, or the teardown of its fixture.
+  for (const { held, releases, into, at } of taken) {
+    const later = afterReleases.filter(({ covers }) => covers.startIndex <= at.startIndex && at.endIndex <= covers.endIndex).flatMap(({ tokens }) => tokens);
+    for (const { resource, tokens } of held) into.push({ ...resource, released: resource.released || tokens.some((token) => releases.includes(token) || later.includes(token)) });
+  }
+  const byPosition = (a: { span: Span }, b: { span: Span }): number => a.span.startLine - b.span.startLine || a.span.startColumn - b.span.startColumn;
+  model.fileMocks.sort(byPosition);
+  model.fileResources.sort(byPosition);
 
   if (!support && (model.tests.length > 0 || model.suites.length > 0)) model.role = 'test';
   return model;

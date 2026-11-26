@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -56,7 +63,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:self.client"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -600,8 +609,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 20,
+            "endLine": 48,
+            "endColumn": 51
+          },
+          "text": "self.client.get(\"/api/orders/\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 20,
+            "endLine": 48,
+            "endColumn": 51
+          },
+          "text": "self.client.get(\"/api/orders/\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "1b294e555a035d4ade8054b6d5977f90a3b2c3a0"
     }
@@ -670,6 +702,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "shop.orders",
+    "via": "filename"
+  },
   "suppressions": []
 }

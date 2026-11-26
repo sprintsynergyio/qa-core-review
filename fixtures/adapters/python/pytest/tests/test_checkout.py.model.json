@@ -1,0 +1,3192 @@
+{
+  "path": "tests/test_checkout.py",
+  "language": "python",
+  "languageHint": null,
+  "adapter": "python",
+  "tier": 1,
+  "runner": "pytest",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "0a6ee065f86a",
+      "title": "test_waits",
+      "fullTitle": "test_waits",
+      "suitePath": [],
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 29,
+        "endColumn": 77
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 77
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 77
+          },
+          "text": "assert api_session.get(f\"{API}/carts/{cart}\").json()[\"status\"] == \"paid\"",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "api_session.get(f\"{API}/carts/{cart}\").json()[\"status\"]",
+            "normalized": "api_session.get(f\"{API}/carts/{cart}\").json()[\"status\"]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"paid\"",
+            "normalized": "\"paid\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "paid"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 18
+          },
+          "text": "time.sleep(2)",
+          "kind": "fixed-sleep",
+          "ms": 2000
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 21
+          },
+          "text": "time.sleep(0.25)",
+          "kind": "fixed-sleep",
+          "ms": 250
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 28
+          },
+          "text": "time.sleep(RETRY_DELAY)",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 53
+          },
+          "text": "api_session.post(f\"{API}/carts/{cart}/checkout\")",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 12,
+            "endLine": 29,
+            "endColumn": 50
+          },
+          "text": "api_session.get(f\"{API}/carts/{cart}\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 53
+          },
+          "text": "api_session.post(f\"{API}/carts/{cart}/checkout\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 12,
+            "endLine": 29,
+            "endColumn": 50
+          },
+          "text": "api_session.get(f\"{API}/carts/{cart}\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 5,
+      "bodyHash": "74e17d35e891bc5efde647ecc8b2f57ab046f7b4"
+    },
+    {
+      "id": "41037cc28b00",
+      "title": "test_async_wait",
+      "fullTitle": "test_async_wait",
+      "suitePath": [],
+      "span": {
+        "startLine": 32,
+        "startColumn": 1,
+        "endLine": 35,
+        "endColumn": 60
+      },
+      "bodySpan": {
+        "startLine": 33,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 60
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 35,
+            "endColumn": 60
+          },
+          "text": "assert (await client.get(\"/orders\")).status_code == 200",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "(await client.get(\"/orders\")).status_code",
+            "normalized": "(await client.get(\"/orders\")).status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 11,
+            "endLine": 34,
+            "endColumn": 29
+          },
+          "text": "asyncio.sleep(1.5)",
+          "kind": "fixed-sleep",
+          "ms": 1500
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 11,
+            "endLine": 33,
+            "endColumn": 35
+          },
+          "text": "client.post(\"/checkout\")",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 19,
+            "endLine": 35,
+            "endColumn": 40
+          },
+          "text": "client.get(\"/orders\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 11,
+            "endLine": 33,
+            "endColumn": 35
+          },
+          "text": "client.post(\"/checkout\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 19,
+            "endLine": 35,
+            "endColumn": 40
+          },
+          "text": "client.get(\"/orders\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "7f57b992f34afb09c8eb74197a184e815dcbf046"
+    },
+    {
+      "id": "a303804a6226",
+      "title": "test_fake_time",
+      "fullTitle": "test_fake_time",
+      "suitePath": [],
+      "span": {
+        "startLine": 38,
+        "startColumn": 1,
+        "endLine": 43,
+        "endColumn": 48
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 5,
+        "endLine": 43,
+        "endColumn": 48
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 44
+          },
+          "text": "assert Checkout().is_holiday_sale()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().is_holiday_sale()",
+            "normalized": "Checkout().is_holiday_sale()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 9,
+            "endLine": 43,
+            "endColumn": 48
+          },
+          "text": "assert not Checkout().is_holiday_sale()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().is_holiday_sale()",
+            "normalized": "Checkout().is_holiday_sale()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 2,
+            "endLine": 38,
+            "endColumn": 27
+          },
+          "text": "freeze_time(\"2026-01-01\")",
+          "kind": "fake-timer",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 10,
+            "endLine": 40,
+            "endColumn": 35
+          },
+          "text": "freeze_time(\"2026-12-31\")",
+          "kind": "fake-timer",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 10,
+            "endLine": 42,
+            "endColumn": 43
+          },
+          "text": "time_machine.travel(\"2026-07-01\")",
+          "kind": "fake-timer",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "7fbaf92bd508c70f12c8de81fc1a93f91141591f"
+    },
+    {
+      "id": "1510f791c844",
+      "title": "test_requests_and_data",
+      "fullTitle": "test_requests_and_data",
+      "suitePath": [],
+      "span": {
+        "startLine": 46,
+        "startColumn": 1,
+        "endLine": 62,
+        "endColumn": 38
+      },
+      "bodySpan": {
+        "startLine": 47,
+        "startColumn": 5,
+        "endLine": 62,
+        "endColumn": 38
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 5,
+            "endLine": 51,
+            "endColumn": 54
+          },
+          "text": "assert client.get(\"/orders/1\").status_code == 200",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "client.get(\"/orders/1\").status_code",
+            "normalized": "client.get(\"/orders/1\").status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 5,
+            "endLine": 52,
+            "endColumn": 46
+          },
+          "text": "assert requests.get(f\"{API}/orders/1\").ok",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "requests.get(f\"{API}/orders/1\").ok",
+            "normalized": "requests.get(f\"{API}/orders/1\").ok",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 5,
+            "endLine": 53,
+            "endColumn": 51
+          },
+          "text": "assert httpx.get(f\"{API}/orders/1\").is_success",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "httpx.get(f\"{API}/orders/1\").is_success",
+            "normalized": "httpx.get(f\"{API}/orders/1\").is_success",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 5,
+            "endLine": 61,
+            "endColumn": 72
+          },
+          "text": "assert db.execute(\"SELECT count(*) FROM orders\").fetchone()[0] == 0",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "db.execute(\"SELECT count(*) FROM orders\").fetchone()[0]",
+            "normalized": "db.execute(\"SELECT count(*) FROM orders\").fetchone()[0]",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 5,
+            "endLine": 62,
+            "endColumn": 38
+          },
+          "text": "assert created.status_code == 201",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "created.status_code",
+            "normalized": "created.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 15,
+            "endLine": 47,
+            "endColumn": 74
+          },
+          "text": "api_session.post(f\"{API}/orders\", json={\"sku\": \"backpack\"})",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 61
+          },
+          "text": "api_session.put(f\"{API}/orders/1\", json={\"quantity\": 2})",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 63
+          },
+          "text": "api_session.patch(f\"{API}/orders/1\", json={\"quantity\": 3})",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 5,
+            "endLine": 50,
+            "endColumn": 40
+          },
+          "text": "api_session.head(f\"{API}/orders/1\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 12,
+            "endLine": 51,
+            "endColumn": 35
+          },
+          "text": "client.get(\"/orders/1\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 12,
+            "endLine": 52,
+            "endColumn": 43
+          },
+          "text": "requests.get(f\"{API}/orders/1\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 12,
+            "endLine": 53,
+            "endColumn": 40
+          },
+          "text": "httpx.get(f\"{API}/orders/1\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 28
+          },
+          "text": "api.delete(\"/orders/1\")",
+          "op": "delete",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 5,
+            "endLine": 55,
+            "endColumn": 30
+          },
+          "text": "api_client.get(\"/orders\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 5,
+            "endLine": 56,
+            "endColumn": 24
+          },
+          "text": "http.get(\"/health\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 23
+          },
+          "text": "session.get(\"/me\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 5,
+            "endLine": 58,
+            "endColumn": 63
+          },
+          "text": "db.execute(\"INSERT INTO orders (sku) VALUES ('backpack')\")",
+          "op": "create",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 5,
+            "endLine": 59,
+            "endColumn": 49
+          },
+          "text": "db.execute(\"UPDATE orders SET quantity = 2\")",
+          "op": "update",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 62
+          },
+          "text": "db.executemany(\"DELETE FROM orders WHERE id = ?\", [(1,)])",
+          "op": "delete",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 12,
+            "endLine": 61,
+            "endColumn": 53
+          },
+          "text": "db.execute(\"SELECT count(*) FROM orders\")",
+          "op": "read",
+          "via": "db"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 15,
+            "endLine": 47,
+            "endColumn": 74
+          },
+          "text": "api_session.post(f\"{API}/orders\", json={\"sku\": \"backpack\"})",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 5,
+            "endLine": 48,
+            "endColumn": 61
+          },
+          "text": "api_session.put(f\"{API}/orders/1\", json={\"quantity\": 2})",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 5,
+            "endLine": 49,
+            "endColumn": 63
+          },
+          "text": "api_session.patch(f\"{API}/orders/1\", json={\"quantity\": 3})",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 5,
+            "endLine": 50,
+            "endColumn": 40
+          },
+          "text": "api_session.head(f\"{API}/orders/1\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 12,
+            "endLine": 51,
+            "endColumn": 35
+          },
+          "text": "client.get(\"/orders/1\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 12,
+            "endLine": 52,
+            "endColumn": 43
+          },
+          "text": "requests.get(f\"{API}/orders/1\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 12,
+            "endLine": 53,
+            "endColumn": 40
+          },
+          "text": "httpx.get(f\"{API}/orders/1\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 5,
+            "endLine": 54,
+            "endColumn": 28
+          },
+          "text": "api.delete(\"/orders/1\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 5,
+            "endLine": 55,
+            "endColumn": 30
+          },
+          "text": "api_client.get(\"/orders\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 5,
+            "endLine": 56,
+            "endColumn": 24
+          },
+          "text": "http.get(\"/health\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 57,
+            "endColumn": 23
+          },
+          "text": "session.get(\"/me\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 16,
+      "bodyHash": "ea6b996953694c95b7d338fe54eda89f9486df7e"
+    },
+    {
+      "id": "11637eb8678d",
+      "title": "test_order_is_never_deleted",
+      "fullTitle": "test_order_is_never_deleted",
+      "suitePath": [],
+      "span": {
+        "startLine": 65,
+        "startColumn": 1,
+        "endLine": 67,
+        "endColumn": 38
+      },
+      "bodySpan": {
+        "startLine": 66,
+        "startColumn": 5,
+        "endLine": 67,
+        "endColumn": 38
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 5,
+            "endLine": 67,
+            "endColumn": 38
+          },
+          "text": "assert created.status_code == 201",
+          "kind": "status",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "created.status_code",
+            "normalized": "created.status_code",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 15,
+            "endLine": 66,
+            "endColumn": 76
+          },
+          "text": "api_session.post(f\"{API}/orders\", json={\"sku\": \"bike-light\"})",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 15,
+            "endLine": 66,
+            "endColumn": 76
+          },
+          "text": "api_session.post(f\"{API}/orders\", json={\"sku\": \"bike-light\"})",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 2,
+      "bodyHash": "fdd0edd3ccad44c0b46274d2bd0b8f07b1d7a30f"
+    },
+    {
+      "id": "fa82ed420558",
+      "title": "test_patch_decorators",
+      "fullTitle": "test_patch_decorators",
+      "suitePath": [],
+      "span": {
+        "startLine": 70,
+        "startColumn": 1,
+        "endLine": 75,
+        "endColumn": 33
+      },
+      "bodySpan": {
+        "startLine": 74,
+        "startColumn": 5,
+        "endLine": 75,
+        "endColumn": 33
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 5,
+            "endLine": 74,
+            "endColumn": 34
+          },
+          "text": "assert Checkout().pay() == 42",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().pay()",
+            "normalized": "Checkout().pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 5,
+            "endLine": 75,
+            "endColumn": 33
+          },
+          "text": "charged.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "charged",
+            "normalized": "charged",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 2,
+            "endLine": 70,
+            "endColumn": 31
+          },
+          "text": "patch(\"shop.checkout.charge\")",
+          "kind": "function",
+          "target": "charge",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 2,
+            "endLine": 71,
+            "endColumn": 56
+          },
+          "text": "patch(\"shop.checkout.send_receipt\", return_value=True)",
+          "kind": "function",
+          "target": "checkout.send_receipt",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 2,
+            "endLine": 72,
+            "endColumn": 55
+          },
+          "text": "mock.patch.object(Checkout, \"total\", return_value=42)",
+          "kind": "function",
+          "target": "Checkout.total",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "686b9077b892d006b472d631d1af75d55238e3f8"
+    },
+    {
+      "id": "e0c08a9128ef",
+      "title": "test_patch_forms",
+      "fullTitle": "test_patch_forms",
+      "suitePath": [],
+      "span": {
+        "startLine": 78,
+        "startColumn": 1,
+        "endLine": 90,
+        "endColumn": 28
+      },
+      "bodySpan": {
+        "startLine": 79,
+        "startColumn": 5,
+        "endLine": 90,
+        "endColumn": 28
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 5,
+            "endLine": 82,
+            "endColumn": 33
+          },
+          "text": "wrapped.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "wrapped",
+            "normalized": "wrapped",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 5,
+            "endLine": 88,
+            "endColumn": 29
+          },
+          "text": "spy.assert_called_once()",
+          "kind": "mock-call",
+          "library": "unittest.mock",
+          "actual": {
+            "text": "spy",
+            "normalized": "spy",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "assert_called_once",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 5,
+            "endLine": 90,
+            "endColumn": 28
+          },
+          "text": "assert gateway and fake",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "gateway and fake",
+            "normalized": "gateway and fake",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 10,
+            "endLine": 79,
+            "endColumn": 46
+          },
+          "text": "patch(\"shop.checkout.requests.post\")",
+          "kind": "function",
+          "target": "checkout.requests.post",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 56,
+            "endLine": 79,
+            "endColumn": 102
+          },
+          "text": "patch.object(checkout, \"charge\", wraps=charge)",
+          "kind": "function",
+          "target": "checkout.charge",
+          "targetsSubject": true,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 15,
+            "endLine": 83,
+            "endColumn": 71
+          },
+          "text": "mocker.patch(\"shop.checkout.gateway\", new=FakeGateway())",
+          "kind": "function",
+          "target": "checkout.gateway",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 5,
+            "endLine": 84,
+            "endColumn": 61
+          },
+          "text": "mocker.patch.object(Checkout, \"tax\", side_effect=[1, 2])",
+          "kind": "function",
+          "target": "Checkout.tax",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 11,
+            "endLine": 85,
+            "endColumn": 40
+          },
+          "text": "mocker.spy(Checkout, \"total\")",
+          "kind": "function",
+          "target": "Checkout.total",
+          "targetsSubject": true,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 12,
+            "endLine": 86,
+            "endColumn": 61
+          },
+          "text": "mocker.patch(\"shop.checkout.rates\", {\"EUR\": 1.0})",
+          "kind": "function",
+          "target": "checkout.rates",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 22,
+            "endLine": 78,
+            "endColumn": 28
+          },
+          "text": "mocker",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 10,
+      "bodyHash": "69ed40e54848f6a11de1e35b856960f97c13b530"
+    },
+    {
+      "id": "44dfbdb07262",
+      "title": "test_named_mocks",
+      "fullTitle": "test_named_mocks",
+      "suitePath": [],
+      "span": {
+        "startLine": 93,
+        "startColumn": 1,
+        "endLine": 104,
+        "endColumn": 44
+      },
+      "bodySpan": {
+        "startLine": 94,
+        "startColumn": 5,
+        "endLine": 104,
+        "endColumn": 44
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 5,
+            "endLine": 103,
+            "endColumn": 62
+          },
+          "text": "assert Checkout(mailer=mailer, on_paid=send).pay() == 201",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout(mailer=mailer, on_paid=send).pay()",
+            "normalized": "Checkout(mailer=mailer,on_paid=send).pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 104,
+            "startColumn": 5,
+            "endLine": 104,
+            "endColumn": 44
+          },
+          "text": "assert spec and stub and made and magic",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "spec and stub and made and magic",
+            "normalized": "spec and stub and made and magic",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 12,
+            "endLine": 94,
+            "endColumn": 18
+          },
+          "text": "Mock()",
+          "kind": "function",
+          "target": "send",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 14,
+            "endLine": 95,
+            "endColumn": 42
+          },
+          "text": "MagicMock(return_value=True)",
+          "kind": "function",
+          "target": "mailer",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 14,
+            "endLine": 96,
+            "endColumn": 30
+          },
+          "text": "mock.AsyncMock()",
+          "kind": "function",
+          "target": "notify",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 97,
+            "startColumn": 12,
+            "endLine": 97,
+            "endColumn": 42
+          },
+          "text": "mock.create_autospec(Checkout)",
+          "kind": "function",
+          "target": "spec",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 98,
+            "startColumn": 12,
+            "endLine": 98,
+            "endColumn": 25
+          },
+          "text": "mocker.stub()",
+          "kind": "function",
+          "target": "stub",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 12,
+            "endLine": 99,
+            "endColumn": 25
+          },
+          "text": "mocker.Mock()",
+          "kind": "function",
+          "target": "made",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 13,
+            "endLine": 100,
+            "endColumn": 31
+          },
+          "text": "mocker.MagicMock()",
+          "kind": "function",
+          "target": "magic",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 22,
+            "endLine": 93,
+            "endColumn": 28
+          },
+          "text": "mocker",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 11,
+      "bodyHash": "05c779d03764dd34895e5f063de2b0ca3956e3ec"
+    },
+    {
+      "id": "e3f0ea6440bf",
+      "title": "test_monkeypatch",
+      "fullTitle": "test_monkeypatch",
+      "suitePath": [],
+      "span": {
+        "startLine": 107,
+        "startColumn": 1,
+        "endLine": 113,
+        "endColumn": 28
+      },
+      "bodySpan": {
+        "startLine": 108,
+        "startColumn": 5,
+        "endLine": 113,
+        "endColumn": 28
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 113,
+            "startColumn": 5,
+            "endLine": 113,
+            "endColumn": 28
+          },
+          "text": "assert Checkout().pay()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().pay()",
+            "normalized": "Checkout().pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 108,
+            "startColumn": 5,
+            "endLine": 108,
+            "endColumn": 69
+          },
+          "text": "monkeypatch.setattr(\"shop.checkout.charge\", lambda amount: True)",
+          "kind": "function",
+          "target": "charge",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 109,
+            "startColumn": 5,
+            "endLine": 109,
+            "endColumn": 61
+          },
+          "text": "monkeypatch.setattr(checkout, \"send_receipt\", fake_send)",
+          "kind": "function",
+          "target": "checkout.send_receipt",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 110,
+            "startColumn": 5,
+            "endLine": 110,
+            "endColumn": 63
+          },
+          "text": "monkeypatch.setattr(Checkout, \"tax\", Mock(return_value=0))",
+          "kind": "function",
+          "target": "Checkout.tax",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 107,
+            "startColumn": 22,
+            "endLine": 107,
+            "endColumn": 33
+          },
+          "text": "monkeypatch",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 111,
+            "startColumn": 5,
+            "endLine": 111,
+            "endColumn": 44
+          },
+          "text": "monkeypatch.setenv(\"SHOP_REGION\", \"eu\")",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 112,
+            "startColumn": 5,
+            "endLine": 112,
+            "endColumn": 52
+          },
+          "text": "monkeypatch.delenv(\"SHOP_DEBUG\", raising=False)",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "6d6f8b20e07de3c2bbe19ad46f88affed294ba12"
+    },
+    {
+      "id": "2f185b8a6da6",
+      "title": "test_network_mocks",
+      "fullTitle": "test_network_mocks",
+      "suitePath": [],
+      "span": {
+        "startLine": 116,
+        "startColumn": 1,
+        "endLine": 129,
+        "endColumn": 28
+      },
+      "bodySpan": {
+        "startLine": 118,
+        "startColumn": 5,
+        "endLine": 129,
+        "endColumn": 28
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 129,
+            "startColumn": 5,
+            "endLine": 129,
+            "endColumn": 28
+          },
+          "text": "assert Checkout().pay()",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().pay()",
+            "normalized": "Checkout().pay()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 118,
+            "startColumn": 5,
+            "endLine": 118,
+            "endColumn": 68
+          },
+          "text": "responses.add(responses.GET, f\"{API}/rates\", json={\"EUR\": 1.0})",
+          "kind": "network",
+          "target": "{API}/rates",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 119,
+            "startColumn": 5,
+            "endLine": 119,
+            "endColumn": 73
+          },
+          "text": "responses.post(\"https://api.example.test/charge\", json={\"ok\": True})",
+          "kind": "network",
+          "target": "https://api.example.test/charge",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 120,
+            "startColumn": 5,
+            "endLine": 120,
+            "endColumn": 48
+          },
+          "text": "respx.get(\"https://api.example.test/stock\")",
+          "kind": "network",
+          "target": "https://api.example.test/stock",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 121,
+            "startColumn": 5,
+            "endLine": 121,
+            "endColumn": 41
+          },
+          "text": "respx.route(host=\"api.example.test\")",
+          "kind": "network",
+          "target": "",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 122,
+            "startColumn": 5,
+            "endLine": 122,
+            "endColumn": 66
+          },
+          "text": "requests_mock.get(\"https://api.example.test/orders\", json=[])",
+          "kind": "network",
+          "target": "https://api.example.test/orders",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 5,
+            "endLine": 123,
+            "endColumn": 84
+          },
+          "text": "requests_mock.register_uri(\"GET\", \"https://api.example.test/health\", text=\"ok\")",
+          "kind": "network",
+          "target": "https://api.example.test/health",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 124,
+            "startColumn": 5,
+            "endLine": 124,
+            "endColumn": 68
+          },
+          "text": "requests_mock.put(\"https://api.example.test/orders/1\", json={})",
+          "kind": "network",
+          "target": "https://api.example.test/orders/1",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 125,
+            "startColumn": 5,
+            "endLine": 125,
+            "endColumn": 70
+          },
+          "text": "requests_mock.patch(\"https://api.example.test/orders/1\", json={})",
+          "kind": "network",
+          "target": "https://api.example.test/orders/1",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 126,
+            "startColumn": 5,
+            "endLine": 126,
+            "endColumn": 79
+          },
+          "text": "requests_mock.delete(\"https://api.example.test/orders/1\", status_code=204)",
+          "kind": "network",
+          "target": "https://api.example.test/orders/1",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 127,
+            "startColumn": 5,
+            "endLine": 127,
+            "endColumn": 60
+          },
+          "text": "requests_mock.head(\"https://api.example.test/orders/1\")",
+          "kind": "network",
+          "target": "https://api.example.test/orders/1",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 128,
+            "startColumn": 5,
+            "endLine": 128,
+            "endColumn": 87
+          },
+          "text": "httpx_mock.add_response(url=\"https://api.example.test/taxes\", json={\"rate\": 0.19})",
+          "kind": "network",
+          "target": "https://api.example.test/taxes",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 12,
+      "bodyHash": "07186a22e5ee239bf561510332ed1f0a6c83de8e"
+    },
+    {
+      "id": "da22980967a1",
+      "title": "test_resources_that_leak",
+      "fullTitle": "test_resources_that_leak",
+      "suitePath": [],
+      "span": {
+        "startLine": 132,
+        "startColumn": 1,
+        "endLine": 143,
+        "endColumn": 45
+      },
+      "bodySpan": {
+        "startLine": 133,
+        "startColumn": 5,
+        "endLine": 143,
+        "endColumn": 45
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 143,
+            "startColumn": 5,
+            "endLine": 143,
+            "endColumn": 45
+          },
+          "text": "assert \"paid\" in capsys.readouterr().out",
+          "kind": "contains",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "capsys.readouterr().out",
+            "normalized": "capsys.readouterr().out",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"paid\"",
+            "normalized": "\"paid\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "paid"
+            }
+          },
+          "matcher": "in",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 139,
+            "startColumn": 15,
+            "endLine": 139,
+            "endColumn": 44
+          },
+          "text": "patch(\"shop.checkout.charge\")",
+          "kind": "function",
+          "target": "charge",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 141,
+            "startColumn": 5,
+            "endLine": 141,
+            "endColumn": 40
+          },
+          "text": "patch(\"shop.checkout.send_receipt\")",
+          "kind": "function",
+          "target": "checkout.send_receipt",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 132,
+            "startColumn": 30,
+            "endLine": 132,
+            "endColumn": 38
+          },
+          "text": "tmp_path",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 132,
+            "startColumn": 40,
+            "endLine": 132,
+            "endColumn": 46
+          },
+          "text": "capsys",
+          "kind": "global",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 133,
+            "startColumn": 5,
+            "endLine": 133,
+            "endColumn": 37
+          },
+          "text": "os.environ[\"SHOP_REGION\"] = \"us\"",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 134,
+            "startColumn": 11,
+            "endLine": 134,
+            "endColumn": 47
+          },
+          "text": "open(tmp_path / \"checkout.log\", \"w\")",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 135,
+            "startColumn": 16,
+            "endLine": 135,
+            "endColumn": 43
+          },
+          "text": "sqlite3.connect(\":memory:\")",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 136,
+            "startColumn": 17,
+            "endLine": 136,
+            "endColumn": 48
+          },
+          "text": "psycopg2.connect(\"dbname=shop\")",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 137,
+            "startColumn": 20,
+            "endLine": 137,
+            "endColumn": 38
+          },
+          "text": "requests.Session()",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 138,
+            "startColumn": 14,
+            "endLine": 138,
+            "endColumn": 40
+          },
+          "text": "httpx.Client(base_url=API)",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 140,
+            "startColumn": 5,
+            "endLine": 140,
+            "endColumn": 20
+          },
+          "text": "patcher.start()",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 141,
+            "startColumn": 5,
+            "endLine": 141,
+            "endColumn": 48
+          },
+          "text": "patch(\"shop.checkout.send_receipt\").start()",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 11,
+      "bodyHash": "952763ef33bfd6955a878c85ad012471713d48d5"
+    },
+    {
+      "id": "d20628925d8b",
+      "title": "test_resources_that_are_released",
+      "fullTitle": "test_resources_that_are_released",
+      "suitePath": [],
+      "span": {
+        "startLine": 146,
+        "startColumn": 1,
+        "endLine": 162,
+        "endColumn": 22
+      },
+      "bodySpan": {
+        "startLine": 147,
+        "startColumn": 5,
+        "endLine": 162,
+        "endColumn": 22
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 162,
+            "startColumn": 5,
+            "endLine": 162,
+            "endColumn": 22
+          },
+          "text": "assert log.closed",
+          "kind": "truthiness",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "log.closed",
+            "normalized": "log.closed",
+            "kind": "member",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 151,
+            "startColumn": 15,
+            "endLine": 151,
+            "endColumn": 44
+          },
+          "text": "patch(\"shop.checkout.charge\")",
+          "kind": "function",
+          "target": "charge",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 153,
+            "startColumn": 5,
+            "endLine": 153,
+            "endColumn": 40
+          },
+          "text": "patch(\"shop.checkout.send_receipt\")",
+          "kind": "function",
+          "target": "checkout.send_receipt",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 146,
+            "startColumn": 38,
+            "endLine": 146,
+            "endColumn": 46
+          },
+          "text": "tmp_path",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        },
+        {
+          "span": {
+            "startLine": 147,
+            "startColumn": 5,
+            "endLine": 147,
+            "endColumn": 40
+          },
+          "text": "os.environ[\"SHOP_CURRENCY\"] = \"EUR\"",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 148,
+            "startColumn": 16,
+            "endLine": 148,
+            "endColumn": 43
+          },
+          "text": "sqlite3.connect(\":memory:\")",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 150,
+            "startColumn": 20,
+            "endLine": 150,
+            "endColumn": 38
+          },
+          "text": "requests.Session()",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 152,
+            "startColumn": 5,
+            "endLine": 152,
+            "endColumn": 20
+          },
+          "text": "patcher.start()",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 153,
+            "startColumn": 5,
+            "endLine": 153,
+            "endColumn": 48
+          },
+          "text": "patch(\"shop.checkout.send_receipt\").start()",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 155,
+            "startColumn": 14,
+            "endLine": 155,
+            "endColumn": 50
+          },
+          "text": "open(tmp_path / \"checkout.log\", \"w\")",
+          "kind": "file",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 155,
+            "startColumn": 59,
+            "endLine": 155,
+            "endColumn": 85
+          },
+          "text": "httpx.Client(base_url=API)",
+          "kind": "connection",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "1c1ade3cb3b0cbb4fd7de46f26c44b4d4f88a610"
+    },
+    {
+      "id": "4e4dcc7c6a8b",
+      "title": "test_environment_is_put_back",
+      "fullTitle": "test_environment_is_put_back",
+      "suitePath": [],
+      "span": {
+        "startLine": 165,
+        "startColumn": 1,
+        "endLine": 168,
+        "endColumn": 31
+      },
+      "bodySpan": {
+        "startLine": 166,
+        "startColumn": 5,
+        "endLine": 168,
+        "endColumn": 31
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 167,
+            "startColumn": 5,
+            "endLine": 167,
+            "endColumn": 34
+          },
+          "text": "assert Checkout().tax() == 19",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().tax()",
+            "normalized": "Checkout().tax()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "19",
+            "normalized": "19",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "19"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 166,
+            "startColumn": 5,
+            "endLine": 166,
+            "endColumn": 34
+          },
+          "text": "os.environ[\"SHOP_TAX\"] = \"19\"",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "184ab2c9baf5e863dd5364f68a980be02be0fca1"
+    },
+    {
+      "id": "e6e642fcd63d",
+      "title": "test_stubs_what_it_tests",
+      "fullTitle": "test_stubs_what_it_tests",
+      "suitePath": [],
+      "span": {
+        "startLine": 171,
+        "startColumn": 1,
+        "endLine": 173,
+        "endColumn": 31
+      },
+      "bodySpan": {
+        "startLine": 173,
+        "startColumn": 5,
+        "endLine": 173,
+        "endColumn": 31
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 173,
+            "startColumn": 5,
+            "endLine": 173,
+            "endColumn": 31
+          },
+          "text": "assert charge(40, 2) == 42",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "charge(40, 2)",
+            "normalized": "charge(40,2)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 171,
+            "startColumn": 2,
+            "endLine": 171,
+            "endColumn": 48
+          },
+          "text": "patch(\"shop.checkout.charge\", return_value=42)",
+          "kind": "function",
+          "target": "charge",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "197986c04503c7e4fd21d4dfaf8264944ff33cdf"
+    },
+    {
+      "id": "551a1a9cffdd",
+      "title": "test_replaces_the_class_under_test",
+      "fullTitle": "test_replaces_the_class_under_test",
+      "suitePath": [],
+      "span": {
+        "startLine": 176,
+        "startColumn": 1,
+        "endLine": 178,
+        "endColumn": 36
+      },
+      "bodySpan": {
+        "startLine": 178,
+        "startColumn": 5,
+        "endLine": 178,
+        "endColumn": 36
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 178,
+            "startColumn": 5,
+            "endLine": 178,
+            "endColumn": 36
+          },
+          "text": "assert Checkout().total() == 42",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout().total()",
+            "normalized": "Checkout().total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 176,
+            "startColumn": 2,
+            "endLine": 176,
+            "endColumn": 33
+          },
+          "text": "patch(\"shop.checkout.Checkout\")",
+          "kind": "class",
+          "target": "shop.checkout.Checkout",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "63123bb78fb3e77b10525bdcb2ad9664da5ea781"
+    },
+    {
+      "id": "1a28fd4173e7",
+      "title": "test_stubs_a_dependency",
+      "fullTitle": "test_stubs_a_dependency",
+      "suitePath": [],
+      "span": {
+        "startLine": 181,
+        "startColumn": 1,
+        "endLine": 183,
+        "endColumn": 43
+      },
+      "bodySpan": {
+        "startLine": 183,
+        "startColumn": 5,
+        "endLine": 183,
+        "endColumn": 43
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 183,
+            "startColumn": 5,
+            "endLine": 183,
+            "endColumn": 43
+          },
+          "text": "assert Checkout([40, 2]).total() == 42",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "Checkout([40, 2]).total()",
+            "normalized": "Checkout([40,2]).total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 181,
+            "startColumn": 2,
+            "endLine": 181,
+            "endColumn": 49
+          },
+          "text": "patch(\"shop.checkout.tax_rate\", return_value=0)",
+          "kind": "function",
+          "target": "checkout.tax_rate",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "42f0e4ac71a066fb4f2505c8747838d6c86ad4d3"
+    },
+    {
+      "id": "4a0881ad4a03",
+      "title": "test_replaces_the_module_under_test",
+      "fullTitle": "test_replaces_the_module_under_test",
+      "suitePath": [],
+      "span": {
+        "startLine": 186,
+        "startColumn": 1,
+        "endLine": 188,
+        "endColumn": 40
+      },
+      "bodySpan": {
+        "startLine": 187,
+        "startColumn": 5,
+        "endLine": 188,
+        "endColumn": 40
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 188,
+            "startColumn": 5,
+            "endLine": 188,
+            "endColumn": 40
+          },
+          "text": "assert checkout.charge(40, 2) == 42",
+          "kind": "equality",
+          "library": "pytest-assert",
+          "actual": {
+            "text": "checkout.charge(40, 2)",
+            "normalized": "checkout.charge(40,2)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "42",
+            "normalized": "42",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "42"
+            }
+          },
+          "matcher": "==",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 187,
+            "startColumn": 5,
+            "endLine": 187,
+            "endColumn": 34
+          },
+          "text": "mocker.patch(\"shop.checkout\")",
+          "kind": "module",
+          "target": "shop.checkout",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 186,
+            "startColumn": 41,
+            "endLine": 186,
+            "endColumn": 47
+          },
+          "text": "mocker",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "a14cb9e24e0be3a1b2af1b08ce8e74a102859316"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 2,
+        "startColumn": 1,
+        "endLine": 2,
+        "endColumn": 15
+      },
+      "source": "asyncio",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 10
+      },
+      "source": "os",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 16
+      },
+      "source": "psycopg2",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 15
+      },
+      "source": "sqlite3",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 12
+      },
+      "source": "time",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 26
+      },
+      "source": "unittest",
+      "names": [
+        "mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 49
+      },
+      "source": "unittest.mock",
+      "names": [
+        "MagicMock",
+        "Mock",
+        "patch"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 13
+      },
+      "source": "httpx",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 14
+      },
+      "source": "pytest",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 16
+      },
+      "source": "requests",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 17
+      },
+      "source": "responses",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 13
+      },
+      "source": "respx",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 20
+      },
+      "source": "time_machine",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 34
+      },
+      "source": "freezegun",
+      "names": [
+        "freeze_time"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 26
+      },
+      "source": "shop",
+      "names": [
+        "checkout"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 43
+      },
+      "source": "shop.checkout",
+      "names": [
+        "Checkout",
+        "charge"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": {
+    "module": "shop.checkout",
+    "via": "filename"
+  },
+  "suppressions": []
+}

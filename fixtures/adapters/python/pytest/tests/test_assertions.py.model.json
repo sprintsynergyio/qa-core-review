@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -625,8 +632,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 16,
+            "endLine": 25,
+            "endColumn": 54
+          },
+          "text": "api_session.get(f\"{API}/carts/{cart}\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 16,
+            "endLine": 25,
+            "endColumn": 54
+          },
+          "text": "api_session.get(f\"{API}/carts/{cart}\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 17,
       "bodyHash": "a493b5349a9ac65f023377740b993ef7376b593c"
     },
@@ -1585,8 +1615,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 16,
+            "endLine": 86,
+            "endColumn": 54
+          },
+          "text": "api_session.get(f\"{API}/carts/{cart}\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 16,
+            "endLine": 86,
+            "endColumn": 54
+          },
+          "text": "api_session.get(f\"{API}/carts/{cart}\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 4,
       "bodyHash": "21ab7b4a2dfd75560b9d41ec292dcd8ca4225177"
     },
@@ -2911,8 +2964,83 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 114,
+            "startColumn": 12,
+            "endLine": 114,
+            "endColumn": 18
+          },
+          "text": "Mock()",
+          "kind": "function",
+          "target": "send",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 115,
+            "startColumn": 14,
+            "endLine": 115,
+            "endColumn": 36
+          },
+          "text": "MagicMock(spec=Mailer)",
+          "kind": "function",
+          "target": "mailer",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 116,
+            "startColumn": 14,
+            "endLine": 116,
+            "endColumn": 25
+          },
+          "text": "AsyncMock()",
+          "kind": "function",
+          "target": "notify",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 117,
+            "startColumn": 12,
+            "endLine": 117,
+            "endColumn": 35
+          },
+          "text": "create_autospec(Mailer)",
+          "kind": "function",
+          "target": "spec",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 113,
+            "startColumn": 26,
+            "endLine": 113,
+            "endColumn": 32
+          },
+          "text": "mocker",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 26,
@@ -3201,8 +3329,113 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 143,
+            "startColumn": 12,
+            "endLine": 143,
+            "endColumn": 25
+          },
+          "text": "mocker.Mock()",
+          "kind": "function",
+          "target": "send",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 144,
+            "startColumn": 14,
+            "endLine": 144,
+            "endColumn": 32
+          },
+          "text": "mocker.MagicMock()",
+          "kind": "function",
+          "target": "mailer",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 145,
+            "startColumn": 14,
+            "endLine": 145,
+            "endColumn": 46
+          },
+          "text": "mocker.patch(\"shop.cart.charge\")",
+          "kind": "function",
+          "target": "shop.cart.charge",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 146,
+            "startColumn": 14,
+            "endLine": 146,
+            "endColumn": 49
+          },
+          "text": "mocker.patch.object(Cart, \"refund\")",
+          "kind": "function",
+          "target": "Cart.refund",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 147,
+            "startColumn": 11,
+            "endLine": 147,
+            "endColumn": 36
+          },
+          "text": "mocker.spy(Cart, \"total\")",
+          "kind": "function",
+          "target": "Cart.total",
+          "targetsSubject": null,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 148,
+            "startColumn": 12,
+            "endLine": 148,
+            "endColumn": 43
+          },
+          "text": "mocker.stub(name=\"on_checkout\")",
+          "kind": "function",
+          "target": "stub",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 142,
+            "startColumn": 27,
+            "endLine": 142,
+            "endColumn": 33
+          },
+          "text": "mocker",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 16,
@@ -3295,7 +3528,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 161,
+            "startColumn": 2,
+            "endLine": 161,
+            "endColumn": 27
+          },
+          "text": "patch(\"shop.cart.charge\")",
+          "kind": "function",
+          "target": "shop.cart.charge",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 162,
+            "startColumn": 2,
+            "endLine": 162,
+            "endColumn": 30
+          },
+          "text": "patch.object(Cart, \"refund\")",
+          "kind": "function",
+          "target": "Cart.refund",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],
@@ -3389,7 +3653,38 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 170,
+            "startColumn": 10,
+            "endLine": 170,
+            "endColumn": 35
+          },
+          "text": "patch(\"shop.cart.charge\")",
+          "kind": "function",
+          "target": "shop.cart.charge",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 170,
+            "startColumn": 47,
+            "endLine": 170,
+            "endColumn": 80
+          },
+          "text": "mock.patch.object(Cart, \"refund\")",
+          "kind": "function",
+          "target": "Cart.refund",
+          "targetsSubject": null,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],
@@ -4126,7 +4421,7 @@
         "*"
       ],
       "typeOnly": false,
-      "framework": false
+      "framework": true
     },
     {
       "span": {
@@ -4140,7 +4435,7 @@
         "check"
       ],
       "typeOnly": false,
-      "framework": false
+      "framework": true
     },
     {
       "span": {

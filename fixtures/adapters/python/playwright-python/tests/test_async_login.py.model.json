@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -93,12 +100,116 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 46
+          },
+          "text": "page.get_by_placeholder(\"Username\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Username"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 11,
+            "endLine": 22,
+            "endColumn": 46
+          },
+          "text": "page.get_by_placeholder(\"Password\")",
+          "api": "get_by_placeholder",
+          "strategy": "other",
+          "value": "Password"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 11,
+            "endLine": 23,
+            "endColumn": 51
+          },
+          "text": "page.get_by_role(\"button\", name=\"Login\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 18,
+            "endLine": 24,
+            "endColumn": 53
+          },
+          "text": "page.locator(\"[data-test='error']\")",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "[data-test='error']"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 46,
+            "endLine": 19,
+            "endColumn": 50
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 11,
+            "endLine": 20,
+            "endColumn": 26
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 11,
+            "endLine": 21,
+            "endColumn": 70
+          },
+          "text": "page.get_by_placeholder(\"Username\").fill(\"locked_out_user\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 11,
+            "endLine": 22,
+            "endColumn": 67
+          },
+          "text": "page.get_by_placeholder(\"Password\").fill(\"secret_sauce\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 11,
+            "endLine": 23,
+            "endColumn": 59
+          },
+          "text": "page.get_by_role(\"button\", name=\"Login\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 5,
       "bodyHash": "b755d4fcd8f7380613d3202b3e2eacd2cf76d3b2"
     },
@@ -159,12 +270,94 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 11,
+            "endLine": 30,
+            "endColumn": 51
+          },
+          "text": "page.get_by_role(\"button\", name=\"Login\")",
+          "api": "get_by_role",
+          "strategy": "role",
+          "value": "button"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 11,
+            "endLine": 31,
+            "endColumn": 40
+          },
+          "text": "page.locator(\".error-button\")",
+          "api": "locator",
+          "strategy": "class",
+          "value": ".error-button"
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 12,
+            "endLine": 32,
+            "endColumn": 47
+          },
+          "text": "page.locator(\"[data-test='error']\")",
+          "api": "locator",
+          "strategy": "test-id",
+          "value": "[data-test='error']"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
-      "resources": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 36,
+            "endLine": 28,
+            "endColumn": 40
+          },
+          "text": "page",
+          "kind": "page",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": true
+        }
+      ],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 11,
+            "endLine": 29,
+            "endColumn": 26
+          },
+          "text": "page.goto(BASE)",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 11,
+            "endLine": 30,
+            "endColumn": 59
+          },
+          "text": "page.get_by_role(\"button\", name=\"Login\").click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 11,
+            "endLine": 31,
+            "endColumn": 48
+          },
+          "text": "page.locator(\".error-button\").click()",
+          "kind": "action"
+        }
+      ],
       "statementCount": 4,
       "bodyHash": "28fe457e24556ac70d8a18f942b1446da59698e8"
     }
@@ -194,7 +387,9 @@
       },
       "kind": "fixture-teardown",
       "scope": "file",
-      "releases": [],
+      "releases": [
+        "var:browser"
+      ],
       "assertions": [],
       "waits": [],
       "selectors": [],
@@ -202,7 +397,34 @@
     }
   ],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 25,
+        "endLine": 12,
+        "endColumn": 53
+      },
+      "text": "playwright.chromium.launch()",
+      "kind": "browser",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 22,
+        "endLine": 13,
+        "endColumn": 40
+      },
+      "text": "browser.new_page()",
+      "kind": "page",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {
