@@ -85,3 +85,12 @@ export type {
 
 // Glob matching (SPEC.md Section 7.6).
 export { createGlobMatcher, globToRegExp, matchGlob, toPosixPath } from './util/glob.js';
+
+// The local review page: its session and its server (SPEC.md Sections 8.4 and 13).
+export {
+  DECISIONS, MAX_COMMENT_LENGTH, fileItemId, loadSession, newSession, outcomeOf, restoreSession, reviewItems, saveSession,
+  updateFinding, updateGeneral, updateTest,
+} from './ui/session.js';
+export type { Outcome, ReviewItem, ReviewSession } from './ui/session.js';
+export { IDLE_MS, MAX_BODY_BYTES, TOKEN_HEADER, startUiServer } from './ui/server.js';
+export type { FinishResult, UiServer, UiServerOptions } from './ui/server.js';
