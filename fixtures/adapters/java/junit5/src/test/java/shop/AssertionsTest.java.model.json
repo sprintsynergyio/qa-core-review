@@ -1,0 +1,2356 @@
+{
+  "path": "src/test/java/shop/AssertionsTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "AssertionsTest",
+      "span": {
+        "startLine": 30,
+        "startColumn": 1,
+        "endLine": 151,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [
+            {
+              "span": {
+                "startLine": 36,
+                "startColumn": 9,
+                "endLine": 36,
+                "endColumn": 62
+              },
+              "text": "assertTrue(cart.isEmpty(), \"a new cart has no items\")",
+              "kind": "truthiness",
+              "library": "junit",
+              "actual": {
+                "text": "cart.isEmpty()",
+                "normalized": "cart.isEmpty()",
+                "kind": "call",
+                "isLocator": false,
+                "isCount": false,
+                "isMock": false
+              },
+              "expected": null,
+              "matcher": "assertTrue",
+              "negated": false,
+              "soft": false,
+              "complete": true,
+              "awaited": "not-needed",
+              "guarded": false,
+              "reachable": true,
+              "viaHelper": null
+            }
+          ],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "f9b4e558ea33",
+        "df9a390bb804",
+        "a4d8205719c9",
+        "60da876fd967",
+        "4da847372ec3",
+        "672bdb5cba5a",
+        "934e6886f938",
+        "28f4a0941855",
+        "f0c162908bd4",
+        "10745ba89e9b"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "f9b4e558ea33",
+      "title": "comparesValues",
+      "fullTitle": "AssertionsTest > comparesValues",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 50,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 27,
+        "endLine": 50,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 9,
+            "endLine": 42,
+            "endColumn": 37
+          },
+          "text": "assertEquals(2, cart.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 9,
+            "endLine": 43,
+            "endColumn": 62
+          },
+          "text": "assertEquals(1.98, cart.total(), 0.001, \"two apples\")",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1.98",
+            "normalized": "1.98",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1.98"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 47
+          },
+          "text": "assertNotEquals(\"guest\", cart.owner())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"guest\"",
+            "normalized": "\"guest\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "guest"
+            }
+          },
+          "matcher": "assertNotEquals",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 9,
+            "endLine": 45,
+            "endColumn": 38
+          },
+          "text": "assertSame(cart, cart.self())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.self()",
+            "normalized": "cart.self()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertSame",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 40
+          },
+          "text": "assertNotSame(cart, new Cart())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "new Cart()",
+            "normalized": "new Cart()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertNotSame",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 64
+          },
+          "text": "assertArrayEquals(new String[] {\"apple\"}, cart.names())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "new String[] {\"apple\"}",
+            "normalized": "new String[]{\"apple\"}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertArrayEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 61
+          },
+          "text": "assertIterableEquals(List.of(\"apple\"), cart.items())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.items()",
+            "normalized": "cart.items()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "List.of(\"apple\")",
+            "normalized": "List.of(\"apple\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertIterableEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 60
+          },
+          "text": "assertLinesMatch(List.of(\"apple x2\"), cart.lines())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.lines()",
+            "normalized": "cart.lines()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "List.of(\"apple x2\")",
+            "normalized": "List.of(\"apple x2\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertLinesMatch",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "92240f04ce8f9656936dc1cea85303ad32cd9c80"
+    },
+    {
+      "id": "df9a390bb804",
+      "title": "readsConditions",
+      "fullTitle": "AssertionsTest > readsConditions",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 52,
+        "startColumn": 5,
+        "endLine": 64,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 53,
+        "startColumn": 28,
+        "endLine": 64,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 9,
+            "endLine": 55,
+            "endColumn": 37
+          },
+          "text": "assertTrue(cart.size() >= 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 9,
+            "endLine": 56,
+            "endColumn": 36
+          },
+          "text": "assertTrue(0 < cart.size())",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 42
+          },
+          "text": "assertFalse(cart.owner() == null)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 9,
+            "endLine": 58,
+            "endColumn": 50
+          },
+          "text": "assertTrue(!cart.owner().equals(\"guest\"))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"guest\"",
+            "normalized": "\"guest\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "guest"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 9,
+            "endLine": 59,
+            "endColumn": 49
+          },
+          "text": "assertTrue(cart.first() instanceof Item)",
+          "kind": "type",
+          "library": "junit",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Item",
+            "normalized": "Item",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 34
+          },
+          "text": "assertNull(cart.coupon())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.coupon()",
+            "normalized": "cart.coupon()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNull",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 9,
+            "endLine": 61,
+            "endColumn": 36
+          },
+          "text": "assertNotNull(cart.first())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 9,
+            "endLine": 62,
+            "endColumn": 51
+          },
+          "text": "assertInstanceOf(Item.class, cart.first())",
+          "kind": "type",
+          "library": "junit",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Item.class",
+            "normalized": "Item.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertInstanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 48
+          },
+          "text": "assert cart.size() == 2 : \"two apples\";",
+          "kind": "equality",
+          "library": "java",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "assert",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 10,
+      "bodyHash": "60228cec309f8841924fca4c02f75af1275040e2"
+    },
+    {
+      "id": "a4d8205719c9",
+      "title": "expectsErrors",
+      "fullTitle": "AssertionsTest > expectsErrors",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 66,
+        "startColumn": 5,
+        "endLine": 73,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 67,
+        "startColumn": 26,
+        "endLine": 73,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 9,
+            "endLine": 68,
+            "endColumn": 68
+          },
+          "text": "assertThrows(IllegalStateException.class, () -> cart.pay())",
+          "kind": "throws",
+          "library": "junit",
+          "actual": null,
+          "expected": {
+            "text": "IllegalStateException.class",
+            "normalized": "IllegalStateException.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThrows",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 9,
+            "endLine": 69,
+            "endColumn": 97
+          },
+          "text": "assertThrowsExactly(EmptyCartException.class, cart::pay, \"an empty cart cannot be paid\")",
+          "kind": "throws",
+          "library": "junit",
+          "actual": null,
+          "expected": {
+            "text": "EmptyCartException.class",
+            "normalized": "EmptyCartException.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThrowsExactly",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 9,
+            "endLine": 70,
+            "endColumn": 47
+          },
+          "text": "assertDoesNotThrow(() -> cart.clear())",
+          "kind": "throws",
+          "library": "junit",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertDoesNotThrow",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 65
+          },
+          "text": "assertTimeout(Duration.ofSeconds(1), () -> cart.clear())",
+          "kind": "other",
+          "library": "junit",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertTimeout",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 91
+          },
+          "text": "assertTimeoutPreemptively(Duration.ofSeconds(1), () -> assertTrue(cart.isEmpty()))",
+          "kind": "other",
+          "library": "junit",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertTimeoutPreemptively",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 64,
+            "endLine": 72,
+            "endColumn": 90
+          },
+          "text": "assertTrue(cart.isEmpty())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.isEmpty()",
+            "normalized": "cart.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "c8c837034263e4f1f76020c7065ad06c1740d4a9"
+    },
+    {
+      "id": "60da876fd967",
+      "title": "groupsChecks",
+      "fullTitle": "AssertionsTest > groupsChecks",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 75,
+        "startColumn": 5,
+        "endLine": 81,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 76,
+        "startColumn": 25,
+        "endLine": 81,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 19,
+            "endLine": 79,
+            "endColumn": 47
+          },
+          "text": "assertEquals(1, cart.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 19,
+            "endLine": 80,
+            "endColumn": 60
+          },
+          "text": "assertEquals(\"pear\", cart.first().name())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.first().name()",
+            "normalized": "cart.first().name()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"pear\"",
+            "normalized": "\"pear\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "pear"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "e80429d8c723b5d699122308e9e7c810655008d5"
+    },
+    {
+      "id": "4da847372ec3",
+      "title": "readsTheStatus",
+      "fullTitle": "AssertionsTest > readsTheStatus",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 83,
+        "startColumn": 5,
+        "endLine": 91,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 84,
+        "startColumn": 27,
+        "endLine": 91,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 9,
+            "endLine": 86,
+            "endColumn": 48
+          },
+          "text": "assertEquals(201, created.statusCode())",
+          "kind": "status",
+          "library": "junit",
+          "actual": {
+            "text": "created.statusCode()",
+            "normalized": "created.statusCode()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 9,
+            "endLine": 87,
+            "endColumn": 67
+          },
+          "text": "assertEquals(404, client.get(\"/orders/0\").getStatusCode())",
+          "kind": "status",
+          "library": "junit",
+          "actual": {
+            "text": "client.get(\"/orders/0\").getStatusCode()",
+            "normalized": "client.get(\"/orders/0\").getStatusCode()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "404",
+            "normalized": "404",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "404"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            404
+          ]
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 9,
+            "endLine": 88,
+            "endColumn": 61
+          },
+          "text": "assertTrue(client.get(\"/orders\").getStatus() == 200)",
+          "kind": "status",
+          "library": "junit",
+          "actual": {
+            "text": "client.get(\"/orders\").getStatus()",
+            "normalized": "client.get(\"/orders\").getStatus()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 9,
+            "endLine": 89,
+            "endColumn": 56
+          },
+          "text": "assertEquals(200, client.get(\"/health\").code())",
+          "kind": "status",
+          "library": "junit",
+          "actual": {
+            "text": "client.get(\"/health\").code()",
+            "normalized": "client.get(\"/health\").code()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 9,
+            "endLine": 90,
+            "endColumn": 75
+          },
+          "text": "assertEquals(204, client.delete(\"/orders/7\").getStatusCodeValue())",
+          "kind": "status",
+          "library": "junit",
+          "actual": {
+            "text": "client.delete(\"/orders/7\").getStatusCodeValue()",
+            "normalized": "client.delete(\"/orders/7\").getStatusCodeValue()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "204",
+            "normalized": "204",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "204"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            204
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "59cd1cc59d4227890775634a66623a8c991fcadb"
+    },
+    {
+      "id": "672bdb5cba5a",
+      "title": "checksOnlySometimes",
+      "fullTitle": "AssertionsTest > checksOnlySometimes",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 93,
+        "startColumn": 5,
+        "endLine": 108,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 94,
+        "startColumn": 32,
+        "endLine": 108,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 13,
+            "endLine": 96,
+            "endColumn": 42
+          },
+          "text": "assertEquals(0, cart.total())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 13,
+            "endLine": 99,
+            "endColumn": 39
+          },
+          "text": "assertNotNull(item.name())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "item.name()",
+            "normalized": "item.name()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 38,
+            "endLine": 101,
+            "endColumn": 66
+          },
+          "text": "assertTrue(item.price() > 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "item.price()",
+            "normalized": "item.price()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 105,
+            "startColumn": 30,
+            "endLine": 105,
+            "endColumn": 56
+          },
+          "text": "assertTrue(cart.isEmpty())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.isEmpty()",
+            "normalized": "cart.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 24,
+            "endLine": 106,
+            "endColumn": 51
+          },
+          "text": "assertNotNull(cart.owner())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "1f5de7ee0a425ed183df46d2b9bd9a75a73cc595"
+    },
+    {
+      "id": "934e6886f938",
+      "title": "checksEveryListedName",
+      "fullTitle": "AssertionsTest > checksEveryListedName",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 110,
+        "startColumn": 5,
+        "endLine": 128,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 111,
+        "startColumn": 34,
+        "endLine": 128,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 114,
+            "startColumn": 13,
+            "endLine": 114,
+            "endColumn": 39
+          },
+          "text": "assertTrue(cart.has(name))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.has(name)",
+            "normalized": "cart.has(name)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 117,
+            "startColumn": 13,
+            "endLine": 117,
+            "endColumn": 40
+          },
+          "text": "assertFalse(cart.has(name))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.has(name)",
+            "normalized": "cart.has(name)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 120,
+            "startColumn": 13,
+            "endLine": 120,
+            "endColumn": 37
+          },
+          "text": "assertTrue(quantity > 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "quantity",
+            "normalized": "quantity",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 13,
+            "endLine": 123,
+            "endColumn": 32
+          },
+          "text": "assertNotNull(code)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "code",
+            "normalized": "code",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 126,
+            "startColumn": 13,
+            "endLine": 126,
+            "endColumn": 40
+          },
+          "text": "assertNotNull(cart.owner())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "417c09c2063fd3473fcf5ed77cc8c5ad3ac0fb5e"
+    },
+    {
+      "id": "28f4a0941855",
+      "title": "failsWhenTheCartIsClosed",
+      "fullTitle": "AssertionsTest > failsWhenTheCartIsClosed",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 130,
+        "startColumn": 5,
+        "endLine": 137,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 131,
+        "startColumn": 37,
+        "endLine": 137,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 132,
+            "startColumn": 29,
+            "endLine": 132,
+            "endColumn": 55
+          },
+          "text": "fail(\"the cart is closed\")",
+          "kind": "fail-call",
+          "library": "junit",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 134,
+            "startColumn": 13,
+            "endLine": 134,
+            "endColumn": 57
+          },
+          "text": "throw new IllegalStateException(\"no owner\");",
+          "kind": "fail-call",
+          "library": "throw",
+          "actual": null,
+          "expected": {
+            "text": "new IllegalStateException(\"no owner\")",
+            "normalized": "new IllegalStateException(\"no owner\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "throw",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "8a1d23f18380507905485fe0cc0b676465cc1d8f"
+    },
+    {
+      "id": "f0c162908bd4",
+      "title": "stopsBeforeTheCheck",
+      "fullTitle": "AssertionsTest > stopsBeforeTheCheck",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 139,
+        "startColumn": 5,
+        "endLine": 144,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 140,
+        "startColumn": 32,
+        "endLine": 144,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 143,
+            "startColumn": 9,
+            "endLine": 143,
+            "endColumn": 37
+          },
+          "text": "assertEquals(1, cart.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": false,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "247043620a12f677c6f95d0350ef9832b2f7df90"
+    },
+    {
+      "id": "10745ba89e9b",
+      "title": "isNotWrittenYet",
+      "fullTitle": "AssertionsTest > isNotWrittenYet",
+      "suitePath": [
+        "AssertionsTest"
+      ],
+      "span": {
+        "startLine": 146,
+        "startColumn": 5,
+        "endLine": 150,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 147,
+        "startColumn": 28,
+        "endLine": 150,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 148,
+            "startColumn": 9,
+            "endLine": 148,
+            "endColumn": 32
+          },
+          "text": "fail(\"not written yet\")",
+          "kind": "fail-call",
+          "library": "junit",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 149,
+            "startColumn": 9,
+            "endLine": 149,
+            "endColumn": 37
+          },
+          "text": "assertEquals(1, cart.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": false,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "5b1a3959cbb7f5da8db75935c850f9eb19bd842e"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 58
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertAll"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 66
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertArrayEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 67
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertDoesNotThrow"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 60
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertFalse"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 65
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertInstanceOf"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 69
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertIterableEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 65
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertLinesMatch"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 64
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotSame"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertSame"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertThrows"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 68
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertThrowsExactly"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTimeout"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 74
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTimeoutPreemptively"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 21,
+        "endColumn": 53
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "fail"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 23,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 27
+      },
+      "source": "java.time.Duration",
+      "names": [
+        "Duration"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 24,
+        "endColumn": 25
+      },
+      "source": "java.util.Arrays",
+      "names": [
+        "Arrays"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 25,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 23
+      },
+      "source": "java.util.List",
+      "names": [
+        "List"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 26,
+        "startColumn": 1,
+        "endLine": 26,
+        "endColumn": 22
+      },
+      "source": "java.util.Set",
+      "names": [
+        "Set"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 27,
+        "startColumn": 1,
+        "endLine": 27,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 28,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -58,7 +63,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 9,
+            "endLine": 13,
+            "endColumn": 45
+          },
+          "text": "assertFalse(item().name().isEmpty())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "item().name().isEmpty()",
+            "normalized": "item().name().isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -97,7 +131,48 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 9,
+            "endLine": 18,
+            "endColumn": 40
+          },
+          "text": "assertFalse(item().price() < 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "item().price()",
+            "normalized": "item().price()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

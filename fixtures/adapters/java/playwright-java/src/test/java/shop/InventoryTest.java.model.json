@@ -1,0 +1,1258 @@
+{
+  "path": "src/test/java/shop/InventoryTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "playwright-java"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "InventoryTest",
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 77,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [
+            {
+              "span": {
+                "startLine": 21,
+                "startColumn": 26,
+                "endLine": 21,
+                "endColumn": 47
+              },
+              "text": "assertThat(page).hasTitle(\"Swag Labs\")",
+              "kind": "ui-state",
+              "library": "playwright",
+              "actual": {
+                "text": "page",
+                "normalized": "page",
+                "kind": "identifier",
+                "isLocator": false,
+                "isCount": false,
+                "isMock": false
+              },
+              "expected": null,
+              "matcher": "hasTitle",
+              "negated": false,
+              "soft": false,
+              "complete": true,
+              "awaited": "not-needed",
+              "guarded": false,
+              "reachable": true,
+              "viaHelper": null
+            }
+          ],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "28049d59235a",
+        "a2508cba700d",
+        "9ff9d9c6acf2",
+        "7db1308c3389",
+        "b1e204107b78",
+        "1399aa735c70"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "28049d59235a",
+      "title": "showsSixProducts",
+      "fullTitle": "InventoryTest > showsSixProducts",
+      "suitePath": [
+        "InventoryTest"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 32,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 38,
+        "endLine": 32,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 27,
+            "endLine": 27,
+            "endColumn": 38
+          },
+          "text": "assertThat(items).hasCount(6)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "items",
+            "normalized": "items",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "hasCount",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 35,
+            "endLine": 28,
+            "endColumn": 59
+          },
+          "text": "assertThat(items.first()).containsText(\"Backpack\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "items.first()",
+            "normalized": "items.first()",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "containsText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 34,
+            "endLine": 29,
+            "endColumn": 69
+          },
+          "text": "assertThat(items.last()).hasText(Pattern.compile(\"T-Shirt\"))",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "items.last()",
+            "normalized": "items.last()",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasText",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 34,
+            "endLine": 30,
+            "endColumn": 45
+          },
+          "text": "assertThat(items.nth(1)).isVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "items.nth(1)",
+            "normalized": "items.nth(1)",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 84,
+            "endLine": 31,
+            "endColumn": 95
+          },
+          "text": "assertThat(items.filter(new Locator.FilterOptions().setHasText(\"Onesie\"))).hasCount(1)",
+          "kind": "count",
+          "library": "playwright",
+          "actual": {
+            "text": "items.filter(new Locator.FilterOptions().setHasText(\"Onesie\"))",
+            "normalized": "items.filter(new Locator.FilterOptions().setHasText(\"Onesie\"))",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "hasCount",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "eec493742724e6c35d03112e9eea1b87353a15c8"
+    },
+    {
+      "id": "a2508cba700d",
+      "title": "readsTheStateOfTheControls",
+      "fullTitle": "InventoryTest > readsTheStateOfTheControls",
+      "suitePath": [
+        "InventoryTest"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 47,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 48,
+        "endLine": 47,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 26,
+            "endLine": 36,
+            "endColumn": 76
+          },
+          "text": "assertThat(page).hasURL(\"https://www.saucedemo.com/inventory.html\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page",
+            "normalized": "page",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasURL",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 103,
+            "endLine": 37,
+            "endColumn": 114
+          },
+          "text": "assertThat(page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(\"Open Menu\"))).isEnabled()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(\"Open Menu\"))",
+            "normalized": "page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName(\"Open Menu\"))",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isEnabled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 48,
+            "endLine": 38,
+            "endColumn": 59
+          },
+          "text": "assertThat(page.getByText(\"Products\")).isVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText(\"Products\")",
+            "normalized": "page.getByText(\"Products\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 45,
+            "endLine": 39,
+            "endColumn": 57
+          },
+          "text": "assertThat(page.getByLabel(\"Sort\")).isEditable()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByLabel(\"Sort\")",
+            "normalized": "page.getByLabel(\"Sort\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isEditable",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 53,
+            "endLine": 40,
+            "endColumn": 63
+          },
+          "text": "assertThat(page.getByPlaceholder(\"Search\")).isHidden()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByPlaceholder(\"Search\")",
+            "normalized": "page.getByPlaceholder(\"Search\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isHidden",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 67,
+            "endLine": 41,
+            "endColumn": 78
+          },
+          "text": "assertThat(page.getByTestId(\"shopping-cart-badge\")).not().isVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTestId(\"shopping-cart-badge\")",
+            "normalized": "page.getByTestId(\"shopping-cart-badge\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isVisible",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 62,
+            "endLine": 42,
+            "endColumn": 74
+          },
+          "text": "assertThat(page.getByAltText(\"Sauce Labs Backpack\")).isAttached()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByAltText(\"Sauce Labs Backpack\")",
+            "normalized": "page.getByAltText(\"Sauce Labs Backpack\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isAttached",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 45,
+            "endLine": 43,
+            "endColumn": 59
+          },
+          "text": "assertThat(page.getByTitle(\"Menu\")).isInViewport()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByTitle(\"Menu\")",
+            "normalized": "page.getByTitle(\"Menu\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isInViewport",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 66,
+            "endLine": 44,
+            "endColumn": 78
+          },
+          "text": "assertThat(page.frameLocator(\"#help\").locator(\"button\")).isDisabled()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.frameLocator(\"#help\").locator(\"button\")",
+            "normalized": "page.frameLocator(\"#help\").locator(\"button\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isDisabled",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 47,
+            "endLine": 45,
+            "endColumn": 58
+          },
+          "text": "assertThat(page.locator(\"#remember\")).isChecked()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\"#remember\")",
+            "normalized": "page.locator(\"#remember\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isChecked",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 45,
+            "endLine": 46,
+            "endColumn": 56
+          },
+          "text": "assertThat(page.locator(\"#search\")).isFocused()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\"#search\")",
+            "normalized": "page.locator(\"#search\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isFocused",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 11,
+      "bodyHash": "61cd7d46d76ab20ea3eadc3ce1d14a1108c651a2"
+    },
+    {
+      "id": "9ff9d9c6acf2",
+      "title": "readsTheAttributesOfAnElement",
+      "fullTitle": "InventoryTest > readsTheAttributesOfAnElement",
+      "suitePath": [
+        "InventoryTest"
+      ],
+      "span": {
+        "startLine": 49,
+        "startColumn": 5,
+        "endLine": 57,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 51,
+        "endLine": 57,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 26,
+            "endLine": 52,
+            "endColumn": 40
+          },
+          "text": "assertThat(sort).hasValue(\"az\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "sort",
+            "normalized": "sort",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasValue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 26,
+            "endLine": 53,
+            "endColumn": 77
+          },
+          "text": "assertThat(sort).hasAttribute(\"data-test\", \"product-sort-container\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "sort",
+            "normalized": "sort",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasAttribute",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 26,
+            "endLine": 54,
+            "endColumn": 60
+          },
+          "text": "assertThat(sort).hasClass(\"product_sort_container\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "sort",
+            "normalized": "sort",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasClass",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 26,
+            "endLine": 55,
+            "endColumn": 52
+          },
+          "text": "assertThat(sort).hasCSS(\"display\", \"block\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "sort",
+            "normalized": "sort",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasCSS",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 26,
+            "endLine": 56,
+            "endColumn": 39
+          },
+          "text": "assertThat(sort).hasId(\"sort\")",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "sort",
+            "normalized": "sort",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasId",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "92bf15a3c89856a3ea0e77b2b9118f3d365f8a7e"
+    },
+    {
+      "id": "7db1308c3389",
+      "title": "checksOnlyThatTheLocatorIsThere",
+      "fullTitle": "InventoryTest > checksOnlyThatTheLocatorIsThere",
+      "suitePath": [
+        "InventoryTest"
+      ],
+      "span": {
+        "startLine": 59,
+        "startColumn": 5,
+        "endLine": 65,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 60,
+        "startColumn": 53,
+        "endLine": 65,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 9,
+            "endLine": 62,
+            "endColumn": 29
+          },
+          "text": "assertNotNull(badge)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 50
+          },
+          "text": "assertNotNull(page.getByText(\"Checkout\"))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "page.getByText(\"Checkout\")",
+            "normalized": "page.getByText(\"Checkout\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 39
+          },
+          "text": "assertTrue(badge.count() >= 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "badge.count()",
+            "normalized": "badge.count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "a8f2ac0c97751580e7eaa670f7cae732ad980931"
+    },
+    {
+      "id": "b1e204107b78",
+      "title": "checksThatAHandleWasFound",
+      "fullTitle": "InventoryTest > checksThatAHandleWasFound",
+      "suitePath": [
+        "InventoryTest"
+      ],
+      "span": {
+        "startLine": 67,
+        "startColumn": 5,
+        "endLine": 71,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 68,
+        "startColumn": 47,
+        "endLine": 71,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 9,
+            "endLine": 70,
+            "endColumn": 29
+          },
+          "text": "assertNotNull(title)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "title",
+            "normalized": "title",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "996a88926054704958287ae92a8da2d7282c4d79"
+    },
+    {
+      "id": "1399aa735c70",
+      "title": "forgetsTheMatcher",
+      "fullTitle": "InventoryTest > forgetsTheMatcher",
+      "suitePath": [
+        "InventoryTest"
+      ],
+      "span": {
+        "startLine": 73,
+        "startColumn": 5,
+        "endLine": 76,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 74,
+        "startColumn": 39,
+        "endLine": 76,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 9,
+            "endLine": 75,
+            "endColumn": 43
+          },
+          "text": "assertThat(page.locator(\".title\"))",
+          "kind": "other",
+          "library": "playwright",
+          "actual": {
+            "text": "page.locator(\".title\")",
+            "normalized": "page.locator(\".title\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "8c233639bfcf0a1354b3901322c5512f8b97e272"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 83
+      },
+      "source": "com.microsoft.playwright.assertions.PlaywrightAssertions",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 47
+      },
+      "source": "com.microsoft.playwright.ElementHandle",
+      "names": [
+        "ElementHandle"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 41
+      },
+      "source": "com.microsoft.playwright.Locator",
+      "names": [
+        "Locator"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 38
+      },
+      "source": "com.microsoft.playwright.Page",
+      "names": [
+        "Page"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 53
+      },
+      "source": "com.microsoft.playwright.junit.UsePlaywright",
+      "names": [
+        "UsePlaywright"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 50
+      },
+      "source": "com.microsoft.playwright.options.AriaRole",
+      "names": [
+        "AriaRole"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 32
+      },
+      "source": "java.util.regex.Pattern",
+      "names": [
+        "Pattern"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

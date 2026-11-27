@@ -1,0 +1,1223 @@
+{
+  "path": "src/test/java/shop/MailerTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "MailerTest",
+      "span": {
+        "startLine": 32,
+        "startColumn": 1,
+        "endLine": 98,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "aadc4a8baa1e",
+        "de9239fe1dcb",
+        "355d274a4fa4",
+        "c97065cdc3ef",
+        "76c0121ba4c0",
+        "da5c1f8eff50",
+        "7a6e226a6fbc"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "aadc4a8baa1e",
+      "title": "sendsOneReceipt",
+      "fullTitle": "MailerTest > sendsOneReceipt",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 43,
+        "startColumn": 5,
+        "endLine": 48,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 44,
+        "startColumn": 28,
+        "endLine": 48,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 46
+          },
+          "text": "verify(mailer).send(\"ana\", \"receipt\")",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 46
+          },
+          "text": "verify(audit, times(1)).record(any())",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "audit",
+            "normalized": "audit",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "4ce389d1505d847b0e6a419d45401a07b40c279e"
+    },
+    {
+      "id": "de9239fe1dcb",
+      "title": "sendsNothingForAnEmptyCart",
+      "fullTitle": "MailerTest > sendsNothingForAnEmptyCart",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 50,
+        "startColumn": 5,
+        "endLine": 58,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 51,
+        "startColumn": 39,
+        "endLine": 58,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 9,
+            "endLine": 54,
+            "endColumn": 55
+          },
+          "text": "verify(mailer, never()).send(\"ana\", \"receipt\")",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 9,
+            "endLine": 55,
+            "endColumn": 34
+          },
+          "text": "verifyNoInteractions(sms)",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "sms",
+            "normalized": "sms",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verifyNoInteractions",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 9,
+            "endLine": 56,
+            "endColumn": 41
+          },
+          "text": "verifyNoMoreInteractions(mailer)",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verifyNoMoreInteractions",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 39
+          },
+          "text": "verifyZeroInteractions(ledger)",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "ledger",
+            "normalized": "ledger",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verifyZeroInteractions",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "5677a2e0e5ffb7be33ecd2c5002e7728c5331ff0"
+    },
+    {
+      "id": "355d274a4fa4",
+      "title": "namesNoCall",
+      "fullTitle": "MailerTest > namesNoCall",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 60,
+        "startColumn": 5,
+        "endLine": 64,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 61,
+        "startColumn": 24,
+        "endLine": 64,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 23
+          },
+          "text": "verify(mailer)",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "4944b4ff4b005467b6de6a73d7f3f457ee522ccf"
+    },
+    {
+      "id": "c97065cdc3ef",
+      "title": "readsLikeASentence",
+      "fullTitle": "MailerTest > readsLikeASentence",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 66,
+        "startColumn": 5,
+        "endLine": 74,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 67,
+        "startColumn": 31,
+        "endLine": 74,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 9,
+            "endLine": 69,
+            "endColumn": 53
+          },
+          "text": "then(mailer).should().send(\"ana\", \"receipt\")",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "should",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 9,
+            "endLine": 70,
+            "endColumn": 60
+          },
+          "text": "then(mailer).should(never()).send(\"ben\", \"receipt\")",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "should",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 47
+          },
+          "text": "then(clock).shouldHaveNoInteractions()",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "clock",
+            "normalized": "clock",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "shouldHaveNoInteractions",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 51
+          },
+          "text": "then(stock).shouldHaveNoMoreInteractions()",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "stock",
+            "normalized": "stock",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "shouldHaveNoMoreInteractions",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 50
+          },
+          "text": "then(prices).shouldHaveZeroInteractions()",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "prices",
+            "normalized": "prices",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "shouldHaveZeroInteractions",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "2397a7116e78e648bf550757f7f0cbaa59f075e7"
+    },
+    {
+      "id": "76c0121ba4c0",
+      "title": "checksOnlyTheMock",
+      "fullTitle": "MailerTest > checksOnlyTheMock",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 76,
+        "startColumn": 5,
+        "endLine": 80,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 77,
+        "startColumn": 30,
+        "endLine": 80,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 9,
+            "endLine": 79,
+            "endColumn": 39
+          },
+          "text": "assertEquals(1, mailer.sent())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "mailer.sent()",
+            "normalized": "mailer.sent()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "51c6e6085a2edd75336caf9938469f1554b49bd7"
+    },
+    {
+      "id": "da5c1f8eff50",
+      "title": "wrapsARealCart",
+      "fullTitle": "MailerTest > wrapsARealCart",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 82,
+        "startColumn": 5,
+        "endLine": 88,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 83,
+        "startColumn": 27,
+        "endLine": 88,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 9,
+            "endLine": 86,
+            "endColumn": 29
+          },
+          "text": "verify(cart).clear()",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 9,
+            "endLine": 87,
+            "endColumn": 37
+          },
+          "text": "assertEquals(0, cart.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": true
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "1e0bed4249af08e710cec8bd2254db06d20679d1"
+    },
+    {
+      "id": "7a6e226a6fbc",
+      "title": "replacesStaticAndNewObjects",
+      "fullTitle": "MailerTest > replacesStaticAndNewObjects",
+      "suitePath": [
+        "MailerTest"
+      ],
+      "span": {
+        "startLine": 90,
+        "startColumn": 5,
+        "endLine": 97,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 91,
+        "startColumn": 40,
+        "endLine": 97,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 13,
+            "endLine": 94,
+            "endColumn": 51
+          },
+          "text": "fixed.verify(() -> Prices.of(\"apple\"))",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "fixed",
+            "normalized": "fixed",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 13,
+            "endLine": 95,
+            "endColumn": 56
+          },
+          "text": "assertEquals(1, carts.constructed().size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "carts.constructed().size()",
+            "normalized": "carts.constructed().size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": true
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b3d8a373df34f19d39e9c5c72d5fc5b3c93e9d39"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 48
+      },
+      "source": "org.mockito.ArgumentMatchers",
+      "names": [
+        "any"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 43
+      },
+      "source": "org.mockito.BDDMockito",
+      "names": [
+        "then"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 52
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "mockConstruction"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 46
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "mockStatic"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 41
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "never"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 39
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "spy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 41
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "times"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 42
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "verify"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 56
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "verifyNoInteractions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 60
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "verifyNoMoreInteractions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 58
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "verifyZeroInteractions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "when"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 30
+      },
+      "source": "jakarta.inject.Inject",
+      "names": [
+        "Inject"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 34
+      },
+      "source": "javax.annotation.Resource",
+      "names": [
+        "Resource"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 21,
+        "endColumn": 51
+      },
+      "source": "org.junit.jupiter.api.extension.ExtendWith",
+      "names": [
+        "ExtendWith"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 25
+      },
+      "source": "org.mockito.Mock",
+      "names": [
+        "Mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 23,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 39
+      },
+      "source": "org.mockito.MockedConstruction",
+      "names": [
+        "MockedConstruction"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 24,
+        "endColumn": 33
+      },
+      "source": "org.mockito.MockedStatic",
+      "names": [
+        "MockedStatic"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 25,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 24
+      },
+      "source": "org.mockito.Spy",
+      "names": [
+        "Spy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 26,
+        "startColumn": 1,
+        "endLine": 26,
+        "endColumn": 51
+      },
+      "source": "org.mockito.junit.jupiter.MockitoExtension",
+      "names": [
+        "MockitoExtension"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 27,
+        "startColumn": 1,
+        "endLine": 27,
+        "endColumn": 60
+      },
+      "source": "org.springframework.boot.test.mock.mockito.MockBean",
+      "names": [
+        "MockBean"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 28,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 59
+      },
+      "source": "org.springframework.boot.test.mock.mockito.SpyBean",
+      "names": [
+        "SpyBean"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 29,
+        "startColumn": 1,
+        "endLine": 29,
+        "endColumn": 75
+      },
+      "source": "org.springframework.test.context.bean.override.mockito.MockitoBean",
+      "names": [
+        "MockitoBean"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 30,
+        "startColumn": 1,
+        "endLine": 30,
+        "endColumn": 78
+      },
+      "source": "org.springframework.test.context.bean.override.mockito.MockitoSpyBean",
+      "names": [
+        "MockitoSpyBean"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,0 +1,629 @@
+{
+  "path": "src/test/java/shop/HelpersTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "HelpersTest",
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 66,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "366420ca0562",
+        "1cffa34ee23b",
+        "1d4e3dc1be4e",
+        "4850ee7f8ae5",
+        "a69f46534efa",
+        "f446c3653140",
+        "a0d09489c90c"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "366420ca0562",
+      "title": "usesAHelperOfTheClass",
+      "fullTitle": "HelpersTest > usesAHelperOfTheClass",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 20,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 34,
+        "endLine": 20,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 9,
+            "endLine": 19,
+            "endColumn": 31
+          },
+          "text": "checkTotal(cart, 1.98)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "checkTotal"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "c5f3e18cd27b3d0db5383718c85736b9eff5c6ac"
+    },
+    {
+      "id": "1cffa34ee23b",
+      "title": "usesAHelperOfAnotherClass",
+      "fullTitle": "HelpersTest > usesAHelperOfAnotherClass",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 22,
+        "startColumn": 5,
+        "endLine": 27,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 38,
+        "endLine": 27,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 37
+          },
+          "text": "Checks.cartHasItems(cart, 2)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "cartHasItems"
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 9,
+            "endLine": 26,
+            "endColumn": 42
+          },
+          "text": "new Checks().ownerIs(cart, \"ana\")",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": "ownerIs"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "8394b1a79c7e32e2d4fcee340be612c7a1ea79c3"
+    },
+    {
+      "id": "1d4e3dc1be4e",
+      "title": "usesAHelperForEachItem",
+      "fullTitle": "HelpersTest > usesAHelperForEachItem",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 29,
+        "startColumn": 5,
+        "endLine": 32,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 35,
+        "endLine": 32,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 46
+          },
+          "text": "cart.items().forEach(this::checkItem)",
+          "kind": "other",
+          "library": "helper",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": "checkItem"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0f2e85ef871c04bf274ac39d3c76b0444553b59f"
+    },
+    {
+      "id": "4850ee7f8ae5",
+      "title": "namesTheCheck",
+      "fullTitle": "HelpersTest > namesTheCheck",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 37,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 26,
+        "endLine": 37,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 9,
+            "endLine": 36,
+            "endColumn": 25
+          },
+          "text": "assertCart(cart)",
+          "kind": "other",
+          "library": "assert-method",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertCart",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "860d52163d9e1b0317cffa9b3a12622eeaa59758"
+    },
+    {
+      "id": "a69f46534efa",
+      "title": "callsNoHelper",
+      "fullTitle": "HelpersTest > callsNoHelper",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 43,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 26,
+        "endLine": 43,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "ecc15d08d0c721b9eb4ae37840c6d1c80ce27a3b"
+    },
+    {
+      "id": "f446c3653140",
+      "title": "checksInsideAStep",
+      "fullTitle": "HelpersTest > checksInsideAStep",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 5,
+        "endLine": 48,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 46,
+        "startColumn": 30,
+        "endLine": 48,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 45,
+            "endLine": 47,
+            "endColumn": 73
+          },
+          "text": "assertEquals(0, cart.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "e16d8bf586c72f9676cdc26f64bf5e72193bee96"
+    },
+    {
+      "id": "a0d09489c90c",
+      "title": "checksEachName",
+      "fullTitle": "HelpersTest > checksEachName",
+      "suitePath": [
+        "HelpersTest"
+      ],
+      "span": {
+        "startLine": 50,
+        "startColumn": 5,
+        "endLine": 53,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 51,
+        "startColumn": 42,
+        "endLine": 53,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": null
+      },
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 91,
+            "endLine": 52,
+            "endColumn": 121
+          },
+          "text": "assertNotNull(cart.find(name))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.find(name)",
+            "normalized": "cart.find(name)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "c29330f01a9c480067977469007c4f2782030e70"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 44
+      },
+      "source": "io.qameta.allure.Allure",
+      "names": [
+        "step"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 32
+      },
+      "source": "java.util.stream.Stream",
+      "names": [
+        "Stream"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 42
+      },
+      "source": "org.junit.jupiter.api.DynamicTest",
+      "names": [
+        "DynamicTest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 42
+      },
+      "source": "org.junit.jupiter.api.TestFactory",
+      "names": [
+        "TestFactory"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 28
+      },
+      "source": "shop.support.Checks",
+      "names": [
+        "Checks"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

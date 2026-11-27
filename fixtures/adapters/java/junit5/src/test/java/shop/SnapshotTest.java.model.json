@@ -1,0 +1,428 @@
+{
+  "path": "src/test/java/shop/SnapshotTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "SnapshotTest",
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 30,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "6bc9111557da",
+        "7fef0444e420",
+        "04a2057195cf"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "6bc9111557da",
+      "title": "matchesTheStoredReceipt",
+      "fullTitle": "SnapshotTest > matchesTheStoredReceipt",
+      "suitePath": [
+        "SnapshotTest"
+      ],
+      "span": {
+        "startLine": 12,
+        "startColumn": 5,
+        "endLine": 15,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 13,
+        "startColumn": 36,
+        "endLine": 15,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 9,
+            "endLine": 14,
+            "endColumn": 41
+          },
+          "text": "Approvals.verify(cart.receipt())",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart.receipt()",
+            "normalized": "cart.receipt()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "175dcf14262d26a453c8b47bffd2b54cdfc220c1"
+    },
+    {
+      "id": "7fef0444e420",
+      "title": "matchesEveryStoredFormat",
+      "fullTitle": "SnapshotTest > matchesEveryStoredFormat",
+      "suitePath": [
+        "SnapshotTest"
+      ],
+      "span": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 18,
+        "startColumn": 37,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 9,
+            "endLine": 19,
+            "endColumn": 51
+          },
+          "text": "Approvals.verifyAll(\"items\", cart.items())",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "\"items\"",
+            "normalized": "\"items\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "items"
+            }
+          },
+          "expected": null,
+          "matcher": "verifyAll",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 9,
+            "endLine": 20,
+            "endColumn": 37
+          },
+          "text": "Approvals.verifyAsJson(cart)",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "verifyAsJson",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 9,
+            "endLine": 21,
+            "endColumn": 44
+          },
+          "text": "Approvals.verifyHtml(cart.toHtml())",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart.toHtml()",
+            "normalized": "cart.toHtml()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "verifyHtml",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 9,
+            "endLine": 22,
+            "endColumn": 42
+          },
+          "text": "Approvals.verifyXml(cart.toXml())",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart.toXml()",
+            "normalized": "cart.toXml()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "verifyXml",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 9,
+            "endLine": 23,
+            "endColumn": 41
+          },
+          "text": "JsonApprovals.verifyAsJson(cart)",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "verifyAsJson",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "ccecbc6763c1c1a41f35b8dc9a0f570611320441"
+    },
+    {
+      "id": "04a2057195cf",
+      "title": "matchesTheStoredSnapshot",
+      "fullTitle": "SnapshotTest > matchesTheStoredSnapshot",
+      "suitePath": [
+        "SnapshotTest"
+      ],
+      "span": {
+        "startLine": 26,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 37,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 37
+          },
+          "text": "expect.toMatchSnapshot(cart)",
+          "kind": "snapshot",
+          "library": "snapshot",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "toMatchSnapshot",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "269358b56f5313cc18794955d7d3d8fafa8f47d4"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 39
+      },
+      "source": "au.com.origin.snapshots.Expect",
+      "names": [
+        "Expect"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 36
+      },
+      "source": "org.approvaltests.Approvals",
+      "names": [
+        "Approvals"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 40
+      },
+      "source": "org.approvaltests.JsonApprovals",
+      "names": [
+        "JsonApprovals"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

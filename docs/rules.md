@@ -34,19 +34,19 @@ A rule runs on a file when the adapter of its language fills in everything the r
 <!-- support-matrix:start -->
 | Rule | Needs from the adapter | JavaScript, TypeScript | Python | Java |
 | --- | --- | --- | --- | --- |
-| [QCR-A001](#qcr-a001) | tests, assertions | yes | yes | no |
-| [QCR-A002](#qcr-a002) | assertions, assertion-operands | yes | yes | no |
-| [QCR-A003](#qcr-a003) | assertions, assertion-operands, reachability | yes | yes | no |
-| [QCR-A004](#qcr-a004) | assertions | yes | yes | no |
+| [QCR-A001](#qcr-a001) | tests, assertions | yes | yes | yes |
+| [QCR-A002](#qcr-a002) | assertions, assertion-operands | yes | yes | yes |
+| [QCR-A003](#qcr-a003) | assertions, assertion-operands, reachability | yes | yes | yes |
+| [QCR-A004](#qcr-a004) | assertions | yes | yes | yes |
 | [QCR-W001](#qcr-w001) | waits | yes | yes | no |
 | [QCR-S001](#qcr-s001) | selectors | yes | yes | no |
-| [QCR-E001](#qcr-e001) | try-blocks | yes | yes | no |
+| [QCR-E001](#qcr-e001) | try-blocks | yes | yes | yes |
 | [QCR-F001](#qcr-f001) | modifiers | yes | yes | yes |
 | [QCR-F002](#qcr-f002) | modifiers | yes | yes | yes |
 | [QCR-D001](#qcr-d001) | body-hash | yes | yes | yes |
-| [QCR-N001](#qcr-n001) | tests, assertions | yes | yes | no |
+| [QCR-N001](#qcr-n001) | tests, assertions | yes | yes | yes |
 | [QCR-M001](#qcr-m001) | mocks, assertions, assertion-operands | yes | yes | no |
-| [QCR-P001](#qcr-p001) | assertions | yes | yes | no |
+| [QCR-P001](#qcr-p001) | assertions | yes | yes | yes |
 | [QCR-C001](#qcr-c001) | resources, hooks | yes | yes | no |
 | [QCR-X001](#qcr-x001) | none | yes | yes | yes |
 | [QCR-X002](#qcr-x002) | none | yes | yes | yes |

@@ -1,7 +1,7 @@
 // The Java adapter (SPEC.md Sections 9.3 and 17): golden models, framework detection,
-// vocabulary coverage, capabilities and robustness. This part covers the structure of a test
+// vocabulary coverage, capabilities and robustness. This file covers the structure of a test
 // file: suites, nested suites, tests, hooks, skips, parameterized tests, imports and
-// suppressions.
+// suppressions. What a body checks is in java-assertions.test.mjs.
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -65,24 +65,39 @@ test('framework detection is right for every fixture file', async () => {
     'junit4/BaseShopTest.java': ['junit4', [], 'high'], // no test annotation: the hooks name JUnit 4
     'junit4/CartTest.java': ['junit4', [], 'high'],
     'junit4/DiscountTableTest.java': ['junit4', [], 'high'],
+    'junit4/LegacyAssertTest.java': ['junit4', [], 'high'],
     'junit4/PriceTableTest.java': ['junit4', [], 'high'],
     'junit5/AllTests.java': ['junit5', [], 'medium'], // only `org.junit.platform`, which every JUnit has: the runner of the project
+    'junit5/AssertJTest.java': ['junit5', [], 'high'],
+    'junit5/AssertionsTest.java': ['junit5', [], 'high'],
     'junit5/BaseTest.java': ['junit5', [], 'high'],
     'junit5/BrokenTest.java': ['junit5', [], 'high'],
     'junit5/CartTest.java': ['junit5', [], 'high'],
     'junit5/ConditionsTest.java': ['junit5', [], 'high'], // `import org.junit.jupiter.api.*;` and `@Test`
     'junit5/ForgottenAnnotationTest.java': ['junit5', [], 'high'],
+    'junit5/HamcrestTest.java': ['junit5', [], 'high'],
+    'junit5/HelpersTest.java': ['junit5', [], 'high'],
+    'junit5/MailerTest.java': ['junit5', [], 'high'], // Mockito and Spring are no test frameworks of their own
     'junit5/OrderServiceTest.java': ['junit5', [], 'high'],
+    'junit5/OrdersControllerTest.java': ['junit5', [], 'high'],
     'junit5/ParameterizedCartTest.java': ['junit5', [], 'high'],
     'junit5/QualifiedTest.java': ['junit5', [], 'high'], // `@org.junit.jupiter.api.Test`, with no import
     'junit5/ShapeContract.java': ['junit5', [], 'high'],
+    'junit5/SnapshotTest.java': ['junit5', [], 'high'],
+    'junit5/SoftAssertionsTest.java': ['junit5', [], 'high'],
+    'junit5/TryCatchTest.java': ['junit5', [], 'high'],
+    'junit5/support/Checks.java': ['junit5', [], 'medium'], // only AssertJ, which proves no runner
     'junit5/support/Money.java': ['junit5', [], 'medium'], // a support file that names no framework
+    'playwright-java/InventoryTest.java': ['junit5', ['playwright-java'], 'high'],
     'playwright-java/SearchTest.java': ['junit5', ['playwright-java'], 'high'],
     'restassured/OrdersApiTest.java': ['testng', ['restassured'], 'high'],
+    'restassured/ProductsApiTest.java': ['junit5', ['restassured'], 'high'],
     'selenium/BaseUiTest.java': ['junit5', ['selenium'], 'high'],
+    'selenium/InventoryIT.java': ['junit5', ['selenium'], 'high'],
     'selenium/LoginIT.java': ['junit5', ['selenium'], 'high'],
     'selenium/pages/LoginPage.java': ['junit5', ['selenium'], 'medium'],
     'selenium/steps/CheckoutSteps.java': ['junit5', ['cucumber', 'selenium'], 'medium'],
+    'testng/AssertOrderTest.java': ['testng', [], 'high'],
     'testng/BaseTest.java': ['testng', [], 'high'],
     'testng/CartTest.java': ['testng', ['junit4'], 'high'], // the assertions of JUnit are a library here
     'testng/CheckoutTest.java': ['testng', [], 'high'],
@@ -442,14 +457,14 @@ test('every vocabulary entry appears in at least one fixture', () => {
   const missing = JAVA_VOCAB_SURFACE.filter((entry) => !new RegExp(`${/^\w/.test(entry) ? '(?<![\\w.])' : ''}${entry.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${/\w$/.test(entry) ? '(?![\\w])' : ''}`).test(all));
   assert.deepEqual(missing, []);
   assert.equal(new Set(JAVA_VOCAB_SURFACE).size, JAVA_VOCAB_SURFACE.length);
-  assert.ok(JAVA_VOCAB_SURFACE.length >= 115, String(JAVA_VOCAB_SURFACE.length));
+  assert.ok(JAVA_VOCAB_SURFACE.length >= 380, String(JAVA_VOCAB_SURFACE.length));
 });
 
 test('every capability the adapter declares is filled in at least one golden', async () => {
   const all = [];
   for (const framework of FRAMEWORKS) all.push(...(await modelsOf(framework)).map((entry) => entry.model));
-  // The structure of a file. What a body checks and does is not declared yet, so no rule that needs it runs.
-  assert.deepEqual(javaAdapter.capabilities, ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'body-hash']);
+  // The structure of a file and what its bodies check. What a body does (waits, selectors, mocks, resources) is not declared yet, so no rule that needs it runs.
+  assert.deepEqual(javaAdapter.capabilities, ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability']);
   for (const capability of javaAdapter.capabilities) {
     assert.ok(all.some((model) => capabilityFilled(capability, model)), `no golden fills "${capability}"`);
     assert.ok(all.every((model) => model.capabilities.includes(capability)));
@@ -457,7 +472,7 @@ test('every capability the adapter declares is filled in at least one golden', a
   // Nothing is filled in that the adapter does not declare.
   for (const model of all) {
     assert.deepEqual([model.subject, model.fileMocks, model.fileResources], [null, [], []], model.path);
-    for (const t of model.tests) assert.deepEqual([t.assertions, t.waits, t.selectors, t.mocks, t.resources, t.data, t.steps, t.tryBlocks, t.expectsException], [[], [], [], [], [], [], [], [], false], t.fullTitle);
+    for (const t of model.tests) assert.deepEqual([t.waits, t.selectors, t.mocks, t.resources, t.data, t.steps], [[], [], [], [], [], []], t.fullTitle);
   }
 });
 
@@ -542,7 +557,7 @@ test('classifyFile tells test files from support files without parsing', () => {
   assert.equal(classify('src/test/java/Notes.java', '// @Test void a() {}\nclass Notes { String s = "@Test"; /* @Test */ @Tested int x; }\n'), 'support');
 });
 
-test('the rules read the Java model: skipped tests and a test file with no test are found, and the rest waits for the next parts', async () => {
+test('the rules read the Java model: skipped tests and a test file with no test are found, and the rules about what a body does wait for the next part', async () => {
   const review = async (framework) => {
     const { report } = await runReview({ root: fixtureRoot('adapters', 'java', framework), config: resolveConfig({}).config, git: false, rules: builtinRules });
     return { report, lines: report.findings.map((finding) => `${finding.location.file.replace(`${TESTS}/`, '')}:${finding.location.startLine} ${finding.ruleId} ${finding.message}`) };
@@ -558,12 +573,12 @@ test('the rules read the Java model: skipped tests and a test file with no test 
   // Two test methods with one name and other parameters are not the same test.
   assert.deepEqual(junit5.lines.filter((line) => line.includes('QCR-D001')), []);
   // A test that is skipped on a condition is not reported.
-  assert.deepEqual(junit5.lines.filter((line) => line.startsWith('ConditionsTest.java')).map((line) => line.split(' ').slice(0, 2).join(' ')), ['ConditionsTest.java:109 QCR-F002', 'ConditionsTest.java:122 QCR-F002']);
+  assert.deepEqual(junit5.lines.filter((line) => line.startsWith('ConditionsTest.java') && line.includes('QCR-F002')).map((line) => line.split(' ').slice(0, 2).join(' ')), ['ConditionsTest.java:109 QCR-F002', 'ConditionsTest.java:122 QCR-F002']);
   const testng = await review('testng');
   assert.deepEqual(testng.lines.filter((line) => line.includes('QCR-F002')).map((line) => line.split(' ').slice(0, 2).join(' ')), [
     'CartTest.java:45 QCR-F002', 'CartTest.java:51 QCR-F002', 'CartTest.java:55 QCR-F002', 'CartTest.java:91 QCR-F002', 'CheckoutTest.java:27 QCR-F002', 'LegacyCheckoutTest.java:8 QCR-F002',
   ]);
-  // The rules that need what a body checks or does do not run on a Java file yet.
+  // The rules that need what a body does (waits, selectors, mocks, resources) do not run on a Java file yet.
   const ran = testng.report.files.find((file) => file.file.endsWith('/CartTest.java'));
-  assert.deepEqual(ran.rulesSkipped.map((rule) => rule.ruleId), ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-W001', 'QCR-S001', 'QCR-E001', 'QCR-N001', 'QCR-M001', 'QCR-P001', 'QCR-C001']);
+  assert.deepEqual(ran.rulesSkipped.map((rule) => rule.ruleId), ['QCR-W001', 'QCR-S001', 'QCR-M001', 'QCR-C001']);
 });

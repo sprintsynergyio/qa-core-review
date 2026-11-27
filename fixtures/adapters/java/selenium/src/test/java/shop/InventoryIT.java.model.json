@@ -1,0 +1,816 @@
+{
+  "path": "src/test/java/shop/InventoryIT.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "InventoryIT",
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 61,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "4edc084b2820",
+        "c7248cb7af2d",
+        "64f691d3c3c7",
+        "827b5b36463f"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "4edc084b2820",
+      "title": "showsSixProducts",
+      "fullTitle": "InventoryIT > showsSixProducts",
+      "suitePath": [
+        "InventoryIT"
+      ],
+      "span": {
+        "startLine": 29,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 29,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 9,
+            "endLine": 33,
+            "endColumn": 38
+          },
+          "text": "assertEquals(6, names.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "names.size()",
+            "normalized": "names.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 68
+          },
+          "text": "assertEquals(\"Sauce Labs Backpack\", names.get(0).getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "names.get(0).getText()",
+            "normalized": "names.get(0).getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Sauce Labs Backpack\"",
+            "normalized": "\"Sauce Labs Backpack\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Sauce Labs Backpack"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "ee3cd2419284348bfdd9b676ad2033885bb983b4"
+    },
+    {
+      "id": "c7248cb7af2d",
+      "title": "checksOnlyThatTheElementIsThere",
+      "fullTitle": "InventoryIT > checksOnlyThatTheElementIsThere",
+      "suitePath": [
+        "InventoryIT"
+      ],
+      "span": {
+        "startLine": 37,
+        "startColumn": 5,
+        "endLine": 45,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 38,
+        "startColumn": 44,
+        "endLine": 45,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 40,
+            "endColumn": 29
+          },
+          "text": "assertNotNull(title)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "title",
+            "normalized": "title",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 76
+          },
+          "text": "assertNotNull(driver.findElement(By.id(\"shopping_cart_container\")))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "driver.findElement(By.id(\"shopping_cart_container\"))",
+            "normalized": "driver.findElement(By.id(\"shopping_cart_container\"))",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 9,
+            "endLine": 42,
+            "endColumn": 29
+          },
+          "text": "assertNotNull(badge)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "badge",
+            "normalized": "badge",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 9,
+            "endLine": 43,
+            "endColumn": 36
+          },
+          "text": "assertNotNull(items.get(0))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "items.get(0)",
+            "normalized": "items.get(0)",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 31
+          },
+          "text": "assertNotNull(sortBox)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "sortBox",
+            "normalized": "sortBox",
+            "kind": "identifier",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "af978ab1f7a0aa0e08ee8ded5b881b3c716a9464"
+    },
+    {
+      "id": "64f691d3c3c7",
+      "title": "countsAtLeastNothing",
+      "fullTitle": "InventoryIT > countsAtLeastNothing",
+      "suitePath": [
+        "InventoryIT"
+      ],
+      "span": {
+        "startLine": 47,
+        "startColumn": 5,
+        "endLine": 53,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 48,
+        "startColumn": 33,
+        "endLine": 53,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 31
+          },
+          "text": "assertTrue(shown >= 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "shown",
+            "normalized": "shown",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 38
+          },
+          "text": "assertTrue(items.size() >= 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "items.size()",
+            "normalized": "items.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 9,
+            "endLine": 52,
+            "endColumn": 52
+          },
+          "text": "assertFalse(driver.getTitle().length() < 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "driver.getTitle().length()",
+            "normalized": "driver.getTitle().length()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "25ccdb0132d950fbc8cca544e8f949d4b0e911f6"
+    },
+    {
+      "id": "827b5b36463f",
+      "title": "readsWhatTheElementsShow",
+      "fullTitle": "InventoryIT > readsWhatTheElementsShow",
+      "suitePath": [
+        "InventoryIT"
+      ],
+      "span": {
+        "startLine": 55,
+        "startColumn": 5,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 56,
+        "startColumn": 37,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 39
+          },
+          "text": "assertTrue(menu.isDisplayed())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "menu.isDisplayed()",
+            "normalized": "menu.isDisplayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 9,
+            "endLine": 58,
+            "endColumn": 43
+          },
+          "text": "assertEquals(\"1\", badge.getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "badge.getText()",
+            "normalized": "badge.getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"1\"",
+            "normalized": "\"1\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 9,
+            "endLine": 59,
+            "endColumn": 37
+          },
+          "text": "assertFalse(items.isEmpty())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "items.isEmpty()",
+            "normalized": "items.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "5fc1cb96636166a473058375543baf7bde523298"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 60
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertFalse"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 47
+      },
+      "source": "com.codeborne.selenide.SelenideElement",
+      "names": [
+        "SelenideElement"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 23
+      },
+      "source": "java.util.List",
+      "names": [
+        "List"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 31
+      },
+      "source": "org.openqa.selenium.By",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 39
+      },
+      "source": "org.openqa.selenium.WebElement",
+      "names": [
+        "WebElement"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 44
+      },
+      "source": "org.openqa.selenium.support.FindAll",
+      "names": [
+        "FindAll"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 43
+      },
+      "source": "org.openqa.selenium.support.FindBy",
+      "names": [
+        "FindBy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 44
+      },
+      "source": "org.openqa.selenium.support.FindBys",
+      "names": [
+        "FindBys"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

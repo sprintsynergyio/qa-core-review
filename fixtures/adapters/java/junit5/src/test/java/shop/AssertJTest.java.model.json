@@ -1,0 +1,3372 @@
+{
+  "path": "src/test/java/shop/AssertJTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "AssertJTest",
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 130,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "155ea179a705",
+        "0c76857bcc61",
+        "e99ba728b165",
+        "18dc0de307ab",
+        "4c85da23dd85",
+        "a7387f7c6274",
+        "ed4008eaceed",
+        "b81ab5126ab2",
+        "2fe985b4eec7",
+        "5c9cee567688"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "155ea179a705",
+      "title": "comparesValues",
+      "fullTitle": "AssertJTest > comparesValues",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 25,
+        "startColumn": 5,
+        "endLine": 36,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 27,
+        "endLine": 36,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 33,
+            "endLine": 28,
+            "endColumn": 45
+          },
+          "text": "assertThat(cart.size()).isEqualTo(2)",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 50,
+            "endLine": 29,
+            "endColumn": 71
+          },
+          "text": "assertThat(cart.owner()).as(\"the owner\").isNotEqualTo(\"guest\").isEqualToIgnoringCase(\"ANA\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"guest\"",
+            "normalized": "\"guest\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "guest"
+            }
+          },
+          "matcher": "isNotEqualTo",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 72,
+            "endLine": 29,
+            "endColumn": 100
+          },
+          "text": "assertThat(cart.owner()).as(\"the owner\").isNotEqualTo(\"guest\").isEqualToIgnoringCase(\"ANA\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ANA\"",
+            "normalized": "\"ANA\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ANA"
+            }
+          },
+          "matcher": "isEqualToIgnoringCase",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 33,
+            "endLine": 30,
+            "endColumn": 47
+          },
+          "text": "assertThat(cart.self()).isSameAs(cart).isNotSameAs(new Cart(\"ana\"))",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.self()",
+            "normalized": "cart.self()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isSameAs",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 48,
+            "endLine": 30,
+            "endColumn": 76
+          },
+          "text": "assertThat(cart.self()).isSameAs(cart).isNotSameAs(new Cart(\"ana\"))",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.self()",
+            "normalized": "cart.self()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "new Cart(\"ana\")",
+            "normalized": "new Cart(\"ana\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isNotSameAs",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 34,
+            "endLine": 31,
+            "endColumn": 78
+          },
+          "text": "assertThat(cart.total()).isEqualByComparingTo(new BigDecimal(\"1.98\")).isCloseTo(new BigDecimal(\"2\"), within(new BigDecimal(\"0.1\")))",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "new BigDecimal(\"1.98\")",
+            "normalized": "new BigDecimal(\"1.98\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isEqualByComparingTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 79,
+            "endLine": 31,
+            "endColumn": 140
+          },
+          "text": "assertThat(cart.total()).isEqualByComparingTo(new BigDecimal(\"1.98\")).isCloseTo(new BigDecimal(\"2\"), within(new BigDecimal(\"0.1\")))",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "new BigDecimal(\"2\")",
+            "normalized": "new BigDecimal(\"2\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isCloseTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 34,
+            "endLine": 32,
+            "endColumn": 57
+          },
+          "text": "assertThat(cart.first()).hasToString(\"apple x2\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple x2\"",
+            "normalized": "\"apple x2\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple x2"
+            }
+          },
+          "matcher": "hasToString",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 37,
+            "endLine": 33,
+            "endColumn": 45
+          },
+          "text": "assertThat(cart.discount()).isZero()",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.discount()",
+            "normalized": "cart.discount()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isZero",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 33,
+            "endLine": 34,
+            "endColumn": 44
+          },
+          "text": "assertThat(cart.size()).isNotZero().isPositive().isBetween(1, 5)",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotZero",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 45,
+            "endLine": 34,
+            "endColumn": 57
+          },
+          "text": "assertThat(cart.size()).isNotZero().isPositive().isBetween(1, 5)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isPositive",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 58,
+            "endLine": 34,
+            "endColumn": 73
+          },
+          "text": "assertThat(cart.size()).isNotZero().isPositive().isBetween(1, 5)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "isBetween",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 36,
+            "endLine": 35,
+            "endColumn": 48
+          },
+          "text": "assertThat(cart.balance()).isNegative()",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.balance()",
+            "normalized": "cart.balance()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNegative",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "2d2ceea1145048127338716b236e85405a876579"
+    },
+    {
+      "id": "0c76857bcc61",
+      "title": "checksTruthAndNull",
+      "fullTitle": "AssertJTest > checksTruthAndNull",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 38,
+        "startColumn": 5,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 31,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 35,
+            "endLine": 40,
+            "endColumn": 43
+          },
+          "text": "assertThat(cart.isOpen()).isTrue()",
+          "kind": "truthiness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.isOpen()",
+            "normalized": "cart.isOpen()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 69,
+            "endLine": 41,
+            "endColumn": 78
+          },
+          "text": "assertThat(cart.isEmpty()).describedAs(\"nothing was added\").isFalse()",
+          "kind": "truthiness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.isEmpty()",
+            "normalized": "cart.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 35,
+            "endLine": 42,
+            "endColumn": 43
+          },
+          "text": "assertThat(cart.coupon()).isNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.coupon()",
+            "normalized": "cart.coupon()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNull",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 34,
+            "endLine": 43,
+            "endColumn": 45
+          },
+          "text": "assertThat(cart.owner()).isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 40,
+            "endLine": 44,
+            "endColumn": 51
+          },
+          "text": "assertThat(cart.find(\"apple\")).isPresent()",
+          "kind": "truthiness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.find(\"apple\")",
+            "normalized": "cart.find(\"apple\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isPresent",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 39,
+            "endLine": 45,
+            "endColumn": 53
+          },
+          "text": "assertThat(cart.find(\"pear\")).isNotPresent()",
+          "kind": "truthiness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.find(\"pear\")",
+            "normalized": "cart.find(\"pear\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotPresent",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "5220945462bcd01c20c025faea965705f4f961f2"
+    },
+    {
+      "id": "e99ba728b165",
+      "title": "checksWhatACollectionHolds",
+      "fullTitle": "AssertJTest > checksWhatACollectionHolds",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 48,
+        "startColumn": 5,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 49,
+        "startColumn": 39,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 34,
+            "endLine": 52,
+            "endColumn": 44
+          },
+          "text": "assertThat(cart.names()).hasSize(2).contains(\"apple\").doesNotContain(\"fig\")",
+          "kind": "count",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "hasSize",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 45,
+            "endLine": 52,
+            "endColumn": 62
+          },
+          "text": "assertThat(cart.names()).hasSize(2).contains(\"apple\").doesNotContain(\"fig\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 63,
+            "endLine": 52,
+            "endColumn": 84
+          },
+          "text": "assertThat(cart.names()).hasSize(2).contains(\"apple\").doesNotContain(\"fig\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"fig\"",
+            "normalized": "\"fig\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "fig"
+            }
+          },
+          "matcher": "doesNotContain",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 34,
+            "endLine": 53,
+            "endColumn": 66
+          },
+          "text": "assertThat(cart.names()).containsExactly(\"apple\", \"pear\").containsExactlyInAnyOrder(\"pear\", \"apple\").containsOnly(\"apple\", \"pear\").containsAnyOf(\"apple\", \"fig\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "containsExactly",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 67,
+            "endLine": 53,
+            "endColumn": 109
+          },
+          "text": "assertThat(cart.names()).containsExactly(\"apple\", \"pear\").containsExactlyInAnyOrder(\"pear\", \"apple\").containsOnly(\"apple\", \"pear\").containsAnyOf(\"apple\", \"fig\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"pear\"",
+            "normalized": "\"pear\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "pear"
+            }
+          },
+          "matcher": "containsExactlyInAnyOrder",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 110,
+            "endLine": 53,
+            "endColumn": 139
+          },
+          "text": "assertThat(cart.names()).containsExactly(\"apple\", \"pear\").containsExactlyInAnyOrder(\"pear\", \"apple\").containsOnly(\"apple\", \"pear\").containsAnyOf(\"apple\", \"fig\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "containsOnly",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 140,
+            "endLine": 53,
+            "endColumn": 169
+          },
+          "text": "assertThat(cart.names()).containsExactly(\"apple\", \"pear\").containsExactlyInAnyOrder(\"pear\", \"apple\").containsOnly(\"apple\", \"pear\").containsAnyOf(\"apple\", \"fig\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "containsAnyOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 39,
+            "endLine": 54,
+            "endColumn": 59
+          },
+          "text": "assertThat(cart.quantities()).containsKey(\"apple\").containsEntry(\"apple\", 2).containsValue(1)",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "containsKey",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 60,
+            "endLine": 54,
+            "endColumn": 85
+          },
+          "text": "assertThat(cart.quantities()).containsKey(\"apple\").containsEntry(\"apple\", 2).containsValue(1)",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "containsEntry",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 86,
+            "endLine": 54,
+            "endColumn": 102
+          },
+          "text": "assertThat(cart.quantities()).containsKey(\"apple\").containsEntry(\"apple\", 2).containsValue(1)",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "containsValue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 34,
+            "endLine": 55,
+            "endColumn": 60
+          },
+          "text": "assertThat(cart.owner()).containsIgnoringCase(\"AN\").startsWith(\"a\").endsWith(\"a\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"AN\"",
+            "normalized": "\"AN\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "AN"
+            }
+          },
+          "matcher": "containsIgnoringCase",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 61,
+            "endLine": 55,
+            "endColumn": 76
+          },
+          "text": "assertThat(cart.owner()).containsIgnoringCase(\"AN\").startsWith(\"a\").endsWith(\"a\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"a\"",
+            "normalized": "\"a\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "a"
+            }
+          },
+          "matcher": "startsWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 77,
+            "endLine": 55,
+            "endColumn": 90
+          },
+          "text": "assertThat(cart.owner()).containsIgnoringCase(\"AN\").startsWith(\"a\").endsWith(\"a\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"a\"",
+            "normalized": "\"a\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "a"
+            }
+          },
+          "matcher": "endsWith",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 34,
+            "endLine": 56,
+            "endColumn": 52
+          },
+          "text": "assertThat(cart.owner()).isIn(\"ana\", \"ben\").isNotIn(\"guest\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isIn",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 53,
+            "endLine": 56,
+            "endColumn": 69
+          },
+          "text": "assertThat(cart.owner()).isIn(\"ana\", \"ben\").isNotIn(\"guest\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"guest\"",
+            "normalized": "\"guest\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "guest"
+            }
+          },
+          "matcher": "isNotIn",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 34,
+            "endLine": 57,
+            "endColumn": 46
+          },
+          "text": "assertThat(cart.names()).isNotEmpty().hasSameSizeAs(cart.items())",
+          "kind": "count",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotEmpty",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 47,
+            "endLine": 57,
+            "endColumn": 74
+          },
+          "text": "assertThat(cart.names()).isNotEmpty().hasSameSizeAs(cart.items())",
+          "kind": "count",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart.items()",
+            "normalized": "cart.items()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "hasSameSizeAs",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 36,
+            "endLine": 58,
+            "endColumn": 45
+          },
+          "text": "assertThat(cart.coupons()).isEmpty()",
+          "kind": "count",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.coupons()",
+            "normalized": "cart.coupons()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isEmpty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 34,
+            "endLine": 59,
+            "endColumn": 49
+          },
+          "text": "assertThat(cart.notes()).isNullOrEmpty()",
+          "kind": "count",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.notes()",
+            "normalized": "cart.notes()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNullOrEmpty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 10,
+      "bodyHash": "e91ff231a3c5a8bc2ad1f9ff3ada776376d0fb0d"
+    },
+    {
+      "id": "18dc0de307ab",
+      "title": "comparesNumbersAndTypes",
+      "fullTitle": "AssertJTest > comparesNumbersAndTypes",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 62,
+        "startColumn": 5,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 36,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 33,
+            "endLine": 64,
+            "endColumn": 50
+          },
+          "text": "assertThat(cart.size()).isGreaterThan(-1).isGreaterThanOrEqualTo(0).isLessThan(10).isLessThanOrEqualTo(9)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "-1",
+            "normalized": "-1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "-1"
+            }
+          },
+          "matcher": "isGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 51,
+            "endLine": 64,
+            "endColumn": 76
+          },
+          "text": "assertThat(cart.size()).isGreaterThan(-1).isGreaterThanOrEqualTo(0).isLessThan(10).isLessThanOrEqualTo(9)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "isGreaterThanOrEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 77,
+            "endLine": 64,
+            "endColumn": 91
+          },
+          "text": "assertThat(cart.size()).isGreaterThan(-1).isGreaterThanOrEqualTo(0).isLessThan(10).isLessThanOrEqualTo(9)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "10",
+            "normalized": "10",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "10"
+            }
+          },
+          "matcher": "isLessThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 92,
+            "endLine": 64,
+            "endColumn": 114
+          },
+          "text": "assertThat(cart.size()).isGreaterThan(-1).isGreaterThanOrEqualTo(0).isLessThan(10).isLessThanOrEqualTo(9)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "9",
+            "normalized": "9",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "9"
+            }
+          },
+          "matcher": "isLessThanOrEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<="
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 34,
+            "endLine": 65,
+            "endColumn": 58
+          },
+          "text": "assertThat(cart.first()).isInstanceOf(Item.class).isNotInstanceOf(Coupon.class).isExactlyInstanceOf(Item.class).hasSameClassAs(cart.last())",
+          "kind": "type",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Item.class",
+            "normalized": "Item.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isInstanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 59,
+            "endLine": 65,
+            "endColumn": 88
+          },
+          "text": "assertThat(cart.first()).isInstanceOf(Item.class).isNotInstanceOf(Coupon.class).isExactlyInstanceOf(Item.class).hasSameClassAs(cart.last())",
+          "kind": "type",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Coupon.class",
+            "normalized": "Coupon.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isNotInstanceOf",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 89,
+            "endLine": 65,
+            "endColumn": 120
+          },
+          "text": "assertThat(cart.first()).isInstanceOf(Item.class).isNotInstanceOf(Coupon.class).isExactlyInstanceOf(Item.class).hasSameClassAs(cart.last())",
+          "kind": "type",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Item.class",
+            "normalized": "Item.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isExactlyInstanceOf",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 121,
+            "endLine": 65,
+            "endColumn": 148
+          },
+          "text": "assertThat(cart.first()).isInstanceOf(Item.class).isNotInstanceOf(Coupon.class).isExactlyInstanceOf(Item.class).hasSameClassAs(cart.last())",
+          "kind": "type",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart.last()",
+            "normalized": "cart.last()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "hasSameClassAs",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "9c1a3b3d9ad0fc37a90104a135ed1302f0e8a109"
+    },
+    {
+      "id": "4c85da23dd85",
+      "title": "movesToAnotherValueFirst",
+      "fullTitle": "AssertJTest > movesToAnotherValueFirst",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 68,
+        "startColumn": 5,
+        "endLine": 89,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 37,
+        "endLine": 89,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 53,
+            "endLine": 70,
+            "endColumn": 70
+          },
+          "text": "assertThat(cart.items()).extracting(\"name\").contains(\"apple\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 61,
+            "endLine": 71,
+            "endColumn": 85
+          },
+          "text": "assertThat(cart.items()).flatExtracting(Item::tags).doesNotContain(\"frozen\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "\"frozen\"",
+            "normalized": "\"frozen\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "frozen"
+            }
+          },
+          "matcher": "doesNotContain",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 42,
+            "endLine": 72,
+            "endColumn": 53
+          },
+          "text": "assertThat(cart.items()).first().isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 41,
+            "endLine": 73,
+            "endColumn": 52
+          },
+          "text": "assertThat(cart.items()).last().isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 45,
+            "endLine": 74,
+            "endColumn": 56
+          },
+          "text": "assertThat(cart.items()).element(0).isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 50,
+            "endLine": 75,
+            "endColumn": 61
+          },
+          "text": "assertThat(cart.items()).singleElement().isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 71,
+            "endLine": 76,
+            "endColumn": 80
+          },
+          "text": "assertThat(cart.items()).filteredOn(item -> item.price() > 1).isEmpty()",
+          "kind": "count",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "isEmpty",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 50,
+            "endLine": 77,
+            "endColumn": 67
+          },
+          "text": "assertThat(cart.items()).map(Item::name).contains(\"apple\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 41,
+            "endLine": 78,
+            "endColumn": 57
+          },
+          "text": "assertThat(cart.items()).size().isGreaterThan(0)",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "isGreaterThan",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 45,
+            "endLine": 79,
+            "endColumn": 62
+          },
+          "text": "assertThat(cart.total()).asString().isEqualTo(\"1.98\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "\"1.98\"",
+            "normalized": "\"1.98\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "1.98"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 43,
+            "endLine": 80,
+            "endColumn": 53
+          },
+          "text": "assertThat(cart.items()).asList().hasSize(1)",
+          "kind": "count",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "hasSize",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 91,
+            "endLine": 81,
+            "endColumn": 102
+          },
+          "text": "assertThat(cart.first()).asInstanceOf(InstanceOfAssertFactories.type(Item.class)).isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 74,
+            "endLine": 82,
+            "endColumn": 100
+          },
+          "text": "assertThat(cart).usingRecursiveComparison().ignoringFields(\"id\").isEqualTo(new Cart(\"ana\"))",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "new Cart(\"ana\")",
+            "normalized": "new Cart(\"ana\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 77,
+            "endLine": 83,
+            "endColumn": 93
+          },
+          "text": "assertThat(cart.owner()).usingComparator(Comparator.naturalOrder()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 59,
+            "endLine": 84,
+            "endColumn": 75
+          },
+          "text": "assertThat(cart.owner()).usingDefaultComparator().isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 88,
+            "endLine": 85,
+            "endColumn": 105
+          },
+          "text": "assertThat(cart.names()).usingElementComparator(String.CASE_INSENSITIVE_ORDER).contains(\"APPLE\")",
+          "kind": "contains",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"APPLE\"",
+            "normalized": "\"APPLE\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "APPLE"
+            }
+          },
+          "matcher": "contains",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 70,
+            "endLine": 86,
+            "endColumn": 82
+          },
+          "text": "assertThat(cart.size()).withFailMessage(\"the cart is empty\").isPositive()",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isPositive",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 77,
+            "endLine": 87,
+            "endColumn": 89
+          },
+          "text": "assertThat(cart.size()).overridingErrorMessage(\"the cart is empty\").isPositive()",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isPositive",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 107,
+            "endLine": 88,
+            "endColumn": 118
+          },
+          "text": "assertThat(cart.id()).withRepresentation(String::valueOf).inHexadecimal().withThreadDumpOnError().isNotNull()",
+          "kind": "nullness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.id()",
+            "normalized": "cart.id()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 19,
+      "bodyHash": "7da60bcadba3e3ca005f8c35febfadf15179cb1d"
+    },
+    {
+      "id": "a7387f7c6274",
+      "title": "checksInsideACallback",
+      "fullTitle": "AssertJTest > checksInsideACallback",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 91,
+        "startColumn": 5,
+        "endLine": 97,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 92,
+        "startColumn": 34,
+        "endLine": 97,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 26,
+            "endLine": 93,
+            "endColumn": 80
+          },
+          "text": "assertThat(cart).satisfies(c -> assertThat(c.owner()).isEqualTo(\"ana\"))",
+          "kind": "other",
+          "library": "assertj",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "satisfies",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 63,
+            "endLine": 93,
+            "endColumn": 79
+          },
+          "text": "assertThat(c.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "c.owner()",
+            "normalized": "c.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 94,
+            "startColumn": 26,
+            "endLine": 94,
+            "endColumn": 47
+          },
+          "text": "assertThat(cart).matches(Cart::isOpen)",
+          "kind": "other",
+          "library": "assertj",
+          "actual": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "matches",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 95,
+            "startColumn": 64,
+            "endLine": 95,
+            "endColumn": 72
+          },
+          "text": "assertThat(cart.isSaved()).isTrue()",
+          "kind": "truthiness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.isSaved()",
+            "normalized": "cart.isSaved()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 63,
+            "endLine": 96,
+            "endColumn": 75
+          },
+          "text": "assertThat(item.price()).isPositive()",
+          "kind": "comparison",
+          "library": "assertj",
+          "actual": {
+            "text": "item.price()",
+            "normalized": "item.price()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isPositive",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": true,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "5b379fade9fa40da267dee747c2c5b30f08740bd"
+    },
+    {
+      "id": "ed4008eaceed",
+      "title": "expectsErrors",
+      "fullTitle": "AssertJTest > expectsErrors",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 99,
+        "startColumn": 5,
+        "endLine": 110,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 100,
+        "startColumn": 26,
+        "endLine": 110,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 9,
+            "endLine": 101,
+            "endColumn": 119
+          },
+          "text": "assertThatThrownBy(() -> cart.pay()).isInstanceOf(IllegalStateException.class).hasMessage(\"the cart is empty\")",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatThrownBy",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 9,
+            "endLine": 102,
+            "endColumn": 89
+          },
+          "text": "assertThatExceptionOfType(EmptyCartException.class).isThrownBy(() -> cart.pay())",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "EmptyCartException.class",
+            "normalized": "EmptyCartException.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThatExceptionOfType",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 9,
+            "endLine": 103,
+            "endColumn": 85
+          },
+          "text": "assertThatIllegalArgumentException().isThrownBy(() -> cart.add(\"apple\", -1))",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatIllegalArgumentException",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 104,
+            "startColumn": 9,
+            "endLine": 104,
+            "endColumn": 71
+          },
+          "text": "assertThatIllegalStateException().isThrownBy(() -> cart.pay())",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatIllegalStateException",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 105,
+            "startColumn": 9,
+            "endLine": 105,
+            "endColumn": 77
+          },
+          "text": "assertThatNullPointerException().isThrownBy(() -> cart.add(null, 1))",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatNullPointerException",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 9,
+            "endLine": 106,
+            "endColumn": 74
+          },
+          "text": "assertThatIOException().isThrownBy(() -> cart.export(\"/missing\"))",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatIOException",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 107,
+            "startColumn": 9,
+            "endLine": 107,
+            "endColumn": 83
+          },
+          "text": "assertThatCode(() -> cart.pay()).isInstanceOf(IllegalStateException.class)",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 109,
+            "startColumn": 28,
+            "endLine": 109,
+            "endColumn": 59
+          },
+          "text": "assertThat(thrown).hasMessage(\"the cart is empty\")",
+          "kind": "other",
+          "library": "assertj",
+          "actual": {
+            "text": "thrown",
+            "normalized": "thrown",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "hasMessage",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "6f19dee034e9841bb38d3810145fdbd4ebe3cc49"
+    },
+    {
+      "id": "b81ab5126ab2",
+      "title": "expectsNoError",
+      "fullTitle": "AssertJTest > expectsNoError",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 112,
+        "startColumn": 5,
+        "endLine": 116,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 113,
+        "startColumn": 27,
+        "endLine": 116,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 114,
+            "startColumn": 9,
+            "endLine": 114,
+            "endColumn": 63
+          },
+          "text": "assertThatNoException().isThrownBy(() -> cart.clear())",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatNoException",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 115,
+            "startColumn": 9,
+            "endLine": 115,
+            "endColumn": 70
+          },
+          "text": "assertThatCode(() -> cart.clear()).doesNotThrowAnyException()",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatCode",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "8db2f74683d988ecbf2d89d7f698852eb7366279"
+    },
+    {
+      "id": "2fe985b4eec7",
+      "title": "forgetsTheCheck",
+      "fullTitle": "AssertJTest > forgetsTheCheck",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 118,
+        "startColumn": 5,
+        "endLine": 124,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 119,
+        "startColumn": 28,
+        "endLine": 124,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 120,
+            "startColumn": 9,
+            "endLine": 120,
+            "endColumn": 34
+          },
+          "text": "assertThat(cart.isOpen())",
+          "kind": "other",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.isOpen()",
+            "normalized": "cart.isOpen()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 121,
+            "startColumn": 9,
+            "endLine": 121,
+            "endColumn": 49
+          },
+          "text": "assertThat(cart.owner()).as(\"the owner\")",
+          "kind": "other",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 122,
+            "startColumn": 9,
+            "endLine": 122,
+            "endColumn": 60
+          },
+          "text": "assertThatExceptionOfType(EmptyCartException.class)",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": {
+            "text": "EmptyCartException.class",
+            "normalized": "EmptyCartException.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThatExceptionOfType",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 123,
+            "startColumn": 9,
+            "endLine": 123,
+            "endColumn": 43
+          },
+          "text": "assertThatCode(() -> cart.clear())",
+          "kind": "throws",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "assertThatCode",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "4b8cd1f7d25cc65902aef141232d3394ce061a5f"
+    },
+    {
+      "id": "5c9cee567688",
+      "title": "isNotWrittenYet",
+      "fullTitle": "AssertJTest > isNotWrittenYet",
+      "suitePath": [
+        "AssertJTest"
+      ],
+      "span": {
+        "startLine": 126,
+        "startColumn": 5,
+        "endLine": 129,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 127,
+        "startColumn": 28,
+        "endLine": 129,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 128,
+            "startColumn": 9,
+            "endLine": 128,
+            "endColumn": 32
+          },
+          "text": "fail(\"not written yet\")",
+          "kind": "fail-call",
+          "library": "assertj",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "34e040b43197f487af0e309fad764cf117c4102f"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 58
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 62
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatCode"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 73
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatExceptionOfType"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 69
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatIOException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 82
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatIllegalArgumentException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 79
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatIllegalStateException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 69
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatNoException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 78
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatNullPointerException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 66
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThatThrownBy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 62
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "catchThrowable"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 52
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "fail"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 54
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "within"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 47
+      },
+      "source": "org.awaitility.Awaitility",
+      "names": [
+        "await"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 29
+      },
+      "source": "java.math.BigDecimal",
+      "names": [
+        "BigDecimal"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 29
+      },
+      "source": "java.util.Comparator",
+      "names": [
+        "Comparator"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 55
+      },
+      "source": "org.assertj.core.api.InstanceOfAssertFactories",
+      "names": [
+        "InstanceOfAssertFactories"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}
