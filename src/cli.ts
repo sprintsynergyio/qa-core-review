@@ -27,7 +27,7 @@ Usage:
   qa-core-review rules [--language <id>]     List the rules.
   qa-core-review explain <ruleId>            Describe one rule.
   qa-core-review adapters                    List the language adapters and what they read.
-  qa-core-review init [--config [json|yaml]] Write a config file with the default values.
+  qa-core-review init [flags]                Write a config file, a CI file or a pre-commit hook entry.
   qa-core-review --version | -v              Print the version.
   qa-core-review --help | -h                 Print this help. Also: qa-core-review <command> --help
 

@@ -1,0 +1,40 @@
+# qa-core-review on Azure Pipelines: reviews the test files that a pull request changes.
+# The findings show up on the Tests tab (JUnit), and report.sarif is published as the
+# CodeAnalysisLogs artifact, which the "SARIF SAST Scans Tab" extension displays.
+# If you already have an azure-pipelines.yml, copy the steps into it.
+# For a repo in Azure Repos, a pull request runs this only when a build validation
+# policy on the target branch names the pipeline.
+# Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/ci.md
+trigger: none
+pr:
+  branches:
+    include:
+      - "*"
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - checkout: self
+    # The whole history, so that the tool can compare the branch with its base.
+    fetchDepth: 0
+  - task: UseNode@1
+    displayName: Use Node 22
+    inputs:
+      version: "22.x"
+  - bash: |
+      # The target branch is "refs/heads/main" for Azure Repos and "main" for GitHub.
+      TARGET="${SYSTEM_PULLREQUEST_TARGETBRANCH#refs/heads/}"
+      npx --yes qa-core-review@0.0.0 review --diff "origin/$TARGET" --format pretty,json,sarif,markdown,junit --fail-on error
+    displayName: qa-core-review
+  - task: PublishTestResults@2
+    displayName: Publish the findings as test results
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: JUnit
+      testResultsFiles: .qa-core/review/report.junit.xml
+      testRunTitle: qa-core-review
+  - task: PublishBuildArtifacts@1
+    displayName: Publish report.sarif
+    condition: succeededOrFailed()
+    inputs:
+      PathtoPublish: .qa-core/review/report.sarif
+      ArtifactName: CodeAnalysisLogs

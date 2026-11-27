@@ -1,0 +1,23 @@
+# qa-core-review on Bitbucket Pipelines: reviews the test files that a pull request changes.
+# Bitbucket finds the JUnit report in test-results/ by itself and shows the findings
+# on the Tests tab of the pipeline.
+# If you already have a bitbucket-pipelines.yml, copy the qa-core-review step into it.
+# Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/ci.md
+image: node:22
+pipelines:
+  pull-requests:
+    "**":
+      - step:
+          name: qa-core-review
+          clone:
+            # The whole history, so that the tool can compare the branch with its base.
+            depth: full
+          script:
+            - git fetch origin "+refs/heads/$BITBUCKET_PR_DESTINATION_BRANCH:refs/remotes/origin/$BITBUCKET_PR_DESTINATION_BRANCH"
+            - npx --yes qa-core-review@0.0.0 review --diff "origin/$BITBUCKET_PR_DESTINATION_BRANCH" --format pretty,json,sarif,markdown,junit --fail-on error
+          after-script:
+            # This also runs when the review fails the step.
+            - mkdir -p test-results
+            - cp .qa-core/review/report.junit.xml test-results/qa-core-review.xml || true
+          artifacts:
+            - .qa-core/review/**

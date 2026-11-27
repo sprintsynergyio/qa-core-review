@@ -25,6 +25,8 @@ export const OPTIONS = {
   'no-color': { type: 'boolean' },
   quiet: { type: 'boolean' },
   force: { type: 'boolean' },
+  ci: { type: 'string' },
+  'pre-commit': { type: 'boolean' },
 } as const;
 
 export type OptionName = keyof typeof OPTIONS;

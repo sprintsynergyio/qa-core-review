@@ -16,6 +16,8 @@ const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
 
 const REQUIRED = ['package/dist/cli.js', 'package/dist/index.js', 'package/dist/index.d.ts', 'package/schemas/model.schema.json', 'package/schemas/config.schema.json', 'package/schemas/detect.schema.json', 'package/schemas/report.schema.json', 'package/grammars/manifest.json', 'package/grammars/LICENSES.md',
   'package/grammars/javascript.wasm', 'package/grammars/typescript.wasm', 'package/grammars/tsx.wasm', 'package/grammars/python.wasm', 'package/grammars/java.wasm',
+  'package/templates/ci/github.yml', 'package/templates/ci/gitlab.yml', 'package/templates/ci/azure.yml', 'package/templates/ci/Jenkinsfile', 'package/templates/ci/bitbucket.yml',
+  'package/templates/precommit/pre-commit-config.snippet.yaml', 'package/templates/precommit/husky-pre-commit', 'package/templates/precommit/lefthook.snippet.yml',
   'package/README.md', 'package/CHANGELOG.md', 'package/LICENSE'];
 const FORBIDDEN_PREFIXES = ['package/src/', 'package/tests/', 'package/scripts/', 'package/evals/', 'package/fixtures/', 'package/.github/', 'package/node_modules/'];
 const FORBIDDEN_NAMES = ['package/SPEC.md', 'package/SPEC.v1.md', 'package/CLAUDE.md'];
@@ -73,6 +75,11 @@ try {
   const report = JSON.parse(reviewed.stdout);
   expect(report.schemaVersion === 2 && report.summary.tests === 1 && report.files[0]?.parseStatus === 'ok', `review gave the wrong report:\n${reviewed.stdout}`);
   expect(fs.existsSync(path.join(installDir, '.qa-core', 'review', 'report.json')), 'review did not write .qa-core/review/report.json');
+
+  // `init --ci` reads its template from the installed package and writes it into the project.
+  const ci = cli(bin, ['init', '--ci', 'gitlab', '--root', installDir]);
+  expect(ci.status === 0 && ci.stdout === 'Wrote .gitlab-ci.yml\n', `init --ci gitlab printed "${ci.stdout.trim()}" (exit ${ci.status}):\n${ci.stderr}`);
+  expect(fs.readFileSync(path.join(installDir, '.gitlab-ci.yml'), 'utf8').includes(`npx --yes ${pkg.name}@${pkg.version} review`), 'the GitLab template does not run the version of the package');
 
   const api = await import(pathToFileURL(path.join(installed, installedPkg.main)).href);
   expect(api.VERSION === pkg.version, `the package entry exports VERSION ${api.VERSION}, expected ${pkg.version}`);

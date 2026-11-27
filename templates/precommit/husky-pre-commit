@@ -1,0 +1,3 @@
+# Husky pre-commit hook: reviews the test files that are staged for this commit.
+# Copy this file to .husky/pre-commit, or add the line below to the one you have.
+npx qa-core-review --staged --fail-on error

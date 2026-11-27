@@ -1,0 +1,7 @@
+# Lefthook: reviews the test files that are staged for this commit.
+# Add this to lefthook.yml. If the file already has a pre-commit block,
+# add only the qa-core-review command to its commands.
+pre-commit:
+  commands:
+    qa-core-review:
+      run: npx qa-core-review --staged --fail-on error
