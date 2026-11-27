@@ -1,0 +1,275 @@
+{
+  "path": "tests/cart_test.exs",
+  "language": "generic",
+  "languageHint": "elixir",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions",
+    "waits"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "24ccd254d944",
+      "title": "adds an item",
+      "fullTitle": "adds an item",
+      "suitePath": [],
+      "span": {
+        "startLine": 5,
+        "startColumn": 5,
+        "endLine": 8,
+        "endColumn": 8
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 7,
+        "endLine": 8,
+        "endColumn": 8
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 7,
+            "startColumn": 7,
+            "endLine": 7,
+            "endColumn": 37
+          },
+          "text": "assert length(cart.items) == 1",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": null
+    },
+    {
+      "id": "49c2e7a823fc",
+      "title": "merges two carts",
+      "fullTitle": "merges two carts",
+      "suitePath": [],
+      "span": {
+        "startLine": 10,
+        "startColumn": 5,
+        "endLine": 15,
+        "endColumn": 8
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 7,
+        "endLine": 15,
+        "endColumn": 8
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 7,
+            "endLine": 14,
+            "endColumn": 33
+          },
+          "text": "refute merged.items == nil",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 7,
+            "endLine": 13,
+            "endColumn": 25
+          },
+          "text": "Process.sleep(200)",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": null
+    },
+    {
+      "id": "d4ac00bc8481",
+      "title": "prints the cart",
+      "fullTitle": "prints the cart",
+      "suitePath": [],
+      "span": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 20,
+        "endColumn": 8
+      },
+      "bodySpan": {
+        "startLine": 19,
+        "startColumn": 7,
+        "endLine": 20,
+        "endColumn": 8
+      },
+      "kind": "test",
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "d6641bc74e68",
+      "title": "is not written yet",
+      "fullTitle": "is not written yet",
+      "suitePath": [],
+      "span": {
+        "startLine": 22,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 30
+      },
+      "bodySpan": {
+        "startLine": 22,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 30
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": null
+    },
+    {
+      "id": "c00ef7c69979",
+      "title": "keeps the totals in a map",
+      "fullTitle": "keeps the totals in a map",
+      "suitePath": [],
+      "span": {
+        "startLine": 25,
+        "startColumn": 3,
+        "endLine": 28,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 5,
+        "endLine": 28,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

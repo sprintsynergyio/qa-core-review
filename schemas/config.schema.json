@@ -138,9 +138,10 @@
         },
         "framework": { "type": "string", "minLength": 1 },
         "patterns": {
-          "description": "Regular expressions, checked when the config loads.",
+          "description": "Regular expressions, checked when the config loads. Each is tried on one line at a time. testPattern finds the tests, so the others need it.",
           "type": "object",
           "additionalProperties": false,
+          "required": ["testPattern"],
           "properties": {
             "testPattern": { "type": "string", "minLength": 1 },
             "assertionPattern": { "type": "string", "minLength": 1 },

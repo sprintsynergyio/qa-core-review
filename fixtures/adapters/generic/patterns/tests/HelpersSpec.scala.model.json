@@ -1,0 +1,25 @@
+{
+  "path": "tests/HelpersSpec.scala",
+  "language": "generic",
+  "languageHint": "scala",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions",
+    "waits"
+  ],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

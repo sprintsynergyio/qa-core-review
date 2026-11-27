@@ -31,7 +31,7 @@ test('Java has fixtures for every rule that applies, per framework where the voc
     'QCR-W001': ['playwright', 'selenium'], 'QCR-X002': ['junit5'],
   });
   // QCR-F001 has none: JUnit and TestNG have no way to focus a test in the code. QCR-X001 is checked on broken files, not on fixtures.
-  assert.deepEqual(builtinRules.map((rule) => rule.id).filter((id) => !byRule[id]), ['QCR-F001', 'QCR-X001']);
+  assert.deepEqual(builtinRules.map((rule) => rule.id).filter((id) => !byRule[id]), ['QCR-F001', 'QCR-X001', 'QCR-X003']);
   // Every folder is a project of its own, with a pom.xml that names the framework, and at least 3 bad and 3 good files.
   const artifact = { junit4: 'junit', junit5: 'junit-jupiter', testng: 'testng', selenium: 'selenium-java', playwright: 'playwright', restassured: 'rest-assured' };
   for (const { dir, name } of folders) {

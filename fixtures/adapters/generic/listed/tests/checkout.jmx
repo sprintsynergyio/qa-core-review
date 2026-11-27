@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2">
+  <hashTree>
+    <TestPlan testname="Checkout load"/>
+    <hashTree>
+      <ThreadGroup testname="Shoppers"/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

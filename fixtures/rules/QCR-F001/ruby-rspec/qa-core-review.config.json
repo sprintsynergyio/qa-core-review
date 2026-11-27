@@ -1,0 +1,16 @@
+{
+  "generic": [
+    {
+      "glob": "**/*_spec.rb",
+      "language": "ruby",
+      "framework": "rspec",
+      "patterns": {
+        "testPattern": "^\\s*(?:it|fit|xit|specify)\\s+[\"'](?<title>[^\"']*)[\"']",
+        "assertionPattern": "\\b(?:expect|is_expected|should)\\b",
+        "sleepPattern": "\\bsleep[\\s(]",
+        "skipPattern": "^\\s*xit\\b|\\bskip:\\s|:skip\\b",
+        "focusPattern": "^\\s*fit\\b|\\bfocus:\\s*true|:focus\\b"
+      }
+    }
+  ]
+}

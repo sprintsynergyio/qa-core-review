@@ -1,0 +1,20 @@
+{
+  "path": "tests/CartTests.swift",
+  "language": "generic",
+  "languageHint": "swift",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "llm-only",
+  "capabilities": [],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

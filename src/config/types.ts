@@ -24,9 +24,12 @@ export interface ProjectOverride {
   exclude?: string[];
 }
 
-/** Regex strings for the generic adapter's optional static checks. Validated when the config loads. */
+/**
+ * Regex strings for the generic adapter's optional static checks. Validated when the config loads.
+ * `testPattern` finds the tests, and the others are read inside them, so it is required.
+ */
 export interface GenericPatterns {
-  testPattern?: string;
+  testPattern: string;
   assertionPattern?: string;
   sleepPattern?: string;
   skipPattern?: string;

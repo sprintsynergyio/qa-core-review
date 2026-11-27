@@ -17,7 +17,8 @@ export { clipText, emptyTest, parseSuppression } from './model/build.js';
 
 // The adapter interface and registry (SPEC.md Section 7.3).
 export { AdapterRegistry, adapterProblems, builtinAdapters, builtinProfiles, createRegistry } from './adapters/index.js';
-export { GENERIC_LANGUAGES, languageHintFor } from './adapters/generic/languages.js';
+export { GENERIC_RULES, genericAdapter } from './adapters/generic/adapter.js';
+export { GENERIC_LANGUAGES, GENERIC_SYNTAX, languageHintFor } from './adapters/generic/languages.js';
 export { jsAdapter, jsGrammarFor } from './adapters/js/adapter.js';
 export { VOCAB_SURFACE as JS_VOCAB_SURFACE } from './adapters/js/vocab.js';
 export { javaAdapter } from './adapters/java/adapter.js';

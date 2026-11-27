@@ -73,7 +73,7 @@ test('adapters lists every adapter with its tier, languages, frameworks and capa
   ]);
   assert.equal(blocks[1], `python  Tier 1\n  Languages: Python\n  Frameworks: pytest, unittest, playwright-python, selenium\n  Extensions: .py\n  Capabilities: ${pythonAdapter.capabilities.join(', ')}`);
   assert.equal(blocks[2], `java  Tier 1\n  Languages: Java\n  Frameworks: junit5, junit4, testng, selenium, restassured, playwright-java, cucumber\n  Extensions: .java\n  Capabilities: ${javaAdapter.capabilities.join(', ')}`);
-  assert.match(blocks.at(-1), /^generic {2}Tier 3\n[\s\S]*\n {2}Capabilities: none \(files are listed for the LLM review\)$/);
+  assert.match(blocks.at(-1), /^generic {2}Tier 3\n {2}Languages: Generic\n {2}Frameworks: none\n {2}Extensions: \.scala \.swift \.rs [\s\S]*\n {2}Capabilities: tests, modifiers, assertions, waits \(only with line patterns in the config, see docs\/languages\.md\)$/);
   assert.match(ok(['adapters', '--help']), /^Usage: qa-core-review adapters/);
   usageError(['adapters', 'js'], /adapters takes no arguments/);
 });

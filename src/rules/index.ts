@@ -16,9 +16,10 @@ import { brittleSelector } from './qcr-s001-brittle-selector.js';
 import { hardWait } from './qcr-w001-hard-wait.js';
 import { parseError } from './qcr-x001-parse-error.js';
 import { suppressionWithoutReason } from './qcr-x002-suppression-without-reason.js';
+import { noStaticAdapter } from './qcr-x003-no-static-adapter.js';
 import type { Rule } from './types.js';
 
-export const builtinRules: readonly Rule[] = [noAssertion, trivialAssertion, cannotFailAssertion, conditionalAssertion, hardWait, brittleSelector, swallowedError, focusedTest, skippedTest, duplicateTest, missingNegativeCase, overMocking, snapshotOnly, missingCleanup, parseError, suppressionWithoutReason];
+export const builtinRules: readonly Rule[] = [noAssertion, trivialAssertion, cannotFailAssertion, conditionalAssertion, hardWait, brittleSelector, swallowedError, focusedTest, skippedTest, duplicateTest, missingNegativeCase, overMocking, snapshotOnly, missingCleanup, parseError, suppressionWithoutReason, noStaticAdapter];
 
 /** Where a rule is documented. */
 export function docsUrlFor(ruleId: string): string {

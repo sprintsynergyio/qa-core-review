@@ -1,6 +1,7 @@
 // The text a review prints (SPEC.md Section 11.4): a header, one block per test (fail first,
 // then review, then pass), the findings that belong to a file and not to a test, and the
 // closing lines. Paths use '/' on every OS.
+import { LANGUAGE_NAMES, languageName } from '../model/languages.js';
 import type { FileResult, Finding, Report, TestResult, Verdict } from '../rules/types.js';
 
 export interface PrettyOptions {
@@ -16,12 +17,7 @@ export interface PrettyOptions {
   unicode: boolean;
 }
 
-/** How a language is written in the output. A language that is not here (a Tier 3 hint) gets a capital letter. */
-export const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
-  javascript: 'JavaScript', typescript: 'TypeScript', python: 'Python', java: 'Java', csharp: 'C#', go: 'Go', ruby: 'Ruby', kotlin: 'Kotlin', php: 'PHP',
-  robot: 'Robot Framework', gherkin: 'Gherkin', jmeter: 'JMeter', postman: 'Postman',
-};
-export const languageName = (id: string): string => LANGUAGE_NAMES[id] ?? id.charAt(0).toUpperCase() + id.slice(1);
+export { LANGUAGE_NAMES, languageName };
 
 const COLORS: Readonly<Record<Verdict, string>> = { fail: '\u001b[31m', review: '\u001b[33m', pass: '\u001b[32m' };
 const RESET = '\u001b[0m';
@@ -58,7 +54,16 @@ export function formatPretty(report: Report, options: PrettyOptions): string {
   const scope = diffBase === null ? [] : [diffBase === 'staged' ? 'staged changes' : `changes since ${diffBase}`];
   lines.push([`qa-core-review ${report.tool.version}`, ...scope, plural(summary.files, 'file', 'files'), plural(summary.tests, 'test', 'tests'), mode, ...(names.length > 0 ? [names.join(', ')] : [])].join(` ${dot} `), '');
 
-  const open = report.findings.filter((finding) => !finding.suppressed);
+  // QCR-X003 says the same of every file of a language. It is printed for the first file, which also says how many more there are.
+  const languageOf = new Map(report.files.map((file) => [file.file, file.languageHint ?? file.language]));
+  const unreviewed = new Map<string, number>();
+  const open = report.findings.filter((finding) => {
+    if (finding.suppressed) return false;
+    if (finding.ruleId !== 'QCR-X003') return true;
+    const language = languageOf.get(finding.location.file)!;
+    unreviewed.set(language, (unreviewed.get(language) ?? 0) + 1);
+    return unreviewed.get(language) === 1;
+  });
   const byId = new Map(open.map((finding) => [finding.id, finding]));
   let printed = 0;
   const show = (findings: readonly Finding[]): void => {
@@ -85,7 +90,8 @@ export function formatPretty(report: Report, options: PrettyOptions): string {
   for (const file of report.files) {
     const own = open.filter((finding) => finding.testId === null && finding.location.file === file.file);
     if (own.length === 0 || printed >= options.maxFindings) continue; // no heading with nothing under it
-    lines.push(`file  ${file.file}`);
+    const others = own.some((finding) => finding.ruleId === 'QCR-X003') ? unreviewed.get(languageOf.get(file.file)!)! - 1 : 0;
+    lines.push(`file  ${file.file}${others > 0 ? ` (and ${plural(others, `more ${languageName(languageOf.get(file.file)!)} file`, `more ${languageName(languageOf.get(file.file)!)} files`)})` : ''}`);
     show(own);
     lines.push('');
   }

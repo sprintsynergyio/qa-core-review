@@ -1,0 +1,15 @@
+{
+  "generic": [
+    {
+      "glob": "**/*Spec.swift",
+      "language": "swift",
+      "framework": "quick",
+      "patterns": {
+        "testPattern": "^\\s*[fx]?it\\s*\\(\\s*\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\bexpect\\(",
+        "skipPattern": "^\\s*xit\\s*\\(",
+        "focusPattern": "^\\s*fit\\s*\\("
+      }
+    }
+  ]
+}

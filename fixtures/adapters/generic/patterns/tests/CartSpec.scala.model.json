@@ -1,0 +1,332 @@
+{
+  "path": "tests/CartSpec.scala",
+  "language": "generic",
+  "languageHint": "scala",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions",
+    "waits"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "32d1053b01e9",
+      "title": "should add an item",
+      "fullTitle": "should add an item",
+      "suitePath": [],
+      "span": {
+        "startLine": 5,
+        "startColumn": 3,
+        "endLine": 8,
+        "endColumn": 4
+      },
+      "bodySpan": {
+        "startLine": 6,
+        "startColumn": 5,
+        "endLine": 8,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "96e08dbe670e",
+      "title": "totals the cart",
+      "fullTitle": "totals the cart",
+      "suitePath": [],
+      "span": {
+        "startLine": 10,
+        "startColumn": 3,
+        "endLine": 15,
+        "endColumn": 4
+      },
+      "bodySpan": {
+        "startLine": 11,
+        "startColumn": 5,
+        "endLine": 15,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 32
+          },
+          "text": "assert(cart.total == 29.99)",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 13,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 22
+          },
+          "text": "Thread.sleep(500)",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": null
+    },
+    {
+      "id": "f482b919d040",
+      "title": "applies a coupon",
+      "fullTitle": "applies a coupon",
+      "suitePath": [],
+      "span": {
+        "startLine": 17,
+        "startColumn": 3,
+        "endLine": 20,
+        "endColumn": 4
+      },
+      "bodySpan": {
+        "startLine": 18,
+        "startColumn": 5,
+        "endLine": 20,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 19,
+            "endColumn": 30
+          },
+          "text": "cart.total shouldBe 26.99",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "992827415d9c",
+      "title": "is empty at first",
+      "fullTitle": "is empty at first",
+      "suitePath": [],
+      "span": {
+        "startLine": 22,
+        "startColumn": 3,
+        "endLine": 22,
+        "endColumn": 59
+      },
+      "bodySpan": {
+        "startLine": 22,
+        "startColumn": 3,
+        "endLine": 22,
+        "endColumn": 59
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 3,
+            "endLine": 22,
+            "endColumn": 59
+          },
+          "text": "test(\"is empty at first\") { assert(new Cart().isEmpty) }",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "a180c15e2f2e",
+      "title": "prints the cart",
+      "fullTitle": "prints the cart",
+      "suitePath": [],
+      "span": {
+        "startLine": 24,
+        "startColumn": 3,
+        "endLine": 24,
+        "endColumn": 50
+      },
+      "bodySpan": {
+        "startLine": 24,
+        "startColumn": 3,
+        "endLine": 24,
+        "endColumn": 50
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "088c3c1e0a6d",
+      "title": "keeps the items in a map",
+      "fullTitle": "keeps the items in a map",
+      "suitePath": [],
+      "span": {
+        "startLine": 26,
+        "startColumn": 3,
+        "endLine": 33,
+        "endColumn": 4
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 4
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

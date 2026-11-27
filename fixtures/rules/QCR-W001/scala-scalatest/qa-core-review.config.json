@@ -1,0 +1,15 @@
+{
+  "generic": [
+    {
+      "glob": "**/*.scala",
+      "language": "scala",
+      "framework": "scalatest",
+      "patterns": {
+        "testPattern": "^\\s*(?:it|test|ignore)\\s*\\(\\s*\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\b(?:assert|assertResult|assertThrows|intercept|should|shouldBe|mustBe)\\b",
+        "sleepPattern": "Thread\\.sleep\\(",
+        "skipPattern": "^\\s*ignore\\s*\\("
+      }
+    }
+  ]
+}

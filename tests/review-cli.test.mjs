@@ -135,10 +135,12 @@ test('review --help prints the flags, and notices go to stderr', (t) => {
     for (const flag of ['--fail-on', '--rules', '--disable', '--language', '--framework', '--format', '--stdout', '--output', '--dump-model', '--max-findings', '--quiet', '--no-color', '--root', '--config']) assert.ok(help.stdout.includes(flag), flag);
     assert.match(help.stdout, /^Usage: qa-core-review review \[paths\.\.\.\] \[flags\]/);
   }
-  // Scala has no static adapter: the file is listed, and the notice goes to stderr.
-  const dir = project(t, { 'src/test/scala/CartSpec.scala': 'class CartSpec\n' });
+  // Scala has no static adapter: the file is listed with QCR-X003, which is info and does not fail the run.
+  // A file that is not text is skipped, and the notice goes to stderr.
+  const dir = project(t, { 'src/test/scala/CartSpec.scala': 'class CartSpec\n', 'src/test/scala/BlobSpec.scala': `class${String.fromCharCode(0)}Blob\n` });
   const ran = run(dir, []);
-  assert.deepEqual([ran.status, ran.stderr], [0, 'qa-core-review: 1 scala file is listed but not reviewed: this build has no static adapter for scala.\n']);
+  assert.deepEqual([ran.status, ran.stderr], [0, 'qa-core-review: src/test/scala/BlobSpec.scala: skipped, because it looks like a binary file.\n']);
   assert.match(ran.stdout, / 4 files . 1 test . /);
+  assert.match(ran.stdout, /\nfile {2}src\/test\/scala\/CartSpec\.scala\n {2}QCR-X003 {2}info {3}1:1 {2}No static rules for Scala yet\. Run with --llm to review this file\.\n/);
   assert.match(ran.stdout, /\nBy language: TypeScript 1 test, JavaScript 0 tests, Scala 1 file \(LLM only\)\.\n/);
 });

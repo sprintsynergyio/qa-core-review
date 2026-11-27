@@ -143,12 +143,18 @@ test('files that cannot be reviewed are listed or noticed, and never stop the ru
   assert.deepEqual(mixed.notices.sort(), [
     '1 java file is listed but not reviewed: this build has no static adapter for java.', '1 scala file is listed but not reviewed: this build has no static adapter for scala.',
   ]);
+  // With the rules of the tool, the Scala file gets QCR-X003 either way. The Java file does not: its language has static rules, in a full build.
+  const builtin = await review(fixtureRoot('projects', 'monorepo-mixed'), { registry: createRegistry([jsAdapter, pythonAdapter]), rules: builtinRules });
+  assert.deepEqual(builtin.report.findings.filter((finding) => finding.ruleId === 'QCR-X003').map((finding) => finding.location.file), ['modules/billing/src/test/scala/billing/InvoiceSpec.scala']);
   assert.deepEqual(mixed.models.map((model) => [model.adapter, model.role]), [['js', 'test'], ['js', 'test'], ['python', 'support'], ['python', 'test']]);
   assert.deepEqual(schemaErrors('report.schema.json', mixed.report), []);
   // With every adapter of this build, only the Scala file is left to the LLM review.
   const full = await review(fixtureRoot('projects', 'monorepo-mixed'));
   assert.deepEqual(full.report.files.filter((file) => file.parseStatus === 'llm-only').map((file) => file.languageHint), ['scala']);
-  assert.deepEqual([full.notices, full.models.filter((model) => model.adapter === 'java').map((model) => model.parseStatus)], [['1 scala file is listed but not reviewed: this build has no static adapter for scala.'], ['ok']]);
+  assert.deepEqual([full.notices, full.models.filter((model) => model.adapter === 'java').map((model) => model.parseStatus)], [[], ['ok']]);
+  assert.deepEqual((await review(fixtureRoot('projects', 'monorepo-mixed'), { rules: builtinRules })).report.findings.filter((finding) => finding.ruleId === 'QCR-X003').map((finding) => [finding.location.file, finding.severity, finding.message]), [
+    ['modules/billing/src/test/scala/billing/InvoiceSpec.scala', 'info', 'No static rules for Scala yet. Run with --llm to review this file.'],
+  ]);
 
   const root = project(t, { 'big.test.ts': `test('a', () => {});\n${'// filler\n'.repeat(120_000)}`, 'ok.test.ts': "test('a', () => { expect(total).toBe(1); });", 'bad.test.ts': "test('a', () => {});" });
   const fussy = (stage) => ({ ...jsAdapter, [stage]: (first, ...rest) => (first.path === 'bad.test.ts' || first.file?.path === 'bad.test.ts' ? (() => { throw new Error(`${stage} broke`); })() : jsAdapter[stage](first, ...rest)) });

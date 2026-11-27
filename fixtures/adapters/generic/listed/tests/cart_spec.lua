@@ -1,0 +1,7 @@
+describe("cart", function()
+  it("adds an item", function()
+    local cart = Cart.new()
+    cart:add("backpack", 1)
+    assert.are.equal(1, cart:size())
+  end)
+end)

@@ -1,5 +1,6 @@
 // The adapter registry: which language adapters exist, and which of them claim a file.
 import { CAPABILITIES, LANGUAGE_IDS } from '../model/types.js';
+import { genericAdapter } from './generic/adapter.js';
 import { genericProfile } from './generic/languages.js';
 import { javaAdapter } from './java/adapter.js';
 import { javaProfile } from './java/detect.js';
@@ -57,7 +58,7 @@ export class AdapterRegistry {
   /**
    * The adapters whose extensions match the path, in registration order. The match is on the
    * end of the lower-cased path, so compound extensions such as `.postman_collection.json` work.
-   * An empty list means the file goes to the generic adapter (Milestone 15).
+   * The generic adapter is in the list when it knows the extension. An empty list means no adapter does.
    */
   forPath(filePath: string): LanguageAdapter[] {
     const lower = filePath.toLowerCase();
@@ -71,8 +72,8 @@ export class AdapterRegistry {
  */
 export const builtinProfiles: AdapterProfile[] = [jsProfile, pythonProfile, javaProfile, genericProfile];
 
-/** The full adapters that ship with the tool. Generic joins in a later milestone. */
-export const builtinAdapters: LanguageAdapter[] = [jsAdapter, pythonAdapter, javaAdapter];
+/** The full adapters that ship with the tool. Generic comes last, like its profile. */
+export const builtinAdapters: LanguageAdapter[] = [jsAdapter, pythonAdapter, javaAdapter, genericAdapter];
 
 export function createRegistry(adapters: LanguageAdapter[] = builtinAdapters): AdapterRegistry {
   const registry = new AdapterRegistry();
