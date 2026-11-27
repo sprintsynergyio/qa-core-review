@@ -76,6 +76,18 @@ test('every action that is used is one of four, at a major version, and nothing 
   assert.deepEqual(own.with, { cli: 'dist/cli.js', 'fail-on': 'never', paths: 'tests/*.test.mjs\ntests/adapters/*.test.mjs\n' });
 });
 
+test('the steps run in the documented order, and an upload runs only when the review wrote its file', () => {
+  assert.deepEqual(steps.map((step) => step.name), [
+    'Check Node', 'Set up Node', 'Review the tests', 'Add the report to the job summary', 'Comment on the pull request',
+    'Upload SARIF to code scanning', 'Upload the report', 'Result',
+  ]);
+  assert.deepEqual([stepNamed('Review the tests').id, action.outputs['exit-code'].value], ['review', '${{ steps.review.outputs.exit-code }}']);
+  assert.equal(stepNamed('Comment on the pull request').if, "inputs.comment == 'true'");
+  assert.deepEqual([stepNamed('Upload SARIF to code scanning').if, stepNamed('Upload the report').if], ["inputs.sarif == 'true' && steps.review.outputs.sarif == 'true'", "steps.review.outputs.report == 'true'"]);
+  // The report folder starts with a dot, and the upload leaves such folders out unless it is told not to.
+  assert.deepEqual(stepNamed('Upload the report').with, { name: 'qa-core-review-report', path: '.qa-core/review/', 'include-hidden-files': true, 'if-no-files-found': 'ignore', overwrite: true });
+});
+
 // The steps are bash. On Windows the tests have no bash they can count on, so these run on Linux and macOS.
 const BASH = '/bin/bash';
 const needsBash = process.platform !== 'win32' && fs.existsSync(BASH) ? {} : { skip: 'needs /bin/bash (Linux or macOS)' };
@@ -106,7 +118,6 @@ async function runStep(t, name, { env = {}, cwd, pathDirs } = {}) {
 test('the Node setup step is skipped when Node 22.6 or later is there', needsBash, async (t) => {
   const setup = stepNamed('Set up Node');
   assert.deepEqual([setup.if, setup.uses, setup.with], ["steps.node.outputs.setup == 'true'", 'actions/setup-node@v7', { 'node-version': '${{ inputs.node-version }}' }]);
-  assert.deepEqual([stepNamed('Upload SARIF to code scanning').if, stepNamed('Upload the report').if], ["inputs.sarif == 'true' && steps.review.outputs.sarif == 'true'", "steps.review.outputs.report == 'true'"]);
   assert.equal(stepNamed('Check Node').id, 'node');
 
   /** The answer of the check with a fake `node` that prints `version`, or with no node at all. */
