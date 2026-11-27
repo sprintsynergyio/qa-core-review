@@ -1,0 +1,93 @@
+{
+  "generic": [
+    {
+      "glob": "**/*Spec.scala",
+      "language": "scala",
+      "framework": "scalatest",
+      "patterns": {
+        "testPattern": "^\\s*(?:it|test|ignore)\\s*\\(\\s*\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\b(?:assert|assertResult|assertThrows|intercept|should|shouldBe|mustBe)\\b",
+        "sleepPattern": "Thread\\.sleep\\(",
+        "skipPattern": "^\\s*ignore\\s*\\("
+      }
+    },
+    {
+      "glob": "**/*.rs",
+      "language": "rust",
+      "patterns": {
+        "testPattern": "^\\s*#\\[(?:tokio::)?test\\b",
+        "assertionPattern": "\\b(?:assert|assert_eq|assert_ne|panic)!",
+        "sleepPattern": "\\bsleep\\(",
+        "skipPattern": "#\\[ignore(?:\\s*=\\s*\"(?<reason>[^\"]*)\")?\\]"
+      }
+    },
+    {
+      "glob": "**/*Tests.swift",
+      "language": "swift",
+      "framework": "xctest",
+      "patterns": {
+        "testPattern": "^\\s*func\\s+(?<title>test\\w*)\\s*\\(",
+        "assertionPattern": "\\bXCT(?:Assert\\w*|Fail|Unwrap)\\b"
+      }
+    },
+    {
+      "glob": "**/*Spec.swift",
+      "language": "swift",
+      "framework": "quick",
+      "patterns": {
+        "testPattern": "^\\s*[fx]?it\\s*\\(\\s*\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\bexpect\\(",
+        "skipPattern": "^\\s*xit\\s*\\(",
+        "focusPattern": "^\\s*fit\\s*\\("
+      }
+    },
+    {
+      "glob": "**/*_test.exs",
+      "language": "elixir",
+      "framework": "exunit",
+      "patterns": {
+        "testPattern": "^\\s*test\\s+\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\b(?:assert|refute|assert_raise|assert_receive)\\b",
+        "sleepPattern": "(?:Process|:timer)\\.sleep\\(",
+        "skipPattern": "@tag\\s+:?skip\\b",
+        "focusPattern": "@tag\\s+:(?:only|focus)\\b"
+      }
+    },
+    {
+      "glob": "**/*.bats",
+      "language": "bats",
+      "patterns": {
+        "testPattern": "^@test\\s+\"(?<title>[^\"]*)\"",
+        "assertionPattern": "^\\s*(?:\\[{1,2}\\s|assert_\\w+|refute_\\w+)",
+        "sleepPattern": "\\bsleep\\s+\\d"
+      }
+    },
+    {
+      "glob": "**/*Tests.cs",
+      "language": "csharp",
+      "framework": "nunit",
+      "patterns": {
+        "testPattern": "^\\s*\\[Test(?:Case)?\\b",
+        "assertionPattern": "\\bAssert\\.",
+        "sleepPattern": "Thread\\.Sleep\\(|Task\\.Delay\\(",
+        "skipPattern": "\\[Ignore\\b"
+      }
+    },
+    {
+      "glob": "**/*_test.clj",
+      "language": "clojure",
+      "patterns": {
+        "testPattern": "^\\(deftest\\s+(?<title>[\\w-]+)",
+        "assertionPattern": "\\(is\\b"
+      }
+    },
+    {
+      "glob": "**/*.zig",
+      "language": "zig",
+      "patterns": {
+        "testPattern": "^test\\s+\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\bexpect\\w*\\("
+      }
+    }
+  ]
+}

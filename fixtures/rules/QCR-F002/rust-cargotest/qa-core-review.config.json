@@ -1,0 +1,14 @@
+{
+  "generic": [
+    {
+      "glob": "**/*.rs",
+      "language": "rust",
+      "patterns": {
+        "testPattern": "^\\s*#\\[(?:tokio::)?test\\b",
+        "assertionPattern": "\\b(?:assert|assert_eq|assert_ne|panic)!",
+        "sleepPattern": "\\bsleep\\(",
+        "skipPattern": "#\\[ignore(?:\\s*=\\s*\"(?<reason>[^\"]*)\")?\\]"
+      }
+    }
+  ]
+}

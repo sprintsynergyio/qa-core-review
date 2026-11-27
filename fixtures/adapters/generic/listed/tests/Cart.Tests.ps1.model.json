@@ -1,0 +1,20 @@
+{
+  "path": "tests/Cart.Tests.ps1",
+  "language": "generic",
+  "languageHint": "powershell",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "llm-only",
+  "capabilities": [],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

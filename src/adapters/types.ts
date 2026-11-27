@@ -147,6 +147,11 @@ export interface LanguageAdapter extends AdapterProfile {
    * (`./pages/cart.ts`, `./pages/cart/index.ts`); the engine keeps the ones that exist.
    */
   supportFiles?(parsed: ParsedFile): string[];
+  /**
+   * Set when the model of this adapter is too thin for most rules: only the rules with these ids
+   * run on its files, and the others are reported as skipped. Without it, capabilities decide.
+   */
+  onlyRules?: readonly string[];
   /** Framework-specific rules owned by this adapter. */
   rules?: Rule[];
 }

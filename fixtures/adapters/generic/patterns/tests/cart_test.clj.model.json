@@ -1,0 +1,179 @@
+{
+  "path": "tests/cart_test.clj",
+  "language": "generic",
+  "languageHint": "clojure",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "assertions"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "f37479dc8b4d",
+      "title": "adds-an-item",
+      "fullTitle": "adds-an-item",
+      "suitePath": [],
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 84
+      },
+      "bodySpan": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 84
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 5,
+            "startColumn": 1,
+            "endLine": 5,
+            "endColumn": 84
+          },
+          "text": "(deftest adds-an-item (is (= 1 (count (cart/add (cart/empty-cart) \"backpack\" 1)))))",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "4d0524d5dd97",
+      "title": "clears-the-cart",
+      "fullTitle": "clears-the-cart",
+      "suitePath": [],
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 24
+      },
+      "bodySpan": {
+        "startLine": 8,
+        "startColumn": 3,
+        "endLine": 9,
+        "endColumn": 24
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "3096f59c1c43",
+      "title": "totals-the-cart",
+      "fullTitle": "totals-the-cart",
+      "suitePath": [],
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 73
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 3,
+        "endLine": 12,
+        "endColumn": 73
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 3,
+            "endLine": 12,
+            "endColumn": 73
+          },
+          "text": "(is (= 29.99 (cart/total (cart/add (cart/empty-cart) \"backpack\" 1)))))",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

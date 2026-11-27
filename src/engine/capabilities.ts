@@ -15,8 +15,11 @@ function quoted(values: readonly string[]): string {
   return values.map((value) => `"${value}"`).join(', ');
 }
 
-/** Why the rule cannot run on this file, or null when it can. */
-export function skipReason(rule: Rule, file: NFile): string | null {
+/**
+ * Why the rule cannot run on this file, or null when it can. `only` is the adapter's own list
+ * of rules, when it has one (`LanguageAdapter.onlyRules`).
+ */
+export function skipReason(rule: Rule, file: NFile, only?: readonly string[]): string | null {
   const languages = rule.appliesTo?.languages;
   if (languages && !languages.includes(file.language)) {
     return `does not apply to language "${file.language}"`;
@@ -29,6 +32,8 @@ export function skipReason(rule: Rule, file: NFile): string | null {
       return `does not apply to ${used.length === 1 ? 'framework' : 'frameworks'} ${quoted(used)}`;
     }
   }
+
+  if (only && !only.includes(rule.id)) return `is not one of the rules that run on files of the ${file.adapter} adapter`;
 
   const missing = missingCapabilities(rule, file);
   if (missing.length > 0) {
@@ -46,10 +51,10 @@ export interface RuleSelection {
 }
 
 /** Splits the rules into those that can run on the file and those that are skipped. */
-export function selectRules(rules: readonly Rule[], file: NFile): RuleSelection {
+export function selectRules(rules: readonly Rule[], file: NFile, only?: readonly string[]): RuleSelection {
   const selection: RuleSelection = { run: [], skipped: [] };
   for (const rule of rules) {
-    const reason = skipReason(rule, file);
+    const reason = skipReason(rule, file, only);
     if (reason === null) selection.run.push(rule);
     else selection.skipped.push({ ruleId: rule.id, reason });
   }

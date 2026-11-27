@@ -1,0 +1,199 @@
+{
+  "path": "tests/CartTests.cs",
+  "language": "generic",
+  "languageHint": "csharp",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions",
+    "waits"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "18138c886f5d",
+      "title": "public void AddsAnItem()",
+      "fullTitle": "public void AddsAnItem()",
+      "suitePath": [],
+      "span": {
+        "startLine": 7,
+        "startColumn": 9,
+        "endLine": 13,
+        "endColumn": 10
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 13,
+        "endLine": 13,
+        "endColumn": 10
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 13,
+            "endLine": 12,
+            "endColumn": 52
+          },
+          "text": "Assert.That(cart.Count, Is.EqualTo(1));",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "2728210d18e0",
+      "title": "public void SyncsWithTheServer()",
+      "fullTitle": "public void SyncsWithTheServer()",
+      "suitePath": [],
+      "span": {
+        "startLine": 15,
+        "startColumn": 9,
+        "endLine": 22,
+        "endColumn": 10
+      },
+      "bodySpan": {
+        "startLine": 19,
+        "startColumn": 13,
+        "endLine": 22,
+        "endColumn": 10
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 13,
+            "endLine": 21,
+            "endColumn": 47
+          },
+          "text": "Assert.That(cart.Sync(), Is.True);",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 13,
+            "endLine": 20,
+            "endColumn": 32
+          },
+          "text": "Thread.Sleep(2000);",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "e2be9b5d7a36",
+      "title": "public void TotalsTheCart(int quantity)",
+      "fullTitle": "public void TotalsTheCart(int quantity)",
+      "suitePath": [],
+      "span": {
+        "startLine": 24,
+        "startColumn": 9,
+        "endLine": 30,
+        "endColumn": 10
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 13,
+        "endLine": 30,
+        "endColumn": 10
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

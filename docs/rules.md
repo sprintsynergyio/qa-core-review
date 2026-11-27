@@ -22,10 +22,11 @@ This page covers every rule that is built. The examples are in TypeScript. The s
 | [QCR-C001](#qcr-c001) | missing-cleanup | warn | universal | State that a test creates and never restores. | none |
 | [QCR-X001](#qcr-x001) | parse-error | info | universal | A file that cannot be parsed, or a test file with no test in it. | QCV-W000 (similar) |
 | [QCR-X002](#qcr-x002) | suppression-without-reason | info | universal | A suppression comment that does not say why. | none |
+| [QCR-X003](#qcr-x003) | no-static-adapter | info | generic adapter | A test file in a language with no static rules yet. | none |
 
 The last column names the check in qa-core-verify that looks for the same problem when it runs your tests. qa-core-review finds it by reading the code, before anything runs.
 
-Not built yet: `QCR-X003` no-static-adapter, and for v0.2 `QCR-G001` unmatched-step (Gherkin) and `QCR-K001` perf-no-thresholds (k6, JMeter).
+Not built yet, for v0.2: `QCR-G001` unmatched-step (Gherkin) and `QCR-K001` perf-no-thresholds (k6, JMeter).
 
 ## Which rules run on which language
 
@@ -50,6 +51,7 @@ A rule runs on a file when the adapter of its language fills in everything the r
 | [QCR-C001](#qcr-c001) | resources, hooks | yes | yes | yes |
 | [QCR-X001](#qcr-x001) | none | yes | yes | yes |
 | [QCR-X002](#qcr-x002) | none | yes | yes | yes |
+| [QCR-X003](#qcr-x003) | none | yes | yes | yes |
 <!-- support-matrix:end -->
 
 When a file cannot be parsed, the tool reads it line by line. It then knows the tests, their modifiers, their assertions and their sleeps, so only the rules that need nothing more still run, and their findings have low confidence.
@@ -1828,3 +1830,22 @@ See [Suppressing a finding](#suppressing-a-finding) for the three ways to suppre
 In Python the comment starts with `#`: `# qa-core-review-disable-next-line QCR-W001 -- the reason`.
 
 Turn it off: `"rules": { "QCR-X002": "off" }` in the config, or `--disable QCR-X002` on the command line.
+
+<a id="qcr-x003"></a>
+## QCR-X003 `no-static-adapter` (info)
+
+A test file in a language that has no static adapter yet (Scala, Rust, Swift and others, see [Languages](languages.md)). The file is found and listed, and no static rule reads it. Reported once per file:
+
+```
+QCR-X003  info   1:1  No static rules for Scala yet. Run with --llm to review this file.
+```
+
+The text output prints it once per language and says how many more files of that language there are. The JSON, SARIF and JUnit reports have it for every file.
+
+Fix: Run the review with --llm, or give line patterns for this language under "generic" in the config (see docs/languages.md).
+
+With [line patterns](languages.md#line-patterns-a-few-static-checks-for-a-tier-3-language) in the config, QCR-A001, QCR-W001, QCR-F001 and QCR-F002 run on these files at low confidence, and QCR-X003 is no longer reported for them.
+
+It never changes the exit code unless you run with `--fail-on info`.
+
+Turn it off: `"rules": { "QCR-X003": "off" }` in the config, or `--disable QCR-X003` on the command line.

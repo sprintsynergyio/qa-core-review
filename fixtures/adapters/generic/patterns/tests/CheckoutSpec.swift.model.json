@@ -1,0 +1,188 @@
+{
+  "path": "tests/CheckoutSpec.swift",
+  "language": "generic",
+  "languageHint": "swift",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "6ee258410c6a",
+      "title": "pays the order",
+      "fullTitle": "pays the order",
+      "suitePath": [],
+      "span": {
+        "startLine": 7,
+        "startColumn": 13,
+        "endLine": 9,
+        "endColumn": 14
+      },
+      "bodySpan": {
+        "startLine": 8,
+        "startColumn": 17,
+        "endLine": 9,
+        "endColumn": 14
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 8,
+            "startColumn": 17,
+            "endLine": 8,
+            "endColumn": 71
+          },
+          "text": "expect(Checkout().pay(29.99).status).to(equal(\"paid\"))",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "5556efb29fae",
+      "title": "rejects an expired card",
+      "fullTitle": "rejects an expired card",
+      "suitePath": [],
+      "span": {
+        "startLine": 11,
+        "startColumn": 13,
+        "endLine": 13,
+        "endColumn": 14
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 17,
+        "endLine": 13,
+        "endColumn": 14
+      },
+      "kind": "test",
+      "modifiers": [
+        "only"
+      ],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 17,
+            "endLine": 12,
+            "endColumn": 92
+          },
+          "text": "expect(Checkout().pay(29.99, card: \"expired\").status).to(equal(\"declined\"))",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    },
+    {
+      "id": "c8fad3612ea8",
+      "title": "sends a receipt",
+      "fullTitle": "sends a receipt",
+      "suitePath": [],
+      "span": {
+        "startLine": 15,
+        "startColumn": 13,
+        "endLine": 17,
+        "endColumn": 14
+      },
+      "bodySpan": {
+        "startLine": 16,
+        "startColumn": 17,
+        "endLine": 17,
+        "endColumn": 14
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

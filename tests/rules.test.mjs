@@ -28,8 +28,9 @@ for (const { ruleId, name, dir } of folders) {
 }
 
 test('every rule with fixtures has them for JS/TS, every folder is named for a language and a framework, and the registry lists the rules in id order', () => {
-  assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-C001', 'QCR-D001', 'QCR-E001', 'QCR-F001', 'QCR-F002', 'QCR-M001', 'QCR-N001', 'QCR-P001', 'QCR-S001', 'QCR-W001', 'QCR-X002']);
-  assert.ok(folders.every((entry) => /^(typescript|javascript|python)-[a-z]+$/.test(entry.name)));
+  assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-C001', 'QCR-D001', 'QCR-E001', 'QCR-F001', 'QCR-F002', 'QCR-M001', 'QCR-N001', 'QCR-P001', 'QCR-S001', 'QCR-W001', 'QCR-X002', 'QCR-X003']);
+  // The other names are languages of the generic adapter, read with the line patterns in the config file of the folder.
+  assert.ok(folders.every((entry) => /^(typescript|javascript|python|scala|rust|ruby|swift|generic)-[a-z]+$/.test(entry.name)));
   assert.deepEqual([...new Set(folders.filter((entry) => /^(typescript|javascript)-/.test(entry.name)).map((entry) => entry.ruleId))].length, 15);
   assert.deepEqual(builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires.join(' ')]), [
     ['QCR-A001', 'no-assertion', 'error', 'universal', 'tests assertions'],
@@ -48,6 +49,7 @@ test('every rule with fixtures has them for JS/TS, every folder is named for a l
     ['QCR-C001', 'missing-cleanup', 'warn', 'universal', 'resources hooks'],
     ['QCR-X001', 'parse-error', 'info', 'universal', ''],
     ['QCR-X002', 'suppression-without-reason', 'info', 'universal', ''],
+    ['QCR-X003', 'no-static-adapter', 'info', 'universal', ''],
   ]);
 });
 

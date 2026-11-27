@@ -1,0 +1,34 @@
+{
+  "generic": [
+    {
+      "glob": "good/**/*.scala",
+      "language": "scala",
+      "framework": "scalatest",
+      "patterns": {
+        "testPattern": "^\\s*(?:it|test|ignore)\\s*\\(\\s*\"(?<title>[^\"]*)\"",
+        "assertionPattern": "\\b(?:assert|assertResult|assertThrows|intercept|should|shouldBe|mustBe)\\b",
+        "sleepPattern": "Thread\\.sleep\\(",
+        "skipPattern": "^\\s*ignore\\s*\\("
+      }
+    },
+    {
+      "glob": "good/**/*.rs",
+      "language": "rust",
+      "patterns": {
+        "testPattern": "^\\s*#\\[(?:tokio::)?test\\b",
+        "assertionPattern": "\\b(?:assert|assert_eq|assert_ne|panic)!",
+        "sleepPattern": "\\bsleep\\(",
+        "skipPattern": "#\\[ignore(?:\\s*=\\s*\"(?<reason>[^\"]*)\")?\\]"
+      }
+    },
+    {
+      "glob": "good/**/*Tests.swift",
+      "language": "swift",
+      "framework": "xctest",
+      "patterns": {
+        "testPattern": "^\\s*func\\s+(?<title>test\\w*)\\s*\\(",
+        "assertionPattern": "\\bXCT(?:Assert\\w*|Fail|Unwrap)\\b"
+      }
+    }
+  ]
+}

@@ -32,7 +32,7 @@ A file belongs to the nearest project above it for its own adapter. A Java servi
 
 Each adapter has default include globs (for example `**/*.{spec,test,cy}.*` and `**/tests/**` for `js`, `**/test_*.py` for `python`, `**/src/test/java/**/*.java` for `java`). A config `include` list replaces the defaults of every adapter. Type declarations and runner config files are never test files.
 
-A file in a language with no static adapter yet goes to the `generic` adapter when it has a known source extension (`.scala`, `.rs`, `.swift`, `.go`, `.rb`, `.cs` and others, see `src/adapters/generic/languages.ts`) and a common test name (`*Test.*`, `*Spec.*`, `*_test.*`, `test_*.*`, or a `test`, `tests`, `spec` or `specs` folder), or when a config `generic` entry matches it. These files are listed, and reviewed only in LLM mode.
+A file in a language with no static adapter yet goes to the `generic` adapter when it has a known source extension (`.scala`, `.rs`, `.swift`, `.go`, `.rb`, `.cs` and others, see `src/adapters/generic/languages.ts`) and a common test name (`*Test.*`, `*Spec.*`, `*_test.*`, `test_*.*`, or a `test`, `tests`, `spec` or `specs` folder), or when a config `generic` entry matches it. These files are listed, each with the info finding `QCR-X003`, and reviewed only in LLM mode. With line patterns in the `generic` entry, four rules run on them at low confidence. See [Languages](languages.md).
 
 ### Config overrides
 

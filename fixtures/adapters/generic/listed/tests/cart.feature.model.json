@@ -1,0 +1,20 @@
+{
+  "path": "tests/cart.feature",
+  "language": "generic",
+  "languageHint": "gherkin",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "llm-only",
+  "capabilities": [],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

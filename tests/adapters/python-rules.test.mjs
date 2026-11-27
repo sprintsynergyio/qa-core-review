@@ -29,7 +29,8 @@ test('Python has fixtures for every rule that applies, per framework where the v
     'QCR-W001': ['playwright', 'selenium'], 'QCR-X002': ['pytest'],
   });
   // QCR-F001 has none: pytest and unittest have no way to focus a test. QCR-X001 is checked on broken files, not on fixtures.
-  assert.deepEqual(builtinRules.map((rule) => rule.id).filter((id) => !byRule[id]), ['QCR-F001', 'QCR-X001']);
+  // QCR-X003 is for files with no static adapter, and Python has one.
+  assert.deepEqual(builtinRules.map((rule) => rule.id).filter((id) => !byRule[id]), ['QCR-F001', 'QCR-X001', 'QCR-X003']);
   // Every folder is a project of its own, with a manifest that names the framework.
   for (const { dir, name } of folders) assert.match(fs.readFileSync(path.join(dir, 'requirements.txt'), 'utf8'), name.endsWith('unittest') ? /standard library/ : /pytest==/);
 });

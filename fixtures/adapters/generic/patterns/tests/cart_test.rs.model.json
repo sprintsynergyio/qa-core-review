@@ -1,0 +1,323 @@
+{
+  "path": "tests/cart_test.rs",
+  "language": "generic",
+  "languageHint": "rust",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "modifiers",
+    "assertions",
+    "waits"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "98469b0efe79",
+      "title": "fn adds_an_item()",
+      "fullTitle": "fn adds_an_item()",
+      "suitePath": [],
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 2
+      },
+      "bodySpan": {
+        "startLine": 13,
+        "startColumn": 5,
+        "endLine": 15,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 14,
+            "endColumn": 31
+          },
+          "text": "assert_eq!(cart.len(), 1);",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "43dab58045c9",
+      "title": "fn clears_the_cart()",
+      "fullTitle": "fn clears_the_cart()",
+      "suitePath": [],
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 2
+      },
+      "bodySpan": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "98a564a33fd9",
+      "title": "fn syncs_with_the_server()",
+      "fullTitle": "fn syncs_with_the_server()",
+      "suitePath": [],
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 30,
+        "endColumn": 2
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 5,
+        "endLine": 30,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 29,
+            "endColumn": 34
+          },
+          "text": "assert!(cart.sync().is_ok());",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 35
+          },
+          "text": "sleep(Duration::from_secs(2));",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "3ccb3a615635",
+      "title": "async fn pays_the_order()",
+      "fullTitle": "async fn pays_the_order()",
+      "suitePath": [],
+      "span": {
+        "startLine": 32,
+        "startColumn": 1,
+        "endLine": 37,
+        "endColumn": 2
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 37,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "needs the payment sandbox"
+      },
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 30
+          },
+          "text": "assert!(receipt.is_ok());",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    },
+    {
+      "id": "d839e71e43eb",
+      "title": "fn rejects_a_negative_quantity()",
+      "fullTitle": "fn rejects_a_negative_quantity()",
+      "suitePath": [],
+      "span": {
+        "startLine": 39,
+        "startColumn": 1,
+        "endLine": 40,
+        "endColumn": 92
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 1,
+        "endLine": 40,
+        "endColumn": 92
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 1,
+            "endLine": 40,
+            "endColumn": 92
+          },
+          "text": "fn rejects_a_negative_quantity() { assert!(Cart::new().try_add(\"backpack\", -1).is_err()); }",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

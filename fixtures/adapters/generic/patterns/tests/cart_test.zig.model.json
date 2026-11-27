@@ -1,0 +1,120 @@
+{
+  "path": "tests/cart_test.zig",
+  "language": "generic",
+  "languageHint": "zig",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "assertions"
+  ],
+  "suites": [],
+  "tests": [
+    {
+      "id": "1e9112c18581",
+      "title": "adds an item",
+      "fullTitle": "adds an item",
+      "suitePath": [],
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 2
+      },
+      "bodySpan": {
+        "startLine": 4,
+        "startColumn": 5,
+        "endLine": 7,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 6,
+            "startColumn": 5,
+            "endLine": 6,
+            "endColumn": 60
+          },
+          "text": "try std.testing.expectEqual(@as(usize, 1), cart.len());",
+          "kind": "other",
+          "library": "unknown",
+          "actual": null,
+          "expected": null,
+          "matcher": null,
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": null
+    },
+    {
+      "id": "ceec72aa979a",
+      "title": "clears the cart",
+      "fullTitle": "clears the cart",
+      "suitePath": [],
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 2
+      },
+      "bodySpan": {
+        "startLine": 10,
+        "startColumn": 5,
+        "endLine": 12,
+        "endColumn": 2
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": null
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": []
+}

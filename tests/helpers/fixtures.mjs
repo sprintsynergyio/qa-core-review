@@ -25,7 +25,7 @@ export function expectedIn(file) {
 }
 
 /**
- * Reviews one fixture folder with every rule and the default config. Returns the files under
+ * Reviews one fixture folder with every rule and the default config, or the config file of the folder when it has one. Returns the files under
  * bad/ and good/ as { file, expected, actual }, both lists sorted, plus the whole report.
  */
 /**
@@ -36,6 +36,9 @@ export function expectedIn(file) {
 export const OWN_FOLDERS_ONLY = ['QCR-N001'];
 
 export async function runRuleFixtures(dir, config = {}) {
+  // A folder for a language of the generic adapter holds its line patterns in a config file of its own.
+  const configFile = path.join(dir, 'qa-core-review.config.json');
+  if (fs.existsSync(configFile)) config = { ...JSON.parse(fs.readFileSync(configFile, 'utf8')), ...config };
   const own = path.basename(path.dirname(dir));
   const quiet = Object.fromEntries(OWN_FOLDERS_ONLY.filter((ruleId) => ruleId !== own).map((ruleId) => [ruleId, 'off']));
   const { report } = await runReview({ root: dir, config: resolveConfig({ ...config, rules: { ...quiet, ...config.rules } }).config, git: false });

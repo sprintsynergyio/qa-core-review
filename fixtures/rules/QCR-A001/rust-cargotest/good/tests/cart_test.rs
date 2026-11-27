@@ -1,0 +1,11 @@
+use shop::Cart;
+
+#[test]
+fn adds_an_item() {
+    let mut cart = Cart::new();
+    cart.add("backpack", 1);
+    assert_eq!(cart.len(), 1);
+}
+
+#[test]
+fn clears_the_cart() { let mut cart = Cart::new(); cart.clear(); assert!(cart.is_empty()); }

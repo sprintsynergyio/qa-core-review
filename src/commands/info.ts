@@ -2,7 +2,7 @@
 // `adapters`. They read no project files.
 import { builtinProfiles, createRegistry } from '../adapters/index.js';
 import { LANGUAGE_IDS, type LanguageId } from '../model/types.js';
-import { languageName } from '../report/pretty.js';
+import { languageName } from '../model/languages.js';
 import { examplesFor } from '../rules/fix-text.js';
 import { builtinRules, docsUrlFor } from '../rules/index.js';
 import type { Rule } from '../rules/types.js';
@@ -97,7 +97,8 @@ export function adapters(argv: string[]): number {
       `  Frameworks: ${frameworks.length > 0 ? frameworks.join(', ') : 'none'}`,
       `  Extensions: ${profile.extensions.length > 0 ? profile.extensions.join(' ') : 'any file no other adapter knows'}`,
       // Detection works for every adapter. Reading test files needs the full adapter.
-      `  Capabilities: ${capabilities ? capabilities.join(', ') : profile.tier === 3 ? 'none (files are listed for the LLM review)' : 'none yet (this build only detects these projects)'}`,
+      // A Tier 3 file is listed for the LLM review. It has these capabilities only when the config gives line patterns for it.
+      `  Capabilities: ${capabilities ? `${capabilities.join(', ')}${profile.tier === 3 ? ' (only with line patterns in the config, see docs/languages.md)' : ''}` : 'none yet (this build only detects these projects)'}`,
     ].join('\n');
   });
   process.stdout.write(`${blocks.join('\n\n')}\n`);

@@ -55,11 +55,13 @@ export interface ReviewResult {
 interface Loaded { found: DiscoveredFile; parsed: ParsedFile }
 
 /** In diff mode these are reported for a changed file wherever they sit in it. */
-const ALWAYS_IN_CHANGED_FILES = ['QCR-F001', 'QCR-X001'];
+const ALWAYS_IN_CHANGED_FILES = ['QCR-F001', 'QCR-X001', 'QCR-X003'];
 
 /** How far to follow imports for helpers, and how many such files to read at most. */
 const SUPPORT_DEPTH = 2;
 const SUPPORT_LIMIT = 500;
+/** How much of a file is looked at to tell text from binary. */
+const BINARY_SNIFF = 8000;
 
 /** A model for a file that no adapter in this build can read. It is listed, not reviewed. */
 function unread(found: DiscoveredFile, profile: AdapterProfile | undefined, parseStatus: NFile['parseStatus']): NFile {
@@ -97,6 +99,11 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
     const source = readSourceFile(root, found);
     if (!source) {
       notices.push(`${found.path}: skipped, because it is larger than 1 MB or cannot be read.`);
+      continue;
+    }
+    // A file with a NUL character is not source text. Only the generic adapter is asked about files of any kind.
+    if (adapter.tier === 3 && source.text.slice(0, BINARY_SNIFF).includes('\u0000')) {
+      notices.push(`${found.path}: skipped, because it looks like a binary file.`);
       continue;
     }
     try {
@@ -174,12 +181,14 @@ export async function runReview(options: ReviewOptions): Promise<ReviewResult> {
   const findings: Finding[] = [];
   const results: FileResult[] = [];
   for (const file of all) {
-    const selection = selectRules(rules, file);
+    const adapter = registry.get(file.adapter);
+    const selection = selectRules(rules, file, adapter?.onlyRules);
     const skipped: SkippedRule[] = [...selection.skipped];
     const seen = new Map<string, number>();
     const fileFindings: Finding[] = [];
     // A file read by the lexical scanner has fewer capabilities than its adapter: its findings are less sure.
-    const reduced = file.parseStatus === 'partial' && file.capabilities.length < (registry.get(file.adapter)?.capabilities.length ?? 0);
+    // A Tier 3 file is only ever read that way, from the line patterns in the config.
+    const reduced = file.parseStatus === 'partial' && (file.tier === 3 || file.capabilities.length < (adapter?.capabilities.length ?? 0));
     for (const rule of selection.run) {
       const setting = config.rules[rule.id];
       if (setting?.languages && !setting.languages.includes(file.language)) {

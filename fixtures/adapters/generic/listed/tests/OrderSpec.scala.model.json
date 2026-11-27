@@ -1,0 +1,34 @@
+{
+  "path": "tests/OrderSpec.scala",
+  "language": "generic",
+  "languageHint": "scala",
+  "adapter": "generic",
+  "tier": 3,
+  "runner": "unknown",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "llm-only",
+  "capabilities": [],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [],
+  "subject": null,
+  "suppressions": [
+    {
+      "span": {
+        "startLine": 1,
+        "startColumn": 1,
+        "endLine": 1,
+        "endColumn": 80
+      },
+      "scope": "file",
+      "rules": [
+        "QCR-X003"
+      ],
+      "reason": "reviewed by hand until Scala has patterns"
+    }
+  ]
+}

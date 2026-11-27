@@ -127,6 +127,8 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
     const { report, lines, tests } = await repoDir.review({ base: 'HEAD' });
     assert.deepEqual(lines, [
       // "adds an item" has a sleep too, and so has the hook. Their lines did not change, so they are not reported.
+      // The new Scala file has no static adapter. That is said for a changed file whatever lines changed.
+      'specs/RefundSpec.scala:1 X003',
       'tests/cart.spec.ts:16 W001',
       // A focused test is reported in a changed file wherever it is.
       'tests/cart.spec.ts:20 F001',
@@ -142,7 +144,7 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
 
     // A change in the hook: the finding about the hook sits on a changed line now.
     repoDir.edit('tests/cart.spec.ts', 'waitForTimeout(250)', 'waitForTimeout(300)');
-    assert.deepEqual((await repoDir.review({ base: 'HEAD' })).lines.slice(0, 2), ['tests/cart.spec.ts:5 W001', 'tests/cart.spec.ts:16 W001']);
+    assert.deepEqual((await repoDir.review({ base: 'HEAD' })).lines.slice(0, 3), ['specs/RefundSpec.scala:1 X003', 'tests/cart.spec.ts:5 W001', 'tests/cart.spec.ts:16 W001']);
 
     // Lines that are only removed still mark the test around them.
     repoDir.edit('tests/login.spec.ts', "  await page.goto('/');\n", '');
@@ -162,7 +164,7 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
     // Five changed tests, the Java one among them. The focused test did not change, and with F001 off nothing is left to say about it.
     assert.match(text.stdout, /^qa-core-review \S+ . changes since HEAD . 6 files . 5 tests . static rules . TypeScript, Java, Python, Scala\n/);
     assert.match(text.stdout, /\npass {2}src\/test\/java\/shop\/CartTest\.java:4 {2}CartTest > addsAnItem\n/);
-    assert.match(text.stdout, /Summary: 3 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 1 info\. 0 suppressed\.\n/);
+    assert.match(text.stdout, /Summary: 3 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 2 info\. 0 suppressed\.\n/);
     assert.equal(repoDir.run('--diff', 'HEAD', '--quiet').status, 1);
     // With --root on a folder, paths and changes are those of the folder.
     const inTests = JSON.parse(repoDir.run('--root', 'tests', '--diff', 'HEAD', '--stdout', 'json').stdout);
