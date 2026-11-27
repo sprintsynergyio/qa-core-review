@@ -92,6 +92,8 @@ export function readCalls(nodes: readonly SyntaxNode[], ctx: CallContext): CallF
   const patchers = new Set<string>();
   /** Picks by position, applied when every selector is known: in `page.locator("li").nth(2)` the outer call is met first. */
   const picks: Array<() => void> = [];
+  /** Names bound by a `with` block that closes everything made from them. */
+  const blockOwned = new Set<string>();
   const hold = (node: SyntaxNode, kind: NResource['kind'], tokens: string[], state: { released?: boolean; autoManaged?: boolean } = {}): void => {
     const autoManaged = state.autoManaged ?? false;
     facts.held.push({ resource: { span: spanOfNode(node), text: clipText(node.text), kind, acquiredIn: ctx.acquiredIn, released: autoManaged || (state.released ?? false), autoManaged }, tokens });
@@ -215,13 +217,14 @@ export function readCalls(nodes: readonly SyntaxNode[], ctx: CallContext): CallF
     };
     if (own(PATCH_CALLS, dotted) !== undefined && first) {
       const target = literalText(first);
-      // `patch("a.b", fake)`: the second argument is what replaces it.
-      remember(mock(call, { ...named(target, clipText(first.text)), targetsSubject: targetsSubject(target, null), passthrough, stubbedReturn: (stubbed || args.length >= 2) && !passthrough, fulfillsAllNetwork: false }), true);
+      // A patch answers in place of the real code: with `return_value` or the second argument when there is one, and with
+      // a new mock when there is none. Only `wraps=` keeps the real behavior.
+      remember(mock(call, { ...named(target, clipText(first.text)), targetsSubject: targetsSubject(target, null), passthrough, stubbedReturn: !passthrough, fulfillsAllNetwork: false }), true);
     } else if (own(OBJECT_PATCH_CALLS, dotted) !== undefined && args.length >= 2) {
       const spy = OBJECT_PATCH_CALLS[dotted!]! || passthrough;
       remember(mock(call, {
         kind: 'function', target: `${normalizedText(args[0]!)}.${literalText(args[1]) ?? normalizedText(args[1]!)}`, targetsSubject: targetsSubject(null, unwrap(args[0]!)),
-        passthrough: spy, stubbedReturn: (stubbed || args.length >= 3) && !spy, fulfillsAllNetwork: false,
+        passthrough: spy, stubbedReturn: !spy, fulfillsAllNetwork: false,
       }), true);
     } else if (dotted === MONKEYPATCH_SETATTR && args.length >= 2) {
       // setattr("pkg.mod.name", value) or setattr(obj, "name", value). A lambda, a literal or a mock with a reply is a canned value.
@@ -249,11 +252,15 @@ export function readCalls(nodes: readonly SyntaxNode[], ctx: CallContext): CallF
     // Resources and releases.
     const rule = own(RESOURCE_CALLS, dotted) ?? (object ? own(RESOURCE_CALLS, `.${name}`) : undefined);
     const closedByBlock = managed(call);
+    // `with sync_playwright() as p:` stops Playwright at the end of the block, and with it every browser, context and page made from `p`.
+    if (includes(PLAYWRIGHT_STARTERS, dotted) && closedByBlock && variable) blockOwned.add(variable);
+    const inBlock = blockOwned.has(owner.split('.')[0]!);
+    if (inBlock && rule && variable) blockOwned.add(variable);
     if (rule) {
       // A page made from the `context` fixture is closed with it.
       const fromFixture = rule.kind === 'page' && own(AUTO_FIXTURES, owner) === 'context' && [...facts.held].some(({ resource }) => resource.autoManaged && resource.kind === 'context');
       const tokens = [...rule.releasedBy, ...(variable ? [`var:${variable}`] : []), ...(object ? [`var:${owner}`] : [])];
-      hold(call, rule.kind, tokens, { released: closedByBlock, autoManaged: fromFixture });
+      hold(call, rule.kind, tokens, { released: closedByBlock || inBlock, autoManaged: fromFixture });
     } else if (object && name === START_METHOD && args.length === 0) {
       // `patch("a.b").start()` and `sync_playwright().start()`: started by hand, so they need a stop.
       const started = unwrap(object);
@@ -301,9 +308,9 @@ export function readCalls(nodes: readonly SyntaxNode[], ctx: CallContext): CallF
       const holder = node.parent?.type === 'argument_list' ? node.parent.parent! : node.parent!;
       if (Object.hasOwn(BY_STRATEGIES, constant) && value && (node.parent?.type === 'argument_list' || node.parent?.type === 'tuple')) {
         const made = selector(holder, `${SELENIUM_BY}.${constant}`, BY_STRATEGIES[constant], value);
-        // `find_elements(...)[0]`: the first of a list.
+        // `find_elements(...)[2]`: a pick by index. Index 0 is what `find_element` gives, so a rule has nothing to say about it.
         const index = holder.parent?.type === 'subscript' && includes(SELENIUM_FINDERS, calleeName(holder)) ? numberValue(holder.parent.childForFieldName('subscript')) : null;
-        if (index !== null) made.positional = { kind: index === 0 ? 'first' : 'nth', index, baseStrategy: made.strategy };
+        if (index !== null) made.positional = { kind: 'nth', index, baseStrategy: made.strategy };
       }
     } else if (node.type === 'attribute' && node.parent?.type !== 'call' && own(POSITIONAL, node.childForFieldName('attribute')?.text) && node.childForFieldName('attribute')!.text !== 'nth') {
       picks.push(() => pick(node.childForFieldName('object'), POSITIONAL[node.childForFieldName('attribute')!.text]!, null));

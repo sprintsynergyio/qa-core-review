@@ -27,9 +27,10 @@ for (const { ruleId, name, dir } of folders) {
   });
 }
 
-test('every rule with fixtures has them for JS/TS, and the registry lists the rules in id order', () => {
+test('every rule with fixtures has them for JS/TS, every folder is named for a language and a framework, and the registry lists the rules in id order', () => {
   assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-C001', 'QCR-D001', 'QCR-E001', 'QCR-F001', 'QCR-F002', 'QCR-M001', 'QCR-N001', 'QCR-P001', 'QCR-S001', 'QCR-W001', 'QCR-X002']);
-  assert.ok(folders.every((entry) => /^(typescript|javascript)-[a-z]+$/.test(entry.name)));
+  assert.ok(folders.every((entry) => /^(typescript|javascript|python)-[a-z]+$/.test(entry.name)));
+  assert.deepEqual([...new Set(folders.filter((entry) => /^(typescript|javascript)-/.test(entry.name)).map((entry) => entry.ruleId))].length, 15);
   assert.deepEqual(builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires.join(' ')]), [
     ['QCR-A001', 'no-assertion', 'error', 'universal', 'tests assertions'],
     ['QCR-A002', 'trivial-assertion', 'error', 'universal', 'assertions assertion-operands'],
@@ -91,9 +92,9 @@ test('findings carry a message for the sub-case, a fix and a good example in the
   assert.ok(a002.length === 4 && a002.every((finding) => finding.message === 'This assertion compares a value with itself, so it always passes.'));
 
   // Texts exist per language. Until a language has its own, its files get the general fix and no example.
-  assert.deepEqual(fixFor('QCR-A002', 'python'), { fix: FIX_TEXT['QCR-A002'].fix });
+  assert.deepEqual(fixFor('QCR-A002', 'java'), { fix: FIX_TEXT['QCR-A002'].fix });
   assert.deepEqual(fixFor('QCR-A002', 'javascript'), fixFor('QCR-A002', 'typescript'));
-  assert.deepEqual(examplesFor('QCR-A003', 'typescript').map((entry) => entry.title).length, 6);
+  assert.deepEqual(examplesFor('QCR-A003', 'typescript').map((entry) => entry.title).length, 8);
   assert.deepEqual([examplesFor('QCR-A001', 'java')[0].example, examplesFor('QCR-X001', 'typescript')], [null, []]);
 });
 
@@ -150,7 +151,8 @@ test('docs/rules.md has a section for every rule, with the examples that explain
     assert.ok(docs.includes(`"${rule.id}": "off"`), `${rule.id}: how to turn it off`);
   }
   for (const [key, entry] of Object.entries(FIX_TEXT)) {
-    assert.ok(docs.includes(entry.examples.js.bad) && docs.includes(entry.examples.js.good), `${key}: the bad and the good example`);
-    assert.ok(docs.includes(entry.fix), `${key}: the fix`);
+    for (const [language, example] of Object.entries(entry.examples)) assert.ok(docs.includes(example.bad) && docs.includes(example.good), `${key}: the bad and the good example for ${language}`);
+    assert.ok(Object.keys(entry.examples).length > 0, `${key}: an example in at least one language`);
+    for (const fix of [entry.fix, ...Object.values(entry.fixes ?? {})]) assert.ok(docs.includes(fix), `${key}: the fix "${fix}"`);
   }
 });

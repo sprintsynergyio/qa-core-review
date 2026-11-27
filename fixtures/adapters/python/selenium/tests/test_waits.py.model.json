@@ -416,7 +416,7 @@
           "strategy": "class",
           "value": "inventory_item_name",
           "positional": {
-            "kind": "first",
+            "kind": "nth",
             "index": 0,
             "baseStrategy": "class"
           }

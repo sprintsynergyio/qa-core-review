@@ -2074,7 +2074,7 @@
           "target": "shop.cart.charge",
           "targetsSubject": null,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         }
       ],

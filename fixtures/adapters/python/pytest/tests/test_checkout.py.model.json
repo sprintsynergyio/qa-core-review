@@ -1157,7 +1157,7 @@
           "target": "charge",
           "targetsSubject": true,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         },
         {
@@ -2116,7 +2116,7 @@
           "target": "charge",
           "targetsSubject": true,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         },
         {
@@ -2131,7 +2131,7 @@
           "target": "checkout.send_receipt",
           "targetsSubject": null,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         }
       ],
@@ -2344,7 +2344,7 @@
           "target": "charge",
           "targetsSubject": true,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         },
         {
@@ -2359,7 +2359,7 @@
           "target": "checkout.send_receipt",
           "targetsSubject": null,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         }
       ],
@@ -2741,7 +2741,7 @@
           "target": "shop.checkout.Checkout",
           "targetsSubject": true,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         }
       ],
@@ -2927,7 +2927,7 @@
           "target": "shop.checkout",
           "targetsSubject": true,
           "passthrough": false,
-          "stubbedReturn": false,
+          "stubbedReturn": true,
           "fulfillsAllNetwork": false
         }
       ],

@@ -1,7 +1,7 @@
 // QCR-E001 swallowed-error (SPEC.md Section 10.8): an assertion inside a try block or a promise
 // chain whose handler catches the failure and goes on, so the test passes with a failed check.
 import type { NTryBlock, Span } from '../model/types.js';
-import { fixFor } from './fix-text.js';
+import { fixFor, termFor } from './fix-text.js';
 import type { FindingDraft, Rule } from './types.js';
 import { atStart } from './util.js';
 
@@ -36,7 +36,7 @@ export const swallowedError: Rule = {
         // The evidence is the first check whose failure is lost.
         const hidden = test.assertions.find((assertion) => !assertion.soft && within(assertion.span, block.span));
         drafts.push({
-          message: `This ${handler.name} catches the assertion failure and hides it.`, evidence: hidden?.text ?? block.kind,
+          message: `This ${termFor(handler.name, file.language)} catches the assertion failure and hides it.`, evidence: hidden?.text ?? block.kind,
           span: atStart(block.span), testId: test.id, ...fixFor(handler.key, file.language),
         });
       }
