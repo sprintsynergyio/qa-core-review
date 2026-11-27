@@ -1,0 +1,179 @@
+{
+  "path": "src/test/java/shop/QualifiedTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "QualifiedTest",
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 30,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 9,
+            "startColumn": 5,
+            "endLine": 12,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "744c0779ce71",
+        "8d6c2b8f3b71"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "744c0779ce71",
+      "title": "answersFromTheStub",
+      "fullTitle": "QualifiedTest > answersFromTheStub",
+      "suitePath": [
+        "QualifiedTest"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 23,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 31,
+        "endLine": 23,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the stub server is replaced"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b1b59266dad0683da8c55138990e0effe49b17c9"
+    },
+    {
+      "id": "8d6c2b8f3b71",
+      "title": "skipsWithoutAPort",
+      "fullTitle": "QualifiedTest > skipsWithoutAPort",
+      "suitePath": [
+        "QualifiedTest"
+      ],
+      "span": {
+        "startLine": 25,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 30,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "no free port"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "76ccc07022bfc5170ac6e957b62b077e2f05b4ec"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 55
+      },
+      "source": "com.github.tomakehurst.wiremock.WireMockServer",
+      "names": [
+        "WireMockServer"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

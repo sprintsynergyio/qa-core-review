@@ -1,0 +1,159 @@
+{
+  "path": "src/test/java/shop/BaseTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "testng",
+  "libraries": [],
+  "role": "support",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "BaseTest",
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "global",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 5,
+            "endLine": 20,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "global",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 25,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "global",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "global",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [],
+      "suites": []
+    }
+  ],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 42
+      },
+      "source": "org.testng.annotations.AfterSuite",
+      "names": [
+        "AfterSuite"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 41
+      },
+      "source": "org.testng.annotations.AfterTest",
+      "names": [
+        "AfterTest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 43
+      },
+      "source": "org.testng.annotations.BeforeSuite",
+      "names": [
+        "BeforeSuite"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 42
+      },
+      "source": "org.testng.annotations.BeforeTest",
+      "names": [
+        "BeforeTest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,0 +1,152 @@
+{
+  "path": "src/test/java/shop/ShapeContract.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "ShapeContract",
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "4ddb43845723",
+        "37523b63b0da"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "4ddb43845723",
+      "title": "hasAName",
+      "fullTitle": "ShapeContract > hasAName",
+      "suitePath": [
+        "ShapeContract"
+      ],
+      "span": {
+        "startLine": 11,
+        "startColumn": 5,
+        "endLine": 14,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 12,
+        "startColumn": 29,
+        "endLine": 14,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6e4519516880e2ac0aae061ab29a565b1b18bdf8"
+    },
+    {
+      "id": "37523b63b0da",
+      "title": "hasAPrice",
+      "fullTitle": "ShapeContract > hasAPrice",
+      "suitePath": [
+        "ShapeContract"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 19,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 30,
+        "endLine": 19,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "f0dbf03380f2c2420e641f0ab587a2fd4bd7b0d6"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 60
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertFalse"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

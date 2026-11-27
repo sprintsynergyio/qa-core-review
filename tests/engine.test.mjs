@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { builtinRules, createRegistry, docsUrlFor, failsAt, fingerprint, formatSummary, jsAdapter, resolveConfig, runReview, verdictOf } from '../dist/index.js';
+import { builtinRules, createRegistry, docsUrlFor, failsAt, fingerprint, formatSummary, jsAdapter, pythonAdapter, resolveConfig, runReview, verdictOf } from '../dist/index.js';
 import { fixtureRoot } from './helpers/adapter-suite.mjs';
 import { schemaErrors } from './helpers/schema.mjs';
 import { sleep, toyRules } from './helpers/toy-rules.mjs';
@@ -134,7 +134,8 @@ test('paths limit a review to files, folders and globs', async (t) => {
 });
 
 test('files that cannot be reviewed are listed or noticed, and never stop the run', async (t) => {
-  const mixed = await review(fixtureRoot('projects', 'monorepo-mixed'));
+  // A build with no Java adapter: Java files are found by their profile, listed, and not reviewed.
+  const mixed = await review(fixtureRoot('projects', 'monorepo-mixed'), { registry: createRegistry([jsAdapter, pythonAdapter]) });
   assert.deepEqual(mixed.report.files.filter((file) => file.parseStatus === 'llm-only').map((file) => [file.language, file.languageHint, file.adapter, file.tier, file.tests.length]), [
     ['generic', 'scala', 'generic', 3, 0], ['java', null, 'java', 1, 0],
   ]);
@@ -144,6 +145,10 @@ test('files that cannot be reviewed are listed or noticed, and never stop the ru
   ]);
   assert.deepEqual(mixed.models.map((model) => [model.adapter, model.role]), [['js', 'test'], ['js', 'test'], ['python', 'support'], ['python', 'test']]);
   assert.deepEqual(schemaErrors('report.schema.json', mixed.report), []);
+  // With every adapter of this build, only the Scala file is left to the LLM review.
+  const full = await review(fixtureRoot('projects', 'monorepo-mixed'));
+  assert.deepEqual(full.report.files.filter((file) => file.parseStatus === 'llm-only').map((file) => file.languageHint), ['scala']);
+  assert.deepEqual([full.notices, full.models.filter((model) => model.adapter === 'java').map((model) => model.parseStatus)], [['1 scala file is listed but not reviewed: this build has no static adapter for scala.'], ['ok']]);
 
   const root = project(t, { 'big.test.ts': `test('a', () => {});\n${'// filler\n'.repeat(120_000)}`, 'ok.test.ts': "test('a', () => { expect(total).toBe(1); });", 'bad.test.ts': "test('a', () => {});" });
   const fussy = (stage) => ({ ...jsAdapter, [stage]: (first, ...rest) => (first.path === 'bad.test.ts' || first.file?.path === 'bad.test.ts' ? (() => { throw new Error(`${stage} broke`); })() : jsAdapter[stage](first, ...rest)) });

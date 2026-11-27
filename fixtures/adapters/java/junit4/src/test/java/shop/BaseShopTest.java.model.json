@@ -1,0 +1,101 @@
+{
+  "path": "src/test/java/shop/BaseShopTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit4",
+  "libraries": [],
+  "role": "support",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "BaseShopTest",
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 10,
+            "startColumn": 5,
+            "endLine": 13,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [],
+      "suites": []
+    }
+  ],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 29
+      },
+      "source": "org.junit.AfterClass",
+      "names": [
+        "AfterClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 30
+      },
+      "source": "org.junit.BeforeClass",
+      "names": [
+        "BeforeClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

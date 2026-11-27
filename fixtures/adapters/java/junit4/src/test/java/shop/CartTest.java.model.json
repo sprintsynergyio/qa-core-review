@@ -1,0 +1,717 @@
+{
+  "path": "src/test/java/shop/CartTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit4",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "CartTest",
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 102,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 5,
+            "endLine": 38,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "90bb9dd1d819",
+        "e36938aedb99",
+        "018f4618552a",
+        "6e7580477d85",
+        "d7f62b2c702c",
+        "097324344d22",
+        "f41725d45b34",
+        "09033e989985",
+        "995936cf6588"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "90bb9dd1d819",
+      "title": "addsAnItem",
+      "fullTitle": "CartTest > addsAnItem",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 5,
+        "endLine": 49,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 46,
+        "startColumn": 30,
+        "endLine": 49,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "3c47d8c0c91386049206f2052d2aba0438f52281"
+    },
+    {
+      "id": "e36938aedb99",
+      "title": "refusesAnUnknownItem",
+      "fullTitle": "CartTest > refusesAnUnknownItem",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 51,
+        "startColumn": 5,
+        "endLine": 54,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 52,
+        "startColumn": 40,
+        "endLine": 54,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "9abbbedb7edc304e0c203dc81aac3e826155e357"
+    },
+    {
+      "id": "018f4618552a",
+      "title": "totalIsFast",
+      "fullTitle": "CartTest > totalIsFast",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 56,
+        "startColumn": 5,
+        "endLine": 59,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 57,
+        "startColumn": 31,
+        "endLine": 59,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0b43fcbff263459a81bf488d6e29d557f29f2122"
+    },
+    {
+      "id": "6e7580477d85",
+      "title": "appliesACoupon",
+      "fullTitle": "CartTest > appliesACoupon",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 61,
+        "startColumn": 5,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 34,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the coupon service is not ready"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "1981914d749ad019931619dff6463398cb0a5e13"
+    },
+    {
+      "id": "d7f62b2c702c",
+      "title": "removesAnItem",
+      "fullTitle": "CartTest > removesAnItem",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 68,
+        "startColumn": 5,
+        "endLine": 71,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 70,
+        "startColumn": 33,
+        "endLine": 71,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": "4448e1dbcb7f6e8f55f2f5b257a1169d8c4db209"
+    },
+    {
+      "id": "097324344d22",
+      "title": "refundsOnLinuxOnly",
+      "fullTitle": "CartTest > refundsOnLinuxOnly",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 73,
+        "startColumn": 5,
+        "endLine": 77,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 74,
+        "startColumn": 38,
+        "endLine": 77,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "refunds are tested on Linux only"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "2a3716dbaefda7c4b052399661d4d5365243fe8f"
+    },
+    {
+      "id": "f41725d45b34",
+      "title": "skipsWithoutADatabase",
+      "fullTitle": "CartTest > skipsWithoutADatabase",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 79,
+        "startColumn": 5,
+        "endLine": 86,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 80,
+        "startColumn": 41,
+        "endLine": 86,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "2cf90bd195013aa8c2d626858e3df200e9947614"
+    },
+    {
+      "id": "09033e989985",
+      "title": "skipsWhenTheSetupFails",
+      "fullTitle": "CartTest > skipsWhenTheSetupFails",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 88,
+        "startColumn": 5,
+        "endLine": 96,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 89,
+        "startColumn": 42,
+        "endLine": 96,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "9ecda5fb9437166abe891922ebbc59e7c8b59e56"
+    },
+    {
+      "id": "995936cf6588",
+      "title": "alwaysSkips",
+      "fullTitle": "CartTest > alwaysSkips",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 98,
+        "startColumn": 5,
+        "endLine": 101,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 99,
+        "startColumn": 31,
+        "endLine": 101,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the importer is switched off"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "269745d4325e86a44bf3ba773d3b1dfb6fa94115"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 45
+      },
+      "source": "org.junit.Assert",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 43
+      },
+      "source": "org.junit.Assert",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 44
+      },
+      "source": "org.junit.Assume",
+      "names": [
+        "assumeFalse"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 50
+      },
+      "source": "org.junit.Assume",
+      "names": [
+        "assumeNoException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 46
+      },
+      "source": "org.junit.Assume",
+      "names": [
+        "assumeNotNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 43
+      },
+      "source": "org.junit.Assume",
+      "names": [
+        "assumeThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 43
+      },
+      "source": "org.junit.Assume",
+      "names": [
+        "assumeTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 44
+      },
+      "source": "org.hamcrest.CoreMatchers",
+      "names": [
+        "is"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 24
+      },
+      "source": "org.junit.After",
+      "names": [
+        "After"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 29
+      },
+      "source": "org.junit.AfterClass",
+      "names": [
+        "AfterClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 25
+      },
+      "source": "org.junit.Assume",
+      "names": [
+        "Assume"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 46
+      },
+      "source": "org.junit.AssumptionViolatedException",
+      "names": [
+        "AssumptionViolatedException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 25
+      },
+      "source": "org.junit.Before",
+      "names": [
+        "Before"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 30
+      },
+      "source": "org.junit.BeforeClass",
+      "names": [
+        "BeforeClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 25
+      },
+      "source": "org.junit.Ignore",
+      "names": [
+        "Ignore"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 23
+      },
+      "source": "org.junit.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,0 +1,950 @@
+{
+  "path": "src/test/java/shop/ConditionsTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "ConditionsTest",
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 134,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "819c89c00d32",
+        "18a7bbf6a722",
+        "6492dae504d8",
+        "64683420cbc1",
+        "562c9017ff68",
+        "ea8a5be1e001",
+        "db2eb6d772e6",
+        "b18940de824a",
+        "782d4db53002",
+        "ac4e3c3237e6",
+        "da686dcf02b5",
+        "33388d33c136",
+        "08c645a4653e",
+        "ee4e3bb80197",
+        "43582f45c635",
+        "dddd698987c3",
+        "89aeb7d8e068",
+        "2b3efb6862c5",
+        "28049fcd868d"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "819c89c00d32",
+      "title": "uploadsAnAvatar",
+      "fullTitle": "ConditionsTest > uploadsAnAvatar",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 12,
+        "startColumn": 5,
+        "endLine": 16,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 14,
+        "startColumn": 28,
+        "endLine": 16,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "the file picker is not supported on Windows"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "c5e0c6836bf1d994abe0327258980c0073d6edd4"
+    },
+    {
+      "id": "18a7bbf6a722",
+      "title": "usesAPasskey",
+      "fullTitle": "ConditionsTest > usesAPasskey",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 18,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 25,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "e6f1f78c13a729d4eb748e12475c83506a524c05"
+    },
+    {
+      "id": "6492dae504d8",
+      "title": "formatsWithTheNewApi",
+      "fullTitle": "ConditionsTest > formatsWithTheNewApi",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 28,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 33,
+        "endLine": 28,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "efdc7c378132f473461719b42e5ea7d101ba1fd4"
+    },
+    {
+      "id": "64683420cbc1",
+      "title": "usesVirtualThreads",
+      "fullTitle": "ConditionsTest > usesVirtualThreads",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 30,
+        "startColumn": 5,
+        "endLine": 34,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 31,
+        "endLine": 34,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "166325d02669be19c08b3e3d149bd8a0577ba26e"
+    },
+    {
+      "id": "562c9017ff68",
+      "title": "readsRecords",
+      "fullTitle": "ConditionsTest > readsRecords",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 36,
+        "startColumn": 5,
+        "endLine": 40,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 38,
+        "startColumn": 25,
+        "endLine": 40,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ab65de10f678da19365e5f6cc5a1d9b1eed9a474"
+    },
+    {
+      "id": "ea8a5be1e001",
+      "title": "readsSealedTypes",
+      "fullTitle": "ConditionsTest > readsSealedTypes",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 42,
+        "startColumn": 5,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 44,
+        "startColumn": 29,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "8b10645e4d90a0f276c7a88f35c85bcd719ec3f7"
+    },
+    {
+      "id": "db2eb6d772e6",
+      "title": "syncsTheCatalog",
+      "fullTitle": "ConditionsTest > syncsTheCatalog",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 48,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 28,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ddb652db8ca1e272d2c02533b3acf0e804143930"
+    },
+    {
+      "id": "b18940de824a",
+      "title": "savesTheOrder",
+      "fullTitle": "ConditionsTest > savesTheOrder",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 58,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 56,
+        "startColumn": 26,
+        "endLine": 58,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "Docker is needed for the database"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "dc2f1d8dbaecedd38592a23fc3f231417c94e22a"
+    },
+    {
+      "id": "782d4db53002",
+      "title": "opensTheBrowser",
+      "fullTitle": "ConditionsTest > opensTheBrowser",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 60,
+        "startColumn": 5,
+        "endLine": 64,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 62,
+        "startColumn": 28,
+        "endLine": 64,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "a72f416a05566748944042314e85b0a0459b61c2"
+    },
+    {
+      "id": "ac4e3c3237e6",
+      "title": "loadsTheNativeLibrary",
+      "fullTitle": "ConditionsTest > loadsTheNativeLibrary",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 66,
+        "startColumn": 5,
+        "endLine": 70,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 68,
+        "startColumn": 34,
+        "endLine": 70,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "148bf4d2ee31dacf32557765c339533bd9d40cd2"
+    },
+    {
+      "id": "da686dcf02b5",
+      "title": "sendsARealMail",
+      "fullTitle": "ConditionsTest > sendsARealMail",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 72,
+        "startColumn": 5,
+        "endLine": 76,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 74,
+        "startColumn": 27,
+        "endLine": 76,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "c03942b85a762511f879833fea5450f11256f70b"
+    },
+    {
+      "id": "33388d33c136",
+      "title": "chargesTheCard",
+      "fullTitle": "ConditionsTest > chargesTheCard",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 78,
+        "startColumn": 5,
+        "endLine": 82,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 80,
+        "startColumn": 27,
+        "endLine": 82,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "87a6ddcc8bbd896f8da461e598d10c1bd135db6f"
+    },
+    {
+      "id": "08c645a4653e",
+      "title": "readsAProxyClass",
+      "fullTitle": "ConditionsTest > readsAProxyClass",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 84,
+        "startColumn": 5,
+        "endLine": 88,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 86,
+        "startColumn": 29,
+        "endLine": 88,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ec5906e7167584a25efb521efc7f98d87ca02954"
+    },
+    {
+      "id": "ee4e3bb80197",
+      "title": "startsFast",
+      "fullTitle": "ConditionsTest > startsFast",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 90,
+        "startColumn": 5,
+        "endLine": 94,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 92,
+        "startColumn": 23,
+        "endLine": 94,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "771c11f456a65db6a1216176a44a77a5a8fb10e6"
+    },
+    {
+      "id": "43582f45c635",
+      "title": "refundsOnLinuxOnly",
+      "fullTitle": "ConditionsTest > refundsOnLinuxOnly",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 96,
+        "startColumn": 5,
+        "endLine": 100,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 97,
+        "startColumn": 31,
+        "endLine": 100,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "refunds are tested on Linux only"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "4ded7fe7fbddf1b8a4578f22a581b40b85382863"
+    },
+    {
+      "id": "dddd698987c3",
+      "title": "skipsWhenTheFlagIsOff",
+      "fullTitle": "ConditionsTest > skipsWhenTheFlagIsOff",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 102,
+        "startColumn": 5,
+        "endLine": 107,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 103,
+        "startColumn": 34,
+        "endLine": 107,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "2a8d9f45e3ef5a0a50ccf60d4822e13846e46386"
+    },
+    {
+      "id": "89aeb7d8e068",
+      "title": "isNotWrittenYet",
+      "fullTitle": "ConditionsTest > isNotWrittenYet",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 109,
+        "startColumn": 5,
+        "endLine": 112,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 110,
+        "startColumn": 28,
+        "endLine": 112,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the export is not ready"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "2a94f6cd422fbf050634ac8f6e8227e04c9530cf"
+    },
+    {
+      "id": "2b3efb6862c5",
+      "title": "abortsOnOldData",
+      "fullTitle": "ConditionsTest > abortsOnOldData",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 114,
+        "startColumn": 5,
+        "endLine": 120,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 115,
+        "startColumn": 28,
+        "endLine": 120,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "old data"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "241975c7b55c3e3151490eee459c6359244e9f8c"
+    },
+    {
+      "id": "28049fcd868d",
+      "title": "alwaysAborts",
+      "fullTitle": "ConditionsTest > alwaysAborts",
+      "suitePath": [
+        "ConditionsTest"
+      ],
+      "span": {
+        "startLine": 122,
+        "startColumn": 5,
+        "endLine": 125,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 123,
+        "startColumn": 25,
+        "endLine": 125,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the importer is switched off"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "7d7f95ae6611e3fe7d9b34b53cd836c3d24bcbb4"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 50
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 51
+      },
+      "source": "org.junit.jupiter.api.Assumptions",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 32
+      },
+      "source": "org.junit.jupiter.api",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 42
+      },
+      "source": "org.junit.jupiter.api.condition",
+      "names": [
+        "*"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 44
+      },
+      "source": "org.opentest4j.TestAbortedException",
+      "names": [
+        "TestAbortedException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

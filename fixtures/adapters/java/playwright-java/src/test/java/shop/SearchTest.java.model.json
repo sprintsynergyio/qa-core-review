@@ -1,0 +1,273 @@
+{
+  "path": "src/test/java/shop/SearchTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "playwright-java"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "SearchTest",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 45,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 23,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 5,
+            "endLine": 28,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "f57effa4fd23"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "f57effa4fd23",
+      "title": "showsTheProducts",
+      "fullTitle": "SearchTest > showsTheProducts",
+      "suitePath": [
+        "SearchTest"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 5,
+        "endLine": 44,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 42,
+        "startColumn": 29,
+        "endLine": 44,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "8b30a36eaa04af73504d5a6137e234ea7cfd4f58"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 83
+      },
+      "source": "com.microsoft.playwright.assertions.PlaywrightAssertions",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 41
+      },
+      "source": "com.microsoft.playwright.Browser",
+      "names": [
+        "Browser"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 38
+      },
+      "source": "com.microsoft.playwright.Page",
+      "names": [
+        "Page"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 44
+      },
+      "source": "com.microsoft.playwright.Playwright",
+      "names": [
+        "Playwright"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 39
+      },
+      "source": "org.junit.jupiter.api.AfterAll",
+      "names": [
+        "AfterAll"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 40
+      },
+      "source": "org.junit.jupiter.api.AfterEach",
+      "names": [
+        "AfterEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 40
+      },
+      "source": "org.junit.jupiter.api.BeforeAll",
+      "names": [
+        "BeforeAll"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

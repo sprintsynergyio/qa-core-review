@@ -1,0 +1,101 @@
+{
+  "path": "src/test/java/shop/steps/CheckoutSteps.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "cucumber",
+    "selenium"
+  ],
+  "role": "support",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [],
+  "tests": [],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 34
+      },
+      "source": "io.cucumber.java.en.Given",
+      "names": [
+        "Given"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 33
+      },
+      "source": "io.cucumber.java.en.Then",
+      "names": [
+        "Then"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 33
+      },
+      "source": "io.cucumber.java.en.When",
+      "names": [
+        "When"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 31
+      },
+      "source": "org.openqa.selenium.By",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 38
+      },
+      "source": "org.openqa.selenium.WebDriver",
+      "names": [
+        "WebDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

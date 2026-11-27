@@ -1,0 +1,983 @@
+{
+  "path": "src/test/java/shop/ParameterizedCartTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "ParameterizedCartTest",
+      "span": {
+        "startLine": 26,
+        "startColumn": 1,
+        "endLine": 126,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "1aeed28a14e2",
+        "d4379ee514bf",
+        "c05e7cf3b7a9",
+        "67c5586f1726",
+        "f7eb2f4a524a",
+        "569d2c7282d3",
+        "86b9ee87c2c5",
+        "b341b9845d9b",
+        "9dadd2454e4d",
+        "48259356aef4",
+        "2811e827f37a",
+        "4b113bf3cf90",
+        "7fe721ba385e",
+        "52b72a955778",
+        "d03be96f96bc"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "1aeed28a14e2",
+      "title": "addsThatManyItems",
+      "fullTitle": "ParameterizedCartTest > addsThatManyItems",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 29,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 31,
+        "startColumn": 39,
+        "endLine": 33,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "344b37831785ebcd4417b5c9d9f0d576f38af642"
+    },
+    {
+      "id": "d4379ee514bf",
+      "title": "knowsTheItem",
+      "fullTitle": "ParameterizedCartTest > knowsTheItem",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 39,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 37,
+        "startColumn": 36,
+        "endLine": 39,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 1
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "83f507cf1713cc23d18d9331e23a43a44fd285b5"
+    },
+    {
+      "id": "c05e7cf3b7a9",
+      "title": "hasThePrice",
+      "fullTitle": "ParameterizedCartTest > hasThePrice",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 5,
+        "endLine": 45,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 43,
+        "startColumn": 49,
+        "endLine": 45,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "bbe5084f3f92fca7f37a9546a1a8f471ebf66422"
+    },
+    {
+      "id": "67c5586f1726",
+      "title": "hasThePriceOrNone",
+      "fullTitle": "ParameterizedCartTest > hasThePriceOrNone",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 47,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 55,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "bbe5084f3f92fca7f37a9546a1a8f471ebf66422"
+    },
+    {
+      "id": "f7eb2f4a524a",
+      "title": "hasThePriceFromATextBlock",
+      "fullTitle": "ParameterizedCartTest > hasThePriceFromATextBlock",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 61,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 59,
+        "startColumn": 63,
+        "endLine": 61,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "bbe5084f3f92fca7f37a9546a1a8f471ebf66422"
+    },
+    {
+      "id": "569d2c7282d3",
+      "title": "refusesAnUnknownItem",
+      "fullTitle": "ParameterizedCartTest > refusesAnUnknownItem",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 63,
+        "startColumn": 5,
+        "endLine": 69,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 67,
+        "startColumn": 44,
+        "endLine": 69,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 4
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6dd70e043ffd5b88a1d51ceb345ee6e1a1c417e3"
+    },
+    {
+      "id": "86b9ee87c2c5",
+      "title": "refusesNoCoupon",
+      "fullTitle": "ParameterizedCartTest > refusesNoCoupon",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 71,
+        "startColumn": 5,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 73,
+        "startColumn": 41,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "44dfd1a7eded438f8222a89e0b81d53f2419b75b"
+    },
+    {
+      "id": "b341b9845d9b",
+      "title": "hasThePriceFromAMethod",
+      "fullTitle": "ParameterizedCartTest > hasThePriceFromAMethod",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 77,
+        "startColumn": 5,
+        "endLine": 81,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 79,
+        "startColumn": 60,
+        "endLine": 81,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "bbe5084f3f92fca7f37a9546a1a8f471ebf66422"
+    },
+    {
+      "id": "9dadd2454e4d",
+      "title": "formatsEveryCurrency",
+      "fullTitle": "ParameterizedCartTest > formatsEveryCurrency",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 87,
+        "startColumn": 5,
+        "endLine": 91,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 89,
+        "startColumn": 50,
+        "endLine": 91,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "06693d5ee18a367f7b6d1321175a58168789e989"
+    },
+    {
+      "id": "48259356aef4",
+      "title": "hasThePriceFromAFile",
+      "fullTitle": "ParameterizedCartTest > hasThePriceFromAFile",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 93,
+        "startColumn": 5,
+        "endLine": 97,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 95,
+        "startColumn": 58,
+        "endLine": 97,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "bbe5084f3f92fca7f37a9546a1a8f471ebf66422"
+    },
+    {
+      "id": "2811e827f37a",
+      "title": "totalIsNeverNegative",
+      "fullTitle": "ParameterizedCartTest > totalIsNeverNegative",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 99,
+        "startColumn": 5,
+        "endLine": 103,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 101,
+        "startColumn": 42,
+        "endLine": 103,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "71f555cbf3caff40b9bc99a55b64385737b840dd"
+    },
+    {
+      "id": "4b113bf3cf90",
+      "title": "knowsEveryListedItem",
+      "fullTitle": "ParameterizedCartTest > knowsEveryListedItem",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 105,
+        "startColumn": 5,
+        "endLine": 109,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 107,
+        "startColumn": 44,
+        "endLine": 109,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "83f507cf1713cc23d18d9331e23a43a44fd285b5"
+    },
+    {
+      "id": "7fe721ba385e",
+      "title": "hasNoSource",
+      "fullTitle": "ParameterizedCartTest > hasNoSource",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 112,
+        "startColumn": 5,
+        "endLine": 115,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 113,
+        "startColumn": 35,
+        "endLine": 115,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "338fe1bdadb187932421dfe060b6b431a3b8e973"
+    },
+    {
+      "id": "52b72a955778",
+      "title": "everyItemHasAPrice",
+      "fullTitle": "ParameterizedCartTest > everyItemHasAPrice",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 117,
+        "startColumn": 5,
+        "endLine": 120,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 118,
+        "startColumn": 46,
+        "endLine": 120,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6ae7cda4a2cbd881134b7cf27159e2f0db3591b8"
+    },
+    {
+      "id": "d03be96f96bc",
+      "title": "worksInEveryLocale",
+      "fullTitle": "ParameterizedCartTest > worksInEveryLocale",
+      "suitePath": [
+        "ParameterizedCartTest"
+      ],
+      "span": {
+        "startLine": 122,
+        "startColumn": 5,
+        "endLine": 125,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 123,
+        "startColumn": 40,
+        "endLine": 125,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "loop",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "660e492b5dd8a48b762d5ec64c9ddbf141e1af6b"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 60
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertFalse"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 62
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertNotNull"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.DynamicTest",
+      "names": [
+        "dynamicTest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 23
+      },
+      "source": "java.util.List",
+      "names": [
+        "List"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 32
+      },
+      "source": "java.util.stream.Stream",
+      "names": [
+        "Stream"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 42
+      },
+      "source": "org.junit.jupiter.api.DynamicTest",
+      "names": [
+        "DynamicTest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 42
+      },
+      "source": "org.junit.jupiter.api.TestFactory",
+      "names": [
+        "TestFactory"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 43
+      },
+      "source": "org.junit.jupiter.api.TestTemplate",
+      "names": [
+        "TestTemplate"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 51
+      },
+      "source": "org.junit.jupiter.params.ParameterizedTest",
+      "names": [
+        "ParameterizedTest"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 52
+      },
+      "source": "org.junit.jupiter.params.provider.Arguments",
+      "names": [
+        "Arguments"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 58
+      },
+      "source": "org.junit.jupiter.params.provider.ArgumentsSource",
+      "names": [
+        "ArgumentsSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 56
+      },
+      "source": "org.junit.jupiter.params.provider.CsvFileSource",
+      "names": [
+        "CsvFileSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 52
+      },
+      "source": "org.junit.jupiter.params.provider.CsvSource",
+      "names": [
+        "CsvSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 54
+      },
+      "source": "org.junit.jupiter.params.provider.EmptySource",
+      "names": [
+        "EmptySource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 53
+      },
+      "source": "org.junit.jupiter.params.provider.EnumSource",
+      "names": [
+        "EnumSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 54
+      },
+      "source": "org.junit.jupiter.params.provider.FieldSource",
+      "names": [
+        "FieldSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 21,
+        "endColumn": 55
+      },
+      "source": "org.junit.jupiter.params.provider.MethodSource",
+      "names": [
+        "MethodSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.params.provider.NullAndEmptySource",
+      "names": [
+        "NullAndEmptySource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 23,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 53
+      },
+      "source": "org.junit.jupiter.params.provider.NullSource",
+      "names": [
+        "NullSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 24,
+        "endColumn": 54
+      },
+      "source": "org.junit.jupiter.params.provider.ValueSource",
+      "names": [
+        "ValueSource"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}
