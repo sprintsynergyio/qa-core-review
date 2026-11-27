@@ -280,7 +280,7 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
           negate = false;
         }
         // `assertThat(x);` with nothing after it checks nothing.
-        return found.length > 0 ? found : [make(top, state, { kind: 'other', library, matcher: first.name, actual: operand(first.args[0]), ...softly, complete: false })];
+        return found.length > 0 ? found : [make(top, state, { kind: 'other', library, matcher: null, actual: operand(first.args[0]), ...softly, complete: false })];
       }
     }
 

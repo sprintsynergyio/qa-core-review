@@ -107,7 +107,7 @@ test('AssertJ: one assertion per check, and a chain with no check is not finishe
     'org.assertj.core.api.Assertions.assertThat(cart.name()).isNotEqualTo("b");', 'assertThat(cart).extracting(Cart::name).isEqualTo("a");', 'assertThat(1).isEqualTo(1);', 'fail("no");',
   ], { header: ASSERTJ }), [
     'assertj.isEqualTo equality: cart.size()~count | 2', 'assertj.hasSize count: cart.items() | 2', 'assertj.contains contains: cart.items() | "a"', 'assertj.doesNotContain contains: cart.items() | "b" [not]',
-    'assertj.assertThat other: cart | - [incomplete]', 'assertj.assertThat other: cart | - [incomplete]',
+    'assertj.null other: cart | - [incomplete]', 'assertj.null other: cart | - [incomplete]',
     // A method that the vocabulary does not know is still a check.
     'assertj.matches other: cart | -', 'assertj.isGreaterThanOrEqualTo comparison: cart.size()~count | 0 [>=]', 'assertj.isEqualTo equality: cart.name() | "a"',
     'assertj.isNotEqualTo equality: cart.name() | "b" [not]',
@@ -244,7 +244,7 @@ test('Playwright and Selenium: elements and counts are marked on the operands', 
     'ElementHandle handle = page.querySelector("h1");', 'assertNotNull(handle);', 'Locator.FilterOptions options = new Locator.FilterOptions();', 'assertNotNull(options);', 'assertEquals(2, names.count("a"));',
   ], { header: playwright }), [
     'playwright.hasCount count: rows~locator | 3', 'playwright.isVisible ui-state: page.getByText("Hi")~locator | - [not]', 'playwright.hasURL ui-state: page | -',
-    'playwright.assertThat other: rows.first()~locator | - [incomplete]', 'junit.assertNotNull nullness: rows.nth(2)~locator | - [not]', 'junit.assertTrue comparison: rows.count()~count | 0 [>=]',
+    'playwright.null other: rows.first()~locator | - [incomplete]', 'junit.assertNotNull nullness: rows.nth(2)~locator | - [not]', 'junit.assertTrue comparison: rows.count()~count | 0 [>=]',
     'junit.assertTrue truthiness: rows.isVisible() | -', 'junit.assertTrue comparison: n~count | 0 [>=]',
     // `querySelector` gives null when nothing matches, so this is a real check. A class inside `Locator` is no locator, and `count(x)` is no count.
     'junit.assertNotNull nullness: handle | - [not]', 'junit.assertNotNull nullness: options | - [not]', 'junit.assertEquals equality: names.count("a") | 2',

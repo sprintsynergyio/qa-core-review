@@ -1,12 +1,12 @@
 // The fix and the examples of each rule, per language (SPEC.md Section 10.0), so that a finding
 // in a TypeScript file suggests TypeScript and one in a Python file suggests Python. A key is a
-// rule id, or a rule id and a sub-case. The JS/TS texts are in the first table and the Python
-// texts in the second. The Java texts arrive with that adapter; until then such a file gets the
+// rule id, or a rule id and a sub-case. The JS/TS texts are in the first table, the Python
+// texts in the second and the Java texts in the third. A file in any other language gets the
 // general fix and no example.
 import type { LanguageId } from '../model/types.js';
 
-type Family = 'js' | 'python';
-const FAMILY: Partial<Record<LanguageId, Family>> = { javascript: 'js', typescript: 'js', python: 'python' };
+type Family = 'js' | 'python' | 'java';
+const FAMILY: Partial<Record<LanguageId, Family>> = { javascript: 'js', typescript: 'js', python: 'python', java: 'java' };
 
 interface Example { bad: string; good: string }
 interface Entry {
@@ -72,6 +72,11 @@ const BASE: Readonly<Record<string, Entry>> = {
     title: 'A check on a mock that does not exist or is never called',
     fix: 'Use a real assertion method of the mock, and call it.',
     examples: { js: { bad: 'expect(mailer.send).toHaveBeenCalled;', good: 'expect(mailer.send).toHaveBeenCalled();' } },
+  },
+  'QCR-A003/soft': {
+    title: 'A soft assertion that is never reported',
+    fix: 'Ask the object that collects the soft assertions for its failures at the end of the test, or let the test framework make and report it.',
+    examples: {},
   },
   'QCR-A003/second-value': {
     title: 'A truth check that is given a second value',
@@ -485,15 +490,167 @@ const PYTHON: Readonly<Record<string, Partial<Example> & { fix?: string }>> = {
   },
 };
 
+const JAVA: Readonly<Record<string, Partial<Example> & { fix?: string }>> = {
+  'QCR-A001': {
+    bad: '@Test\nvoid userCanLogIn() {\n    driver.get("https://www.saucedemo.com");\n    driver.findElement(By.id("login-button")).click();\n}',
+    good: '@Test\nvoid userCanLogIn() {\n    driver.get("https://www.saucedemo.com");\n    driver.findElement(By.id("login-button")).click();\n    assertEquals("Products", driver.findElement(By.className("title")).getText());\n}',
+  },
+  'QCR-A002': {
+    bad: 'assertTrue(true);\nassertEquals(cart.total(), cart.total());',
+    good: 'assertTrue(cart.items().contains(item));\nassertEquals(29.99, cart.total(), 0.001);',
+  },
+  'QCR-A003/incomplete': {
+    fix: 'Finish the assertion: call a check on assertThat(...), such as isEqualTo(...) or isVisible(), and end a StepVerifier with verify() or verifyComplete().',
+    bad: 'assertThat(cart.total());',
+    good: 'assertThat(cart.total()).isEqualTo(29.99);',
+  },
+  'QCR-A003/unreachable': {
+    fix: 'Take out the call that always throws before the assertion, such as a fail(...) left over from a test that was not written yet.',
+    bad: 'cart.add("apple");\nfail("not written yet");\nassertEquals(1, cart.items().size());',
+    good: 'cart.add("apple");\nassertEquals(1, cart.items().size());',
+  },
+  'QCR-A003/locator': {
+    fix: 'Check what the element shows or does, for example isDisplayed() or its text. findElement never gives null (it throws when the element is missing), and a Playwright locator exists before the element does.',
+    bad: 'assertNotNull(driver.findElement(By.id("checkout")));',
+    good: 'assertTrue(driver.findElement(By.id("checkout")).isDisplayed());',
+  },
+  'QCR-A003/count': {
+    bad: 'assertTrue(rows.size() >= 0);',
+    good: 'assertEquals(3, rows.size());',
+  },
+  'QCR-A003/mock': {
+    fix: 'Name the call you expect after verify(mock): verify(mailer).send(...). verify(mailer) by itself checks nothing.',
+    bad: 'verify(mailer);',
+    good: 'verify(mailer).send("ana", "receipt");',
+  },
+  'QCR-A003/soft': {
+    fix: 'Call assertAll() on the soft assertion object at the end of the test, or let the framework report it: SoftAssertions.assertSoftly(...), a try-with-resources with AutoCloseableSoftAssertions, or the SoftAssertionsExtension.',
+    bad: 'SoftAssertions softly = new SoftAssertions();\nsoftly.assertThat(cart.owner()).isEqualTo("ana");\nsoftly.assertThat(cart.size()).isEqualTo(2);',
+    good: 'SoftAssertions softly = new SoftAssertions();\nsoftly.assertThat(cart.owner()).isEqualTo("ana");\nsoftly.assertThat(cart.size()).isEqualTo(2);\nsoftly.assertAll();',
+  },
+  'QCR-A004': {
+    bad: 'for (Item item : api.items()) {\n    assertTrue(item.price() > 0);\n}',
+    good: 'List<Item> items = api.items();\nassertFalse(items.isEmpty());\nfor (Item item : items) {\n    assertTrue(item.price() > 0);\n}',
+  },
+  'QCR-W001': {
+    fix: 'Wait for a condition instead: new WebDriverWait(driver, timeout).until(...) in Selenium, an assertThat(locator) check in Playwright, or Awaitility. For timing failures that come and go, see qa-core-flaky.',
+    bad: 'driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();\nThread.sleep(3000);\nassertEquals("1", driver.findElement(By.className("shopping_cart_badge")).getText());',
+    good: 'driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();\nnew WebDriverWait(driver, Duration.ofSeconds(10))\n    .until(ExpectedConditions.textToBe(By.className("shopping_cart_badge"), "1"));',
+  },
+  'QCR-W001/implicit': {
+    bad: 'driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));',
+    good: 'new WebDriverWait(driver, Duration.ofSeconds(10))\n    .until(ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge")));',
+  },
+  'QCR-S001/xpath': {
+    bad: 'driver.findElement(By.xpath("//div[2]/div[1]/div/form/input[3]")).click();',
+    good: 'driver.findElement(By.id("login-button")).click();',
+  },
+  'QCR-S001/position': {
+    bad: 'page.locator("ul.inventory_list > li:nth-child(3) button").click();',
+    good: 'page.getByTestId("add-to-cart-sauce-labs-bolt-t-shirt").click();',
+  },
+  'QCR-S001/generated': {
+    bad: 'driver.findElement(By.cssSelector(".css-1x2y3z4")).click();',
+    good: 'driver.findElement(By.cssSelector("[data-test=\'checkout\']")).click();',
+  },
+  'QCR-S001/deep': {
+    bad: 'driver.findElement(By.cssSelector("#root > div > div > main > section > button")).click();',
+    good: 'driver.findElement(By.id("checkout")).click();',
+  },
+  'QCR-S001/pick': {
+    bad: 'driver.findElements(By.className("inventory_item")).get(2).click();',
+    good: 'driver.findElement(By.cssSelector("[data-test=\'add-to-cart-sauce-labs-bolt-t-shirt\']")).click();',
+  },
+  'QCR-E001': {
+    fix: 'Take the assertion out of the try block, or throw the error again in the catch block. To go on after a failed check, use soft assertions (AssertJ SoftAssertions, TestNG SoftAssert).',
+    bad: 'try {\n    assertEquals("$32.39", cart.total());\n} catch (Throwable ignored) {\n    // nothing\n}',
+    good: 'assertEquals("$32.39", cart.total());',
+  },
+  'QCR-F002': {
+    fix: 'Turn the test back on, or delete it. If it has to wait, say why in the annotation, with the ticket that tracks it: @Disabled("SHOP-123: the coupon service is down").',
+    bad: '@Disabled\n@Test\nvoid appliesACoupon() {\n    assertEquals(9.0, cart.apply("SAVE10"), 0.001);\n}',
+    good: '@Test\nvoid appliesACoupon() {\n    assertEquals(9.0, cart.apply("SAVE10"), 0.001);\n}',
+  },
+  'QCR-D001': {
+    fix: 'Delete the copy, or change it so that it checks another case. For the same steps with other data, write one @ParameterizedTest, or one test with a TestNG @DataProvider.',
+    bad: '@Test\nvoid addsAnApple() {\n    cart.add("apple");\n    assertEquals(1, cart.size());\n}\n\n@Test\nvoid addsAPear() {\n    cart.add("apple");\n    assertEquals(1, cart.size());\n}',
+    good: '@ParameterizedTest\n@ValueSource(strings = {"apple", "pear"})\nvoid addsAnItem(String name) {\n    cart.add(name);\n    assertEquals(1, cart.size());\n}',
+  },
+  'QCR-D001/title': {
+    bad: '@Test\n@DisplayName("adds an item")\nvoid addsAnApple() { ... }\n\n@Test\n@DisplayName("adds an item")\nvoid addsAPear() { ... }',
+    good: '@Test\n@DisplayName("adds an apple")\nvoid addsAnApple() { ... }\n\n@Test\n@DisplayName("adds a pear")\nvoid addsAPear() { ... }',
+  },
+  'QCR-P001': {
+    bad: '@Test\nvoid printsTheReceipt() {\n    Approvals.verify(cart.receipt());\n}',
+    good: '@Test\nvoid printsTheReceipt() {\n    assertEquals(29.99, cart.total(), 0.001);\n    Approvals.verify(cart.receipt());\n}',
+  },
+  'QCR-C001/spy': {
+    fix: 'Open the static mock in a try-with-resources, so that it is closed when the test fails too, or close it in an @AfterEach method.',
+    bad: 'MockedStatic<Clock> clock = mockStatic(Clock.class);\nclock.when(Clock::now).thenReturn(NOON);',
+    good: 'try (MockedStatic<Clock> clock = mockStatic(Clock.class)) {\n    clock.when(Clock::now).thenReturn(NOON);\n    assertEquals("12:00", receipt.time());\n}',
+  },
+  'QCR-C001/env': {
+    fix: 'Clear the property, or set it back to its old value, in an @AfterEach method. A method that runs after the test also runs when the test fails.',
+    bad: '@Test\nvoid usesEuros() {\n    System.setProperty("shop.currency", "EUR");\n    assertEquals("EUR", Prices.currency());\n}',
+    good: '@AfterEach\nvoid clearTheCurrency() {\n    System.clearProperty("shop.currency");\n}\n\n@Test\nvoid usesEuros() {\n    System.setProperty("shop.currency", "EUR");\n    assertEquals("EUR", Prices.currency());\n}',
+  },
+  'QCR-C001/handle': {
+    fix: 'Quit or close it in an @AfterEach or @AfterMethod method, or open it in a try-with-resources, so that it is closed when the test fails too.',
+    bad: '@Test\nvoid showsTheLoginPage() {\n    WebDriver driver = new ChromeDriver();\n    driver.get("https://www.saucedemo.com");\n    assertEquals("Swag Labs", driver.getTitle());\n}',
+    good: 'private WebDriver driver;\n\n@BeforeEach\nvoid start() {\n    driver = new ChromeDriver();\n}\n\n@AfterEach\nvoid stop() {\n    driver.quit();\n}',
+  },
+  'QCR-C001/data': {
+    bad: 'given().body(order).post("/orders").then().statusCode(201);',
+    good: 'String id = given().body(order).post("/orders").then().statusCode(201).extract().path("id");\ngiven().delete("/orders/" + id).then().statusCode(204);',
+  },
+  'QCR-N001': {
+    bad: '@Test\nvoid addsAnItem() { ... }\n\n@Test\nvoid totalsTheCart() { ... }',
+    good: '@Test\nvoid addsAnItem() { ... }\n\n@Test\nvoid rejectsANegativeQuantity() {\n    assertThrows(IllegalArgumentException.class, () -> cart.add("apple", -1));\n}',
+  },
+  'QCR-M001/subject': {
+    fix: 'Mock what the class under test depends on, not the class itself. Make the real object with new, or with @InjectMocks.',
+    bad: '@Mock Prices prices;\n\n@Test\nvoid readsThePrice() {\n    when(prices.of("apple")).thenReturn(99);\n    assertEquals(99, prices.of("apple"));\n}',
+    good: '@Mock PriceTable table;\n@InjectMocks Prices prices;\n\n@Test\nvoid readsThePrice() {\n    when(table.lookup("apple")).thenReturn(99);\n    assertEquals(99, prices.of("apple"));\n}',
+  },
+  'QCR-M001/stubbed': {
+    fix: 'Call the real method and check what it returns. Give fixed replies only to the things it depends on.',
+    bad: 'when(gateway.fee("4111")).thenReturn(30);\nassertEquals(30, gateway.fee("4111"));',
+    good: 'when(gateway.fee("4111")).thenReturn(30);\nassertEquals(1030, checkout.total(cart, "4111"));',
+  },
+  'QCR-M001/calls-only': {
+    bad: 'checkout.pay(cart, "4111");\nverify(mailer).send("ana", "receipt");',
+    good: 'Receipt receipt = checkout.pay(cart, "4111");\nassertEquals("paid", receipt.status());\nverify(mailer).send("ana", "receipt");',
+  },
+  'QCR-M001/network': {
+    bad: 'page.route("**/*", route -> route.fulfill(new Route.FulfillOptions().setBody("{}")));\nassertThat(page.locator(".inventory_item")).hasCount(0);',
+    good: 'page.route("**/api/recommendations", route -> route.fulfill(new Route.FulfillOptions().setBody("[]")));\nassertThat(page.locator(".inventory_item")).hasCount(6);',
+  },
+  'QCR-X002': {
+    bad: '// qa-core-review-disable-next-line QCR-W001\nThread.sleep(500);',
+    good: '// qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for\nThread.sleep(500);',
+  },
+};
+
 /** Every key with its texts in every language that has them. */
 export const FIX_TEXT: Readonly<Record<string, Entry>> = Object.fromEntries(Object.entries(BASE).map(([key, entry]) => {
-  const { fix, ...example } = PYTHON[key] ?? {};
-  const python = 'bad' in example ? { python: example as Example } : {};
-  return [key, { ...entry, ...(fix ? { fixes: { python: fix } } : {}), examples: { ...entry.examples, ...python } }];
+  const fixes: Partial<Record<Family, string>> = {};
+  const examples = { ...entry.examples };
+  for (const [family, table] of [['python', PYTHON], ['java', JAVA]] as const) {
+    const { fix, ...example } = table[key] ?? {};
+    if (fix) fixes[family] = fix;
+    if ('bad' in example) examples[family] = example as Example;
+  }
+  return [key, { ...entry, ...(Object.keys(fixes).length > 0 ? { fixes } : {}), examples }];
 }));
 
 /** Words of a rule message that another language names differently. */
-const TERMS: Readonly<Record<string, Partial<Record<Family, string>>>> = { 'catch block': { python: 'except block' } };
+const TERMS: Readonly<Record<string, Partial<Record<Family, string>>>> = {
+  'catch block': { python: 'except block' },
+  // `System.setProperty` changes a system property, which is what a Java test uses where others use the environment.
+  'environment variable': { java: 'system property' },
+  // `mockStatic(Clock.class)` is what stays in place in Java, where Python has a patch.
+  patch: { java: 'static mock' },
+};
 
 /** The word a message uses in a file of this language: `catch block` is `except block` in Python. */
 export function termFor(term: string, language: LanguageId): string {
