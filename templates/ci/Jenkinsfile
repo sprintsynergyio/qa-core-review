@@ -1,0 +1,27 @@
+// qa-core-review on Jenkins: reviews the test files that a pull request changes.
+// The findings show up as test results (junit step), and the report files are archived.
+// It needs a multibranch pipeline, which sets CHANGE_TARGET for a pull request, and
+// the Docker Pipeline plugin for the node:22 agent (or use any agent with Node 22.6 or later).
+// If you already have a Jenkinsfile, copy the qa-core-review stage into it.
+// Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/ci.md
+pipeline {
+  agent { docker { image 'node:22' } }
+  stages {
+    stage('qa-core-review') {
+      when { changeRequest() }
+      steps {
+        // The target branch with its history, so that the tool can compare the branch with its base.
+        sh 'git fetch --no-tags origin "+refs/heads/$CHANGE_TARGET:refs/remotes/origin/$CHANGE_TARGET"'
+        sh 'npx --yes qa-core-review@0.0.0 review --diff "origin/$CHANGE_TARGET" --format pretty,json,sarif,markdown,junit --fail-on error'
+      }
+      post {
+        always {
+          junit testResults: '.qa-core/review/report.junit.xml', allowEmptyResults: true
+          archiveArtifacts artifacts: '.qa-core/review/**', allowEmptyArchive: true
+          // Optional, with the Warnings Next Generation plugin installed:
+          // recordIssues(tools: [sarif(pattern: '.qa-core/review/report.sarif')])
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+  - repo: https://github.com/sprintsynergyio/qa-core-review
+    rev: v0.0.0
+    hooks:
+      - id: qa-core-review

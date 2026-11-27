@@ -1,0 +1,20 @@
+# Hooks for the pre-commit framework (https://pre-commit.com). See docs/ci.md.
+# Files that are not test files are skipped by the tool, so both hooks take every text file.
+- id: qa-core-review
+  name: qa-core-review (test quality)
+  description: Reviews the test files of the commit and fails on tests that check nothing.
+  entry: qa-core-review review --fail-on error
+  language: node
+  additional_dependencies: []
+  pass_filenames: true
+  require_serial: true
+  types: [text]
+  minimum_pre_commit_version: "3.0.0"
+- id: qa-core-review-docker
+  name: qa-core-review (test quality, Docker)
+  description: The same review, run from the Docker image, for machines with no Node.
+  entry: ghcr.io/sprintsynergyio/qa-core-review:0.0.0 review --fail-on error
+  language: docker_image
+  pass_filenames: true
+  require_serial: true
+  types: [text]

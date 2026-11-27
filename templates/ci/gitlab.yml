@@ -1,0 +1,21 @@
+# qa-core-review on GitLab CI: reviews the test files that a merge request changes.
+# The findings show up in the test widget of the merge request (JUnit report), and
+# report.md, report.json and report.sarif are kept as artifacts.
+# If you already have a .gitlab-ci.yml, copy the qa-core-review job into it.
+# Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/ci.md
+qa-core-review:
+  image: node:22
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  variables:
+    # The whole history, so that the tool can compare the branch with its base.
+    GIT_DEPTH: "0"
+  script:
+    - npx --yes qa-core-review@0.0.0 review --diff "$CI_MERGE_REQUEST_DIFF_BASE_SHA" --format pretty,json,sarif,markdown,junit --fail-on error
+  artifacts:
+    when: always
+    paths:
+      - .qa-core/review/
+    reports:
+      junit: .qa-core/review/report.junit.xml

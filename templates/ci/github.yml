@@ -1,0 +1,24 @@
+# qa-core-review on GitHub Actions: reviews the test files that a pull request changes.
+# It posts one comment on the pull request and keeps it up to date, writes the report to
+# the job summary and fails the job when a finding is an error.
+# Docs: https://github.com/sprintsynergyio/qa-core-review/blob/main/docs/ci.md
+name: Test review
+on: pull_request
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The whole history, so that the tool can compare the branch with its base.
+          fetch-depth: 0
+      # The action reviews the tests that the pull request changes, comments and uploads the report files.
+      - uses: sprintsynergyio/qa-core-review@v0.0.0
+        with:
+          fail-on: error
+          # To send the findings to code scanning as well, set this to true and
+          # add "security-events: write" to the permissions above.
+          sarif: false
