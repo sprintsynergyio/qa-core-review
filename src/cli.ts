@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Command line entry point (SPEC.md Section 11). So far: `review` (the default command),
+// Command line entry point (SPEC.md Section 11). So far: `review` (the default command), `ui`,
 // `detect`, `rules`, `explain`, `adapters`, `init`, --version and --help. The other commands
 // arrive in later milestones.
 import fs from 'node:fs';
@@ -9,6 +9,7 @@ import { OPTIONS, parse, UsageError } from './commands/args.js';
 import { adapters, explain, rules } from './commands/info.js';
 import { init } from './commands/init.js';
 import { review } from './commands/review.js';
+import { ui } from './commands/ui.js';
 import { ConfigError, loadConfig } from './config/load.js';
 import { buildDetectReport, formatDetectPretty } from './detect/report.js';
 import { discover } from './discover/files.js';
@@ -23,6 +24,7 @@ Review AI-written tests before merge, in any language.
 Usage:
   qa-core-review review [paths...] [flags]   Review test files. This is the default command:
   qa-core-review [paths...] [flags]          the word "review" can be left out.
+  qa-core-review ui [paths...] [flags]       Review, then open the local page to approve or reject each test.
   qa-core-review detect [flags]              Show the detected projects, frameworks and test file counts.
   qa-core-review rules [--language <id>]     List the rules.
   qa-core-review explain <ruleId>            Describe one rule.
@@ -31,12 +33,12 @@ Usage:
   qa-core-review --version | -v              Print the version.
   qa-core-review --help | -h                 Print this help. Also: qa-core-review <command> --help
 
-Status: in development. Most rules and the ui, hook and comment commands are not available yet.
+Status: in development. The hook and comment commands are not available yet.
 `;
 
 /** Commands from SPEC.md Section 11.1 that later milestones add. */
-const LATER_COMMANDS = ['ui', 'hook', 'comment'];
-const COMMANDS: Readonly<Record<string, (argv: string[]) => number | Promise<number>>> = { review, rules, explain, adapters, init };
+const LATER_COMMANDS = ['hook', 'comment'];
+const COMMANDS: Readonly<Record<string, (argv: string[]) => number | Promise<number>>> = { review, ui, rules, explain, adapters, init };
 
 const DETECT_USAGE = `Usage: qa-core-review detect [flags]
 

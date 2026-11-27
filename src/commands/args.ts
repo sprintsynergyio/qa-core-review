@@ -25,6 +25,9 @@ export const OPTIONS = {
   'no-color': { type: 'boolean' },
   quiet: { type: 'boolean' },
   force: { type: 'boolean' },
+  port: { type: 'string' },
+  'no-open': { type: 'boolean' },
+  gate: { type: 'boolean' },
 } as const;
 
 export type OptionName = keyof typeof OPTIONS;

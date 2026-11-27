@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>qa-core-review</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>qa-core-review</h1>
+    <p id="counts" class="counts" aria-live="polite"></p>
+    <p id="progress" class="progress" aria-live="polite"></p>
+    <div class="actions">
+      <button type="button" id="approve-passing">Approve all passing</button>
+      <button type="button" id="finish" class="primary">Finish</button>
+    </div>
+  </header>
+  <p id="banner" class="banner" role="alert" hidden></p>
+  <div class="layout">
+    <nav id="sidebar" class="sidebar" aria-label="Tests">
+      <div id="chips" class="chips" role="group" aria-label="Show"></div>
+      <label id="language-filter" class="language-filter" hidden>Language
+        <select id="language"></select>
+      </label>
+      <div id="list"></div>
+    </nav>
+    <main id="main" class="main" tabindex="-1">
+      <p class="muted">Loading the report.</p>
+    </main>
+  </div>
+  <footer class="keys">Keys: <kbd>A</kbd> approve, <kbd>R</kbd> reject, <kbd>C</kbd> comment only, <kbd>J</kbd> next test, <kbd>K</kbd> previous test, <kbd>/</kbd> comment box.</footer>
+  <dialog id="finish-dialog" aria-labelledby="finish-title">
+    <h2 id="finish-title">Review finished</h2>
+    <p id="finish-outcome" class="outcome"></p>
+    <label for="finish-prompt">Feedback prompt for the coding agent</label>
+    <textarea id="finish-prompt" readonly rows="14"></textarea>
+    <p id="finish-path" class="muted"></p>
+    <div class="actions">
+      <button type="button" id="copy-prompt">Copy prompt</button>
+      <button type="button" id="close-dialog" class="primary">Close</button>
+    </div>
+  </dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

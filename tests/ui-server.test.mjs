@@ -104,10 +104,13 @@ test('every answer forbids outside resources and content sniffing', async (t) =>
 
 test('only the files of the page are served, and only for reading', async (t) => {
   const { server } = await start(t);
-  for (const target of ['/package.json', '/ui/app.js', '/../package.json', '/%2e%2e/package.json', '/app.js/', '/session.json', '/favicon.ico']) {
+  for (const target of ['/package.json', '/ui/app.js', '/../package.json', '/%2e%2e/package.json', '/app.js/', '/session.json', '/icon.png']) {
     assert.equal((await call(server, 'GET', target, { token: null })).status, 404, target);
   }
   for (const method of ['POST', 'PUT', 'DELETE']) assert.equal((await call(server, method, '/app.js', { token: null })).status, 405);
+  // The icon a browser asks for on its own: there is none, which is said with no error.
+  const icon = await call(server, 'GET', '/favicon.ico', { token: null });
+  assert.deepEqual([icon.status, icon.text], [204, '']);
 });
 
 test('GET /api/report is the report with the source of its files, and GET /api/session is the session', async (t) => {

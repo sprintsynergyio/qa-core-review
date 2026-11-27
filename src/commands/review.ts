@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadConfig } from '../config/load.js';
-import type { FailOn } from '../config/types.js';
+import type { FailOn, ResolvedConfig } from '../config/types.js';
 import type { PathSelection } from '../discover/files.js';
 import { changedLines, DiffError, type ChangedLines } from '../discover/diff.js';
 import { runReview } from '../engine/run.js';
@@ -15,7 +15,8 @@ import { formatMarkdown } from '../report/markdown.js';
 import { formatPretty, formatSummary, useColor } from '../report/pretty.js';
 import { formatSarif } from '../report/sarif.js';
 import { builtinRules } from '../rules/index.js';
-import { choiceFlag, listFlag, parse, UsageError } from './args.js';
+import type { Report } from '../rules/types.js';
+import { choiceFlag, listFlag, parse, UsageError, type OptionName } from './args.js';
 
 export const REVIEW_USAGE = `Usage: qa-core-review review [paths...] [flags]
        qa-core-review [paths...] [flags]
@@ -47,7 +48,7 @@ Flags:
 Exit codes: 0 no finding at or above --fail-on, 1 findings, 2 usage or config error, 3 internal error.
 `;
 
-const FLAGS = ['help', 'diff', 'staged', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model', 'max-findings', 'no-color', 'quiet'] as const;
+export const REVIEW_FLAGS = ['help', 'diff', 'staged', 'format', 'root', 'config', 'output', 'stdout', 'fail-on', 'rules', 'disable', 'language', 'framework', 'dump-model', 'max-findings', 'no-color', 'quiet'] as const;
 const FILE_FORMATS = ['json', 'sarif', 'markdown', 'junit'] as const;
 const posix = (value: string): string => value.split(path.sep).join('/');
 
@@ -68,12 +69,24 @@ function selectPaths(paths: readonly string[], root: string): PathSelection | un
   return selection;
 }
 
-export async function review(argv: string[]): Promise<number> {
-  const { values, positionals } = parse(argv, FLAGS);
-  if (values.help) {
-    process.stdout.write(REVIEW_USAGE);
-    return 0;
-  }
+/** A finished review: the report, the files written for it, and what the flags asked for. */
+export interface ReviewRun {
+  root: string;
+  config: ResolvedConfig;
+  report: Report;
+  outputDir: string;
+  /** The report files that were written, as they are shown: relative to the root when inside it. */
+  written: string[];
+  formats: readonly string[];
+  maxFindings: number;
+  /** The report in one of the file formats, for --stdout. */
+  texts: Record<(typeof FILE_FORMATS)[number], () => string>;
+  /** A path as it is shown to the user. */
+  shown(file: string): string;
+}
+
+/** Runs the review that the flags and paths ask for and writes report.json and the other report files. Used by `review` and `ui`. */
+export async function runFromFlags(values: Partial<Record<OptionName, string | boolean>>, positionals: readonly string[]): Promise<ReviewRun> {
   const root = path.resolve(typeof values.root === 'string' ? values.root : '.');
   if (!fs.statSync(root, { throwIfNoEntry: false })?.isDirectory()) throw new UsageError(`--root is not a folder: ${String(values.root)}`);
 
@@ -84,7 +97,7 @@ export async function review(argv: string[]): Promise<number> {
   const framework = choiceFlag('framework', values.framework, FRAMEWORK_IDS);
   const failOn = choiceFlag<FailOn>('fail-on', values['fail-on'], ['error', 'warn', 'info', 'never']);
   const formatFlag = listFlag('format', values.format, ['pretty', ...FILE_FORMATS], 'format');
-  const stdout = choiceFlag('stdout', values.stdout, FILE_FORMATS);
+  choiceFlag('stdout', values.stdout, FILE_FORMATS);
   const maxFindings = typeof values['max-findings'] === 'string' ? Number(values['max-findings']) : 200;
   if (!Number.isInteger(maxFindings) || maxFindings < 0) throw new UsageError(`--max-findings must be a whole number, 0 or more, not "${String(values['max-findings'])}"`);
 
@@ -141,7 +154,17 @@ export async function review(argv: string[]): Promise<number> {
     if (formats.includes(format)) written.push(write(names[format], texts[format]()));
   }
   if (values['dump-model']) written.push(write('model.json', json(models)));
+  return { root, config, report, outputDir, written, formats, maxFindings, texts, shown };
+}
 
+export async function review(argv: string[]): Promise<number> {
+  const { values, positionals } = parse(argv, REVIEW_FLAGS);
+  if (values.help) {
+    process.stdout.write(REVIEW_USAGE);
+    return 0;
+  }
+  const stdout = choiceFlag('stdout', values.stdout, FILE_FORMATS);
+  const { config, report, written, formats, maxFindings, texts } = await runFromFlags(values, positionals);
   if (stdout) process.stdout.write(texts[stdout]());
   // Only files were asked for: the text view is left out, and two lines say what happened and where the files are.
   else if (!formats.includes('pretty')) process.stdout.write(`${formatSummary(report)}\nReports: ${written.join(', ')}\n`);

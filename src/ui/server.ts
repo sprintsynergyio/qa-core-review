@@ -121,6 +121,8 @@ export function startUiServer(options: UiServerOptions): Promise<UiServer> {
     const { pathname } = new URL(request.url ?? '/', `http://127.0.0.1:${port}`);
     const method = request.method ?? 'GET';
     if (!pathname.startsWith('/api/')) {
+      // Browsers ask for an icon on their own. There is none, and that is not an error on the page.
+      if (pathname === '/favicon.ico') return send(response, 204, '', 'text/plain; charset=utf-8');
       const page = Object.hasOwn(PAGE_FILES, pathname) ? PAGE_FILES[pathname]! : null;
       if (!page) throw new RequestError(404, 'not found');
       if (method !== 'GET' && method !== 'HEAD') throw new RequestError(405, 'use GET');

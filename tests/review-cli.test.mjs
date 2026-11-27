@@ -89,7 +89,7 @@ test('exit code 2: a mistake in the call or in the config, on one line, with not
     [['--disable', ''], /--disable: give at least one rule id/], [['--language', 'klingon'], /--language: unknown language "klingon"/], [['--framework', 'nope'], /--framework must be .*, not "nope"/],
     [['--format', 'pretty,html'], /--format: unknown format "html"/], [['--format', ''], /--format: give at least one format/], [['--stdout', 'html'], /--stdout must be json, sarif, markdown or junit, not "html"/],
     [['--stdout', 'pretty'], /--stdout must be/], [['--max-findings', 'many'], /--max-findings must be a whole number, 0 or more, not "many"/], [['--max-findings=-1'], /--max-findings must be/], [['--max-findings', '-1'], /--max-findings' argument is ambiguous$/m], [['missing.test.ts'], /path not found: missing\.test\.ts/], [[path.join('..', 'elsewhere')], /path is outside the root/],
-    [['--root', 'nowhere'], /--root is not a folder: nowhere/], [['--output', 'a-file'], /cannot write to --output a-file/], [['ui'], /the "ui" command is not available yet/],
+    [['--root', 'nowhere'], /--root is not a folder: nowhere/], [['--output', 'a-file'], /cannot write to --output a-file/], [['comment'], /the "comment" command is not available yet/],
   ];
   for (const [args, message] of table) {
     const ran = run(dir, args);
