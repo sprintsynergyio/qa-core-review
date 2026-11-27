@@ -2,24 +2,29 @@
 //
 // This file finds the structure of a test file: suites (classes and the classes inside them),
 // tests, hooks, skips, parameterized tests, imports and suppression comments. What each body
-// checks and what it does are read by the next parts of the adapter.
+// checks is read by assertions.ts. What a body does (waits, selectors, mocks, resources) is
+// read by the next part of the adapter.
 import { emptyTest, parseSuppression } from '../../model/build.js';
 import { bodyHash, testId } from '../../model/hash.js';
 import type { Capability, FrameworkId, NFile, NHook, NImport, NSuite, NSuppression, NTest } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import type { AdapterContext, FrameworkGuess, ParsedFile, SourceFile } from '../types.js';
+import { readBody } from './assertions.js';
 import { frameworkOf } from './frameworks.js';
+import { collectJavaHelpers, fileContext, methodContext } from './helpers.js';
 import { annotationsOf, dottedName, elementsOf, hasAncestor, hasModifier, isComment, itemsOf, ownDescendants, statementsOf, stringValue, tokensOf } from './syntax.js';
 import {
   ARGUMENT_SOURCES, CLASS_TEST_ANNOTATION, CONDITION_ANNOTATIONS, CONDITION_PACKAGE, CONDITION_REASON_ELEMENT, DATA_PROVIDER_ANNOTATION, DATA_PROVIDER_ELEMENT,
-  DATA_PROVIDER_NAME_ELEMENT, DESCRIPTION_ELEMENT, DISPLAY_NAME_ANNOTATION, ENABLED_ELEMENT, HOOK_ANNOTATIONS, NESTED_ANNOTATION, PARAMETERIZED_RUNNERS, PARAMETERS_ANNOTATION,
+  DATA_PROVIDER_NAME_ELEMENT, DESCRIPTION_ELEMENT, DISPLAY_NAME_ANNOTATION, ENABLED_ELEMENT, EXPECTED_EXCEPTION_ELEMENTS, HOOK_ANNOTATIONS, NESTED_ANNOTATION, PARAMETERIZED_RUNNERS, PARAMETERS_ANNOTATION,
   JUNIT3_BASES, ROW_WRAPPERS, RUN_WITH_ANNOTATION, SHARED_JUNIT_PACKAGES, SKIP_ANNOTATIONS, SKIP_CALLS, SOURCE_SETTING_ELEMENTS, TEST_ANNOTATIONS, TEST_CLASS_SUFFIXES,
   TEST_LIBRARY_PACKAGES, THROWN_SKIPS, UNCOUNTED_SOURCE_ELEMENTS,
 } from './vocab.js';
 
-/** What the adapter fills in so far: the structure of a file. */
-export const JAVA_CAPABILITIES: Capability[] = ['tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'body-hash'];
+/** What the adapter fills in so far: the structure of a file, and what its bodies check. */
+export const JAVA_CAPABILITIES: Capability[] = [
+  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability',
+];
 
 const TYPE_DECLARATIONS = new Set(['class_declaration', 'interface_declaration', 'record_declaration', 'enum_declaration']);
 const BRANCHES = new Set([
@@ -172,8 +177,13 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
   const model = unparsedJava(file, frameworks, ctx, parsed.parseStatus, 'support');
   model.capabilities = [...JAVA_CAPABILITIES];
   const root = parsed.tree!.rootNode; // the adapter calls this only with a tree
-  const { imports, resolve } = readImports(root, frameworks.runner);
+  const names = readImports(root, frameworks.runner);
+  const { imports, resolve } = names;
   model.imports = imports;
+  const shared = fileContext(root, frameworks, names);
+  const local = new Set(collectJavaHelpers(root, file.path, shared).map((helper) => helper.name));
+  const isHelper = (name: string): boolean => local.has(name) || ctx.helperIndex.has(name) || ctx.config.assertionHelpers.includes(name);
+  const read = (method: SyntaxNode, body: SyntaxNode): ReturnType<typeof readBody> => readBody(body, { ...methodContext(method, shared), isHelper });
   model.suppressions = readSuppressions(root);
   const seen = new Map<string, number>();
 
@@ -257,7 +267,7 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
       if (!body) continue; // a method of an interface with no body runs nothing itself
       const hook = method.marks.map((mark) => HOOK_ANNOTATIONS[mark.name]).find((entry) => entry !== undefined);
       if (hook) {
-        suite.hooks.push({ span: spanOfNode(method.node), kind: hook.kind, scope: hook.global ? 'global' : 'suite', releases: [], assertions: [], waits: [], selectors: [], data: [] } satisfies NHook);
+        suite.hooks.push({ span: spanOfNode(method.node), kind: hook.kind, scope: hook.global ? 'global' : 'suite', releases: [], assertions: read(method.node, body).assertions, waits: [], selectors: [], data: [] } satisfies NHook);
         continue;
       }
       const testMark = method.marks.find((mark) => mark.name in TEST_ANNOTATIONS);
@@ -279,6 +289,11 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
       if (generated) test.parameterized = { source: generated, cases: generated === 'ParameterizedTest' ? casesOf(method.marks) : null };
       else if (dataProvider) test.parameterized = { source: 'DataProvider', cases: rowsOf(provider(stringValue(dataProvider))) };
       else test.parameterized = inherited;
+      const facts = read(method.node, body);
+      test.assertions = facts.assertions;
+      test.tryBlocks = facts.tryBlocks;
+      // `@Test(expected = IllegalStateException.class)`, `@Test(expectedExceptions = ...)`.
+      test.expectsException = facts.expectsException || (testMark !== undefined && EXPECTED_EXCEPTION_ELEMENTS.some((name) => testMark.elements.has(name)));
       test.statementCount = statementsOf(body).length;
       test.bodyHash = bodyHash(tokensOf(body));
       model.tests.push(test);

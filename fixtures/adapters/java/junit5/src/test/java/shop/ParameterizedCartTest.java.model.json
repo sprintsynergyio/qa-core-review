@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -74,7 +79,43 @@
         "source": "ParameterizedTest",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 9,
+            "endLine": 32,
+            "endColumn": 65
+          },
+          "text": "assertEquals(count, Cart.with(\"backpack\", count).size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.with(\"backpack\", count).size()",
+            "normalized": "Cart.with(\"backpack\",count).size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "count",
+            "normalized": "count",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -116,7 +157,36 @@
         "source": "ParameterizedTest",
         "cases": 1
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 9,
+            "endLine": 38,
+            "endColumn": 42
+          },
+          "text": "assertNotNull(Cart.priceOf(item))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -158,7 +228,43 @@
         "source": "ParameterizedTest",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 48
+          },
+          "text": "assertEquals(price, Cart.priceOf(item))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -200,7 +306,43 @@
         "source": "ParameterizedTest",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 48
+          },
+          "text": "assertEquals(price, Cart.priceOf(item))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -242,7 +384,43 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 48
+          },
+          "text": "assertEquals(price, Cart.priceOf(item))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -284,7 +462,36 @@
         "source": "ParameterizedTest",
         "cases": 4
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 9,
+            "endLine": 68,
+            "endColumn": 38
+          },
+          "text": "assertFalse(Cart.knows(item))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.knows(item)",
+            "normalized": "Cart.knows(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -326,7 +533,36 @@
         "source": "ParameterizedTest",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 48
+          },
+          "text": "assertFalse(Cart.acceptsCoupon(coupon))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.acceptsCoupon(coupon)",
+            "normalized": "Cart.acceptsCoupon(coupon)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -368,7 +604,43 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 9,
+            "endLine": 80,
+            "endColumn": 48
+          },
+          "text": "assertEquals(price, Cart.priceOf(item))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -410,7 +682,36 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 9,
+            "endLine": 90,
+            "endColumn": 49
+          },
+          "text": "assertNotNull(Cart.format(10, currency))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.format(10, currency)",
+            "normalized": "Cart.format(10,currency)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -452,7 +753,43 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 96,
+            "startColumn": 9,
+            "endLine": 96,
+            "endColumn": 48
+          },
+          "text": "assertEquals(price, Cart.priceOf(item))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -494,7 +831,48 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 9,
+            "endLine": 102,
+            "endColumn": 38
+          },
+          "text": "assertFalse(cart.total() < 0)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertFalse",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -536,7 +914,36 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 108,
+            "startColumn": 9,
+            "endLine": 108,
+            "endColumn": 42
+          },
+          "text": "assertNotNull(Cart.priceOf(item))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -578,7 +985,36 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 114,
+            "startColumn": 9,
+            "endLine": 114,
+            "endColumn": 28
+          },
+          "text": "assertNotNull(item)",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "item",
+            "normalized": "item",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -620,7 +1056,36 @@
         "source": "loop",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 119,
+            "startColumn": 67,
+            "endLine": 119,
+            "endColumn": 100
+          },
+          "text": "assertNotNull(Cart.priceOf(item))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -662,7 +1127,36 @@
         "source": "loop",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 124,
+            "startColumn": 9,
+            "endLine": 124,
+            "endColumn": 45
+          },
+          "text": "assertNotNull(cart.formattedTotal())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "cart.formattedTotal()",
+            "normalized": "cart.formattedTotal()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

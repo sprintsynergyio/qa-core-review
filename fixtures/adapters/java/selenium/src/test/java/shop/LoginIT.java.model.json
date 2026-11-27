@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -60,7 +65,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 9,
+            "endLine": 17,
+            "endColumn": 86
+          },
+          "text": "assertEquals(\"Products\", driver.findElement(By.className(\"title\")).getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.findElement(By.className(\"title\")).getText()",
+            "normalized": "driver.findElement(By.className(\"title\")).getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -99,7 +144,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 9,
+            "endLine": 23,
+            "endColumn": 111
+          },
+          "text": "assertTrue(driver.findElement(By.cssSelector(\"[data-test='error']\")).getText().contains(\"locked out\"))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "driver.findElement(By.cssSelector(\"[data-test='error']\")).getText().contains(\"locked out\")",
+            "normalized": "driver.findElement(By.cssSelector(\"[data-test='error']\")).getText().contains(\"locked out\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

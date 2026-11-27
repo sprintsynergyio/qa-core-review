@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -59,7 +64,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 11,
+            "startColumn": 9,
+            "endLine": 11,
+            "endColumn": 44
+          },
+          "text": "assertTrue(Shop.pay(\"cheque\").ok())",
+          "kind": "truthiness",
+          "library": "testng",
+          "actual": {
+            "text": "Shop.pay(\"cheque\").ok()",
+            "normalized": "Shop.pay(\"cheque\").ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

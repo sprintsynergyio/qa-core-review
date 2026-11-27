@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -75,7 +80,43 @@
         "source": "ParameterizedTest",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 62
+          },
+          "text": "assertEquals(price, Discount.apply(100, code), 0.001)",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Discount.apply(100, code)",
+            "normalized": "Discount.apply(100,code)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -117,7 +158,47 @@
         "source": "ParameterizedTest",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 65
+          },
+          "text": "assertEquals(90.0, Discount.apply(100, \"SAVE10\"), 0.001)",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Discount.apply(100, \"SAVE10\")",
+            "normalized": "Discount.apply(100,\"SAVE10\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "90.0",
+            "normalized": "90.0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "90.0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

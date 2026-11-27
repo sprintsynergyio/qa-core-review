@@ -1,0 +1,1838 @@
+{
+  "path": "src/test/java/shop/HamcrestTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "HamcrestTest",
+      "span": {
+        "startLine": 38,
+        "startColumn": 1,
+        "endLine": 89,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "94a8de52a3e8",
+        "3314fc21df34",
+        "53520322eee7",
+        "7665ba65d270"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "94a8de52a3e8",
+      "title": "comparesValues",
+      "fullTitle": "HamcrestTest > comparesValues",
+      "suitePath": [
+        "HamcrestTest"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 42,
+        "startColumn": 27,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 9,
+            "endLine": 43,
+            "endColumn": 39
+          },
+          "text": "assertThat(cart.size(), is(0))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 53
+          },
+          "text": "assertThat(cart.owner(), is(equalTo(\"ana\")))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 9,
+            "endLine": 45,
+            "endColumn": 47
+          },
+          "text": "assertThat(cart.owner(), not(\"guest\"))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"guest\"",
+            "normalized": "\"guest\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "guest"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 72
+          },
+          "text": "assertThat(cart.owner(), is(not(equalToIgnoringCase(\"GUEST\"))))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"GUEST\"",
+            "normalized": "\"GUEST\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "GUEST"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 52
+          },
+          "text": "assertThat(cart.self(), sameInstance(cart))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.self()",
+            "normalized": "cart.self()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "cart",
+            "normalized": "cart",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 54
+          },
+          "text": "assertThat(cart.total(), closeTo(0.0, 0.001))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0.0",
+            "normalized": "0.0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0.0"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 61
+          },
+          "text": "assertThat(\"the coupon\", cart.coupon(), nullValue())",
+          "kind": "nullness",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.coupon()",
+            "normalized": "cart.coupon()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 49
+          },
+          "text": "assertThat(cart.owner(), notNullValue())",
+          "kind": "nullness",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 87
+          },
+          "text": "assertThat(cart.owner(), describedAs(\"the owner of the cart\", equalTo(\"ana\")))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 9,
+      "bodyHash": "c93d8bc8cfa49c74aee9d95f0c1c2194ca38c0fa"
+    },
+    {
+      "id": "3314fc21df34",
+      "title": "checksWhatACollectionHolds",
+      "fullTitle": "HamcrestTest > checksWhatACollectionHolds",
+      "suitePath": [
+        "HamcrestTest"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 69,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 55,
+        "startColumn": 39,
+        "endLine": 69,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 51
+          },
+          "text": "assertThat(cart.names(), hasItem(\"apple\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 9,
+            "endLine": 58,
+            "endColumn": 52
+          },
+          "text": "assertThat(cart.names(), hasItems(\"apple\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 9,
+            "endLine": 59,
+            "endColumn": 52
+          },
+          "text": "assertThat(cart.names(), contains(\"apple\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 62
+          },
+          "text": "assertThat(cart.names(), containsInAnyOrder(\"apple\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 9,
+            "endLine": 61,
+            "endColumn": 45
+          },
+          "text": "assertThat(cart.names(), hasSize(1))",
+          "kind": "count",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 9,
+            "endLine": 62,
+            "endColumn": 55
+          },
+          "text": "assertThat(cart.quantities(), hasKey(\"apple\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 60
+          },
+          "text": "assertThat(cart.quantities(), hasEntry(\"apple\", 2))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 51
+          },
+          "text": "assertThat(cart.quantities(), hasValue(2))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 55
+          },
+          "text": "assertThat(cart.owner(), containsString(\"an\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"an\"",
+            "normalized": "\"an\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "an"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 9,
+            "endLine": 66,
+            "endColumn": 50
+          },
+          "text": "assertThat(cart.owner(), startsWith(\"a\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"a\"",
+            "normalized": "\"a\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "a"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 9,
+            "endLine": 67,
+            "endColumn": 48
+          },
+          "text": "assertThat(cart.owner(), endsWith(\"a\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"a\"",
+            "normalized": "\"a\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "a"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 9,
+            "endLine": 68,
+            "endColumn": 54
+          },
+          "text": "assertThat(cart.owner(), oneOf(\"ana\", \"ben\"))",
+          "kind": "contains",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 13,
+      "bodyHash": "cf1758f068e401a0df7e3649ddca9fb5979703d9"
+    },
+    {
+      "id": "53520322eee7",
+      "title": "checksEmptiness",
+      "fullTitle": "HamcrestTest > checksEmptiness",
+      "suitePath": [
+        "HamcrestTest"
+      ],
+      "span": {
+        "startLine": 71,
+        "startColumn": 5,
+        "endLine": 78,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 72,
+        "startColumn": 28,
+        "endLine": 78,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 46
+          },
+          "text": "assertThat(cart.items(), is(empty()))",
+          "kind": "count",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.items()",
+            "normalized": "cart.items()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 52
+          },
+          "text": "assertThat(cart.coupons(), emptyIterable())",
+          "kind": "count",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.coupons()",
+            "normalized": "cart.coupons()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 9,
+            "endLine": 75,
+            "endColumn": 47
+          },
+          "text": "assertThat(cart.note(), emptyString())",
+          "kind": "count",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.note()",
+            "normalized": "cart.note()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 9,
+            "endLine": 76,
+            "endColumn": 46
+          },
+          "text": "assertThat(cart.tags(), emptyArray())",
+          "kind": "count",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.tags()",
+            "normalized": "cart.tags()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 9,
+            "endLine": 77,
+            "endColumn": 47
+          },
+          "text": "assertThat(cart.names(), not(empty()))",
+          "kind": "count",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertThat",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "0e5543d86dab4c96683e58bfd9836f4cebe67736"
+    },
+    {
+      "id": "7665ba65d270",
+      "title": "comparesNumbersAndTypes",
+      "fullTitle": "HamcrestTest > comparesNumbersAndTypes",
+      "suitePath": [
+        "HamcrestTest"
+      ],
+      "span": {
+        "startLine": 80,
+        "startColumn": 5,
+        "endLine": 88,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 81,
+        "startColumn": 36,
+        "endLine": 88,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 9,
+            "endLine": 82,
+            "endColumn": 49
+          },
+          "text": "assertThat(cart.size(), greaterThan(-1))",
+          "kind": "comparison",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "-1",
+            "normalized": "-1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "-1"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        },
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 9,
+            "endLine": 83,
+            "endColumn": 57
+          },
+          "text": "assertThat(cart.size(), greaterThanOrEqualTo(0))",
+          "kind": "comparison",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">="
+        },
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 9,
+            "endLine": 84,
+            "endColumn": 46
+          },
+          "text": "assertThat(cart.size(), lessThan(10))",
+          "kind": "comparison",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "10",
+            "normalized": "10",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "10"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 9,
+            "endLine": 85,
+            "endColumn": 54
+          },
+          "text": "assertThat(cart.size(), lessThanOrEqualTo(9))",
+          "kind": "comparison",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "9",
+            "normalized": "9",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "9"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<="
+        },
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 9,
+            "endLine": 86,
+            "endColumn": 57
+          },
+          "text": "assertThat(cart.first(), instanceOf(Item.class))",
+          "kind": "type",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Item.class",
+            "normalized": "Item.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 9,
+            "endLine": 87,
+            "endColumn": 50
+          },
+          "text": "assertThat(cart.first(), isA(Item.class))",
+          "kind": "type",
+          "library": "hamcrest",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Item.class",
+            "normalized": "Item.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "5abf2fc48fdf5e7f015667878620af9afdd51750"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 53
+      },
+      "source": "org.hamcrest.MatcherAssert",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "closeTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "contains"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 56
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "containsInAnyOrder"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 52
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "containsString"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 49
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "describedAs"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 43
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "empty"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 48
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "emptyArray"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 51
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "emptyIterable"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 49
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "emptyString"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "endsWith"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "equalTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 57
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "equalToIgnoringCase"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 49
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "greaterThan"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 58
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "greaterThanOrEqualTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasEntry"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasItem"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasItems"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 21,
+        "endColumn": 44
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasKey"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasSize"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 23,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasValue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 24,
+        "endColumn": 48
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "instanceOf"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 25,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 40
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "is"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 26,
+        "startColumn": 1,
+        "endLine": 26,
+        "endColumn": 41
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "isA"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 27,
+        "startColumn": 1,
+        "endLine": 27,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "lessThan"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 28,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 55
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "lessThanOrEqualTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 29,
+        "startColumn": 1,
+        "endLine": 29,
+        "endColumn": 41
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "not"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 30,
+        "startColumn": 1,
+        "endLine": 30,
+        "endColumn": 50
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "notNullValue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 31,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 47
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "nullValue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 32,
+        "startColumn": 1,
+        "endLine": 32,
+        "endColumn": 43
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "oneOf"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 33,
+        "startColumn": 1,
+        "endLine": 33,
+        "endColumn": 50
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "sameInstance"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 34,
+        "startColumn": 1,
+        "endLine": 34,
+        "endColumn": 48
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "startsWith"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 36,
+        "startColumn": 1,
+        "endLine": 36,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -91,7 +96,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 36,
+            "endLine": 23,
+            "endColumn": 55
+          },
+          "text": "assertThat(order.status()).isEqualTo(\"placed\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "order.status()",
+            "normalized": "order.status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"placed\"",
+            "normalized": "\"placed\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "placed"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -130,7 +175,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 52
+          },
+          "text": "assertThat(order(7).status(), is(\"placed\"))",
+          "kind": "equality",
+          "library": "hamcrest",
+          "actual": {
+            "text": "order(7).status()",
+            "normalized": "order(7).status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"placed\"",
+            "normalized": "\"placed\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "placed"
+            }
+          },
+          "matcher": "assertThat",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -209,7 +294,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 69,
+            "endLine": 41,
+            "endColumn": 85
+          },
+          "text": "assertThat(new OrderService(null, null).totalOf(29.99)).isEqualTo(32.39)",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "new OrderService(null, null).totalOf(29.99)",
+            "normalized": "new OrderService(null,null).totalOf(29.99)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "32.39",
+            "normalized": "32.39",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "32.39"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

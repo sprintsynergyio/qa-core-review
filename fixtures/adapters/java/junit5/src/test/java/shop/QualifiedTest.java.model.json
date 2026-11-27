@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -95,7 +100,36 @@
         "reason": "the stub server is replaced"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 9,
+            "endLine": 22,
+            "endColumn": 72
+          },
+          "text": "org.junit.jupiter.api.Assertions.assertTrue(server.isRunning())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "server.isRunning()",
+            "normalized": "server.isRunning()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -138,7 +172,47 @@
         "reason": "no free port"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 75
+          },
+          "text": "org.junit.jupiter.api.Assertions.assertEquals(8089, server.port())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "server.port()",
+            "normalized": "server.port()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "8089",
+            "normalized": "8089",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "8089"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

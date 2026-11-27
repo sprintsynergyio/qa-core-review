@@ -1,0 +1,1060 @@
+{
+  "path": "src/test/java/shop/AssertOrderTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "testng",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "AssertOrderTest",
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 68,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "afa69eebc45b",
+        "dc8c5926d4ee",
+        "1e456e7852ee",
+        "13b8d55614f1",
+        "7014185b1b41",
+        "a0a4250cfaad",
+        "d96867f6f507"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "afa69eebc45b",
+      "title": "putsTheActualValueFirst",
+      "fullTitle": "AssertOrderTest > putsTheActualValueFirst",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 43,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 9,
+            "endLine": 22,
+            "endColumn": 37
+          },
+          "text": "assertEquals(cart.size(), 2)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 9,
+            "endLine": 23,
+            "endColumn": 55
+          },
+          "text": "assertEquals(cart.owner(), \"ana\", \"the owner\")",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 9,
+            "endLine": 24,
+            "endColumn": 54
+          },
+          "text": "assertTrue(cart.isOpen(), \"the cart is open\")",
+          "kind": "truthiness",
+          "library": "testng",
+          "actual": {
+            "text": "cart.isOpen()",
+            "normalized": "cart.isOpen()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 66
+          },
+          "text": "assertEqualsNoOrder(cart.names(), new String[] {\"apple\"})",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.names()",
+            "normalized": "cart.names()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "new String[] {\"apple\"}",
+            "normalized": "new String[]{\"apple\"}",
+            "kind": "collection",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEqualsNoOrder",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 9,
+            "endLine": 26,
+            "endColumn": 64
+          },
+          "text": "assertEqualsDeep(cart.quantities(), Map.of(\"apple\", 2))",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.quantities()",
+            "normalized": "cart.quantities()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "Map.of(\"apple\", 2)",
+            "normalized": "Map.of(\"apple\",2)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEqualsDeep",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 43
+          },
+          "text": "Assert.assertNotNull(cart.first())",
+          "kind": "nullness",
+          "library": "testng",
+          "actual": {
+            "text": "cart.first()",
+            "normalized": "cart.first()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 55
+          },
+          "text": "Assert.assertEquals(cart.total(), 1.98, 0.001)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1.98",
+            "normalized": "1.98",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1.98"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 8,
+      "bodyHash": "390513f0882dc11ca95e4287ecf3abfd6e23d3b8"
+    },
+    {
+      "id": "dc8c5926d4ee",
+      "title": "putsTheExpectedValueFirstInTheJUnitStyle",
+      "fullTitle": "AssertOrderTest > putsTheExpectedValueFirstInTheJUnitStyle",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 31,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 60,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 9,
+            "endLine": 33,
+            "endColumn": 67
+          },
+          "text": "AssertJUnit.assertEquals(\"the owner\", \"ana\", cart.owner())",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 49
+          },
+          "text": "AssertJUnit.assertEquals(0, cart.size())",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "468be818ff12294c17e28c9095bfefd720790287"
+    },
+    {
+      "id": "1e456e7852ee",
+      "title": "expectsErrors",
+      "fullTitle": "AssertOrderTest > expectsErrors",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 37,
+        "startColumn": 5,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 38,
+        "startColumn": 33,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 68
+          },
+          "text": "assertThrows(IllegalStateException.class, () -> cart.pay())",
+          "kind": "throws",
+          "library": "testng",
+          "actual": null,
+          "expected": {
+            "text": "IllegalStateException.class",
+            "normalized": "IllegalStateException.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertThrows",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 39,
+            "endLine": 40,
+            "endColumn": 98
+          },
+          "text": "expectThrows(IllegalStateException.class, () -> cart.pay())",
+          "kind": "throws",
+          "library": "testng",
+          "actual": null,
+          "expected": {
+            "text": "IllegalStateException.class",
+            "normalized": "IllegalStateException.class",
+            "kind": "other",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "expectThrows",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 62
+          },
+          "text": "assertEquals(error.getMessage(), \"the cart is empty\")",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "error.getMessage()",
+            "normalized": "error.getMessage()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"the cart is empty\"",
+            "normalized": "\"the cart is empty\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "the cart is empty"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "42533f419ce6860b3ef270909f76bbd252085a92"
+    },
+    {
+      "id": "13b8d55614f1",
+      "title": "expectsTheErrorInTheAnnotation",
+      "fullTitle": "AssertOrderTest > expectsTheErrorInTheAnnotation",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 44,
+        "startColumn": 5,
+        "endLine": 47,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 50,
+        "endLine": 47,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": true,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "f14b71312f8009ee4dc391a21e4a8b549ed085cd"
+    },
+    {
+      "id": "7014185b1b41",
+      "title": "reportsAtTheEnd",
+      "fullTitle": "AssertOrderTest > reportsAtTheEnd",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 49,
+        "startColumn": 5,
+        "endLine": 55,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 50,
+        "startColumn": 35,
+        "endLine": 55,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 9,
+            "endLine": 52,
+            "endColumn": 47
+          },
+          "text": "soft.assertEquals(cart.owner(), \"ana\")",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 9,
+            "endLine": 53,
+            "endColumn": 40
+          },
+          "text": "soft.assertTrue(cart.isEmpty())",
+          "kind": "truthiness",
+          "library": "testng",
+          "actual": {
+            "text": "cart.isEmpty()",
+            "normalized": "cart.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "ab79c5555a8ff3777152d8249e8c9f2b9f9e6e46"
+    },
+    {
+      "id": "a0a4250cfaad",
+      "title": "neverReports",
+      "fullTitle": "AssertOrderTest > neverReports",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 57,
+        "startColumn": 5,
+        "endLine": 62,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 58,
+        "startColumn": 32,
+        "endLine": 62,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 47
+          },
+          "text": "soft.assertEquals(cart.owner(), \"ana\")",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": true,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 9,
+            "endLine": 61,
+            "endColumn": 40
+          },
+          "text": "soft.assertTrue(cart.isEmpty())",
+          "kind": "truthiness",
+          "library": "testng",
+          "actual": {
+            "text": "cart.isEmpty()",
+            "normalized": "cart.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": true,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "8fb6b14c739a6a7c4fc656f4de64a469ce7ad4ba"
+    },
+    {
+      "id": "d96867f6f507",
+      "title": "isNotWrittenYet",
+      "fullTitle": "AssertOrderTest > isNotWrittenYet",
+      "suitePath": [
+        "AssertOrderTest"
+      ],
+      "span": {
+        "startLine": 64,
+        "startColumn": 5,
+        "endLine": 67,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 65,
+        "startColumn": 35,
+        "endLine": 67,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 9,
+            "endLine": 66,
+            "endColumn": 39
+          },
+          "text": "Assert.fail(\"not written yet\")",
+          "kind": "fail-call",
+          "library": "testng",
+          "actual": null,
+          "expected": null,
+          "matcher": "fail",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "2d20a25923ce397e4790d7ad68a6d985b04bbfa7"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 46
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 50
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertEqualsDeep"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 53
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertEqualsNoOrder"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 46
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertThrows"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 44
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 46
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "expectThrows"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 22
+      },
+      "source": "java.util.Map",
+      "names": [
+        "Map"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 26
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "Assert"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 31
+      },
+      "source": "org.testng.AssertJUnit",
+      "names": [
+        "AssertJUnit"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 36
+      },
+      "source": "org.testng.annotations.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 38
+      },
+      "source": "org.testng.asserts.SoftAssert",
+      "names": [
+        "SoftAssert"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

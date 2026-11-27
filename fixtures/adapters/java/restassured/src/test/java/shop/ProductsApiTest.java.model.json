@@ -1,0 +1,1157 @@
+{
+  "path": "src/test/java/shop/ProductsApiTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "restassured"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "ProductsApiTest",
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 74,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "fba8468d1bca",
+        "171128e7d282",
+        "7520437e6781",
+        "9c1fcc9611ba",
+        "808d42c611d8",
+        "38cb3e3ca04d",
+        "464bc2053fd1"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "fba8468d1bca",
+      "title": "listsTheProducts",
+      "fullTitle": "ProductsApiTest > listsTheProducts",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 25,
+        "startColumn": 5,
+        "endLine": 32,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 26,
+        "startColumn": 29,
+        "endLine": 32,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 14,
+            "endLine": 28,
+            "endColumn": 29
+          },
+          "text": "given().baseUri(API).when().get(\"/products\").then() .statusCode(200) .contentType(\"application/json\") .body(\"items\", hasSize(3)) .body(\"items[0].price\", greaterThan(0f))",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 14,
+            "endLine": 29,
+            "endColumn": 45
+          },
+          "text": "given().baseUri(API).when().get(\"/products\").then() .statusCode(200) .contentType(\"application/json\") .body(\"items\", hasSize(3)) .body(\"items[0].price\", greaterThan(0f))",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"application/json\"",
+            "normalized": "\"application/json\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "application/json"
+            }
+          },
+          "matcher": "contentType",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 14,
+            "endLine": 30,
+            "endColumn": 39
+          },
+          "text": "given().baseUri(API).when().get(\"/products\").then() .statusCode(200) .contentType(\"application/json\") .body(\"items\", hasSize(3)) .body(\"items[0].price\", greaterThan(0f))",
+          "kind": "count",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "body",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 14,
+            "endLine": 31,
+            "endColumn": 53
+          },
+          "text": "given().baseUri(API).when().get(\"/products\").then() .statusCode(200) .contentType(\"application/json\") .body(\"items\", hasSize(3)) .body(\"items[0].price\", greaterThan(0f))",
+          "kind": "comparison",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "0f",
+            "normalized": "0f",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0f"
+            }
+          },
+          "matcher": "body",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": ">"
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "98914e24cb1810775bfe5aae048919d9788a6db0"
+    },
+    {
+      "id": "171128e7d282",
+      "title": "rejectsAnUnknownProduct",
+      "fullTitle": "ProductsApiTest > rejectsAnUnknownProduct",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 37,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 35,
+        "startColumn": 36,
+        "endLine": 37,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 48,
+            "endLine": 36,
+            "endColumn": 63
+          },
+          "text": "when().get(API + \"/products/0\").then().statusCode(404).body(\"error\", containsString(\"not found\"))",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "404",
+            "normalized": "404",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "404"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            404
+          ]
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 64,
+            "endLine": 36,
+            "endColumn": 106
+          },
+          "text": "when().get(API + \"/products/0\").then().statusCode(404).body(\"error\", containsString(\"not found\"))",
+          "kind": "contains",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"not found\"",
+            "normalized": "\"not found\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "not found"
+            }
+          },
+          "matcher": "body",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ecb2339a97158e385caa1e0533b575f90210305f"
+    },
+    {
+      "id": "7520437e6781",
+      "title": "acceptsTwoStatusCodes",
+      "fullTitle": "ProductsApiTest > acceptsTwoStatusCodes",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 34,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 59,
+            "endLine": 41,
+            "endColumn": 94
+          },
+          "text": "given().baseUri(API).delete(\"/products/7\").then().statusCode(anyOf(is(200), is(204)))",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": null,
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200,
+            204
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "4ab5cede28bf051356c507272b3f323f5e064796"
+    },
+    {
+      "id": "9c1fcc9611ba",
+      "title": "readsTheHeadOfTheAnswer",
+      "fullTitle": "ProductsApiTest > readsTheHeadOfTheAnswer",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 44,
+        "startColumn": 5,
+        "endLine": 55,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 36,
+        "endLine": 55,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 14,
+            "endLine": 47,
+            "endColumn": 47
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "contains",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"200\"",
+            "normalized": "\"200\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "200"
+            }
+          },
+          "matcher": "statusLine",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 14,
+            "endLine": 48,
+            "endColumn": 49
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"no-store\"",
+            "normalized": "\"no-store\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "no-store"
+            }
+          },
+          "matcher": "header",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 14,
+            "endLine": 49,
+            "endColumn": 63
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "nullness",
+          "library": "restassured",
+          "actual": null,
+          "expected": null,
+          "matcher": "headers",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 14,
+            "endLine": 50,
+            "endColumn": 49
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"\"",
+            "normalized": "\"\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": ""
+            }
+          },
+          "matcher": "cookie",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 14,
+            "endLine": 51,
+            "endColumn": 45
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": null,
+          "matcher": "cookies",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 14,
+            "endLine": 52,
+            "endColumn": 35
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "comparison",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "2000L",
+            "normalized": "2000L",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2000L"
+            }
+          },
+          "matcher": "time",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 14,
+            "endLine": 53,
+            "endColumn": 46
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "contains",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "content",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 14,
+            "endLine": 54,
+            "endColumn": 26
+          },
+          "text": "given().baseUri(API).get(\"/products\").then().assertThat() .statusLine(containsString(\"200\")) .header(\"Cache-Control\", \"no-store\") .headers(\"X-Shop\", \"eu\", \"X-Page\", notNullValue()) .cookie(\"session...",
+          "kind": "other",
+          "library": "restassured",
+          "actual": null,
+          "expected": null,
+          "matcher": "spec",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "a7d79bc9036c0ce213c4c385c59b17db16322572"
+    },
+    {
+      "id": "808d42c611d8",
+      "title": "onlyLogsTheAnswer",
+      "fullTitle": "ProductsApiTest > onlyLogsTheAnswer",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 57,
+        "startColumn": 5,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 58,
+        "startColumn": 30,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "0c870496ff9302c0d79848e27d90e8df31491736"
+    },
+    {
+      "id": "38cb3e3ca04d",
+      "title": "readsTheStatusByHand",
+      "fullTitle": "ProductsApiTest > readsTheStatusByHand",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 62,
+        "startColumn": 5,
+        "endLine": 67,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 33,
+        "endLine": 67,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 49
+          },
+          "text": "assertEquals(200, response.statusCode())",
+          "kind": "status",
+          "library": "junit",
+          "actual": {
+            "text": "response.statusCode()",
+            "normalized": "response.statusCode()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 9,
+            "endLine": 66,
+            "endColumn": 69
+          },
+          "text": "assertEquals(3, response.jsonPath().getList(\"items\").size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "response.jsonPath().getList(\"items\").size()",
+            "normalized": "response.jsonPath().getList(\"items\").size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "17a0ed2f0eac81a4b262de23fd96c78e8ab27640"
+    },
+    {
+      "id": "464bc2053fd1",
+      "title": "checksAStoredAnswer",
+      "fullTitle": "ProductsApiTest > checksAStoredAnswer",
+      "suitePath": [
+        "ProductsApiTest"
+      ],
+      "span": {
+        "startLine": 69,
+        "startColumn": 5,
+        "endLine": 73,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 70,
+        "startColumn": 32,
+        "endLine": 73,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 25,
+            "endLine": 72,
+            "endColumn": 40
+          },
+          "text": "response.then().statusCode(200).body(\"name\", equalTo(\"apple\"))",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 41,
+            "endLine": 72,
+            "endColumn": 71
+          },
+          "text": "response.then().statusCode(200).body(\"name\", equalTo(\"apple\"))",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "body",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "97250cdafdbc5c841ad395330edb788f52effa0a"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 48
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "given"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 47
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "when"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 43
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "anyOf"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 52
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "containsString"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "equalTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 49
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "greaterThan"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "hasSize"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 40
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "is"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 46
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "lessThan"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 41
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "not"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 50
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "notNullValue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 41
+      },
+      "source": "io.restassured.response.Response",
+      "names": [
+        "Response"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 59
+      },
+      "source": "io.restassured.specification.ResponseSpecification",
+      "names": [
+        "ResponseSpecification"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 22
+      },
+      "source": "java.util.Map",
+      "names": [
+        "Map"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

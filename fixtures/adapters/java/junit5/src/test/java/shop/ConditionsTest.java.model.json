@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -79,7 +84,36 @@
         "reason": "the file picker is not supported on Windows"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 9,
+            "endLine": 15,
+            "endColumn": 51
+          },
+          "text": "assertTrue(Shop.upload(\"avatar.png\").ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.upload(\"avatar.png\").ok()",
+            "normalized": "Shop.upload(\"avatar.png\").ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -122,7 +156,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 9,
+            "endLine": 21,
+            "endColumn": 59
+          },
+          "text": "assertTrue(Shop.login(\"standard_user\", true).ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.login(\"standard_user\", true).ok()",
+            "normalized": "Shop.login(\"standard_user\",true).ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -165,7 +228,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 51
+          },
+          "text": "assertEquals(\"$29.99\", Shop.format(29.99))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.format(29.99)",
+            "normalized": "Shop.format(29.99)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"$29.99\"",
+            "normalized": "\"$29.99\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "$29.99"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -208,7 +311,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 9,
+            "endLine": 33,
+            "endColumn": 41
+          },
+          "text": "assertTrue(Shop.parallel().ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.parallel().ok()",
+            "normalized": "Shop.parallel().ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -251,7 +383,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 46
+          },
+          "text": "assertEquals(3, Shop.orders().size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.orders().size()",
+            "normalized": "Shop.orders().size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -294,7 +466,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 9,
+            "endLine": 45,
+            "endColumn": 48
+          },
+          "text": "assertEquals(2, Shop.payments().size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.payments().size()",
+            "normalized": "Shop.payments().size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -337,7 +549,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 37
+          },
+          "text": "assertTrue(Shop.sync().ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.sync().ok()",
+            "normalized": "Shop.sync().ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -380,7 +621,36 @@
         "reason": "Docker is needed for the database"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 38
+          },
+          "text": "assertTrue(Shop.save(7).ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.save(7).ok()",
+            "normalized": "Shop.save(7).ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -423,7 +693,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 37
+          },
+          "text": "assertTrue(Shop.open().ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.open().ok()",
+            "normalized": "Shop.open().ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -466,7 +765,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 9,
+            "endLine": 69,
+            "endColumn": 46
+          },
+          "text": "assertTrue(Shop.nativeLibrary().ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.nativeLibrary().ok()",
+            "normalized": "Shop.nativeLibrary().ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -509,7 +837,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 9,
+            "endLine": 75,
+            "endColumn": 53
+          },
+          "text": "assertTrue(Shop.mail(\"order 7 placed\").ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.mail(\"order 7 placed\").ok()",
+            "normalized": "Shop.mail(\"order 7 placed\").ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -552,7 +909,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 9,
+            "endLine": 81,
+            "endColumn": 44
+          },
+          "text": "assertTrue(Shop.charge(29.99).ok())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.charge(29.99).ok()",
+            "normalized": "Shop.charge(29.99).ok()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -595,7 +981,36 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 9,
+            "endLine": 87,
+            "endColumn": 36
+          },
+          "text": "assertNotNull(Shop.proxy())",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.proxy()",
+            "normalized": "Shop.proxy()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -638,7 +1053,48 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 93,
+            "startColumn": 9,
+            "endLine": 93,
+            "endColumn": 47
+          },
+          "text": "assertTrue(Shop.startupMillis() < 100)",
+          "kind": "comparison",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.startupMillis()",
+            "normalized": "Shop.startupMillis()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "100",
+            "normalized": "100",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "100"
+            }
+          },
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "operator": "<"
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -681,7 +1137,47 @@
         "reason": "refunds are tested on Linux only"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 9,
+            "endLine": 99,
+            "endColumn": 53
+          },
+          "text": "assertEquals(29.99, Shop.refund(7).amount())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.refund(7).amount()",
+            "normalized": "Shop.refund(7).amount()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "29.99",
+            "normalized": "29.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "29.99"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -724,7 +1220,47 @@
         "reason": null
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 106,
+            "startColumn": 9,
+            "endLine": 106,
+            "endColumn": 58
+          },
+          "text": "assertEquals(\"refunded\", Shop.refund(8).status())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.refund(8).status()",
+            "normalized": "Shop.refund(8).status()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"refunded\"",
+            "normalized": "\"refunded\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "refunded"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -810,7 +1346,47 @@
         "reason": "old data"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 119,
+            "startColumn": 9,
+            "endLine": 119,
+            "endColumn": 46
+          },
+          "text": "assertEquals(3, Shop.orders().size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Shop.orders().size()",
+            "normalized": "Shop.orders().size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

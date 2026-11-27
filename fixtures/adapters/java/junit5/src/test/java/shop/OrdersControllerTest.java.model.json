@@ -1,0 +1,778 @@
+{
+  "path": "src/test/java/shop/OrdersControllerTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "OrdersControllerTest",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 62,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "67f3c73f793e",
+        "04eaa59c84e2",
+        "bf6395a53b38",
+        "d53a977a1754",
+        "6091d8111da8",
+        "9af2e075da37",
+        "3336d1961342",
+        "1e1d49461f3b"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "67f3c73f793e",
+      "title": "listsTheOrders",
+      "fullTitle": "OrdersControllerTest > listsTheOrders",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 44,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 41,
+            "endLine": 21,
+            "endColumn": 67
+          },
+          "text": "mockMvc.perform(get(\"/orders\")).andExpect(status().isOk()).andExpect(jsonPath(\"$[0].id\").value(7))",
+          "kind": "status",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "andExpect",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 68,
+            "endLine": 21,
+            "endColumn": 107
+          },
+          "text": "mockMvc.perform(get(\"/orders\")).andExpect(status().isOk()).andExpect(jsonPath(\"$[0].id\").value(7))",
+          "kind": "other",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "andExpect",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "6dc009112981a429753ba21147880c46d55fdba8"
+    },
+    {
+      "id": "04eaa59c84e2",
+      "title": "rejectsAnUnknownOrder",
+      "fullTitle": "OrdersControllerTest > rejectsAnUnknownOrder",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 27,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 51,
+        "endLine": 27,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 43,
+            "endLine": 26,
+            "endColumn": 113
+          },
+          "text": "mockMvc.perform(get(\"/orders/0\")).andExpectAll(status().is(404), jsonPath(\"$.error\").value(\"not found\"))",
+          "kind": "status",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "andExpectAll",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            404
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "9349cb234db9acfde98686eeae31d95f18f924dc"
+    },
+    {
+      "id": "bf6395a53b38",
+      "title": "readsOneOrder",
+      "fullTitle": "OrdersControllerTest > readsOneOrder",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 29,
+        "startColumn": 5,
+        "endLine": 36,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 26,
+        "endLine": 36,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 14,
+            "endLine": 32,
+            "endColumn": 28
+          },
+          "text": "client.get().uri(\"/orders/7\").exchange() .expectStatus().isOk() .expectHeader().contentType(\"application/json\") .expectCookie().doesNotExist(\"session\") .expectBody().jsonPath(\"$.id\").isEqualTo(7)",
+          "kind": "status",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectStatus",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 14,
+            "endLine": 33,
+            "endColumn": 28
+          },
+          "text": "client.get().uri(\"/orders/7\").exchange() .expectStatus().isOk() .expectHeader().contentType(\"application/json\") .expectCookie().doesNotExist(\"session\") .expectBody().jsonPath(\"$.id\").isEqualTo(7)",
+          "kind": "other",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectHeader",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 14,
+            "endLine": 34,
+            "endColumn": 28
+          },
+          "text": "client.get().uri(\"/orders/7\").exchange() .expectStatus().isOk() .expectHeader().contentType(\"application/json\") .expectCookie().doesNotExist(\"session\") .expectBody().jsonPath(\"$.id\").isEqualTo(7)",
+          "kind": "other",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectCookie",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 14,
+            "endLine": 35,
+            "endColumn": 26
+          },
+          "text": "client.get().uri(\"/orders/7\").exchange() .expectStatus().isOk() .expectHeader().contentType(\"application/json\") .expectCookie().doesNotExist(\"session\") .expectBody().jsonPath(\"$.id\").isEqualTo(7)",
+          "kind": "other",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectBody",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "2666b46f6f5ffd7e19c88033d14b2ccb3224de83"
+    },
+    {
+      "id": "d53a977a1754",
+      "title": "readsManyOrders",
+      "fullTitle": "OrdersControllerTest > readsManyOrders",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 38,
+        "startColumn": 5,
+        "endLine": 41,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 39,
+        "startColumn": 28,
+        "endLine": 41,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 48,
+            "endLine": 40,
+            "endColumn": 62
+          },
+          "text": "client.get().uri(\"/orders\").exchange().expectStatus().isEqualTo(200).expectBodyList(Order.class).hasSize(2)",
+          "kind": "status",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectStatus",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 78,
+            "endLine": 40,
+            "endColumn": 105
+          },
+          "text": "client.get().uri(\"/orders\").exchange().expectStatus().isEqualTo(200).expectBodyList(Order.class).hasSize(2)",
+          "kind": "other",
+          "library": "spring",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectBodyList",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "9517ea71a87078a58ec6a848402ac9ff084d794b"
+    },
+    {
+      "id": "6091d8111da8",
+      "title": "onlyPrintsTheAnswer",
+      "fullTitle": "OrdersControllerTest > onlyPrintsTheAnswer",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 43,
+        "startColumn": 5,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 44,
+        "startColumn": 49,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "c4b91496f095532a3aad110fedfc0bc73873f8f3"
+    },
+    {
+      "id": "9af2e075da37",
+      "title": "streamsTheOrders",
+      "fullTitle": "OrdersControllerTest > streamsTheOrders",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 48,
+        "startColumn": 5,
+        "endLine": 51,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 49,
+        "startColumn": 29,
+        "endLine": 51,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 78
+          },
+          "text": "StepVerifier.create(orders.all()).expectNextCount(2).verifyComplete()",
+          "kind": "other",
+          "library": "reactor",
+          "actual": null,
+          "expected": null,
+          "matcher": "verifyComplete",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b230b8868c9c4e3711c722cbc8908e06911cc1e1"
+    },
+    {
+      "id": "3336d1961342",
+      "title": "neverRunsTheVerifier",
+      "fullTitle": "OrdersControllerTest > neverRunsTheVerifier",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 53,
+        "startColumn": 5,
+        "endLine": 56,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 54,
+        "startColumn": 33,
+        "endLine": 56,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 9,
+            "endLine": 55,
+            "endColumn": 78
+          },
+          "text": "StepVerifier.create(orders.all()).expectNextCount(2).expectComplete()",
+          "kind": "other",
+          "library": "reactor",
+          "actual": null,
+          "expected": null,
+          "matcher": "expectComplete",
+          "negated": false,
+          "soft": false,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "309e6135ea3ae94bb8f6a5573a4da27ef2026e0d"
+    },
+    {
+      "id": "1e1d49461f3b",
+      "title": "readsLikeTruth",
+      "fullTitle": "OrdersControllerTest > readsLikeTruth",
+      "suitePath": [
+        "OrdersControllerTest"
+      ],
+      "span": {
+        "startLine": 58,
+        "startColumn": 5,
+        "endLine": 61,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 59,
+        "startColumn": 27,
+        "endLine": 61,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 45,
+            "endLine": 60,
+            "endColumn": 61
+          },
+          "text": "assertThat(new Cart(\"ana\").owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "truth",
+          "actual": {
+            "text": "new Cart(\"ana\").owner()",
+            "normalized": "new Cart(\"ana\").owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d1c57200e211eb5c3e0fcd52d4cc150b564615ae"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 56
+      },
+      "source": "com.google.common.truth.Truth",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 87
+      },
+      "source": "org.springframework.test.web.servlet.request.MockMvcRequestBuilders",
+      "names": [
+        "get"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 90
+      },
+      "source": "org.springframework.test.web.servlet.result.MockMvcResultMatchers",
+      "names": [
+        "jsonPath"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 88
+      },
+      "source": "org.springframework.test.web.servlet.result.MockMvcResultMatchers",
+      "names": [
+        "status"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 63
+      },
+      "source": "org.springframework.beans.factory.annotation.Autowired",
+      "names": [
+        "Autowired"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 67
+      },
+      "source": "org.springframework.test.web.reactive.server.WebTestClient",
+      "names": [
+        "WebTestClient"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 53
+      },
+      "source": "org.springframework.test.web.servlet.MockMvc",
+      "names": [
+        "MockMvc"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 34
+      },
+      "source": "reactor.test.StepVerifier",
+      "names": [
+        "StepVerifier"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

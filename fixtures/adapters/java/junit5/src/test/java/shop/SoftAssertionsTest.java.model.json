@@ -1,0 +1,875 @@
+{
+  "path": "src/test/java/shop/SoftAssertionsTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "SoftAssertionsTest",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 67,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "4494603747a7",
+        "4d9c4dd1de1b",
+        "3f2f40d59d6a",
+        "b15a909f9113",
+        "b543200863c7",
+        "57c50896200e",
+        "c1afcef14439"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "4494603747a7",
+      "title": "reportsAtTheEnd",
+      "fullTitle": "SoftAssertionsTest > reportsAtTheEnd",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 26,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 28,
+        "endLine": 26,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 39,
+            "endLine": 23,
+            "endColumn": 55
+          },
+          "text": "soft.assertThat(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 38,
+            "endLine": 24,
+            "endColumn": 46
+          },
+          "text": "soft.assertThat(cart.size()).isZero()",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isZero",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 4,
+      "bodyHash": "d1185c846d8717ca1d230c8b54e9fbfde199a1a0"
+    },
+    {
+      "id": "4d9c4dd1de1b",
+      "title": "neverReports",
+      "fullTitle": "SoftAssertionsTest > neverReports",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 28,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 29,
+        "startColumn": 25,
+        "endLine": 33,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 39,
+            "endLine": 31,
+            "endColumn": 55
+          },
+          "text": "soft.assertThat(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": true,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 38,
+            "endLine": 32,
+            "endColumn": 46
+          },
+          "text": "soft.assertThat(cart.size()).isZero()",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isZero",
+          "negated": false,
+          "soft": true,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "bb5650b047dd4e58fc955b604c1d419d2f15264b"
+    },
+    {
+      "id": "3f2f40d59d6a",
+      "title": "neverReportsInBddStyle",
+      "fullTitle": "SoftAssertionsTest > neverReportsInBddStyle",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 39,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 36,
+        "startColumn": 35,
+        "endLine": 39,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 33,
+            "endLine": 38,
+            "endColumn": 49
+          },
+          "text": "soft.then(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": true,
+          "complete": false,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "fd6cda0a586a91e9ade3f69039c87addbcb6ea61"
+    },
+    {
+      "id": "b15a909f9113",
+      "title": "reportsWhenTheBlockEnds",
+      "fullTitle": "SoftAssertionsTest > reportsWhenTheBlockEnds",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 41,
+        "startColumn": 5,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 42,
+        "startColumn": 36,
+        "endLine": 46,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 43,
+            "endLine": 44,
+            "endColumn": 59
+          },
+          "text": "soft.assertThat(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "ade75e4181e5e4302f3fd9843da4c73edce50d2a"
+    },
+    {
+      "id": "b543200863c7",
+      "title": "reportsThroughTheExtension",
+      "fullTitle": "SoftAssertionsTest > reportsThroughTheExtension",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 48,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 49,
+        "startColumn": 39,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 41,
+            "endLine": 50,
+            "endColumn": 57
+          },
+          "text": "softly.assertThat(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 40,
+            "endLine": 51,
+            "endColumn": 48
+          },
+          "text": "softly.assertThat(cart.size()).isZero()",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isZero",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "4d2414f2b09c7326f5c0a93a25071c65cd693222"
+    },
+    {
+      "id": "57c50896200e",
+      "title": "reportsInsideTheCallback",
+      "fullTitle": "SoftAssertionsTest > reportsInsideTheCallback",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 55,
+        "startColumn": 37,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 42,
+            "endLine": 57,
+            "endColumn": 58
+          },
+          "text": "all.assertThat(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 44,
+            "endLine": 58,
+            "endColumn": 52
+          },
+          "text": "all.assertThat(cart.isEmpty()).isTrue()",
+          "kind": "truthiness",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.isEmpty()",
+            "normalized": "cart.isEmpty()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isTrue",
+          "negated": false,
+          "soft": true,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "3a01a08aac90490f3d4147fb3604945691730d48"
+    },
+    {
+      "id": "c1afcef14439",
+      "title": "readsLikeASentence",
+      "fullTitle": "SoftAssertionsTest > readsLikeASentence",
+      "suitePath": [
+        "SoftAssertionsTest"
+      ],
+      "span": {
+        "startLine": 62,
+        "startColumn": 5,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 31,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 28,
+            "endLine": 64,
+            "endColumn": 44
+          },
+          "text": "then(cart.owner()).isEqualTo(\"ana\")",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.owner()",
+            "normalized": "cart.owner()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"ana\"",
+            "normalized": "\"ana\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "ana"
+            }
+          },
+          "matcher": "isEqualTo",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 33,
+            "endLine": 65,
+            "endColumn": 41
+          },
+          "text": "assertThat(cart.size()).isZero()",
+          "kind": "equality",
+          "library": "assertj",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isZero",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "7047eae052203df52d053c831dbef4e4a4498934"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 71
+      },
+      "source": "org.assertj.core.api.AssertionsForClassTypes",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 55
+      },
+      "source": "org.assertj.core.api.BDDAssertions",
+      "names": [
+        "then"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 64
+      },
+      "source": "org.assertj.core.api.SoftAssertions",
+      "names": [
+        "assertSoftly"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 57
+      },
+      "source": "org.assertj.core.api.AutoCloseableSoftAssertions",
+      "names": [
+        "AutoCloseableSoftAssertions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 47
+      },
+      "source": "org.assertj.core.api.BDDSoftAssertions",
+      "names": [
+        "BDDSoftAssertions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 56
+      },
+      "source": "org.assertj.core.api.JUnitJupiterSoftAssertions",
+      "names": [
+        "JUnitJupiterSoftAssertions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 44
+      },
+      "source": "org.assertj.core.api.SoftAssertions",
+      "names": [
+        "SoftAssertions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 58
+      },
+      "source": "org.junit.jupiter.api.extension.RegisterExtension",
+      "names": [
+        "RegisterExtension"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

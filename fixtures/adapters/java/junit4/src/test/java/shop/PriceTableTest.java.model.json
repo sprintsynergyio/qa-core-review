@@ -14,7 +14,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -61,7 +66,43 @@
         "source": "ParameterizedTest",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 9,
+            "endLine": 35,
+            "endColumn": 55
+          },
+          "text": "assertEquals(price, Cart.priceOf(item), 0.001)",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -103,7 +144,36 @@
         "source": "ParameterizedTest",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 40,
+            "endColumn": 41
+          },
+          "text": "assertNotNull(Cart.nameOf(item))",
+          "kind": "nullness",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.nameOf(item)",
+            "normalized": "Cart.nameOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertNotNull",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

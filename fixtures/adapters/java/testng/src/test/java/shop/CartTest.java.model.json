@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -128,7 +133,47 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 9,
+            "endLine": 42,
+            "endColumn": 37
+          },
+          "text": "assertEquals(cart.size(), 1)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.size()",
+            "normalized": "cart.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -173,7 +218,47 @@
         "reason": "the coupon service is not ready"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 42
+          },
+          "text": "assertEquals(cart.total(), 26.99)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "cart.total()",
+            "normalized": "cart.total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "26.99",
+            "normalized": "26.99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "26.99"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -263,7 +348,36 @@
         "reason": "the export is rebuilt"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 9,
+            "endLine": 58,
+            "endColumn": 43
+          },
+          "text": "assertTrue(cart.export().exists())",
+          "kind": "truthiness",
+          "library": "testng",
+          "actual": {
+            "text": "cart.export().exists()",
+            "normalized": "cart.export().exists()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -305,7 +419,43 @@
         "source": "DataProvider",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 62
+          },
+          "text": "Assert.assertEquals(price, Cart.priceOf(item), 0.001)",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Cart.priceOf(item)",
+            "normalized": "Cart.priceOf(item)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "price",
+            "normalized": "price",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -347,7 +497,43 @@
         "source": "DataProvider",
         "cases": 3
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 77,
+            "startColumn": 9,
+            "endLine": 77,
+            "endColumn": 55
+          },
+          "text": "assertEquals(Discount.apply(100, code), total)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "Discount.apply(100, code)",
+            "normalized": "Discount.apply(100,code)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "total",
+            "normalized": "total",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -389,7 +575,43 @@
         "source": "DataProvider",
         "cases": null
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 9,
+            "endLine": 88,
+            "endColumn": 52
+          },
+          "text": "assertEquals(Shop.order(id).total(), total)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "Shop.order(id).total()",
+            "normalized": "Shop.order(id).total()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "total",
+            "normalized": "total",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -475,7 +697,47 @@
         "reason": "old data"
       },
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 9,
+            "endLine": 101,
+            "endColumn": 46
+          },
+          "text": "assertEquals(Shop.orders().size(), 3)",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "Shop.orders().size()",
+            "normalized": "Shop.orders().size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "3",
+            "normalized": "3",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "3"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

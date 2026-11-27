@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -120,7 +125,36 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 48,
+            "endLine": 43,
+            "endColumn": 59
+          },
+          "text": "assertThat(page.getByText(\"Products\")).isVisible()",
+          "kind": "ui-state",
+          "library": "playwright",
+          "actual": {
+            "text": "page.getByText(\"Products\")",
+            "normalized": "page.getByText(\"Products\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "isVisible",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false

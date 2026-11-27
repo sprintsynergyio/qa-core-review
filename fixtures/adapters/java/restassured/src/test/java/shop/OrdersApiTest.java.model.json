@@ -16,7 +16,12 @@
     "hooks",
     "modifiers",
     "parameterized",
-    "body-hash"
+    "assertions",
+    "assertion-operands",
+    "try-blocks",
+    "body-hash",
+    "helpers",
+    "reachability"
   ],
   "suites": [
     {
@@ -76,7 +81,43 @@
       "modifiers": [],
       "skip": null,
       "parameterized": null,
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 46,
+            "endLine": 19,
+            "endColumn": 61
+          },
+          "text": "given().when().get(\"/orders\").then().statusCode(200)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
@@ -118,7 +159,71 @@
         "source": "DataProvider",
         "cases": 2
       },
-      "assertions": [],
+      "assertions": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 71,
+            "endLine": 24,
+            "endColumn": 86
+          },
+          "text": "given().pathParam(\"id\", id).when().get(\"/orders/{id}\").then().statusCode(200).body(\"id\", equalTo(id))",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 87,
+            "endLine": 24,
+            "endColumn": 110
+          },
+          "text": "given().pathParam(\"id\", id).when().get(\"/orders/{id}\").then().statusCode(200).body(\"id\", equalTo(id))",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "id",
+            "normalized": "id",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "matcher": "body",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
       "assertionGuards": {
         "expectedCount": false,
         "hasAssertions": false
