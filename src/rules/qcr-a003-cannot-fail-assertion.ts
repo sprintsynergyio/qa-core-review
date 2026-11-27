@@ -14,11 +14,17 @@ const SUB_CASES: ReadonlyArray<{ key: string; message: string; matches(assertion
     key: 'mock', message: 'This is not a check on the mock: the assertion method does not exist or is never called, so nothing is checked.',
     matches: (a) => !a.complete && a.kind === 'mock-call',
   },
+  {
+    // A soft assertion with its check written out, on an object that never reports what it collected.
+    key: 'soft', message: 'This soft assertion is never reported: nothing asks the object that collects it for its failures, so the test passes whatever it finds.',
+    matches: (a) => !a.complete && a.soft && a.matcher !== null,
+  },
   { key: 'incomplete', message: 'This assertion is never finished: no matcher is called, so nothing is checked.', matches: (a) => !a.complete },
   { key: 'unreachable', message: 'This assertion is never reached: the code before it always returns or throws.', matches: (a) => !a.reachable },
   { key: 'unawaited', message: 'This assertion is not awaited, so the test can end before it fails.', matches: (a) => a.awaited === 'no' },
   {
-    key: 'locator', message: 'A locator object always exists, so this check passes even when the element is missing.',
+    // A lazy locator exists before the element does. An eager lookup gives an element or throws. Neither is ever null or false.
+    key: 'locator', message: 'This checks only that a locator or element object exists, and it always does. It says nothing about the page.',
     matches: (a) => a.actual?.isLocator === true && EXISTENCE_KINDS.includes(a.kind),
   },
   {

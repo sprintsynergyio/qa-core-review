@@ -189,8 +189,8 @@ test('creates', async ({ request }) => { const created = await request.post('/or
 
 test('QCR-C001: every case has a bad fixture, and every bad fixture has a fixed twin of the same name', async () => {
   const seen = new Set();
-  // The Python folders have the same check in tests/adapters/python-rules.test.mjs.
-  const folders = ruleFixtureFolders().filter((entry) => entry.ruleId === 'QCR-C001' && !entry.name.startsWith('python-'));
+  // The Python and Java folders have the same check in tests/adapters/python-rules.test.mjs and java-rules.test.mjs.
+  const folders = ruleFixtureFolders().filter((entry) => entry.ruleId === 'QCR-C001' && !/^(python|java)-/.test(entry.name));
   assert.deepEqual(folders.map((entry) => entry.name), ['javascript-mocha', 'typescript-jest', 'typescript-playwright', 'typescript-vitest']);
   for (const { name, dir } of folders) {
     const { bad, good, report } = await runRuleFixtures(dir);

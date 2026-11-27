@@ -2979,7 +2979,7 @@
             "isMock": false
           },
           "expected": null,
-          "matcher": "assertThat",
+          "matcher": null,
           "negated": false,
           "soft": false,
           "complete": false,
@@ -3007,7 +3007,7 @@
             "isMock": false
           },
           "expected": null,
-          "matcher": "assertThat",
+          "matcher": null,
           "negated": false,
           "soft": false,
           "complete": false,

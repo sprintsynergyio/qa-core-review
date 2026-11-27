@@ -50,7 +50,7 @@ test('every Python fix text is reached by a bad fixture, and the finding carries
   const python = Object.keys(FIX_TEXT).filter((key) => FIX_TEXT[key].examples.python);
   assert.deepEqual([...seen.keys()].sort(), [...python].sort());
   // The cases with no Python text are the ones a Python file cannot have.
-  assert.deepEqual(Object.keys(FIX_TEXT).filter((key) => !FIX_TEXT[key].examples.python), ['QCR-E001/promise', 'QCR-F001', 'QCR-P001/inline', 'QCR-P001/visual', 'QCR-C001/timers', 'QCR-C001/global']);
+  assert.deepEqual(Object.keys(FIX_TEXT).filter((key) => !FIX_TEXT[key].examples.python), ['QCR-A003/soft', 'QCR-E001/promise', 'QCR-F001', 'QCR-P001/inline', 'QCR-P001/visual', 'QCR-C001/timers', 'QCR-C001/global']);
   // A Python example is Python: no semicolon at a line end, no braces around a block, no `await expect` outside the async API.
   for (const key of python) {
     const { bad, good } = FIX_TEXT[key].examples.python;
@@ -85,7 +85,7 @@ test('QCR-A003 on Python: the tuple assert, the two-argument assertTrue and the 
     ['python-unittest', 'bad/test_counts.py', 13, 'A count is never below zero, so this check always passes.', 'count'],
     ['python-unittest', 'bad/test_counts.py', 16, 'A count is never below zero, so this check always passes.', 'count'],
     ['python-playwright', 'bad/test_not_awaited.py', 8, 'This assertion is not awaited, so the test can end before it fails.', 'unawaited'],
-    ['python-playwright', 'bad/test_always_true.py', 6, 'A locator object always exists, so this check passes even when the element is missing.', 'locator'],
+    ['python-playwright', 'bad/test_always_true.py', 6, 'This checks only that a locator or element object exists, and it always does. It says nothing about the page.', 'locator'],
     ['python-playwright', 'bad/test_unfinished.py', 6, 'This assertion is never finished: no matcher is called, so nothing is checked.', 'incomplete'],
     ['python-pytest', 'bad/test_never_fails.py', 13, 'This assertion is never reached: the code before it always returns or throws.', 'unreachable'],
   ];

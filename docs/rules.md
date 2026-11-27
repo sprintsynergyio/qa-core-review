@@ -2,7 +2,7 @@
 
 Each rule has an id that never changes. A finding names the rule, the place, the evidence and a fix. Run `qa-core-review rules` for the list and `qa-core-review explain <ruleId>` for one rule with its examples.
 
-This page covers every rule that is built. The examples are in TypeScript. The same rules run on JavaScript files. Python and Java examples are added with those adapters.
+This page covers every rule that is built. Each case is shown in TypeScript first, and the same rules run on JavaScript files. A Python and a Java example follow where the case exists in those languages.
 
 | Id | Name | Default | Scope | What it finds | Also in qa-core-verify |
 | --- | --- | --- | --- | --- | --- |
@@ -97,6 +97,8 @@ The comment covers the findings that start on the line after it. Name one rule o
 import { expect, test } from '@playwright/test';
 ```
 
+In a Java file the comment goes above the `package` line.
+
 **In the config**, which also works for files that have no comments:
 
 ```json
@@ -155,6 +157,25 @@ def test_user_can_log_in(driver):
     assert driver.find_element(By.CLASS_NAME, "title").text == "Products"
 ```
 
+In Java:
+
+```java
+// Bad
+@Test
+void userCanLogIn() {
+    driver.get("https://www.saucedemo.com");
+    driver.findElement(By.id("login-button")).click();
+}
+
+// Good
+@Test
+void userCanLogIn() {
+    driver.get("https://www.saucedemo.com");
+    driver.findElement(By.id("login-button")).click();
+    assertEquals("Products", driver.findElement(By.className("title")).getText());
+}
+```
+
 What counts as an assertion:
 
 - `expect(...)`, `assert(...)` and `assert.method(...)`, Chai `should`, Cypress `.should(...)` and `.and(...)`, `sinon.assert`.
@@ -173,6 +194,8 @@ If the tool cannot see into one of your helpers, for example one that comes from
 ```
 
 In Python, a check is an `assert` statement, a `self.assert*` method, `pytest.raises` and its relatives, a Playwright `expect(...)`, a mock assertion such as `assert_called_once()`, a pytest-check, PyHamcrest or assertpy check, a snapshot comparison, or a call to a helper that holds one of these (in the file, in a module it imports, or in `conftest.py`). A wait such as `WebDriverWait(...).until(...)` is not counted as a check.
+
+In Java, a check is a JUnit or TestNG `assert*` method, `assertThrows`, `fail(...)`, an AssertJ, Hamcrest, Truth or Playwright `assertThat(...)`, a Mockito `verify(...)`, a REST Assured check after `then()`, a Spring `andExpect(...)`, a Reactor `StepVerifier`, an Approvals snapshot, a Selenide `should...` call, a method whose name starts with `assert`, or a call to a helper that holds one of these (in the file, in a class it extends, or in a project class it imports). A test with `@Test(expected = ...)` or `expectedExceptions` expects an error, and that is its check. A wait such as `new WebDriverWait(...).until(...)` is not counted as a check. The finding is on the first line of the test, which is its first annotation.
 
 Turn it off: `"rules": { "QCR-A001": "off" }` in the config, or `--disable QCR-A001` on the command line.
 
@@ -209,6 +232,18 @@ assert item in cart.items
 assert cart.total() == 29.99
 ```
 
+In Java:
+
+```java
+// Bad
+assertTrue(true);
+assertEquals(cart.total(), cart.total());
+
+// Good
+assertTrue(cart.items().contains(item));
+assertEquals(29.99, cart.total(), 0.001);
+```
+
 Also reported: `assert(true)`, `assert.ok(1)`, `expect(null).toBeNull()`, and the same assertions inside a hook.
 
 Not reported:
@@ -217,6 +252,8 @@ Not reported:
 - A negated self comparison such as `expect(nextId()).not.toBe(nextId())`. It can fail, so it is a real check.
 
 In Python, `assert True`, `assert 1 == 1`, `self.assertTrue(True)` and `self.assertEqual(x, x)` are reported. A comparison handed to `assertTrue` or `assertFalse` is read as that comparison, so `self.assertTrue(total == total)` is reported too.
+
+In Java, `assertTrue(true)`, `assertEquals(1, 1)`, `assertEquals(x, x)` and `assertThat("a").isEqualTo("a")` are reported, in JUnit, in TestNG (where the actual value comes first), and in AssertJ, Hamcrest and Truth.
 
 Turn it off: `"rules": { "QCR-A002": "off" }` in the config, or `--disable QCR-A002` on the command line.
 
@@ -255,6 +292,18 @@ expect(page.get_by_text("Products")).to_be_visible()
 
 Fix in Python: Finish the assertion by calling a matcher, for example to_be_visible() or to_have_text(...).
 
+In Java:
+
+```java
+// Bad
+assertThat(cart.total());
+
+// Good
+assertThat(cart.total()).isEqualTo(29.99);
+```
+
+Fix in Java: Finish the assertion: call a check on assertThat(...), such as isEqualTo(...) or isVisible(), and end a StepVerifier with verify() or verifyComplete().
+
 ### An assertion after a return or a throw
 
 Bad:
@@ -286,6 +335,21 @@ return
 ```
 
 Fix in Python: Move the assertion before the return or raise, or remove the early exit.
+
+In Java:
+
+```java
+// Bad
+cart.add("apple");
+fail("not written yet");
+assertEquals(1, cart.items().size());
+
+// Good
+cart.add("apple");
+assertEquals(1, cart.items().size());
+```
+
+Fix in Java: Take out the call that always throws before the assertion, such as a fail(...) left over from a test that was not written yet.
 
 ### An async assertion that is not awaited
 
@@ -345,6 +409,18 @@ assert page.locator("#checkout")
 expect(page.locator("#checkout")).to_be_visible()
 ```
 
+In Java:
+
+```java
+// Bad
+assertNotNull(driver.findElement(By.id("checkout")));
+
+// Good
+assertTrue(driver.findElement(By.id("checkout")).isDisplayed());
+```
+
+Fix in Java: Check what the element shows or does, for example isDisplayed() or its text. findElement never gives null (it throws when the element is missing), and a Playwright locator exists before the element does.
+
 ### A count compared with zero in a way that is always true
 
 Bad:
@@ -369,6 +445,16 @@ assert len(rows) >= 0
 
 # Good
 assert len(rows) == 3
+```
+
+In Java:
+
+```java
+// Bad
+assertTrue(rows.size() >= 0);
+
+// Good
+assertEquals(3, rows.size());
 ```
 
 ### A list or object literal checked for being truthy
@@ -429,7 +515,44 @@ mailer.send.assert_called_once()
 
 Fix in Python: Use a real assertion method of the mock, and call it: assert_called_once_with(...), not called_once_with(...). A mock accepts any other name and returns a new mock.
 
+In Java:
+
+```java
+// Bad
+verify(mailer);
+
+// Good
+verify(mailer).send("ana", "receipt");
+```
+
+Fix in Java: Name the call you expect after verify(mock): verify(mailer).send(...). verify(mailer) by itself checks nothing.
+
 In JS/TS this is a mock matcher that is named and never called. In Python it is also a method that a mock does not have: a mock accepts any name, so `send.called_once_with(1)` and a misspelled `assert_called_once_wiht(1)` run and check nothing.
+
+### A soft assertion that is never reported
+
+Found in Java files only: a check on a soft assertion object (AssertJ `SoftAssertions`, TestNG `SoftAssert`) that the test makes with `new` and never asks for its failures. A soft assertion collects failures and goes on. They fail the test only when `assertAll()` is called.
+
+Bad:
+
+```java
+SoftAssertions softly = new SoftAssertions();
+softly.assertThat(cart.owner()).isEqualTo("ana");
+softly.assertThat(cart.size()).isEqualTo(2);
+```
+
+Good:
+
+```java
+SoftAssertions softly = new SoftAssertions();
+softly.assertThat(cart.owner()).isEqualTo("ana");
+softly.assertThat(cart.size()).isEqualTo(2);
+softly.assertAll();
+```
+
+Fix: Ask the object that collects the soft assertions for its failures at the end of the test, or let the test framework make and report it.
+
+Fix in Java: Call assertAll() on the soft assertion object at the end of the test, or let the framework report it: SoftAssertions.assertSoftly(...), a try-with-resources with AutoCloseableSoftAssertions, or the SoftAssertionsExtension.
 
 ### A truth check that is given a second value
 
@@ -459,6 +582,8 @@ Details:
 - **Count** means "at least 0": `toBeGreaterThanOrEqual(0)` or `not.toBeLessThan(0)` on a `.length`, a `.size` or a `.count()`.
 
 In Python: the tuple form `assert (value, "message")` is reported as the list case, because a tuple with items is always true. **Not awaited** covers `expect(...)` of the async Playwright API. **Count** covers `len(...)` and `.count()`, also inside `self.assertTrue(len(rows) >= 0)`. **Never reached** is an assertion after a `return` or a `raise` in the same block.
+
+In Java: **Not finished** is an `assertThat(...)` of AssertJ, Truth or Playwright with no check after it, and a Reactor `StepVerifier` that is never run with `verify()`. **Mock** is `verify(mailer);` with no method named after it. **Locator** is `assertNotNull(...)` on a Selenium `findElement(...)`, which throws and never gives null, or on a Playwright locator. **Count** covers `.size()`, `.length` and `.count()`. **Never reached** is an assertion after a `fail(...)` call in the same block; the compiler already refuses code after a plain `return` or `throw`.
 
 Turn it off: `"rules": { "QCR-A003": "off" }` in the config, or `--disable QCR-A003` on the command line.
 
@@ -498,6 +623,22 @@ for item in items:
     assert item["price"] > 0
 ```
 
+In Java:
+
+```java
+// Bad
+for (Item item : api.items()) {
+    assertTrue(item.price() > 0);
+}
+
+// Good
+List<Item> items = api.items();
+assertFalse(items.isEmpty());
+for (Item item : items) {
+    assertTrue(item.price() > 0);
+}
+```
+
 Not reported when:
 
 - At least one assertion always runs, for example a check of the length before the loop.
@@ -507,6 +648,8 @@ Not reported when:
 - The condition is the check: `if (!ok) throw new Error(...)` or `if (!ok) expect.fail(...)`.
 
 In Python, a guard is an `if`, a `while`, a `for` over something that can be empty, a `lambda`, or a helper that is handed to another call to be called later (`for_each_item(check_price)`). A `for` over a list that is written out (`for user in ["a", "b"]:`) always runs and is not a guard, and neither is a `with` block such as `with self.subTest(...)`. `if a != b: pytest.fail(...)` is not reported: there the condition is the check.
+
+In Java, a guard is an `if`, a `switch`, a loop over something that can be empty, or a lambda that is handed to another call (`orders.forEach(order -> ...)`). A `for` over a list that is written out (`for (String user : List.of("a", "b"))`) always runs and is not a guard, and neither is a lambda given to `assertAll(...)`, `assertThrows(...)` or `SoftAssertions.assertSoftly(...)`. `if (order != null) { fail(...); }` is not reported: there the condition is the check.
 
 Turn it off: `"rules": { "QCR-A004": "off" }` in the config, or `--disable QCR-A004` on the command line.
 
@@ -546,6 +689,22 @@ WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element((By.CLASS_NAME,
 ```
 
 Fix in Python: Wait for a condition instead: WebDriverWait(driver, 10).until(...) in Selenium, an expect(...) assertion in Playwright, or a polling helper. For timing failures that come and go, see qa-core-flaky.
+
+In Java:
+
+```java
+// Bad
+driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+Thread.sleep(3000);
+assertEquals("1", driver.findElement(By.className("shopping_cart_badge")).getText());
+
+// Good
+driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+new WebDriverWait(driver, Duration.ofSeconds(10))
+    .until(ExpectedConditions.textToBe(By.className("shopping_cart_badge"), "1"));
+```
+
+Fix in Java: Wait for a condition instead: new WebDriverWait(driver, timeout).until(...) in Selenium, an assertThat(locator) check in Playwright, or Awaitility. For timing failures that come and go, see qa-core-flaky.
 
 What counts as a fixed sleep:
 
@@ -588,6 +747,17 @@ driver.implicitly_wait(10)
 WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))
 ```
 
+In Java:
+
+```java
+// Bad
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+// Good
+new WebDriverWait(driver, Duration.ofSeconds(10))
+    .until(ExpectedConditions.visibilityOfElementLocated(By.className("shopping_cart_badge")));
+```
+
 ### Options
 
 ```json
@@ -597,6 +767,8 @@ WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME,
 `maxMs` (default 0): a sleep of this many milliseconds or fewer is not reported.
 
 In Python: `time.sleep(...)` and `asyncio.sleep(...)` (seconds, shown as milliseconds), also under another name after `from time import sleep`, and `page.wait_for_timeout(...)`. Selenium `implicitly_wait(...)` over 5 seconds is the info case. `WebDriverWait(...).until(...)`, `page.wait_for_selector(...)` and the other `wait_for_*` calls wait for a condition and are not reported.
+
+In Java: `Thread.sleep(...)`, `TimeUnit.SECONDS.sleep(...)` (shown as milliseconds), Selenide `sleep(...)`, Guava `sleepUninterruptibly(...)` and Playwright `page.waitForTimeout(...)`. Selenium `implicitlyWait(...)` over 5 seconds is the info case. `WebDriverWait`, `FluentWait`, Awaitility and the Playwright `waitFor*` calls wait for a condition and are not reported.
 
 Turn it off: `"rules": { "QCR-W001": "off" }` in the config, or `--disable QCR-W001` on the command line.
 
@@ -633,6 +805,16 @@ driver.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/button[3]").click()
 driver.find_element(By.CSS_SELECTOR, "[data-test='add-to-cart-sauce-labs-backpack']").click()
 ```
 
+In Java:
+
+```java
+// Bad
+driver.findElement(By.xpath("//div[2]/div[1]/div/form/input[3]")).click();
+
+// Good
+driver.findElement(By.id("login-button")).click();
+```
+
 ### A selector that picks by position
 
 The selector has `:nth-child(`, `:nth-of-type(`, `:nth-last-child(`, `:nth-last-of-type(` or the Playwright `>> nth=`.
@@ -657,6 +839,16 @@ page.locator(".inventory_list > div:nth-child(2) button").click()
 
 # Good
 page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click()
+```
+
+In Java:
+
+```java
+// Bad
+page.locator("ul.inventory_list > li:nth-child(3) button").click();
+
+// Good
+page.getByTestId("add-to-cart-sauce-labs-bolt-t-shirt").click();
 ```
 
 ### A generated class or id
@@ -685,6 +877,16 @@ page.locator(".css-1q2w3e4").click()
 page.get_by_test_id("checkout").click()
 ```
 
+In Java:
+
+```java
+// Bad
+driver.findElement(By.cssSelector(".css-1x2y3z4")).click();
+
+// Good
+driver.findElement(By.cssSelector("[data-test='checkout']")).click();
+```
+
 ### A selector that follows the page structure
 
 The selector chains 4 or more combinators (`>`, a space, `+`, `~`). One new wrapper `div` breaks it.
@@ -709,6 +911,16 @@ page.locator("#root > div > main > section > button").click()
 
 # Good
 page.get_by_role("button", name="Checkout").click()
+```
+
+In Java:
+
+```java
+// Bad
+driver.findElement(By.cssSelector("#root > div > div > main > section > button")).click();
+
+// Good
+driver.findElement(By.id("checkout")).click();
 ```
 
 ### A pick by position in a list (info)
@@ -739,6 +951,16 @@ page.locator(".inventory_item").nth(2).click()
 page.locator(".inventory_item").filter(has_text="Sauce Labs Backpack").click()
 ```
 
+In Java:
+
+```java
+// Bad
+driver.findElements(By.className("inventory_item")).get(2).click();
+
+// Good
+driver.findElement(By.cssSelector("[data-test='add-to-cart-sauce-labs-bolt-t-shirt']")).click();
+```
+
 ### Not reported
 
 - Role, label, text and test id locators: `getByRole`, `getByLabel`, `getByText`, `getByTestId`, `cy.contains`, `$('aria/Username')`.
@@ -762,6 +984,8 @@ Each selector gives one finding: the first case that fits, in the order above.
 - `testIdAttribute` (top level, default `data-testid`): your own test id attribute. A selector on it counts as a test id.
 
 In Python the rule reads Playwright (`page.locator`, `get_by_*`, `page.click("...")`) and Selenium (`By.XPATH`, `By.CSS_SELECTOR` and the other `By` strategies, and the old `find_element_by_*` methods). A pick is `.nth(n)`, `.first` or `.last` in Playwright and `find_elements(...)[n]` with `n` above 0 in Selenium.
+
+In Java the rule reads Selenium (`By.xpath`, `By.cssSelector` and the other `By` strategies, and `@FindBy` fields), Playwright (`page.locator`, `getBy*`, `page.click("...")`) and Selenide (`$`, `$$`, `$x`). A pick is `.nth(n)`, `.first()` or `.last()` in Playwright and `findElements(...).get(n)` with `n` above 0 in Selenium.
 
 Turn it off: `"rules": { "QCR-S001": "off" }` in the config, or `--disable QCR-S001` on the command line.
 
@@ -796,6 +1020,22 @@ expect(page.get_by_test_id("total")).to_have_text("$32.39")
 ```
 
 Fix in Python: Take the assertion out of the try block, or raise the error again in the except block. To go on after a failed check, use a soft assertion (pytest-check).
+
+In Java:
+
+```java
+// Bad
+try {
+    assertEquals("$32.39", cart.total());
+} catch (Throwable ignored) {
+    // nothing
+}
+
+// Good
+assertEquals("$32.39", cart.total());
+```
+
+Fix in Java: Take the assertion out of the try block, or throw the error again in the catch block. To go on after a failed check, use soft assertions (AssertJ SoftAssertions, TestNG SoftAssert).
 
 Good:
 
@@ -836,6 +1076,8 @@ Reported when the chain before `.catch(...)` has an assertion and the handler do
 - A handler given by a name the tool cannot see into: `.catch(reportFailure)`.
 
 In Python the handler is an `except` block. `except Exception`, `except BaseException`, `except AssertionError`, a bare `except` and `contextlib.suppress(...)` of one of these catch a failed assertion. `except ValueError` and other specific errors do not, so they are not reported. Not reported either: a handler that has `raise`, calls `pytest.fail(...)` or `self.fail(...)`, or asserts, and `try` with `finally` only.
+
+In Java the handler is a `catch` block. `catch (Throwable ...)`, `catch (Error ...)`, `catch (AssertionError ...)` and a multi-catch that names one of these catch a failed assertion. `catch (Exception ...)` does not, because a failed assertion is an `Error` in Java, so it is not reported. Not reported either: a handler that throws, calls `fail(...)` or asserts, and `try` with `finally` only.
 
 Turn it off: `"rules": { "QCR-E001": "off" }` in the config, or `--disable QCR-E001` on the command line.
 
@@ -910,6 +1152,25 @@ def test_uploads_a_file(page):
 
 Fix in Python: Turn the test back on, or delete it. If it has to wait, use skipif with a condition and a reason that names the ticket.
 
+In Java:
+
+```java
+// Bad
+@Disabled
+@Test
+void appliesACoupon() {
+    assertEquals(9.0, cart.apply("SAVE10"), 0.001);
+}
+
+// Good
+@Test
+void appliesACoupon() {
+    assertEquals(9.0, cart.apply("SAVE10"), 0.001);
+}
+```
+
+Fix in Java: Turn the test back on, or delete it. If it has to wait, say why in the annotation, with the ticket that tracks it: @Disabled("SHOP-123: the coupon service is down").
+
 What counts:
 
 - `test.skip('title', ...)`, `it.skip`, `xit`, `xtest`, `test.fixme('title', ...)`, `test.skip.each(...)`, and `{ skip: true }` in the options of a `node:test` test.
@@ -967,6 +1228,8 @@ def test_rounds_the_tax_up(cart):
 Fix in Python: Say which bug makes the test fail and where it is tracked, in reason=. With strict=True the test fails as soon as the bug is fixed, so the mark does not stay forever.
 
 In Python: `@pytest.mark.skip` and `@unittest.skip(...)` on a test or on a class, and `pytest.skip(...)` or `self.skipTest(...)` as a plain statement of a test body. Not reported: `@pytest.mark.skipif(...)`, `@unittest.skipIf(...)`, `@unittest.skipUnless(...)`, and a skip inside an `if`. `@pytest.mark.xfail` and `@unittest.expectedFailure` are the info case.
+
+In Java: `@Disabled` (JUnit 5), `@Ignore` (JUnit 4 and TestNG) and `@Test(enabled = false)` (TestNG), on a test or on a class. A reason written in the annotation is shown in the message. Not reported: the conditional annotations (`@DisabledOnOs`, `@EnabledIfSystemProperty` and their relatives) and an assumption such as `Assumptions.assumeTrue(...)`.
 
 Turn it off: `"rules": { "QCR-F002": "off" }` in the config, or `--disable QCR-F002` on the command line.
 
@@ -1028,6 +1291,33 @@ def test_login_works(page, user):
 
 Fix in Python: Delete the copy, or change it so that it checks another case. For the same steps with other data, use @pytest.mark.parametrize or subTest.
 
+In Java:
+
+```java
+// Bad
+@Test
+void addsAnApple() {
+    cart.add("apple");
+    assertEquals(1, cart.size());
+}
+
+@Test
+void addsAPear() {
+    cart.add("apple");
+    assertEquals(1, cart.size());
+}
+
+// Good
+@ParameterizedTest
+@ValueSource(strings = {"apple", "pear"})
+void addsAnItem(String name) {
+    cart.add(name);
+    assertEquals(1, cart.size());
+}
+```
+
+Fix in Java: Delete the copy, or change it so that it checks another case. For the same steps with other data, write one @ParameterizedTest, or one test with a TestNG @DataProvider.
+
 ### Two tests with the same title in one file
 
 Two tests in one file with the same full title (suite titles and test title). Their bodies may differ.
@@ -1080,6 +1370,28 @@ def test_adds_the_prices_of_two_items():
 
 Fix in Python: Give each test a name that says what it checks. Python keeps only the last function with a name, so the first of the two never runs.
 
+In Java:
+
+```java
+// Bad
+@Test
+@DisplayName("adds an item")
+void addsAnApple() { ... }
+
+@Test
+@DisplayName("adds an item")
+void addsAPear() { ... }
+
+// Good
+@Test
+@DisplayName("adds an apple")
+void addsAnApple() { ... }
+
+@Test
+@DisplayName("adds a pear")
+void addsAPear() { ... }
+```
+
 ### Not reported
 
 - A parameterized test: `it.each(...)`, `test.each(...)`, and tests made in a `for` loop or a `forEach`. It is one test with many cases.
@@ -1089,6 +1401,8 @@ Fix in Python: Give each test a name that says what it checks. Python keeps only
 - A copy in another language. A `.js` file is not compared with a `.ts` file.
 
 In Python, two functions with the same name in one module or class are the same title, and there the first one never runs: Python keeps the last definition. A test with `@pytest.mark.parametrize` is not compared.
+
+In Java, two tests have the same title when they have the same `@DisplayName` in one class. A `@ParameterizedTest` and a TestNG test with a `dataProvider` are not compared.
 
 Turn it off: `"rules": { "QCR-D001": "off" }` in the config, or `--disable QCR-D001` on the command line.
 
@@ -1146,6 +1460,26 @@ class TestApplyDiscount:
             apply_discount(100, "NOPE")
 ```
 
+In Java:
+
+```java
+// Bad
+@Test
+void addsAnItem() { ... }
+
+@Test
+void totalsTheCart() { ... }
+
+// Good
+@Test
+void addsAnItem() { ... }
+
+@Test
+void rejectsANegativeQuantity() {
+    assertThrows(IllegalArgumentException.class, () -> cart.add("apple", -1));
+}
+```
+
 A group is the tests of one `describe` block (the innermost one), or the tests of a file that are in no block. The rule reports once per group, on the line of the block, when the group has 2 or more tests and none of them looks like an error case. A test looks like an error case when:
 
 - a word in its title or in the titles of its blocks starts with one of: invalid, error, fail, reject, wrong, empty, missing, denied, unauthorized, forbidden, expired, locked, limit, max, min, zero, negative, boundary, overflow, timeout, edge, null, undefined, none, nil, 404, 401, 403, 500, or the title has "not found". `rejectsUnknownCode` and `rejects_unknown_code` are read as words;
@@ -1158,6 +1492,8 @@ The message suggests two or three cases from the title of the group: a group nam
 This rule never changes the verdict of a test or the exit code at the default `--fail-on error`.
 
 In Python a group is a test class, or the tests of a file that are outside every class. A test counts as a negative case when it uses `pytest.raises`, `assertRaises` or a relative, checks a status of 400 or above, or says so in its name (`test_rejects_...`, `test_wrong_password`, `test_empty_cart`).
+
+In Java a group is a test class. A test counts as a negative case when it uses `assertThrows`, `assertThatThrownBy` or a relative, has `@Test(expected = ...)` or `expectedExceptions`, checks a status of 400 or above, or says so in its name (`rejectsANegativeQuantity`, `wrongPassword`, `emptyCart`).
 
 Turn it off: `"rules": { "QCR-N001": "off" }` in the config, or `--disable QCR-N001` on the command line.
 
@@ -1217,6 +1553,31 @@ def test_returns_total(tax_rate):
     assert Cart([{"price": 40}, {"price": 2}]).total() == 42
 ```
 
+In Java:
+
+```java
+// Bad
+@Mock Prices prices;
+
+@Test
+void readsThePrice() {
+    when(prices.of("apple")).thenReturn(99);
+    assertEquals(99, prices.of("apple"));
+}
+
+// Good
+@Mock PriceTable table;
+@InjectMocks Prices prices;
+
+@Test
+void readsThePrice() {
+    when(table.lookup("apple")).thenReturn(99);
+    assertEquals(99, prices.of("apple"));
+}
+```
+
+Fix in Java: Mock what the class under test depends on, not the class itself. Make the real object with new, or with @InjectMocks.
+
 ### A stubbed function is called and checked
 
 Error. A mock function is given a fixed reply (`mockReturnValue`, `mockResolvedValue`, `vi.fn(() => 42)`, sinon `returns` or `resolves`), and the test then calls that same function inside an assertion. Like the first case, it is reported only in a file whose module under test is known. This covers `vi.fn()`, `jest.fn()` and `sinon.stub()` stored under a name, and `vi.spyOn`, `jest.spyOn` and `sinon.stub` on a method.
@@ -1261,6 +1622,20 @@ def test_returns_total(tax_rate):
     assert get_total([{"price": 40}, {"price": 2}]) == 42
 ```
 
+In Java:
+
+```java
+// Bad
+when(gateway.fee("4111")).thenReturn(30);
+assertEquals(30, gateway.fee("4111"));
+
+// Good
+when(gateway.fee("4111")).thenReturn(30);
+assertEquals(1030, checkout.total(cart, "4111"));
+```
+
+Fix in Java: Call the real method and check what it returns. Give fixed replies only to the things it depends on.
+
 ### A test that checks only calls on mocks (warn)
 
 Warn. Every assertion of the test checks a call on a mock (`toHaveBeenCalled`, `toHaveBeenCalledWith`, `sinon.assert.calledOnce`), in a test or file where a mock stands in for real code.
@@ -1299,6 +1674,19 @@ def test_places_the_order(mailer):
     order = place_order(cart, mailer)
     assert order.status == "placed"
     mailer.send.assert_called_once()
+```
+
+In Java:
+
+```java
+// Bad
+checkout.pay(cart, "4111");
+verify(mailer).send("ana", "receipt");
+
+// Good
+Receipt receipt = checkout.pay(cart, "4111");
+assertEquals("paid", receipt.status());
+verify(mailer).send("ana", "receipt");
 ```
 
 ### Every import of the file is mocked (warn)
@@ -1385,6 +1773,18 @@ page.goto("https://www.saucedemo.com/cart.html")
 expect(page.get_by_test_id("cart-list")).to_be_visible()
 ```
 
+In Java:
+
+```java
+// Bad
+page.route("**/*", route -> route.fulfill(new Route.FulfillOptions().setBody("{}")));
+assertThat(page.locator(".inventory_item")).hasCount(0);
+
+// Good
+page.route("**/api/recommendations", route -> route.fulfill(new Route.FulfillOptions().setBody("[]")));
+assertThat(page.locator(".inventory_item")).hasCount(6);
+```
+
 ### Not reported
 
 - A module mock that keeps the real module: `vi.importActual`, `jest.requireActual`, or `importOriginal` in the factory.
@@ -1402,6 +1802,8 @@ expect(page.get_by_test_id("cart-list")).to_be_visible()
 `subjectMap` (default none): for test files whose name does not match the module they test. The key is a glob for test files, and the value is the module as the test files import it.
 
 In Python the rule reads `patch`, `patch.object`, `mocker.patch`, `mocker.spy`, `monkeypatch.setattr`, named `Mock` objects, Playwright `page.route`, and `responses`, `respx` and `requests_mock`. The module under test is the import with the name of the test file (`test_cart.py` and `shop.cart`), or the one that `subjectMap` gives. A patch replaces the code under test when the file imports the patched name from that module or calls it there; when the tool cannot tell, it says nothing. A patch with no `return_value` still answers in place of the real code, so it counts as a fixed reply; `wraps=` and `mocker.spy` keep the real behavior and do not. One limit: after `from shop.cart import get_total`, `patch("shop.cart.get_total")` does not replace the name the test already holds, so such a test calls the real function. It is reported all the same, because the test sets out to stub what it tests.
+
+In Java the rule reads Mockito (`@Mock`, `@Spy`, `@MockBean`, `mock(...)`, `spy(...)`, `mockStatic(...)`, `when(...).thenReturn(...)`, `doReturn(...).when(...)` and the BDD forms), WireMock `stubFor(...)` and Playwright `page.route(...)`. The class under test is the one that `subjectMap` gives, the `@InjectMocks` field, or the class the test file is named after (`PricesTest` and `Prices`). A spy keeps the real behavior until one of its methods is given a reply. The case "every import of the file is mocked" is not reported for Java, because a Java mock names a class and not an import.
 
 Turn it off: `"rules": { "QCR-M001": "off" }` in the config, or `--disable QCR-M001` on the command line.
 
@@ -1450,6 +1852,23 @@ def test_renders_cart(snapshot):
     assert "Backpack" in html
     assert "$29.99" in html
     assert html == snapshot
+```
+
+In Java:
+
+```java
+// Bad
+@Test
+void printsTheReceipt() {
+    Approvals.verify(cart.receipt());
+}
+
+// Good
+@Test
+void printsTheReceipt() {
+    assertEquals(29.99, cart.total(), 0.001);
+    Approvals.verify(cart.receipt());
+}
 ```
 
 ### An inline snapshot recorded empty
@@ -1506,6 +1925,8 @@ Fix: Look at each new baseline image before you commit it. One assertion on what
 Not reported: a test with at least one assertion that is not a snapshot or a visual check.
 
 In Python: syrupy (`assert value == snapshot`), pytest-snapshot (`snapshot.assert_match(...)`) and snapshottest (`self.assertMatchSnapshot(...)`).
+
+In Java: ApprovalTests (`Approvals.verify(...)` and its relatives, `JsonApprovals.verifyAsJson(...)`) and `toMatchSnapshot(...)` of java-snapshot-testing.
 
 Turn it off: `"rules": { "QCR-P001": "off" }` in the config, or `--disable QCR-P001` on the command line.
 
@@ -1594,6 +2015,22 @@ class OrderTests(unittest.TestCase):
 
 Fix in Python: Stop every patcher that you start: call self.addCleanup(patcher.stop) right after start(). A patch used as a decorator or in a with block, and the mocker fixture, undo themselves.
 
+In Java:
+
+```java
+// Bad
+MockedStatic<Clock> clock = mockStatic(Clock.class);
+clock.when(Clock::now).thenReturn(NOON);
+
+// Good
+try (MockedStatic<Clock> clock = mockStatic(Clock.class)) {
+    clock.when(Clock::now).thenReturn(NOON);
+    assertEquals("12:00", receipt.time());
+}
+```
+
+Fix in Java: Open the static mock in a try-with-resources, so that it is closed when the test fails too, or close it in an @AfterEach method.
+
 ### An environment variable that is never set back
 
 An assignment to `process.env.NAME`, or `vi.stubEnv(...)`. Given back by a second assignment or a `delete` in an after hook, or by `vi.unstubAllEnvs()`.
@@ -1639,6 +2076,31 @@ def test_uses_the_staging_api(monkeypatch):
 ```
 
 Fix in Python: Use monkeypatch.setenv, which pytest puts back after the test, or patch.dict(os.environ, {...}) in a with block.
+
+In Java:
+
+```java
+// Bad
+@Test
+void usesEuros() {
+    System.setProperty("shop.currency", "EUR");
+    assertEquals("EUR", Prices.currency());
+}
+
+// Good
+@AfterEach
+void clearTheCurrency() {
+    System.clearProperty("shop.currency");
+}
+
+@Test
+void usesEuros() {
+    System.setProperty("shop.currency", "EUR");
+    assertEquals("EUR", Prices.currency());
+}
+```
+
+Fix in Java: Clear the property, or set it back to its old value, in an @AfterEach method. A method that runs after the test also runs when the test fails.
 
 ### A global that is never put back
 
@@ -1718,6 +2180,33 @@ def test_checkout(driver):
 
 Fix in Python: Close it after the yield of a fixture, in tearDown, or with a with block, so that it is closed when the test fails too.
 
+In Java:
+
+```java
+// Bad
+@Test
+void showsTheLoginPage() {
+    WebDriver driver = new ChromeDriver();
+    driver.get("https://www.saucedemo.com");
+    assertEquals("Swag Labs", driver.getTitle());
+}
+
+// Good
+private WebDriver driver;
+
+@BeforeEach
+void start() {
+    driver = new ChromeDriver();
+}
+
+@AfterEach
+void stop() {
+    driver.quit();
+}
+```
+
+Fix in Java: Quit or close it in an @AfterEach or @AfterMethod method, or open it in a try-with-resources, so that it is closed when the test fails too.
+
 ### Test data that is never deleted (info)
 
 A test that makes a `POST` request (`request.post`, `axios.post`, `cy.request('POST', ...)`) and makes no `DELETE` request. This is info with low confidence: a `POST` is not always a create, and the tool cannot see what an after hook deletes. When the file has an after hook, nothing is reported.
@@ -1761,6 +2250,17 @@ def test_creates_an_order(api):
 
 Fix in Python: Delete what the test creates, in the test or after the yield of a fixture, so that the next run starts from the same data.
 
+In Java:
+
+```java
+// Bad
+given().body(order).post("/orders").then().statusCode(201);
+
+// Good
+String id = given().body(order).post("/orders").then().statusCode(201).extract().path("id");
+given().delete("/orders/" + id).then().statusCode(204);
+```
+
 ### Not reported
 
 - Playwright fixtures (`page`, `context`, `browser`, `request`) and a second tab of the fixture context. The runner closes them.
@@ -1777,6 +2277,8 @@ Fix in Python: Delete what the test creates, in the test or after the yield of a
 `restoreMocksConfigured` (default false): set it to true when the runner config has `restoreMocks: true` (Jest or Vitest). Spies with no restore are then not reported. The tool does not read the runner config itself.
 
 In Python: a Selenium driver, a Playwright browser, context or page that the test starts itself, a file from `open(...)`, a database connection, a patcher started with `.start()`, and a write to `os.environ`. Released means: closed in the test (also in `finally`), in `tearDown` or a `teardown_*` function, after the `yield` of the fixture that made it, by `self.addCleanup(...)` or `request.addfinalizer(...)`, or by a `with` block. Fixtures that clean up after themselves are never reported: `page`, `context`, `browser`, `tmp_path`, `monkeypatch`, `mocker`. Everything made inside `with sync_playwright() as p:` is closed by that block. One limit: a delete in a fixture of `conftest.py` is in another file, so a test that relies on it can get the info finding about test data.
+
+In Java: a Selenium driver, or a Playwright `Playwright`, browser, context or page, that the test or a setup method starts and nothing quits or closes; `System.setProperty(...)` with no `System.clearProperty(...)` and no second `setProperty(...)` for the same key after the test; and `mockStatic(...)` or `mockConstruction(...)` outside a try-with-resources that is never closed. A release counts in a `finally` block of the test, in an `@AfterEach`, `@AfterAll`, `@After`, `@AfterMethod` or `@AfterClass` method of the class or of a class it extends, and through a try-with-resources. Closing the `Playwright` object closes what was made from it. A page that the framework hands to the test (`@UsePlaywright`) is closed by the framework. Test data is a REST Assured `post(...)` with no `delete(...)` in the test or in a method that runs around it.
 
 Turn it off: `"rules": { "QCR-C001": "off" }` in the config, or `--disable QCR-C001` on the command line.
 
@@ -1825,9 +2327,23 @@ time.sleep(0.5)
 time.sleep(0.5)
 ```
 
+In Java:
+
+```java
+// Bad
+// qa-core-review-disable-next-line QCR-W001
+Thread.sleep(500);
+
+// Good
+// qa-core-review-disable-next-line QCR-W001 -- the animation has no event to wait for
+Thread.sleep(500);
+```
+
 See [Suppressing a finding](#suppressing-a-finding) for the three ways to suppress.
 
 In Python the comment starts with `#`: `# qa-core-review-disable-next-line QCR-W001 -- the reason`.
+
+In Java the comment is a `//` or a `/* */` comment. The whole-file form goes above the `package` line.
 
 Turn it off: `"rules": { "QCR-X002": "off" }` in the config, or `--disable QCR-X002` on the command line.
 

@@ -29,8 +29,8 @@ for (const { ruleId, name, dir } of folders) {
 
 test('every rule with fixtures has them for JS/TS, every folder is named for a language and a framework, and the registry lists the rules in id order', () => {
   assert.deepEqual([...new Set(folders.map((entry) => entry.ruleId))], ['QCR-A001', 'QCR-A002', 'QCR-A003', 'QCR-A004', 'QCR-C001', 'QCR-D001', 'QCR-E001', 'QCR-F001', 'QCR-F002', 'QCR-M001', 'QCR-N001', 'QCR-P001', 'QCR-S001', 'QCR-W001', 'QCR-X002', 'QCR-X003']);
-  // The other names are languages of the generic adapter, read with the line patterns in the config file of the folder.
-  assert.ok(folders.every((entry) => /^(typescript|javascript|python|scala|rust|ruby|swift|generic)-[a-z]+$/.test(entry.name)));
+  // The names after java are languages of the generic adapter, read with the line patterns in the config file of the folder.
+  assert.ok(folders.every((entry) => /^(typescript|javascript|python|java|scala|rust|ruby|swift|generic)-[a-z]+\d?$/.test(entry.name)));
   assert.deepEqual([...new Set(folders.filter((entry) => /^(typescript|javascript)-/.test(entry.name)).map((entry) => entry.ruleId))].length, 15);
   assert.deepEqual(builtinRules.map((rule) => [rule.id, rule.name, rule.defaultSeverity, rule.scope, rule.requires.join(' ')]), [
     ['QCR-A001', 'no-assertion', 'error', 'universal', 'tests assertions'],
@@ -70,7 +70,7 @@ test('findings carry a message for the sub-case, a fix and a good example in the
   const byLine = (file, line) => report.findings.find((finding) => finding.location.file === file && finding.location.startLine === line);
   const cases = {
     'bad/not-awaited.spec.ts:9': ['This assertion is not awaited, so the test can end before it fails.', 'QCR-A003/unawaited'],
-    'bad/always-true.spec.ts:5': ['A locator object always exists, so this check passes even when the element is missing.', 'QCR-A003/locator'],
+    'bad/always-true.spec.ts:5': ['This checks only that a locator or element object exists, and it always does. It says nothing about the page.', 'QCR-A003/locator'],
     'bad/always-true.spec.ts:13': ['A count is never below zero, so this check always passes.', 'QCR-A003/count'],
     'bad/never-runs.spec.ts:4': ['This assertion is never finished: no matcher is called, so nothing is checked.', 'QCR-A003/incomplete'],
     'bad/never-runs.spec.ts:14': ['This assertion is never reached: the code before it always returns or throws.', 'QCR-A003/unreachable'],
@@ -94,10 +94,10 @@ test('findings carry a message for the sub-case, a fix and a good example in the
   assert.ok(a002.length === 4 && a002.every((finding) => finding.message === 'This assertion compares a value with itself, so it always passes.'));
 
   // Texts exist per language. Until a language has its own, its files get the general fix and no example.
-  assert.deepEqual(fixFor('QCR-A002', 'java'), { fix: FIX_TEXT['QCR-A002'].fix });
+  assert.deepEqual(fixFor('QCR-A002', 'csharp'), { fix: FIX_TEXT['QCR-A002'].fix });
   assert.deepEqual(fixFor('QCR-A002', 'javascript'), fixFor('QCR-A002', 'typescript'));
-  assert.deepEqual(examplesFor('QCR-A003', 'typescript').map((entry) => entry.title).length, 8);
-  assert.deepEqual([examplesFor('QCR-A001', 'java')[0].example, examplesFor('QCR-X001', 'typescript')], [null, []]);
+  assert.deepEqual(examplesFor('QCR-A003', 'typescript').map((entry) => entry.title).length, 9);
+  assert.deepEqual([examplesFor('QCR-A001', 'csharp')[0].example, examplesFor('QCR-X001', 'typescript')], [null, []]);
 });
 
 test('helpers: the config, the same file, a page object the spec imports, and Cypress support files', async (t) => {
