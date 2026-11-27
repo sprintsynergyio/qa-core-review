@@ -1,6 +1,7 @@
 // The adapter registry: which language adapters exist, and which of them claim a file.
 import { CAPABILITIES, LANGUAGE_IDS } from '../model/types.js';
 import { genericProfile } from './generic/languages.js';
+import { javaAdapter } from './java/adapter.js';
 import { javaProfile } from './java/detect.js';
 import { jsAdapter } from './js/adapter.js';
 import { jsProfile } from './js/detect.js';
@@ -70,8 +71,8 @@ export class AdapterRegistry {
  */
 export const builtinProfiles: AdapterProfile[] = [jsProfile, pythonProfile, javaProfile, genericProfile];
 
-/** The full adapters that ship with the tool. Java and generic join in later milestones. */
-export const builtinAdapters: LanguageAdapter[] = [jsAdapter, pythonAdapter];
+/** The full adapters that ship with the tool. Generic joins in a later milestone. */
+export const builtinAdapters: LanguageAdapter[] = [jsAdapter, pythonAdapter, javaAdapter];
 
 export function createRegistry(adapters: LanguageAdapter[] = builtinAdapters): AdapterRegistry {
   const registry = new AdapterRegistry();

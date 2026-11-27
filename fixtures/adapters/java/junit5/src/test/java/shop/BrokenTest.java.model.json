@@ -1,0 +1,192 @@
+{
+  "path": "src/test/java/shop/BrokenTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "partial",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "BrokenTest",
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "c77aaa2bafbd",
+        "d11d2d03b864",
+        "5f22cb400fc0"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "c77aaa2bafbd",
+      "title": "beforeTheError",
+      "fullTitle": "BrokenTest > beforeTheError",
+      "suitePath": [
+        "BrokenTest"
+      ],
+      "span": {
+        "startLine": 8,
+        "startColumn": 5,
+        "endLine": 11,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 9,
+        "startColumn": 27,
+        "endLine": 11,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b038d763c3fadddac4b22e89a98d8ba9ccfddc97"
+    },
+    {
+      "id": "d11d2d03b864",
+      "title": "withTheError",
+      "fullTitle": "BrokenTest > withTheError",
+      "suitePath": [
+        "BrokenTest"
+      ],
+      "span": {
+        "startLine": 13,
+        "startColumn": 5,
+        "endLine": 17,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 14,
+        "startColumn": 25,
+        "endLine": 17,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "32650d6c8708506176f0b7936f74e7bf5ba42a5b"
+    },
+    {
+      "id": "5f22cb400fc0",
+      "title": "afterTheError",
+      "fullTitle": "BrokenTest > afterTheError",
+      "suitePath": [
+        "BrokenTest"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 26,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "a31fc987c5bc86755abb3a513039a9134078240e"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

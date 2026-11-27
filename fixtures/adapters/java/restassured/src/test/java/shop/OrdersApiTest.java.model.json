@@ -1,0 +1,229 @@
+{
+  "path": "src/test/java/shop/OrdersApiTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "testng",
+  "libraries": [
+    "restassured"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "OrdersApiTest",
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 31,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "a701597b6e5b",
+        "f385d4a97060"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "a701597b6e5b",
+      "title": "listsTheOrders",
+      "fullTitle": "OrdersApiTest > listsTheOrders",
+      "suitePath": [
+        "OrdersApiTest"
+      ],
+      "span": {
+        "startLine": 17,
+        "startColumn": 5,
+        "endLine": 20,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 18,
+        "startColumn": 34,
+        "endLine": 20,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "90930fda0781b02762604acc6c445407a93135ea"
+    },
+    {
+      "id": "f385d4a97060",
+      "title": "readsOneOrder",
+      "fullTitle": "OrdersApiTest > readsOneOrder",
+      "suitePath": [
+        "OrdersApiTest"
+      ],
+      "span": {
+        "startLine": 22,
+        "startColumn": 5,
+        "endLine": 25,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 39,
+        "endLine": 25,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "DataProvider",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "77a5cdfca98512fab7c8e4f2b13fdc2c38e8b01b"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 48
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "given"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "equalTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 35
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "RestAssured"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 43
+      },
+      "source": "org.testng.annotations.BeforeClass",
+      "names": [
+        "BeforeClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 44
+      },
+      "source": "org.testng.annotations.DataProvider",
+      "names": [
+        "DataProvider"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 36
+      },
+      "source": "org.testng.annotations.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

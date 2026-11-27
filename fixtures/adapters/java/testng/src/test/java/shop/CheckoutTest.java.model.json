@@ -1,0 +1,242 @@
+{
+  "path": "src/test/java/shop/CheckoutTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "testng",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "CheckoutTest",
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 45,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 5,
+            "endLine": 17,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "5cf23804067d",
+        "1cb23cc1ca58",
+        "da43f7766a96"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "5cf23804067d",
+      "title": "addsTheTax",
+      "fullTitle": "CheckoutTest > addsTheTax",
+      "suitePath": [
+        "CheckoutTest"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 21,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 19,
+        "startColumn": 30,
+        "endLine": 21,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "e315a3f9810bfff266d9867d4588ddd4767c1a81"
+    },
+    {
+      "id": "1cb23cc1ca58",
+      "title": "givesAnOrderNumber",
+      "fullTitle": "CheckoutTest > givesAnOrderNumber",
+      "suitePath": [
+        "CheckoutTest"
+      ],
+      "span": {
+        "startLine": 23,
+        "startColumn": 5,
+        "endLine": 25,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 23,
+        "startColumn": 38,
+        "endLine": 25,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "8a6fe0f4db123c95b6af9daeb6f82d31cbaf2213"
+    },
+    {
+      "id": "da43f7766a96",
+      "title": "printsAnInvoice",
+      "fullTitle": "CheckoutTest > printsAnInvoice",
+      "suitePath": [
+        "CheckoutTest"
+      ],
+      "span": {
+        "startLine": 27,
+        "startColumn": 5,
+        "endLine": 30,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 28,
+        "startColumn": 35,
+        "endLine": 30,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the invoice is rebuilt"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "513d0ad4feab7ed1209be2cb48a90bb03d06f30c"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 46
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 44
+      },
+      "source": "org.testng.annotations.BeforeMethod",
+      "names": [
+        "BeforeMethod"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 44
+      },
+      "source": "org.testng.annotations.DataProvider",
+      "names": [
+        "DataProvider"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 36
+      },
+      "source": "org.testng.annotations.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

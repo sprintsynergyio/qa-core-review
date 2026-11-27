@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { formatPretty, languageName, resolveConfig, runReview, useColor } from '../dist/index.js';
+import { createRegistry, formatPretty, jsAdapter, languageName, resolveConfig, runReview, useColor } from '../dist/index.js';
 import { repoRoot } from './helpers/schema.mjs';
 import { toyRules } from './helpers/toy-rules.mjs';
 
@@ -28,7 +28,8 @@ const SHOP = {
   'tests/a.spec.ts': "import { test, expect } from '@playwright/test';\ntest('first file, passes', async ({ page }) => { await expect(page).toHaveTitle('Shop'); });\n",
   'specs/CartSpec.scala': 'class CartSpec\n', 'src/test/java/CartTest.java': 'class CartTest {}\n',
 };
-const shop = async (t) => (await runReview({ root: project(t, SHOP), config: resolveConfig({}).config, git: false, rules: toyRules })).report;
+// A build with the JS/TS adapter only, so that the Java file is one that this build finds and does not review.
+const shop = async (t) => (await runReview({ root: project(t, SHOP), config: resolveConfig({}).config, git: false, rules: toyRules, registry: createRegistry([jsAdapter]) })).report;
 
 test('the layout: header, fail then review then pass, file findings, summary, languages, reports', async (t) => {
   const report = await shop(t);

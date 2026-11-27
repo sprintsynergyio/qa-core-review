@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import { CAPABILITIES, builtinProfiles, builtinRules, defaultConfigFile, loadConfig, pythonAdapter, resolveConfig } from '../dist/index.js';
+import { CAPABILITIES, builtinProfiles, builtinRules, defaultConfigFile, javaAdapter, loadConfig, pythonAdapter, resolveConfig } from '../dist/index.js';
 import { repoRoot } from './helpers/schema.mjs';
 
 const run = (args, cwd = repoRoot) => spawnSync(process.execPath, [path.join(repoRoot, 'dist', 'cli.js'), ...args], { cwd, encoding: 'utf8', windowsHide: true, shell: false });
@@ -67,7 +67,7 @@ test('adapters lists every adapter with its tier, languages, frameworks and capa
     `  Capabilities: ${[...CAPABILITIES].filter((capability) => blocks[0].includes(capability)).length === CAPABILITIES.length ? blocks[0].split('Capabilities: ')[1] : 'missing'}`,
   ]);
   assert.equal(blocks[1], `python  Tier 1\n  Languages: Python\n  Frameworks: pytest, unittest, playwright-python, selenium\n  Extensions: .py\n  Capabilities: ${pythonAdapter.capabilities.join(', ')}`);
-  assert.match(blocks[2], /^java {2}Tier 1\n {2}Languages: Java\n[\s\S]*\n {2}Capabilities: none yet \(this build only detects these projects\)$/);
+  assert.equal(blocks[2], `java  Tier 1\n  Languages: Java\n  Frameworks: junit5, junit4, testng, selenium, restassured, playwright-java, cucumber\n  Extensions: .java\n  Capabilities: ${javaAdapter.capabilities.join(', ')}`);
   assert.match(blocks.at(-1), /^generic {2}Tier 3\n[\s\S]*\n {2}Capabilities: none \(files are listed for the LLM review\)$/);
   assert.match(ok(['adapters', '--help']), /^Usage: qa-core-review adapters/);
   usageError(['adapters', 'js'], /adapters takes no arguments/);

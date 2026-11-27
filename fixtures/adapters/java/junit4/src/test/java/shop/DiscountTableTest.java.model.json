@@ -1,0 +1,214 @@
+{
+  "path": "src/test/java/shop/DiscountTableTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit4",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "DiscountTableTest",
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 27,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "9a0ca115e83b"
+      ],
+      "suites": []
+    },
+    {
+      "title": "LoadedDiscountTableTest",
+      "span": {
+        "startLine": 30,
+        "startColumn": 1,
+        "endLine": 41,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "793196131ff1"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "9a0ca115e83b",
+      "title": "appliesTheCode",
+      "fullTitle": "DiscountTableTest > appliesTheCode",
+      "suitePath": [
+        "DiscountTableTest"
+      ],
+      "span": {
+        "startLine": 23,
+        "startColumn": 5,
+        "endLine": 26,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 24,
+        "startColumn": 34,
+        "endLine": 26,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "4404169a0438359e1dc3c495b993f967e2320060"
+    },
+    {
+      "id": "793196131ff1",
+      "title": "appliesTheCode",
+      "fullTitle": "LoadedDiscountTableTest > appliesTheCode",
+      "suitePath": [
+        "LoadedDiscountTableTest"
+      ],
+      "span": {
+        "startLine": 37,
+        "startColumn": 5,
+        "endLine": 40,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 38,
+        "startColumn": 34,
+        "endLine": 40,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "ParameterizedTest",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "b1f7f3cfcd6eba2e11cacbd8381a32400161221f"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 45
+      },
+      "source": "org.junit.Assert",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 23
+      },
+      "source": "java.util.List",
+      "names": [
+        "List"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 23
+      },
+      "source": "org.junit.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 33
+      },
+      "source": "org.junit.runner.RunWith",
+      "names": [
+        "RunWith"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 40
+      },
+      "source": "org.junit.runners.Parameterized",
+      "names": [
+        "Parameterized"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,0 +1,210 @@
+{
+  "path": "src/test/java/shop/LoginIT.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "Login",
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "d40c0f9dad3e",
+        "0595da34aa6a"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "d40c0f9dad3e",
+      "title": "a standard user reaches the products",
+      "fullTitle": "Login > a standard user reaches the products",
+      "suitePath": [
+        "Login"
+      ],
+      "span": {
+        "startLine": 13,
+        "startColumn": 5,
+        "endLine": 18,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 15,
+        "startColumn": 31,
+        "endLine": 18,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "d77e5659046018f9636fe319c1e88b9ad4289561"
+    },
+    {
+      "id": "0595da34aa6a",
+      "title": "lockedUserSeesAnError",
+      "fullTitle": "Login > lockedUserSeesAnError",
+      "suitePath": [
+        "Login"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 34,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "c34a93dd138dd9c151fe3744a3c6d09594cd9902"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 42
+      },
+      "source": "org.junit.jupiter.api.DisplayName",
+      "names": [
+        "DisplayName"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 31
+      },
+      "source": "org.openqa.selenium.By",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 29
+      },
+      "source": "shop.pages.LoginPage",
+      "names": [
+        "LoginPage"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

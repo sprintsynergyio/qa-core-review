@@ -1,0 +1,334 @@
+{
+  "path": "src/test/java/shop/OrderServiceTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "OrderServiceTest",
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 44,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "7b9ad71840d7",
+        "d39549a41ded",
+        "f01920df5330"
+      ],
+      "suites": [
+        {
+          "title": "Totals",
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 43,
+            "endColumn": 6
+          },
+          "modifiers": [],
+          "hooks": [],
+          "testIds": [
+            "41f4e23fe776"
+          ],
+          "suites": []
+        }
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "7b9ad71840d7",
+      "title": "placesAnOrder",
+      "fullTitle": "OrderServiceTest > placesAnOrder",
+      "suitePath": [
+        "OrderServiceTest"
+      ],
+      "span": {
+        "startLine": 20,
+        "startColumn": 5,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 21,
+        "startColumn": 26,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "71c79084e6dbc7a0fbee3b196c8a82f450eb1f0a"
+    },
+    {
+      "id": "d39549a41ded",
+      "title": "findsAnOrder",
+      "fullTitle": "OrderServiceTest > findsAnOrder",
+      "suitePath": [
+        "OrderServiceTest"
+      ],
+      "span": {
+        "startLine": 26,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 25,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d197d04f8342c8edbeaaf522a55f1a77324f8bcc"
+    },
+    {
+      "id": "f01920df5330",
+      "title": "shipsInTheBackground",
+      "fullTitle": "OrderServiceTest > shipsInTheBackground",
+      "suitePath": [
+        "OrderServiceTest"
+      ],
+      "span": {
+        "startLine": 31,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 33,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "18c605e263e81887f46912134269897d8fed28b8"
+    },
+    {
+      "id": "41f4e23fe776",
+      "title": "addsTheTax",
+      "fullTitle": "OrderServiceTest > Totals > addsTheTax",
+      "suitePath": [
+        "OrderServiceTest",
+        "Totals"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 9,
+        "endLine": 42,
+        "endColumn": 10
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 27,
+        "endLine": 42,
+        "endColumn": 10
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "43ae88286e29d53d2112e59ba15e0e6c90e942aa"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 58
+      },
+      "source": "org.assertj.core.api.Assertions",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 53
+      },
+      "source": "org.hamcrest.MatcherAssert",
+      "names": [
+        "assertThat"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 40
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "is"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 34
+      },
+      "source": "org.awaitility.Awaitility",
+      "names": [
+        "Awaitility"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

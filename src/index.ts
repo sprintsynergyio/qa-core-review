@@ -20,6 +20,8 @@ export { AdapterRegistry, adapterProblems, builtinAdapters, builtinProfiles, cre
 export { GENERIC_LANGUAGES, languageHintFor } from './adapters/generic/languages.js';
 export { jsAdapter, jsGrammarFor } from './adapters/js/adapter.js';
 export { VOCAB_SURFACE as JS_VOCAB_SURFACE } from './adapters/js/vocab.js';
+export { javaAdapter } from './adapters/java/adapter.js';
+export { JAVA_VOCAB_SURFACE } from './adapters/java/vocab.js';
 export { pythonAdapter } from './adapters/python/adapter.js';
 export { PYTHON_VOCAB_SURFACE } from './adapters/python/vocab.js';
 export type {

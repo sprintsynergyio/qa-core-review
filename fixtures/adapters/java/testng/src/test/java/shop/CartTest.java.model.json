@@ -1,0 +1,656 @@
+{
+  "path": "src/test/java/shop/CartTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "testng",
+  "libraries": [
+    "junit4"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "body-hash"
+  ],
+  "suites": [
+    {
+      "title": "CartTest",
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 103,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 5,
+            "endLine": 22,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "90bb9dd1d819",
+        "6e7580477d85",
+        "d7f62b2c702c",
+        "044b7666a80c",
+        "3a1bc71b98ac",
+        "ace1cdd46b13",
+        "a3a1fbede3e0",
+        "995936cf6588",
+        "99d0ee2845bc"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "90bb9dd1d819",
+      "title": "addsAnItem",
+      "fullTitle": "CartTest > addsAnItem",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 43,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 30,
+        "endLine": 43,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "63596efe64a13047331cd2794cbcc50d7d424ead"
+    },
+    {
+      "id": "6e7580477d85",
+      "title": "appliesACoupon",
+      "fullTitle": "CartTest > appliesACoupon",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 45,
+        "startColumn": 5,
+        "endLine": 49,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 46,
+        "startColumn": 34,
+        "endLine": 49,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the coupon service is not ready"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "6e7e12f755f45bece0b401d0b64dac23d7cc4bba"
+    },
+    {
+      "id": "d7f62b2c702c",
+      "title": "removesAnItem",
+      "fullTitle": "CartTest > removesAnItem",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 51,
+        "startColumn": 5,
+        "endLine": 53,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 52,
+        "startColumn": 33,
+        "endLine": 53,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": null
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 0,
+      "bodyHash": "4448e1dbcb7f6e8f55f2f5b257a1169d8c4db209"
+    },
+    {
+      "id": "044b7666a80c",
+      "title": "exportsTheCart",
+      "fullTitle": "CartTest > exportsTheCart",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 55,
+        "startColumn": 5,
+        "endLine": 59,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 57,
+        "startColumn": 34,
+        "endLine": 59,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [
+        "skip"
+      ],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the export is rebuilt"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "630727ff6933ff6bbeba178438d06a5fb7295e57"
+    },
+    {
+      "id": "3a1bc71b98ac",
+      "title": "hasThePrice",
+      "fullTitle": "CartTest > hasThePrice",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 61,
+        "startColumn": 5,
+        "endLine": 65,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 62,
+        "startColumn": 56,
+        "endLine": 65,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "DataProvider",
+        "cases": 2
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "d3484b661cadb88e24b0d1e0ea0618f0ed8e2dbf"
+    },
+    {
+      "id": "ace1cdd46b13",
+      "title": "appliesTheCode",
+      "fullTitle": "CartTest > appliesTheCode",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 75,
+        "startColumn": 5,
+        "endLine": 78,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 76,
+        "startColumn": 59,
+        "endLine": 78,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "DataProvider",
+        "cases": 3
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "47d49c25587e50f8f06cdc64dac93979ee46f46d"
+    },
+    {
+      "id": "a3a1fbede3e0",
+      "title": "totalsTheOrder",
+      "fullTitle": "CartTest > totalsTheOrder",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 86,
+        "startColumn": 5,
+        "endLine": 89,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 87,
+        "startColumn": 54,
+        "endLine": 89,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": {
+        "source": "DataProvider",
+        "cases": null
+      },
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "9cbb546e31b10f215fdf40d50e94d1ce4617a6fa"
+    },
+    {
+      "id": "995936cf6588",
+      "title": "alwaysSkips",
+      "fullTitle": "CartTest > alwaysSkips",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 91,
+        "startColumn": 5,
+        "endLine": 94,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 92,
+        "startColumn": 31,
+        "endLine": 94,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": true,
+        "conditional": false,
+        "reason": "the importer is switched off"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "698cf5fdda4c3ac6ffd0b74b325e10952ee9c91c"
+    },
+    {
+      "id": "99d0ee2845bc",
+      "title": "skipsOnOldData",
+      "fullTitle": "CartTest > skipsOnOldData",
+      "suitePath": [
+        "CartTest"
+      ],
+      "span": {
+        "startLine": 96,
+        "startColumn": 5,
+        "endLine": 102,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 97,
+        "startColumn": 34,
+        "endLine": 102,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": {
+        "unconditional": false,
+        "conditional": true,
+        "reason": "old data"
+      },
+      "parameterized": null,
+      "assertions": [],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "5f27b6469b6bdcfcd00d9c75ff67f41beaf5d748"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 46
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 44
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 25
+      },
+      "source": "org.junit.Assert",
+      "names": [
+        "Assert"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 33
+      },
+      "source": "org.testng.SkipException",
+      "names": [
+        "SkipException"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 42
+      },
+      "source": "org.testng.annotations.AfterClass",
+      "names": [
+        "AfterClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 43
+      },
+      "source": "org.testng.annotations.AfterMethod",
+      "names": [
+        "AfterMethod"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 43
+      },
+      "source": "org.testng.annotations.BeforeClass",
+      "names": [
+        "BeforeClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 44
+      },
+      "source": "org.testng.annotations.BeforeMethod",
+      "names": [
+        "BeforeMethod"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 44
+      },
+      "source": "org.testng.annotations.DataProvider",
+      "names": [
+        "DataProvider"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 38
+      },
+      "source": "org.testng.annotations.Ignore",
+      "names": [
+        "Ignore"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 36
+      },
+      "source": "org.testng.annotations.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

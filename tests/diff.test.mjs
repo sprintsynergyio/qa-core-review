@@ -159,9 +159,10 @@ test('--diff HEAD: only the tests whose lines changed, untracked test files, and
     // The command line: the header names the base, and the exit code follows the findings that are left.
     const text = repoDir.run('--diff', 'HEAD', '--disable', 'QCR-N001,QCR-F001,QCR-A001');
     assert.equal(text.status, 0, text.stderr);
-    // Four changed tests. The focused test did not change, and with F001 off nothing is left to say about it.
-    assert.match(text.stdout, /^qa-core-review \S+ . changes since HEAD . 6 files . 4 tests . static rules . TypeScript, Java, Python, Scala\n/);
-    assert.match(text.stdout, /Summary: 2 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 1 info\. 0 suppressed\.\n/);
+    // Five changed tests, the Java one among them. The focused test did not change, and with F001 off nothing is left to say about it.
+    assert.match(text.stdout, /^qa-core-review \S+ . changes since HEAD . 6 files . 5 tests . static rules . TypeScript, Java, Python, Scala\n/);
+    assert.match(text.stdout, /\npass {2}src\/test\/java\/shop\/CartTest\.java:4 {2}CartTest > addsAnItem\n/);
+    assert.match(text.stdout, /Summary: 3 pass, 2 review, 0 fail\. 0 errors, 3 warnings, 1 info\. 0 suppressed\.\n/);
     assert.equal(repoDir.run('--diff', 'HEAD', '--quiet').status, 1);
     // With --root on a folder, paths and changes are those of the folder.
     const inTests = JSON.parse(repoDir.run('--root', 'tests', '--diff', 'HEAD', '--stdout', 'json').stdout);
