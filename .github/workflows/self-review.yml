@@ -1,0 +1,42 @@
+# Runs this repo's own action on every pull request, from the checkout of the pull request:
+# the built CLI (node dist/cli.js) takes the place of the npm package. It reviews the test
+# files the pull request changes and keeps one comment on the pull request up to date.
+#
+# It is advice, not a gate (fail-on: never). The gate is the CI workflow.
+# The fixture folders hold bad tests on purpose, so only the repo's own test files are listed.
+name: Self review
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: self-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Review the changed tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: ./
+        with:
+          cli: dist/cli.js
+          fail-on: never
+          paths: |
+            tests/*.test.mjs
+            tests/adapters/*.test.mjs

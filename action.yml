@@ -1,0 +1,213 @@
+# The GitHub Action (SPEC.md Section 14.3). It is a composite action, so it works in a repo of
+# any language: it sets up Node itself when the runner has none that is new enough.
+#
+# Inputs reach the scripts only through env and are used as quoted shell variables. No
+# expression is written inside a run block (tests/action.test.mjs checks this), so text from
+# a workflow can never become part of a script.
+name: qa-core-review
+description: Review the tests a pull request changes, in any language, and flag tests that stay green while checking nothing.
+author: SprintSynergy
+branding:
+  icon: check-circle
+  color: green
+
+inputs:
+  base-ref:
+    description: The git ref to compare with. Empty means origin/ plus the base branch of the pull request.
+    required: false
+    default: ''
+  paths:
+    description: Files, folders or globs to review, one per line. Empty means every test file the tool detects.
+    required: false
+    default: ''
+  fail-on:
+    description: Fail the job when a finding is at or above this level. One of error, warn, info, never.
+    required: false
+    default: error
+  comment:
+    description: Post the report as one comment on the pull request and update it on every run.
+    required: false
+    default: 'true'
+  github-token:
+    description: The token used to write the comment. It needs pull-requests write.
+    required: false
+    default: ${{ github.token }}
+  comment-author:
+    description: The account the token comments as. Only a comment by this account is updated.
+    required: false
+    default: github-actions[bot]
+  sarif:
+    description: Also write report.sarif and upload it to code scanning. The job needs security-events write.
+    required: false
+    default: 'false'
+  junit:
+    description: Also write report.junit.xml into the report artifact.
+    required: false
+    default: 'false'
+  version:
+    description: The npm version of qa-core-review to run. Empty means the version of this action.
+    required: false
+    default: ''
+  node-version:
+    description: The Node version to set up when the runner has no Node 22.6 or later.
+    required: false
+    default: '22'
+  cli:
+    description: Path to a built cli.js to run with node in place of the npm package. For testing the action from a checkout of this repo.
+    required: false
+    default: ''
+
+outputs:
+  exit-code:
+    description: The exit code of the review. 0 no finding at or above fail-on, 1 findings, 2 usage or config error, 3 internal error.
+    value: ${{ steps.review.outputs.exit-code }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check Node
+      id: node
+      shell: bash
+      run: |
+        # Node 22.6 or later is needed. Set it up only when the runner has none that will do.
+        setup=true
+        if command -v node >/dev/null 2>&1; then
+          found="$(node --version)"
+          found="${found#v}"
+          major="${found%%.*}"
+          rest="${found#*.}"
+          minor="${rest%%.*}"
+          case "$major$minor" in
+            *[!0-9]* | '') ;;
+            *)
+              if [ "$major" -gt 22 ] || { [ "$major" -eq 22 ] && [ "$minor" -ge 6 ]; }; then
+                setup=false
+              fi
+              ;;
+          esac
+          echo "Node on this runner: $found"
+        else
+          echo "No Node on this runner."
+        fi
+        echo "setup=$setup" >> "$GITHUB_OUTPUT"
+
+    - name: Set up Node
+      if: steps.node.outputs.setup == 'true'
+      uses: actions/setup-node@v7
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Review the tests
+      id: review
+      shell: bash
+      env:
+        QCR_ACTION_PATH: ${{ github.action_path }}
+        QCR_BASE_REF: ${{ inputs.base-ref }}
+        QCR_CLI: ${{ inputs.cli }}
+        QCR_FAIL_ON: ${{ inputs.fail-on }}
+        QCR_JUNIT: ${{ inputs.junit }}
+        QCR_PATHS: ${{ inputs.paths }}
+        QCR_SARIF: ${{ inputs.sarif }}
+        QCR_VERSION: ${{ inputs.version }}
+      run: |
+        # A report of an earlier run must never be taken for the report of this one.
+        rm -f .qa-core/review/report.json .qa-core/review/report.md .qa-core/review/report.sarif .qa-core/review/report.junit.xml
+
+        version="$QCR_VERSION"
+        if [ -n "$QCR_CLI" ]; then
+          run=(node "$QCR_CLI")
+        else
+          if [ -z "$version" ]; then
+            # The version of this action is the version in its own package.json.
+            version="$(node -p 'require(require("node:path").join(process.env.QCR_ACTION_PATH, "package.json")).version')"
+          fi
+          run=(npx --yes "qa-core-review@$version")
+        fi
+        echo "version=$version" >> "$GITHUB_OUTPUT"
+
+        base="$QCR_BASE_REF"
+        if [ -z "$base" ] && [ -n "${GITHUB_BASE_REF:-}" ]; then
+          base="origin/$GITHUB_BASE_REF"
+        fi
+
+        formats="json,markdown"
+        if [ "$QCR_SARIF" = "true" ]; then formats="$formats,sarif"; fi
+        if [ "$QCR_JUNIT" = "true" ]; then formats="$formats,junit"; fi
+
+        args=(review --format "$formats" --output .qa-core/review --fail-on "$QCR_FAIL_ON")
+        if [ -n "$base" ]; then
+          args+=(--diff "$base")
+        else
+          echo "::notice title=qa-core-review::This run has no base branch, so every test file is reviewed, not only the changed ones."
+        fi
+
+        # One path per line. Spaces inside a line belong to the path, and a glob is passed on as it is.
+        paths=()
+        while IFS= read -r line || [ -n "$line" ]; do
+          line="${line#"${line%%[![:space:]]*}"}"
+          line="${line%"${line##*[![:space:]]}"}"
+          if [ -n "$line" ]; then paths+=("$line"); fi
+        done <<< "$QCR_PATHS"
+        if [ "${#paths[@]}" -gt 0 ]; then args+=(-- "${paths[@]}"); fi
+
+        set +e
+        "${run[@]}" "${args[@]}"
+        code=$?
+        set -e
+        echo "exit-code=$code" >> "$GITHUB_OUTPUT"
+        # The later steps ask these two, not the disk, what there is to upload.
+        if [ -f .qa-core/review/report.json ]; then echo "report=true" >> "$GITHUB_OUTPUT"; fi
+        if [ -f .qa-core/review/report.sarif ]; then echo "sarif=true" >> "$GITHUB_OUTPUT"; fi
+
+    - name: Add the report to the job summary
+      shell: bash
+      run: |
+        if [ -f .qa-core/review/report.md ]; then
+          cat .qa-core/review/report.md >> "$GITHUB_STEP_SUMMARY"
+        fi
+
+    - name: Comment on the pull request
+      if: inputs.comment == 'true'
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        QCR_CLI: ${{ inputs.cli }}
+        QCR_COMMENT_AUTHOR: ${{ inputs.comment-author }}
+        QCR_VERSION: ${{ steps.review.outputs.version }}
+      run: |
+        if [ ! -f .qa-core/review/report.json ]; then
+          echo "::notice title=qa-core-review::The review wrote no report, so there is no comment to post."
+          exit 0
+        fi
+        if [ -n "$QCR_CLI" ]; then
+          run=(node "$QCR_CLI")
+        else
+          run=(npx --yes "qa-core-review@$QCR_VERSION")
+        fi
+        # The comment is a courtesy. When it cannot be posted, the result of the review still stands.
+        "${run[@]}" comment --report .qa-core/review/report.json --author "$QCR_COMMENT_AUTHOR" \
+          || echo "::warning title=qa-core-review::The pull request comment was not posted. The result of the review is not affected."
+
+    - name: Upload SARIF to code scanning
+      if: inputs.sarif == 'true' && steps.review.outputs.sarif == 'true'
+      uses: github/codeql-action/upload-sarif@v4
+      with:
+        sarif_file: .qa-core/review/report.sarif
+        category: qa-core-review
+
+    - name: Upload the report
+      if: steps.review.outputs.report == 'true'
+      uses: actions/upload-artifact@v7
+      with:
+        name: qa-core-review-report
+        path: .qa-core/review/
+        include-hidden-files: true
+        if-no-files-found: ignore
+        overwrite: true
+
+    - name: Result
+      shell: bash
+      env:
+        QCR_EXIT_CODE: ${{ steps.review.outputs.exit-code }}
+      run: |
+        exit "${QCR_EXIT_CODE:-3}"

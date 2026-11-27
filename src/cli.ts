@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // Command line entry point (SPEC.md Section 11). So far: `review` (the default command),
-// `detect`, `rules`, `explain`, `adapters`, `init`, --version and --help. The other commands
-// arrive in later milestones.
+// `detect`, `rules`, `explain`, `adapters`, `init`, `comment`, --version and --help. The other
+// commands arrive in later milestones.
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { OPTIONS, parse, UsageError } from './commands/args.js';
+import { comment } from './commands/comment.js';
 import { adapters, explain, rules } from './commands/info.js';
 import { init } from './commands/init.js';
 import { review } from './commands/review.js';
@@ -28,15 +29,16 @@ Usage:
   qa-core-review explain <ruleId>            Describe one rule.
   qa-core-review adapters                    List the language adapters and what they read.
   qa-core-review init [--config [json|yaml]] Write a config file with the default values.
+  qa-core-review comment --report <file>     Post or update the review comment of a pull request (GitHub Actions).
   qa-core-review --version | -v              Print the version.
   qa-core-review --help | -h                 Print this help. Also: qa-core-review <command> --help
 
-Status: in development. Most rules and the ui, hook and comment commands are not available yet.
+Status: in development. The ui and hook commands are not available yet.
 `;
 
 /** Commands from SPEC.md Section 11.1 that later milestones add. */
-const LATER_COMMANDS = ['ui', 'hook', 'comment'];
-const COMMANDS: Readonly<Record<string, (argv: string[]) => number | Promise<number>>> = { review, rules, explain, adapters, init };
+const LATER_COMMANDS = ['ui', 'hook'];
+const COMMANDS: Readonly<Record<string, (argv: string[]) => number | Promise<number>>> = { review, rules, explain, adapters, init, comment };
 
 const DETECT_USAGE = `Usage: qa-core-review detect [flags]
 
