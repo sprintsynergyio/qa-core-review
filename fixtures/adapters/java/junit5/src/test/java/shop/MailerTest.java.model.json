@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -286,7 +293,23 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 19,
+            "endLine": 52,
+            "endColumn": 34
+          },
+          "text": "mock(Sms.class)",
+          "kind": "class",
+          "target": "Sms",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],
@@ -613,7 +636,23 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 78,
+            "startColumn": 9,
+            "endLine": 78,
+            "endColumn": 42
+          },
+          "text": "when(mailer.sent()).thenReturn(1)",
+          "kind": "function",
+          "target": "mailer.sent",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],
@@ -720,7 +759,23 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 21,
+            "endLine": 84,
+            "endColumn": 41
+          },
+          "text": "spy(new Cart(\"ana\"))",
+          "kind": "class",
+          "target": "Cart",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
       "resources": [],
       "data": [],
       "steps": [],
@@ -827,8 +882,66 @@
       "waits": [],
       "selectors": [],
       "tryBlocks": [],
-      "mocks": [],
-      "resources": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 43,
+            "endLine": 92,
+            "endColumn": 67
+          },
+          "text": "mockStatic(Prices.class)",
+          "kind": "class",
+          "target": "Prices",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 102,
+            "endLine": 92,
+            "endColumn": 130
+          },
+          "text": "mockConstruction(Cart.class)",
+          "kind": "class",
+          "target": "Cart",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 43,
+            "endLine": 92,
+            "endColumn": 67
+          },
+          "text": "mockStatic(Prices.class)",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 102,
+            "endLine": 92,
+            "endColumn": 130
+          },
+          "text": "mockConstruction(Cart.class)",
+          "kind": "patch",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
       "data": [],
       "steps": [],
       "statementCount": 1,
@@ -836,7 +949,98 @@
     }
   ],
   "fileHooks": [],
-  "fileMocks": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 34,
+        "endColumn": 25
+      },
+      "text": "@Mock Mailer mailer;",
+      "kind": "class",
+      "target": "Mailer",
+      "targetsSubject": true,
+      "passthrough": false,
+      "stubbedReturn": true,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 22
+      },
+      "text": "@Spy Audit audit;",
+      "kind": "class",
+      "target": "Audit",
+      "targetsSubject": false,
+      "passthrough": true,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 36,
+        "startColumn": 5,
+        "endLine": 36,
+        "endColumn": 27
+      },
+      "text": "@MockBean Clock clock;",
+      "kind": "class",
+      "target": "Clock",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 37,
+        "startColumn": 5,
+        "endLine": 37,
+        "endColumn": 28
+      },
+      "text": "@SpyBean Ledger ledger;",
+      "kind": "class",
+      "target": "Ledger",
+      "targetsSubject": false,
+      "passthrough": true,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 38,
+        "startColumn": 5,
+        "endLine": 38,
+        "endColumn": 30
+      },
+      "text": "@MockitoBean Stock stock;",
+      "kind": "class",
+      "target": "Stock",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 39,
+        "endColumn": 35
+      },
+      "text": "@MockitoSpyBean Prices prices;",
+      "kind": "class",
+      "target": "Prices",
+      "targetsSubject": false,
+      "passthrough": true,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    }
+  ],
   "fileResources": [],
   "imports": [
     {
@@ -1218,6 +1422,9 @@
       "framework": false
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "Mailer",
+    "via": "filename"
+  },
   "suppressions": []
 }

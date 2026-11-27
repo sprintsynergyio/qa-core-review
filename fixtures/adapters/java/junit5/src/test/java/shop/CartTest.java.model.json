@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -1061,6 +1068,9 @@
       "framework": true
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "Cart",
+    "via": "filename"
+  },
   "suppressions": []
 }

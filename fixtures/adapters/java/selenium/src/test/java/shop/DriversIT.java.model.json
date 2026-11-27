@@ -1,0 +1,903 @@
+{
+  "path": "src/test/java/shop/DriversIT.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "DriversIT",
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 79,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 5,
+            "endLine": 27,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:shared"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "189025908224",
+        "fd9dbb67d64f",
+        "cede2c0ce22f",
+        "260cb0a04bc1",
+        "94b14f80d473",
+        "c07b316af691"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "189025908224",
+      "title": "quitsItsOwnDriver",
+      "fullTitle": "DriversIT > quitsItsOwnDriver",
+      "suitePath": [
+        "DriversIT"
+      ],
+      "span": {
+        "startLine": 29,
+        "startColumn": 5,
+        "endLine": 38,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 30,
+        "startColumn": 30,
+        "endLine": 38,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 13,
+            "endLine": 34,
+            "endColumn": 57
+          },
+          "text": "assertEquals(\"Swag Labs\", driver.getTitle())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.getTitle()",
+            "normalized": "driver.getTitle()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 28,
+            "endLine": 31,
+            "endColumn": 47
+          },
+          "text": "new FirefoxDriver()",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 13,
+            "endLine": 33,
+            "endColumn": 29
+          },
+          "text": "driver.get(SHOP)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 2,
+      "bodyHash": "968f4db0dc08bf372b27d06f6af205e959ef42f9"
+    },
+    {
+      "id": "fd9dbb67d64f",
+      "title": "leavesTheBrowserOpen",
+      "fullTitle": "DriversIT > leavesTheBrowserOpen",
+      "suitePath": [
+        "DriversIT"
+      ],
+      "span": {
+        "startLine": 40,
+        "startColumn": 5,
+        "endLine": 45,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 41,
+        "startColumn": 33,
+        "endLine": 45,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 44,
+            "startColumn": 9,
+            "endLine": 44,
+            "endColumn": 53
+          },
+          "text": "assertEquals(\"Swag Labs\", driver.getTitle())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.getTitle()",
+            "normalized": "driver.getTitle()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 42,
+            "startColumn": 28,
+            "endLine": 42,
+            "endColumn": 44
+          },
+          "text": "new EdgeDriver()",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 9,
+            "endLine": 43,
+            "endColumn": 25
+          },
+          "text": "driver.get(SHOP)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "2bdc6b1630fc35d4daa1b5ffb25b2ee19a3f37ee"
+    },
+    {
+      "id": "cede2c0ce22f",
+      "title": "leavesTheDriverToTheHook",
+      "fullTitle": "DriversIT > leavesTheDriverToTheHook",
+      "suitePath": [
+        "DriversIT"
+      ],
+      "span": {
+        "startLine": 47,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 48,
+        "startColumn": 54,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 53
+          },
+          "text": "assertEquals(\"Swag Labs\", shared.getTitle())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "shared.getTitle()",
+            "normalized": "shared.getTitle()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 18,
+            "endLine": 49,
+            "endColumn": 103
+          },
+          "text": "new RemoteWebDriver(new URL(\"https://grid.example.test/wd/hub\"), new SafariOptions())",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 25
+          },
+          "text": "shared.get(SHOP)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "921662c0fd0cc05d6f033fad0faf5df44977dc04"
+    },
+    {
+      "id": "260cb0a04bc1",
+      "title": "closesOnlyTheWindow",
+      "fullTitle": "DriversIT > closesOnlyTheWindow",
+      "suitePath": [
+        "DriversIT"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 55,
+        "startColumn": 32,
+        "endLine": 60,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 9,
+            "endLine": 58,
+            "endColumn": 53
+          },
+          "text": "assertEquals(\"Swag Labs\", driver.getTitle())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.getTitle()",
+            "normalized": "driver.getTitle()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 28,
+            "endLine": 56,
+            "endColumn": 46
+          },
+          "text": "new SafariDriver()",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 25
+          },
+          "text": "driver.get(SHOP)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "04b4457b93fe7dcd4028fbf75d764e5a445ddbf0"
+    },
+    {
+      "id": "94b14f80d473",
+      "title": "startsADriverThroughTheManager",
+      "fullTitle": "DriversIT > startsADriverThroughTheManager",
+      "suitePath": [
+        "DriversIT"
+      ],
+      "span": {
+        "startLine": 62,
+        "startColumn": 5,
+        "endLine": 67,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 43,
+        "endLine": 67,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 9,
+            "endLine": 66,
+            "endColumn": 53
+          },
+          "text": "assertEquals(\"Swag Labs\", driver.getTitle())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.getTitle()",
+            "normalized": "driver.getTitle()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 28,
+            "endLine": 64,
+            "endColumn": 68
+          },
+          "text": "WebDriverManager.chromedriver().create()",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 25
+          },
+          "text": "driver.get(SHOP)",
+          "kind": "navigate"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "62a0e09795ef42856840ee2479207a11f29a8309"
+    },
+    {
+      "id": "c07b316af691",
+      "title": "startsMobileDrivers",
+      "fullTitle": "DriversIT > startsMobileDrivers",
+      "suitePath": [
+        "DriversIT"
+      ],
+      "span": {
+        "startLine": 69,
+        "startColumn": 5,
+        "endLine": 78,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 70,
+        "startColumn": 49,
+        "endLine": 78,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 9,
+            "endLine": 75,
+            "endColumn": 54
+          },
+          "text": "assertEquals(\"Swag Labs\", android.getTitle())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "android.getTitle()",
+            "normalized": "android.getTitle()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Swag Labs\"",
+            "normalized": "\"Swag Labs\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Swag Labs"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 28,
+            "endLine": 72,
+            "endColumn": 68
+          },
+          "text": "new AppiumDriver(server, capabilities())",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 33,
+            "endLine": 73,
+            "endColumn": 74
+          },
+          "text": "new AndroidDriver(server, capabilities())",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 25,
+            "endLine": 74,
+            "endColumn": 62
+          },
+          "text": "new IOSDriver(server, capabilities())",
+          "kind": "driver",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "9efb0b83070ff5fb27fef61d1cc8131e77dab1f9"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 43
+      },
+      "source": "io.appium.java_client.AppiumDriver",
+      "names": [
+        "AppiumDriver"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 52
+      },
+      "source": "io.appium.java_client.android.AndroidDriver",
+      "names": [
+        "AndroidDriver"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 44
+      },
+      "source": "io.appium.java_client.ios.IOSDriver",
+      "names": [
+        "IOSDriver"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 50
+      },
+      "source": "io.github.bonigarcia.wdm.WebDriverManager",
+      "names": [
+        "WebDriverManager"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 21
+      },
+      "source": "java.net.URL",
+      "names": [
+        "URL"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 40
+      },
+      "source": "org.junit.jupiter.api.AfterEach",
+      "names": [
+        "AfterEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 38
+      },
+      "source": "org.openqa.selenium.WebDriver",
+      "names": [
+        "WebDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 44
+      },
+      "source": "org.openqa.selenium.edge.EdgeDriver",
+      "names": [
+        "EdgeDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 50
+      },
+      "source": "org.openqa.selenium.firefox.FirefoxDriver",
+      "names": [
+        "FirefoxDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 51
+      },
+      "source": "org.openqa.selenium.remote.RemoteWebDriver",
+      "names": [
+        "RemoteWebDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 48
+      },
+      "source": "org.openqa.selenium.safari.SafariDriver",
+      "names": [
+        "SafariDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

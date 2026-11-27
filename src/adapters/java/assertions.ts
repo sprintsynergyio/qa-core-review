@@ -5,13 +5,13 @@ import { clipText } from '../../model/build.js';
 import type { AssertionKind, FrameworkId, NAssertion, NTryBlock } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
-import { intValue, nameOf, toExpr, unwrap, type Env } from './expr.js';
+import { intValue, isLocator, nameOf, toExpr, unwrap, type Env } from './expr.js';
 import { dottedName, statementsOf } from './syntax.js';
 import {
   ALWAYS_RUN_CALLBACKS, ALWAYS_RUN_METHODS, ASSERTION_CATCHERS, DYNAMIC_TEST_CALL, ASSERTJ_METHODS, ASSERTJ_NAVIGATIONS, ASSERTJ_NON_CHECKS, ASSERTJ_THROW_ROOTS, ASSERT_CLASSES, ASSERT_METHODS, ASSERT_METHOD_PREFIX, ASSERT_THAT_HOMES, ASSERT_THAT_NAMES,
   BDD_SHOULD, BDD_THEN_HOME, BDD_WHOLE_CALLS, EXPECTED_EXCEPTION_METHODS, FAIL_CLASSES, FAIL_METHODS, GROUPING_METHODS, HAMCREST_MATCHERS, HAMCREST_WRAPPERS, LISTING_CALLS, MOCKITO_CLASSES,
-  NEGATING_LINKS, NEVER_MODES, RESPONSE_CHECK_METHODS, RESTASSURED_CHECKS, RESTASSURED_THEN, SNAPSHOT_CALLS, SNAPSHOT_METHODS, SOFT_REPORT_METHOD, STATUS_READERS, STEP_VERIFIER,
-  STEP_VERIFIER_RUN_PREFIX, THROWN_SKIPS, VERIFY_CALL,
+  NEGATING_LINKS, NEVER_MODES, RESPONSE_CHECK_METHODS, RESTASSURED_CHECKS, RESTASSURED_THEN, SELENIDE_CHECK_PREFIX, SELENIDE_NEGATED_PREFIX, SNAPSHOT_CALLS, SNAPSHOT_METHODS, SOFT_REPORT_METHOD, STATUS_READERS, STEP_VERIFIER,
+  STEP_VERIFIER_RUN_PREFIX, THROWN_SKIPS, VERIFY_CALL, WIREMOCK_REQUESTED_SUFFIX,
   VERIFY_WHOLE_CALLS, type Check,
 } from './vocab.js';
 
@@ -223,6 +223,10 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
     const never = (mode: SyntaxNode | undefined): boolean => mode?.type === 'method_invocation' && includes(NEVER_MODES, mode.childForFieldName('name')?.text);
     const mockCall = (matcher: string, mock: SyntaxNode | undefined, complete: boolean, negated: boolean): NAssertion[] =>
       [make(top, state, { kind: 'mock-call', library: 'mockito', matcher, negated, complete, actual: mock ? { ...toExpr(mock, env), isMock: true } : null })];
+    // WireMock: `verify(postRequestedFor(urlEqualTo("/orders")))` checks that a request was made.
+    if (first.name === VERIFY_CALL && first.args.some((arg) => arg.type === 'method_invocation' && chainOf(arg).links[0]!.name.endsWith(WIREMOCK_REQUESTED_SUFFIX))) {
+      return [make(top, state, { kind: 'mock-call', library: 'wiremock', matcher: VERIFY_CALL })];
+    }
     if (plain && !onVariable && first.name === VERIFY_CALL && first.args.length >= 1 && first.args.length <= 2 && mockitoName(first.name)) {
       // `verify(mock)` alone names no call, so it checks nothing.
       return mockCall(VERIFY_CALL, first.args[0], chain.links.length >= 2, never(first.args[1]));
@@ -308,6 +312,11 @@ export function readBody(body: SyntaxNode, ctx: BodyContext): BodyFacts {
         const codes = isStatus ? own.flatMap((later) => later.args).flatMap((arg) => arg.descendantsOfType('decimal_integer_literal')).map((code) => intValue(code)).filter((code): code is number => code !== null) : [];
         return fromLink(make(top, state, { kind: isStatus ? 'status' : 'other', library: 'spring', matcher: link.name, ...(codes.length > 0 ? { statusCodes: codes } : {}) }), link);
       });
+    }
+    // Selenide: `$("#title").shouldHave(text("Products"))` on an element.
+    const shoulds = chain.links.filter((link) => link.name.startsWith(SELENIDE_CHECK_PREFIX) && isLocator(link.node.childForFieldName('object') ?? link.node, env));
+    if (shoulds.length > 0) {
+      return shoulds.map((link) => fromLink(make(top, state, { kind: 'ui-state', library: 'selenide', matcher: link.name, negated: link.name.startsWith(SELENIDE_NEGATED_PREFIX), actual: operand(link.node.childForFieldName('object')) }), link));
     }
     // Reactor: the expectations of a StepVerifier are checked only when a `verify...` call runs it.
     if (receiver !== null && lastPart(receiver) === STEP_VERIFIER) {

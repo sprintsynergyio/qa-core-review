@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -42,6 +49,38 @@
           "kind": "beforeEach",
           "scope": "suite",
           "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 24,
+            "endLine": 12,
+            "endColumn": 40
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 12,
+            "startColumn": 24,
+            "endLine": 12,
+            "endColumn": 40
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:database"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -260,7 +299,19 @@
         "hasAssertions": false
       },
       "expectsException": false,
-      "waits": [],
+      "waits": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 76
+          },
+          "text": "Awaitility.await().until(() -> order(7).status().equals(\"shipped\"))",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
       "selectors": [],
       "tryBlocks": [],
       "mocks": [],
@@ -352,7 +403,23 @@
     }
   ],
   "fileHooks": [],
-  "fileMocks": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 46,
+        "endLine": 17,
+        "endColumn": 64
+      },
+      "text": "mock(Mailer.class)",
+      "kind": "class",
+      "target": "Mailer",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": false,
+      "fulfillsAllNetwork": false
+    }
+  ],
   "fileResources": [],
   "imports": [
     {
@@ -454,6 +521,9 @@
       "framework": true
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "OrderService",
+    "via": "filename"
+  },
   "suppressions": []
 }

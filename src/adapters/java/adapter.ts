@@ -4,8 +4,9 @@ import { JAVA_LEXICAL, scanLines } from '../../parse/lexical.js';
 import type { LanguageAdapter, SourceFile } from '../types.js';
 import { javaProfile } from './detect.js';
 import { detectJavaFrameworks } from './frameworks.js';
-import { collectJavaHelpers, fileContext, supportFilesOf } from './helpers.js';
-import { JAVA_CAPABILITIES, normalizeJava, readImports, unparsedJava } from './normalize.js';
+import { collectJavaBases, collectJavaHelpers, fileContext, supportFilesOf } from './helpers.js';
+import { normalizeJavaLexical } from './lexical.js';
+import { JAVA_CAPABILITIES, normalizeJava, readImports } from './normalize.js';
 import { TEST_ANNOTATIONS } from './vocab.js';
 
 const TEST_NAMES = [...new Set(Object.keys(TEST_ANNOTATIONS).map((name) => name.slice(name.lastIndexOf('.') + 1)))];
@@ -35,15 +36,18 @@ export const javaAdapter: LanguageAdapter = {
 
   normalize(parsed, ctx) {
     const frameworks = detectJavaFrameworks(parsed.file);
-    return parsed.tree ? normalizeJava(parsed, frameworks, ctx) : unparsedJava(parsed.file, frameworks, ctx, 'failed', declaresTests(parsed.file) ? 'test' : 'support');
+    // With no tree the lexical scanner still finds the test methods, the lines that assert and the fixed sleeps.
+    return parsed.tree ? normalizeJava(parsed, frameworks, ctx) : normalizeJavaLexical(parsed.file, frameworks, ctx, declaresTests(parsed.file) ? 'test' : 'support');
   },
 
-  /** For the helper index: the methods of any file, test or support, that contain an assertion. */
+  /** For the helper index: the methods of any file, test or support, that contain an assertion, and what each class hands down to the classes that extend it. */
   collectHelpers(parsed) {
     if (!parsed.tree) return [];
     const root = parsed.tree.rootNode;
     const frameworks = detectJavaFrameworks(parsed.file);
-    return collectJavaHelpers(root, parsed.file.path, fileContext(root, frameworks, readImports(root, frameworks.runner)));
+    const names = readImports(root, frameworks.runner);
+    const shared = fileContext(root, frameworks, names);
+    return [...collectJavaHelpers(root, parsed.file.path, shared), ...collectJavaBases(root, parsed.file.path, names, shared)];
   },
 
   supportFiles(parsed) {

@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -58,7 +65,9 @@
           },
           "kind": "afterAll",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:playwright"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -88,7 +97,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:page"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -161,7 +172,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 43,
+            "startColumn": 20,
+            "endLine": 43,
+            "endColumn": 46
+          },
+          "text": "page.getByText(\"Products\")",
+          "api": "getByText",
+          "strategy": "text",
+          "value": "Products"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -173,7 +197,47 @@
   ],
   "fileHooks": [],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 22,
+        "endLine": 21,
+        "endColumn": 41
+      },
+      "text": "Playwright.create()",
+      "kind": "browser",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 22,
+        "startColumn": 19,
+        "endLine": 22,
+        "endColumn": 49
+      },
+      "text": "playwright.chromium().launch()",
+      "kind": "browser",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 32,
+        "startColumn": 16,
+        "endLine": 32,
+        "endColumn": 33
+      },
+      "text": "browser.newPage()",
+      "kind": "page",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {

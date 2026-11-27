@@ -370,8 +370,9 @@ test('helpers: a method of the class, of the project or of the config that holds
   const source = `${JUNIT5}\nclass ATest {\n${members.map((line) => `    ${line}`).join('\n')}\n    Runnable later = new Runnable() { public void run() { assertTrue(ok); } };\n}\n`;
   const parsed = await javaAdapter.parse({ path: `${TESTS}/ATest.java`, absPath: '/x', language: 'java', project: null, text: source }, adapterContext());
   // One level deep: a method that only calls a helper, or only throws an error of its own, is not one. Tests and hooks are not helpers.
+  // The last entry stands for the class itself: what it hands down to a class that extends it (java-body.test.mjs).
   assert.deepEqual(javaAdapter.collectHelpers(parsed).map((helper) => [helper.name, helper.owner, helper.file, helper.span.startLine]), [
-    ['checkTotal', 'ATest', `${TESTS}/ATest.java`, 11], ['checkItem', 'ATest', `${TESTS}/ATest.java`, 12], ['strict', 'ATest', `${TESTS}/ATest.java`, 16],
+    ['checkTotal', 'ATest', `${TESTS}/ATest.java`, 11], ['checkItem', 'ATest', `${TESTS}/ATest.java`, 12], ['strict', 'ATest', `${TESTS}/ATest.java`, 16], ['extends ATest', 'ATest', `${TESTS}/ATest.java`, 4],
   ]);
   parsed.tree.delete();
 });
@@ -402,7 +403,7 @@ test('support files: the project classes a file imports, and the classes of its 
 test('the rules read what a Java body checks', async () => {
   const review = async (framework) => {
     const { report } = await runReview({ root: fixtureRoot('adapters', 'java', framework), config: resolveConfig({}).config, git: false, rules: builtinRules });
-    return report.findings.filter((finding) => !['QCR-F002', 'QCR-N001', 'QCR-X001'].includes(finding.ruleId)).map((finding) => `${finding.location.file.replace(`${TESTS}/`, '')}:${finding.location.startLine} ${finding.ruleId}`);
+    return report.findings.filter((finding) => /^QCR-[AEP]/.test(finding.ruleId)).map((finding) => `${finding.location.file.replace(`${TESTS}/`, '')}:${finding.location.startLine} ${finding.ruleId}`);
   };
   assert.deepEqual(await review('junit5'), [
     // `isGreaterThanOrEqualTo(0)` on a size, and four chains with no check.

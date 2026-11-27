@@ -1,0 +1,1197 @@
+{
+  "path": "src/test/java/shop/OrderLifecycleApiTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "restassured"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "OrderLifecycleApiTest",
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 76,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:payments"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "d2e51dcf1b00",
+        "3b2c28949ff7",
+        "9f4527b03bde",
+        "196c9ba6fd7a",
+        "83f660284ddb"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "d2e51dcf1b00",
+      "title": "createsAnOrderAndLeavesIt",
+      "fullTitle": "OrderLifecycleApiTest > createsAnOrderAndLeavesIt",
+      "suitePath": [
+        "OrderLifecycleApiTest"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 38,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 90,
+            "endLine": 41,
+            "endColumn": 105
+          },
+          "text": "given().baseUri(API).body(\"{\\\"item\\\": \\\"apple\\\"}\").when().post(\"/orders\").then().statusCode(201)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 82
+          },
+          "text": "given().baseUri(API).body(\"{\\\"item\\\": \\\"apple\\\"}\").when().post(\"/orders\")",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 82
+          },
+          "text": "given().baseUri(API).body(\"{\\\"item\\\": \\\"apple\\\"}\").when().post(\"/orders\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 1,
+      "bodyHash": "d6041bb9fe18772bdce581f25ad27230db6a9ac5"
+    },
+    {
+      "id": "3b2c28949ff7",
+      "title": "createsAnOrderAndDeletesIt",
+      "fullTitle": "OrderLifecycleApiTest > createsAnOrderAndDeletesIt",
+      "suitePath": [
+        "OrderLifecycleApiTest"
+      ],
+      "span": {
+        "startLine": 44,
+        "startColumn": 5,
+        "endLine": 51,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 39,
+        "endLine": 51,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 95,
+            "endLine": 46,
+            "endColumn": 110
+          },
+          "text": "given().baseUri(API).body(\"{\\\"item\\\": \\\"apple\\\"}\").post(\"/orders\").then().statusCode(201).extract().path(\"id\")",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "201",
+            "normalized": "201",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "201"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            201
+          ]
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 86,
+            "endLine": 47,
+            "endColumn": 101
+          },
+          "text": "with().baseUri(API).body(\"{\\\"item\\\": \\\"pear\\\"}\").put(\"/orders/\" + id).then().statusCode(200)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 86,
+            "endLine": 48,
+            "endColumn": 114
+          },
+          "text": "given().baseUri(API).body(\"{\\\"quantity\\\": 2}\").patch(\"/orders/\" + id).then().body(\"quantity\", equalTo(2))",
+          "kind": "equality",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "2",
+            "normalized": "2",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "2"
+            }
+          },
+          "matcher": "body",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 59,
+            "endLine": 49,
+            "endColumn": 74
+          },
+          "text": "given().baseUri(API).head(\"/orders/\" + id).then().statusCode(200)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 53,
+            "endLine": 50,
+            "endColumn": 68
+          },
+          "text": "when().delete(API + \"/orders/\" + id).then().statusCode(204)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "204",
+            "normalized": "204",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "204"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            204
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 21,
+            "endLine": 46,
+            "endColumn": 87
+          },
+          "text": "given().baseUri(API).body(\"{\\\"item\\\": \\\"apple\\\"}\").post(\"/orders\")",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 78
+          },
+          "text": "with().baseUri(API).body(\"{\\\"item\\\": \\\"pear\\\"}\").put(\"/orders/\" + id)",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 78
+          },
+          "text": "given().baseUri(API).body(\"{\\\"quantity\\\": 2}\").patch(\"/orders/\" + id)",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 51
+          },
+          "text": "given().baseUri(API).head(\"/orders/\" + id)",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 45
+          },
+          "text": "when().delete(API + \"/orders/\" + id)",
+          "op": "delete",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 21,
+            "endLine": 46,
+            "endColumn": 87
+          },
+          "text": "given().baseUri(API).body(\"{\\\"item\\\": \\\"apple\\\"}\").post(\"/orders\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 78
+          },
+          "text": "with().baseUri(API).body(\"{\\\"item\\\": \\\"pear\\\"}\").put(\"/orders/\" + id)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 78
+          },
+          "text": "given().baseUri(API).body(\"{\\\"quantity\\\": 2}\").patch(\"/orders/\" + id)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 51
+          },
+          "text": "given().baseUri(API).head(\"/orders/\" + id)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 45
+          },
+          "text": "when().delete(API + \"/orders/\" + id)",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 5,
+      "bodyHash": "d4f48de2924f88001ba91997b9edb1b2cc11b98e"
+    },
+    {
+      "id": "9f4527b03bde",
+      "title": "fakesThePaymentService",
+      "fullTitle": "OrderLifecycleApiTest > fakesThePaymentService",
+      "suitePath": [
+        "OrderLifecycleApiTest"
+      ],
+      "span": {
+        "startLine": 53,
+        "startColumn": 5,
+        "endLine": 58,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 54,
+        "startColumn": 35,
+        "endLine": 58,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 59,
+            "endLine": 56,
+            "endColumn": 74
+          },
+          "text": "given().baseUri(API).post(\"/orders/7/pay\").then().statusCode(200)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 58
+          },
+          "text": "verify(postRequestedFor(urlEqualTo(\"/payments\")))",
+          "kind": "mock-call",
+          "library": "wiremock",
+          "actual": null,
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 9,
+            "endLine": 55,
+            "endColumn": 87
+          },
+          "text": "stubFor(post(urlEqualTo(\"/payments\")).willReturn(aResponse().withStatus(201)))",
+          "kind": "network",
+          "target": "/payments",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 9,
+            "endLine": 56,
+            "endColumn": 51
+          },
+          "text": "given().baseUri(API).post(\"/orders/7/pay\")",
+          "op": "create",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 9,
+            "endLine": 56,
+            "endColumn": 51
+          },
+          "text": "given().baseUri(API).post(\"/orders/7/pay\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 3,
+      "bodyHash": "1c78a201490e60c3323b29bd861180f1170ffb10"
+    },
+    {
+      "id": "196c9ba6fd7a",
+      "title": "fakesEveryService",
+      "fullTitle": "OrderLifecycleApiTest > fakesEveryService",
+      "suitePath": [
+        "OrderLifecycleApiTest"
+      ],
+      "span": {
+        "startLine": 60,
+        "startColumn": 5,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 61,
+        "startColumn": 30,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 52,
+            "endLine": 65,
+            "endColumn": 67
+          },
+          "text": "given().baseUri(API).get(\"/orders\").then().statusCode(200)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 9,
+            "endLine": 62,
+            "endColumn": 71
+          },
+          "text": "stubFor(any(anyUrl()).willReturn(aResponse().withStatus(200)))",
+          "kind": "network",
+          "target": "anyUrl()",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 80
+          },
+          "text": "stubFor(any(urlMatching(\".*\")).willReturn(aResponse().withStatus(200)))",
+          "kind": "network",
+          "target": ".*",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": true
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 82
+          },
+          "text": "stubFor(post(urlMatching(\"/.*\")).willReturn(aResponse().withStatus(200)))",
+          "kind": "network",
+          "target": "/.*",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 44
+          },
+          "text": "given().baseUri(API).get(\"/orders\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 44
+          },
+          "text": "given().baseUri(API).get(\"/orders\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 4,
+      "bodyHash": "d3a18ea1afe2f2522ab864664b638ee08fc9b666"
+    },
+    {
+      "id": "83f660284ddb",
+      "title": "startsAServerAndNeverStopsIt",
+      "fullTitle": "OrderLifecycleApiTest > startsAServerAndNeverStopsIt",
+      "suitePath": [
+        "OrderLifecycleApiTest"
+      ],
+      "span": {
+        "startLine": 68,
+        "startColumn": 5,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 58,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 51,
+            "endLine": 74,
+            "endColumn": 66
+          },
+          "text": "given().baseUri(API).get(\"/stock\").then().statusCode(200)",
+          "kind": "status",
+          "library": "restassured",
+          "actual": null,
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "statusCode",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null,
+          "statusCodes": [
+            200
+          ]
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 31,
+            "endLine": 70,
+            "endColumn": 50
+          },
+          "text": "new MockWebServer()",
+          "kind": "server",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 32,
+            "endLine": 72,
+            "endColumn": 51
+          },
+          "text": "new MockWebServer()",
+          "kind": "server",
+          "acquiredIn": "test",
+          "released": true,
+          "autoManaged": false
+        }
+      ],
+      "data": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 43
+          },
+          "text": "given().baseUri(API).get(\"/stock\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 43
+          },
+          "text": "given().baseUri(API).get(\"/stock\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 5,
+      "bodyHash": "52a963e53cd689f755bdc2b64171ba358f63d952"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 30,
+        "startColumn": 20,
+        "endLine": 30,
+        "endColumn": 44
+      },
+      "text": "new WireMockServer(8089)",
+      "kind": "server",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 67
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "any"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 70
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "anyUrl"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 73
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "aResponse"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 68
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "post"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 80
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "postRequestedFor"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 71
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "stubFor"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 74
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "urlEqualTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 75
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "urlMatching"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 70
+      },
+      "source": "com.github.tomakehurst.wiremock.client.WireMock",
+      "names": [
+        "verify"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 48
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "given"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 47
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "when"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 47
+      },
+      "source": "io.restassured.RestAssured",
+      "names": [
+        "with"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 45
+      },
+      "source": "org.hamcrest.Matchers",
+      "names": [
+        "equalTo"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 55
+      },
+      "source": "com.github.tomakehurst.wiremock.WireMockServer",
+      "names": [
+        "WireMockServer"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 43
+      },
+      "source": "okhttp3.mockwebserver.MockResponse",
+      "names": [
+        "MockResponse"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 44
+      },
+      "source": "okhttp3.mockwebserver.MockWebServer",
+      "names": [
+        "MockWebServer"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 20,
+        "endColumn": 40
+      },
+      "source": "org.junit.jupiter.api.AfterEach",
+      "names": [
+        "AfterEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 21,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

@@ -1,0 +1,490 @@
+{
+  "path": "src/test/java/shop/PricesTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "PricesTest",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 36,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "87c8d3897e14",
+        "6407ff2c88fa",
+        "ed9cc324e9f0"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "87c8d3897e14",
+      "title": "readsThePriceFromTheMock",
+      "fullTitle": "PricesTest > readsThePriceFromTheMock",
+      "suitePath": [
+        "PricesTest"
+      ],
+      "span": {
+        "startLine": 18,
+        "startColumn": 5,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 19,
+        "startColumn": 37,
+        "endLine": 22,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 9,
+            "endLine": 21,
+            "endColumn": 45
+          },
+          "text": "assertEquals(99, prices.of(\"apple\"))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "prices.of(\"apple\")",
+            "normalized": "prices.of(\"apple\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "99",
+            "normalized": "99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "99"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 9,
+            "endLine": 20,
+            "endColumn": 48
+          },
+          "text": "when(prices.of(\"apple\")).thenReturn(99)",
+          "kind": "function",
+          "target": "prices.of",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "6ebf70329d49cd3617674b231b33bb1857b067f0"
+    },
+    {
+      "id": "6407ff2c88fa",
+      "title": "mocksThePricesInTheTest",
+      "fullTitle": "PricesTest > mocksThePricesInTheTest",
+      "suitePath": [
+        "PricesTest"
+      ],
+      "span": {
+        "startLine": 24,
+        "startColumn": 5,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 25,
+        "startColumn": 36,
+        "endLine": 29,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 9,
+            "endLine": 28,
+            "endColumn": 43
+          },
+          "text": "assertEquals(50, local.of(\"pear\"))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "local.of(\"pear\")",
+            "normalized": "local.of(\"pear\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "50",
+            "normalized": "50",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "50"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 24,
+            "endLine": 26,
+            "endColumn": 42
+          },
+          "text": "mock(Prices.class)",
+          "kind": "class",
+          "target": "Prices",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 46
+          },
+          "text": "when(local.of(\"pear\")).thenReturn(50)",
+          "kind": "function",
+          "target": "local.of",
+          "targetsSubject": true,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "3531b617058313baf973bc5fb66335d723a0057b"
+    },
+    {
+      "id": "ed9cc324e9f0",
+      "title": "watchesTheRealPrices",
+      "fullTitle": "PricesTest > watchesTheRealPrices",
+      "suitePath": [
+        "PricesTest"
+      ],
+      "span": {
+        "startLine": 31,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 32,
+        "startColumn": 33,
+        "endLine": 35,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 43
+          },
+          "text": "assertEquals(99, real.of(\"apple\"))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "real.of(\"apple\")",
+            "normalized": "real.of(\"apple\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "99",
+            "normalized": "99",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "99"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 23,
+            "endLine": 33,
+            "endColumn": 40
+          },
+          "text": "spy(new Prices())",
+          "kind": "class",
+          "target": "Prices",
+          "targetsSubject": true,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "9ef679224135c8e487f83f84e023460cf17cb43b"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 16,
+        "endColumn": 25
+      },
+      "text": "@Mock Prices prices;",
+      "kind": "class",
+      "target": "Prices",
+      "targetsSubject": true,
+      "passthrough": false,
+      "stubbedReturn": true,
+      "fulfillsAllNetwork": false
+    }
+  ],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 39
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "spy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "when"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 51
+      },
+      "source": "org.junit.jupiter.api.extension.ExtendWith",
+      "names": [
+        "ExtendWith"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 25
+      },
+      "source": "org.mockito.Mock",
+      "names": [
+        "Mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 51
+      },
+      "source": "org.mockito.junit.jupiter.MockitoExtension",
+      "names": [
+        "MockitoExtension"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": {
+    "module": "Prices",
+    "via": "filename"
+  },
+  "suppressions": []
+}

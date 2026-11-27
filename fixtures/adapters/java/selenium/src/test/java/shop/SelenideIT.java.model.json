@@ -1,0 +1,520 @@
+{
+  "path": "src/test/java/shop/SelenideIT.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "SelenideIT",
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 34,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [],
+      "testIds": [
+        "2055d706179f",
+        "b6a3cf5b9e8e"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "2055d706179f",
+      "title": "logsIn",
+      "fullTitle": "SelenideIT > logsIn",
+      "suitePath": [
+        "SelenideIT"
+      ],
+      "span": {
+        "startLine": 16,
+        "startColumn": 5,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 17,
+        "startColumn": 19,
+        "endLine": 24,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 21,
+            "endLine": 22,
+            "endColumn": 49
+          },
+          "text": "$(\".title\").shouldHave(text(\"Products\"))",
+          "kind": "ui-state",
+          "library": "selenide",
+          "actual": {
+            "text": "$(\".title\")",
+            "normalized": "$(\".title\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "shouldHave",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 39,
+            "endLine": 23,
+            "endColumn": 59
+          },
+          "text": "$(\".error-message-container\").shouldNotBe(visible)",
+          "kind": "ui-state",
+          "library": "selenide",
+          "actual": {
+            "text": "$(\".error-message-container\")",
+            "normalized": "$(\".error-message-container\")",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "shouldNotBe",
+          "negated": true,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 9,
+            "endLine": 19,
+            "endColumn": 24
+          },
+          "text": "$(\"#user-name\")",
+          "api": "$",
+          "strategy": "id",
+          "value": "#user-name"
+        },
+        {
+          "span": {
+            "startLine": 20,
+            "startColumn": 9,
+            "endLine": 20,
+            "endColumn": 23
+          },
+          "text": "$(\"#password\")",
+          "api": "$",
+          "strategy": "id",
+          "value": "#password"
+        },
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 9,
+            "endLine": 21,
+            "endColumn": 30
+          },
+          "text": "$x(\"//form/input[3]\")",
+          "api": "$x",
+          "strategy": "xpath",
+          "value": "//form/input[3]"
+        },
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 9,
+            "endLine": 22,
+            "endColumn": 20
+          },
+          "text": "$(\".title\")",
+          "api": "$",
+          "strategy": "class",
+          "value": ".title"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 9,
+            "endLine": 23,
+            "endColumn": 38
+          },
+          "text": "$(\".error-message-container\")",
+          "api": "$",
+          "strategy": "class",
+          "value": ".error-message-container"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 9,
+            "endLine": 21,
+            "endColumn": 38
+          },
+          "text": "$x(\"//form/input[3]\").click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 6,
+      "bodyHash": "d6c0ca14f73d8db6028899bb2c4096a12c3d3df3"
+    },
+    {
+      "id": "b6a3cf5b9e8e",
+      "title": "sleepsBeforeItCounts",
+      "fullTitle": "SelenideIT > sleepsBeforeItCounts",
+      "suitePath": [
+        "SelenideIT"
+      ],
+      "span": {
+        "startLine": 26,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 27,
+        "startColumn": 33,
+        "endLine": 33,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 39,
+            "endLine": 31,
+            "endColumn": 67
+          },
+          "text": "$$(\".inventory_item\").first().shouldHave(text(\"Backpack\"))",
+          "kind": "ui-state",
+          "library": "selenide",
+          "actual": {
+            "text": "$$(\".inventory_item\").first()",
+            "normalized": "$$(\".inventory_item\").first()",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "shouldHave",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 54,
+            "endLine": 32,
+            "endColumn": 78
+          },
+          "text": "$$x(\"//div[@class='inventory_item']\").get(2).shouldHave(text(\"Bolt\"))",
+          "kind": "ui-state",
+          "library": "selenide",
+          "actual": {
+            "text": "$$x(\"//div[@class='inventory_item']\").get(2)",
+            "normalized": "$$x(\"//div[@class='inventory_item']\").get(2)",
+            "kind": "call",
+            "isLocator": true,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "shouldHave",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 29,
+            "startColumn": 9,
+            "endLine": 29,
+            "endColumn": 29
+          },
+          "text": "Selenide.sleep(3000)",
+          "kind": "fixed-sleep",
+          "ms": 3000
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 9,
+            "endLine": 30,
+            "endColumn": 19
+          },
+          "text": "sleep(500)",
+          "kind": "fixed-sleep",
+          "ms": 500
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 30
+          },
+          "text": "$$(\".inventory_item\")",
+          "api": "$$",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "first",
+            "index": null,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 9,
+            "endLine": 32,
+            "endColumn": 46
+          },
+          "text": "$$x(\"//div[@class='inventory_item']\")",
+          "api": "$$x",
+          "strategy": "xpath",
+          "value": "//div[@class='inventory_item']",
+          "positional": {
+            "kind": "nth",
+            "index": 2,
+            "baseStrategy": "xpath"
+          }
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "12b5f1d904e516d9ab9db2bedee4d986911d6c9d"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 53
+      },
+      "source": "com.codeborne.selenide.Condition",
+      "names": [
+        "text"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 56
+      },
+      "source": "com.codeborne.selenide.Condition",
+      "names": [
+        "visible"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 49
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "$"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 50
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "$$"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 51
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "$$x"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 50
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "$x"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 52
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "open"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 53
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "sleep"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 40
+      },
+      "source": "com.codeborne.selenide.Selenide",
+      "names": [
+        "Selenide"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

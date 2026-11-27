@@ -5,7 +5,7 @@
 //
 // Two parts so far: the structure of a test file, and what a body checks. What a body does
 // (waits, selectors, mocks, resources) is added by the next part of the adapter.
-import type { AssertionKind, ComparisonOperator, FrameworkId, NHook, NTest } from '../../model/types.js';
+import type { AssertionKind, ComparisonOperator, FrameworkId, NDataOp, NHook, NResource, NStep, NTest, SelectorStrategy } from '../../model/types.js';
 
 type Source = NonNullable<NTest['parameterized']>['source'];
 
@@ -146,6 +146,8 @@ export const ROW_WRAPPERS: readonly string[] = ['Arrays.asList', 'List.of', 'Str
  * the review can say that no test was found in it.
  */
 export const TEST_CLASS_SUFFIXES: readonly string[] = ['Test', 'Tests', 'IT'];
+/** `TestCart` tests `Cart` too. */
+export const TEST_CLASS_PREFIX = 'Test';
 /** JUnit 3 finds tests by the name of the method. Such a class is left alone. */
 export const JUNIT3_BASES: readonly string[] = ['TestCase', 'junit.framework.TestCase'];
 
@@ -343,6 +345,152 @@ export const COUNT_FIELDS: readonly string[] = ['length'];
 export const MOCK_FACTORIES: readonly string[] = ['mock', 'spy', 'mockStatic', 'mockConstruction'];
 export const MOCK_FIELD_ANNOTATIONS: readonly string[] = ['Mock', 'Spy', 'MockBean', 'SpyBean', 'MockitoBean', 'MockitoSpyBean'];
 
+// What a body does (SPEC.md Sections 8.1 and 9.3): waits.
+
+/** The units of `TimeUnit`, and what one of each is in milliseconds: `TimeUnit.SECONDS.sleep(2)`, `implicitlyWait(10, TimeUnit.SECONDS)`. */
+export const TIME_UNITS: Readonly<Record<string, number>> = { NANOSECONDS: 0.000001, MICROSECONDS: 0.001, MILLISECONDS: 1, SECONDS: 1000, MINUTES: 60_000, HOURS: 3_600_000 };
+/** `Duration.ofSeconds(2)`: the same for the methods that make a `Duration`. */
+export const DURATION_FACTORIES: Readonly<Record<string, number>> = { ofNanos: 0.000001, ofMillis: 1, ofSeconds: 1000, ofMinutes: 60_000, ofHours: 3_600_000 };
+/** Calls that sleep, by class and method, with what one unit of a plain number is in milliseconds. */
+export const FIXED_SLEEPS: Readonly<Record<string, number>> = { 'Thread.sleep': 1, 'Selenide.sleep': 1, 'Uninterruptibles.sleepUninterruptibly': 1 };
+/** `TimeUnit.SECONDS.sleep(2)`: a sleep called on a unit. */
+export const UNIT_SLEEP_METHOD = 'sleep';
+/** Methods that sleep: Playwright's `page.waitForTimeout(500)` takes milliseconds. */
+export const FIXED_WAIT_METHODS: Readonly<Record<string, number>> = { waitForTimeout: 1 };
+/** Selenium: `driver.manage().timeouts().implicitlyWait(...)` applies to every lookup. */
+export const IMPLICIT_WAIT_METHODS: readonly string[] = ['implicitlyWait'];
+/** Any other method that starts like this waits for a condition: `waitForSelector`, `waitForURL`, `locator.waitFor()`. */
+export const CONDITION_WAIT_PREFIX = 'waitFor';
+/** Selenium: `new WebDriverWait(driver, timeout).until(condition)`. Awaitility: `await().atMost(...).until(...)`. */
+export const WAIT_TYPES: readonly string[] = ['WebDriverWait', 'FluentWait', 'Wait'];
+export const WAIT_METHODS: readonly string[] = ['until', 'untilAsserted', 'untilTrue', 'untilFalse', 'untilAtomic'];
+export const AWAIT_ROOTS: readonly string[] = ['await', 'waitAtMost'];
+
+// Selectors.
+
+/** Selenium: the methods of `By`, with the strategy each one is. Null: the strategy is read from the selector itself. */
+export const SELENIUM_BY = 'By';
+export const BY_METHODS: Readonly<Record<string, SelectorStrategy | null>> = {
+  xpath: 'xpath', cssSelector: null, className: 'class', id: 'id', name: 'name', linkText: 'link-text', partialLinkText: 'link-text', tagName: 'css',
+};
+/** `@FindBy(xpath = "...")`: the elements of the annotation. `@FindBy(how = How.XPATH, using = "...")` names the strategy as a constant. */
+export const FIND_BY_ANNOTATION = 'FindBy';
+export const FIND_BY_ELEMENTS: Readonly<Record<string, SelectorStrategy | null>> = {
+  xpath: 'xpath', css: null, className: 'class', id: 'id', name: 'name', linkText: 'link-text', partialLinkText: 'link-text', tagName: 'css',
+};
+export const FIND_BY_HOW_ELEMENT = 'how';
+export const FIND_BY_USING_ELEMENT = 'using';
+export const FIND_BY_HOW: Readonly<Record<string, SelectorStrategy | null>> = {
+  XPATH: 'xpath', CSS: null, CLASS_NAME: 'class', ID: 'id', NAME: 'name', LINK_TEXT: 'link-text', PARTIAL_LINK_TEXT: 'link-text', TAG_NAME: 'css',
+};
+/** Calls whose first argument is a selector: Playwright on a page or a locator, and the `$` calls of Selenide. */
+export const SELECTOR_CALLS: Readonly<Record<string, SelectorStrategy | null>> = {
+  locator: null, frameLocator: null, querySelector: null, querySelectorAll: null, waitForSelector: null,
+  getByRole: 'role', getByTestId: 'test-id', getByLabel: 'label', getByText: 'text', getByPlaceholder: 'other', getByAltText: 'other', getByTitle: 'other',
+};
+export const SELENIDE_SELECTORS: Readonly<Record<string, SelectorStrategy | null>> = { $: null, $$: null, $x: 'xpath', $$x: 'xpath' };
+/** Selenide checks an element with `shouldHave(...)`, `shouldBe(...)` and `shouldNotBe(...)`: they wait, and fail when the condition never holds. */
+export const SELENIDE_CHECK_PREFIX = 'should';
+export const SELENIDE_NEGATED_PREFIX = 'shouldNot';
+/** Page methods that take a selector first when they are given at least this many arguments: `page.click("#buy")`, `page.fill("#name", "Ada")`. */
+export const SELECTOR_ACTIONS: Readonly<Record<string, number>> = { click: 1, dblclick: 1, hover: 1, check: 1, uncheck: 1, fill: 2, type: 2, press: 2, selectOption: 2, isVisible: 1, textContent: 1, innerText: 1 };
+/** An object is a page when it has one of these names or is declared with one of these types. On a locator the first argument is a value, not a selector. */
+export const PAGE_OBJECTS: readonly string[] = ['page', 'frame', 'popup'];
+export const PAGE_TYPES: readonly string[] = ['Page', 'Frame'];
+/** Attribute names that mark a test id in a CSS selector. The configured `testIdAttribute` is added to them. */
+export const TEST_ID_ATTRIBUTES: readonly string[] = ['data-testid', 'data-test', 'data-qa', 'data-cy'];
+/** A pick by position: `.first()`, `.last()`, `.nth(2)`, and `.get(2)` on a list of elements: `findElements(...).get(2)`, `$$(".row").get(2)`. */
+export const POSITIONAL: Readonly<Record<string, 'nth' | 'first' | 'last'>> = { first: 'first', last: 'last', nth: 'nth' };
+export const LIST_PICK_METHOD = 'get';
+export const LIST_FINDERS: readonly string[] = ['findElements', '$$', '$$x'];
+
+// Steps and data.
+
+export const STEP_METHODS: Readonly<Record<string, NStep['kind']>> = {
+  navigate: 'navigate', reload: 'navigate', goBack: 'navigate',
+  click: 'action', dblclick: 'action', fill: 'action', type: 'action', press: 'action', check: 'action', uncheck: 'action', selectOption: 'action', hover: 'action',
+  sendKeys: 'action', clear: 'action', submit: 'action',
+};
+/** Selenium: `driver.get(url)` and `driver.navigate().to(url)` on something named or declared as a driver. */
+export const DRIVER_TYPE = 'WebDriver';
+export const DRIVER_NAVIGATION: Readonly<Record<string, string | null>> = { get: null, to: 'navigate' };
+/** HTTP verbs, and what each one does to data. */
+export const HTTP_METHODS: Readonly<Record<string, NDataOp['op']>> = { get: 'read', head: 'read', post: 'create', put: 'update', patch: 'update', delete: 'delete' };
+/** REST Assured: a request is a chain that starts at one of these, or one of the verbs called by itself. */
+export const REST_STARTERS: readonly string[] = ['given', 'when', 'with'];
+/** An object is an HTTP client when it has one of these names. Spring `RestTemplate` has method names of its own. */
+export const HTTP_CLIENT_NAMES: readonly string[] = ['client', 'httpClient', 'http', 'api', 'apiClient', 'restTemplate', 'rest', 'webClient', 'webTestClient'];
+export const REST_TEMPLATE_METHODS: Readonly<Record<string, NDataOp['op']>> = { getForObject: 'read', getForEntity: 'read', postForObject: 'create', postForEntity: 'create', postForLocation: 'create' };
+/** JDBC and Spring: `jdbc.update("DELETE FROM orders")`. The first word of the SQL says what it does. */
+export const SQL_METHODS: readonly string[] = ['update', 'execute', 'executeUpdate', 'executeQuery', 'query', 'queryForObject', 'queryForList', 'createNativeQuery'];
+export const SQL_VERBS: Readonly<Record<string, NDataOp['op']>> = { insert: 'create', update: 'update', delete: 'delete', select: 'read' };
+/** A store of records: an object whose name ends like this, with what the start of a method name does. `orders.deleteAll()` on `orderRepository`. */
+export const REPOSITORY_SUFFIXES: readonly string[] = ['Repository', 'Repo', 'Dao'];
+export const REPOSITORY_METHODS: Readonly<Record<string, NDataOp['op']>> = { save: 'create', insert: 'create', persist: 'create', delete: 'delete', remove: 'delete' };
+
+// Mocks.
+
+/** Mocks that keep the real behavior until they are given a reply: `@Spy`, `spy(cart)`. */
+export const SPY_NAMES: readonly string[] = ['Spy', 'SpyBean', 'MockitoSpyBean', 'spy'];
+/** `mock(Cart.class, CALLS_REAL_METHODS)` keeps the real behavior too. */
+export const PASSTHROUGH_ANSWER = 'CALLS_REAL_METHODS';
+/** `@InjectMocks Checkout checkout;` is the real object under test, with the mocks of the class put into it. */
+export const INJECT_MOCKS_ANNOTATION = 'InjectMocks';
+/** `when(mock.call()).thenReturn(x)` and the BDD form `given(mock.call()).willReturn(x)`: the reply follows the call. */
+export const STUB_CALLS: readonly string[] = ['when', 'given'];
+export const STUB_REPLY_PREFIXES: readonly string[] = ['then', 'will'];
+/** `doReturn(x).when(mock).call()` and `willReturn(x).given(mock).call()`: the reply comes first. */
+export const STUB_REPLIES_FIRST: readonly string[] = ['doReturn', 'doThrow', 'doAnswer', 'doNothing', 'willReturn', 'willThrow', 'willAnswer', 'willDoNothing'];
+/** Replies that run the real method, so nothing is replaced. */
+export const REAL_METHOD_REPLIES: readonly string[] = ['thenCallRealMethod', 'willCallRealMethod'];
+/** WireMock: `stubFor(get(urlEqualTo("/orders")).willReturn(...))`. `any(anyUrl())` answers every request. */
+export const WIREMOCK_STUB = 'stubFor';
+export const WIREMOCK_ANY_VERB = 'any';
+export const WIREMOCK_ANY_URL = 'anyUrl';
+export const WIREMOCK_REPLY = 'willReturn';
+/** WireMock: `verify(postRequestedFor(urlEqualTo("/orders")))` checks that a request was made. */
+export const WIREMOCK_REQUESTED_SUFFIX = 'RequestedFor';
+/** Playwright: `page.route(pattern, route -> route.fulfill(...))`. `route.resume()` lets the call through. */
+export const ROUTE_METHOD = 'route';
+export const ROUTE_FULFILL = 'fulfill';
+export const ROUTE_CONTINUE: readonly string[] = ['resume', 'fallback'];
+export const ROUTE_OWNER_TYPES: readonly string[] = ['Page', 'BrowserContext'];
+export const MATCH_ALL_PATTERNS: readonly string[] = ['*', '**', '**/*', '.*', '/.*'];
+
+// Resources and how they are released (SPEC.md Section 10.14). A release is a token: a resource is
+// released when one of its tokens is released in its own body or in a hook that covers it.
+
+/** `new ChromeDriver()`: classes whose objects must be released. */
+export const RESOURCE_TYPES: Readonly<Record<string, NResource['kind']>> = {
+  ChromeDriver: 'driver', FirefoxDriver: 'driver', EdgeDriver: 'driver', SafariDriver: 'driver', RemoteWebDriver: 'driver', AndroidDriver: 'driver', IOSDriver: 'driver', AppiumDriver: 'driver',
+  WireMockServer: 'server', MockWebServer: 'server',
+};
+/** Calls that make a resource, by class and method, or `.method` for a method of any object. */
+export const RESOURCE_CALLS: Readonly<Record<string, NResource['kind']>> = {
+  'Playwright.create': 'browser', '.launch': 'browser', '.launchPersistentContext': 'context', '.newContext': 'context', '.newPage': 'page', 'DriverManager.getConnection': 'connection',
+};
+/** `WebDriverManager.chromedriver().create()` starts a driver. */
+export const DRIVER_MANAGER: Readonly<{ root: string; method: string }> = { root: 'WebDriverManager', method: 'create' };
+/** `mockStatic(Prices.class)` replaces the class until it is closed. In a try-with-resources the block closes it. */
+export const SCOPED_MOCK_FACTORIES: readonly string[] = ['mockStatic', 'mockConstruction'];
+/** Calling one of these on the variable that holds a resource releases it. */
+export const RELEASE_METHODS: readonly string[] = ['quit', 'close', 'stop', 'shutdown'];
+/** System properties: a write changes them for every test that runs after. */
+export const PROPERTY_SET = 'System.setProperty';
+export const PROPERTY_CLEAR = 'System.clearProperty';
+/** A page made from a browser context that the framework hands to the test is closed with it. */
+export const AUTO_CLOSED_KINDS: ReadonlyArray<NResource['kind']> = ['page'];
+
+// The lexical fallback (SPEC.md Section 7.2): line patterns for a file that cannot be parsed.
+
+export const LEXICAL_TEST = /^\s*@(?:[\w.]+\.)?(?:Test|ParameterizedTest|RepeatedTest|TestFactory|TestTemplate)\b/;
+export const LEXICAL_ANNOTATION = /^\s*@[\w.]+/;
+export const LEXICAL_CLASS = /(?<![\w.@])(?:class|interface|record|enum)\s+(\w+)/;
+/** `@Disabled`, `@Ignore`, and `@Test(enabled = false)` of TestNG. A skip on a condition is not read. */
+export const LEXICAL_SKIP = /^\s*@(?:[\w.]+\.)?(?:Disabled|Ignore)\b|\benabled\s*=\s*false\b/;
+export const LEXICAL_ASSERTION = /\bassert\w*\s*\(|^\s*assert\b|(?<![\w.])fail\s*\(|\bverify\w*\s*\(|\.then\s*\(\s*\)|\.(?:andExpect|expect|should)\w*\s*\(|\bStepVerifier\b/;
+export const LEXICAL_FIXED_WAIT = /\bThread\.sleep\s*\(\s*(\d[\d_]*)?|\.waitForTimeout\s*\(\s*(\d[\d_]*)?/;
+
 const simple = (name: string): string => name.slice(name.lastIndexOf('.') + 1);
 const written = (names: readonly string[]): string[] => names.map((name) => `@${simple(name)}`);
 
@@ -369,4 +517,18 @@ export const JAVA_VOCAB_SURFACE: readonly string[] = [...new Set([
   ...EXPECTED_EXCEPTION_ELEMENTS.map((name) => `${name} = `), EXPECTED_EXCEPTION_TYPE, ...EXPECTED_EXCEPTION_METHODS.map((name) => `.${name}(`),
   ...ASSERTION_CATCHERS.map((name) => `catch (${name} `), ...LOCATOR_REFINERS.map((name) => `.${name}(`), ...LOCATOR_TYPES, ...LOCATOR_FIELD_ANNOTATIONS.map((name) => `@${name}`),
   ...COUNT_FIELDS.map((name) => `.${name}`), ...MOCK_FIELD_ANNOTATIONS.map((name) => `@${name}`), `${ASSERT_METHOD_PREFIX}Cart`,
+  // What a body does.
+  ...Object.keys(TIME_UNITS).map((name) => `TimeUnit.${name}`), ...Object.keys(DURATION_FACTORIES).map((name) => `Duration.${name}(`), ...Object.keys(FIXED_SLEEPS).map((name) => `${name}(`),
+  ...[UNIT_SLEEP_METHOD, ...Object.keys(FIXED_WAIT_METHODS), ...IMPLICIT_WAIT_METHODS, `${CONDITION_WAIT_PREFIX}URL`, ...WAIT_METHODS].map((name) => `.${name}(`), ...WAIT_TYPES, ...AWAIT_ROOTS.map((name) => `${name}(`),
+  ...Object.keys(BY_METHODS).map((name) => `${SELENIUM_BY}.${name}(`), ...Object.keys(FIND_BY_ELEMENTS).map((name) => `@${FIND_BY_ANNOTATION}(${name} = `),
+  `${FIND_BY_HOW_ELEMENT} = `, `${FIND_BY_USING_ELEMENT} = `, ...Object.keys(FIND_BY_HOW).map((name) => `How.${name}`),
+  ...[...Object.keys(SELECTOR_CALLS), ...Object.keys(SELECTOR_ACTIONS), ...Object.keys(POSITIONAL), LIST_PICK_METHOD, LIST_FINDERS[0]!, ...Object.keys(STEP_METHODS), ...Object.keys(DRIVER_NAVIGATION)].map((name) => `.${name}(`),
+  ...Object.keys(SELENIDE_SELECTORS).map((name) => `${name}(`), `.${SELENIDE_CHECK_PREFIX}Have(`, `.${SELENIDE_NEGATED_PREFIX}Be(`, ...PAGE_OBJECTS.map((name) => `${name}.`), ...PAGE_TYPES, ...TEST_ID_ATTRIBUTES, DRIVER_TYPE,
+  ...[...Object.keys(HTTP_METHODS), ...Object.keys(REST_TEMPLATE_METHODS), ...SQL_METHODS, ...Object.keys(REPOSITORY_METHODS)].map((name) => `.${name}(`), ...REST_STARTERS.map((name) => `${name}(`),
+  ...HTTP_CLIENT_NAMES.map((name) => `${name}.`), ...Object.keys(SQL_VERBS).map((verb) => `"${verb.toUpperCase()} `), ...REPOSITORY_SUFFIXES.map((suffix) => `order${suffix}.`),
+  PASSTHROUGH_ANSWER, `@${INJECT_MOCKS_ANNOTATION}`, ...[...STUB_CALLS, ...STUB_REPLIES_FIRST].map((name) => `${name}(`), ...STUB_REPLY_PREFIXES.map((prefix) => `.${prefix}Return(`),
+  ...REAL_METHOD_REPLIES.map((name) => `.${name}(`), `${WIREMOCK_STUB}(`, `${WIREMOCK_ANY_VERB}(${WIREMOCK_ANY_URL}())`, `.${WIREMOCK_REPLY}(`, `post${WIREMOCK_REQUESTED_SUFFIX}(`,
+  ...[ROUTE_METHOD, ROUTE_FULFILL, ...ROUTE_CONTINUE].map((name) => `.${name}(`), ...ROUTE_OWNER_TYPES, ...MATCH_ALL_PATTERNS.map((pattern) => `"${pattern}"`),
+  ...Object.keys(RESOURCE_TYPES).map((name) => `new ${name}(`), ...Object.keys(RESOURCE_CALLS).map((name) => `${name}(`), `${DRIVER_MANAGER.root}.`, `.${DRIVER_MANAGER.method}()`,
+  ...RELEASE_METHODS.map((name) => `.${name}()`), `${PROPERTY_SET}(`, `${PROPERTY_CLEAR}(`,
 ])];

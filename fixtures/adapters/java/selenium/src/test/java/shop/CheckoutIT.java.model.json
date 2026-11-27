@@ -1,0 +1,1203 @@
+{
+  "path": "src/test/java/shop/CheckoutIT.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "CheckoutIT",
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 80,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 18,
+            "endLine": 18,
+            "endColumn": 36
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 18,
+            "endLine": 18,
+            "endColumn": 36
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:driver"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "79fa3f8b2b08",
+        "a37e5d181cfd",
+        "fc4b9f4f2112",
+        "41cff615d044",
+        "cbbe3998c277"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "79fa3f8b2b08",
+      "title": "sleepsBetweenTheSteps",
+      "fullTitle": "CheckoutIT > sleepsBetweenTheSteps",
+      "suitePath": [
+        "CheckoutIT"
+      ],
+      "span": {
+        "startLine": 19,
+        "startColumn": 5,
+        "endLine": 28,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 20,
+        "startColumn": 62,
+        "endLine": 28,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 87
+          },
+          "text": "assertEquals(\"Your Cart\", driver.findElement(By.className(\"title\")).getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.findElement(By.className(\"title\")).getText()",
+            "normalized": "driver.findElement(By.className(\"title\")).getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Your Cart\"",
+            "normalized": "\"Your Cart\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Your Cart"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 22,
+            "startColumn": 9,
+            "endLine": 22,
+            "endColumn": 27
+          },
+          "text": "Thread.sleep(2000)",
+          "kind": "fixed-sleep",
+          "ms": 2000
+        },
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 9,
+            "endLine": 24,
+            "endColumn": 34
+          },
+          "text": "TimeUnit.SECONDS.sleep(1)",
+          "kind": "fixed-sleep",
+          "ms": 1000
+        },
+        {
+          "span": {
+            "startLine": 25,
+            "startColumn": 9,
+            "endLine": 25,
+            "endColumn": 45
+          },
+          "text": "Thread.sleep(Duration.ofMillis(250))",
+          "kind": "fixed-sleep",
+          "ms": 250
+        },
+        {
+          "span": {
+            "startLine": 26,
+            "startColumn": 9,
+            "endLine": 26,
+            "endColumn": 67
+          },
+          "text": "Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS)",
+          "kind": "fixed-sleep",
+          "ms": 3000
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 28,
+            "endLine": 21,
+            "endColumn": 68
+          },
+          "text": "By.id(\"add-to-cart-sauce-labs-backpack\")",
+          "api": "By.id",
+          "strategy": "id",
+          "value": "add-to-cart-sauce-labs-backpack"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 28,
+            "endLine": 23,
+            "endColumn": 62
+          },
+          "text": "By.className(\"shopping_cart_link\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "shopping_cart_link"
+        },
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 54,
+            "endLine": 27,
+            "endColumn": 75
+          },
+          "text": "By.className(\"title\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "title"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 21,
+            "startColumn": 9,
+            "endLine": 21,
+            "endColumn": 77
+          },
+          "text": "driver.findElement(By.id(\"add-to-cart-sauce-labs-backpack\")).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 9,
+            "endLine": 23,
+            "endColumn": 71
+          },
+          "text": "driver.findElement(By.className(\"shopping_cart_link\")).click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 7,
+      "bodyHash": "ab1b2cbe1ffd26fd852baaa76c6d124c39f67c3e"
+    },
+    {
+      "id": "a37e5d181cfd",
+      "title": "sleepsInEveryUnitOfTime",
+      "fullTitle": "CheckoutIT > sleepsInEveryUnitOfTime",
+      "suitePath": [
+        "CheckoutIT"
+      ],
+      "span": {
+        "startLine": 30,
+        "startColumn": 5,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 31,
+        "startColumn": 64,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 55
+          },
+          "text": "assertTrue(driver.getTitle().contains(\"Swag\"))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "driver.getTitle().contains(\"Swag\")",
+            "normalized": "driver.getTitle().contains(\"Swag\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 9,
+            "endLine": 32,
+            "endColumn": 40
+          },
+          "text": "TimeUnit.NANOSECONDS.sleep(500)",
+          "kind": "fixed-sleep",
+          "ms": 0
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 9,
+            "endLine": 33,
+            "endColumn": 41
+          },
+          "text": "TimeUnit.MICROSECONDS.sleep(500)",
+          "kind": "fixed-sleep",
+          "ms": 1
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 9,
+            "endLine": 34,
+            "endColumn": 41
+          },
+          "text": "TimeUnit.MILLISECONDS.sleep(500)",
+          "kind": "fixed-sleep",
+          "ms": 500
+        },
+        {
+          "span": {
+            "startLine": 35,
+            "startColumn": 9,
+            "endLine": 35,
+            "endColumn": 34
+          },
+          "text": "TimeUnit.MINUTES.sleep(1)",
+          "kind": "fixed-sleep",
+          "ms": 60000
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 9,
+            "endLine": 36,
+            "endColumn": 32
+          },
+          "text": "TimeUnit.HOURS.sleep(1)",
+          "kind": "fixed-sleep",
+          "ms": 3600000
+        },
+        {
+          "span": {
+            "startLine": 37,
+            "startColumn": 9,
+            "endLine": 37,
+            "endColumn": 44
+          },
+          "text": "Thread.sleep(Duration.ofNanos(500))",
+          "kind": "fixed-sleep",
+          "ms": 0
+        },
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 9,
+            "endLine": 38,
+            "endColumn": 44
+          },
+          "text": "Thread.sleep(Duration.ofMinutes(1))",
+          "kind": "fixed-sleep",
+          "ms": 60000
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 9,
+            "endLine": 39,
+            "endColumn": 42
+          },
+          "text": "Thread.sleep(Duration.ofHours(1))",
+          "kind": "fixed-sleep",
+          "ms": 3600000
+        },
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 40,
+            "endColumn": 30
+          },
+          "text": "Thread.sleep(pause())",
+          "kind": "fixed-sleep",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 10,
+      "bodyHash": "8be8226c4dd68c4f60eefeffbdadcdb22b6c99e2"
+    },
+    {
+      "id": "fc4b9f4f2112",
+      "title": "waitsForACondition",
+      "fullTitle": "CheckoutIT > waitsForACondition",
+      "suitePath": [
+        "CheckoutIT"
+      ],
+      "span": {
+        "startLine": 44,
+        "startColumn": 5,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 45,
+        "startColumn": 31,
+        "endLine": 52,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 51,
+            "startColumn": 9,
+            "endLine": 51,
+            "endColumn": 50
+          },
+          "text": "assertEquals(\"Products\", title.getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "title.getText()",
+            "normalized": "title.getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 28,
+            "endLine": 47,
+            "endColumn": 108
+          },
+          "text": "wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(\"title\")))",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 73
+          },
+          "text": "patient.until(d -> d.findElement(By.id(\"checkout\")).isEnabled())",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 105
+          },
+          "text": "new WebDriverWait(driver, Duration.ofSeconds(2)).until(ExpectedConditions.titleContains(\"Swag\"))",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 85,
+            "endLine": 47,
+            "endColumn": 106
+          },
+          "text": "By.className(\"title\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "title"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 42,
+            "endLine": 49,
+            "endColumn": 59
+          },
+          "text": "By.id(\"checkout\")",
+          "api": "By.id",
+          "strategy": "id",
+          "value": "checkout"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "dc73f567db5652f5dccf3cf95956875f6ade049c"
+    },
+    {
+      "id": "41cff615d044",
+      "title": "setsALongImplicitWait",
+      "fullTitle": "CheckoutIT > setsALongImplicitWait",
+      "suitePath": [
+        "CheckoutIT"
+      ],
+      "span": {
+        "startLine": 54,
+        "startColumn": 5,
+        "endLine": 59,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 55,
+        "startColumn": 34,
+        "endLine": 59,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 9,
+            "endLine": 58,
+            "endColumn": 72
+          },
+          "text": "assertTrue(driver.findElement(By.id(\"checkout\")).isDisplayed())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "driver.findElement(By.id(\"checkout\")).isDisplayed()",
+            "normalized": "driver.findElement(By.id(\"checkout\")).isDisplayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 56,
+            "startColumn": 9,
+            "endLine": 56,
+            "endColumn": 74
+          },
+          "text": "driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))",
+          "kind": "implicit-wait-config",
+          "ms": 30000
+        },
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 9,
+            "endLine": 57,
+            "endColumn": 71
+          },
+          "text": "driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)",
+          "kind": "implicit-wait-config",
+          "ms": 3000
+        }
+      ],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 58,
+            "startColumn": 39,
+            "endLine": 58,
+            "endColumn": 56
+          },
+          "text": "By.id(\"checkout\")",
+          "api": "By.id",
+          "strategy": "id",
+          "value": "checkout"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "c6e6a0f6491a0e7c6e7a64a4b4910371809d1a67"
+    },
+    {
+      "id": "cbbe3998c277",
+      "title": "findsElementsInManyWays",
+      "fullTitle": "CheckoutIT > findsElementsInManyWays",
+      "suitePath": [
+        "CheckoutIT"
+      ],
+      "span": {
+        "startLine": 61,
+        "startColumn": 5,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 62,
+        "startColumn": 36,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 96
+          },
+          "text": "assertEquals(\"Checkout: Overview\", driver.findElement(By.className(\"title\")).getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "driver.findElement(By.className(\"title\")).getText()",
+            "normalized": "driver.findElement(By.className(\"title\")).getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Checkout: Overview\"",
+            "normalized": "\"Checkout: Overview\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Checkout: Overview"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 28,
+            "endLine": 64,
+            "endColumn": 92
+          },
+          "text": "By.xpath(\"//div[@id='inventory_container']/div/div[2]/div[2]/a\")",
+          "api": "By.xpath",
+          "strategy": "xpath",
+          "value": "//div[@id='inventory_container']/div/div[2]/div[2]/a"
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 28,
+            "endLine": 65,
+            "endColumn": 78
+          },
+          "text": "By.cssSelector(\"[data-test='shopping-cart-link']\")",
+          "api": "By.cssSelector",
+          "strategy": "test-id",
+          "value": "[data-test='shopping-cart-link']"
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 28,
+            "endLine": 66,
+            "endColumn": 114
+          },
+          "text": "By.cssSelector(\"[data-testid='checkout'], [data-qa='checkout'], [data-cy='checkout']\")",
+          "api": "By.cssSelector",
+          "strategy": "css",
+          "value": "[data-testid='checkout'], [data-qa='checkout'], [data-cy='checkout']"
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 28,
+            "endLine": 67,
+            "endColumn": 48
+          },
+          "text": "By.name(\"firstName\")",
+          "api": "By.name",
+          "strategy": "name",
+          "value": "firstName"
+        },
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 28,
+            "endLine": 68,
+            "endColumn": 48
+          },
+          "text": "By.name(\"firstName\")",
+          "api": "By.name",
+          "strategy": "name",
+          "value": "firstName"
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 28,
+            "endLine": 69,
+            "endColumn": 48
+          },
+          "text": "By.linkText(\"About\")",
+          "api": "By.linkText",
+          "strategy": "link-text",
+          "value": "About"
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 28,
+            "endLine": 70,
+            "endColumn": 55
+          },
+          "text": "By.partialLinkText(\"Terms\")",
+          "api": "By.partialLinkText",
+          "strategy": "link-text",
+          "value": "Terms"
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 29,
+            "endLine": 71,
+            "endColumn": 49
+          },
+          "text": "By.tagName(\"button\")",
+          "api": "By.tagName",
+          "strategy": "css",
+          "value": "button",
+          "positional": {
+            "kind": "nth",
+            "index": 3,
+            "baseStrategy": "css"
+          }
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 29,
+            "endLine": 72,
+            "endColumn": 62
+          },
+          "text": "By.cssSelector(\".inventory_item\")",
+          "api": "By.cssSelector",
+          "strategy": "class",
+          "value": ".inventory_item",
+          "positional": {
+            "kind": "nth",
+            "index": 0,
+            "baseStrategy": "class"
+          }
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 28,
+            "endLine": 73,
+            "endColumn": 64
+          },
+          "text": "By.cssSelector(\"form.checkout_info\")",
+          "api": "By.cssSelector",
+          "strategy": "css",
+          "value": "form.checkout_info"
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 63,
+            "endLine": 74,
+            "endColumn": 84
+          },
+          "text": "By.className(\"title\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "title"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 73
+          },
+          "text": "driver.navigate().to(\"https://www.saucedemo.com/inventory.html\")",
+          "kind": "navigate"
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 101
+          },
+          "text": "driver.findElement(By.xpath(\"//div[@id='inventory_container']/div/div[2]/div[2]/a\")).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 87
+          },
+          "text": "driver.findElement(By.cssSelector(\"[data-test='shopping-cart-link']\")).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 9,
+            "endLine": 66,
+            "endColumn": 123
+          },
+          "text": "driver.findElement(By.cssSelector(\"[data-testid='checkout'], [data-qa='checkout'], [data-cy='checkout']\")).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 9,
+            "endLine": 67,
+            "endColumn": 65
+          },
+          "text": "driver.findElement(By.name(\"firstName\")).sendKeys(\"Ada\")",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 9,
+            "endLine": 68,
+            "endColumn": 57
+          },
+          "text": "driver.findElement(By.name(\"firstName\")).clear()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 9,
+            "endLine": 69,
+            "endColumn": 57
+          },
+          "text": "driver.findElement(By.linkText(\"About\")).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 9,
+            "endLine": 70,
+            "endColumn": 64
+          },
+          "text": "driver.findElement(By.partialLinkText(\"Terms\")).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 65
+          },
+          "text": "driver.findElements(By.tagName(\"button\")).get(3).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 78
+          },
+          "text": "driver.findElements(By.cssSelector(\".inventory_item\")).get(0).click()",
+          "kind": "action"
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 74
+          },
+          "text": "driver.findElement(By.cssSelector(\"form.checkout_info\")).submit()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 12,
+      "bodyHash": "2d387447077dbd143058dac2f62ea2b523e8e442"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 59
+      },
+      "source": "com.google.common.util.concurrent.Uninterruptibles",
+      "names": [
+        "Uninterruptibles"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 27
+      },
+      "source": "java.time.Duration",
+      "names": [
+        "Duration"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 38
+      },
+      "source": "java.util.concurrent.TimeUnit",
+      "names": [
+        "TimeUnit"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 31
+      },
+      "source": "org.openqa.selenium.By",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 38
+      },
+      "source": "org.openqa.selenium.WebDriver",
+      "names": [
+        "WebDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 39
+      },
+      "source": "org.openqa.selenium.WebElement",
+      "names": [
+        "WebElement"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 58
+      },
+      "source": "org.openqa.selenium.support.ui.ExpectedConditions",
+      "names": [
+        "ExpectedConditions"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 50
+      },
+      "source": "org.openqa.selenium.support.ui.FluentWait",
+      "names": [
+        "FluentWait"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 44
+      },
+      "source": "org.openqa.selenium.support.ui.Wait",
+      "names": [
+        "Wait"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 53
+      },
+      "source": "org.openqa.selenium.support.ui.WebDriverWait",
+      "names": [
+        "WebDriverWait"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

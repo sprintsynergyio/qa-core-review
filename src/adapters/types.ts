@@ -3,7 +3,7 @@
 // An adapter owns everything that is specific to one language: how to find its projects and
 // test files, how to parse them, and how to turn a parsed file into the normalized model.
 import type { ResolvedConfig } from '../config/types.js';
-import type { Capability, FrameworkId, LanguageId, NFile, ParseStatus, Span, Tier } from '../model/types.js';
+import type { Capability, FrameworkId, LanguageId, NFile, NHook, ParseStatus, Span, Tier } from '../model/types.js';
 import type { SyntaxTree, TreeSitterService } from '../parse/treesitter.js';
 import type { Rule } from '../rules/types.js';
 
@@ -73,6 +73,11 @@ export interface HelperDef {
   owner: string | null;
   file: string;
   span: Span;
+  /**
+   * Set on an entry that stands for a base class and not for a helper. Its `name` is `extends <Class>`, which no call can have.
+   * It holds what a class that extends `owner` inherits: the hooks of the base class, and the class that one extends in turn.
+   */
+  inherited?: { hooks: Array<Pick<NHook, 'kind' | 'scope' | 'releases' | 'data'>>; superclass: string | null };
 }
 
 /** Assertion helpers from every file of a project (SPEC.md Section 8.1). Built from Milestone 6. */
