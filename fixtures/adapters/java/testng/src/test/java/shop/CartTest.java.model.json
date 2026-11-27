@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -88,6 +95,68 @@
           },
           "kind": "afterEach",
           "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 23,
+            "endLine": 16,
+            "endColumn": 39
+          },
+          "kind": "beforeAll",
+          "scope": "global",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 23,
+            "endLine": 16,
+            "endColumn": 39
+          },
+          "kind": "afterAll",
+          "scope": "global",
+          "releases": [
+            "var:shop"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 23,
+            "endLine": 16,
+            "endColumn": 39
+          },
+          "kind": "beforeAll",
+          "scope": "global",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 16,
+            "startColumn": 23,
+            "endLine": 16,
+            "endColumn": 39
+          },
+          "kind": "afterAll",
+          "scope": "global",
           "releases": [],
           "assertions": [],
           "waits": [],
@@ -913,6 +982,9 @@
       "framework": true
     }
   ],
-  "subject": null,
+  "subject": {
+    "module": "Cart",
+    "via": "filename"
+  },
   "suppressions": []
 }

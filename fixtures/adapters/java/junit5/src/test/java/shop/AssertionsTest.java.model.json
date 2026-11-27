@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -1327,8 +1334,115 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 28,
+            "endLine": 85,
+            "endColumn": 56
+          },
+          "text": "client.post(\"/orders\", cart)",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 27,
+            "endLine": 87,
+            "endColumn": 50
+          },
+          "text": "client.get(\"/orders/0\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 20,
+            "endLine": 88,
+            "endColumn": 41
+          },
+          "text": "client.get(\"/orders\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 27,
+            "endLine": 89,
+            "endColumn": 48
+          },
+          "text": "client.get(\"/health\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 27,
+            "endLine": 90,
+            "endColumn": 53
+          },
+          "text": "client.delete(\"/orders/7\")",
+          "op": "delete",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 28,
+            "endLine": 85,
+            "endColumn": 56
+          },
+          "text": "client.post(\"/orders\", cart)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 87,
+            "startColumn": 27,
+            "endLine": 87,
+            "endColumn": 50
+          },
+          "text": "client.get(\"/orders/0\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 88,
+            "startColumn": 20,
+            "endLine": 88,
+            "endColumn": 41
+          },
+          "text": "client.get(\"/orders\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 89,
+            "startColumn": 27,
+            "endLine": 89,
+            "endColumn": 48
+          },
+          "text": "client.get(\"/health\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 90,
+            "startColumn": 27,
+            "endLine": 90,
+            "endColumn": 53
+          },
+          "text": "client.delete(\"/orders/7\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 6,
       "bodyHash": "59cd1cc59d4227890775634a66623a8c991fcadb"
     },

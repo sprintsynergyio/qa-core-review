@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -58,7 +65,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:driver"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -72,7 +81,21 @@
   "tests": [],
   "fileHooks": [],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 18,
+        "endLine": 14,
+        "endColumn": 36
+      },
+      "text": "new ChromeDriver()",
+      "kind": "driver",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {

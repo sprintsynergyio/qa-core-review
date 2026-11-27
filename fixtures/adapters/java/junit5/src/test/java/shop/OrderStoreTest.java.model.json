@@ -1,0 +1,1493 @@
+{
+  "path": "src/test/java/shop/OrderStoreTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "OrderStoreTest",
+      "span": {
+        "startLine": 20,
+        "startColumn": 1,
+        "endLine": 105,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 34,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "env:shop.mode",
+            "var:connection"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": [
+            {
+              "span": {
+                "startLine": 39,
+                "startColumn": 9,
+                "endLine": 39,
+                "endColumn": 36
+              },
+              "text": "orderRepository.deleteAll()",
+              "op": "delete",
+              "via": "db"
+            }
+          ]
+        }
+      ],
+      "testIds": [
+        "51974b6c952e",
+        "13da3af6050a",
+        "d8fc1adbd7ce",
+        "deb15dc4ec48",
+        "ef9e3052513f",
+        "2a0293477599"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "51974b6c952e",
+      "title": "storesAnOrderWithSql",
+      "fullTitle": "OrderStoreTest > storesAnOrderWithSql",
+      "suitePath": [
+        "OrderStoreTest"
+      ],
+      "span": {
+        "startLine": 43,
+        "startColumn": 5,
+        "endLine": 56,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 44,
+        "startColumn": 50,
+        "endLine": 56,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 104
+          },
+          "text": "assertEquals(\"pear\", jdbc.queryForObject(\"SELECT item FROM orders WHERE id = 7\", String.class))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "jdbc.queryForObject(\"SELECT item FROM orders WHERE id = 7\", String.class)",
+            "normalized": "jdbc.queryForObject(\"SELECT item FROM orders WHERE id = 7\",String.class)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"pear\"",
+            "normalized": "\"pear\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "pear"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 9,
+            "endLine": 48,
+            "endColumn": 75
+          },
+          "text": "assertEquals(1, jdbc.queryForList(\"SELECT id FROM orders\").size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "jdbc.queryForList(\"SELECT id FROM orders\").size()",
+            "normalized": "jdbc.queryForList(\"SELECT id FROM orders\").size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 9,
+            "endLine": 49,
+            "endColumn": 87
+          },
+          "text": "assertEquals(1, jdbc.query(\"SELECT id FROM orders\", new OrderMapper()).size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "jdbc.query(\"SELECT id FROM orders\", new OrderMapper()).size()",
+            "normalized": "jdbc.query(\"SELECT id FROM orders\",new OrderMapper()).size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 13,
+            "endLine": 53,
+            "endColumn": 85
+          },
+          "text": "assertTrue(statement.executeQuery(\"SELECT count(*) FROM orders\").next())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "statement.executeQuery(\"SELECT count(*) FROM orders\").next()",
+            "normalized": "statement.executeQuery(\"SELECT count(*) FROM orders\").next()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 9,
+            "endLine": 55,
+            "endColumn": 107
+          },
+          "text": "assertEquals(0, entityManager().createNativeQuery(\"SELECT id FROM orders\").getResultList().size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "entityManager().createNativeQuery(\"SELECT id FROM orders\").getResultList().size()",
+            "normalized": "entityManager().createNativeQuery(\"SELECT id FROM orders\").getResultList().size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 45,
+            "startColumn": 9,
+            "endLine": 45,
+            "endColumn": 73
+          },
+          "text": "jdbc.update(\"INSERT INTO orders (id, item) VALUES (7, 'apple')\")",
+          "op": "create",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 68
+          },
+          "text": "jdbc.update(\"UPDATE orders SET item = 'pear' WHERE id = 7\")",
+          "op": "update",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 30,
+            "endLine": 47,
+            "endColumn": 103
+          },
+          "text": "jdbc.queryForObject(\"SELECT item FROM orders WHERE id = 7\", String.class)",
+          "op": "read",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 48,
+            "startColumn": 25,
+            "endLine": 48,
+            "endColumn": 67
+          },
+          "text": "jdbc.queryForList(\"SELECT id FROM orders\")",
+          "op": "read",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 25,
+            "endLine": 49,
+            "endColumn": 79
+          },
+          "text": "jdbc.query(\"SELECT id FROM orders\", new OrderMapper())",
+          "op": "read",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 50,
+            "startColumn": 9,
+            "endLine": 50,
+            "endColumn": 56
+          },
+          "text": "jdbc.execute(\"DELETE FROM orders WHERE id = 7\")",
+          "op": "delete",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 52,
+            "startColumn": 13,
+            "endLine": 52,
+            "endColumn": 58
+          },
+          "text": "statement.executeUpdate(\"DELETE FROM orders\")",
+          "op": "delete",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 24,
+            "endLine": 53,
+            "endColumn": 77
+          },
+          "text": "statement.executeQuery(\"SELECT count(*) FROM orders\")",
+          "op": "read",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 55,
+            "startColumn": 25,
+            "endLine": 55,
+            "endColumn": 83
+          },
+          "text": "entityManager().createNativeQuery(\"SELECT id FROM orders\")",
+          "op": "read",
+          "via": "db"
+        }
+      ],
+      "steps": [],
+      "statementCount": 8,
+      "bodyHash": "786ebba8a0c6b46fdae56c1036c21d4d4da7cc43"
+    },
+    {
+      "id": "13da3af6050a",
+      "title": "storesAnOrderThroughTheRepository",
+      "fullTitle": "OrderStoreTest > storesAnOrderThroughTheRepository",
+      "suitePath": [
+        "OrderStoreTest"
+      ],
+      "span": {
+        "startLine": 58,
+        "startColumn": 5,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 59,
+        "startColumn": 46,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 49
+          },
+          "text": "assertEquals(1, orderRepository.count())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "orderRepository.count()",
+            "normalized": "orderRepository.count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 52
+          },
+          "text": "orderRepository.save(new Order(7, \"apple\"))",
+          "op": "create",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 61,
+            "startColumn": 9,
+            "endLine": 61,
+            "endColumn": 47
+          },
+          "text": "orderRepo.insert(new Order(8, \"pear\"))",
+          "op": "create",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 62,
+            "startColumn": 9,
+            "endLine": 62,
+            "endColumn": 46
+          },
+          "text": "orderDao.persist(new Order(9, \"fig\"))",
+          "op": "create",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 63,
+            "startColumn": 9,
+            "endLine": 63,
+            "endColumn": 28
+          },
+          "text": "orderRepo.delete(8)",
+          "op": "delete",
+          "via": "db"
+        },
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 27
+          },
+          "text": "orderDao.remove(9)",
+          "op": "delete",
+          "via": "db"
+        }
+      ],
+      "steps": [],
+      "statementCount": 6,
+      "bodyHash": "1aa6ceb0fcba4021b6155787a7d27d7e0d75ddbb"
+    },
+    {
+      "id": "d8fc1adbd7ce",
+      "title": "createsAnOrderOverHttp",
+      "fullTitle": "OrderStoreTest > createsAnOrderOverHttp",
+      "suitePath": [
+        "OrderStoreTest"
+      ],
+      "span": {
+        "startLine": 68,
+        "startColumn": 5,
+        "endLine": 76,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 35,
+        "endLine": 76,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 96
+          },
+          "text": "assertEquals(\"apple\", restTemplate.getForObject(API + \"/orders/7\", Order.class).item())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "restTemplate.getForObject(API + \"/orders/7\", Order.class).item()",
+            "normalized": "restTemplate.getForObject(API+\"/orders/7\",Order.class).item()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"apple\"",
+            "normalized": "\"apple\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "apple"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 109
+          },
+          "text": "assertEquals(200, restTemplate.getForEntity(API + \"/orders/8\", Order.class).getStatusCode().value())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "restTemplate.getForEntity(API + \"/orders/8\", Order.class).getStatusCode().value()",
+            "normalized": "restTemplate.getForEntity(API+\"/orders/8\",Order.class).getStatusCode().value()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "200",
+            "normalized": "200",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "200"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 9,
+            "endLine": 75,
+            "endColumn": 38
+          },
+          "text": "assertEquals(7, created.id())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "created.id()",
+            "normalized": "created.id()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "7",
+            "normalized": "7",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "7"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 25,
+            "endLine": 70,
+            "endColumn": 104
+          },
+          "text": "restTemplate.postForObject(API + \"/orders\", new Order(7, \"apple\"), Order.class)",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 87
+          },
+          "text": "restTemplate.postForEntity(API + \"/orders\", new Order(8, \"pear\"), Order.class)",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 75
+          },
+          "text": "restTemplate.postForLocation(API + \"/orders\", new Order(9, \"fig\"))",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 31,
+            "endLine": 73,
+            "endColumn": 88
+          },
+          "text": "restTemplate.getForObject(API + \"/orders/7\", Order.class)",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 27,
+            "endLine": 74,
+            "endColumn": 84
+          },
+          "text": "restTemplate.getForEntity(API + \"/orders/8\", Order.class)",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 25,
+            "endLine": 70,
+            "endColumn": 104
+          },
+          "text": "restTemplate.postForObject(API + \"/orders\", new Order(7, \"apple\"), Order.class)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 87
+          },
+          "text": "restTemplate.postForEntity(API + \"/orders\", new Order(8, \"pear\"), Order.class)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 75
+          },
+          "text": "restTemplate.postForLocation(API + \"/orders\", new Order(9, \"fig\"))",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 31,
+            "endLine": 73,
+            "endColumn": 88
+          },
+          "text": "restTemplate.getForObject(API + \"/orders/7\", Order.class)",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 27,
+            "endLine": 74,
+            "endColumn": 84
+          },
+          "text": "restTemplate.getForEntity(API + \"/orders/8\", Order.class)",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 6,
+      "bodyHash": "583ed9ea840d8c2ffb6ed48dafe911bd13afd386"
+    },
+    {
+      "id": "deb15dc4ec48",
+      "title": "createsAnOrderWithOtherClients",
+      "fullTitle": "OrderStoreTest > createsAnOrderWithOtherClients",
+      "suitePath": [
+        "OrderStoreTest"
+      ],
+      "span": {
+        "startLine": 78,
+        "startColumn": 5,
+        "endLine": 87,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 79,
+        "startColumn": 136,
+        "endLine": 87,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 86,
+            "startColumn": 9,
+            "endLine": 86,
+            "endColumn": 49
+          },
+          "text": "assertEquals(0, orderRepository.count())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "orderRepository.count()",
+            "normalized": "orderRepository.count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "0",
+            "normalized": "0",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "0"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 9,
+            "endLine": 80,
+            "endColumn": 57
+          },
+          "text": "apiClient.post(\"/orders\", new Order(7, \"apple\"))",
+          "op": "create",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 9,
+            "endLine": 81,
+            "endColumn": 52
+          },
+          "text": "http.put(\"/orders/7\", new Order(7, \"pear\"))",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 9,
+            "endLine": 82,
+            "endColumn": 61
+          },
+          "text": "httpClient.patch(\"/orders/7\", \"{\\\"item\\\": \\\"fig\\\"}\")",
+          "op": "update",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 9,
+            "endLine": 83,
+            "endColumn": 31
+          },
+          "text": "rest.head(\"/orders/7\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 9,
+            "endLine": 84,
+            "endColumn": 35
+          },
+          "text": "webClient.get(\"/orders/7\")",
+          "op": "read",
+          "via": "http"
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 9,
+            "endLine": 85,
+            "endColumn": 42
+          },
+          "text": "webTestClient.delete(\"/orders/7\")",
+          "op": "delete",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 80,
+            "startColumn": 9,
+            "endLine": 80,
+            "endColumn": 57
+          },
+          "text": "apiClient.post(\"/orders\", new Order(7, \"apple\"))",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 81,
+            "startColumn": 9,
+            "endLine": 81,
+            "endColumn": 52
+          },
+          "text": "http.put(\"/orders/7\", new Order(7, \"pear\"))",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 82,
+            "startColumn": 9,
+            "endLine": 82,
+            "endColumn": 61
+          },
+          "text": "httpClient.patch(\"/orders/7\", \"{\\\"item\\\": \\\"fig\\\"}\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 83,
+            "startColumn": 9,
+            "endLine": 83,
+            "endColumn": 31
+          },
+          "text": "rest.head(\"/orders/7\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 84,
+            "startColumn": 9,
+            "endLine": 84,
+            "endColumn": 35
+          },
+          "text": "webClient.get(\"/orders/7\")",
+          "kind": "request"
+        },
+        {
+          "span": {
+            "startLine": 85,
+            "startColumn": 9,
+            "endLine": 85,
+            "endColumn": 42
+          },
+          "text": "webTestClient.delete(\"/orders/7\")",
+          "kind": "request"
+        }
+      ],
+      "statementCount": 7,
+      "bodyHash": "78d06443af7a95c27160ae08db50e0ec3d227dbf"
+    },
+    {
+      "id": "ef9e3052513f",
+      "title": "changesAPropertyAndLeavesIt",
+      "fullTitle": "OrderStoreTest > changesAPropertyAndLeavesIt",
+      "suitePath": [
+        "OrderStoreTest"
+      ],
+      "span": {
+        "startLine": 89,
+        "startColumn": 5,
+        "endLine": 93,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 90,
+        "startColumn": 40,
+        "endLine": 93,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 92,
+            "startColumn": 9,
+            "endLine": 92,
+            "endColumn": 47
+          },
+          "text": "assertEquals(\"EUR\", Prices.currency())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "Prices.currency()",
+            "normalized": "Prices.currency()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"EUR\"",
+            "normalized": "\"EUR\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "EUR"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [
+        {
+          "span": {
+            "startLine": 91,
+            "startColumn": 9,
+            "endLine": 91,
+            "endColumn": 51
+          },
+          "text": "System.setProperty(\"shop.currency\", \"EUR\")",
+          "kind": "env",
+          "acquiredIn": "test",
+          "released": false,
+          "autoManaged": false
+        }
+      ],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "3c3c27eea53943fb082489b96961c21e5d0f99e2"
+    },
+    {
+      "id": "2a0293477599",
+      "title": "waitsUntilTheOrderIsStored",
+      "fullTitle": "OrderStoreTest > waitsUntilTheOrderIsStored",
+      "suitePath": [
+        "OrderStoreTest"
+      ],
+      "span": {
+        "startLine": 95,
+        "startColumn": 5,
+        "endLine": 104,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 96,
+        "startColumn": 39,
+        "endLine": 104,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 103,
+            "startColumn": 9,
+            "endLine": 103,
+            "endColumn": 49
+          },
+          "text": "assertEquals(1, orderRepository.count())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "orderRepository.count()",
+            "normalized": "orderRepository.count()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "1",
+            "normalized": "1",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [
+        {
+          "span": {
+            "startLine": 100,
+            "startColumn": 9,
+            "endLine": 100,
+            "endColumn": 64
+          },
+          "text": "await().atMost(Duration.ofSeconds(5)).untilTrue(stored)",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 101,
+            "startColumn": 9,
+            "endLine": 101,
+            "endColumn": 53
+          },
+          "text": "await().untilFalse(new AtomicBoolean(false))",
+          "kind": "condition",
+          "ms": null
+        },
+        {
+          "span": {
+            "startLine": 102,
+            "startColumn": 9,
+            "endLine": 102,
+            "endColumn": 95
+          },
+          "text": "waitAtMost(Duration.ofSeconds(5)).untilAtomic(count, org.hamcrest.Matchers.equalTo(1))",
+          "kind": "condition",
+          "ms": null
+        }
+      ],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 99,
+            "startColumn": 9,
+            "endLine": 99,
+            "endColumn": 72
+          },
+          "text": "orderRepository.saveLater(new Order(7, \"apple\"), stored, count)",
+          "op": "create",
+          "via": "db"
+        }
+      ],
+      "steps": [],
+      "statementCount": 7,
+      "bodyHash": "84d24031699867b9df399ae32d0f468bed1df2ac"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 32,
+        "startColumn": 9,
+        "endLine": 32,
+        "endColumn": 48
+      },
+      "text": "System.setProperty(\"shop.mode\", \"test\")",
+      "kind": "env",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 33,
+        "startColumn": 22,
+        "endLine": 33,
+        "endColumn": 69
+      },
+      "text": "DriverManager.getConnection(\"jdbc:h2:mem:shop\")",
+      "kind": "connection",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 47
+      },
+      "source": "org.awaitility.Awaitility",
+      "names": [
+        "await"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 52
+      },
+      "source": "org.awaitility.Awaitility",
+      "names": [
+        "waitAtMost"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 28
+      },
+      "source": "java.sql.Connection",
+      "names": [
+        "Connection"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 31
+      },
+      "source": "java.sql.DriverManager",
+      "names": [
+        "DriverManager"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 27
+      },
+      "source": "java.sql.Statement",
+      "names": [
+        "Statement"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 27
+      },
+      "source": "java.time.Duration",
+      "names": [
+        "Duration"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 50
+      },
+      "source": "java.util.concurrent.atomic.AtomicBoolean",
+      "names": [
+        "AtomicBoolean"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 50
+      },
+      "source": "java.util.concurrent.atomic.AtomicInteger",
+      "names": [
+        "AtomicInteger"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 40
+      },
+      "source": "org.junit.jupiter.api.AfterEach",
+      "names": [
+        "AfterEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 51
+      },
+      "source": "org.springframework.jdbc.core.JdbcTemplate",
+      "names": [
+        "JdbcTemplate"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 52
+      },
+      "source": "org.springframework.web.client.RestTemplate",
+      "names": [
+        "RestTemplate"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

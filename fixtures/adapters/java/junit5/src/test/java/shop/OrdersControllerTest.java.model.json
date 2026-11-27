@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -311,8 +318,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 21
+          },
+          "text": "client.get()",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 21
+          },
+          "text": "client.get()",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "2666b46f6f5ffd7e19c88033d14b2ccb3224de83"
     },
@@ -396,8 +426,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 40,
+            "endColumn": 21
+          },
+          "text": "client.get()",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 40,
+            "startColumn": 9,
+            "endLine": 40,
+            "endColumn": 21
+          },
+          "text": "client.get()",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "9517ea71a87078a58ec6a848402ac9ff084d794b"
     },

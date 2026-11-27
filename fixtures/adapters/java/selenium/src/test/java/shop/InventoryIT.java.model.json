@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -33,7 +40,40 @@
         "endColumn": 2
       },
       "modifiers": [],
-      "hooks": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 19,
+            "endLine": 17,
+            "endColumn": 37
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 17,
+            "startColumn": 19,
+            "endLine": 17,
+            "endColumn": 37
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:driver"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
       "testIds": [
         "4edc084b2820",
         "c7248cb7af2d",
@@ -153,12 +193,36 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 32,
+            "startColumn": 54,
+            "endLine": 32,
+            "endColumn": 89
+          },
+          "text": "By.className(\"inventory_item_name\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "inventory_item_name"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
       "data": [],
-      "steps": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 31,
+            "startColumn": 9,
+            "endLine": 31,
+            "endColumn": 63
+          },
+          "text": "driver.get(\"https://www.saucedemo.com/inventory.html\")",
+          "kind": "navigate"
+        }
+      ],
       "statementCount": 4,
       "bodyHash": "ee3cd2419284348bfdd9b676ad2033885bb983b4"
     },
@@ -333,7 +397,44 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 47
+          },
+          "text": "@FindBy(className = \"shopping_cart_badge\")",
+          "api": "@FindBy(className)",
+          "strategy": "class",
+          "value": "shopping_cart_badge"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 47,
+            "endLine": 39,
+            "endColumn": 68
+          },
+          "text": "By.className(\"title\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "title"
+        },
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 42,
+            "endLine": 41,
+            "endColumn": 74
+          },
+          "text": "By.id(\"shopping_cart_container\")",
+          "api": "By.id",
+          "strategy": "id",
+          "value": "shopping_cart_container"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
@@ -493,7 +594,20 @@
       },
       "expectsException": false,
       "waits": [],
-      "selectors": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 49,
+            "startColumn": 41,
+            "endLine": 49,
+            "endColumn": 71
+          },
+          "text": "By.className(\"inventory_item\")",
+          "api": "By.className",
+          "strategy": "class",
+          "value": "inventory_item"
+        }
+      ],
       "tryBlocks": [],
       "mocks": [],
       "resources": [],

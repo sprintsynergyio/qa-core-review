@@ -1,0 +1,703 @@
+{
+  "path": "src/test/java/shop/FindByIT.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "FindByIT",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 81,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 57,
+            "startColumn": 5,
+            "endLine": 60,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 16,
+            "endLine": 14,
+            "endColumn": 34
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 14,
+            "startColumn": 16,
+            "endLine": 14,
+            "endColumn": 34
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:driver"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "f8646a290332",
+        "4a4c9cb839f2",
+        "8d9193f90e9a"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "f8646a290332",
+      "title": "addsTheThirdProduct",
+      "fullTitle": "FindByIT > addsTheThirdProduct",
+      "suitePath": [
+        "FindByIT"
+      ],
+      "span": {
+        "startLine": 62,
+        "startColumn": 5,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 63,
+        "startColumn": 32,
+        "endLine": 66,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 9,
+            "endLine": 65,
+            "endColumn": 50
+          },
+          "text": "assertEquals(\"Products\", title.getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "title.getText()",
+            "normalized": "title.getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 15,
+            "startColumn": 5,
+            "endLine": 15,
+            "endColumn": 69
+          },
+          "text": "@FindBy(xpath = \"//div[@class='inventory_list']/div[3]//button\")",
+          "api": "@FindBy(xpath)",
+          "strategy": "xpath",
+          "value": "//div[@class='inventory_list']/div[3]//button"
+        },
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 18,
+            "endColumn": 41
+          },
+          "text": "@FindBy(css = \"[data-test='title']\")",
+          "api": "@FindBy(css)",
+          "strategy": "test-id",
+          "value": "[data-test='title']"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 9,
+            "endLine": 64,
+            "endColumn": 31
+          },
+          "text": "thirdAddButton.click()",
+          "kind": "action"
+        }
+      ],
+      "statementCount": 2,
+      "bodyHash": "65f889dba6295efdc700b8ea1fb1d854109844ed"
+    },
+    {
+      "id": "4a4c9cb839f2",
+      "title": "showsTheFooter",
+      "fullTitle": "FindByIT > showsTheFooter",
+      "suitePath": [
+        "FindByIT"
+      ],
+      "span": {
+        "startLine": 68,
+        "startColumn": 5,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 69,
+        "startColumn": 27,
+        "endLine": 75,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 9,
+            "endLine": 70,
+            "endColumn": 41
+          },
+          "text": "assertTrue(footer.isDisplayed())",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "footer.isDisplayed()",
+            "normalized": "footer.isDisplayed()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 63
+          },
+          "text": "assertTrue(copyright.getText().contains(\"Sauce Labs\"))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "copyright.getText().contains(\"Sauce Labs\")",
+            "normalized": "copyright.getText().contains(\"Sauce Labs\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 51
+          },
+          "text": "assertEquals(\"Twitter\", twitter.getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "twitter.getText()",
+            "normalized": "twitter.getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Twitter\"",
+            "normalized": "\"Twitter\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Twitter"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 59
+          },
+          "text": "assertEquals(\"Twitter\", firstSocialLink.getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "firstSocialLink.getText()",
+            "normalized": "firstSocialLink.getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Twitter\"",
+            "normalized": "\"Twitter\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Twitter"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 38
+          },
+          "text": "assertEquals(6, items.size())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "items.size()",
+            "normalized": "items.size()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": true,
+            "isMock": false
+          },
+          "expected": {
+            "text": "6",
+            "normalized": "6",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "6"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 5,
+            "endLine": 24,
+            "endColumn": 34
+          },
+          "text": "@FindBy(linkText = \"Twitter\")",
+          "api": "@FindBy(linkText)",
+          "strategy": "link-text",
+          "value": "Twitter"
+        },
+        {
+          "span": {
+            "startLine": 30,
+            "startColumn": 5,
+            "endLine": 30,
+            "endColumn": 32
+          },
+          "text": "@FindBy(tagName = \"footer\")",
+          "api": "@FindBy(tagName)",
+          "strategy": "css",
+          "value": "footer"
+        },
+        {
+          "span": {
+            "startLine": 33,
+            "startColumn": 5,
+            "endLine": 33,
+            "endColumn": 60
+          },
+          "text": "@FindBy(how = How.XPATH, using = \"//footer/ul/li[1]/a\")",
+          "api": "@FindBy(XPATH)",
+          "strategy": "xpath",
+          "value": "//footer/ul/li[1]/a"
+        },
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 5,
+            "endLine": 36,
+            "endColumn": 51
+          },
+          "text": "@FindBy(how = How.CSS, using = \".footer_copy\")",
+          "api": "@FindBy(CSS)",
+          "strategy": "class",
+          "value": ".footer_copy"
+        },
+        {
+          "span": {
+            "startLine": 39,
+            "startColumn": 5,
+            "endLine": 39,
+            "endColumn": 60
+          },
+          "text": "@FindBy(how = How.CLASS_NAME, using = \"inventory_item\")",
+          "api": "@FindBy(CLASS_NAME)",
+          "strategy": "class",
+          "value": "inventory_item"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 5,
+      "bodyHash": "0d112cfa131708f20a38f8cef728b8754468895c"
+    },
+    {
+      "id": "8d9193f90e9a",
+      "title": "readsTheTitleAgain",
+      "fullTitle": "FindByIT > readsTheTitleAgain",
+      "suitePath": [
+        "FindByIT"
+      ],
+      "span": {
+        "startLine": 77,
+        "startColumn": 5,
+        "endLine": 80,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 78,
+        "startColumn": 31,
+        "endLine": 80,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 9,
+            "endLine": 79,
+            "endColumn": 50
+          },
+          "text": "assertEquals(\"Products\", title.getText())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "title.getText()",
+            "normalized": "title.getText()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Products\"",
+            "normalized": "\"Products\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Products"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "db5bf1153f7b0e6595be6a5823f8307278d7101d"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 23
+      },
+      "source": "java.util.List",
+      "names": [
+        "List"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 39
+      },
+      "source": "org.openqa.selenium.WebElement",
+      "names": [
+        "WebElement"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 43
+      },
+      "source": "org.openqa.selenium.support.FindBy",
+      "names": [
+        "FindBy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 40
+      },
+      "source": "org.openqa.selenium.support.How",
+      "names": [
+        "How"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 48
+      },
+      "source": "org.openqa.selenium.support.PageFactory",
+      "names": [
+        "PageFactory"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

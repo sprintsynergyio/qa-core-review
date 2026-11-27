@@ -1,0 +1,1051 @@
+{
+  "path": "src/test/java/shop/CheckoutServiceTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "junit5",
+  "libraries": [],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "CheckoutServiceTest",
+      "span": {
+        "startLine": 31,
+        "startColumn": 1,
+        "endLine": 81,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 38,
+            "startColumn": 5,
+            "endLine": 41,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "c31da8aa80ed",
+        "24de70c6147b",
+        "c6499b6446c7",
+        "a7af08133cfa"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "c31da8aa80ed",
+      "title": "chargesTheCardAndSendsAReceipt",
+      "fullTitle": "CheckoutServiceTest > chargesTheCardAndSendsAReceipt",
+      "suitePath": [
+        "CheckoutServiceTest"
+      ],
+      "span": {
+        "startLine": 43,
+        "startColumn": 5,
+        "endLine": 48,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 44,
+        "startColumn": 43,
+        "endLine": 48,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 42
+          },
+          "text": "assertEquals(\"r-1\", receipt.id())",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "receipt.id()",
+            "normalized": "receipt.id()",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"r-1\"",
+            "normalized": "\"r-1\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "r-1"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 47,
+            "startColumn": 9,
+            "endLine": 47,
+            "endColumn": 46
+          },
+          "text": "verify(mailer).send(\"ana\", \"receipt\")",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "74f99721beac69ed996d5eeb628b94e024ab8d58"
+    },
+    {
+      "id": "24de70c6147b",
+      "title": "onlyWatchesTheMailer",
+      "fullTitle": "CheckoutServiceTest > onlyWatchesTheMailer",
+      "suitePath": [
+        "CheckoutServiceTest"
+      ],
+      "span": {
+        "startLine": 50,
+        "startColumn": 5,
+        "endLine": 55,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 51,
+        "startColumn": 33,
+        "endLine": 55,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 53,
+            "startColumn": 9,
+            "endLine": 53,
+            "endColumn": 46
+          },
+          "text": "verify(mailer).send(\"ana\", \"receipt\")",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "mailer",
+            "normalized": "mailer",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        },
+        {
+          "span": {
+            "startLine": 54,
+            "startColumn": 9,
+            "endLine": 54,
+            "endColumn": 36
+          },
+          "text": "verify(audit).record(any())",
+          "kind": "mock-call",
+          "library": "mockito",
+          "actual": {
+            "text": "audit",
+            "normalized": "audit",
+            "kind": "identifier",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": null,
+          "matcher": "verify",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 3,
+      "bodyHash": "8f3d6a1555a65054b05f26df88c1c9399e627f2a"
+    },
+    {
+      "id": "c6499b6446c7",
+      "title": "checksTheReplyItGaveItself",
+      "fullTitle": "CheckoutServiceTest > checksTheReplyItGaveItself",
+      "suitePath": [
+        "CheckoutServiceTest"
+      ],
+      "span": {
+        "startLine": 57,
+        "startColumn": 5,
+        "endLine": 61,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 58,
+        "startColumn": 39,
+        "endLine": 61,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 60,
+            "startColumn": 9,
+            "endLine": 60,
+            "endColumn": 46
+          },
+          "text": "assertEquals(30, gateway.fee(\"4111\"))",
+          "kind": "equality",
+          "library": "junit",
+          "actual": {
+            "text": "gateway.fee(\"4111\")",
+            "normalized": "gateway.fee(\"4111\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": true
+          },
+          "expected": {
+            "text": "30",
+            "normalized": "30",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "number",
+              "value": "30"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 9,
+            "endLine": 59,
+            "endColumn": 49
+          },
+          "text": "when(gateway.fee(\"4111\")).thenReturn(30)",
+          "kind": "function",
+          "target": "gateway.fee",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 2,
+      "bodyHash": "31cf25d70574db6450801ac1362049f00993ba3b"
+    },
+    {
+      "id": "a7af08133cfa",
+      "title": "givesRepliesInEveryStyle",
+      "fullTitle": "CheckoutServiceTest > givesRepliesInEveryStyle",
+      "suitePath": [
+        "CheckoutServiceTest"
+      ],
+      "span": {
+        "startLine": 63,
+        "startColumn": 5,
+        "endLine": 80,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 64,
+        "startColumn": 37,
+        "endLine": 80,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 79,
+            "startColumn": 9,
+            "endLine": 79,
+            "endColumn": 69
+          },
+          "text": "assertTrue(checkout.canShip(new Cart(\"ana\"), stock, prices))",
+          "kind": "truthiness",
+          "library": "junit",
+          "actual": {
+            "text": "checkout.canShip(new Cart(\"ana\"), stock, prices)",
+            "normalized": "checkout.canShip(new Cart(\"ana\"),stock,prices)",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": null,
+          "matcher": "assertTrue",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [],
+      "tryBlocks": [],
+      "mocks": [
+        {
+          "span": {
+            "startLine": 65,
+            "startColumn": 23,
+            "endLine": 65,
+            "endColumn": 40
+          },
+          "text": "mock(Stock.class)",
+          "kind": "class",
+          "target": "Stock",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 66,
+            "startColumn": 25,
+            "endLine": 66,
+            "endColumn": 63
+          },
+          "text": "mock(Prices.class, CALLS_REAL_METHODS)",
+          "kind": "class",
+          "target": "Prices",
+          "targetsSubject": false,
+          "passthrough": true,
+          "stubbedReturn": false,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 67,
+            "startColumn": 9,
+            "endLine": 67,
+            "endColumn": 51
+          },
+          "text": "given(stock.has(\"apple\")).willReturn(true)",
+          "kind": "function",
+          "target": "stock.has",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 68,
+            "startColumn": 9,
+            "endLine": 68,
+            "endColumn": 47
+          },
+          "text": "doReturn(3).when(stock).count(\"apple\")",
+          "kind": "function",
+          "target": "stock.count",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 69,
+            "startColumn": 9,
+            "endLine": 69,
+            "endColumn": 79
+          },
+          "text": "doThrow(new IllegalStateException(\"sold out\")).when(stock).take(\"fig\")",
+          "kind": "function",
+          "target": "stock.take",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 70,
+            "startColumn": 9,
+            "endLine": 70,
+            "endColumn": 54
+          },
+          "text": "doAnswer(call -> 1).when(stock).count(\"pear\")",
+          "kind": "function",
+          "target": "stock.count",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 9,
+            "endLine": 71,
+            "endColumn": 41
+          },
+          "text": "doNothing().when(mailer).flush()",
+          "kind": "function",
+          "target": "mailer.flush",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 72,
+            "startColumn": 9,
+            "endLine": 72,
+            "endColumn": 49
+          },
+          "text": "willReturn(2).given(stock).count(\"plum\")",
+          "kind": "function",
+          "target": "stock.count",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 73,
+            "startColumn": 9,
+            "endLine": 73,
+            "endColumn": 83
+          },
+          "text": "willThrow(new IllegalStateException(\"sold out\")).given(stock).take(\"kiwi\")",
+          "kind": "function",
+          "target": "stock.take",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 74,
+            "startColumn": 9,
+            "endLine": 74,
+            "endColumn": 57
+          },
+          "text": "willAnswer(call -> 1).given(stock).count(\"lime\")",
+          "kind": "function",
+          "target": "stock.count",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 75,
+            "startColumn": 9,
+            "endLine": 75,
+            "endColumn": 46
+          },
+          "text": "willDoNothing().given(mailer).flush()",
+          "kind": "function",
+          "target": "mailer.flush",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        },
+        {
+          "span": {
+            "startLine": 76,
+            "startColumn": 9,
+            "endLine": 76,
+            "endColumn": 39
+          },
+          "text": "doReturn(7).when(audit).size()",
+          "kind": "function",
+          "target": "audit.size",
+          "targetsSubject": false,
+          "passthrough": false,
+          "stubbedReturn": true,
+          "fulfillsAllNetwork": false
+        }
+      ],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 15,
+      "bodyHash": "5f71483c7b80aa9718abf2bffbabfbdbeb94ae1d"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [
+    {
+      "span": {
+        "startLine": 33,
+        "startColumn": 5,
+        "endLine": 33,
+        "endColumn": 34
+      },
+      "text": "@Mock PaymentGateway gateway;",
+      "kind": "class",
+      "target": "PaymentGateway",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": true,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 34,
+        "startColumn": 5,
+        "endLine": 34,
+        "endColumn": 25
+      },
+      "text": "@Mock Mailer mailer;",
+      "kind": "class",
+      "target": "Mailer",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": true,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 35,
+        "startColumn": 5,
+        "endLine": 35,
+        "endColumn": 22
+      },
+      "text": "@Spy Audit audit;",
+      "kind": "class",
+      "target": "Audit",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": true,
+      "fulfillsAllNetwork": false
+    },
+    {
+      "span": {
+        "startLine": 40,
+        "startColumn": 9,
+        "endLine": 40,
+        "endColumn": 81
+      },
+      "text": "when(gateway.charge(anyString(), any())).thenReturn(Receipt.paid(\"r-1\"))",
+      "kind": "function",
+      "target": "gateway.charge",
+      "targetsSubject": false,
+      "passthrough": false,
+      "stubbedReturn": true,
+      "fulfillsAllNetwork": false
+    }
+  ],
+  "fileResources": [],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 61
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 4,
+        "startColumn": 1,
+        "endLine": 4,
+        "endColumn": 59
+      },
+      "source": "org.junit.jupiter.api.Assertions",
+      "names": [
+        "assertTrue"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 48
+      },
+      "source": "org.mockito.ArgumentMatchers",
+      "names": [
+        "any"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 54
+      },
+      "source": "org.mockito.ArgumentMatchers",
+      "names": [
+        "anyString"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 44
+      },
+      "source": "org.mockito.BDDMockito",
+      "names": [
+        "given"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 49
+      },
+      "source": "org.mockito.BDDMockito",
+      "names": [
+        "willAnswer"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 52
+      },
+      "source": "org.mockito.BDDMockito",
+      "names": [
+        "willDoNothing"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 49
+      },
+      "source": "org.mockito.BDDMockito",
+      "names": [
+        "willReturn"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 48
+      },
+      "source": "org.mockito.BDDMockito",
+      "names": [
+        "willThrow"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 54
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "CALLS_REAL_METHODS"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 13,
+        "startColumn": 1,
+        "endLine": 13,
+        "endColumn": 44
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "doAnswer"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 14,
+        "endColumn": 45
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "doNothing"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 15,
+        "startColumn": 1,
+        "endLine": 15,
+        "endColumn": 44
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "doReturn"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 16,
+        "startColumn": 1,
+        "endLine": 16,
+        "endColumn": 43
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "doThrow"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 17,
+        "startColumn": 1,
+        "endLine": 17,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 18,
+        "startColumn": 1,
+        "endLine": 18,
+        "endColumn": 42
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "verify"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 19,
+        "startColumn": 1,
+        "endLine": 19,
+        "endColumn": 40
+      },
+      "source": "org.mockito.Mockito",
+      "names": [
+        "when"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 21,
+        "startColumn": 1,
+        "endLine": 21,
+        "endColumn": 41
+      },
+      "source": "org.junit.jupiter.api.BeforeEach",
+      "names": [
+        "BeforeEach"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 22,
+        "startColumn": 1,
+        "endLine": 22,
+        "endColumn": 35
+      },
+      "source": "org.junit.jupiter.api.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 23,
+        "startColumn": 1,
+        "endLine": 23,
+        "endColumn": 51
+      },
+      "source": "org.junit.jupiter.api.extension.ExtendWith",
+      "names": [
+        "ExtendWith"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 24,
+        "startColumn": 1,
+        "endLine": 24,
+        "endColumn": 32
+      },
+      "source": "org.mockito.InjectMocks",
+      "names": [
+        "InjectMocks"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 25,
+        "startColumn": 1,
+        "endLine": 25,
+        "endColumn": 25
+      },
+      "source": "org.mockito.Mock",
+      "names": [
+        "Mock"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 26,
+        "startColumn": 1,
+        "endLine": 26,
+        "endColumn": 24
+      },
+      "source": "org.mockito.Spy",
+      "names": [
+        "Spy"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 27,
+        "startColumn": 1,
+        "endLine": 27,
+        "endColumn": 51
+      },
+      "source": "org.mockito.junit.jupiter.MockitoExtension",
+      "names": [
+        "MockitoExtension"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 28,
+        "startColumn": 1,
+        "endLine": 28,
+        "endColumn": 25
+      },
+      "source": "shop.mail.Mailer",
+      "names": [
+        "Mailer"
+      ],
+      "typeOnly": false,
+      "framework": false
+    },
+    {
+      "span": {
+        "startLine": 29,
+        "startColumn": 1,
+        "endLine": 29,
+        "endColumn": 32
+      },
+      "source": "shop.pay.PaymentGateway",
+      "names": [
+        "PaymentGateway"
+      ],
+      "typeOnly": false,
+      "framework": false
+    }
+  ],
+  "subject": {
+    "module": "CheckoutService",
+    "via": "class-under-test"
+  },
+  "suppressions": []
+}

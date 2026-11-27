@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -214,8 +221,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 53
+          },
+          "text": "given().baseUri(API).when().get(\"/products\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 27,
+            "startColumn": 9,
+            "endLine": 27,
+            "endColumn": 53
+          },
+          "text": "given().baseUri(API).when().get(\"/products\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "98914e24cb1810775bfe5aae048919d9788a6db0"
     },
@@ -321,8 +351,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 9,
+            "endLine": 36,
+            "endColumn": 40
+          },
+          "text": "when().get(API + \"/products/0\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 36,
+            "startColumn": 9,
+            "endLine": 36,
+            "endColumn": 40
+          },
+          "text": "when().get(API + \"/products/0\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "ecb2339a97158e385caa1e0533b575f90210305f"
     },
@@ -386,8 +439,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 51
+          },
+          "text": "given().baseUri(API).delete(\"/products/7\")",
+          "op": "delete",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 51
+          },
+          "text": "given().baseUri(API).delete(\"/products/7\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "4ab5cede28bf051356c507272b3f323f5e064796"
     },
@@ -650,8 +726,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 46
+          },
+          "text": "given().baseUri(API).get(\"/products\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 46,
+            "startColumn": 9,
+            "endLine": 46,
+            "endColumn": 46
+          },
+          "text": "given().baseUri(API).get(\"/products\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "a7d79bc9036c0ce213c4c385c59b17db16322572"
     },
@@ -689,8 +788,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 9,
+            "endLine": 59,
+            "endColumn": 46
+          },
+          "text": "given().baseUri(API).get(\"/products\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 59,
+            "startColumn": 9,
+            "endLine": 59,
+            "endColumn": 46
+          },
+          "text": "given().baseUri(API).get(\"/products\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "0c870496ff9302c0d79848e27d90e8df31491736"
     },
@@ -810,8 +932,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 29,
+            "endLine": 64,
+            "endColumn": 66
+          },
+          "text": "given().baseUri(API).get(\"/products\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 64,
+            "startColumn": 29,
+            "endLine": 64,
+            "endColumn": 66
+          },
+          "text": "given().baseUri(API).get(\"/products\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 3,
       "bodyHash": "17a0ed2f0eac81a4b262de23fd96c78e8ab27640"
     },
@@ -917,8 +1062,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 29,
+            "endLine": 71,
+            "endColumn": 68
+          },
+          "text": "given().baseUri(API).get(\"/products/7\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 71,
+            "startColumn": 29,
+            "endLine": 71,
+            "endColumn": 68
+          },
+          "text": "given().baseUri(API).get(\"/products/7\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 2,
       "bodyHash": "97250cdafdbc5c841ad395330edb788f52effa0a"
     }

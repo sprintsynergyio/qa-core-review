@@ -16,7 +16,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -56,7 +63,9 @@
           },
           "kind": "afterEach",
           "scope": "suite",
-          "releases": [],
+          "releases": [
+            "var:server"
+          ],
           "assertions": [],
           "waits": [],
           "selectors": [],
@@ -231,7 +240,21 @@
   ],
   "fileHooks": [],
   "fileMocks": [],
-  "fileResources": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 43,
+        "endLine": 7,
+        "endColumn": 67
+      },
+      "text": "new WireMockServer(8089)",
+      "kind": "server",
+      "acquiredIn": "file",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
   "imports": [
     {
       "span": {

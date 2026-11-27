@@ -18,7 +18,14 @@
     "parameterized",
     "assertions",
     "assertion-operands",
+    "waits",
+    "selectors",
     "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
     "body-hash",
     "helpers",
     "reachability"
@@ -128,8 +135,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 9,
+            "endLine": 19,
+            "endColumn": 38
+          },
+          "text": "given().when().get(\"/orders\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 19,
+            "startColumn": 9,
+            "endLine": 19,
+            "endColumn": 38
+          },
+          "text": "given().when().get(\"/orders\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "90930fda0781b02762604acc6c445407a93135ea"
     },
@@ -234,8 +264,31 @@
       "tryBlocks": [],
       "mocks": [],
       "resources": [],
-      "data": [],
-      "steps": [],
+      "data": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 9,
+            "endLine": 24,
+            "endColumn": 63
+          },
+          "text": "given().pathParam(\"id\", id).when().get(\"/orders/{id}\")",
+          "op": "read",
+          "via": "http"
+        }
+      ],
+      "steps": [
+        {
+          "span": {
+            "startLine": 24,
+            "startColumn": 9,
+            "endLine": 24,
+            "endColumn": 63
+          },
+          "text": "given().pathParam(\"id\", id).when().get(\"/orders/{id}\")",
+          "kind": "request"
+        }
+      ],
       "statementCount": 1,
       "bodyHash": "77a5cdfca98512fab7c8e4f2b13fdc2c38e8b01b"
     }

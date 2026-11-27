@@ -1,0 +1,367 @@
+{
+  "path": "src/test/java/shop/DriverLifecycleTest.java",
+  "language": "java",
+  "languageHint": null,
+  "adapter": "java",
+  "tier": 1,
+  "runner": "testng",
+  "libraries": [
+    "selenium"
+  ],
+  "role": "test",
+  "parseStatus": "ok",
+  "capabilities": [
+    "tests",
+    "suites",
+    "hooks",
+    "modifiers",
+    "parameterized",
+    "assertions",
+    "assertion-operands",
+    "waits",
+    "selectors",
+    "try-blocks",
+    "mocks",
+    "subject",
+    "network",
+    "data",
+    "resources",
+    "body-hash",
+    "helpers",
+    "reachability"
+  ],
+  "suites": [
+    {
+      "title": "DriverLifecycleTest",
+      "span": {
+        "startLine": 14,
+        "startColumn": 1,
+        "endLine": 43,
+        "endColumn": 2
+      },
+      "modifiers": [],
+      "hooks": [
+        {
+          "span": {
+            "startLine": 18,
+            "startColumn": 5,
+            "endLine": 21,
+            "endColumn": 6
+          },
+          "kind": "beforeAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 23,
+            "startColumn": 5,
+            "endLine": 26,
+            "endColumn": 6
+          },
+          "kind": "afterAll",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 28,
+            "startColumn": 5,
+            "endLine": 32,
+            "endColumn": 6
+          },
+          "kind": "beforeEach",
+          "scope": "suite",
+          "releases": [],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        },
+        {
+          "span": {
+            "startLine": 34,
+            "startColumn": 5,
+            "endLine": 37,
+            "endColumn": 6
+          },
+          "kind": "afterEach",
+          "scope": "suite",
+          "releases": [
+            "var:driver"
+          ],
+          "assertions": [],
+          "waits": [],
+          "selectors": [],
+          "data": []
+        }
+      ],
+      "testIds": [
+        "d8b62b69e712"
+      ],
+      "suites": []
+    }
+  ],
+  "tests": [
+    {
+      "id": "d8b62b69e712",
+      "title": "showsTheLoginPage",
+      "fullTitle": "DriverLifecycleTest > showsTheLoginPage",
+      "suitePath": [
+        "DriverLifecycleTest"
+      ],
+      "span": {
+        "startLine": 39,
+        "startColumn": 5,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "bodySpan": {
+        "startLine": 40,
+        "startColumn": 37,
+        "endLine": 42,
+        "endColumn": 6
+      },
+      "kind": "test",
+      "modifiers": [],
+      "skip": null,
+      "parameterized": null,
+      "assertions": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 9,
+            "endLine": 41,
+            "endColumn": 95
+          },
+          "text": "assertEquals(driver.findElement(By.id(\"login-button\")).getAttribute(\"value\"), \"Login\")",
+          "kind": "equality",
+          "library": "testng",
+          "actual": {
+            "text": "driver.findElement(By.id(\"login-button\")).getAttribute(\"value\")",
+            "normalized": "driver.findElement(By.id(\"login-button\")).getAttribute(\"value\")",
+            "kind": "call",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false
+          },
+          "expected": {
+            "text": "\"Login\"",
+            "normalized": "\"Login\"",
+            "kind": "literal",
+            "isLocator": false,
+            "isCount": false,
+            "isMock": false,
+            "literal": {
+              "type": "string",
+              "value": "Login"
+            }
+          },
+          "matcher": "assertEquals",
+          "negated": false,
+          "soft": false,
+          "complete": true,
+          "awaited": "not-needed",
+          "guarded": false,
+          "reachable": true,
+          "viaHelper": null
+        }
+      ],
+      "assertionGuards": {
+        "expectedCount": false,
+        "hasAssertions": false
+      },
+      "expectsException": false,
+      "waits": [],
+      "selectors": [
+        {
+          "span": {
+            "startLine": 41,
+            "startColumn": 41,
+            "endLine": 41,
+            "endColumn": 62
+          },
+          "text": "By.id(\"login-button\")",
+          "api": "By.id",
+          "strategy": "id",
+          "value": "login-button"
+        }
+      ],
+      "tryBlocks": [],
+      "mocks": [],
+      "resources": [],
+      "data": [],
+      "steps": [],
+      "statementCount": 1,
+      "bodyHash": "da5687343e4b02bdb39ed091add323c82967409d"
+    }
+  ],
+  "fileHooks": [],
+  "fileMocks": [],
+  "fileResources": [
+    {
+      "span": {
+        "startLine": 20,
+        "startColumn": 24,
+        "endLine": 20,
+        "endColumn": 42
+      },
+      "text": "new ChromeDriver()",
+      "kind": "driver",
+      "acquiredIn": "hook",
+      "released": false,
+      "autoManaged": false
+    },
+    {
+      "span": {
+        "startLine": 30,
+        "startColumn": 18,
+        "endLine": 30,
+        "endColumn": 36
+      },
+      "text": "new ChromeDriver()",
+      "kind": "driver",
+      "acquiredIn": "hook",
+      "released": true,
+      "autoManaged": false
+    }
+  ],
+  "imports": [
+    {
+      "span": {
+        "startLine": 3,
+        "startColumn": 1,
+        "endLine": 3,
+        "endColumn": 46
+      },
+      "source": "org.testng.Assert",
+      "names": [
+        "assertEquals"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 5,
+        "startColumn": 1,
+        "endLine": 5,
+        "endColumn": 31
+      },
+      "source": "org.openqa.selenium.By",
+      "names": [
+        "By"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 6,
+        "startColumn": 1,
+        "endLine": 6,
+        "endColumn": 38
+      },
+      "source": "org.openqa.selenium.WebDriver",
+      "names": [
+        "WebDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 7,
+        "startColumn": 1,
+        "endLine": 7,
+        "endColumn": 48
+      },
+      "source": "org.openqa.selenium.chrome.ChromeDriver",
+      "names": [
+        "ChromeDriver"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 8,
+        "startColumn": 1,
+        "endLine": 8,
+        "endColumn": 42
+      },
+      "source": "org.testng.annotations.AfterClass",
+      "names": [
+        "AfterClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 9,
+        "startColumn": 1,
+        "endLine": 9,
+        "endColumn": 43
+      },
+      "source": "org.testng.annotations.AfterMethod",
+      "names": [
+        "AfterMethod"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 10,
+        "startColumn": 1,
+        "endLine": 10,
+        "endColumn": 43
+      },
+      "source": "org.testng.annotations.BeforeClass",
+      "names": [
+        "BeforeClass"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 11,
+        "startColumn": 1,
+        "endLine": 11,
+        "endColumn": 44
+      },
+      "source": "org.testng.annotations.BeforeMethod",
+      "names": [
+        "BeforeMethod"
+      ],
+      "typeOnly": false,
+      "framework": true
+    },
+    {
+      "span": {
+        "startLine": 12,
+        "startColumn": 1,
+        "endLine": 12,
+        "endColumn": 36
+      },
+      "source": "org.testng.annotations.Test",
+      "names": [
+        "Test"
+      ],
+      "typeOnly": false,
+      "framework": true
+    }
+  ],
+  "subject": null,
+  "suppressions": []
+}

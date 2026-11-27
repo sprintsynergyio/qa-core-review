@@ -5,7 +5,7 @@ import type { NExpr } from '../../model/types.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
 import { annotationsOf, dottedName, itemsOf, statementsOf, stringValue, tokensOf } from './syntax.js';
 import {
-  COUNT_FIELDS, COUNT_METHODS, EXPECTED_EXCEPTION_TYPE, LOCATOR_FIELD_ANNOTATIONS, LOCATOR_METHODS, LOCATOR_REFINERS, LOCATOR_TYPES, MOCK_FACTORIES, MOCK_FIELD_ANNOTATIONS, SOFT_TYPES,
+  COUNT_FIELDS, COUNT_METHODS, EXPECTED_EXCEPTION_TYPE, LOCATOR_FIELD_ANNOTATIONS, LOCATOR_METHODS, LOCATOR_REFINERS, LOCATOR_TYPES, MOCK_FACTORIES, MOCK_FIELD_ANNOTATIONS, SELENIDE_SELECTORS, SOFT_TYPES,
 } from './vocab.js';
 
 /** What is known about the names in scope of one body. Names of fields are kept without `this.`. */
@@ -17,10 +17,12 @@ export interface Env {
   soft: Map<string, { own: boolean }>;
   /** Fields of the JUnit 4 `ExpectedException` rule. */
   expectedExceptions: Set<string>;
+  /** The type a name is declared with, as it is written: `WebDriverWait`, `List<WebElement>`. */
+  types: Map<string, string>;
 }
 
-export const emptyEnv = (): Env => ({ locators: new Set(), counts: new Set(), mocks: new Set(), soft: new Map(), expectedExceptions: new Set() });
-export const copyEnv = (env: Env): Env => ({ locators: new Set(env.locators), counts: new Set(env.counts), mocks: new Set(env.mocks), soft: new Map(env.soft), expectedExceptions: new Set(env.expectedExceptions) });
+export const emptyEnv = (): Env => ({ locators: new Set(), counts: new Set(), mocks: new Set(), soft: new Map(), expectedExceptions: new Set(), types: new Map() });
+export const copyEnv = (env: Env): Env => ({ locators: new Set(env.locators), counts: new Set(env.counts), mocks: new Set(env.mocks), soft: new Map(env.soft), expectedExceptions: new Set(env.expectedExceptions), types: new Map(env.types) });
 
 const WRAPPERS = new Set(['parenthesized_expression', 'cast_expression']);
 const NUMBERS = new Set(['decimal_integer_literal', 'hex_integer_literal', 'octal_integer_literal', 'binary_integer_literal', 'decimal_floating_point_literal', 'hex_floating_point_literal']);
@@ -77,7 +79,8 @@ export function isLocator(node: SyntaxNode, env: Env): boolean {
   if (expr.type === 'identifier' || expr.type === 'field_access') return env.locators.has(nameOf(expr) ?? '');
   if (expr.type !== 'method_invocation') return false;
   const name = expr.childForFieldName('name')?.text;
-  if (includes(LOCATOR_METHODS, name)) return true;
+  // `driver.findElement(...)`, `page.locator(...)`, and the `$(...)` of Selenide, which gives an element that is never null.
+  if (includes(LOCATOR_METHODS, name) || Object.hasOwn(SELENIDE_SELECTORS, name ?? '')) return true;
   const object = expr.childForFieldName('object');
   // `rows.first()`, `page.locator("li").nth(2)`, and `elements.get(0)` on a list of elements.
   return object !== null && (includes(LOCATOR_REFINERS, name) || name === 'get') && isLocator(object, env);
@@ -131,6 +134,7 @@ export function toExpr(node: SyntaxNode, env: Env): NExpr {
 export function learnNames(root: SyntaxNode, env: Env): void {
   const learn = (name: string | null | undefined, type: string, value: SyntaxNode | null | undefined, marks: readonly string[], local: boolean): void => {
     if (!name) return;
+    if (type !== '') env.types.set(name, type);
     // `WebElement`, `List<WebElement>`, `Locator`. Not `Locator.FilterOptions`, which is a class inside it.
     if (LOCATOR_TYPES.some((known) => new RegExp(`\\b${known}\\b(?!\\.)`).test(type)) || marks.some((mark) => includes(LOCATOR_FIELD_ANNOTATIONS, mark))) env.locators.add(name);
     if (marks.some((mark) => includes(MOCK_FIELD_ANNOTATIONS, mark))) env.mocks.add(name);

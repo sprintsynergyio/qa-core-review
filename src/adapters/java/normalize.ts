@@ -2,28 +2,30 @@
 //
 // This file finds the structure of a test file: suites (classes and the classes inside them),
 // tests, hooks, skips, parameterized tests, imports and suppression comments. What each body
-// checks is read by assertions.ts. What a body does (waits, selectors, mocks, resources) is
-// read by the next part of the adapter.
+// checks is read by assertions.ts, and what it does (waits, selectors, mocks, resources) by
+// body.ts. This file puts the two together and matches each resource with its release.
 import { emptyTest, parseSuppression } from '../../model/build.js';
 import { bodyHash, testId } from '../../model/hash.js';
-import type { Capability, FrameworkId, NFile, NHook, NImport, NSuite, NSuppression, NTest } from '../../model/types.js';
+import type { Capability, FrameworkId, NFile, NHook, NImport, NMock, NSelector, NSuite, NSuppression, NTest, Span } from '../../model/types.js';
 import { spanOfNode } from '../../parse/positions.js';
 import type { SyntaxNode } from '../../parse/treesitter.js';
-import type { AdapterContext, FrameworkGuess, ParsedFile, SourceFile } from '../types.js';
+import type { AdapterContext, FrameworkGuess, HelperDef, ParsedFile, SourceFile } from '../types.js';
 import { readBody } from './assertions.js';
+import { readCalls, type CallContext, type Held } from './body.js';
 import { frameworkOf } from './frameworks.js';
-import { collectJavaHelpers, fileContext, methodContext } from './helpers.js';
+import { baseClassKey, collectJavaHelpers, fileContext, findJavaSubject, methodContext, superclassOf } from './helpers.js';
 import { annotationsOf, dottedName, elementsOf, hasAncestor, hasModifier, isComment, itemsOf, ownDescendants, statementsOf, stringValue, tokensOf } from './syntax.js';
 import {
   ARGUMENT_SOURCES, CLASS_TEST_ANNOTATION, CONDITION_ANNOTATIONS, CONDITION_PACKAGE, CONDITION_REASON_ELEMENT, DATA_PROVIDER_ANNOTATION, DATA_PROVIDER_ELEMENT,
   DATA_PROVIDER_NAME_ELEMENT, DESCRIPTION_ELEMENT, DISPLAY_NAME_ANNOTATION, ENABLED_ELEMENT, EXPECTED_EXCEPTION_ELEMENTS, HOOK_ANNOTATIONS, NESTED_ANNOTATION, PARAMETERIZED_RUNNERS, PARAMETERS_ANNOTATION,
-  JUNIT3_BASES, ROW_WRAPPERS, RUN_WITH_ANNOTATION, SHARED_JUNIT_PACKAGES, SKIP_ANNOTATIONS, SKIP_CALLS, SOURCE_SETTING_ELEMENTS, TEST_ANNOTATIONS, TEST_CLASS_SUFFIXES,
+  JUNIT3_BASES, ROW_WRAPPERS, RUN_WITH_ANNOTATION, SHARED_JUNIT_PACKAGES, SKIP_ANNOTATIONS, SKIP_CALLS, SOURCE_SETTING_ELEMENTS, TEST_ANNOTATIONS, TEST_CLASS_SUFFIXES, TEST_ID_ATTRIBUTES,
   TEST_LIBRARY_PACKAGES, THROWN_SKIPS, UNCOUNTED_SOURCE_ELEMENTS,
 } from './vocab.js';
 
-/** What the adapter fills in so far: the structure of a file, and what its bodies check. */
+/** What the adapter fills in from a syntax tree: everything. */
 export const JAVA_CAPABILITIES: Capability[] = [
-  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'try-blocks', 'body-hash', 'helpers', 'reachability',
+  'tests', 'suites', 'hooks', 'modifiers', 'parameterized', 'assertions', 'assertion-operands', 'waits', 'selectors', 'try-blocks', 'mocks', 'subject', 'network', 'data', 'resources',
+  'body-hash', 'helpers', 'reachability',
 ];
 
 const TYPE_DECLARATIONS = new Set(['class_declaration', 'interface_declaration', 'record_declaration', 'enum_declaration']);
@@ -183,9 +185,24 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
   const shared = fileContext(root, frameworks, names);
   const local = new Set(collectJavaHelpers(root, file.path, shared).map((helper) => helper.name));
   const isHelper = (name: string): boolean => local.has(name) || ctx.helperIndex.has(name) || ctx.config.assertionHelpers.includes(name);
-  const read = (method: SyntaxNode, body: SyntaxNode): ReturnType<typeof readBody> => readBody(body, { ...methodContext(method, shared), isHelper });
   model.suppressions = readSuppressions(root);
   const seen = new Map<string, number>();
+  /** What to read for each test and hook: its method, and the class it belongs to. */
+  const bodies: Array<{ target: NTest | NHook; method: SyntaxNode; body: SyntaxNode; owner: SyntaxNode; expected: boolean }> = [];
+  /** The fields of each class: mocks, `@FindBy` selectors, and resources that an after hook of the class releases. */
+  const fieldSets: Array<{ owner: SyntaxNode; fields: SyntaxNode[] }> = [];
+  const afterReleases: Array<{ covers: SyntaxNode; tokens: string[] }> = [];
+  /**
+   * The hooks a class inherits (SPEC.md Section 9.3): those of its base class, found in the helper index by the name of the class,
+   * and of the classes that one extends. Of two classes with one name, the one in the folder of this file is meant. With no such
+   * one the base class is not known, and nothing is inherited.
+   */
+  const inheritedHooks = (base: string | null, seen: readonly string[] = []): NonNullable<HelperDef['inherited']>['hooks'] => {
+    const entries = base === null || seen.includes(base) ? [] : ctx.helperIndex.get(baseClassKey(base)).filter((entry) => entry.inherited !== undefined);
+    const beside = entries.filter((entry) => entry.file.slice(0, entry.file.lastIndexOf('/') + 1) === file.path.slice(0, file.path.lastIndexOf('/') + 1));
+    const found = beside.length === 1 ? beside[0]! : entries.length === 1 ? entries[0]! : null;
+    return found ? [...inheritedHooks(found.inherited!.superclass, [...seen, base!]), ...found.inherited!.hooks] : [];
+  };
 
   const annotations = (declaration: SyntaxNode): Annotation[] => annotationsOf(declaration).map((node) => {
     const written = dottedName(node.childForFieldName('name'));
@@ -246,6 +263,7 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
     const marks = annotations(declaration);
     const members = membersOf(declaration);
     const methods = members.filter((member) => member.type === 'method_declaration').map((node) => ({ node, marks: annotations(node), name: node.childForFieldName('name')?.text ?? '' }));
+    fieldSets.push({ owner: declaration, fields: members.filter((member) => member.type === 'field_declaration') });
     const title = titleOf(declaration, marks);
     const suite: NSuite = { title, span: spanOfNode(declaration), modifiers: skipOf(marks)?.unconditional ? ['skip'] : [], hooks: [], testIds: [], suites: [] };
     const path = [...scope.path, title];
@@ -267,7 +285,9 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
       if (!body) continue; // a method of an interface with no body runs nothing itself
       const hook = method.marks.map((mark) => HOOK_ANNOTATIONS[mark.name]).find((entry) => entry !== undefined);
       if (hook) {
-        suite.hooks.push({ span: spanOfNode(method.node), kind: hook.kind, scope: hook.global ? 'global' : 'suite', releases: [], assertions: read(method.node, body).assertions, waits: [], selectors: [], data: [] } satisfies NHook);
+        const made: NHook = { span: spanOfNode(method.node), kind: hook.kind, scope: hook.global ? 'global' : 'suite', releases: [], assertions: [], waits: [], selectors: [], data: [] };
+        suite.hooks.push(made);
+        bodies.push({ target: made, method: method.node, body, owner: declaration, expected: false });
         continue;
       }
       const testMark = method.marks.find((mark) => mark.name in TEST_ANNOTATIONS);
@@ -289,23 +309,80 @@ export function normalizeJava(parsed: ParsedFile, frameworks: FrameworkGuess, ct
       if (generated) test.parameterized = { source: generated, cases: generated === 'ParameterizedTest' ? casesOf(method.marks) : null };
       else if (dataProvider) test.parameterized = { source: 'DataProvider', cases: rowsOf(provider(stringValue(dataProvider))) };
       else test.parameterized = inherited;
-      const facts = read(method.node, body);
-      test.assertions = facts.assertions;
-      test.tryBlocks = facts.tryBlocks;
       // `@Test(expected = IllegalStateException.class)`, `@Test(expectedExceptions = ...)`.
-      test.expectsException = facts.expectsException || (testMark !== undefined && EXPECTED_EXCEPTION_ELEMENTS.some((name) => testMark.elements.has(name)));
+      bodies.push({ target: test, method: method.node, body, owner: declaration, expected: testMark !== undefined && EXPECTED_EXCEPTION_ELEMENTS.some((name) => testMark.elements.has(name)) });
       test.statementCount = statementsOf(body).length;
       test.bodyHash = bodyHash(tokensOf(body));
       model.tests.push(test);
       suite.testIds.push(test.id);
     }
     for (const member of members.filter((candidate) => TYPE_DECLARATIONS.has(candidate.type))) visitType(member, { suite, path, inherited });
+    // The hooks of a base class run around the tests of this class too. They are placed at the `extends` of this class, and hold
+    // only what counts here: what they release and delete. What they check, wait for and select is reported in their own file.
+    const extended = declaration.childForFieldName('superclass');
+    for (const hook of extended && (suite.testIds.length > 0 || suite.hooks.length > 0) ? inheritedHooks(superclassOf(declaration)) : []) {
+      const span = spanOfNode(extended!);
+      suite.hooks.push({ span, kind: hook.kind, scope: hook.scope, releases: hook.releases, assertions: [], waits: [], selectors: [], data: hook.data.map((op) => ({ ...op, span })) });
+      if (hook.kind === 'afterEach' || hook.kind === 'afterAll') afterReleases.push({ covers: declaration, tokens: hook.releases });
+    }
 
     // A class is a suite when something of it runs: a test, a hook, or a class inside it that is one. `@Nested` says so by itself.
     const nested = marks.some((mark) => mark.name === NESTED_ANNOTATION);
     if (suite.testIds.length > 0 || suite.hooks.length > 0 || suite.suites.length > 0 || nested) (scope.suite ? scope.suite.suites : model.suites).push(suite);
   };
   for (const declaration of root.namedChildren.filter((node) => TYPE_DECLARATIONS.has(node.type))) visitType(declaration, { suite: null, path: [], inherited: null });
+
+  // What each body checks and does. The class under test tells which mocks replace it.
+  const found = findJavaSubject(file, root, names, ctx.config);
+  model.subject = found.subject;
+  const calls: Omit<CallContext, 'env' | 'acquiredIn' | 'restores' | 'parameters' | 'fieldMocks'> = {
+    subject: found.name, resolve, restAssured: shared.restAssured, testIdAttributes: [...new Set([ctx.config.testIdAttribute, ...TEST_ID_ATTRIBUTES])],
+  };
+  const taken: Array<{ held: Held[]; releases: string[]; into: NFile['fileResources']; at: SyntaxNode }> = [];
+  const fieldMocks = new Map<string, NMock>();
+  const fieldSelectors = new Map<string, NSelector>();
+  for (const { owner, fields } of fieldSets) {
+    const declared = readCalls(fields, { ...calls, env: shared.env, acquiredIn: 'file', restores: false, parameters: new Set(), fieldMocks });
+    model.fileMocks.push(...declared.mocks);
+    for (const [name, mock] of declared.mockNamed) fieldMocks.set(name, mock);
+    for (const [name, selector] of declared.fieldSelectors) fieldSelectors.set(name, selector);
+    taken.push({ held: declared.held, releases: declared.releases, into: model.fileResources, at: owner });
+  }
+  bodies.sort((a, b) => a.method.startIndex - b.method.startIndex);
+  for (const { target, method, body, owner, expected } of bodies) {
+    const context = methodContext(method, shared);
+    const facts = readBody(body, { ...context, isHelper });
+    const isTest = 'id' in target;
+    const after = !isTest && (target.kind === 'afterEach' || target.kind === 'afterAll');
+    const parameters = new Set(statementsOf(method.childForFieldName('parameters')).map((parameter) => parameter.childForFieldName('name')?.text ?? ''));
+    const did = readCalls([body], { ...calls, env: context.env, acquiredIn: isTest ? 'test' : 'hook', restores: after, parameters, fieldMocks });
+    // A `@FindBy` field is a selector of the first test or hook that uses the field, so that it is reported once.
+    for (const [name, selector] of fieldSelectors) {
+      if (!body.descendantsOfType('identifier').some((used) => used?.text === name)) continue;
+      did.selectors.push(selector);
+      fieldSelectors.delete(name);
+    }
+    did.selectors.sort((a, b) => a.span.endLine - b.span.endLine || a.span.endColumn - b.span.endColumn);
+    target.assertions = facts.assertions;
+    taken.push({ held: did.held, releases: did.releases, into: isTest ? target.resources : model.fileResources, at: method });
+    if (isTest) {
+      target.expectsException = facts.expectsException || expected;
+      target.tryBlocks = facts.tryBlocks;
+      Object.assign(target, { waits: did.waits, selectors: did.selectors, steps: did.steps, data: did.data, mocks: did.mocks });
+    } else {
+      Object.assign(target, { releases: [...new Set(did.releases)], waits: did.waits, selectors: did.selectors, data: did.data });
+      model.fileMocks.push(...did.mocks);
+      if (after) afterReleases.push({ covers: owner, tokens: did.releases });
+    }
+  }
+  // A resource is released in its own body, or in an after hook of its class or of a class around it.
+  for (const { held, releases, into, at } of taken) {
+    const later = afterReleases.filter(({ covers }) => covers.startIndex <= at.startIndex && at.endIndex <= covers.endIndex).flatMap(({ tokens }) => tokens);
+    for (const { resource, tokens } of held) into.push({ ...resource, released: resource.released || tokens.some((token) => releases.includes(token) || later.includes(token)) });
+  }
+  const byPosition = (a: { span: Span }, b: { span: Span }): number => a.span.startLine - b.span.startLine || a.span.startColumn - b.span.startColumn;
+  model.fileMocks.sort(byPosition);
+  model.fileResources.sort(byPosition);
 
   // Tests are listed in source order, also when a class inside another class comes before the methods of the outer one.
   model.tests.sort((a, b) => a.span.startLine - b.span.startLine || a.span.startColumn - b.span.startColumn);
