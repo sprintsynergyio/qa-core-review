@@ -1,7 +1,7 @@
 // QCR-C001 missing-cleanup (SPEC.md Section 10.14): state that a test or a hook takes hold of
 // and never gives back, so it leaks into the tests that run after it.
 import type { NResource } from '../model/types.js';
-import { fixFor } from './fix-text.js';
+import { fixFor, termFor } from './fix-text.js';
 import type { FindingDraft, Rule } from './types.js';
 import { hooksAround } from './util.js';
 
@@ -22,6 +22,8 @@ const KINDS: Record<NResource['kind'], { key: string; message: string }> = {
   file: { key: 'handle', message: 'This file is opened or created and never closed or removed.' },
 };
 
+const LANGUAGE_TERMS = ['environment variable', 'patch'];
+
 export const missingCleanup: Rule = {
   id: 'QCR-C001',
   name: 'missing-cleanup',
@@ -36,7 +38,9 @@ export const missingCleanup: Rule = {
       for (const resource of resources) {
         if (resource.released || resource.autoManaged || (spiesRestored && resource.kind === 'spy')) continue;
         const { key, message } = KINDS[resource.kind];
-        drafts.push({ message, evidence: resource.text, span: resource.span, testId, ...fixFor(`QCR-C001/${key}`, file.language) });
+        // The same thing has another name in some languages: a system property in Java, where others change the environment.
+        const worded = LANGUAGE_TERMS.reduce((text, term) => text.replace(term, termFor(term, file.language)), message);
+        drafts.push({ message: worded, evidence: resource.text, span: resource.span, testId, ...fixFor(`QCR-C001/${key}`, file.language) });
       }
     };
     scan(file.fileResources, null);
